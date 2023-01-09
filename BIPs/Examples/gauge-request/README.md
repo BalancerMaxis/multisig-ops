@@ -13,7 +13,9 @@ Go To: https://gnosis-safe.io/app/eth:0xc38c5f97B34E175FFd35407fc91a937300E33860
 - Click the Download on the top right.
   - Name the saved file `BIP-XXX.json`
 - Create a PR adding your BIP-XXX.json to the [BIPs folder of the BalancerMaxis Github repo](https://github.com/BalancerMaxis/multisig-jsons/tree/main/BIPs)
-**For Github Noobs**
+
+### For Github Noobs
+
 - Go here: https://github.com/BalancerMaxis/multisig-jsons/upload/main/BIPs
 - Upload your BIP-XXX.json file with the proper BIP number
 - Copy the title of the BIP in Commit Changes section where it reads `Add files via Uplaod` in grey
