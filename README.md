@@ -2,7 +2,7 @@
 This repo is used to store payloads uploaded to the multisig, as well as any tooling used to generate such payloads.
 
 ### Uploading transaction JSONs as part of Balancer Governance
-Balancer Governance requires that a link to a PR request in this repo with a transaction builder JSON is included.
+Balancer Governance requires that a link to a PR request in this repo with a gnosis-safe transaction builder JSON is included.
 
 PR's should be to include a single file named `BIP-XXX.json` in the `BIPs` directory where XXX is the number of the BIP.  The PR should include the BIP title as it's commit/pr text.
 An example of how to upload such a JSON for a gauge request can be found here: [BIPs/examples/gauge-request](BIPs/Examples/gauge-request)
