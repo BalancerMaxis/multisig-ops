@@ -22,9 +22,9 @@ Here are a list of multisigs that the Maxis can and may load transactions into d
 ### Ecosystem Multisigs
 Here are a list of multisigs that have frequent interactions with BalancerDAO but are not managed in any way by the Maxis and are not triggered by snapshot votes.
 
-| Name             | Purpose                                                                                              | Chain                                                                                     | Address                                    |
-|------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|--------------------------------------------|
-| Balancer Grants  | Multisig funded by the Balancer treasury with funds managed by the community elected Grants Council  | [MAINNET](https://gnosis-safe.io/app/eth:0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597/home) | 0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597 | 
+| Name             | Purpose                                                                                               | Chain                                                                                     | Address                                    |
+|------------------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|--------------------------------------------|
+| Balancer Grants  | Multisig funded by the Balancer treasury with funds managed by the community elected Grants Committee | [MAINNET](https://gnosis-safe.io/app/eth:0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597/home) | 0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597 | 
 
 ### Need Help
 You can contact Tritium, Solarcurve or any of the BAL Maxis on the Balancer Discord for help getting your JSON PR submitted.  We can also just do it for you if that's what you'd prefer.
