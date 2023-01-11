@@ -1,1 +1,34 @@
-{"version":"1.0","chainId":"1","createdAt":1673454535461,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.11.1","createdFromSafeAddress":"0xc38c5f97B34E175FFd35407fc91a937300E33860","createdFromOwnerAddress":"","checksum":"0xb88b02c53209cb748482b1feb9339a498cdff7ec3d8d1c1412f775a971157d42"},"transactions":[{"to":"0x2fFB7B215Ae7F088eC2530C7aa8E1B24E398f26a","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"contract IStakingLiquidityGauge","name":"gauge","type":"address"}],"name":"addEthereumGauge","payable":false},"contractInputsValues":{"gauge":"0xBC02eF87f4E15EF78A571f3B2aDcC726Fee70d8b"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1673454535461,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.11.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xb88b02c53209cb748482b1feb9339a498cdff7ec3d8d1c1412f775a971157d42"
+  },
+  "transactions": [
+    {
+      "to": "0x2fFB7B215Ae7F088eC2530C7aa8E1B24E398f26a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IStakingLiquidityGauge",
+            "name": "gauge",
+            "type": "address"
+          }
+        ],
+        "name": "addEthereumGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xBC02eF87f4E15EF78A571f3B2aDcC726Fee70d8b"
+      }
+    }
+  ]
+}
