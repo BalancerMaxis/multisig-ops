@@ -4,8 +4,9 @@ This repo is used to store payloads uploaded to the multisig, as well as any too
 ### Uploading transaction JSONs as part of Balancer Governance
 Balancer Governance requires that a link to a PR request in this repo with a gnosis-safe transaction builder JSON is included.
 
-PR's should be to include a single file named `BIP-XXX.json` in the `BIPs` directory where XXX is the number of the BIP.  The PR should include the BIP title as it's commit/pr text.
+PR's should be to include a single file named `BIP-XXX.json` in the `BIPs` directory where XXX is the number of the BIP.  The PR should include the BIP title as it's commit/pr text. 
 #### Examples
+Here are some documents of how to do specific, commonly requested things.
 
 | Link                                            | Description                                                   | Difficulty/Complexity                |
 |-------------------------------------------------|---------------------------------------------------------------|--------------------------------------|
@@ -14,7 +15,6 @@ PR's should be to include a single file named `BIP-XXX.json` in the `BIPs` direc
 | [Gauge Replacement](Examples/gauge-replacement) | Kill one gauge and add another for pool or gauge replacements | Moderate - Requires basic git skillz |
 
 
-An example of how to upload such a JSON for a gauge request can be found here: [BIPs/examples/gauge-request](BIPs/Examples/gauge-request)
 
 ### Balancer Multisigs
 Here are a list of multisigs that the Maxis can and may load transactions into due to governance snapshots.
