@@ -36,7 +36,7 @@ Here are instructions for how to create the commit/PR:
 
 - Create a directory called BIP-XXX, where XXX is the BIP number, in the `/BIPs` directory.
 - Copy the 2 json files generated above into this directory
-- Create a new branch named BIP-XXX where XXX is your bip numbner
+- Create a new branch named BIP-XXX where XXX is your bip number
 - Commit the 2 new files in their directory to this branch and create a pull request
 - Use the exact heading of the Forum/Snapshot post as the Pull Request Title
 
