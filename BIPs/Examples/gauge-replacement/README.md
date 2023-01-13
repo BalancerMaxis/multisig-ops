@@ -30,6 +30,10 @@ Go To: https://gnosis-safe.io/app/eth:0xc38c5f97B34E175FFd35407fc91a937300E33860
   - Name the saved file `mainnetGaugeMultisig.json`
 
 ## Creating the PR
+**Note that you will not be able to upload and create the PR directly on the GITHUB app in this case.  The upload feature only allows you to create a PR for a single file going into a directory that already exists.  Completing this example will require using a 3rd party tool to create a branch and commit and push it to github.  Github Desktop, or any IDE should enable this.**
+
+Here are instructions for how to create the commit/PR:
+
 - Create a directory called BIP-XXX, where XXX is the BIP number, in the `/BIPs` directory.
 - Copy the 2 json files generated above into this directory
 - Create a new branch named BIP-XXX where XXX is your bip numbner
