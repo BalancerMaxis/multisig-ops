@@ -27,8 +27,9 @@ def main():
     # Get the list of modified and added files
     changed_files = []
     for file_json in pr_file_data:
-        changed_files.append(file_json['filename]'])
-
+        changed_files.append(file_json['filename'])
+    if debug:
+        print(f"Changed Files:{changed_files}")
     # Filter the list of added files for json files
     json_files = [filename for filename in changed_files if filename.endswith(".json")]
 
