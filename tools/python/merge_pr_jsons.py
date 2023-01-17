@@ -7,6 +7,7 @@ debug = True
 
 
 def main():
+
     date = datetime.utcnow()
     # Get the REPO_ROOT from the environment variable
     # Read the event payload
@@ -18,7 +19,7 @@ def main():
     if debug:
         print(f"api url: {api_url}")
     url = urlopen(api_url)
-    pr_file_data = json.lods(url.read())
+    pr_file_data = json.loads(url.read())
 
     if debug:
         print(pr_file_data)
@@ -42,8 +43,6 @@ def main():
         chain_id = data["chainId"]
         created_from_safe_address = data["meta"]["createdFromSafeAddress"]
         transactions = data["transactions"]
-        # Get the current date
-        date = datetime.now()
         # Create the directory name
         dir_name = f"{date.year}-week{date.strftime('%N')}"
         # Create the directory if it does not exist
