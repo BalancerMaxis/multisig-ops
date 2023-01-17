@@ -11,7 +11,7 @@ def main():
     # Read the event payload
     pr_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/pr'
     main_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/main'
-    github_repo = os.environ["GITHUB_REPO"]
+    github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
     #"https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files
     api_response = f'https://api.github.com/repos/{"GITHUB_REPO"}/multisig-ops/pulls/{"PR_NUMBER"}/files'
