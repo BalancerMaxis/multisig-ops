@@ -14,7 +14,7 @@ def main():
     with open(os.environ["GITHUB_EVENT_PATH"], "r") as event_file:
         event_data = json.load(event_file)
     if debug:
-        event_data.print()
+        print(event_data)
 
     # Get the list of modified and added files
     modified_files = event_data["pull_request"]["changed_files"]
