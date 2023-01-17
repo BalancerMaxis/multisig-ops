@@ -3,19 +3,22 @@ import json
 from datetime import datetime
 from urllib.request import urlopen
 
-date = datetime.utcnow()
+debug = True
 
-debug = True;
+
 def main():
+    date = datetime.utcnow()
     # Get the REPO_ROOT from the environment variable
     # Read the event payload
     pr_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/pr'
     main_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/main'
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    api_url = f'https://api.github.com/repos/{"github_repo"}/multisig-ops/pulls/{"pr_number"}/files'
-    URL = urlopen(api_url)
-    pr_file_data = json.lods(URL.read())
+    api_url = f'https://api.github.com/repos/{github_repo}/multisig-ops/pulls/{pr_number}/files'
+    if debug:
+        print(f"api url: {api_url}")
+    url = urlopen(api_url)
+    pr_file_data = json.lods(url.read())
 
     if debug:
         print(pr_file_data)
@@ -33,8 +36,8 @@ def main():
         if debug:
             print(f"Processing ${json_file}")
         # Get the JSON file from the repository
-        with open(json_file, "r") as json_file:
-            data = json.load(json_file)
+        with open(json_file, "r") as json_data:
+            data = json.load(json_data)
         # Extract the relevant information from the JSON file
         chain_id = data["chainId"]
         created_from_safe_address = data["meta"]["createdFromSafeAddress"]
