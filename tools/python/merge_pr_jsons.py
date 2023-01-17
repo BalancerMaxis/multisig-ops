@@ -13,7 +13,7 @@ def main():
     main_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/main'
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    api_url = f'https://api.github.com/repos/{"GITHUB_REPO"}/multisig-ops/pulls/{"PR_NUMBER"}/files'
+    api_url = f'https://api.github.com/repos/{"github_repo"}/multisig-ops/pulls/{"pr_number"}/files'
     URL = urlopen(api_url)
     pr_file_data = json.lods(URL.read())
 
