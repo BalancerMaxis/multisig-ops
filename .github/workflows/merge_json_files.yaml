@@ -35,6 +35,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Merge JSON files
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+
+
         run: |
           python main/tools/python/merge_pr_jsons.py
 
