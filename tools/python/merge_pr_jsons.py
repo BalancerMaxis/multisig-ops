@@ -13,6 +13,8 @@ def main():
     # Read the event payload
     pr_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/pr'
     main_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/main'
+    if debug:
+        print(f"main_branch_rooot: ${main_branch_root}\npr_branch_root:{pr_branch_root}")
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
     api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
@@ -44,14 +46,16 @@ def main():
         chain_id = data["chainId"]
         created_from_safe_address = data["meta"]["createdFromSafeAddress"]
         transactions = data["transactions"]
-        # Create the directory name
-        dir_name = f"{date.year}-week{date.strftime('%N')}"
+        # Create the directory name.  %W is week of year, week starts on monday
+        dir_name = f"{date.year}-{date.strftime('%W')}"
         # Create the directory if it does not exist
         if not os.path.exists(f"{main_branch_root}/BIPs/{dir_name}"):
             os.mkdir(f"{main_branch_root}/BIPs/{dir_name}")
         # Create the file name
-        file_name = f"{chain_id}-{created_from_safe_address}"
+        file_name = f"{chain_id}-{created_from_safe_address}.json"
         # Check if the file already exists
+        if debug:
+            print(f"output json file path is: {main_branch_root}/BIPs/{dir_name}/{file_name}")
         if os.path.exists(f"{main_branch_root}/BIPs/{dir_name}/{file_name}"):
             # If the file exists, read the existing transactions
             with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "r") as existing_file:
@@ -64,7 +68,7 @@ def main():
                 json.dump({"transactions": transactions}, output_file)
         # Otherwise seed the new multisig file with the entirety of the source json
         else:
-            with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "r") as new_file:
+            with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w") as new_file:
                 new_file.write(json.dumps(data))
 
 
