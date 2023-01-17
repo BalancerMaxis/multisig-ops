@@ -36,7 +36,7 @@ jobs:
 
       - name: Merge JSON files
         run: |
-          tools/python/python merge_pr_jsons.py
+          main/tools/python/python merge_pr_jsons.py
 
       - name: Commit and push changes
         run: |
