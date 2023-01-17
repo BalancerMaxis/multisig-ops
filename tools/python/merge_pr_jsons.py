@@ -13,24 +13,27 @@ def main():
     main_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/main'
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    #"https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files
-    api_response = f'https://api.github.com/repos/{"GITHUB_REPO"}/multisig-ops/pulls/{"PR_NUMBER"}/files'
-    with open(os.environ["GITHUB_EVENT_PATH"], "r") as event_file:
-        event_data = json.load(event_file)
+    api_url = f'https://api.github.com/repos/{"GITHUB_REPO"}/multisig-ops/pulls/{"PR_NUMBER"}/files'
+    URL = urlopen(api_url)
+    pr_file_data = json.lods(URL.read())
+
     if debug:
-        print(event_data)
+        print(pr_file_data)
 
     # Get the list of modified and added files
-    modified_files = event_data["pull_request"]["changed_files"]
-    added_files = [item for item in modified_files if item["status"] == "added"]
+    changed_files = []
+    for file_json in pr_file_data:
+        changed_files.append(file_json['filename]'])
 
     # Filter the list of added files for json files
-    json_files = [item for item in added_files if item["filename"].endswith(".json")]
+    json_files = [filename for filename in changed_files if filename.endswith(".json")]
 
     # Extract the relevant information from the JSON file
     for json_file in json_files:
+        if debug:
+            print(f"Processing ${json_file}")
         # Get the JSON file from the repository
-        with open(json_file["filename"], "r") as json_file:
+        with open(json_file, "r") as json_file:
             data = json.load(json_file)
         # Extract the relevant information from the JSON file
         chain_id = data["chainId"]
