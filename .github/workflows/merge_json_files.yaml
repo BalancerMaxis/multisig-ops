@@ -2,10 +2,11 @@ name: Merge JSON files
 
 on:
   pull_request:
-    types: [merged]
+    types: [closed]
 
 jobs:
   merge_json:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code (PR)
