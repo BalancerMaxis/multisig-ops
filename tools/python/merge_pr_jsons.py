@@ -64,6 +64,8 @@ def main():
             # Add the new transactions to the existing transactions
             existing_data["transactions"].extend(existing_transactions)
         # Write the new file
+            if debug:
+                print(f"transactions to add as part of ${json_file} are : \n {existing_data}")
             with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w") as output_file:
                 json.dump(existing_data, output_file, indent=6)
         # Otherwise seed the new multisig file with the entirety of the source json
