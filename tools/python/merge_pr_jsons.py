@@ -47,7 +47,7 @@ def main():
         created_from_safe_address = data["meta"]["createdFromSafeAddress"]
         transactions = data["transactions"]
         # Create the directory name.  %W is week of year, week starts on monday
-        dir_name = f"{date.year}-{date.strftime('%W')}"
+        dir_name = f"batched/{date.year}-{date.strftime('%W')}"
         # Create the directory if it does not exist
         if not os.path.exists(f"{main_branch_root}/BIPs/{dir_name}"):
             os.mkdir(f"{main_branch_root}/BIPs/{dir_name}")
@@ -63,13 +63,13 @@ def main():
                 existing_transactions = existing_data["transactions"]
             # Add the new transactions to the existing transactions
             existing_data["transactions"].extend(existing_transactions)
-        # Write the transactions to the file
+        # Write the new file
             with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w") as output_file:
-                json.dump({"transactions": transactions}, output_file)
+                json.dump(existing_data, output_file, indent=6)
         # Otherwise seed the new multisig file with the entirety of the source json
         else:
             with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w") as new_file:
-                new_file.write(json.dumps(data))
+                new_file.write(json.dump(data, output_file, index=6))
 
 
 if __name__ == "__main__":
