@@ -69,7 +69,7 @@ def main():
         # Otherwise seed the new multisig file with the entirety of the source json
         else:
             with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w") as new_file:
-                json.dump(data, new_file, index=6)
+                json.dump(data, new_file, indent=6)
 
 
 if __name__ == "__main__":
