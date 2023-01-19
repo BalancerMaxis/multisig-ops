@@ -1,0 +1,54 @@
+name: Merge JSON files
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  merge_json:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code (PR)
+        uses: actions/checkout@v3
+        with:
+           path: pr
+
+      - name: Checkout main branch for combined jsons
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          path: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          pwd
+          ls
+          cd main/tools/python
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Merge JSON files
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+
+
+        run: |
+          python main/tools/python/merge_pr_jsons.py
+
+      - name: Commit and push changes
+        run: |
+          cd main
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+          git add -A
+          git commit -m "Merge JSON files"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
