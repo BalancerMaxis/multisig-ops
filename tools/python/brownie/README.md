@@ -6,7 +6,7 @@ It relies heavily on [`ganache-cli`](https://docs.nethereum.com/en/latest/ethere
 
 ## Installation
 
-The recommended version of Python for this repository is 3.9
+The recommended version of Python for this toolset is 3.9
 
 ```
 python3.9 -m venv venv
