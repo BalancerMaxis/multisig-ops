@@ -12,9 +12,7 @@ import time
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://hhand.xyz/proposal"
 
-#TODO The most up to date file has not been merged to master so using a blog link instead
-#GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
-GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/9f8fb6ff33a98f7f87262eaa6773c528e026f95d/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
@@ -92,6 +90,7 @@ def main(
     safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
     usdc = safe.contract(r.tokens.USDC)
+    usdc_mantissa_multilpier = 10 ** int(usdc.decimals())
 
     safe.take_snapshot([usdc])
 
@@ -101,12 +100,28 @@ def main(
         r.hidden_hand.balancer_briber, interface.IBalancerBribe
     )
     bribes = process_bribe_csv(csv_file)
+
+    ### Calcualte total bribe
+    total_balancer_usdc = 0
+    total_aura_usdc = 0
+    for target, amount in bribes["balancer"].items():
+        total_balancer_usdc += amount
+    for target, amount in bribes["aura"].items():
+        total_aura_usdc += amount
+    total_usdc = total_balancer_usdc + total_aura_usdc
+    total_mantissa = int(total_usdc * usdc_mantissa_multilpier)
+
+    print(f"*** Aura USDC: {total_aura_usdc}")
+    print(f"*** Balancer USDC: {total_balancer_usdc}")
+    print(f"*** Total USDC: {total_usdc}")
+    print(f"*** Total mantissa: {total_mantissa}")
+
+    usdc.approve(bribe_vault, total_mantissa)
+
     ### BALANCER
     def bribe_balancer(gauge, mantissa):
         prop = web3.solidityKeccak(["address"], [Web3.toChecksumAddress(gauge)])
         mantissa = int(mantissa)
-
-        usdc.approve(bribe_vault, mantissa)
 
         print("*** Posting Balancer Bribe:")
         print("*** Gauge Address:", gauge)
@@ -123,8 +138,7 @@ def main(
         )
 
     for target, amount in bribes["balancer"].items():
-        decimals = 10**int(usdc.decimals())
-        mantissa = int(amount * decimals)
+        mantissa = int(amount * usdc_mantissa_multilpier)
         bribe_balancer(target, mantissa)
 
     ### AURA
@@ -133,8 +147,7 @@ def main(
         target_name = gauge_address_to_snapshot_name[web3.toChecksumAddress(target)]
         # grab data from proposals to find out the proposal index
         prop = get_hh_aura_target(target_name)
-        decimals = 10 ** int(usdc.decimals())
-        mantissa = int(amount * decimals)
+        mantissa = int(amount * usdc_mantissa_multilpier)
         # NOTE: debugging prints to verify
         print("*** Posting AURA Bribe:")
         print("*** Target Gauge Address:", target)
@@ -144,8 +157,6 @@ def main(
         print("*** Mantissa Amount:", mantissa)
         print("\n")
 
-
-        usdc.approve(bribe_vault, mantissa)
         aura_briber.depositBribeERC20(
             prop,  # bytes32 proposal
             usdc,  # address token
@@ -159,3 +170,7 @@ def main(
     print ("Preparing to post transaction")
     ### DO IT
     safe.post_safe_tx(gen_tenderly=False)
+
+    ## The line below can be used to replace a nounce of an already loaded transaction in order to avoid having to revoke
+    ## Once any tx is executed on a given nounce, all others will be canceled/impossible.
+    #safe.post_safe_tx(gen_tenderly=False, replace_nonce=0)
