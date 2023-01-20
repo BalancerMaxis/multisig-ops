@@ -33,7 +33,7 @@ def main():
     if debug:
         print(f"Changed Files:{changed_files}")
     # Filter the list of added files for json files
-    json_files = [filename for filename in changed_files if filename.endswith(".json")]
+    json_files = [filename for filename in changed_files if filename.endswith(".json") and "BIPs/BIP" in filename]
 
     # Extract the relevant information from the JSON file
     for json_file in json_files:
