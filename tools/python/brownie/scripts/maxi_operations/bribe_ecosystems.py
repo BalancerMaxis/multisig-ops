@@ -6,6 +6,7 @@ from web3 import Web3
 from great_ape_safe import GreatApeSafe
 from helpers.addresses import r
 import csv
+import time
 
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
@@ -152,5 +153,9 @@ def main(
         )
 
     print("\n\nBuilding and pushing multisig payload")
+    if usdc.balanceOf(safe) != 0:
+        print ("\n\n\nWARNING: There is still dollars in the safe, in general all funds should be spent.  Check the numbers.\n SLEEP 15 \n\n\n ")
+        time.sleep(15)
+    print ("Preparing to post transaction")
     ### DO IT
     safe.post_safe_tx(gen_tenderly=False)
