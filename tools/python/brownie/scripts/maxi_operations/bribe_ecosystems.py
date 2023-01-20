@@ -44,7 +44,6 @@ def get_hh_aura_target(target_name):
 def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     ## the url was not responding on IPv6 addresses
     requests.packages.urllib3.util.connection.HAS_IPV6 = False
-
     response = requests.get(map_url)
     item_list = response.json()
     output = {}
@@ -87,7 +86,10 @@ def main(
     csv_file="bribes/csv/current.csv",
 ):
 
-    safe = GreatApeSafe(r.balancer.multisigs.dao)
+    # TODO: Use real safe once testing is finished
+    # safe = GreatApeSafe(r.balancer.multisigs.dao)
+    safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
+
     usdc = safe.contract(r.tokens.USDC)
 
     safe.take_snapshot([usdc])
