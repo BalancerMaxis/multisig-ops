@@ -1,0 +1,20 @@
+autofetch_sources: True
+
+networks:
+  default: mainnet-fork
+
+dotenv: .env
+
+dependencies:
+    - OpenZeppelin/openzeppelin-contracts@4.5.0
+    - smartcontractkit/chainlink@1.4.0
+    - Uniswap/v3-core@1.0.0
+    - Uniswap/v3-periphery@1.3.0
+
+compiler:
+    solc:
+        remappings:
+          - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.5.0"
+          - "@chainlink=smartcontractkit/chainlink@1.4.0"
+          - "@uniswap/v3-core=Uniswap/v3-core@1.0.0"
+          - "@uniswap/v3-periphery=Uniswap/v3-periphery@1.3.0"
