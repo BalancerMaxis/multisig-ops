@@ -23,13 +23,12 @@ def main():
 
     for name, address in gauges_to_remove.items():
         gauge = safe.contract(address)
-        print(f"isKilled on gauge {name} at {gauge.address}  = {gauge.is_killed()}")
-    for name, address in gauges_to_remove.items():
+        print(f"isKilled on gauge {name} at {gauge.address}  = {bool(gauge.is_killed())}")
+        if(gauge.is_killed):
+            continue
         print (f"Killing {address} with name ${name}")
         authorizer.performAction(address, killGauge)
-    for name, address in gauges_to_remove.items():
-        gauge=safe.contract(address)
-        print(f"isKilled on gauge {name} at {gauge.address}  = {gauge.is_killed()}")
+        print(f"isKilled on gauge {name} at {gauge.address}  is now {gauge.is_killed()}")
 
     safe.post_safe_tx(call_trace=True, gen_tenderly=False)
 
