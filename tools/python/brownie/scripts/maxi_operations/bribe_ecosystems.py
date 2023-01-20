@@ -9,6 +9,7 @@ import csv
 
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
+HH_API_URL = "https://hhand.xyz/proposal"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
@@ -27,6 +28,14 @@ query {
   }
 }
 """
+
+def get_hh_aura_target(target_name):
+    response = requests.get(f"{HH_API_URL}/aura")
+    options = response.json()["data"]
+    for option in options:
+        if option["title"] == target_name:
+            return option["proposalHash"]
+    return False  ## return false if no result
 
 def get_index(proposal_id, target):
     # grab data from the snapshot endpoint re proposal choices
@@ -55,7 +64,7 @@ def process_bribe_csv(
     }
     ## Parse briibes per platform
     for bribe in bribe_csv:
-        bribes[bribe["platform"]][bribe["target"]] = bribe["amount"]
+        bribes[bribe["platform"]][bribe["target"]] = float(bribe["amount"])
     return bribes
 
 def main(
@@ -80,7 +89,15 @@ def main(
         mantissa = int(mantissa)
 
         usdc.approve(bribe_vault, mantissa)
-        print(gauge, prop.hex(), mantissa)
+
+        print("*** Posting Balancer Bribe:")
+        print("*** Gauge Address:", gauge)
+        print("*** Proposal hash:", prop.hex())
+        print("*** Amount:", amount)
+        print("*** Mantissa Amount:", mantissa)
+        print("\n")
+
+
         balancer_briber.depositBribeERC20(
             prop,  # bytes32 proposal
             usdc,  # address token
@@ -88,32 +105,27 @@ def main(
         )
 
     for target, amount in bribes["balancer"].items():
-        mantissa = int(int(amount) * int(usdc.decimals()))
+        decimals = 10**int(usdc.decimals())
+        mantissa = int(amount * decimals)
         bribe_balancer(target, mantissa)
 
     ### AURA
     for target, amount in bribes["aura"].items():
         assert aura_proposal_id
-        choice = get_index(aura_proposal_id, target)
 
         # grab data from proposals to find out the proposal index
-        response = requests.post(SNAPSHOT_URL, json={"query": QUERY_PROPOSALS})
-        # reverse the order to have from oldest to newest
-        proposals = response.json()["data"]["proposals"][::-1]
-        for proposal in proposals:
-            if aura_proposal_id == proposal["id"]:
-                proposal_index = proposals.index(proposal)
-                break
-        prop = web3.solidityKeccak(["uint256", "uint256"], [proposal_index, choice])
-
+        prop = get_hh_aura_target(target)
+        decimals = 10 ** int(usdc.decimals())
+        mantissa = int(amount * decimals)
         # NOTE: debugging prints to verify
-        print("Current total proposal in aura snap: ", len(proposals))
-        print("Proposal index:", proposal_index)
-        print("Choice:", choice)
-        print("Proposal hash:", prop.hex())
-        print("Proposal amount:", amount)
+        print("*** Posting AURA Bribe:")
+        print("*** Target:", target)
+        print("*** Proposal hash:", prop)
+        print("*** Amount:", amount)
+        print("*** Mantissa Amount:", mantissa)
+        print("\n")
 
-        mantissa = int(int(amount) ** int(usdc.decimals()))
+
         usdc.approve(bribe_vault, mantissa)
         aura_briber.depositBribeERC20(
             prop,  # bytes32 proposal
@@ -121,5 +133,6 @@ def main(
             mantissa,  # uint256 amount
         )
 
+    print("\n\nBuilding and pushing multisig payload")
     ### DO IT
-    safe.post_safe_tx()
+    safe.post_safe_tx(gen_tenderly=False)
