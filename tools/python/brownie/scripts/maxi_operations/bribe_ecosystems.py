@@ -85,9 +85,8 @@ def main(
     csv_file="bribes/csv/current.csv",
 ):
 
-    # TODO: Use real safe once testing is finished
-    # safe = GreatApeSafe(r.balancer.multisigs.dao)
-    safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
+    safe = GreatApeSafe(r.balancer.multisigs.fees)
+    #safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
     usdc = safe.contract(r.tokens.USDC)
     usdc_mantissa_multilpier = 10 ** int(usdc.decimals())
