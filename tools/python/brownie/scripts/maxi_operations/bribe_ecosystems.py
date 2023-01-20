@@ -11,6 +11,10 @@ import csv
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://hhand.xyz/proposal"
 
+#TODO The most up to date file has not been merged to master so using a blog link instead
+#GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/9f8fb6ff33a98f7f87262eaa6773c528e026f95d/tasks/snapshot/labels.json"
+
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
 query ($proposal_id: String) {
@@ -36,6 +40,18 @@ def get_hh_aura_target(target_name):
         if option["title"] == target_name:
             return option["proposalHash"]
     return False  ## return false if no result
+
+def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
+    ## the url was not responding on IPv6 addresses
+    requests.packages.urllib3.util.connection.HAS_IPV6 = False
+
+    response = requests.get(map_url)
+    item_list = response.json()
+    output = {}
+    for mapping in item_list:
+        gauge_address = web3.toChecksumAddress(mapping["gauge"])
+        output[gauge_address] = mapping["label"]
+    return output
 
 def get_index(proposal_id, target):
     # grab data from the snapshot endpoint re proposal choices
@@ -69,7 +85,6 @@ def process_bribe_csv(
 
 def main(
     csv_file="bribes/csv/current.csv",
-    aura_proposal_id=None,
 ):
 
     safe = GreatApeSafe(r.balancer.multisigs.dao)
@@ -110,16 +125,17 @@ def main(
         bribe_balancer(target, mantissa)
 
     ### AURA
+    gauge_address_to_snapshot_name = get_gauge_name_map()
     for target, amount in bribes["aura"].items():
-        assert aura_proposal_id
-
+        target_name = gauge_address_to_snapshot_name[web3.toChecksumAddress(target)]
         # grab data from proposals to find out the proposal index
-        prop = get_hh_aura_target(target)
+        prop = get_hh_aura_target(target_name)
         decimals = 10 ** int(usdc.decimals())
         mantissa = int(amount * decimals)
         # NOTE: debugging prints to verify
         print("*** Posting AURA Bribe:")
-        print("*** Target:", target)
+        print("*** Target Gauge Address:", target)
+        print("*** Target Gauge Address:", target_name)
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
