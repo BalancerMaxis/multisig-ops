@@ -5,19 +5,22 @@ It relies heavily on [`ganache-cli`](https://docs.nethereum.com/en/latest/ethere
 
 ## Installation
 
-The recommended version of Python for this toolset is 3.9
+The recommended version of Python for this toolset is 3.9. 
 
+From the directory this readme is in
 ```
 python3.9 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
-
 On an M1 Macbook you'll have to downgrade the regex package:
 ```
 pip3 install regex==2021.09.30
 ```
 Ignore the warnings about version conflict.
+
+Copy .env.example to .env and populate.  You need at bare minimum an infura id.  etherscan id is also nice to have/makes brownie better.
+
 
 ## Now what
 The primary use of this repo right now is to post bribes. To do that:
