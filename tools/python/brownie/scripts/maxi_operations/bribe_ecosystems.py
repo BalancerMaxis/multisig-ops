@@ -129,6 +129,8 @@ def main(
         print("*** Mantissa Amount:", mantissa)
         print("\n")
 
+        if amount == 0:
+            return
 
         balancer_briber.depositBribeERC20(
             prop,  # bytes32 proposal
@@ -156,6 +158,8 @@ def main(
         print("*** Mantissa Amount:", mantissa)
         print("\n")
 
+        if amount == 0:
+            continue
         aura_briber.depositBribeERC20(
             prop,  # bytes32 proposal
             usdc,  # address token
