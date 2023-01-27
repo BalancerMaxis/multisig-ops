@@ -1,6 +1,8 @@
 ## Welcome to the Balancer Multisig Operations Repo
 This repo is used to store payloads uploaded to the multisig, as well as any tooling used to generate such payloads.
 
+You can find a FAQ about snapshot handling here: [FAQ](FAQ.md)
+
 ### Uploading transaction JSONs as part of Balancer Governance
 Balancer Governance requires that a link to a PR request in this repo with a gnosis-safe transaction builder JSON is included.
 
@@ -15,7 +17,6 @@ Here are some documents of how to do specific, commonly requested things.
 | [Gauge Replacement](00examples/gauge-replacement) | Kill one gauge and add another for pool or gauge replacements | Moderate - Requires basic git skillz |
 
 
-
 ### Balancer Multisigs
 Here are a list of multisigs that the Maxis can and may load transactions into due to governance snapshots.
 
@@ -27,7 +28,7 @@ Here are a list of multisigs that the Maxis can and may load transactions into d
 | Gauge Controller(LM Multisig) | Used to manage gauges and Reward Tokens and manage liquidity supplied to multichain (bridge).  New Gauge requests go here.              | [MAINNET](https://gnosis-safe.io/app/eth:0xc38c5f97B34E175FFd35407fc91a937300E33860/home), [ARBI](https://gnosis-safe.io/app/arb1:0xc38c5f97B34E175FFd35407fc91a937300E33860/home), [POLYGON](https://gnosis-safe.io/app/matic:0xc38c5f97B34E175FFd35407fc91a937300E33860/home) | 0xc38c5f97B34E175FFd35407fc91a937300E33860  |
 | Linear Pool Control           | Manage limits on Mainnet Linear Pools                                                                                                   | [MAINNET](https://gnosis-safe.io/app/eth:0x75a52c0e32397A3FC0c052E2CeB3479802713Cf4/home)                                                                                                                                                                                       | 0x75a52c0e32397A3FC0c052E2CeB3479802713Cf4  |
 | Maxi Operational Payments     | Holds the Maxi Budget and is used to pay people and expenses.                                                                           | [MAINNET](https://gnosis-safe.io/app/eth:0x166f54F44F271407f24AA1BE415a730035637325/home)                                                                                                                                                                                       | 0x166f54F44F271407f24AA1BE415a730035637325  |
-
+ | Arbitrum Treasury             | Holds DAO funds on Arbitrum                                                                                                             | [ARBI](https://app.safe.global/arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0/home)                                                                                                                                                                                            | 0xaF23DC5983230E9eEAf93280e312e57539D098D0  | 
 ### Optimism Multisigs
 **PENDING: TODO**
 
