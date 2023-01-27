@@ -2,7 +2,7 @@
 
 
 ### What happens if a snapshot is posted on a day other than Thursday, or fails to meet other specifcations?
-The Balancer Maxi's are mandated by [BIP-163](https://snapshot.org/#/balancer.eth/proposal/0xcd2cab0522b0e9a90ad40f93aca4505b17d60468224c22b69c4f9bd2bbd64e31) to reject
+The Balancer Maxis are mandated by [BIP-163](https://snapshot.org/#/balancer.eth/proposal/0xcd2cab0522b0e9a90ad40f93aca4505b17d60468224c22b69c4f9bd2bbd64e31) to reject
 any governance that does not meet specifications.  The Maxi's will check all posted BIPs on Friday.  We will contact
 the OP of the Forum Post of any BIPs found not to be compliance, inviting them to remove their snapshot, and help them
 to correct any problems and post a new snapshot the following week.   If the problems are only with the payload,
