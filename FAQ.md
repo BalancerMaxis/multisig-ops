@@ -29,7 +29,7 @@ Go through this list.  Make sure that every one of these statements is definitiv
 
 ### How to I get this Snapshot JSON PR?
 You can find instructions and examples [HERE](BIPs/00examples/).  You can also ask the Balancer Maxis for support.  They
-will be happy to help you build your JSON and create a PR.  Just hop into the [Balancer Discord](ttps://discord.balancer.fi/)
+will be happy to help you build your JSON and create a PR.  Just hop into the [Balancer Discord](https://discord.balancer.fi/)
 
 ### I have another Question
 Come ask us and remind us to add it to this FAQ
