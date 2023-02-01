@@ -16,6 +16,7 @@ from tqdm import tqdm
 from web3.exceptions import BadFunctionCallOutput
 
 from great_ape_safe.ape_api.aave import Aave
+from great_ape_safe.ape_api.across import Across
 from great_ape_safe.ape_api.anyswap import Anyswap
 from great_ape_safe.ape_api.aura import Aura
 from great_ape_safe.ape_api.badger import Badger
@@ -70,6 +71,8 @@ class GreatApeSafe(ApeSafe):
     def init_aave(self):
         self.aave = Aave(self)
 
+    def init_across(self):
+        self.across = Across(self)
     def init_anyswap(self):
         self.anyswap = Anyswap(self)
 

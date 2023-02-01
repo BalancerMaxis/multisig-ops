@@ -14,7 +14,8 @@ ADDRESSES_ETH = {
         "multisigs": {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
             "dao": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
-            "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B"
+            "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
+            "karpatkey": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
         },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",
@@ -83,6 +84,9 @@ ADDRESSES_ETH = {
     },
     "compound": {
         "comptroller": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+    },
+    "across": {
+        "spoke_pool": "0x4D9079Bb4165aeb4084c526a32695dCfd2F77381"
     },
     "aave": {
         "incentives_controller": "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5",
@@ -183,8 +187,22 @@ ADDRESSES_ETH = {
 
 ADDRESSES_POLYGON = {
     "zero": "0x0000000000000000000000000000000000000000",
-    "wallets": {},
-    "tokens": {},
+    "balancer": {
+        "multisigs": {
+            "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        }
+    },
+    "tokens": {
+        "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+        "WMATIC": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+        "WETH": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+        "BAL": "0x9a71012B13CA4d3D0Cdc72A177DF3ef03b0E76A3",
+        "WBTC": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6"
+
+    },
+    "across": {
+        "spoke_pool": "0x69B5c72837769eF1e7C164Abc6515DcFf217F920"
+    },
 }
 
 ADDRESSES_ARBITRUM = {
@@ -193,9 +211,17 @@ ADDRESSES_ARBITRUM = {
     "registryAccessControl": "0x6847a17C4AC30AFd24FDcb2422DA01207C480a79",
     "EmissionControl": "0x78418681f9ed228d627f785fb9607ed5175518fd",
     "wallets": {},
+    "balancer": {
+        "multisigs": {
+            "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+            "dao": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+            "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B"
+        }
+    },
     "tokens": {
         "BADGER": "0xBfa641051Ba0a0Ad1b0AcF549a89536A0D76472E",
         "WBTC": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+        "USDC": "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8",
         "CRV": "0x11cdb42b0eb46d95f990bedd4695a6e3fa034978",
         "SUSHI": "0xd4d42f0b6def4ce0383636770ef773390d85c61a",
         "renBTC": "0xdbf31df14b66535af65aac99c32e9ea844e14501",
@@ -210,6 +236,9 @@ ADDRESSES_ARBITRUM = {
         "renbtc": "0xdbf31df14b66535af65aac99c32e9ea844e14501",
         "weth": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
         "usdx": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+    },
+    "across": {
+        "spoke_pool": "0xB88690461dDbaB6f04Dfad7df66B7725942FEb9C"
     },
     "sushi": {"router": "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"},
     "swapr": {"router": "0x530476d5583724A89c8841eB6Da76E7Af4C0F17E"},
