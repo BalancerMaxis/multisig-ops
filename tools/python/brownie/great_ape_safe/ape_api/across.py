@@ -1,5 +1,6 @@
 import requests
 from helpers.addresses import registry, r
+from brownie import chain
 
 
 
@@ -9,13 +10,12 @@ class Across:
 
         # See https://docs.across.to/v/developer-docs/developers/across-api#calculating-suggested-fees
         # Any chain's token address can be used
+
         self.api_url = "https://across.to/api/suggested-fees"
         self.spokepool = self.safe.contract(r.across.spoke_pool)
 
-
     def get_token_bridge_info(self, token_address, dest_chain_id, amount):
-        # https://github.com/anyswap/CrossChain-Router/wiki/How-to-integrate-AnySwap-Router
-        params = {"destinationChainId": dest_chain_id, "token": token_address, "amount": amount}
+        params = {"destinationChainId": dest_chain_id, "token": token_address, "amount": amount, "originChainId": chain.id}
         r = requests.get(self.api_url, params=params).json()
         return r
 
