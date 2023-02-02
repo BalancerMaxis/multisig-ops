@@ -1,5 +1,10 @@
+import datetime
+
 from helpers.addresses import registry, r
 from great_ape_safe import GreatApeSafe
+import datetime
+
+LOCAL_TIMEZONE = datetime.datetime.now(datetime.timezone.utc).astimezone().tzinfo
 
 ### This script bridges coins from polygon to mainnet as part of BIP-162
 ### https://snapshot.org/#/balancer.eth/proposal/0xeb91b3428ad81bdcb840d83dc8977ae4ff5432d10ae338a8b890e7966248b7b2
@@ -31,16 +36,17 @@ def main():
         token = safe.contract(token_address)
         token_balance = token.balanceOf(safe.address)
         ##TODO remove test
-        amount = int(token_balance/1000) # TODO remove divisor for full amount
+        amount = int(token_balance) # TODO remove divisor for full amount
         if amount > 0:
-            print(f">>>>Bridging {amount/10**token.decimals()} of {token.symbol()} to {recipient} on chain with id {destination_chain_id} over Across")
 
-            safe.across.bridge_token(recipient_address=recipient,
-                                     origin_token=token,
-                                     amount=amount,
-                                     dest_chain_id=destination_chain_id
-                                     )
+            deadline = safe.across.bridge_token(recipient_address=recipient,
+                                                origin_token=token,
+                                                amount=amount,
+                                                dest_chain_id=destination_chain_id
+                                               )
+            print(f">>>Bridging {amount/10**token.decimals()} of {token.symbol()} to {recipient} on chain with id {destination_chain_id} over Across.")
+            print(f">>>Execute by {datetime.datetime.fromtimestamp(deadline).strftime('%Y-%m-%d %H:%M:%S')} {LOCAL_TIMEZONE}\n\n")
         else:
-            CONSOLE.print(f" === Balance for {token.symbol()} is zero === \n")
+            print(f" === Balance for {token.symbol()} is zero === \n")
 
     safe.post_safe_tx(gen_tenderly=False)

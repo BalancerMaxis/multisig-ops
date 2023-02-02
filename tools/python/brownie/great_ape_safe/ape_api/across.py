@@ -1,7 +1,7 @@
 import requests
 from helpers.addresses import registry, r
 from brownie import chain
-
+import datetime
 
 
 class Across:
@@ -21,9 +21,11 @@ class Across:
 
     def bridge_token(self, recipient_address, origin_token, dest_chain_id, amount):
         info = self.get_token_bridge_info(origin_token.address, dest_chain_id, amount)
-        timestamp = info["timestamp"]
+        timestamp = int(info["timestamp"])
         relayerFeePct = info["relayFeePct"]
         origin_token.approve(self.spokepool.address, amount)
         self.spokepool.deposit(recipient_address, origin_token.address, amount, dest_chain_id, relayerFeePct, timestamp)
+        deadline = timestamp + int(self.spokepool.depositQuoteTimeBuffer())
+        return deadline
 
 
