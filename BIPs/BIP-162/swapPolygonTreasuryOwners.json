@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1675352648314,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.11.1",
+    "createdFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x73806cc9142f041e8ab27456e3a0be342dcc0ebc2a8b9b2d0c97dbad4d0172e7"
+  },
+  "transactions": [
+    {
+      "to": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x9BE6ff2A1D5139Eda96339E2644dC1F05d803600",
+        "oldOwner": "0xB0E8a08B155e4bf64Ec316d4196F54f39F615538",
+        "newOwner": "0x0951FF0835302929d6c0162b3d2495A85e38ec3A"
+      }
+    },
+    {
+      "to": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x823DF0278e4998cD0D06FB857fBD51e85b18A250",
+        "oldOwner": "0x95CeFcAD4daE89aE09c8166E324A8b235289897E",
+        "newOwner": "0xAc1aA53108712d7f38093A67d380aD54B562a650"
+      }
+    }
+  ]
+}
