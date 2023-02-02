@@ -190,6 +190,7 @@ ADDRESSES_POLYGON = {
     "balancer": {
         "multisigs": {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+            "treasury": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
         }
     },
     "tokens": {
