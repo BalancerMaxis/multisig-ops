@@ -22,6 +22,9 @@ jobs:
     - name: Go to tools
       run: cd tools/python
 
+    - name: print working dir
+      run: pwd
+
     - name: Install Requirements
       run: pip install -r requirements.txt
 
