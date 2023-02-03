@@ -5,7 +5,7 @@ from os import listdir
 from os.path import isfile, join
 
 today = str(date.today())
-target_dir = "../../FeeSweep/"
+target_dir = "../../FeeSweep"
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
 dust_factor = 100000000
 def generateSweepFile(sourcefile):
@@ -37,15 +37,15 @@ def generateSweepFile(sourcefile):
     print(report)
 
     # Generate JSON
-    with open(f"{target_dir}feeSweep.json", "r") as f:
+    with open(f"{target_dir}/feeSweep.json", "r") as f:
         tx_builder = json.load(f)
     tx_out_map = DotMap(tx_builder)
     # TX builder wants lists in a string, addresses unquoted, and large integers without e+
     tx_out_map.transactions[0].contractInputsValues.tokens = str(list(sweeps.keys())).replace("'", "")
     tx_out_map.transactions[0].contractInputsValues.amounts = str(list(sweeps.values()))
-    with open(f"{target_dir}out/{today}-{chain}.json", "w") as f:
+    with open(f"{target_dir}/out/{today}-{chain}.json", "w") as f:
         json.dump(dict(tx_out_map), f)
-    with open(f"{target_dir}out/{today}-{chain}.report.txt", "w") as f:
+    with open(f"{target_dir}/out/{today}-{chain}.report.txt", "w") as f:
         f.write(report)
 
 def main():
