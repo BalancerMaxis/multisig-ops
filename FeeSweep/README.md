@@ -6,7 +6,6 @@ In order to trigger a run, the Sweep Fees label must be set on PR, and the files
 
 ### Steps to use
 
-####Get Source Data
 - Go to https://balancer.defilytica.com/. 
 - Select a chain.  
 - Click Protocol Revenue.
