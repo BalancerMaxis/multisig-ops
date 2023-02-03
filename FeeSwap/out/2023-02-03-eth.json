@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675378561300,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.11.1",
+    "createdFromSafeAddress": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20[]",
+            "name": "tokens",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "amounts",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          }
+        ],
+        "name": "withdrawCollectedFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amounts": "[39393824294404243456, 2590083264202, 58011250487345594368, 7184219296936715354112, 6916174775592902656, 7621237067258355777536, 27522052135669116928, 375666656695196036628480, 402671719463098056704, 473534641891872889372672]",
+        "recipient": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "tokens": "[0x0fd5663d4893ae0d579d580584806aadd2dd0b8b, 0x64aa3364f17a4d01c6f1751fd97c2bd3d7e7f1d5, 0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0, 0x81f8f0bb1cb2a06649e51913a151f0e7ef6fa321, 0x8e85e97ed19c0fa13b2549309965291fbbc0048b, 0xba100000625a3754423978a60c9317c58a424e3d, 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2, 0xcdf7028ceab81fa0c6971208e83fa7872994bee5, 0xd33526068d116ce69f19a9ee46f0bd304f21a51f, 0xfd0205066521550d7d7ab19da8f72bb004b4c341]"
+      }
+    }
+  ]
+}
