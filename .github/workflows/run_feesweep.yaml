@@ -1,6 +1,8 @@
-on: ["pull_request"]
-
 name: Run Sweep Fees if new input data is there
+
+on:
+  pull_request:
+    types: [ labeled ]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
