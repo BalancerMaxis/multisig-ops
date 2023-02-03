@@ -10,6 +10,7 @@ In order to trigger a run, the Sweep Fees label must be set on PR, and the files
 - Select a chain.  
 - Click Protocol Revenue.
 - once it is done loading, open the JavaSCript console in your browser.  Find the Token Balances Object that looks like this and copy it to your clipboard:
+
 ![img.png](images/consoleView.png)
 - Copy the contents of this file into a file in this directory named like YYYY-MM-DD-chain.json
   - Note that year must be 4 digit and day and month always 2 with a leading 0
