@@ -1,6 +1,8 @@
-on: ["pull_request"]
-
 name: Run Sweep Fees if new input data is there
+
+on:
+  pull_request:
+    types: [ labeled ]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -9,6 +11,9 @@ jobs:
   sweepFees:
     if: github.event.label.name == 'Sweep Fees'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/python
     steps:
     - uses: actions/checkout@v2
 
@@ -17,8 +22,8 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Go to tools
-      run: cd tools/python
+    - name: print working dir
+      run: pwd
 
     - name: Install Requirements
       run: pip install -r requirements.txt
@@ -27,9 +32,9 @@ jobs:
       run: python3 sweepFees.py
 
     - name: Commit and push changes
-      run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "GitHub Actions"
-        git add -A
-        git commit -m "Generate Fee Sweep transaction builder jsons"
-        git push origin main
+      uses:  stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Generate Fee Sweep transaction builder jsons
+        commit_user_name:  GitHub Actions
+        commit_user_email: github-actions[bot]@users.noreply.github.com
+        commit_author: Github Actions <noreply@users.noreply.github.com>
