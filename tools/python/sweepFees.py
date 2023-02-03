@@ -5,7 +5,7 @@ from os import listdir
 from os.path import isfile, join
 
 today = str(date.today())
-target_dir = "../../Feeswap/"
+target_dir = "../../FeeSweep/"
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
 dust_factor = 100000000
 def generateSweepFile(sourcefile):
