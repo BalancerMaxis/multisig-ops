@@ -53,7 +53,7 @@ def main():
     for file in sourcefiles:
         if (today in file) & (".json" in file):
             print(f"\n\n--------- Processing {target_dir}{file} ---------\n")
-            generateSweepFile(f"{target_dir}{file}")
+            generateSweepFile(f"{target_dir}/{file}")
 
 if __name__ == "__main__":
     main()
