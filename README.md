@@ -65,6 +65,9 @@ Here are a list of multisigs that have frequent interactions with BalancerDAO bu
  | [nanexcool](https://twitter.com/nanexcool)         | \(Ethereum OG\)          | 0x823DF0278e4998cD0D06FB857fBD51e85b18A250  |
  | [David Gerai](https://twitter.com/davgarai)        | \(Nostra Finance\)       | 0xAc1aA53108712d7f38093A67d380aD54B562a650  |
 
+**DAO Multisigs always require 6/11 signers to execute a transaction.**
+
+
 Beyond those current signers, [BIP-16](https://forum.balancer.fi/t/bip-16-update-dao-multisig-replacement-list/3361) laid
 out a group of backup signers who could replace current signers without further governance.  Note that since BIP-16,
 Moniur has become an active member of the DAO multisig.
@@ -79,6 +82,8 @@ Moniur has become an active member of the DAO multisig.
 | Xeonus       | Xeonus#4620     | 0x7019Be4E4eB74cA5F61224FeAf687d2b43998516  |
 | Danko        | 0xDanko#3565    | 0x200550cAD164E8e0Cb544A9c7Dc5c833122C1438  |
 | Tritium      | Trtiium#0069    | 0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F  |
+
+**The Balancer Maxi Multisig set requires 2 or 3 out of 7 signers to execute, depending on the security level of the Multisig.**
 
 The Balancer Maxi's are ratified by a BIP each quarter.  [BIP-145](https://forum.balancer.fi/t/bip-145-fund-the-balancer-maxis-for-q1-2023/)
 is a recent example of such governance.
