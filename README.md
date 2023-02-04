@@ -44,7 +44,7 @@ Optimism Multisigs are for the most part managed by the Beethoven team.
 ### Ecosystem Multisigs
 Here are a list of multisigs that have frequent interactions with BalancerDAO but are not managed in any way by the Maxis and are not triggered by snapshot votes.
 
-| Name             | Purpose                                                                                               | Chain                                                                                     | Address                                    |
+| Name             | Purpose                                                             Fetjer                            | Chain                                                                                     | Address                                    |
 |------------------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|--------------------------------------------|
 | Balancer Grants  | Multisig funded by the Balancer treasury with funds managed by the community elected Grants Committee | [MAINNET](https://gnosis-safe.io/app/eth:0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597/home) | 0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597 | 
 
@@ -62,7 +62,7 @@ Here are a list of multisigs that have frequent interactions with BalancerDAO bu
 | [Trent McConaghy](https://twitter.com/trentmc0)    | \(Ocean Protocol\)       | 0x478eC43c6867c2884f87B21c164f1fD1308bD9a3  |
 | [Stefan](https://twitter.com/StefanDGeorge)        | \(Gnosis\)               | 0x9F7dfAb2222A473284205cdDF08a677726d786A0  |
 | [bonustrack87](https://twitter.com/bonustrack87)   | \(Snapshot\)             | 0x9BE6ff2A1D5139Eda96339E2644dC1F05d803600  |
- | [nanexcool](https://twitter.com/nanexcool)         | \(Etherium OG\)          | 0x823DF0278e4998cD0D06FB857fBD51e85b18A250  |
+ | [nanexcool](https://twitter.com/nanexcool)         | \(Ethereum OG\)          | 0x823DF0278e4998cD0D06FB857fBD51e85b18A250  |
  | [David Gerai](https://twitter.com/davgarai)        | \(Nostra Finance\)       | 0xAc1aA53108712d7f38093A67d380aD54B562a650  |
 
 Beyond those current signers, [BIP-16](https://forum.balancer.fi/t/bip-16-update-dao-multisig-replacement-list/3361) laid
