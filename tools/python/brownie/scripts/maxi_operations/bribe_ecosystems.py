@@ -82,10 +82,10 @@ def process_bribe_csv(
     return bribes
 
 def main(
-    csv_file="bribes/csv/current.csv",
+    csv_file="../../../Bribs/feb-5-2023.csv",
 ):
 
-    safe = GreatApeSafe(r.balancer.multisigs.fees)
+    safe = GreatApeSafe(r.balancer.multisigs.lm)
     #safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
     usdc = safe.contract(r.tokens.USDC)
@@ -139,12 +139,16 @@ def main(
         )
 
     for target, amount in bribes["balancer"].items():
+        if amount == 0:
+            continue
         mantissa = int(amount * usdc_mantissa_multilpier)
         bribe_balancer(target, mantissa)
 
     ### AURA
     gauge_address_to_snapshot_name = get_gauge_name_map()
     for target, amount in bribes["aura"].items():
+        if amount == 0:
+            continue
         target_name = gauge_address_to_snapshot_name[web3.toChecksumAddress(target)]
         # grab data from proposals to find out the proposal index
         prop = get_hh_aura_target(target_name)
