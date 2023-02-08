@@ -88,6 +88,7 @@ def generate_change_list(actions_id_map):
 
 def print_change_list(change_list, output_file=None):
     df = pd.DataFrame(change_list)
+    df = df.sort_values(by=["chain", "target_address"])
     print(df.to_markdown(index=False))
     if output_file:
         with open(output_file, "w") as f:
