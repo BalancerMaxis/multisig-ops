@@ -263,6 +263,15 @@ ADDRESSES_ARBITRUM = {
 ADDRESSES_OPTIMISM = {
     "zero": "0x0000000000000000000000000000000000000000",
     "wallets": {},
+    "balancer": {
+        "multisigs": {
+            "lm": "0x09Df1626110803C7b3b07085Ef1E053494155089",
+            "dao": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+            "fees": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
+            "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
+            "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
+        }
+    },
     "tokens": {},
 }
 
