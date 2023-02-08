@@ -4,6 +4,7 @@ import requests
 #from datetime import date
 #from os import listdir
 #from os.path import isfile, join
+from dotmap import DotMap
 from helpers.addresses import get_registry_by_chain_id
 import pandas as pd
 
@@ -23,6 +24,7 @@ CHAINS_MAP = {
     "mainnet": 1,
     "polygon": 137,
     "arbitrum": 42161,
+    "optimism": 10
 }
 ## pause -> emergency subDAO
 ## disable -> emergency subDAO
@@ -65,7 +67,6 @@ def generate_change_list(actions_id_map):
     changes = []
     for chain, deployments in actions_id_map.items():
         registry = get_registry_by_chain_id(CHAINS_MAP[chain])
-        print(deployments)
         for deployment, functions in deployments.items():
             for function,action_id in functions.items():
                 if function == "setSwapFeePercentage(uint256)" and chain == "mainnet":
@@ -92,14 +93,47 @@ def print_change_list(change_list, output_file=None):
         with open(output_file, "w") as f:
             df.to_markdown(index=False, buf=f)
 
+def save_txbuilder_json(change_list, output_dir):
+    df = pd.DataFrame(change_list)
+    for chain_name, chain_id in CHAINS_MAP.items():
+        r = get_registry_by_chain_id(chain_id)
+        with open("tx_builder_templates/authorizor_grant_roles.json", "r") as f:
+            data = DotMap(json.load(f))
 
+        # Set global data
+        data.chainId = chain_id
+        data.meta.createFromSafeAddress = r.balancer.multisigs.dao
 
+        # Group roles on this chain by target address
+        action_ids_by_address = {}
+        for change in change_list:
+            if change["chain"] != chain_name:
+                continue
+            if change["target_address"] not in action_ids_by_address:
+                action_ids_by_address[change["target_address"]] = []
+            action_ids_by_address[change["target_address"]].append(change["role"])
+        # Build transaction list
+        transactions = []
+        tx_template = data.transactions[0]
+        for address,actions in action_ids_by_address.items():
+            transaction = DotMap(tx_template)
+            transaction.to = r.balancer.authorizer
+            # TX builder wants lists in a string, addresses unquoted
+            transaction.contractInputsValues.roles = str(actions).replace("'","")
+            transaction.contractInputsValues.account = address
+            transactions.append(dict(transaction))
+        # Inject transaction list
+        data.transactions = transactions
+        with open(f"{output_dir}/add_roles_{chain_name}.json", "w") as f:
+            json.dump(dict(data), f)
 
-def main(output_file="../../BIPs/00batched/add-v3-pools/change_list.md"):
+def main(output_dir="../../BIPs/00batched/add-v3-pools"):
+    change_list = generate_change_list(build_action_ids_map())
     print_change_list(
-        change_list=generate_change_list(build_action_ids_map()),
-        output_file=output_file
+        change_list=change_list,
+        output_file=f"{output_dir}/change_list.md"
     )
+    save_txbuilder_json(change_list,output_dir)
 
 if __name__ == "__main__":
     main()

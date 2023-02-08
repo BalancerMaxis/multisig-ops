@@ -201,7 +201,8 @@ ADDRESSES_POLYGON = {
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
             "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", ## fees is feeManager on Polygon
             "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
-        }
+        },
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
     },
     "tokens": {
         "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
@@ -229,7 +230,8 @@ ADDRESSES_ARBITRUM = {
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
             "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", ## fees is feeManager on Arbitrum
             "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
-        }
+        },
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
     },
     "tokens": {
         "BADGER": "0xBfa641051Ba0a0Ad1b0AcF549a89536A0D76472E",
@@ -270,7 +272,8 @@ ADDRESSES_OPTIMISM = {
             "fees": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
             "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
             "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
-        }
+        },
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
     },
     "tokens": {},
 }
@@ -305,11 +308,11 @@ registry = DotMap(
 )
 
 def get_registry_by_chain_id(chain_id):
-    if chain_id== 1:
+    if chain_id == 1:
         return registry.eth
     elif chain_id == 137:
         return registry.poly
-    elif chain_id== 56:
+    elif chain_id == 56:
         return registry.bsc
     elif chain_id == 42161:
         return registry.arbitrum
