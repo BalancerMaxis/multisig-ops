@@ -18,7 +18,7 @@ BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/bala
 # List the deployments to generate permissions for
 DEPLOYMENTS_LIST = [
     "20230206-weighted-pool-v3",
-    "20230206-composable-stable-pool-v3"
+    "20230206-composable-stable-pool-v3",
 ]
 
 ### A map with the chains to handle, where key the string used to identify the chain in the deployments repo path and the value is the numeric chain id
@@ -49,14 +49,10 @@ def build_action_ids_map():
         action_ids_map[chain_name] = {}
         result = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
         for deployment in DEPLOYMENTS_LIST:
-            print(f"Processing {deployment}") if debug else None
-            print(dict(result["deployment"])) if debug else None
             action_ids_map[chain_name][deployment] = {}
             for contract, data in result[deployment].items():
                 #action_ids_map[deployment][contract]
-                print(f"Processing {contract}") if debug else None
                 for function, action_id in data["actionIds"].items():
-                    print(f"Processing {function}") if debug else None
                     if function in FUNCTION_CALLER_MAP.keys():
                         action_ids_map[chain_name][deployment][function] = action_id
     return action_ids_map
