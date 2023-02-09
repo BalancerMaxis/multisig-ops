@@ -26,11 +26,13 @@ CHAINS_MAP = {
     "arbitrum": 42161,
     "optimism": 10
 }
+
+### mappings in english
 ## pause -> emergency subDAO
 ## disable -> emergency subDAO
 ## recovery mode -> emergency subDAO
 ## swap fee change -> fee setter contract on mainnet, treasury multisig other networks (0x7c68c42De679ffB0f16216154C996C354cF1161B), maxi safe on optimism (oeth:0x09Df1626110803C7b3b07085Ef1E053494155089)
-## amp factor change -> fee setter safe on mainnet (eth:0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6), treasury multisig other networks, maxi safe on optimism
+## amp factor change -> fee setter safe on mainnet (eth:0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6), fees multisig other networks, maxi safe on optimism
 
 FUNCTION_CALLER_MAP = {
     "setSwapFeePercentage(uint256)": "feeManager",
@@ -46,7 +48,6 @@ def build_action_ids_map():
     action_ids_map = {}
     for chain_name, chain_id in CHAINS_MAP.items():
         action_ids_map[chain_name] = {}
-        registry = get_registry_by_chain_id(chain_id)
         result = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
         for deployment in DEPLOYMENTS_LIST:
             print(f"Processing {deployment}") if debug else None
@@ -58,7 +59,6 @@ def build_action_ids_map():
                 for function, action_id in data["actionIds"].items():
                     print(f"Processing {function}") if debug else None
                     if function in FUNCTION_CALLER_MAP.keys():
-#                        assert function not in action_ids_map[chain_name][deployment].keys(), f"{function} shows up in 2 contracts in {deployment}.  Stopping."
                         action_ids_map[chain_name][deployment][function] = action_id
     return action_ids_map
 
@@ -86,13 +86,18 @@ def generate_change_list(actions_id_map):
                 })
     return changes
 
-def print_change_list(change_list, output_file=None):
+def print_change_list(change_list, outputDir=None):
     df = pd.DataFrame(change_list)
-    df = df.sort_values(by=["chain", "target_address"])
+    chain_address_sorted = df.sort_values(by=["chain", "target_address"])
+    chain_deployment_sorted = df.sort_values(by=["chain", "deployment", "function"])
     print(df.to_markdown(index=False))
-    if output_file:
-        with open(output_file, "w") as f:
-            df.to_markdown(index=False, buf=f)
+    if outputDir:
+        with open(f"{outputDir}/change_list_address_sorted.md", "w") as f:
+            chain_address_sorted.to_markdown(index=False, buf=f)
+        with open(f"{outputDir}/change_list_deployment_sorted.md", "w") as f:
+            chain_deployment_sorted.to_markdown(index=False, buf=f)
+
+
 
 def save_txbuilder_json(change_list, output_dir):
     df = pd.DataFrame(change_list)
@@ -113,6 +118,7 @@ def save_txbuilder_json(change_list, output_dir):
             if change["target_address"] not in action_ids_by_address:
                 action_ids_by_address[change["target_address"]] = []
             action_ids_by_address[change["target_address"]].append(change["role"])
+
         # Build transaction list
         transactions = []
         tx_template = data.transactions[0]
@@ -125,6 +131,7 @@ def save_txbuilder_json(change_list, output_dir):
             transactions.append(dict(transaction))
         # Inject transaction list
         data.transactions = transactions
+        # Save tx builder json
         with open(f"{output_dir}/add_roles_{chain_name}.json", "w") as f:
             json.dump(dict(data), f)
 
@@ -132,7 +139,7 @@ def main(output_dir="../../BIPs/00batched/add-v3-pools"):
     change_list = generate_change_list(build_action_ids_map())
     print_change_list(
         change_list=change_list,
-        output_file=f"{output_dir}/change_list.md"
+        outputDir=f"{output_dir}"
     )
     save_txbuilder_json(change_list,output_dir)
 
