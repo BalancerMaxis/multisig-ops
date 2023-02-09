@@ -14,12 +14,14 @@ debug = False
 ###TODO: The below settings must be set before running the script
 BALANCER_DEPLOYMENTS_DIR = "../../../balancer-v2-monorepo/pkg/deployments"
 BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments"
+
+# List the deployments to generate permissions for
 DEPLOYMENTS_LIST = [
     "20230206-weighted-pool-v3",
     "20230206-composable-stable-pool-v3"
 ]
 
-### A map with the chains to handle, where key is chainid and name is the string used to identify the chain in the deployments repo path
+### A map with the chains to handle, where key the string used to identify the chain in the deployments repo path and the value is the numeric chain id
 CHAINS_MAP = {
     "mainnet": 1,
     "polygon": 137,
@@ -27,13 +29,10 @@ CHAINS_MAP = {
     "optimism": 10
 }
 
-### mappings in english
-## pause -> emergency subDAO
-## disable -> emergency subDAO
-## recovery mode -> emergency subDAO
-## swap fee change -> fee setter contract on mainnet, treasury multisig other networks (0x7c68c42De679ffB0f16216154C996C354cF1161B), maxi safe on optimism (oeth:0x09Df1626110803C7b3b07085Ef1E053494155089)
-## amp factor change -> fee setter safe on mainnet (eth:0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6), fees multisig other networks, maxi safe on optimism
 
+# A map of the functions in the deployments that access should be granted to, and who should get access.
+# Function should exactly match what is in the action id json and caller should exist in balancer.multisig of the address
+# directory for every chain in CHAIN_MAP
 FUNCTION_CALLER_MAP = {
     "setSwapFeePercentage(uint256)": "feeManager",
     "startAmplificationParameterUpdate(uint256,uint256)": "feeManager",
