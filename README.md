@@ -8,15 +8,8 @@ Balancer Governance requires that a link to a PR request in this repo with a gno
 
 PR's should be to include a single file named `BIP-XXX.json` in the `BIPs` directory where XXX is the number of the BIP.  The PR should include the BIP title as it's commit/pr text. 
 #### Examples
-Here are some documents of how to do specific, commonly requested things.
-
-| Link                                                   | Description                                                   | Difficulty/Complexity                |
-|--------------------------------------------------------|---------------------------------------------------------------|--------------------------------------|
-| [Add Gauge to veBAL](BIPs/00examples/gauge-request)    | Add a gauge to veBAL and upload it                            | Low - Noob                           |
-| [Transfer DAO Funds](BIPs/00examples/funding)          | Transfer funds from the treasury one or more other addresses  | Low - Noob                           |
-| [Gauge Replacement](BIPS/00examples/gauge-replacement) | Kill one gauge and add another for pool or gauge replacements | Moderate - Requires basic git skillz |
-
-
+We are slowly developing a library of detailed examples for how to build BIP payloads based on common actions.
+These examples can be found [HERE](BIPs/00examples)
 
 ### Balancer Multisigs
 Here are a list of multisigs that the Maxis can and may load transactions into due to governance snapshots.
