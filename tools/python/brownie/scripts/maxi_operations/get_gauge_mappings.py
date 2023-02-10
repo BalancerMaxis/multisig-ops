@@ -4,8 +4,11 @@ from web3 import Web3 as web3
 import json
 import requests
 from dotmap import DotMap
-import pandas as pd
+from prettytable import PrettyTable
 
+bridge_chain_map = {
+    ""
+}
 gauges_to_check = {
     "POLY: Balancer 20USDC-40TEL-40DFX RewardGauge Deposit":   "0xb61014De55A7AB12e53C285d88706dca2A1B7625",
     "Balancer NWWP Gauge Deposit (NOTE/WETH 50/50)":   "0x96d7e549eA1d810725e4Cd1f51ed6b4AE8496338",
@@ -20,7 +23,11 @@ gauges_to_check = {
     "ARBI: Balancer 80MAGIC-20WETH RewardGauge Deposit": "0x785F08fB77ec934c01736E30546f87B4daccBe50",
 }
 
-
+def dicts_to_table_string(dict_list, header=None):
+    table = PrettyTable(header)
+    for dict_ in dict_list:
+        table.add_row(list(dict_.values()))
+    return str(table)
 
 def main(tx_builder_json="./testdata.json"):
     outputs = []
@@ -36,29 +43,48 @@ def main(tx_builder_json="./testdata.json"):
             continue ## Not an Authorizer tx
         authorizer_target_contract = web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
         if authorizer_target_contract == gauge_controller:
-            # Example output of decode_input on gauge_adds
-            # `('add_gauge(address,int128)', ['0xA2a9Ebd6f4dEA4802083F2C8D08066A4e695e64B', 2])
             (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
-            if inputs[1] == 2:
-                gauge = safe.contract(inputs[0])
-                print(f"processing {gauge} as a gauge with lp token {gauge.lp_token()}")
-                pool_token_list = []
-                outputs.append({
-                    "function:": command,
-                    "gauge_address": inputs[0],
-                    "gauge_type": inputs[1],
-                    "pool_name": str(gauge.name()),
-                    "lp_token": str(gauge.lp_token())
-                })
-            else:
-                print(f"skipping non-mainnet gauge {inputs[0]}")
-                outputs.append({
-                    "function": command,
-                    "gauge_address": inputs[0],
-                    "gauge_type": inputs[1],
-                    "pool_name": "NA",
-                    "lp_token": "NA"
-                })
-    df = pd.DataFrame(outputs)
-    print(df.to_markdown(index=False))
+        else: # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
+            (command, inputs) = safe.contract(authorizer_target_contract).decode_input(transaction["contractInputsValues"]["data"])
+
+        print(command)
+        print(inputs)
+        if len(inputs) == 0: ## Is a gauge kill
+            gauge_type = "NA"
+            gauge_address = transaction["contractInputsValues"]["target"]
+        else:
+            gauge_address = inputs[0]
+            gauge_type = inputs[1]
+
+        #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
+        gauge = safe.contract(gauge_address)
+        #print(f"processing {gauge} as a gauge with lp token {gauge.lp_token()}")
+        pool_token_list = []
+        if "getTotalBridgeCost" in gauge.selectors.values(): ## Is sidechain
+            pool_name = "Sidechain Gauge"
+            lp_token = f"Recipient: {gauge.getRecipient()}"
+        else:
+            pool_name = gauge.name()
+            lp_token = gauge.lp_token()
+
+        outputs.append({
+            "function": command,
+            "gauge_address": gauge_address,
+            "gauge_type": gauge_type,
+            "pool_name": pool_name,
+            "lp_token": lp_token
+        })
+        #else:
+        #    print(f"skipping non-mainnet gauge {gauge_address}")
+        #    outputs.append({
+        #        "function": command,
+        #        "gauge_address": gauge_address,
+        #        "gauge_type": gauge_type,
+        #        "pool_name": "NA",
+        #        "lp_token": "NA"
+        #    })
+
+
+    print(dicts_to_table_string(outputs, outputs[0].keys()))
+
 
