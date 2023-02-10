@@ -1,9 +1,13 @@
 import pandas as pd
-
-from brownie import chain
 from dotmap import DotMap
 from web3 import Web3
 import json
+try:
+    from brownie import chain
+except ImportError:
+    print("Warning.  Can't load brownie module in addresses.py.  get_registry() assumes mainnet, use get_registry_by_chain_id()")
+    chain = DotMap({"id": 1})
+
 
 ADDRESSES_ETH = {
     "zero": "0x0000000000000000000000000000000000000000",
@@ -15,7 +19,9 @@ ADDRESSES_ETH = {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
             "dao": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
-            "karpatkey": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+            "feeManager": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6",
+            "karpatkey": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+            "emergency": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
         },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",
@@ -26,6 +32,7 @@ ADDRESSES_ETH = {
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
+        "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B"
     },
     "tokens": {
         "FARM": "0xa0246c9032bC3A600820415aE600c6388619A14D",
@@ -190,8 +197,12 @@ ADDRESSES_POLYGON = {
     "balancer": {
         "multisigs": {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-            "treasury": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
-        }
+            "dao": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
+            "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
+            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", ## fees is feeManager on Polygon
+            "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
+        },
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
     },
     "tokens": {
         "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
@@ -216,8 +227,11 @@ ADDRESSES_ARBITRUM = {
         "multisigs": {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
             "dao": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
-            "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B"
-        }
+            "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
+            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", ## fees is feeManager on Arbitrum
+            "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
+        },
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
     },
     "tokens": {
         "BADGER": "0xBfa641051Ba0a0Ad1b0AcF549a89536A0D76472E",
@@ -251,6 +265,16 @@ ADDRESSES_ARBITRUM = {
 ADDRESSES_OPTIMISM = {
     "zero": "0x0000000000000000000000000000000000000000",
     "wallets": {},
+    "balancer": {
+        "multisigs": {
+            "lm": "0x09Df1626110803C7b3b07085Ef1E053494155089",
+            "dao": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+            "fees": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
+            "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
+            "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
+        },
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
+    },
     "tokens": {},
 }
 
@@ -282,6 +306,24 @@ registry = DotMap(
 
     }
 )
+
+def get_registry_by_chain_id(chain_id):
+    if chain_id == 1:
+        return registry.eth
+    elif chain_id == 137:
+        return registry.poly
+    elif chain_id == 56:
+        return registry.bsc
+    elif chain_id == 42161:
+        return registry.arbitrum
+    elif chain_id == 250:
+        return registry.ftm
+    elif chain_id == 10:
+        return registry.op
+    elif chain_id == 42:
+        return registry.kovan
+    elif chain_id == 5:
+        return registry.goerli
 
 
 def get_registry():
