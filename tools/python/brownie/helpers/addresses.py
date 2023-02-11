@@ -30,11 +30,13 @@ ADDRESSES_ETH = {
         "gauge_controller": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
         "authorizer_adapter": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "feeDistributor": "0xD3cf852898b21fc233251427c2DC93d3d604F3BB",
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
         "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B"
     },
     "tokens": {
+        "bb_a_usd": "0xA13a9247ea42D743238089903570127DdA72fE44",
         "FARM": "0xa0246c9032bC3A600820415aE600c6388619A14D",
         "BADGER": "0x3472A5A71965499acd81997a54BBA8D852C6E53d",
         "DIGG": "0x798D1bE841a82a273720CE31c822C61a67a601C3",

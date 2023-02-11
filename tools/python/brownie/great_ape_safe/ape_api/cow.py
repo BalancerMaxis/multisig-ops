@@ -173,6 +173,7 @@ class Cow:
         # (otherwise signature would go in api order payload)
         # https://docs.cow.fi/smart-contracts/settlement-contract/signature-schemes
         self.settlement.setPreSignature(order_uid, True)
+        return order_uid
 
     def allow_relayer(self, asset, mantissa):
         """
@@ -205,19 +206,20 @@ class Cow:
         assert type(chunks) == int
         self.allow_relayer(asset_sell, mantissa_sell)
         mantissa_sell = int(Decimal(mantissa_sell) / chunks)
+        order_ids = []
         for n in range(chunks):
-            self._sell(
-                asset_sell,
-                mantissa_sell,
-                asset_buy,
-                mantissa_buy=None,
-                # without + n api will raise DuplicateOrder when chunks > 1
-                deadline=deadline + n,
-                coef=coef,
-                destination=destination,
-                origin=self.safe.address,
-            )
-
+            order_ids.append(self._sell(
+                             asset_sell,
+                             mantissa_sell,
+                             asset_buy,
+                             mantissa_buy=None,
+                             # without + n api will raise DuplicateOrder when chunks > 1
+                             deadline=deadline + n,
+                             coef=coef,
+                             destination=destination,
+                             origin=self.safe.address,
+            ))
+        return order_ids
     def limit_sell(
         self,
         asset_sell,
