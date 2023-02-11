@@ -7,7 +7,7 @@ from dotmap import DotMap
 from prettytable import PrettyTable
 
 ### This script was built for BIP-177.  It's an example of how to map gauges to pool names and addresses
-### In this case it pulls in tx builder json files that contain gauge adds and removes and builds a
+### In this case it pulls in tx builder json files that contain gauge adds and removes through the authorizer and builds a
 ### table includes function, guage, pool address and gauge name.
 def dicts_to_table_string(dict_list, header=None):
     table = PrettyTable(header)
