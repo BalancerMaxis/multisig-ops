@@ -17,16 +17,13 @@ BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/bala
 
 # List the deployments to generate permissions for
 DEPLOYMENTS_LIST = [
-    "20230206-weighted-pool-v3",
-    "20230206-composable-stable-pool-v3",
+    "20220908-weighted-pool-v2",
+    "20221122-composable-stable-pool-v2"
 ]
 
 ### A map with the chains to handle, where key the string used to identify the chain in the deployments repo path and the value is the numeric chain id
 CHAINS_MAP = {
-    "mainnet": 1,
-    "polygon": 137,
-    "arbitrum": 42161,
-    "optimism": 10
+    "gnosis": 100
 }
 
 
@@ -34,12 +31,7 @@ CHAINS_MAP = {
 # Function should exactly match what is in the action id json and caller should exist in balancer.multisig of the address
 # directory for every chain in CHAIN_MAP
 FUNCTION_CALLER_MAP = {
-    "setSwapFeePercentage(uint256)": "feeManager",
-    "startAmplificationParameterUpdate(uint256,uint256)": "feeManager",
-    "stopAmplificationParameterUpdate()": "feeManager",
-    "pause()": "emergency",
     "disable()": "emergency",
-    "enableRecoveryMode()": "emergency",
 }
 
 
