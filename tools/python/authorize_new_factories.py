@@ -23,10 +23,7 @@ DEPLOYMENTS_LIST = [
 
 ### A map with the chains to handle, where key the string used to identify the chain in the deployments repo path and the value is the numeric chain id
 CHAINS_MAP = {
-    "mainnet": 1,
-    "polygon": 137,
-    "arbitrum": 42161,
-    "optimism": 10
+    "gnosis": 100
 }
 
 
