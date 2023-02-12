@@ -8,18 +8,21 @@ from web3 import Web3
 from helpers.addresses import r
 from pandas import pandas as pd
 
-fee_swap_target_token = r.tokens.bb_a_usd
+fee_swap_target_token = r.tokens.USDC
 target_file = "../../../FeeSweep/test-2023-02-10-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
 
-
-safe = GreatApeSafe(r.balancer.multisigs.fees)
-safe.init_cow(prod=True) ## Set prod=true to not load swaps up on the staging cowswap interface (barn.cowswap.fi)
 
 today = str(date.today())
 
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
 dust_factor = 100000000
+
+def setupSafe(address=r.balancer.multisigs.fees):
+    safe = GreatApeSafe(r.balancer.multisigs.fees)
+    safe.init_cow(prod=True)  ## Set prod=true to not load swaps up on the staging cowswap interface (barn.cowswap.fi)
+    return safe
+
 def generateSweepFile(sourcefile):
     # sweeps is a map with addresses as keys and sweep amounts as values
     sweeps = {}
@@ -62,7 +65,7 @@ def generateSweepFile(sourcefile):
     return sweeps
 
 
-def claimFees(sweeps):
+def claimFees(safe, sweeps):
     print("Sweeping fees")
     address_list = list(sweeps.keys())
     safe.take_snapshot(address_list)
@@ -71,7 +74,7 @@ def claimFees(sweeps):
     sweeper.withdrawCollectedFees(address_list, amounts_list, safe.address)
     safe.print_snapshot()
 
-def flogFees(sweeps):
+def cowswapFees(safe, sweeps):
     print("Setting up cowswap orders")
     results = []
     usd = safe.contract(fee_swap_target_token)
@@ -85,20 +88,19 @@ def flogFees(sweeps):
             asset_buy=usd,
             mantissa_sell=amount,
             deadline=60*60*4, ## 4 hours
-            chunks=1, # Use to break up large trades
-            coef=0.995 # Use to define slippage, this is multipled by the quoted market price to define min price
+            chunks=1, # Use to break up large trades, if used more tha one resulting trade uid is returned.
+            coef=0.99 # Use to define slippage, this is multipled by the quoted market price to define min price.
         )
-        results.append([asset.symbol(), asset.address, amount/10**asset.decimals(), result])
+        results.append([str(asset.symbol()), str(asset.address), float(amount/10**asset.decimals()), str(result)])
 
     ## Generate Report
-    results.reverse() ## To match cowswap ordering
-
+    print(results)
     df = pd.DataFrame(results, columns=["Symbol", "Address", "Amount", "Cowswap ID"])
     print(df.to_markdown())
     with open(f"{target_dir}/out/{today}-cowswap.md", "w") as f:
         df.to_markdown(buf=f)
 
-def payFees(half=True):
+def payFees(safe, half=True):
     distrbutor = safe.contract(r.balancer.feeDistributor)
     usd = safe.contract(r.tokens.USDC)
     bal = safe.contract(r.tokens.BAL)
@@ -107,7 +109,7 @@ def payFees(half=True):
         print("Paying half the remaining USDC and BAL balances as fees to veBAL.  This should be a fee sweep week.")
         bal_amount = bal.balanceOf(safe.address)/2
         usd_amount = usd.balanceOf(safe.address)/2
-    else
+    else:
         print("Paying ALL of the remaining USDC and BAL balances as fees to veBAL.  This should be NO fee-sweep week.")
         bal_amount = bal.balanceOf(safe.address)
         usd_amount = usd.balanceOf(safe.address)
@@ -119,13 +121,14 @@ def payFees(half=True):
     distrbutor.depositTokens([bal.address, usd.address],[bal_amount, usd_amount])
     safe.post_safe_tx(gen_tenderly=False)
 
-def swapAndFlog():
+
+def sweepAndFlog():
     sweeps=generateSweepFile(target_file)
     claimFees(sweeps)
-    flogFees(sweeps)
+    cowswapFees(sweeps)
     safe.post_safe_tx(gen_tenderly=False)
 
 if __name__ == "__main__":
-    swapAndFlog()
+    sweepAndCowpswap()
 
 
