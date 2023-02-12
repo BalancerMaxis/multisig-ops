@@ -11,9 +11,7 @@ except ImportError:
 
 ADDRESSES_ETH = {
     "zero": "0x0000000000000000000000000000000000000000",
-    "on_chain_pricing_mainnet_lenient": "0x2DC7693444aCd1EcA1D6dE5B3d0d8584F3870c49",
     # the wallets listed here are looped over by scout and checked for all treasury tokens
-    "wallets": {},
     "balancer": {
         "multisigs": {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
@@ -36,7 +34,7 @@ ADDRESSES_ETH = {
         "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B"
     },
     "tokens": {
-        "bb_a_usd": "0xA13a9247ea42D743238089903570127DdA72fE44",
+        "bb_a_usd": "0xa13a9247ea42d743238089903570127dda72fe44",
         "FARM": "0xa0246c9032bC3A600820415aE600c6388619A14D",
         "BADGER": "0x3472A5A71965499acd81997a54BBA8D852C6E53d",
         "DIGG": "0x798D1bE841a82a273720CE31c822C61a67a601C3",
@@ -82,12 +80,6 @@ ADDRESSES_ETH = {
         "ENS": "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
         "RETH": "0xae78736Cd615f374D3085123A210448E74Fc6393",
     },
-    "logic": {
-         },
-
-    "custodians": {
-        "multiswap": "0x533e3c0e6b48010873B947bddC4721b1bDFF9648"
-    },
     "helpers": {
         "balance_checker": "0xe92261c2D64C363109c36a754A87107142e61b72",
     },
@@ -126,7 +118,6 @@ ADDRESSES_ETH = {
 
     "uniswap": {
         "factoryV3": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
-        "v3pool_wbtc_badger": "0xe15e6583425700993bd08F51bF6e7B73cd5da91B",
         "NonfungiblePositionManager": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
         "routerV2": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
         "routerV3": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
@@ -141,13 +132,7 @@ ADDRESSES_ETH = {
         "provider": "0x0000000022D53366457F9d5E68Ec105046FC4383",
         "factory": "0x0959158b6040D32d04c301A72CBFD6b39E21c9AE",
     },
-    "bridge": {
-        "arbitrum": {
-            "outbox": "0x760723CD2e632826c38Fef8CD438A4CC7E7E1A40",
-            "l1_gateway": "0x72Ce9c846789fdB6fC1f34aC4AD25Dd9ef7031ef",
-            "l1_erc20_gateway": "0xa3A7B6F88361F48403514059F1F16C8E78d60EeC",
-        },
-    },
+
     "hidden_hand": {
         "bribe_vault": "0x9DDb2da7Dd76612e0df237B89AF2CF4413733212",
         "tokenmak_briber": "0x7816b3D0935D668bCfc9A4aaB5a84EBc7fF320cf",
@@ -266,7 +251,6 @@ ADDRESSES_ARBITRUM = {
 
 ADDRESSES_OPTIMISM = {
     "zero": "0x0000000000000000000000000000000000000000",
-    "wallets": {},
     "balancer": {
         "multisigs": {
             "lm": "0x09Df1626110803C7b3b07085Ef1E053494155089",
@@ -305,7 +289,6 @@ registry = DotMap(
         "poly": checksum_address_dict(ADDRESSES_POLYGON),
         "arbitrum": checksum_address_dict(ADDRESSES_ARBITRUM),
         "op": checksum_address_dict(ADDRESSES_OPTIMISM),
-
     }
 )
 

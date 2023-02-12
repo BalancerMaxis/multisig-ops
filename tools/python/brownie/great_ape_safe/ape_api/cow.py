@@ -53,7 +53,11 @@ class Cow:
 
         r = requests.post(self.api_url + "quote", json=fee_and_quote_payload)
         if not r.ok:
+            print(r.json())
             r.raise_for_status()
+
+
+
 
         print("FEE AND QUOTE RESPONSE:")
         pprint(r.json())
@@ -220,6 +224,7 @@ class Cow:
                              origin=self.safe.address,
             ))
         return order_ids
+
     def limit_sell(
         self,
         asset_sell,

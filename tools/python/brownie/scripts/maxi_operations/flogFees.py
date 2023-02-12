@@ -88,18 +88,19 @@ def flogFees(sweeps):
             chunks=1, # Use to break up large trades
             coef=0.995 # Use to define slippage, this is multipled by the quoted market price to define min price
         )
-        results.append([asset.symbol(), amount, result])
+        results.append([asset.symbol(), asset.address, amount/10**asset.decimals(), result])
 
     ## Generate Report
     results.reverse() ## To match cowswap ordering
-    df = pd.DataFrame(results, columns=["Symbol", "Amount", "Cowswap ID"])
+
+    df = pd.DataFrame(results, columns=["Symbol", "Address", "Amount", "Cowswap ID"])
     print(df.to_markdown())
     with open(f"{target_dir}/out/{today}-cowswap.md", "w") as f:
         df.to_markdown(buf=f)
 
 def payFees(half=True):
     distrbutor = safe.contract(r.balancer.feeDistributor)
-    usd = safe.contract(r.tokens.bb_a_usd)
+    usd = safe.contract(r.tokens.USDC)
     bal = safe.contract(r.tokens.BAL)
     safe.take_snapshot([bal, usd])
     if half:
