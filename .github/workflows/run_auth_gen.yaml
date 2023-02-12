@@ -9,12 +9,15 @@ env:
 
 jobs:
   gen_auth:
-    if: github.event.label.name == 'Generate Authorizer'
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: tools/python
     steps:
+    - uses: Dreamcodeio/pr-has-label-action@master
+      id: checkLabel
+      with:
+        label: 'Generate Authorizer'
     - uses: actions/checkout@v2
 
     - name: Setup Python 3.9
