@@ -28,9 +28,10 @@ def load_input_data(input_json_file):
 
 def build_action_ids_map(input_data):
     action_ids_map = {}
+    for chain in ALL_CHAINS_MAP:
+        action_ids_map[chain] = {}
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
-            action_ids_map[chain_name] = {}
             result = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
             for deployment in change["deployments"]:
                 action_ids_map[chain_name][deployment] = {}
