@@ -278,6 +278,19 @@ ADDRESSES_OPTIMISM = {
     "tokens": {},
 }
 
+ADDRESSES_GNOSIS = {
+    "zero": "0x0000000000000000000000000000000000000000",
+    "balancer": {
+        "multisigs": {
+            "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
+            "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+            ### All maxi operations concentrated into 1 multisig
+            "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+            "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+            "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a"
+        }
+    }
+}
 def checksum_address_dict(addresses):
     """
     convert addresses to their checksum variant taken from a (nested) dict
