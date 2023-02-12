@@ -1,0 +1,43 @@
+name: Generate new Authorizer payloads if Generate Authorizer is labeled and input file is in the right place
+
+on:
+  pull_request:
+    types: [ labeled, synchronize ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  gen_auth:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/python
+    steps:
+    - uses: Dreamcodeio/pr-has-label-action@master
+      id: checkLabel
+      with:
+        label: 'Generate Authorizer'
+    - uses: actions/checkout@v2
+
+    - name: Setup Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: print working dir
+      run: pwd
+
+    - name: Install Requirements
+      run: pip install -r requirements.txt
+
+    - name: Run Sweep
+      run: python3 gen_add_permissions_payload.py
+
+    - name: Commit and push changes
+      uses:  stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Generate Fee Sweep transaction builder jsons
+        commit_user_name:  GitHub Actions
+        commit_user_email: github-actions[bot]@users.noreply.github.com
+        commit_author: Github Actions <noreply@users.noreply.github.com>
