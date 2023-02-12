@@ -104,9 +104,11 @@ def payFees(half=True):
     bal = safe.contract(r.tokens.BAL)
     safe.take_snapshot([bal, usd])
     if half:
+        print("Paying half the remaining USDC and BAL balances as fees to veBAL.  This should be a fee sweep week.")
         bal_amount = bal.balanceOf(safe.address)/2
         usd_amount = usd.balanceOf(safe.address)/2
-    else:
+    else
+        print("Paying ALL of the remaining USDC and BAL balances as fees to veBAL.  This should be NO fee-sweep week.")
         bal_amount = bal.balanceOf(safe.address)
         usd_amount = usd.balanceOf(safe.address)
     assert bal_amount > 0,  " BAL has a balance of 0, both tokens require some balance for this script to work."
@@ -117,13 +119,13 @@ def payFees(half=True):
     distrbutor.depositTokens([bal.address, usd.address],[bal_amount, usd_amount])
     safe.post_safe_tx(gen_tenderly=False)
 
-def main():
+def swapAndFlog():
     sweeps=generateSweepFile(target_file)
     claimFees(sweeps)
     flogFees(sweeps)
     safe.post_safe_tx(gen_tenderly=False)
 
 if __name__ == "__main__":
-    main()
+    swapAndFlog()
 
 
