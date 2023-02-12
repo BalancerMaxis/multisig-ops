@@ -316,6 +316,7 @@ registry = DotMap(
         "poly": checksum_address_dict(ADDRESSES_POLYGON),
         "arbitrum": checksum_address_dict(ADDRESSES_ARBITRUM),
         "op": checksum_address_dict(ADDRESSES_OPTIMISM),
+        "gnosis": checksum_address_dict(ADDRESSES_GNOSIS)
 
     }
 )
@@ -337,7 +338,8 @@ def get_registry_by_chain_id(chain_id):
         return registry.kovan
     elif chain_id == 5:
         return registry.goerli
-
+    elif chain_id == 100:
+        return registry.gnosis
 
 def get_registry():
     if chain.id == 1:

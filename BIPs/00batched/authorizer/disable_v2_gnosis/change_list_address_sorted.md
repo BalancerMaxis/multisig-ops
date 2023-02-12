@@ -1,0 +1,4 @@
+| deployment                         | chain   | function   | role                                                               | target    | target_address                             |
+|:-----------------------------------|:--------|:-----------|:-------------------------------------------------------------------|:----------|:-------------------------------------------|
+| 20220908-weighted-pool-v2          | gnosis  | disable()  | 0x0a7c328c61ac04bc0e79818b5fa98658f18c222d04e7433de4d87fcbfa15e08e | emergency | 0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962 |
+| 20221122-composable-stable-pool-v2 | gnosis  | disable()  | 0xa676b10c0a312087e255fee5692d8b31aec2a0839a91e715a43860c3e62437e3 | emergency | 0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962 |
