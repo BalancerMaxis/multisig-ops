@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "chainId": 137,
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": "",
+    "checksum": "",
+    "createFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x18be448c0c01ad4576befd4f6bce2abf1214dc50697f946a487657e3c3c66947, 0x8e751c9d2a2e4de88b6c71094d5a2b18be451801333ea94579761179bc9b9ef9, 0xb251963ecd27d2fe81c17cdd47c025b03bdc56bd9138b8556a747d1112d8c01b, 0x9592bbf1ef6b5256ed5698e4cf4610375a5e984fa05ddb8a9c6f2e411f2d0d1e, 0x4645b2fd612d1e3d4f7cbd5f68df6511f4dedfcba83090853604d4fbf33f467d, 0xf3018734e770ecf7082ee926a91cef5bd218b62d081217bf47f5a67ea7a1e80e]",
+        "account": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x22f3e304ab030be776b205711d7ba79f146b07726b10c5e9d29c24dacc09c140, 0xf6c13c09ddba8f114fe2b23ff442766dca7a9bf303adfde386f20ac38c749733, 0x1eeda74ac7741bce16788e080c79c907c79419e41281fa442cc39f8d148a8773, 0xe202c405a4ff60ae0c38dea8bbb722ee570a1c89487598e7fc4ede5248a527c7]",
+        "account": "0x7c68c42De679ffB0f16216154C996C354cF1161B"
+      }
+    }
+  ]
+}
