@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: Dreamcodeio/pr-has-label-action@master
-        id: checkLabel
+        id: 'BIP JSON'
         with:
-          label: 'BIP JSON'
+          label: 'BIPJSON'
       - name: Checkout code (PR)
+        if: steps.BIPJSON.outputs.checkedLabel == 'true'
         uses: actions/checkout@v3
         with:
            path: pr

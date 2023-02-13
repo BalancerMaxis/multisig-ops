@@ -2,7 +2,7 @@ name: Run Sweep Fees if new input data is there
 
 on:
   pull_request:
-    types: [ labeled ]
+    types: [ labeled, synchronize ]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

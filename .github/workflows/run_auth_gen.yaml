@@ -22,6 +22,8 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@
+      if: steps.genAuth.outputs.checkedLabel == 'true'
+
 
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
