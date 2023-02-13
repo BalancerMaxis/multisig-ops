@@ -40,4 +40,5 @@ git push origin
 BRANCH=`git branch --show-current`
 git checkout staging
 git merge $BRANCH
+git push origin
 git checkout $BRANCH
