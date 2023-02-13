@@ -15,7 +15,7 @@ def dicts_to_table_string(dict_list, header=None):
         table.add_row(list(dict_.values()))
     return str(table)
 
-def main(tx_builder_json="./testdata.json"):
+def main(tx_builder_json="../../../BIPs/00batched/BIP-170-171-172-173-174-176-178-179-180-181-182.json"):
     outputs = []
     with open(tx_builder_json, "r") as json_data:
         payload = json.load(json_data)
@@ -46,9 +46,13 @@ def main(tx_builder_json="./testdata.json"):
         gauge = safe.contract(gauge_address)
         #print(f"processing {gauge} as a gauge with lp token {gauge.lp_token()}")
         pool_token_list = []
-        if "getTotalBridgeCost" in gauge.selectors.values(): ## Is sidechain
-            pool_name = "Sidechain Gauge"
+        if "getTotalBridgeCost" in gauge.selectors.values(): ## Is sidechain/arbitrum?
+            pool_name = "Sidechain Gauge(arbi?)"
             lp_token = f"Recipient: {gauge.getRecipient()}"
+        elif "getPolygonBridge" in gauge.selectors.values():
+            pool_name = "Polygon Gauge"
+            lp_token = f"Recipient: {gauge.getRecipient()}"
+
         else:
             pool_name = gauge.name()
             lp_token = gauge.lp_token()
