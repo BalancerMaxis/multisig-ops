@@ -14,6 +14,9 @@ jobs:
       run:
         working-directory: tools/python
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Check label
       run: |
         if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
@@ -32,10 +35,6 @@ jobs:
           exit 1
         fi
     
-
-    - name: checkout
-      uses: actions/checkout@v2
-
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
       with:

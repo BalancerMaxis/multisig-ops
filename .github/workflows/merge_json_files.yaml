@@ -12,6 +12,12 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code (PR)
+        if: steps.BIPJSON.outputs.hasLabel == 'true'
+        uses: actions/checkout@v3
+        with:
+          path: pr
+
       - name: Check Label
         run: |
           if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
@@ -29,12 +35,6 @@ jobs:
             echo "Exiting action"
             exit 1
           fi
-
-      - name: Checkout code (PR)
-        if: steps.BIPJSON.outputs.hasLabel == 'true'
-        uses: actions/checkout@v3
-        with:
-           path: pr
 
       - name: Checkout main branch for combined jsons
         uses: actions/checkout@v3
