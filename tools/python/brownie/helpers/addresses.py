@@ -264,6 +264,19 @@ ADDRESSES_OPTIMISM = {
     "tokens": {},
 }
 
+ADDRESSES_GNOSIS = {
+    "zero": "0x0000000000000000000000000000000000000000",
+    "balancer": {
+        "multisigs": {
+            "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
+            "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+            ### All maxi operations concentrated into 1 multisig
+            "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+            "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+            "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a"
+        }
+    }
+}
 def checksum_address_dict(addresses):
     """
     convert addresses to their checksum variant taken from a (nested) dict
@@ -289,6 +302,7 @@ registry = DotMap(
         "poly": checksum_address_dict(ADDRESSES_POLYGON),
         "arbitrum": checksum_address_dict(ADDRESSES_ARBITRUM),
         "op": checksum_address_dict(ADDRESSES_OPTIMISM),
+        "gnosis": checksum_address_dict(ADDRESSES_GNOSIS)
     }
 )
 
@@ -309,7 +323,8 @@ def get_registry_by_chain_id(chain_id):
         return registry.kovan
     elif chain_id == 5:
         return registry.goerli
-
+    elif chain_id == 100:
+        return registry.gnosis
 
 def get_registry():
     if chain.id == 1:
