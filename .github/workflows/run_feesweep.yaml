@@ -9,7 +9,6 @@ env:
 
 jobs:
   sweepFees:
-    if: github.event.label.name == 'Sweep Fees'
     runs-on: ubuntu-latest
     defaults:
       run:
