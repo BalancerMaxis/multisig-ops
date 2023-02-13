@@ -16,7 +16,7 @@ jobs:
         with:
           label: 'BIPJSON'
       - name: Checkout code (PR)
-        if: steps.BIPJSON.outputs.checkedLabel == 'true'
+        if: steps.BIPJSON.outputs.hasLabel == 'true'
         uses: actions/checkout@v3
         with:
            path: pr

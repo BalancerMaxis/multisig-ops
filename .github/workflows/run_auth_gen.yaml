@@ -22,7 +22,7 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-      if: steps.genAuth.outputs.checkedLabel == 'true'
+      if: steps.genAuth.outputs.hasLabel == 'true'
 
 
     - name: Setup Python 3.9

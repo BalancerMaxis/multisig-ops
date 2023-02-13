@@ -21,7 +21,7 @@ jobs:
 
     - name: checkout
       uses: actions/checkout@v2
-      if: steps.doFeeSweep.outputs.checkedLabel == 'true'
+      if: steps.doFeeSweep.outputs.hasLabel == 'true'
 
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
