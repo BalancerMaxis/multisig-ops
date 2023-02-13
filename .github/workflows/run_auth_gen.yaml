@@ -44,7 +44,7 @@ jobs:
     - name: Install Requirements
       run: pip install -r requirements.txt
 
-    - name: Run Sweep
+    - name: Do Work
       run: python3 gen_add_permissions_payload.py
 
     - name: Commit and push changes
