@@ -34,7 +34,7 @@ _More information about the various Balancer Multisigs and their functions can b
 
 As described in the payload json, the authorizer will be called to grant the roles as described.  
 
-For record, the contents of [results_address_sorted.md](https://github.com/BalancerMaxis/multisig-ops/tree/sstagingtaging/BIPs/BIP-XXX/results_address_sorted.md) are printed here:
+For record, the contents of [results_address_sorted.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/results_address_sorted.md) are printed here:
 
 ADDRESS_SORTED_MD_TABLE
 

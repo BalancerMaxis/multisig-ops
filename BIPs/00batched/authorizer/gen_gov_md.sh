@@ -30,4 +30,7 @@ echo "Building governance forum md file.  Note you will need to review and updat
 sed "s/XXX/$BIP_NUMBER/g" governance_template.md > .working.md
 sed "s/YYY/$PR_NUMBER/g" .working.md > .working1.md
 sed "/ADDRESS_SORTED_MD_TABLE/r $TABLE" .working1.md | sed 's/ADDRESS_SORTED_MD_TABLE//' > ${BIP_DIR}/${BIP_NUMBER}.md
-rm .working*.md
+git rm .working*.md
+git add $BIP_DIR/*
+git commit -m "Setting up Payload Directory."
+git push origin
