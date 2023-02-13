@@ -14,19 +14,19 @@ jobs:
       run:
         working-directory: tools/python
     steps:
-    - uses: Dreamcodeio/pr-has-label-action@master
-      id: checkLabel
+    - name: Check label
+      uses: Dreamcodeio/pr-has-label-action@master
+      id: genAuth
       with:
         label: 'Generate Authorizer'
-    
-    - uses: actions/checkout@v2
+
+    - name: Checkout
+      uses: actions/checkout@
+
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-
-    - name: print working dir
-      run: pwd
 
     - name: Install Requirements
       run: pip install -r requirements.txt

@@ -16,11 +16,14 @@ jobs:
         working-directory: tools/python
     steps:
     - uses: Dreamcodeio/pr-has-label-action@master
-      id: checkLabel
+      id: doFeeSweep
       with:
         label: 'Generate Authorizer'
 
-    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2
+      if: steps.doFeeSweep.outputs.checkedLabel == 'true'
+
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
       with:
@@ -36,7 +39,6 @@ jobs:
       run: python3 sweepFees.py
 
     - name: Commit and push changes
-
       uses:  stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Generate Fee Sweep transaction builder jsons
