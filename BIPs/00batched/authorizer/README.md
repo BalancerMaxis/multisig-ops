@@ -18,6 +18,8 @@ Where BIP number is the number of the BIP like 175, nad PR number is the number 
  - Run ./gen_gov_md.sh
    - A BIP-XXX folder will be created in the [BIPs folder at the root of this repo](../../) that contains all the payloads and md files and a BIP-XXX.MD with governance text to link them all.
 
+### Merge into the `staging` branch
+We need to merge
 ### Edit your governance
 
 You can edit the governance BIP in your IDE  or in the forum and tidy it up and add context.  In the end, you should either update the governance MD file in the BIP folder with the final contents of what is posted to forum or delete it to avoid confusion 
