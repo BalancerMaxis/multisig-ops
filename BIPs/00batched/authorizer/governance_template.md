@@ -1,5 +1,3 @@
-Tritium | 2023-02-09 16:33:11 UTC | #1
-
 ## [Payload PR - BIP-XXX](https://github.com/BalancerMaxis/multisig-ops/pull/YYY)
 
 ## Background
@@ -16,7 +14,7 @@ The following files can be found both linked below and in the payload PR linked 
 | [inputs.json](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/input.json)                                    | The inputs to the script mapping functions and deployments to target addresses that can execute them.                                |
 | [results_address_sorted.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/results_address_sorted.md)       | The resulting changes printed in a table sorted by target chain and target address. (to easily understand permisisons granted)       |
 | [results_deployment_sorted.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/results_deployment_sorted.md) | The resulting changes printed in a table sorted by target chain and target deployment. (for verification against action ids)         |
- | [function_descriptions.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/function_descriptions.md)         | A table that describes what each function that is being granted privileged access to allows.                                         |                                                                                                                                             |
+| [function_descriptions.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/function_descriptions.md)         | A table that describes what each function that is being granted privileged access to allows.                                         |                                                                                                                                             |
 | [`chainname`.json](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/)                                         | For each change with changes, a transaction builder json named after said chain exists to apply the changes described in the tables. |
 
 In the tables above:
@@ -46,10 +44,3 @@ This BIP is routine operation for provisioning a new factory.  The new factories
 
 [Directory of Addresses used by script which generated the table and multsig payloads](https://github.com/BalancerMaxis/multisig-ops/blob/main/tools/python/brownie/helpers/addresses.py)
 
--------------------------
-
-Xeonus | 2023-02-09 19:55:43 UTC | #2
-
-[https://snapshot.org/#/balancer.eth/proposal/0xa5ec3483b5d271beee925a81aad62d9cc9237615264db32b1f7dfa569837782d](https://snapshot.org/#/balancer.eth/proposal/0xa5ec3483b5d271beee925a81aad62d9cc9237615264db32b1f7dfa569837782d)
-
--------------------------
