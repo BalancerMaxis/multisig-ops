@@ -2,7 +2,7 @@
 
 
 ## Background
-Balancer is getting ready to double-down on gnosis-chain.  In doing so, we want to ensure that all of our recent updates, described in [BIP-175] are applied to the gnosis chain.
+Balancer is getting ready to double-down on gnosis-chain.  In doing so, we want to ensure that all of our recent updates, described in [BIP-175](https://forum.balancer.fi/t/bip-175-grant-permissions-for-v3-pool-factories/4360) are applied to the gnosis chain.
 
 This involves granting the Maxis access to disable the V2 pool factories, and granting the proper permissions as defined by prior governance around pools and factories to the parties as specified below.
 
