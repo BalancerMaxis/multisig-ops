@@ -2,7 +2,9 @@ name: Merge JSON files
 
 on:
   pull_request:
-    types: [closed]
+    types: [ closed ]
+    branches: [ main ]
+
 
 jobs:
   merge_json:
