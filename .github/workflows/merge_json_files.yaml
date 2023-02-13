@@ -21,12 +21,12 @@ jobs:
       - name: Check Label
         run: |
           if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
-            echo "Checking for label 'Generate Authorizer' on the pull request associated with commit '$GITHUB_SHA'"
+            echo "Checking for label '${{ env.LABEL }}' on the pull request associated with commit '$GITHUB_SHA'"
             pull_request_labels=$(jq --raw-output '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
-            if echo "$pull_request_labels" | grep -q "Generate Authorizer"; then
-              echo "Label 'Generate Authorizer' found on pull request"
+            if echo "$pull_request_labels" | grep -q '${{ env.LABEL }}'; then
+              echo "Label '${{ env.LABEL }}' found on pull request"
             else
-              echo "Label 'Generate Authorizer' not found on pull request"
+              echo "Label '${{ env.LABEL }} not found on pull request"
               echo "Exiting action"
               exit 1
             fi
