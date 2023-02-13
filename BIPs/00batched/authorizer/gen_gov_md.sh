@@ -11,7 +11,7 @@ echo "Creating $BIP_DIR and moving generated files into place."
 mkdir $BIP_DIR
 mv ${date}.json ${BIP_DIR}/inputs.json
 mv ${date}_address_sorted.md ${BIP_DIR}/results_address_sorted.md
-mv ${date}_deployment_sorted.md ${BIP_DIR}/results_deloyment_sorted.md
+mv ${date}_deployment_sorted.md ${BIP_DIR}/results_deployment_sorted.md
 mv ${date}_function_descriptions.md ${BIP_DIR}/function_descriptions.md
 
 ## move chain jsons
