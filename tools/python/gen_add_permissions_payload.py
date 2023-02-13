@@ -80,6 +80,24 @@ def print_change_list(change_list, output_dir, filename_root=today):
         with open(f"{output_dir}/{filename_root}_deployment_sorted.md", "w") as f:
             chain_deployment_sorted.to_markdown(index=False, buf=f)
 
+def save_command_description_table(change_list, output_dir, filename_root=today):
+    referenced_calls = []
+    functions=[]
+    descriptions=[]
+    with open(f"{output_dir}/func_desc_by_name.json", "r") as f:
+        func_desc_by_name = json.load(f)
+    for change in change_list:
+        function = change["function"]
+        if function not in referenced_calls:
+            if function not in functions:
+                functions.append(function)
+                descriptions.append(func_desc_by_name[function])
+    df = pd.DataFrame({
+        "function": functions,
+        "description": descriptions
+    })
+    with open(f"{output_dir}/{filename_root}_function_descriptions.md", "w") as f:
+        df.to_markdown(buf=f, index=False)
 
 
 def save_txbuilder_json(change_list, output_dir, filename_root=today):
@@ -132,6 +150,7 @@ def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/0
         change_list=change_list,
         output_dir=output_dir
     )
+    save_command_description_table(change_list=change_list, output_dir=output_dir)
     save_txbuilder_json(change_list=change_list,output_dir=output_dir)
 
 if __name__ == "__main__":
