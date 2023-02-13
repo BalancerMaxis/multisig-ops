@@ -1,5 +1,6 @@
 name: Merge JSON files
-
+env:
+  LABEL: 'BIP JSON'
 on:
   pull_request:
     types: [ closed ]
@@ -13,8 +14,20 @@ jobs:
     steps:
       - uses: Dreamcodeio/pr-has-label-action@master
         id: 'BIP JSON'
-        with:
-          label: 'BIPJSON'
+        run: |
+          echo "Checking for label '${{ env.LABEL }}' on the pull request associated with commit '${{ github.sha }}'"
+          COMMIT_PULL_REQUEST_NUMBER=$(curl -s https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/pulls?state=all | jq --raw-output '.[0].number')
+          if [[ $COMMIT_PULL_REQUEST_NUMBER == null ]]; then
+            echo "No pull request associated with commit '${{ github.sha }}'"
+            exit 78
+          fi
+          LABEL_EXISTS=$(curl -s https://api.github.com/repos/${{ github.repository }}/pulls/$COMMIT_PULL_REQUEST_NUMBER/labels | jq --raw-output 'map(.name) | index("${{ env.LABEL }}")')
+          if [[ $LABEL_EXISTS == null ]]; then
+            echo "Label '${{ env.LABEL }}' not found on pull request $COMMIT_PULL_REQUEST_NUMBER"
+            exit 78
+          fi
+          echo "Label '${{ env.LABEL }}' found on pull request $COMMIT_PULL_REQUEST_NUMBER"
+
       - name: Checkout code (PR)
         if: steps.BIPJSON.outputs.hasLabel == 'true'
         uses: actions/checkout@v3
