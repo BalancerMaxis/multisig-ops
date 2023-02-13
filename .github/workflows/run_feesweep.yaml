@@ -1,29 +1,45 @@
-name: Run Sweep Fees if new input data is there
+name: Generate feeSweep payloads
 
 on:
   pull_request:
-    types: [ labeled ]
+    types: [ labeled, synchronize ]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  LABEL: Sweep Fees
 
 jobs:
   sweepFees:
-    if: github.event.label.name == 'Sweep Fees'
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: tools/python
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
+    - name: Check label
+      run: |
+        if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+          echo "Checking for label '${{ env.LABEL }}' on the pull request associated with commit '$GITHUB_SHA'"
+          pull_request_labels=$(jq --raw-output '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
+          if echo "$pull_request_labels" | grep -q '${{ env.LABEL }}'; then
+            echo "Label '${{ env.LABEL }}' found on pull request"
+          else
+            echo "Label '${{ env.LABEL }} not found on pull request"
+            echo "Exiting action"
+            exit 1
+          fi
+        else
+          echo "No pull request associated with commit '$GITHUB_SHA'"
+          echo "Exiting action"
+          exit 1
+        fi
+    
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-
-    - name: print working dir
-      run: pwd
 
     - name: Install Requirements
       run: pip install -r requirements.txt

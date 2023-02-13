@@ -1,8 +1,11 @@
 name: Merge JSON files
-
+env:
+  LABEL: 'BIP JSON'
 on:
   pull_request:
-    types: [closed]
+    types: [ closed ]
+    branches: [ main ]
+
 
 jobs:
   merge_json:
@@ -10,9 +13,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code (PR)
+        if: steps.BIPJSON.outputs.hasLabel == 'true'
         uses: actions/checkout@v3
         with:
-           path: pr
+          path: pr
+
+      - name: Check Label
+        run: |
+          if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+            echo "Checking for label '${{ env.LABEL }}' on the pull request associated with commit '$GITHUB_SHA'"
+            pull_request_labels=$(jq --raw-output '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
+            if echo "$pull_request_labels" | grep -q '${{ env.LABEL }}'; then
+              echo "Label '${{ env.LABEL }}' found on pull request"
+            else
+              echo "Label '${{ env.LABEL }} not found on pull request"
+              echo "Exiting action"
+              exit 1
+            fi
+          else
+            echo "No pull request associated with commit '$GITHUB_SHA'"
+            echo "Exiting action"
+            exit 1
+          fi
 
       - name: Checkout main branch for combined jsons
         uses: actions/checkout@v3
