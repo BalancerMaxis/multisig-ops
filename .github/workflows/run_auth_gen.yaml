@@ -34,6 +34,7 @@ jobs:
           echo "No pull request associated with commit '$GITHUB_SHA'"
           echo "Exiting action"
           exit 1
+        fi
 
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
