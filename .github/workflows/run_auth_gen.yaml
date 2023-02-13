@@ -15,9 +15,11 @@ jobs:
       run:
         working-directory: tools/python
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Check label
       run: |
-        cd $(echo '${GITHUB_WORKSPACE}')
         echo "Checking for label '${{ env.LABEL }}' on the pull request associated with commit '${{ github.sha }}'"
         COMMIT_PULL_REQUEST_NUMBER=$(curl -s https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/pulls?state=all | jq --raw-output '.[0].number')
         if [[ $COMMIT_PULL_REQUEST_NUMBER == null ]]; then
@@ -30,11 +32,6 @@ jobs:
           exit 78
         fi
         echo "Label '${{ env.LABEL }}' found on pull request $COMMIT_PULL_REQUEST_NUMBER"
-
-    - name: Checkout
-      uses: actions/checkout@v2
-      if: steps.genAuth.outputs.hasLabel == 'true'
-
 
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
