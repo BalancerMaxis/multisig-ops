@@ -1,4 +1,4 @@
-name: Generate new Authorizer payloads if Generate Authorizer is labeled and input file is in the right place
+name: Generate new Authorizer payloads
 
 on:
   pull_request:
@@ -21,7 +21,7 @@ jobs:
         label: 'Generate Authorizer'
 
     - name: Checkout
-      uses: actions/checkout@
+      uses: actions/checkout@v2
       if: steps.genAuth.outputs.checkedLabel == 'true'
 
 
