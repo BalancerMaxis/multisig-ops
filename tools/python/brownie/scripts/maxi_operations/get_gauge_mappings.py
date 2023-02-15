@@ -5,17 +5,24 @@ import json
 import requests
 from dotmap import DotMap
 from prettytable import PrettyTable
+import sys
+
+# USAGE: Use like: brownie run scripts/maxi_operations/get_gauge_mappings.py parse_json ../../../BIPs/BIP-184-185-186-187-188.json
+# USAGE: Use from: The root brownie directory - ../../ from where this file sits
 
 ### This script was built for BIP-177.  It's an example of how to map gauges to pool names and addresses
 ### In this case it pulls in tx builder json files that contain gauge adds and removes through the authorizer and builds a
 ### table includes function, guage, pool address and gauge name.
+
+
 def dicts_to_table_string(dict_list, header=None):
+
     table = PrettyTable(header)
     for dict_ in dict_list:
         table.add_row(list(dict_.values()))
     return str(table)
 
-def main(tx_builder_json="../../../BIPs/00batched/BIP-170-171-172-173-174-176-178-179-180-181-182.json"):
+def parse_json(tx_builder_json="../../../BIPs/BIP-189/BIP-189B.json"):
     outputs = []
     with open(tx_builder_json, "r") as json_data:
         payload = json.load(json_data)
@@ -77,4 +84,5 @@ def main(tx_builder_json="../../../BIPs/00batched/BIP-170-171-172-173-174-176-17
 
     print(dicts_to_table_string(outputs, outputs[0].keys()))
 
-
+if __name__ == "__main__":
+    parse_json(sys.argv[0])
