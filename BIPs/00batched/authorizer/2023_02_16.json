@@ -1,0 +1,50 @@
+[
+  {
+    "deployments": [
+      "20230206-aave-rebalanced-linear-pool-v4"
+    ],
+    "chain_map": {
+      "gnosis": 100,
+      "mainnet": 1,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "polygon": 137
+    },
+    "function_caller_map": {
+      "disable()": "emergency",
+      "setSwapFeePercentage(uint256)": "feeManager",
+      "setTargets": "feeManager"
+    }
+  },
+  {
+    "deployments": [
+      "20230206-erc4626-linear-pool-v3",
+      "20230213-yearn-linear-pool"
+    ],
+    "chain_map": {
+      "mainnet": 1,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "polygon": 137
+    },
+    "function_caller_map": {
+      "disable()": "emergency",
+      "setSwapFeePercentage(uint256)": "feeManager",
+      "setTargets": "feeManager"
+    }
+  },
+  {
+    "deployments": [
+      "20230208-euler-linear-pool",
+      "20230213-gearbox-linear-pool"
+    ],
+    "chain_map": {
+      "mainnet": 1
+    },
+    "function_caller_map": {
+      "disable()": "emergency",
+      "setSwapFeePercentage(uint256)": "feeManager",
+      "setTargets": "feeManager"
+    }
+  }
+]
