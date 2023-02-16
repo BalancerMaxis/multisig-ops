@@ -1,1 +1,67 @@
-{"version": "1.0", "chainId": 1, "createdAt": 1675891944772, "meta": {"name": "Transactions Batch", "description": "", "txBuilderVersion": "1.13.2", "createdFromSafeAddress": "", "createdFromOwnerAddress": "", "checksum": "", "createFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"}, "transactions": [{"to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", "value": "0", "data": null, "contractMethod": {"inputs": [{"internalType": "bytes32[]", "name": "roles", "type": "bytes32[]"}, {"internalType": "address", "name": "account", "type": "address"}], "name": "grantRoles", "payable": false}, "contractInputsValues": {"roles": "[0x50f3f826f5b6f34e6b9291e41967ce5c8f5cbd998ab8b3f740cf2bb02e2e6ea0, 0xb1bb0315049487d8b225a40fc17d5a02647e84002cfa5b11eda57b967629f72c, 0xc6d41c26426784c7fab7298da04eab2259046b3c7c8351286ee364e4e0a3bd1e, 0xdf42af2dd96057a6f29e617c9d6c389e3ac79347b2e4d0b06b8d33cd7e15c40b, 0xa29d20c33a203d4663b49d6135fd5876558c9bf107a898f7a0e95357ec2e42b1]", "account": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"}}, {"to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", "value": "0", "data": null, "contractMethod": {"inputs": [{"internalType": "bytes32[]", "name": "roles", "type": "bytes32[]"}, {"internalType": "address", "name": "account", "type": "address"}], "name": "grantRoles", "payable": false}, "contractInputsValues": {"roles": "[0xdc4d63c40d0a7a13b082c0bfcc25b1ad5b79ab783d81da5dca1cdc51c2a64ac6, 0xf0498ccb15b689c1257a638831837f9a1a6e21c1530e7b0c4f9e0fa6af0651c9, 0xafb360e583a4ccc8e9935d214a3031628a34797c2f2a1d2f52505137a54c5796, 0xb6bd869a6825ba2f1c9eba4c1d907dd5791b335cebd7f401b5f5efb9340a4450, 0x69f726d607e0cfd6af767f629799bd33e396b1bad79f46a94a8d88a1ab08abbe]", "account": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B"}}, {"to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", "value": "0", "data": null, "contractMethod": {"inputs": [{"internalType": "bytes32[]", "name": "roles", "type": "bytes32[]"}, {"internalType": "address", "name": "account", "type": "address"}], "name": "grantRoles", "payable": false}, "contractInputsValues": {"roles": "[0xc5fa0b5a00f4912a6fcf5435bcb7507106a6a5b7923a95a167496a6de8a7b658, 0x98ac729537b2c4aea25f652542bb7769f700500018ca6a9f9879466f75194838, 0x44c2c324db39782f28032ff6aa4234a8ed6d95a11e194006e5b63213abdd209f, 0x3c41e27d020ed56c209b202d47efeb4484e52537c3e6ec646e8ba1c123ea16cf, 0x48860201a4ce2338c9b0cd0a11ef9bffea1ee89bf1f610a71e12a2817be310ec]", "account": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6"}}]}
+{
+  "version": "1.0",
+  "chainId": 1,
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": "",
+    "checksum": "",
+    "createFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x50f3f826f5b6f34e6b9291e41967ce5c8f5cbd998ab8b3f740cf2bb02e2e6ea0, 0xb1bb0315049487d8b225a40fc17d5a02647e84002cfa5b11eda57b967629f72c, 0xc6d41c26426784c7fab7298da04eab2259046b3c7c8351286ee364e4e0a3bd1e, 0xdf42af2dd96057a6f29e617c9d6c389e3ac79347b2e4d0b06b8d33cd7e15c40b, 0xa29d20c33a203d4663b49d6135fd5876558c9bf107a898f7a0e95357ec2e42b1]",
+        "account": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xdc4d63c40d0a7a13b082c0bfcc25b1ad5b79ab783d81da5dca1cdc51c2a64ac6, 0xf0498ccb15b689c1257a638831837f9a1a6e21c1530e7b0c4f9e0fa6af0651c9, 0xafb360e583a4ccc8e9935d214a3031628a34797c2f2a1d2f52505137a54c5796, 0xb6bd869a6825ba2f1c9eba4c1d907dd5791b335cebd7f401b5f5efb9340a4450, 0x69f726d607e0cfd6af767f629799bd33e396b1bad79f46a94a8d88a1ab08abbe]",
+        "account": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xc5fa0b5a00f4912a6fcf5435bcb7507106a6a5b7923a95a167496a6de8a7b658, 0x98ac729537b2c4aea25f652542bb7769f700500018ca6a9f9879466f75194838, 0x44c2c324db39782f28032ff6aa4234a8ed6d95a11e194006e5b63213abdd209f, 0x3c41e27d020ed56c209b202d47efeb4484e52537c3e6ec646e8ba1c123ea16cf, 0x48860201a4ce2338c9b0cd0a11ef9bffea1ee89bf1f610a71e12a2817be310ec]",
+        "account": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6"
+      }
+    }
+  ]
+}
