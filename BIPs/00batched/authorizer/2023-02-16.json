@@ -1,8 +1,6 @@
 [
   {
-    "deployments": [
-      "20230206-aave-rebalanced-linear-pool-v4"
-    ],
+    "deployments": ["20230206-aave-rebalanced-linear-pool-v4"],
     "chain_map": {
       "gnosis": 100,
       "mainnet": 1,
@@ -13,7 +11,7 @@
     "function_caller_map": {
       "disable()": "emergency",
       "setSwapFeePercentage(uint256)": "feeManager",
-      "setTargets": "feeManager"
+      "setTargets(uint256,uint256)": "feeManager"
     }
   },
   {
@@ -30,7 +28,7 @@
     "function_caller_map": {
       "disable()": "emergency",
       "setSwapFeePercentage(uint256)": "feeManager",
-      "setTargets": "feeManager"
+      "setTargets(uint256,uint256)": "feeManager"
     }
   },
   {
@@ -44,7 +42,7 @@
     "function_caller_map": {
       "disable()": "emergency",
       "setSwapFeePercentage(uint256)": "feeManager",
-      "setTargets": "feeManager"
+      "setTargets(uint256,uint256)": "feeManager"
     }
   }
 ]

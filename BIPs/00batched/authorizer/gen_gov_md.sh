@@ -29,7 +29,8 @@ TABLE=${BIP_DIR}/results_address_sorted.md
 echo "Building governance forum md file.  Note you will need to review and update the top sections to talk a bit about the change and it's reasons."
 sed "s/XXX/$BIP_NUMBER/g" governance_template.md > .working.md
 sed "s/YYY/$PR_NUMBER/g" .working.md > .working1.md
-sed "/ADDRESS_SORTED_MD_TABLE/r $TABLE" .working1.md | sed 's/ADDRESS_SORTED_MD_TABLE//' > README.md
+sed "/ADDRESS_SORTED_MD_TABLE/r $TABLE" .working1.md | sed 's/ADDRESS_SORTED_MD_TABLE//' > ${BIP_DIR}/BIP-${BIP_NUMBER}.md
+echo "[See Here](BIP-${BIP_NUMBER}.md) for the governance contents." > ${BIP_DIR}/README.md
 
 rm .working*.md
 

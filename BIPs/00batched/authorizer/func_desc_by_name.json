@@ -4,5 +4,6 @@
   "stopAmplificationParameterUpdate()": "Stop A-factor change leaving the A-Factor at its currently set value.",
   "pause()": "Stops trading on a pool.  Proportinal withdraws are still possible.",
   "disable()": "Disables a new creation of pools on a pool factory.",
-  "enableRecoveryMode()": "Puts a pool into [Recovery Mode](https://medium.com/@0xSkly/inside-balancer-code-recoverymode-9af34ce5ab72)"
+  "enableRecoveryMode()": "Puts a pool into [Recovery Mode](https://medium.com/@0xSkly/inside-balancer-code-recoverymode-9af34ce5ab72)",
+  "setTargets(uint256,uint256)": "Allows setting the targets of the linear pools. Targets determine the ideal amount of unwrapped tokens vs wrapped tokens."
 }
