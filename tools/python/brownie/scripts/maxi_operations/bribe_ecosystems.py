@@ -12,7 +12,7 @@ import time
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
 
-GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/dca03719b4bdaec29fe7f28406abf4f4d2684c37/tasks/snapshot/labels.json"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
@@ -47,7 +47,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     item_list = response.json()
     output = {}
     for mapping in item_list:
-        gauge_address = web3.toChecksumAddress(mapping["address"])
+        gauge_address = web3.toChecksumAddress(mapping["gauge"])
         output[gauge_address] = mapping["label"]
     return output
 
@@ -171,9 +171,6 @@ def main(
         )
 
     print("\n\nBuilding and pushing multisig payload")
-    if usdc.balanceOf(safe) != 0:
-        print ("\n\n\nWARNING: There is still dollars in the safe, in general all funds should be spent.  Check the numbers.\n SLEEP 15 \n\n\n ")
-        time.sleep(15)
     print ("Preparing to post transaction")
     ### DO IT
     safe.post_safe_tx(gen_tenderly=False)
