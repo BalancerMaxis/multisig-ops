@@ -7,12 +7,15 @@ class Chainlink:
         self.safe = safe
 
         # contracts
-        self.link = self.safe.contract(r.treasury_tokens.LINK, interface.ILinkToken)
+        self.link = self.safe.contract(r.tokens.LINK, interface.ILinkToken)
         self.keeper_registry = self.safe.contract(
             r.chainlink.keeper_registry, interface.IKeeperRegistry
         )
+        self.keeper_registry_v1_1 = self.safe.contract(
+            r.chainlink.keeper_registry_v1_1, interface.IKeeperRegistry
+        )
         self.keeper_registrar = self.safe.contract(
-            r.chainlink.keeper_registrar, interface.IKeeperRegistrar
+            r.chainlink.keeper_registrar, from_explorer=True
         )
 
     def register_upkeep(
@@ -31,8 +34,8 @@ class Chainlink:
             gas_limit,  # uint32 gasLimit,
             admin_addr,  # address adminAddress,
             b"",  # bytes calldata checkData,
+            b"",  # offchainConfig (bytes)
             link_mantissa,  # uint96 amount,
-            0,  # uint8 source,
             self.safe.address,  # address sender,
         )
 
