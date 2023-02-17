@@ -9,7 +9,8 @@ from helpers.addresses import r
 from pandas import pandas as pd
 
 fee_swap_target_token = r.tokens.USDC
-target_file = "../../../FeeSweep/test-2023-02-10-eth.json" ## Mainnet only
+force_sweep_tokens = ["0x6a5ead5433a50472642cd268e584dafa5a394490"] # wstETH/LDO
+target_file = "../../../FeeSweep/2023-02-17-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
 
 
@@ -31,10 +32,7 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
-    if chain == "eth":
-        sweep_limit = 10000
-    else:
-        sweep_limit = 5000
+    sweep_limit = 5000
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
@@ -44,7 +42,7 @@ def generateSweepFile(sourcefile):
         rounded_amount = "{:.4f}".format(amount)
         price = feeData["price"]
         usd_value = int(amount) * price
-        if usd_value > sweep_limit:
+        if usd_value > sweep_limit or address in force_sweep_tokens:
             sweeps[address] = raw_amount
             report += f"Sweep {rounded_amount} of {symbol}({address}) worth ${usd_value}\n"
             total += usd_value
@@ -122,13 +120,14 @@ def payFees(safe, half=True):
     safe.post_safe_tx(gen_tenderly=False)
 
 
-def sweepAndFlog():
+def main():
+    safe=setupSafe(r.balancer.multisigs.fees)
     sweeps=generateSweepFile(target_file)
-    claimFees(sweeps)
-    cowswapFees(sweeps)
+    claimFees(safe, sweeps)
+    cowswapFees(safe, sweeps)
     safe.post_safe_tx(gen_tenderly=False)
 
 if __name__ == "__main__":
-    sweepAndCowpswap()
+    main()
 
 

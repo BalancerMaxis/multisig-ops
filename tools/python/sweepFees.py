@@ -4,6 +4,9 @@ from datetime import date
 from os import listdir
 from os.path import isfile, join
 
+### Whitelist tokens are swept every run regardless of min amount.
+whitelist_tokens = ["0x6a5ead5433a50472642cd268e584dafa5a394490"]
+
 today = str(date.today())
 target_dir = "../../FeeSweep"
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
@@ -16,10 +19,7 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
-    if chain == "eth":
-        sweep_limit = 10000
-    else:
-        sweep_limit = 5000
+    sweep_limit = 5000
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
@@ -29,7 +29,7 @@ def generateSweepFile(sourcefile):
         rounded_amount = "{:.4f}".format(amount)
         price = feeData["price"]
         usd_value = int(amount) * price
-        if usd_value > sweep_limit:
+        if usd_value > sweep_limit or address in whitelist_tokens:
             sweeps[address] = raw_amount
             report += f"Sweep {rounded_amount} of {symbol}({address}) worth ${usd_value}\n"
             total += usd_value

@@ -10,7 +10,7 @@ import time
 
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
-HH_API_URL = "https://hhand.xyz/proposal"
+HH_API_URL = "https://api.hiddenhand.finance/proposal/aura"
 
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
 
