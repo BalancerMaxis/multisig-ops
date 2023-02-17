@@ -7,6 +7,7 @@ from great_ape_safe import GreatApeSafe
 from web3 import Web3
 from helpers.addresses import r
 from pandas import pandas as pd
+from brownie import interface
 
 fee_swap_target_token = r.tokens.USDC
 force_sweep_tokens = ["0x6a5ead5433a50472642cd268e584dafa5a394490"] # wstETH/LDO
@@ -66,37 +67,45 @@ def generateSweepFile(sourcefile):
 def claimFees(safe, sweeps):
     print("Sweeping fees")
     address_list = list(sweeps.keys())
-    safe.take_snapshot(address_list)
     amounts_list = list(sweeps.values())
     sweeper = safe.contract(r.balancer.ProtocolFeesWithdrawer)
     sweeper.withdrawCollectedFees(address_list, amounts_list, safe.address)
-    safe.print_snapshot()
 
 def cowswapFees(safe, sweeps):
     print("Setting up cowswap orders")
+    error_tokens = []
     results = []
     usd = safe.contract(fee_swap_target_token)
     for address, amount in sweeps.items():
-        if Web3.toChecksumAddress(address) == r.tokens.BAL:
-            ## Don't sell BAL
+        if Web3.toChecksumAddress(address) == r.tokens.BAL or Web3.toChecksumAddress(address) == r.tokens.USDC:
+            ## Don't sell BAL or USDC
             continue
-        asset = safe.contract(address)
-        result = safe.cow.market_sell(
-            asset_sell=asset,
-            asset_buy=usd,
-            mantissa_sell=amount,
-            deadline=60*60*4, ## 4 hours
-            chunks=1, # Use to break up large trades, if used more tha one resulting trade uid is returned.
-            coef=0.99 # Use to define slippage, this is multipled by the quoted market price to define min price.
-        )
-        results.append([str(asset.symbol()), str(asset.address), float(amount/10**asset.decimals()), str(result)])
+        asset = safe.contract(address, Interface=interface.ERC20)
+        try:
+            safe.cow.market_sell(
+                asset_sell=asset,
+                asset_buy=usd,
+                mantissa_sell=amount,
+                deadline=60*60*4, ## 4 hours
+                chunks=1, # Use to break up large trades, if used more tha one resulting trade uid is returned.
+                coef=0.99 # Use to define slippage, this is multipled by the quoted market price to define min price.
+            )
+            results.append([str(asset.symbol()), str(asset.address), float(amount/10**asset.decimals()), str(result)])
+        except:
+            print(f"Problems processing: ${asset.address}")
+            error_tokens += asset.address
 
     ## Generate Report
-    print(results)
-    df = pd.DataFrame(results, columns=["Symbol", "Address", "Amount", "Cowswap ID"])
-    print(df.to_markdown())
-    with open(f"{target_dir}/out/{today}-cowswap.md", "w") as f:
-        df.to_markdown(buf=f)
+    try:
+        print(results)
+        df = pd.DataFrame(results, columns=["Symbol", "Address", "Amount", "Cowswap ID"])
+        print(df.to_markdown())
+        with open(f"{target_dir}/out/{today}-cowswap.md", "w") as f:
+            df.to_markdown(buf=f)
+    except:
+        print("Error generating report, skipping")
+    if len(error_tokens) > 0:
+        print(f"The following tokens had problems and may not show up to be traded: {error_tokens}")
 
 def payFees(safe, half=True):
     distrbutor = safe.contract(r.balancer.feeDistributor)

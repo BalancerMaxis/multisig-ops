@@ -10,7 +10,7 @@ import time
 
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
-HH_API_URL = "https://api.hiddenhand.finance/proposal/aura"
+HH_API_URL = "https://api.hiddenhand.finance/proposal"
 
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
 
@@ -47,7 +47,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     item_list = response.json()
     output = {}
     for mapping in item_list:
-        gauge_address = web3.toChecksumAddress(mapping["gauge"])
+        gauge_address = web3.toChecksumAddress(mapping["address"])
         output[gauge_address] = mapping["label"]
     return output
 
@@ -82,10 +82,10 @@ def process_bribe_csv(
     return bribes
 
 def main(
-    csv_file="../../../Bribs/feb-5-2023.csv",
+    csv_file="../../../Bribs/feb-17-2023.csv",
 ):
 
-    safe = GreatApeSafe(r.balancer.multisigs.lm)
+    safe = GreatApeSafe(r.balancer.multisigs.fees)
     #safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
     usdc = safe.contract(r.tokens.USDC)
@@ -156,7 +156,7 @@ def main(
         # NOTE: debugging prints to verify
         print("*** Posting AURA Bribe:")
         print("*** Target Gauge Address:", target)
-        print("*** Target Gauge Address:", target_name)
+        print("*** Target Gauge name:", target_name)
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
