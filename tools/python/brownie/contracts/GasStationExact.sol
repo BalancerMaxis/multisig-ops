@@ -57,12 +57,12 @@ contract GasStationExact is ConfirmedOwner, Pausable, KeeperCompatibleInterface 
    * @notice Sets the list of addresses to watch and their funding parameters
    * @param addresses the list of addresses to watch
    * @param minBalancesWei the minimum balances for each address
-   * @param topUpAmountsWei the amount to top up each address
+   * @param minTopUpAmountsWei the min amount to top up each address
    */
   function setWatchList(
     address[] calldata addresses,
     uint96[] calldata minBalancesWei,
-    uint96[] calldata topUpAmountsWei
+    uint96[] calldata minTopUpAmountsWei
   ) external onlyOwner {
     if (addresses.length != minBalancesWei.length || addresses.length != topUpAmountsWei.length) {
       revert InvalidWatchList();

@@ -5,8 +5,8 @@ from helpers.addresses import r
 from great_ape_safe import GreatApeSafe
 
 deployer_label="tmdelegate"
-topup_amount = int(0.25*(10**18))
-min_balance = int(0.4*(10**18))
+min_topup_amount = int(0.2*(10**18))
+min_balance = int(0.5*(10**18))
 admin_address = r.balancer.multisigs.maxi_ops
 signers = list(r.balancer.deployers.values())
 
@@ -34,7 +34,7 @@ def configure(address):
     safe.init_chainlink()
     gas_station = safe.contract(r.balancer.maxi_gas_station)
     gas_station.acceptOwnership()
-    gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers, {"from": deployer.address})
+    gas_station.setWatchList(signers, [min_balance] * num_signers, [min_topup_amount] * num_signers, {"from": deployer.address})
     # Register
     safe.chainlink.register_upkeep(name="Maxi Gas Station",
                                    contract_addr=gas_station.address,
@@ -46,5 +46,5 @@ def update_watchlist(address):
     safe = GreatApeSafe(admin_address)
     num_signers = len(signers)
     gas_station = safe.contract(address)
-    gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers)
-    safe.post_safe_tx(gen_tenderly=False)
+    gas_station.setWatchList(signers, [min_balance] * num_signers, [min_topup_amount] * num_signers)
+    safe.post_safe_tx(gen_tenderly=False, replace_nonce=79)
