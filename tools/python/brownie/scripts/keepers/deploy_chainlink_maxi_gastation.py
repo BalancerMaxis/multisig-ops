@@ -37,10 +37,10 @@ def configure(address):
     gas_station = safe.contract(gas_station.address)
     gas_station.acceptOwnership()
     # Register
-    #safe.chainlink.register_upkeep(name="Maxi Gas Station",
-    #                               contract_addr=gas_station.address,
-    #                               gas_limit=120000,
-    #                               link_mantissa=int(5*(10**18)))
+    safe.chainlink.register_upkeep(name="Maxi Gas Station",
+                                   contract_addr=gas_station.address,
+                                   gas_limit=120000,
+                                   link_mantissa=int(5*(10**18)))
     safe.post_safe_tx(gen_tenderly=False)
 
 def update_watchlist(address):
