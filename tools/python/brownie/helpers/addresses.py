@@ -33,6 +33,10 @@ ADDRESSES_ETH = {
                 "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F"
             }
         },
+        "deployers": {
+            "solarcurve": "0x6409C2C1aC1B26aaaEF982572efd38412075586D",
+            "zendragon": "0x854B004700885A61107B458f11eCC169A019b764".
+        },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",
         "veBAL": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
