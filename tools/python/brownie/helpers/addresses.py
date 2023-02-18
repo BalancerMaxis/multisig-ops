@@ -35,7 +35,7 @@ ADDRESSES_ETH = {
         },
         "deployers": {
             "solarcurve": "0x6409C2C1aC1B26aaaEF982572efd38412075586D",
-            "zendragon": "0x854B004700885A61107B458f11eCC169A019b764".
+            "zendragon": "0x854B004700885A61107B458f11eCC169A019b764"
         },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",
@@ -47,7 +47,8 @@ ADDRESSES_ETH = {
         "feeDistributor": "0xD3cf852898b21fc233251427c2DC93d3d604F3BB",
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
-        "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B"
+        "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+        "max_gas_station": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"
     },
     "tokens": {
         "bb_a_usd": "0xa13a9247ea42d743238089903570127dda72fe44",
