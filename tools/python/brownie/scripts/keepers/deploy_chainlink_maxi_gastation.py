@@ -5,8 +5,8 @@ from helpers.addresses import r
 from great_ape_safe import GreatApeSafe
 
 deployer_label="tmdelegate"
-topup_amount = int(0.5*(10**18))
-min_balance = int(0.5*(10**18))
+topup_amount = int(0.25*(10**18))
+min_balance = int(0.4*(10**18))
 admin_address = r.balancer.multisigs.maxi_ops
 signers = list(r.balancer.deployers.values())
 
@@ -21,11 +21,16 @@ def deploy(deployer_label="tmdelegate"):
        publish_source=on_live_network,
     )
 
+
+def transfer_owner(gas_station, owner):
+    gas_station = Contract(gas_station)
+    gas_station.transferOwnership(owner, {"from": deployer.address})
+
 def configure(address):
+    safe = GreatApeSafe(admin_address)
     num_signers = len(signers)
-    gas_station = Contract(address)
+    gas_station = safe.contract(address)
     gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers, {"from": deployer.address})
-    gas_station.transferOwnership(r.balancer.multisigs.maxi_ops, {"from": deployer.address})
     # Configure safe and replace gas_station
     safe = GreatApeSafe(admin_address)
     safe.init_chainlink()

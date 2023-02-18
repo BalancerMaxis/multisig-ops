@@ -48,7 +48,7 @@ ADDRESSES_ETH = {
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
         "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
-        "max_gas_station": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"
+        "maxi_gas_station": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"
     },
     "tokens": {
         "bb_a_usd": "0xa13a9247ea42d743238089903570127dda72fe44",
