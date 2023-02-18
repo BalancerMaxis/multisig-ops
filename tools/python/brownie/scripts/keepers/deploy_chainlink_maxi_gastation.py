@@ -29,12 +29,12 @@ def transfer_owner(gas_station, owner):
 def configure(address):
     safe = GreatApeSafe(admin_address)
     num_signers = len(signers)
-    gas_station = safe.contract(address)
-    gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers, {"from": deployer.address})
     # Configure safe and replace gas_station
     safe = GreatApeSafe(admin_address)
     safe.init_chainlink()
-    gas_station = safe.contract(gas_station.address)
+    gas_station = safe.contract(r.balancer.maxi_gas_station)
+    gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers, {"from": deployer.address})
+
     gas_station.acceptOwnership()
     # Register
     safe.chainlink.register_upkeep(name="Maxi Gas Station",
