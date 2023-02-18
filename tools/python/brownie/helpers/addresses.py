@@ -35,7 +35,11 @@ ADDRESSES_ETH = {
         },
         "deployers": {
             "solarcurve": "0x6409C2C1aC1B26aaaEF982572efd38412075586D",
-            "zendragon": "0x854B004700885A61107B458f11eCC169A019b764"
+            "zendragon": "0x854B004700885A61107B458f11eCC169A019b764",
+            "mikeb": "0xc4591c41e01a7a654b5427f39bbd1dee5bd45d1d"
+        },
+        "link_upkeeps": {
+            "maxi_gas_station": "62602467182204477380138952081172885895406053754821061796893606503759482417757"
         },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",

@@ -33,9 +33,8 @@ def configure(address):
     safe = GreatApeSafe(admin_address)
     safe.init_chainlink()
     gas_station = safe.contract(r.balancer.maxi_gas_station)
-    gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers, {"from": deployer.address})
-
     gas_station.acceptOwnership()
+    gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers, {"from": deployer.address})
     # Register
     safe.chainlink.register_upkeep(name="Maxi Gas Station",
                                    contract_addr=gas_station.address,
