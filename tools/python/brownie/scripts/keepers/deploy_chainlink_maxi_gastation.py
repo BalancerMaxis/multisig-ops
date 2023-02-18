@@ -47,4 +47,4 @@ def update_watchlist(address):
     num_signers = len(signers)
     gas_station = safe.contract(address)
     gas_station.setWatchList(signers, [min_balance] * num_signers, [topup_amount] * num_signers)
-    safe.post_safe_tx(gen_tenderly=False, replace_nonce=78)
+    safe.post_safe_tx(gen_tenderly=False)
