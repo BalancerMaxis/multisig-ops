@@ -64,7 +64,7 @@ contract GasStationExact is ConfirmedOwner, Pausable, KeeperCompatibleInterface 
     uint96[] calldata minBalancesWei,
     uint96[] calldata minTopUpAmountsWei
   ) external onlyOwner {
-    if (addresses.length != minBalancesWei.length || addresses.length != topUpAmountsWei.length) {
+    if (addresses.length != minBalancesWei.length || addresses.length != minTopUpAmountsWei.length) {
       revert InvalidWatchList();
     }
     address[] memory oldWatchList = s_watchList;
@@ -78,13 +78,13 @@ contract GasStationExact is ConfirmedOwner, Pausable, KeeperCompatibleInterface 
       if (addresses[idx] == address(0)) {
         revert InvalidWatchList();
       }
-      if (topUpAmountsWei[idx] == 0) {
+      if (minTopUpAmountsWei[idx] == 0) {
         revert InvalidWatchList();
       }
       s_targets[addresses[idx]] = Target({
         isActive: true,
         minBalanceWei: minBalancesWei[idx],
-        minTopUpAmountWei: topUpAmountsWei[idx],
+        minTopUpAmountWei: minTopUpAmountsWei[idx],
         lastTopUpTimestamp: 0
       });
     }
