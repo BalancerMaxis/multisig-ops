@@ -9,6 +9,7 @@ except ImportError:
     chain = DotMap({"id": 1})
 
 
+
 ADDRESSES_ETH = {
     "zero": "0x0000000000000000000000000000000000000000",
     # the wallets listed here are looped over by scout and checked for all treasury tokens
@@ -20,6 +21,23 @@ ADDRESSES_ETH = {
             "feeManager": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6",
             "karpatkey": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
             "emergency": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
+            "maxi_ops": "0x166f54F44F271407f24AA1BE415a730035637325"
+        },
+        "signers": {
+            "maxis": {
+                "solarcurve": "0x512fce9B07Ce64590849115EE6B32fd40eC0f5F3",
+                "zendragon": "0x7c2eA10D3e5922ba3bBBafa39Dc0677353D2AF17",
+                "zekraken": "0xafFC70b81D54F229A5F50ec07e2c76D2AAAD07Ae",
+                "mikeb": "0xc4591c41e01a7a654B5427f39Bbd1dEe5bD45D1D",
+                "xeonus": "0x7019Be4E4eB74cA5F61224FeAf687d2b43998516",
+                "danko": "0x200550cAD164E8e0Cb544A9c7Dc5c833122C1438",
+                "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F"
+            }
+        },
+        "deployers": {
+            "solarcurve": "0x6409C2C1aC1B26aaaEF982572efd38412075586D",
+            "zendragon": "0x854B004700885A61107B458f11eCC169A019b764",
+            "mikeb": "0xc4591c41e01a7a654b5427f39bbd1dee5bd45d1d"
         },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",
@@ -31,7 +49,8 @@ ADDRESSES_ETH = {
         "feeDistributor": "0xD3cf852898b21fc233251427c2DC93d3d604F3BB",
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
-        "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B"
+        "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+        "maxi_gas_station": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"
     },
     "tokens": {
         "bb_a_usd": "0xa13a9247ea42d743238089903570127dda72fe44",
@@ -263,7 +282,34 @@ ADDRESSES_OPTIMISM = {
     },
     "tokens": {},
 }
-
+ADDRESSES_GOERLI = {
+    "zero": "0x0000000000000000000000000000000000000000",
+    # the wallets listed here are looped over by scout and checked for all treasury tokens
+    "balancer": {
+        "signers": {
+            "maxis": {
+                "solarcurve": "0x512fce9B07Ce64590849115EE6B32fd40eC0f5F3",
+                "zendragon": "0x7c2eA10D3e5922ba3bBBafa39Dc0677353D2AF17",
+                "zekraken": "0xafFC70b81D54F229A5F50ec07e2c76D2AAAD07Ae",
+                "mikeb": "0xc4591c41e01a7a654B5427f39Bbd1dEe5bD45D1D",
+                "xeonus": "0x7019Be4E4eB74cA5F61224FeAf687d2b43998516",
+                "danko": "0x200550cAD164E8e0Cb544A9c7Dc5c833122C1438",
+                "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F"
+            },
+        },
+        "multisigs": {
+            "maxi_ops": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7"
+        }
+      },
+    "chainlink": {
+        "feed_registry": "0x47Fb2585D2C56Fe188D0E6ec628a38b74fCeeeDf",
+        "keeper_registry": "0xE16Df59B887e3Caa439E0b29B42bA2e7976FD8b2",
+        "keeper_registrar": "0x57A4a13b35d25EE78e084168aBaC5ad360252467",
+    },
+    "tokens": {
+        "LINK": "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
+    }
+}
 ADDRESSES_GNOSIS = {
     "zero": "0x0000000000000000000000000000000000000000",
     "balancer": {
@@ -278,6 +324,15 @@ ADDRESSES_GNOSIS = {
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
     }
 }
+
+OTHER_STUFF = {
+    "ETH": {
+        "chainlink_upkeeps": {
+            "maxi_gas_station": "62602467182204477380138952081172885895406053754821061796893606503759482417757"
+        }
+    }
+}
+
 def checksum_address_dict(addresses):
     """
     convert addresses to their checksum variant taken from a (nested) dict
@@ -303,7 +358,8 @@ registry = DotMap(
         "poly": checksum_address_dict(ADDRESSES_POLYGON),
         "arbitrum": checksum_address_dict(ADDRESSES_ARBITRUM),
         "op": checksum_address_dict(ADDRESSES_OPTIMISM),
-        "gnosis": checksum_address_dict(ADDRESSES_GNOSIS)
+        "gnosis": checksum_address_dict(ADDRESSES_GNOSIS),
+        "goerli": checksum_address_dict(ADDRESSES_GOERLI)
     }
 )
 
