@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "chainId": 137,
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": "",
+    "checksum": "",
+    "createFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x06efe7e891755c060de5033e398e2d4d9f1bc713591717209ef84b7e021bd154, 0x5ec883ecf16774e6b304f1e06322669694ffb90c13167afeac8ed7b68ab0869e, 0x6b623ee459a550297f0b0660446eef4dbf89e9d7e9d29addbbe907763506089b]",
+        "account": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6e1c8947d790e79a7f8b6b195b2ec3231b6b9bd27a74f04b192aacd8e93f3660, 0xb78893595b75c70259cbe387580b752c333e0a52d40fb98d6bcdf4b54b0cef91, 0x4e369965828f3a76cdcb37d24a69a3ddf1f0bbfa9110f9978e25d804504b279f, 0x342f10e709ad2a053a4e5035c4b3b703fea94c19f458d3887a6323472f0e42cd, 0xe2034e57b6e5473c618804022a6b6a56a83df1c39435869038988698f9137b73, 0x2342e50fb8143fdbef50d38a2b88596172ad4e0c57a39fdbf27bc56c02d3bba3]",
+        "account": "0x7c68c42De679ffB0f16216154C996C354cF1161B"
+      }
+    }
+  ]
+}

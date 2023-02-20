@@ -274,7 +274,8 @@ ADDRESSES_GNOSIS = {
             "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
             "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
             "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a"
-        }
+        },
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
     }
 }
 def checksum_address_dict(addresses):
@@ -343,6 +344,8 @@ def get_registry():
         return registry.kovan
     elif chain.id == 5:
         return registry.goerli
+    elif chain.id == 100:
+        return registry.gnosis
 
 
 r = get_registry()

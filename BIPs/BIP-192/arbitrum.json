@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "chainId": 42161,
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": "",
+    "checksum": "",
+    "createFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x06efe7e891755c060de5033e398e2d4d9f1bc713591717209ef84b7e021bd154, 0x5ec883ecf16774e6b304f1e06322669694ffb90c13167afeac8ed7b68ab0869e, 0x204435acb6f76b6cfa0ef594fc0e4379b943252865ff8edb9a6d07e718ca12e8]",
+        "account": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6e1c8947d790e79a7f8b6b195b2ec3231b6b9bd27a74f04b192aacd8e93f3660, 0xb78893595b75c70259cbe387580b752c333e0a52d40fb98d6bcdf4b54b0cef91, 0x4e369965828f3a76cdcb37d24a69a3ddf1f0bbfa9110f9978e25d804504b279f, 0x342f10e709ad2a053a4e5035c4b3b703fea94c19f458d3887a6323472f0e42cd, 0x3e6c904353f81ad8c8ed1a0e926cebf468aeaba4c280147e2d32030a359746f5, 0x4cc8eb383f0521484d9a2bc36774c7eb2c8fcc5a9170f797b9509164f5e449fc]",
+        "account": "0x7c68c42De679ffB0f16216154C996C354cF1161B"
+      }
+    }
+  ]
+}
