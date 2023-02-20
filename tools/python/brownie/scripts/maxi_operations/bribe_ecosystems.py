@@ -10,9 +10,9 @@ import time
 
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
-HH_API_URL = "https://hhand.xyz/proposal"
+HH_API_URL = "https://api.hiddenhand.finance/proposal"
 
-GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/dca03719b4bdaec29fe7f28406abf4f4d2684c37/tasks/snapshot/labels.json"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
@@ -82,10 +82,10 @@ def process_bribe_csv(
     return bribes
 
 def main(
-    csv_file="../../../Bribs/feb-5-2023.csv",
+    csv_file="../../../Bribs/feb-17-2023.csv",
 ):
 
-    safe = GreatApeSafe(r.balancer.multisigs.lm)
+    safe = GreatApeSafe(r.balancer.multisigs.fees)
     #safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
     usdc = safe.contract(r.tokens.USDC)
@@ -156,7 +156,7 @@ def main(
         # NOTE: debugging prints to verify
         print("*** Posting AURA Bribe:")
         print("*** Target Gauge Address:", target)
-        print("*** Target Gauge Address:", target_name)
+        print("*** Target Gauge name:", target_name)
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
@@ -171,9 +171,6 @@ def main(
         )
 
     print("\n\nBuilding and pushing multisig payload")
-    if usdc.balanceOf(safe) != 0:
-        print ("\n\n\nWARNING: There is still dollars in the safe, in general all funds should be spent.  Check the numbers.\n SLEEP 15 \n\n\n ")
-        time.sleep(15)
     print ("Preparing to post transaction")
     ### DO IT
     safe.post_safe_tx(gen_tenderly=False)
