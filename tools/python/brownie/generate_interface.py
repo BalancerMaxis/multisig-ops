@@ -48,7 +48,7 @@ ETHERSCAN_TO_SPDX = {
 
 def get_from_etherscan(address):
     r = requests.get(
-        "https://api.etherscan.io/api",
+        "https://api.arbiscan.io/api",
         params={
             "module": "contract",
             "action": "getsourcecode",
