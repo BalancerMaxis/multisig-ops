@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675214943898,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.11.1",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xb04b5bdb6ac65fb00302199a8de1d8cad162439eddde01177ed940d294b177e3"
+  },
+  "transactions": [
+    {
+      "to": "0x9E3cD0606Db55ac68845bB60121847823712ae05",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "actionId", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" },
+          { "internalType": "address", "name": "where", "type": "address" },
+          { "internalType": "bool", "name": "allowed", "type": "bool" }
+        ],
+        "name": "manageGranter",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "actionId": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "account": "0x76578ecf9a141296Ec657847fb45B0585bCDa3a6",
+        "where": "0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF",
+        "allowed": "true"
+      }
+    }
+  ]
+}
