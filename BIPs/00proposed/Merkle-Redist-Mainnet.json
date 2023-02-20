@@ -1,0 +1,437 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1676481906332,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x4ecea263abaefe6d9ce1a92d718ed2abed34f382529ed056efcaac41fae36968"
+  },
+  "transactions": [
+    {
+      "to": "0x226f7b842E0F0120b7E194D05432b3fd14773a9D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+        "rawAmount": "1190799413990000000000000"
+      }
+    },
+    {
+      "to": "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+        "rawAmount": "267578138379630000000000"
+      }
+    },
+    {
+      "to": "0x43D4A3cd90ddD2F8f4f693170C9c8098163502ad",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+        "rawAmount": "14891487650000000000000"
+      }
+    },
+    {
+      "to": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+        "rawAmount": "287507813570000000000000"
+      }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+        "rawAmount": "296749181330000000000000"
+      }
+    },
+    {
+      "to": "0xCFEAead4947f0705A14ec42aC3D44129E1Ef3eD5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+        "rawAmount": "5328196362000"
+      }
+    },
+    {
+      "to": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "merkleRoot",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "distributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "createDistribution",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x226f7b842E0F0120b7E194D05432b3fd14773a9D",
+        "merkleRoot": "0xc3e895f785a829d1c3ff819111a8c6fbdff08ba32e49817454e54d925ecf5a74",
+        "amount": "1190799413990000000000000",
+        "distributionId": "1"
+      }
+    },
+    {
+      "to": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "merkleRoot",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "distributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "createDistribution",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x2d94aa3e47d9d5024503ca8491fce9a2fb4da198",
+        "merkleRoot": "0x82e07939d716cd331213f2d6506e96a379293b25464280937a02b927b152fab7",
+        "amount": "267578138379630000000000",
+        "distributionId": "1"
+      }
+    },
+    {
+      "to": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "merkleRoot",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "distributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "createDistribution",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x43d4a3cd90ddd2f8f4f693170c9c8098163502ad",
+        "merkleRoot": "0x2e2926997bdbcaf411b875c14ffc00f9b67e2bdc7ca3d620ddaa4ac1c675e593",
+        "amount": "14891487650000000000000",
+        "distributionId": "1"
+      }
+    },
+    {
+      "to": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "merkleRoot",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "distributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "createDistribution",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+        "merkleRoot": "0x748ae6b1a5704a0711f56bd6b109627ab0d39ae6c0eee11d85450fba7979c8ec",
+        "amount": "287507813570000000000000",
+        "distributionId": "1"
+      }
+    },
+    {
+      "to": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "merkleRoot",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "distributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "createDistribution",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xba100000625a3754423978a60c9317c58a424e3d",
+        "merkleRoot": "0xd188d61d933cc2f802ddc8dab28268c5adb725a321da8037d01dfba433bf5098",
+        "amount": "296749181330000000000000",
+        "distributionId": "1"
+      }
+    },
+    {
+      "to": "0xdAE7e32ADc5d490a43cCba1f0c736033F2b4eFca",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "merkleRoot",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "distributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "createDistribution",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xcfeaead4947f0705a14ec42ac3d44129e1ef3ed5",
+        "merkleRoot": "0xb93a2780fabf6d29c91361e417c21be8452d3877caa3908a2f8c4319fe69ea51",
+        "amount": "5328196362000",
+        "distributionId": "1"
+      }
+    },
+    {
+      "to": "0x43D4A3cd90ddD2F8f4f693170C9c8098163502ad",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "amount": "3428570000000000000000"
+      }
+    },
+    {
+      "to": "0x226f7b842E0F0120b7E194D05432b3fd14773a9D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0xBfbd6e720ffdF0497f69C95E5C03a4861C65A6E7",
+        "amount": "2250000000000000000000000"
+      }
+    }
+  ]
+}
