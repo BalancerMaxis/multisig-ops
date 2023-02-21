@@ -265,6 +265,11 @@ ADDRESSES_ARBITRUM = {
     "swapr": {"router": "0x530476d5583724A89c8841eB6Da76E7Af4C0F17E"},
     "arbitrum_node": "0x00000000000000000000000000000000000000C8",
     "arbitrum_gateway_router": "0x5288c571Fd7aD117beA99bF60FE0846C4E84F933",
+    "chainlink": {
+        #  https://docs.chain.link/chainlink-automation/supported-networks#arbitrum
+        "registry": "0x75c0530885F385721fddA23C539AF3701d6183D4",
+        "registrar": "0x4F3AF332A30973106Fe146Af0B4220bBBeA748eC"
+    },
 }
 
 

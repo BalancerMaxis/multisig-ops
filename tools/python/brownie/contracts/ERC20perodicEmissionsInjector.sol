@@ -64,7 +64,7 @@ contract periodicRewardsInjector is ConfirmedOwner, Pausable, KeeperCompatibleIn
    * @param amountsPerPeriod the minimum balances for each address
    * @param maxPeriods the amount to top up each address
    */
-    function setrecipientList(
+    function setRecipientList(
         address[] calldata streamerAddresses,
         uint256[] calldata amountsPerPeriod,
         uint8[] calldata maxPeriods
