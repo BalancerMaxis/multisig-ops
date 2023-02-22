@@ -10,6 +10,7 @@ from brownie import (
 from dotmap import DotMap
 import pytest
 
+
 ##  Accounts
 STREAMER_ADDRESS = "0x48B024C6620b62Ea65cD10914801ce062b436Bb5"
 STREAMER_OWNER_ADDRESS = "0x0F3e0c4218b7b0108a3643cFe9D3ec0d4F57c54e" ## authorizer-adaptor
@@ -20,42 +21,43 @@ ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def get_rewards():
     return "0x1afe22a6"  # get_rewards has function selector "0x1afe22a6"
 
-@pytest.fixture()
+
+@pytest.fixture(scope="module")
 def admin():
     return accounts[1]
 
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def whale():
     return ARBI_WSTETH_USDC_WHALE
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def gauge(streamer):
     return interface.IRewardsOnlyGauge(streamer.reward_receiver())
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def authorizer_adaptor():
     return STREAMER_OWNER_ADDRESS
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def streamer():
     return interface.IChildChainStreamer(STREAMER_ADDRESS)
 
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def upkeep_caller():
     return accounts[2]
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def deployer():
     return accounts[0]
 
@@ -70,7 +72,7 @@ def token(deploy):
     return deploy.token
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def deploy(deployer, admin, upkeep_caller, authorizer_adaptor, streamer, gauge, get_rewards):
     """
     Deploys, vault and test strategy, mock token and wires them up.
@@ -91,15 +93,20 @@ def deploy(deployer, admin, upkeep_caller, authorizer_adaptor, streamer, gauge, 
     # def add_reward(_token: address, _distributor: address, _duration: uint256)
     streamer.add_reward(token, authorizer_adaptor, 60*60, {"from": authorizer_adaptor})
     tokens = 8*[ZERO_ADDRESS]
-    for i in range(0,7,1):
+    for i in range(0, 7, 1):
+        print(f"step {i}, {gauge.reward_tokens(i)} == {ZERO_ADDRESS}")
         if gauge.reward_tokens(i) == ZERO_ADDRESS:
             print(f"Found Zero address at position {i}")
+            break
         else:
-            tokens[i]=gauge.reward_tokens(i)
+            tokens[i] = gauge.reward_tokens(i)
+
+
+
 
     print(f"i is {i}")
     tokens[i] = token.address
-    print(f"reward_tokens(i+1)={gauge.reward_tokens}")
+    print(f"reward_tokens(i+1)={gauge.reward_tokens(i+1)}")
     gauge.set_rewards(streamer, get_rewards, tokens, {"from": authorizer_adaptor})
 
     return DotMap(
