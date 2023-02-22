@@ -25,6 +25,7 @@ contract periodicRewardsInjector is ConfirmedOwner, Pausable, KeeperCompatibleIn
     event injectionFailed(address gauge);
     event emissionsInjection(address gauge, uint256 amount);
     event forwardedCall(address targetContract);
+    event wrongCaller(address sender, address registry);
 
     error InvalidStreamerList();
     error OnlyKeeperRegistry();
@@ -114,7 +115,7 @@ contract periodicRewardsInjector is ConfirmedOwner, Pausable, KeeperCompatibleIn
             IChildChainStreamer streamer = IChildChainStreamer(streamerlist[idx]);
             if (
                 target.lastInjectionTimeStamp + minWaitPeriod <= block.timestamp &&
-                streamer.reward_data(tokenaddress).period_finish >= block.timestamp &&
+                (streamer.reward_data(tokenaddress).period_finish <= block.timestamp)  &&
                 balance >= target.amountPerPeriod &&
                 target.periodNumber < target.maxPeriods
             ) {
@@ -137,9 +138,9 @@ contract periodicRewardsInjector is ConfirmedOwner, Pausable, KeeperCompatibleIn
    */
     function injectFunds(address[] memory ready) public whenNotPaused {
         uint256 minWaitPeriodSeconds = s_minWaitPeriodSeconds;
-        IERC20 token = IERC20(s_injectTokenAddress);
+        address tokenaddress = s_injectTokenAddress;
+        IERC20 token = IERC20(tokenaddress);
         address[] memory streamerlist = s_streamerList;
-
         uint256 balance = token.balanceOf(address(this));
         Target memory target;
 
@@ -147,23 +148,55 @@ contract periodicRewardsInjector is ConfirmedOwner, Pausable, KeeperCompatibleIn
             target = s_targets[ready[idx]];
             IChildChainStreamer streamer = IChildChainStreamer(streamerlist[idx]);
             if (
-                target.lastInjectionTimeStamp + minWaitPeriodSeconds <= block.timestamp &&
-                streamer.reward_data(address(token)).period_finish >= block.timestamp &&
+                target.lastInjectionTimeStamp + s_minWaitPeriodSeconds <= block.timestamp &&
+                streamer.reward_data(tokenaddress).period_finish <= block.timestamp  &&
                 balance >= target.amountPerPeriod &&
                 target.periodNumber < target.maxPeriods
             ) {
-                bool success = token.transfer(s_feeDistributorAddress, target.amountPerPeriod);
-                if (success) {
+                try token.transfer(s_feeDistributorAddress, target.amountPerPeriod) {
                     s_targets[ready[idx]].lastInjectionTimeStamp = uint56(block.timestamp);
                     s_targets[ready[idx]].periodNumber += 1;
                     try streamer.notify_reward_amount(address(token)) {
                         emit emissionsInjection(ready[idx], target.amountPerPeriod);
                     } catch {
-                        revert("Failed to call notify_reward_amount");
                         emit injectionFailed(ready[idx]);
+                        revert("Failed to call notify_reward_amoun    function injectFunds(address[] memory ready) public whenNotPaused {
+        uint256 minWaitPeriodSeconds = s_minWaitPeriodSeconds;
+        address tokenaddress = s_injectTokenAddress;
+        IERC20 token = IERC20(tokenaddress);
+        address[] memory streamerlist = s_streamerList;
+        uint256 balance = token.balanceOf(address(this));
+        Target memory target;
+
+        for (uint256 idx = 0; idx < ready.length; idx++) {
+            target = s_targets[ready[idx]];
+            IChildChainStreamer streamer = IChildChainStreamer(streamerlist[idx]);
+            if (
+                target.lastInjectionTimeStamp + s_minWaitPeriodSeconds <= block.timestamp &&
+                streamer.reward_data(tokenaddress).period_finish <= block.timestamp  &&
+                balance >= target.amountPerPeriod &&
+                target.periodNumber < target.maxPeriods
+            ) {
+                try token.transfer(s_feeDistributorAddress, target.amountPerPeriod) {
+                    s_targets[ready[idx]].lastInjectionTimeStamp = uint56(block.timestamp);
+                    s_targets[ready[idx]].periodNumber += 1;
+                    try streamer.notify_reward_amount(address(token)) {
+                        emit emissionsInjection(ready[idx], target.amountPerPeriod);
+                    } catch {
+                        emit injectionFailed(ready[idx]);
+                        revert("Failed to call notify_reward_amount");
                     }
-                } else {
+                } catch {
                     emit injectionFailed(ready[idx]);
+                    revert("Failed to transfer tokens");
+                }
+            }
+        }
+    }t");
+                    }
+                } catch {
+                    emit injectionFailed(ready[idx]);
+                    revert("Failed to transfer tokens");
                 }
             }
         }
@@ -313,6 +346,7 @@ contract periodicRewardsInjector is ConfirmedOwner, Pausable, KeeperCompatibleIn
 
     modifier onlyKeeperRegistry() {
         if (msg.sender != s_keeperRegistryAddress) {
+            emit wrongCaller(msg.sender, s_keeperRegistryAddress);
             revert OnlyKeeperRegistry();
         }
         _;

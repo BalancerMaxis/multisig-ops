@@ -7,22 +7,23 @@ from brownie import (
     testToken,
 
 )
-
-STREAMER_ADDRESS = "0x48B024C6620b62Ea65cD10914801ce062b436Bb5"
-STREAMER_OWNER_ADDRESS = "0xc38c5f97B34E175FFd35407fc91a937300E33860"
-
-from rich.console import Console
-
-console = Console()
-
 from dotmap import DotMap
 import pytest
+
+STREAMER_ADDRESS = "0x48B024C6620b62Ea65cD10914801ce062b436Bb5"
+STREAMER_OWNER_ADDRESS = "0x0F3e0c4218b7b0108a3643cFe9D3ec0d4F57c54e" ## authorizer-adaptor
+
 
 
 ##  Accounts
 @pytest.fixture(scope="session")
 def admin():
     return accounts[1]
+
+
+@pytest.fixture(scope="session")
+def authorizer_adaptor():
+    return STREAMER_OWNER_ADDRESS
 
 
 @pytest.fixture(scope="session")
@@ -51,14 +52,8 @@ def token(deploy):
     return deploy.token
 
 
-
 @pytest.fixture(scope="session")
-def streamer(deploy):
-    return deploy.streamer
-
-
-@pytest.fixture(scope="session")
-def deploy(deployer, admin, upkeep_caller):
+def deploy(deployer, admin, upkeep_caller, authorizer_adaptor, streamer):
     """
     Deploys, vault and test strategy, mock token and wires them up.
     """
@@ -75,15 +70,13 @@ def deploy(deployer, admin, upkeep_caller):
     injector.transferOwnership(admin, {"from": deployer})
     token.transfer(injector.address, 100000, {"from": admin})
     injector.acceptOwnership({"from": admin})
-    injector.setRecipientList([STREAMER_ADDRESS], [100], [3], {"from": admin})
+    # def add_reward(_token: address, _distributor: address, _duration: uint256)
+    streamer.add_reward(token, authorizer_adaptor, 60*60, {"from": authorizer_adaptor})
+    injector.setRecipientList([streamer.address], [100], [3], {"from": admin})
 
     return DotMap(
-        deployer=deployer,
         injector=injector,
         token=token,
-        registry=upkeep_caller,
-        streamer=interface.IChildChainStreamer(STREAMER_ADDRESS),
-        admin=admin,
     )
 
 

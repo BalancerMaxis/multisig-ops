@@ -24,21 +24,17 @@ def test_can_call_check_upkeep(upkeep_caller, injector):
     assert isinstance(upkeepNeeded, bool)
     assert isinstance(performData, bytes)
 
-def test_can_perform_upkeep(injector, upkeep_caller, streamer, token):
+def test_can_perform_first_upkeep(injector, upkeep_caller, streamer, token):
     reward_data = streamer.reward_data(token)
-    if reward_data[1] <= chain.time():
-        print (reward_data[1])
-        chain.sleep(chain.time() - reward_data[1]+1)
-        reward_data = streamer.reward_data(token)  # grab new rewad data fter the fast forward
     print(injector.checkUpkeep("", {"from": upkeep_caller}))
     (upkeepNeeded, performData) = injector.checkUpkeep(
         "",
         {"from": upkeep_caller},
     )
     assert(upkeepNeeded is True)
-    assert(token.balanceOf(streamer) is 0)  # streamer should be empty
+    assert(token.balanceOf(streamer) == 0)  # streamer should be empty
     assert(token.balanceOf(injector) >= 100)  # injector should have coinz
-    assert(streamer.performUpkeep(performData), {"from": upkeep_caller}) # Perform upkeep
+    assert(injector.performUpkeep(performData, {"from": upkeep_caller})) # Perform upkeep
     assert(token.balanceOf(streamer) == 100) # Tokens are in place
     assert(reward_data[1] > chain.time())  # New period finish
     chain.mine()
