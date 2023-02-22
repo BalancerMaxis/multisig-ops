@@ -15,8 +15,9 @@ def test_set_recipient_list(injector, admin, streamer):
     assert injector.getAccountInfo(recipients[0]) == (True, 100, 3, 0, 0)
 
 
-def test_can_call_check_upkeep(upkeep_caller, injector):
+def test_can_call_check_upkeep(upkeep_caller, injector, streamer, admin):
     # Arrange
+    injector.setRecipientList([streamer.address], [100], [3], {"from": admin})
     upkeepNeeded, performData = injector.checkUpkeep.call(
         "",
         {"from": upkeep_caller},
@@ -24,7 +25,9 @@ def test_can_call_check_upkeep(upkeep_caller, injector):
     assert isinstance(upkeepNeeded, bool)
     assert isinstance(performData, bytes)
 
-def test_can_perform_first_upkeep(injector, upkeep_caller, streamer, token):
+
+def test_can_perform_first_upkeep(injector, upkeep_caller, streamer, token, admin, whale, gauge):
+    injector.setRecipientList([streamer.address], [100], [3], {"from": admin})
     reward_data = streamer.reward_data(token)
     print(injector.checkUpkeep("", {"from": upkeep_caller}))
     (upkeepNeeded, performData) = injector.checkUpkeep(
@@ -35,12 +38,14 @@ def test_can_perform_first_upkeep(injector, upkeep_caller, streamer, token):
     assert(token.balanceOf(streamer) == 0)  # streamer should be empty
     assert(token.balanceOf(injector) >= 100)  # injector should have coinz
     assert(injector.performUpkeep(performData, {"from": upkeep_caller})) # Perform upkeep
-    assert(token.balanceOf(streamer) == 100) # Tokens are in place
+    assert(token.balanceOf(streamer) == 100)  # Tokens are in place
+    reward_data = streamer.reward_data(token)
     assert(reward_data[1] > chain.time())  # New period finish
     chain.mine()
     chain.sleep(300)
     chain.mine()
-    assert(token.balanceOf(streamer) < 100) # Tokens are in place
+    gauge.claim_rewards({"from": whale})
+    assert(token.balanceOf(streamer) < 100)  # Tokens are in place
 
 
 
