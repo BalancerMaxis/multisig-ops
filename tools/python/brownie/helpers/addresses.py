@@ -50,7 +50,8 @@ ADDRESSES_ETH = {
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
         "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
-        "maxi_gas_station": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"
+        "maxi_gas_station": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A",
+        "poolRecoveryHelper": "0x1b300C86980a5195bCF49bD419A068D98dC133Db",  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/mainnet.json
     },
     "tokens": {
         "bb_a_usd": "0xa13a9247ea42d743238089903570127dda72fe44",
@@ -209,6 +210,8 @@ ADDRESSES_POLYGON = {
             "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "poolRecoveryHelper": "0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA",  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/polygon.json
+
     },
     "tokens": {
         "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
@@ -234,10 +237,11 @@ ADDRESSES_ARBITRUM = {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
             "dao": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
-            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", ## fees is feeManager on Arbitrum
+            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", # fees is feeManager on Arbitrum
             "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
         },
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "poolRecoveryHelper": "0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2"  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/arbitrum.json
     },
     "tokens": {
         "BADGER": "0xBfa641051Ba0a0Ad1b0AcF549a89536A0D76472E",
@@ -278,7 +282,8 @@ ADDRESSES_OPTIMISM = {
             "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
             "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
         },
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "poolRecoveryHelper": "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9" # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/optimism.json
     },
     "tokens": {},
 }
@@ -321,7 +326,8 @@ ADDRESSES_GNOSIS = {
             "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
             "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a"
         },
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "poolRecoveryHelper": "0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68"  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/gnosis.json
     }
 }
 
