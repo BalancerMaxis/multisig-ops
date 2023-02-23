@@ -54,6 +54,9 @@ def generate_change_list(actions_id_map, input_data):
                 if function == "setSwapFeePercentage(uint256)" and chain == "mainnet":
                     target_address=registry.balancer.gauntletFeeSetter
                     target = "gauntletFeeSetter"
+                elif caller == "poolRecoveryHelper":
+                    target_address = registry.balancer.poolRecoveryHelper
+                    target = caller
                 else:
                     target_address=registry.balancer.multisigs[caller]
                     target = caller
@@ -152,6 +155,7 @@ def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/0
     )
     save_command_description_table(change_list=change_list, output_dir=output_dir)
     save_txbuilder_json(change_list=change_list,output_dir=output_dir)
+
 
 if __name__ == "__main__":
     main()
