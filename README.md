@@ -22,7 +22,7 @@ The Maxi's have started using Chain Link automation to automate some regular pro
 |------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|---------|
 | [Maxi Gas Station](./docs/upkeeps/maxiGasStation.md) | [MAINNET](https://etherscan.io/address/0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A) | [LINK](https://automation.chain.link/mainnet/62602467182204477380138952081172885895406053754821061796893606503759482417757) | Yes     |
 
-
+Chainlinks documation around this automation setup can be found [here](https://docs.chain.link/chainlink-automation/introduction).
 ### Governance Process
 Verbose and up-to-date docs about the balancer governance process can be found on [docs.balancer.fi](https://docs.balancer.fi/concepts/governance/)
 

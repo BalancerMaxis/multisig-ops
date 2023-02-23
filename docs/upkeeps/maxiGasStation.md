@@ -49,3 +49,5 @@ Check Upkeep will not return True unless the following reasonably selfExplanitor
         ) 
 ```
 
+### How can I learn more about chainlink automation
+[DOCS](https://docs.chain.link/chainlink-automation/introduction)
