@@ -15,9 +15,11 @@ import pytest
 STREAMER_ADDRESS = "0x48B024C6620b62Ea65cD10914801ce062b436Bb5"
 STREAMER_OWNER_ADDRESS = "0x0F3e0c4218b7b0108a3643cFe9D3ec0d4F57c54e" ## authorizer-adaptor
 ARBI_WSTETH_USDC_WHALE = "0x78c5bdf04d088766dd70ef5258a8c272ea155594"
+ARBI_LDO_WHALE = "0x25ab7dc4ddcacb6fe75694904db27602175245f1"
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
-
-
+ARBI_LDO_ADDRESS = "0x13Ad51ed4F1B7e9Dc168d8a00cB3f4dDD85EfA60"
+WEEKLY_INCENTIVE = 200*10**18
+STREAMER_STUCK = 6003155 ## Something that seems stuck in the streamer LDO
 
 
 
@@ -56,7 +58,9 @@ def streamer():
 def upkeep_caller():
     return accounts[2]
 
-
+@pytest.fixture()
+def weekly_incentive():
+    return WEEKLY_INCENTIVE
 @pytest.fixture(scope="module")
 def deployer():
     return accounts[0]
@@ -67,18 +71,18 @@ def injector(deploy):
     return deploy.injector
 
 
-@pytest.fixture()
-def token(deploy):
-    return deploy.token
+@pytest.fixture(scope="module")
+def token():
+    return interface.IERC20(ARBI_LDO_ADDRESS)
 
 
 @pytest.fixture(scope="module")
-def deploy(deployer, admin, upkeep_caller, authorizer_adaptor, streamer, gauge, get_rewards):
+def deploy(deployer, admin, upkeep_caller, authorizer_adaptor, streamer, gauge, get_rewards, token):
     """
     Deploys, vault and test strategy, mock token and wires them up.
     """
 
-    token = testToken.deploy(admin, 100000, {"from": deployer})
+    token.transfer(admin, 1000*10**18, {"from": ARBI_LDO_WHALE})
 
     injector = periodicRewardsInjector.deploy(
         upkeep_caller,
@@ -88,26 +92,8 @@ def deploy(deployer, admin, upkeep_caller, authorizer_adaptor, streamer, gauge, 
     )
     print(token.balanceOf(deployer))
     injector.transferOwnership(admin, {"from": deployer})
-    token.transfer(injector.address, 100000, {"from": admin})
+    token.transfer(injector.address, 500*10**18, {"from": admin})
     injector.acceptOwnership({"from": admin})
-    # def add_reward(_token: address, _distributor: address, _duration: uint256)
-    streamer.add_reward(token, authorizer_adaptor, 60*60, {"from": authorizer_adaptor})
-    tokens = 8*[ZERO_ADDRESS]
-    for i in range(0, 7, 1):
-        print(f"step {i}, {gauge.reward_tokens(i)} == {ZERO_ADDRESS}")
-        if gauge.reward_tokens(i) == ZERO_ADDRESS:
-            print(f"Found Zero address at position {i}")
-            break
-        else:
-            tokens[i] = gauge.reward_tokens(i)
-
-
-
-
-    print(f"i is {i}")
-    tokens[i] = token.address
-    print(f"reward_tokens(i+1)={gauge.reward_tokens(i+1)}")
-    gauge.set_rewards(streamer, get_rewards, tokens, {"from": authorizer_adaptor})
 
     return DotMap(
         injector=injector,
