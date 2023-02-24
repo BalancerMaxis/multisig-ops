@@ -107,9 +107,9 @@ def cowswapFees(safe, sweeps):
     if len(error_tokens) > 0:
         print(f"The following tokens had problems and may not show up to be traded: {error_tokens}")
 
-def payFees(safe, half=True):
+def payFees(safe, half=False):
     distrbutor = safe.contract(r.balancer.feeDistributor)
-    usd = safe.contract(r.tokens.USDC)
+    usd = safe.contract(r.tokens.bb_a_usd)
     bal = safe.contract(r.tokens.BAL)
     safe.take_snapshot([bal, usd])
     if half:
