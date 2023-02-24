@@ -15,7 +15,7 @@ def dicts_to_table_string(dict_list, header=None):
         table.add_row(list(dict_.values()))
     return str(table)
 
-def main(tx_builder_json="../../../BIPs/00batched/BIP-170-171-172-173-174-176-178-179-180-181-182.json"):
+def main(tx_builder_json="../../../BIPs/BIP-200-to-204.json"):
     outputs = []
     with open(tx_builder_json, "r") as json_data:
         payload = json.load(json_data)
@@ -46,13 +46,22 @@ def main(tx_builder_json="../../../BIPs/00batched/BIP-170-171-172-173-174-176-17
         gauge = safe.contract(gauge_address)
         #print(f"processing {gauge} as a gauge with lp token {gauge.lp_token()}")
         pool_token_list = []
-        if "getTotalBridgeCost" in gauge.selectors.values(): ## Is sidechain/arbitrum?
-            pool_name = "Sidechain Gauge(arbi?)"
+        print(gauge.selectors.values())
+        fxSelectorToChain = {
+            "getTotalBridgeCost": "L2: Arbitrum",
+            "getPolygonBridge": "sidechain: Polygon",
+            "getArbitrumBridge": "L2: Arbitrum",
+            "getGnosisBridge": "sidechain: Gnosis"
+        }
+        sidechain = list(set(gauge.selectors.values()).intersection(list(fxSelectorToChain.keys())))
+        if len(sidechain) > 0:
+            pool_name = fxSelectorToChain[sidechain[0]]
             lp_token = f"Recipient: {gauge.getRecipient()}"
-        elif "getPolygonBridge" in gauge.selectors.values():
-            pool_name = "Polygon Gauge"
-            lp_token = f"Recipient: {gauge.getRecipient()}"
-
+        elif "name" not in gauge.selectors.values():
+            recipient = safe.contract(gauge.getRecipient())
+            escrow = safe.contract(recipient.getVotingEscrow())
+            pool_name =  escrow.name()
+            lp_token = safe.contract(escrow.token()).name()
         else:
             pool_name = gauge.name()
             lp_token = gauge.lp_token()
