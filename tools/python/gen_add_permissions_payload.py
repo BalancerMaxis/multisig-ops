@@ -47,6 +47,7 @@ def generate_change_list(actions_id_map, input_data):
     changes = []
     for chain, deployments in actions_id_map.items():
         registry = get_registry_by_chain_id(ALL_CHAINS_MAP[chain])
+        targets = registry.balancer.multisigs + r
         for deployment, functions in deployments.items():
             for function, action_id_and_caller_list in functions.items():
                 action_id = action_id_and_caller_list[0]

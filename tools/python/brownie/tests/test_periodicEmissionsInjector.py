@@ -4,6 +4,7 @@ from brownie import chain
 import pytest
 
 STREAMER_STUCK = 6003155 ## Something that seems stuck in the streamer LDO
+ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
 def test_deploy(deploy):
     return
@@ -19,7 +20,7 @@ def test_set_recipient_list(injector, admin, streamer):
 
 def test_can_call_check_upkeep(upkeep_caller, injector, streamer, admin):
     # Arrange
-    injector.setRecipientList([streamer.address], [100], [3], {"from": admin})
+    injector.setRecipientList([streamer.address], [100], [2], {"from": admin})
     upkeepNeeded, performData = injector.checkUpkeep.call(
         "",
         {"from": upkeep_caller},
@@ -29,35 +30,60 @@ def test_can_call_check_upkeep(upkeep_caller, injector, streamer, admin):
 
 
 def test_can_perform_first_upkeep_(injector, upkeep_caller, streamer, token, admin, whale, gauge,weekly_incentive):
-    assert(weekly_incentive * 3 > token.balanceOf(admin)) # we have enough coinz
-    injector.setRecipientList([streamer.address], [weekly_incentive], [3], {"from": admin})
+    ## Setup [2] for 2 rounds
+    assert(weekly_incentive * 3 > token.balanceOf(admin)) # Tokens for 3 rounds so we are stopped by max rounds in the injector config
+    injector.setRecipientList([streamer.address], [weekly_incentive], [2], {"from": admin})
     reward_data = streamer.reward_data(token)
-    print(injector.checkUpkeep("", {"from": upkeep_caller}))
-    (upkeepNeeded, performData) = injector.checkUpkeep(
-        "",
-        {"from": upkeep_caller},
-    )
-
+    ## Advance to the next Epoch
+    (upkeepNeeded, performData) = injector.checkUpkeep("", {"from": upkeep_caller})
+    if upkeepNeeded is False:
+        sleep_time = (reward_data[1] - chain.time())  # about 1 block after the peroiod ends.
+        chain.sleep(sleep_time)
+        chain.mine()
+        (upkeepNeeded, performData) = injector.checkUpkeep(
+            "",
+            {"from": upkeep_caller},
+        )
+        assert(upkeepNeeded is True)
+    ## Test perform upkeep for the first round
+    initial_system_balance  = token.balanceOf(streamer) + token.balanceOf(gauge)
+    assert(token.balanceOf(injector) >= weekly_incentive)  # injector should have coinz
+    assert(injector.performUpkeep(performData, {"from": upkeep_caller})) # Perform upkeep
+    assert(token.balanceOf(streamer) - STREAMER_STUCK == weekly_incentive)  # Tokens are in place
+    assert(initial_system_balance - STREAMER_STUCK == token.balanceOf(gauge) )
     ## advance time and check that claim reduces streamer balancer
     initial_steramer_balance = token.balanceOf(streamer)
-    reward_data = streamer.reward_data(token)
-    assert(reward_data[1] > chain.time())  # New period finish
+    (upkeepNeeded, performData) = injector.checkUpkeep("", {"from": upkeep_caller})
+    assert(upkeepNeeded==False)  ## not time yet
+    r1_streamer_balance = token.balanceOf(streamer)
     chain.mine()
     chain.sleep(300)
     chain.mine()
-    claim = gauge.claim_rewards({"from": whale})
-    assert(token.balanceOf(streamer) < initial_steramer_balance)  # Whale pulled tokens from streamer on claim
-
-    chain.sleep(60*60*24*8) # 8 days should be more than a 1 week epoch
-
     (upkeepNeeded, performData) = injector.checkUpkeep("",{"from": ZERO_ADDRESS})
-    assert upkeepNeeded == true:
+    assert(upkeepNeeded == False) # not time yet
+    claim = gauge.claim_rewards({"from": whale})
+    assert(token.balanceOf(streamer) < r1_streamer_balance)  # Whale pulled tokens from streamer on claim
+
+    # sleep till second epoch
+    chain.sleep(60*60*24*8) # 8 days should be more than a 1 week epoch
+    chain.mine()
+    (upkeepNeeded, performData) = injector.checkUpkeep("",{"from": ZERO_ADDRESS})
+    assert(upkeepNeeded == True)
+    # Test second upkeep
+    initial_system_balance  = token.balanceOf(streamer) + token.balanceOf(gauge)
+    assert(injector.performUpkeep(performData, {"from": upkeep_caller})) # Perform upkeep
+    assert ( (token.balanceOf(streamer) + token.balanceOf(gauge)) - initial_system_balance == weekly_incentive)  # injector should have new coinz
+    (upkeepNeeded, performData) = injector.checkUpkeep("", {"from": ZERO_ADDRESS})
+    assert (upkeepNeeded == False)  # not time yet
+
+    #check third epcoh we stop
+    chain.sleep(60 * 60 * 24 * 8)  # 8 days should be more than a 1 week epoch
+    chain.mine()
+    (upkeepNeeded, performData) = injector.checkUpkeep("", {"from": ZERO_ADDRESS})
+    assert (upkeepNeeded == False)  # No more runs
 
 
-def test_non_authorized_caller:
 
-
-def test_
 def test_pause_and_unpause(injector, admin, upkeep_caller):
     # Pause the contract
     injector.pause({"from": admin})
