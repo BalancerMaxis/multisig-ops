@@ -1,12 +1,20 @@
 import pandas as pd
 from dotmap import DotMap
 from web3 import Web3
+import requests
 import json
 try:
     from brownie import chain
 except ImportError:
     print("Warning.  Can't load brownie module in addresses.py.  get_registry() assumes mainnet, use get_registry_by_chain_id()")
     chain = DotMap({"id": 1})
+def monorepo_addys_by_chain(chain_name):
+    monorepo_addresses = {}
+    response = requests.get(f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json")
+    data = response.json()
+    for address, info in data.items():
+        monorepo_addresses[info["name"]] = address
+    return monorepo_addresses
 
 
 
@@ -223,6 +231,7 @@ ADDRESSES_POLYGON = {
     },
 }
 
+
 ADDRESSES_ARBITRUM = {
     "zero": "0x0000000000000000000000000000000000000000",
     "registry_v2": "0xdc602965F3e5f1e7BAf2446d5564b407d5113A06",
@@ -310,20 +319,21 @@ ADDRESSES_GOERLI = {
         "LINK": "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
     }
 }
+
 ADDRESSES_GNOSIS = {
     "zero": "0x0000000000000000000000000000000000000000",
-    "balancer": {
-        "multisigs": {
+    "balancer": monorepo_addys_by_chain("gnosis")
+}
+
+ADDRESSES_GNOSIS["balancer"]["multisigs"] = dict({
             "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
             "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
-            ### All maxi operations concentrated into 1 multisig
+            # All maxi operations concentrated into 1 multisig
             "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
             "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
             "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a"
-        },
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
-    }
-}
+        })
+
 
 OTHER_STUFF = {
     "ETH": {
