@@ -4,6 +4,31 @@
       "gnosis": 100
     },
     "function_caller_map": {
+      "setSwapFeePercentage(uint256)": "lm",
+      "startAmplificationParameterUpdate(uint256,uint256)": "lm",
+      "stopAmplificationParameterUpdate()": "lm",
+      "pause()": "emergency",
+      "disable()": "emergency",
+      "enableRecoveryMode()": ["emergency", "PoolRecoveryHelper"],
+      "setTargets": "lm"
+    },
+    "deployments": [
+      "20230206-weighted-pool-v3",
+      "20230206-composable-stable-pool-v3",
+      "20220404-erc4626-linear-pool-v2",
+      "20220908-weighted-pool-v2",
+      "20220609-stable-pool-v2",
+      "20221122-composable-stable-pool-v2",
+      "20221207-aave-rebalanced-linear-pool-v3",
+      "20220425-unbutton-aave-linear-pool",
+      "20230206-aave-rebalanced-linear-pool-v4"
+    ]
+  },
+  {
+    "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
       "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
       "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
       "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": "BalancerRelayer",
