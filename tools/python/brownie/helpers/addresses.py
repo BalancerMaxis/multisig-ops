@@ -3,20 +3,33 @@ from dotmap import DotMap
 from web3 import Web3
 import requests
 import json
+
 try:
     from brownie import chain
 except ImportError:
-    print("Warning.  Can't load brownie module in addresses.py.  get_registry() assumes mainnet, use get_registry_by_chain_id()")
+    print(
+        "Warning.  Can't load brownie module in addresses.py.  get_registry() assumes mainnet, use get_registry_by_chain_id()")
     chain = DotMap({"id": 1})
+
+
 def monorepo_addys_by_chain(chain_name):
     monorepo_addresses = {}
-    response = requests.get(f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json")
+    response = requests.get(
+        f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json")
     data = response.json()
     for address, info in data.items():
         monorepo_addresses[info["name"]] = address
     return monorepo_addresses
 
 
+ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
+MANAGED_CHAINS = {
+    "mainnet": 1,
+    "polygon": 137,
+    "arbitrum": 42161,
+    "optimism": 10,
+    "gnosis": 100
+}
 
 ADDRESSES_ETH = {
     "zero": "0x0000000000000000000000000000000000000000",
@@ -138,7 +151,7 @@ ADDRESSES_ETH = {
             "pool_registry": "0x41a5881c17185383e19Df6FA4EC158a6F4851A69",
         },
     },
-        "votium": {
+    "votium": {
         "bribe": "0x19BBC3463Dd8d07f55438014b021Fb457EBD4595",
         "multiMerkleStash": "0x378Ba9B73309bE80BF4C2c027aAD799766a7ED5A",
     },
@@ -204,8 +217,6 @@ ADDRESSES_ETH = {
     },
 }
 
-
-
 ADDRESSES_POLYGON = {
     "zero": "0x0000000000000000000000000000000000000000",
     "balancer": {
@@ -213,7 +224,7 @@ ADDRESSES_POLYGON = {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
             "dao": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
-            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", ## fees is feeManager on Polygon
+            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B",  ## fees is feeManager on Polygon
             "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
@@ -231,7 +242,6 @@ ADDRESSES_POLYGON = {
     },
 }
 
-
 ADDRESSES_ARBITRUM = {
     "zero": "0x0000000000000000000000000000000000000000",
     "registry_v2": "0xdc602965F3e5f1e7BAf2446d5564b407d5113A06",
@@ -243,7 +253,7 @@ ADDRESSES_ARBITRUM = {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
             "dao": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
-            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", ## fees is feeManager on Arbitrum
+            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B",  ## fees is feeManager on Arbitrum
             "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
@@ -276,15 +286,14 @@ ADDRESSES_ARBITRUM = {
     "arbitrum_gateway_router": "0x5288c571Fd7aD117beA99bF60FE0846C4E84F933",
 }
 
-
 ADDRESSES_OPTIMISM = {
     "zero": "0x0000000000000000000000000000000000000000",
     "balancer": {
         "multisigs": {
             "lm": "0x09Df1626110803C7b3b07085Ef1E053494155089",
             "dao": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
-            "fees": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
-            "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089", ## fees is LM on Optimism
+            "fees": "0x09Df1626110803C7b3b07085Ef1E053494155089",  ## fees is LM on Optimism
+            "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089",  ## fees is LM on Optimism
             "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6"
@@ -307,9 +316,10 @@ ADDRESSES_GOERLI = {
             },
         },
         "multisigs": {
-            "maxi_ops": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7"
+            "maxi_ops": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7",
+            "blab_ops": ZERO_ADDRESS
         }
-      },
+    },
     "chainlink": {
         "feed_registry": "0x47Fb2585D2C56Fe188D0E6ec628a38b74fCeeeDf",
         "keeper_registry": "0xE16Df59B887e3Caa439E0b29B42bA2e7976FD8b2",
@@ -322,18 +332,17 @@ ADDRESSES_GOERLI = {
 
 ADDRESSES_GNOSIS = {
     "zero": "0x0000000000000000000000000000000000000000",
-    "balancer": monorepo_addys_by_chain("gnosis")
+    "balancer": dict(monorepo_addys_by_chain("gnosis"))
 }
-
 ADDRESSES_GNOSIS["balancer"]["multisigs"] = dict({
-            "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
-            "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
-            # All maxi operations concentrated into 1 multisig
-            "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
-            "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
-            "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a"
-        })
-
+    "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
+    "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+    # All maxi operations concentrated into 1 multisig
+    "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+    "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+    "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+    "blabs_ops": ZERO_ADDRESS
+})
 
 OTHER_STUFF = {
     "ETH": {
@@ -342,6 +351,7 @@ OTHER_STUFF = {
         }
     }
 }
+
 
 def checksum_address_dict(addresses):
     """
@@ -361,7 +371,6 @@ def checksum_address_dict(addresses):
 with open("helpers/chaindata.json") as chaindata:
     chain_ids = json.load(chaindata)
 
-
 registry = DotMap(
     {
         "eth": checksum_address_dict(ADDRESSES_ETH),
@@ -372,6 +381,20 @@ registry = DotMap(
         "goerli": checksum_address_dict(ADDRESSES_GOERLI)
     }
 )
+
+
+def flat_callers_by_chain(chain_name):
+    reg = get_registry_by_chain_id(MANAGED_CHAINS[chain_name])
+    # Build a list of callers out of the multisigs and the other balancer addresses
+    callers = dict(reg.balancer.multisigs)
+    for name, value in reg.balancer.items():
+        if type(value) is str:
+            if name in callers.keys():
+                print(
+                    f"WARNING: Collision between {name}:{value} which is already in the list with value {callers[name]}")
+            callers[name] = value
+    return callers
+
 
 def get_registry_by_chain_id(chain_id):
     if chain_id == 1:
@@ -392,6 +415,7 @@ def get_registry_by_chain_id(chain_id):
         return registry.goerli
     elif chain_id == 100:
         return registry.gnosis
+
 
 def get_registry():
     if chain.id == 1:
