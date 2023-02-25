@@ -58,7 +58,7 @@ def build_action_ids_map(input_data):
     return action_ids_map
 
 
-def generate_change_list(actions_id_map, input_data):
+def generate_change_list(actions_id_map, input_data, ignore_already_set=True):
     changes = []
     for chain, deployments in actions_id_map.items():
         registry = get_registry_by_chain_id(ALL_CHAINS_MAP[chain])
@@ -89,10 +89,12 @@ def generate_change_list(actions_id_map, input_data):
                         only_member = authorizer.functions.getRoleMember(action_id, 0).call()
                         if only_member == target_address:
                             print(f"{deployment}/{function} already has the proper owner set, skipping")
-                            continue
+                            if ignore_already_set:
+                                continue
                     else:
                         print(f"WARNING: the following has {role_members} members already: {deployment}{function}{action_id}")
-                        assert(False, "unexpected permissions found")
+                        if ignore_already_set:
+                            assert(False, "unexpected permissions found")
                 changes.append({
                     "deployment": deployment,
                     "chain": chain,
@@ -180,10 +182,10 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
             json.dump(dict(data), f)
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/{today}.json"):
+def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/00examples_and_info/full_new_chain.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data)
-    change_list = generate_change_list(action_ids_map, input_data)
+    change_list = generate_change_list(action_ids_map, input_data, ignore_already_set=True)
     print(change_list)
     print_change_list(
         change_list=change_list,
