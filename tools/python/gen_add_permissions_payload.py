@@ -47,6 +47,12 @@ def generate_change_list(actions_id_map, input_data):
     changes = []
     for chain, deployments in actions_id_map.items():
         registry = get_registry_by_chain_id(ALL_CHAINS_MAP[chain])
+        # Build a list of callers out of the multisigs and the other balancer addresses
+        callers = registry.balancer.multisigs
+        for name, value in registry.balancer.items():
+            assert name not in callers.keys()
+            if type(value) == str:
+                callers[name] = value
         for deployment, functions in deployments.items():
             for function, action_id_and_caller_list in functions.items():
                 action_id = action_id_and_caller_list[0]
@@ -55,7 +61,7 @@ def generate_change_list(actions_id_map, input_data):
                     target_address=registry.balancer.gauntletFeeSetter
                     target = "gauntletFeeSetter"
                 else:
-                    target_address=registry.balancer.multisigs[caller]
+                    target_address=callers[caller]
                     target = caller
 
                 changes.append({
