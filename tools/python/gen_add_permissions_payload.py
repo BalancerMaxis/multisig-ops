@@ -1,17 +1,18 @@
 import json
-
 import requests
 from dotmap import DotMap
 from helpers.addresses import get_registry_by_chain_id, flat_callers_by_chain
 import pandas as pd
 from datetime import date
 from web3 import Web3
+import os
 
 
 today = str(date.today())
 debug = False
 
 ###TODO: The below settings must be set before running the script
+INFURA_KEY = os.getenv('WEB3_INFURA_PROJECT_ID')
 BALANCER_DEPLOYMENTS_DIR = "../../../balancer-v2-monorepo/pkg/deployments"
 BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments"
 
@@ -78,7 +79,20 @@ def generate_change_list(actions_id_map, input_data):
                 else:
                     target_address=callers[caller]
                     target = caller
+                #w3 = Web3(Web3.HTTPProvider(f"https://{chain}.infura.io/v3/{INFURA_KEY}"))
+                w3 = Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com"))
 
+                authorizer = w3.eth.contract(address="0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", abi=json.load(open("./abis/Authorizer.json")))
+                role_members = authorizer.functions.getRoleMemberCount(action_id).call()
+                if  role_members> 0:
+                    if role_members == 1:
+                        only_member = authorizer.functions.getRoleMember(action_id, 0).call()
+                        if only_member == target_address:
+                            print(f"{deployment}/{function} already has the proper owner set, skipping")
+                            continue
+                    else:
+                        print(f"WARNING: the following has {role_members} members already: {deployment}{function}{action_id}")
+                        assert(False, "unexpected permissions found")
                 changes.append({
                     "deployment": deployment,
                     "chain": chain,

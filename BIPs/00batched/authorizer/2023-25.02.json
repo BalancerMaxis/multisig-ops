@@ -1,0 +1,73 @@
+[
+    {
+    "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
+      "setSwapFeePercentage(uint256)": "lm",
+      "startAmplificationParameterUpdate(uint256,uint256)": "lm",
+      "stopAmplificationParameterUpdate()": "lm",
+      "pause()": "emergency",
+      "disable()": "emergency",
+      "enableRecoveryMode()": "emergency",
+      "enableRecoveryMode()": "PoolRecoveryHelper",
+      "setTargets": "lm"
+    },
+    "deployments": [
+      "20230206-weighted-pool-v3",
+      "20230206-composable-stable-pool-v3",
+      "weighted-pool-v2",
+      "20220404-erc4626-linear-pool-v2",
+      "20220609-stable-pool-v2",
+      "20221122-composable-stable-pool-v2",
+      "20221207-aave-rebalanced-linear-pool-v3",
+      "20220425-unbutton-aave-linear-pool",
+      "20221123-pool-recovery-helper",
+      "20230206-weighted-pool-v3",
+      "20230206-composable-stable-pool-v3",
+      "20230206-aave-rebalanced-linear-pool-v4"
+    ]
+  },
+  {
+    "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
+      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
+      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
+      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": "BalancerRelayer",
+      "manageUserBalance((uint8,address,uint256,address,address)[])": "BalancerRelayer",
+      "setRelayerApproval(address,address,bool)": "BalancerRelayer",
+      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": "BatchRelayer",
+      "withdrawCollectedFees(address[],uint256[],address)": "ProtocolFeeWithdrawer",
+      "setSwapFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
+      "setFlashLoanFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
+      "setFeeTypePercentage(uint256,uint256)": "dao"
+    },
+    "deployments": [
+      "20210418-vault"
+    ]
+  },
+  {
+    "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
+      "notify_reward_amount(address)": "blabs_ops"
+    },
+    "deployments": [
+      "20220413-child-chain-gauge-factory",
+    ]
+  },
+    {
+    "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
+      "notify_reward_amount(address)": "blabs_ops"
+    },
+    "deployments": [
+      "20220725-protocol-fee-percentages-provider",
+    ]
+  }
+]
