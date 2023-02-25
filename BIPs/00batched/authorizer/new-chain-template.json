@@ -38,7 +38,7 @@
       "withdrawCollectedFees(address[],uint256[],address)": "ProtocolFeesWithdrawer",
       "setSwapFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
       "setFlashLoanFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
-      "setFeeTypePercentage(uint256,uint256)": "dao"
+      "setPaused(bool)":"emergency"
     },
     "deployments": [
       "20210418-vault"
@@ -60,10 +60,33 @@
       "gnosis": 100
     },
     "function_caller_map": {
-      "addTokenToGauge(address,address,address)": "ChildChainGaugeTokenAdder"
+      "setFeeTypePercentage(uint256,uint256)": "dao"
     },
     "deployments": [
       "20220725-protocol-fee-percentages-provider"
     ]
-  }
+  },
+  {
+  "chain_map": {
+    "gnosis": 100
+  },
+  "function_caller_map": {
+    "addTokenToGauge(address,address,address)": "lm"
+  },
+  "deployments": [
+    "20220527-child-chain-gauge-token-adder"
+  ]
+},
+{
+"chain_map": {
+  "gnosis": 100
+},
+"function_caller_map": {
+  "denylistToken(address)": "emergency",
+  "withdrawCollectedFees(address[],uint256[],address)": "lm"
+},
+"deployments": [
+  "20220517-protocol-fee-withdrawer"
+]
+}
 ]
