@@ -45,7 +45,8 @@ ADDRESSES_ETH = {
         "deployers": {
             "solarcurve": "0x6409C2C1aC1B26aaaEF982572efd38412075586D",
             "zendragon": "0x854B004700885A61107B458f11eCC169A019b764",
-            "mikeb": "0xc4591c41e01a7a654b5427f39bbd1dee5bd45d1d"
+            "mikeb": "0xc4591c41e01a7a654b5427f39bbd1dee5bd45d1d",
+            "tritium": "0x53a806789BBfd366d9dEB9Cbe5d622089e845fdb"
         },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",
