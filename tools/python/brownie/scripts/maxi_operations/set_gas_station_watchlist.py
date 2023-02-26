@@ -17,5 +17,7 @@ def main():
             topup_amounts.append(int(0.5*10**18))  # .5 ETH  topup for deployers
             min_topups.append(int(0.2*10**18))  # .2 ETH min topup = always has atleast .3
 
+    gs = safe.contract(r.balancer.maxi_gas_station)
+    gs.setWatchList(addresses, topup_amounts, min_topups)
     # adding 1 deployer and 3 signers requires a total of 1.25 eth to topup all new signers to from empty to full
-    safe.post_safe_tx(gen_tenderly=False)
+    safe.post_safe_tx(gen_tenderly=False, replace_nonce=86)
