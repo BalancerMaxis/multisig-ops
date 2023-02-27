@@ -58,9 +58,8 @@ def main():
     with open("tx_builder_templates/base.json", "r") as f: ## framework transaction
         data = json.load(f)
     tx = claim("0x00000000005eF87F8cA7014309eCe7260BbcDAEB", GEARBOX_TREE) ## test address
-    shallow = tx.copy()
-    data["transactions"].append(shallow)
-    data["meta"]["createdFromSafeAddress"] ="bleh"
+    data["transactions"].append(tx)
+    data["meta"]["createdFromSafeAddress"] = r.balancer.multisigs.lm
     with open("result_payload.json", "w") as f: ## framework transaction
         json.dump(data, f)
 
