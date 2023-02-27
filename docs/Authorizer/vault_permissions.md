@@ -19,7 +19,7 @@ For each of the functions listed below, the vault has special handling configure
 1. The address listed has been granted access to the function called via the Authorizer.
 2. The user has granted the specific address the ability to act on their behalf by calling [setRealyerApproval](https://github.com/balancer-labs/balancer-v2-monorepo/blob/63ffcf2018b02c038041540e4984bc6dd4a8c89c/pkg/vault/contracts/VaultAuthorization.sol#L96) on the vault for the given relayer.
 
-[VaultAuthorization.sol](https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/vault/contracts/VaultAuthorization.sol) contains enough of the code to get a godo idea how the double auth function works.
+[VaultAuthorization.sol](https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/vault/contracts/VaultAuthorization.sol) contains enough of the code to get a good idea how the double auth function works.
 
 ### List of vault function selectors in the special Authroizer Permisisons Context
 
