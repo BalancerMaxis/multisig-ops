@@ -171,7 +171,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         tx_template = data.transactions[0]
         for address,actions in action_ids_by_address.items():
             transaction = DotMap(tx_template)
-            transaction.to = r.balancer.authorizer
+            transaction.to = r.balancer.Authorizer
             # TX builder wants lists in a string, addresses unquoted
             transaction.contractInputsValues.roles = str(actions).replace("'","")
             transaction.contractInputsValues.account = address
@@ -182,7 +182,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
             json.dump(dict(data), f)
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/00examples_and_info/full_new_chain.json"):
+def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data)
     change_list = generate_change_list(action_ids_map, input_data, ignore_already_set=True)
