@@ -265,7 +265,7 @@ class GreatApeSafe(ApeSafe):
         csv_destination=None,
         gas_coef=1.5,
         safe_tx=None,
-        gen_tenderly=True,
+        gen_tenderly=False,
     ):
         # build a gnosis-py SafeTx object which can then be posted
         # skip_preview=True: skip preview **and with that also setting the gas**
