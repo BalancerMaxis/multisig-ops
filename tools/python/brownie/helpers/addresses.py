@@ -66,7 +66,8 @@ ADDRESSES_ETH = {
         "minter": "0x239e55F427D44C3cc793f49bFB507ebe76638a2b",
         "gauge_controller": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
         "authorizer_adapter": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", #todo retire
+        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "feeDistributor": "0xD3cf852898b21fc233251427c2DC93d3d604F3BB",
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
@@ -229,6 +230,7 @@ ADDRESSES_POLYGON = {
             "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", #TODO retire
         "poolRecoveryHelper": "0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA",  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/polygon.json
 
     },
@@ -260,6 +262,7 @@ ADDRESSES_ARBITRUM = {
             "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", # TODO retire
         "poolRecoveryHelper": "0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2"  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/arbitrum.json
     },
     "tokens": {
@@ -301,6 +304,8 @@ ADDRESSES_OPTIMISM = {
             "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", # TODO retire
+
         "poolRecoveryHelper": "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9" # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/optimism.json
     },
     "tokens": {},
