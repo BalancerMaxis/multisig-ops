@@ -257,7 +257,7 @@ ADDRESSES_ARBITRUM = {
     "balancer": {
         "multisigs": {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-            "dao": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+            "dao": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
             "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", # fees is feeManager on Arbitrum
             "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
