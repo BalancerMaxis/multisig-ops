@@ -14,7 +14,8 @@ Beyond the migration example listed, here are some other cases in which relayers
 
 ### How do permissions work / double authorization
 
-For each of the functions listed below, the vault has special handling configured for double authorization.  This means that in order for the an address to call commands in this context on a users behalf, the following 2 condtions must be true: 
+For each of the functions listed below, the vault has special handling configured for double authorization.  This means that in order for the an address to call commands in this context on a users behalf, the following 2 conditions must be true: 
+
 1. The address listed has been granted access to the function called via the Authorizer.
 2. The user has granted the specific address the ability to act on their behalf by calling [setRealyerApproval](https://github.com/balancer-labs/balancer-v2-monorepo/blob/63ffcf2018b02c038041540e4984bc6dd4a8c89c/pkg/vault/contracts/VaultAuthorization.sol#L96) on the vault for the given relayer.
 
