@@ -53,7 +53,7 @@
     "deployments": ["20220725-protocol-fee-percentages-provider"]
   },
   {
-      "chain_map": {
+    "chain_map": {
       "gnosis": 100
     },
     "function_caller_map": {
@@ -61,7 +61,7 @@
     },
     "deployments": ["20220527-child-chain-gauge-token-adder"]
   },
-    {
+  {
     "chain_map": {
       "gnosis": 100
     },
@@ -71,7 +71,7 @@
     "deployments": ["20220413-child-chain-gauge-factory"]
   },
   {
-      "chain_map": {
+    "chain_map": {
       "mainnet": 1
     },
     "function_caller_map": {
@@ -85,8 +85,8 @@
       "mainnet": 1
     },
     "function_caller_map": {
-     "removePoolFactory(address)": "blabs_ops",
-     "addPoolFactory(address)": "blabs_ops"
+      "removePoolFactory(address)": "blabs_ops",
+      "addPoolFactory(address)": "blabs_ops"
     },
     "deployments": ["20221123-pool-recovery-helper"]
   }
