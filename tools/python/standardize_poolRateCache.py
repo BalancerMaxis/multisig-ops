@@ -46,9 +46,65 @@ def set_cache_durations(addresses, duration, chain="mainnet"):
                 print(f"token: {token} in pool {pool.address} has a cache rate of {currentDuration} instead of {duration}")
                 changelist.append([address, token])
     return(changelist)
-def main():
-    print(set_cache_durations([Web3.toChecksumAddress("0x50cf90b954958480b8df7958a9e965752f627124")], 5000))
 
+def build_changes_tx_list(changelist, duration):
+    txlist =[]
+    with open(f"./tx_builder_templates/setTokenRateCacheDuration.json", "r") as f:
+        template = json.load(f)
+    for pool, token in changelist:
+        tx = template[0]
+        tx["to"] = pool
+        tx["contractInputsValues"]["token"] = token
+        tx["contractInputsValues"]["duration"] = duration
+        txlist.append(tx)
+    return txlist
+
+def get_action_id(chain, deployment, contract, call):
+    action_ids_list = f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/action-ids/{chain}/action-ids.json"
+    try:
+        result = requests.get(action_ids_list).json()
+    except requests.exceptions.HTTPError as err:
+        print(f"URL: {requests.request.url} returned error {err}")
+    return result[deployment][contract]["actionIds"][call]
+
+def grant_permissions(actionId, chain):
+    r = get_registry_by_chain_id(ALL_CHAINS_MAP[chain])
+    with open(f"./tx_builder_templates/authorizor_grant_roles.json", "r") as f:
+        template = json.load(f)
+    tx = template["transactions"][0]
+    tx["to"] = r.balancer.Authorizer
+    tx["contractInputsValues"]["roles"] =  [actionId]
+    tx["contractInputsValues"]["account"] = r.balancer.multisigs.dao
+    return tx
+
+def revoke_permissions(actionId, chain):
+    r = get_registry_by_chain_id(ALL_CHAINS_MAP[chain])
+    with open(f"./tx_builder_templates/authorizor_grant_roles.json", "r") as f:
+        template = json.load(f)
+    tx = template["transactions"][0]
+    tx["to"] = r.balancer.Authorizer
+    tx["contractMethod"]["name"] = "revokeRoles"
+    tx["contractInputsValues"]["roles"] =  [actionId]
+    tx["contractInputsValues"]["account"] = r.balancer.multisigs.dao
+    return tx
+
+
+def main(chain="mainnet"):
+    ###  Grant Permissions
+    tx_list = []
+    actionId = get_action_id(chain=chain,
+                              deployment="20230206-composable-stable-pool-v3",
+                              contract="ComposableStablePool",
+                              call="setTokenRateCacheDuration(address,uint256)")
+    tx_list.append(grant_permissions(actionId, chain))
+    ###  Make Changes
+    changelist = set_cache_durations([Web3.toChecksumAddress("0x50cf90b954958480b8df7958a9e965752f627124")], 21600)
+    tx_list.extend(build_changes_tx_list(changelist, 21600))
+    ###  Revoke Permissions
+    tx_list.append(revoke_permissions(actionId, chain))
+
+    with open(f"./rateChangeTxList.json", "w") as f:
+        json.dump(tx_list, f)
 
 if __name__ == "__main__":
     main()

@@ -22,7 +22,6 @@ def monorepo_addys_by_chain(chain_name):  ## TODO retire
     return monorepo_addresses
 
 
-
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 MANAGED_CHAINS = {
     "mainnet": 1,
@@ -69,14 +68,15 @@ ADDRESSES_ETH = {
         "minter": "0x239e55F427D44C3cc793f49bFB507ebe76638a2b",
         "gauge_controller": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
         "authorizer_adapter": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", #todo retire
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # todo retire
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "feeDistributor": "0xD3cf852898b21fc233251427c2DC93d3d604F3BB",
         "ProtocolFeesCollector": "0xce88686553686DA562CE7Cea497CE749DA109f9F",
         "ProtocolFeesWithdrawer": "0x5ef4c5352882b10893b70DbcaA0C000965bd23c5",
         "gauntletFeeSetter": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
         "maxi_gas_station": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A",
-        "poolRecoveryHelper": "0x1b300C86980a5195bCF49bD419A068D98dC133Db",  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/mainnet.json
+        "poolRecoveryHelper": "0x1b300C86980a5195bCF49bD419A068D98dC133Db",
+        # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/mainnet.json
     },
     "tokens": {
         "bb_a_usd": "0xa13a9247ea42d743238089903570127dda72fe44",
@@ -234,8 +234,9 @@ ADDRESSES_POLYGON = {
             "blabs_ops": "0xf9D6BdE5c2eef334AC88204CB2eEc07111DCBA97"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", #TODO retire
-        "poolRecoveryHelper": "0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA",  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/polygon.json
+        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # TODO retire
+        "poolRecoveryHelper": "0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA",
+        # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/polygon.json
 
     },
     "tokens": {
@@ -262,14 +263,15 @@ ADDRESSES_ARBITRUM = {
             "lm": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
             "dao": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
-            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", # fees is feeManager on Arbitrum
+            "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B",  # fees is feeManager on Arbitrum
             "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D",
             "blabs_ops": "0x56ebA8dcDcEC3161Dd220c4B4131c27aF201F892",
 
         },
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", # TODO retire
-        "poolRecoveryHelper": "0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2"  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/arbitrum.json
+        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # TODO retire
+        "poolRecoveryHelper": "0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2"
+        # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/arbitrum.json
     },
     "tokens": {
         "BADGER": "0xBfa641051Ba0a0Ad1b0AcF549a89536A0D76472E",
@@ -312,10 +314,10 @@ ADDRESSES_OPTIMISM = {
 
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", # TODO retire
+        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # TODO retire
 
-
-        "poolRecoveryHelper": "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9" # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/optimism.json
+        "poolRecoveryHelper": "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9"
+        # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/optimism.json
     },
     "tokens": {},
 }
@@ -402,8 +404,6 @@ registry = DotMap(
 )
 
 
-
-
 def monorepo_names_by_address(chain_name):
     r = get_registry_by_chain_id(MANAGED_CHAINS[chain_name])  # todo adapt to handle given chain
     monorepo_names = {}
@@ -415,14 +415,17 @@ def monorepo_names_by_address(chain_name):
     for name, address in r.balancer.multisigs.items():
         monorepo_names[address] = name
     if chain_name == "mainnet":
-        monorepo_names[ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]] = "gauntletFeeSetter"  # TODO this is ugly clean it up
+        monorepo_names[
+            ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]] = "gauntletFeeSetter"  # TODO this is ugly clean it up
     return monorepo_names
+
 
 def monorepo_addresses_by_name(chain_name):
     monorepo_addresses = {}
     for address, name in monorepo_names_by_address(chain_name).items():
         monorepo_addresses[name] = address
     return monorepo_addresses
+
 
 def flat_callers_by_chain(chain_name):
     reg = get_registry_by_chain_id(MANAGED_CHAINS[chain_name])
@@ -435,7 +438,7 @@ def flat_callers_by_chain(chain_name):
                     f"WARNING: Collision between {name}:{value} which is already in the list with value {callers[name]}")
             callers[name] = value
     if chain_name == "mainnet":
-        callers["gauntletFeeSetter"] = ADDRESSES_ETH["balancer"]["gauntletFeeSetter"] # TODO this is ugly clean it up
+        callers["gauntletFeeSetter"] = ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]  # TODO this is ugly clean it up
     return callers
 
 
