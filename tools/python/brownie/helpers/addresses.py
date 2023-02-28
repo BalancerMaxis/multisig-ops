@@ -12,7 +12,7 @@ except ImportError:
     chain = DotMap({"id": 1})
 
 
-def monorepo_addys_by_chain(chain_name):
+def monorepo_addys_by_chain(chain_name):  ## TODO retire
     monorepo_addresses = {}
     response = requests.get(
         f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json")
@@ -20,6 +20,7 @@ def monorepo_addys_by_chain(chain_name):
     for address, info in data.items():
         monorepo_addresses[info["name"]] = address
     return monorepo_addresses
+
 
 
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
@@ -42,7 +43,8 @@ ADDRESSES_ETH = {
             "feeManager": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6",
             "karpatkey": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
             "emergency": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
-            "maxi_ops": "0x166f54F44F271407f24AA1BE415a730035637325"
+            "maxi_ops": "0x166f54F44F271407f24AA1BE415a730035637325",
+            "blabs_ops": "0x02f35dA6A02017154367Bc4d47bb6c7D06C7533B"
         },
         "signers": {
             "maxis": {
@@ -228,7 +230,8 @@ ADDRESSES_POLYGON = {
             "dao": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
             "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B",  ## fees is feeManager on Polygon
-            "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
+            "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846",
+            "blabs_ops": "0xf9D6BdE5c2eef334AC88204CB2eEc07111DCBA97"
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", #TODO retire
@@ -260,9 +263,11 @@ ADDRESSES_ARBITRUM = {
             "dao": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
             "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B", # fees is feeManager on Arbitrum
-            "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
+            "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D",
+            "blabs_ops": "0x56ebA8dcDcEC3161Dd220c4B4131c27aF201F892",
+
         },
-        "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+        "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", # TODO retire
         "poolRecoveryHelper": "0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2"  #https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/arbitrum.json
     },
@@ -302,10 +307,13 @@ ADDRESSES_OPTIMISM = {
             "dao": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
             "fees": "0x09Df1626110803C7b3b07085Ef1E053494155089",  ## fees is LM on Optimism
             "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089",  ## fees is LM on Optimism
-            "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
+            "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+            "blabs_ops": "0xFB2ac3989B6AD0e043a8958004484d6BAAb2c6Ab"
+
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", # TODO retire
+
 
         "poolRecoveryHelper": "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9" # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/optimism.json
     },
@@ -349,10 +357,10 @@ ADDRESSES_GNOSIS["balancer"]["multisigs"] = dict({
     "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
     "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
     # All maxi operations concentrated into 1 multisig
-    "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
     "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
     "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a",
-    "blabs_ops": ZERO_ADDRESS
+    "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+    "blabs_ops": "0x955556b002d05c7B31a9394c10897c1DA19eAEab"
 })
 
 OTHER_STUFF = {
@@ -394,6 +402,28 @@ registry = DotMap(
 )
 
 
+
+
+def monorepo_names_by_address(chain_name):
+    r = get_registry_by_chain_id(MANAGED_CHAINS[chain_name])  # todo adapt to handle given chain
+    monorepo_names = {}
+    response = requests.get(
+        f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json")
+    data = response.json()
+    for address, info in data.items():
+        monorepo_names[address] = info["name"]
+    for name, address in r.balancer.multisigs.items():
+        monorepo_names[address] = name
+    if chain_name == "mainnet":
+        monorepo_names[ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]] = "gauntletFeeSetter"  # TODO this is ugly clean it up
+    return monorepo_names
+
+def monorepo_addresses_by_name(chain_name):
+    monorepo_addresses = {}
+    for address, name in monorepo_names_by_address(chain_name).items():
+        monorepo_addresses[name] = address
+    return monorepo_addresses
+
 def flat_callers_by_chain(chain_name):
     reg = get_registry_by_chain_id(MANAGED_CHAINS[chain_name])
     # Build a list of callers out of the multisigs and the other balancer addresses
@@ -404,6 +434,8 @@ def flat_callers_by_chain(chain_name):
                 print(
                     f"WARNING: Collision between {name}:{value} which is already in the list with value {callers[name]}")
             callers[name] = value
+    if chain_name == "mainnet":
+        callers["gauntletFeeSetter"] = ADDRESSES_ETH["balancer"]["gauntletFeeSetter"] # TODO this is ugly clean it up
     return callers
 
 
