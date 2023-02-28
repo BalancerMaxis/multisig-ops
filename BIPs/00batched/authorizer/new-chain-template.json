@@ -1,7 +1,7 @@
 [
   {
     "chain_map": {
-      "gnosis": 100
+      "mainnet": 1
     },
     "function_caller_map": {
       "setSwapFeePercentage(uint256)": "lm",
@@ -26,7 +26,7 @@
   },
   {
     "chain_map": {
-      "gnosis": 100
+      "mainnet": 1
     },
     "function_caller_map": {
       "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
@@ -42,7 +42,26 @@
     },
     "deployments": ["20210418-vault"]
   },
+
   {
+    "chain_map": {
+      "mainnet": 1
+    },
+    "function_caller_map": {
+      "setFeeTypePercentage(uint256,uint256)": "dao"
+    },
+    "deployments": ["20220725-protocol-fee-percentages-provider"]
+  },
+  {
+      "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
+      "addTokenToGauge(address,address,address)": "lm"
+    },
+    "deployments": ["20220527-child-chain-gauge-token-adder"]
+  },
+    {
     "chain_map": {
       "gnosis": 100
     },
@@ -52,31 +71,23 @@
     "deployments": ["20220413-child-chain-gauge-factory"]
   },
   {
-    "chain_map": {
-      "gnosis": 100
-    },
-    "function_caller_map": {
-      "setFeeTypePercentage(uint256,uint256)": "dao"
-    },
-    "deployments": ["20220725-protocol-fee-percentages-provider"]
-  },
-  {
-    "chain_map": {
-      "gnosis": 100
-    },
-    "function_caller_map": {
-      "addTokenToGauge(address,address,address)": "lm"
-    },
-    "deployments": ["20220527-child-chain-gauge-token-adder"]
-  },
-  {
-    "chain_map": {
-      "gnosis": 100
+      "chain_map": {
+      "mainnet": 1
     },
     "function_caller_map": {
       "denylistToken(address)": "emergency",
       "withdrawCollectedFees(address[],uint256[],address)": "lm"
     },
     "deployments": ["20220517-protocol-fee-withdrawer"]
+  },
+  {
+    "chain_map": {
+      "mainnet": 1
+    },
+    "function_caller_map": {
+     "removePoolFactory(address)": "blabs_ops",
+     "addPoolFactory(address)": "blabs_ops"
+    },
+    "deployments": ["20221123-pool-recovery-helper"]
   }
 ]

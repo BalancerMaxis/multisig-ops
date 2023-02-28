@@ -18,5 +18,8 @@
   "notify_reward_amount(address)": "Begins a seven day distribution of token rewards",
   "setFeeTypePercentage(uint256,uint256)": "Sets the protocol fee for a particular fee type for this deployment",
   "addTokenToGauge(address,address,address)": "Whitelists a new token to be used as a reward token for a particular gauge",
-  "denylistToken(address)": "Adds a token to the ProtocolFeeWithdrawer deny list which prevents the withdrawal of that token from the ProtocolFeeCollector"
+  "denylistToken(address)": "Adds a token to the ProtocolFeeWithdrawer deny list which prevents the withdrawal of that token from the ProtocolFeeCollector",
+  "addPoolFactory(address)": "Adds a Pool Factory and all pools it created to the [poolRecoveryHelper](https://forum.balancer.fi/t/bip-121-permission-granting-recovery-mode/4045#grant-the-following-roles-to-the-balancer-labs-ops-multisigs-on-each-network-5) for monitoring",
+  "removePoolFactory(address)": "Removes a Pool Factory and all pools it created to the [poolRecoveryHelper](https://forum.balancer.fi/t/bip-121-permission-granting-recovery-mode/4045#grant-the-following-roles-to-the-balancer-labs-ops-multisigs-on-each-network-5) for monitoring"
+
 }
