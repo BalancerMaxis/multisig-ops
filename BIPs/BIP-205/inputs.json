@@ -42,15 +42,7 @@
     },
     "deployments": ["20210418-vault"]
   },
-  {
-    "chain_map": {
-      "gnosis": 100
-    },
-    "function_caller_map": {
-      "notify_reward_amount(address)": "blabs_ops"
-    },
-    "deployments": ["20220413-child-chain-gauge-factory"]
-  },
+
   {
     "chain_map": {
       "gnosis": 100
@@ -74,9 +66,28 @@
       "gnosis": 100
     },
     "function_caller_map": {
+      "notify_reward_amount(address)": "blabs_ops"
+    },
+    "deployments": ["20220413-child-chain-gauge-factory"]
+  },
+  {
+    "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
       "denylistToken(address)": "emergency",
       "withdrawCollectedFees(address[],uint256[],address)": "lm"
     },
     "deployments": ["20220517-protocol-fee-withdrawer"]
+  },
+  {
+    "chain_map": {
+      "gnosis": 100
+    },
+    "function_caller_map": {
+      "removePoolFactory(address)": "blabs_ops",
+      "addPoolFactory(address)": "blabs_ops"
+    },
+    "deployments": ["20221123-pool-recovery-helper"]
   }
 ]
