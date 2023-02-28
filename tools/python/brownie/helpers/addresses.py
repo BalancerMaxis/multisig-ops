@@ -352,7 +352,7 @@ ADDRESSES_GNOSIS["balancer"]["multisigs"] = dict({
     "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
     "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
     "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a",
-    "blabs_ops": ZERO_ADDRESS
+    "blabs_ops": "0x955556b002d05c7B31a9394c10897c1DA19eAEab"
 })
 
 OTHER_STUFF = {
