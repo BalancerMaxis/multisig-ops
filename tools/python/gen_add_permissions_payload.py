@@ -1,7 +1,7 @@
 import json
 import requests
 from dotmap import DotMap
-from helpers.addresses import get_registry_by_chain_id, flat_callers_by_chain
+from helpers.addresses import get_registry_by_chain_id, monorepo_addresses_by_name
 import pandas as pd
 from datetime import date
 from web3 import Web3
@@ -15,6 +15,15 @@ debug = False
 INFURA_KEY = os.getenv('WEB3_INFURA_PROJECT_ID')
 BALANCER_DEPLOYMENTS_DIR = "../../../balancer-v2-monorepo/pkg/deployments"
 BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments"
+
+w3_by_chain = {
+    "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "optimism": Web3(Web3.HTTPProvider(f"https://optimism-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "polygon": Web3(Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/"))
+}
+
 
 ALL_CHAINS_MAP = {
         "mainnet": 1,
@@ -33,17 +42,20 @@ def load_input_data(input_json_file):
 
 
 
-def build_action_ids_map(input_data):
+def build_action_ids_map(input_data,):
     action_ids_map = {}
     for chain in ALL_CHAINS_MAP:
         action_ids_map[chain] = {}
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
-            callers_map = DotMap(flat_callers_by_chain(chain_name))
-            result = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
+            callers_map = DotMap(monorepo_addresses_by_name(chain_name))
+            monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
             for deployment in change["deployments"]:
+                if deployment not in monorepo_ids.keys():
+                    continue ## This deployment is not on this chain
+                print(deployment)
                 action_ids_map[chain_name][deployment] = {}
-                for contract, data in result[deployment].items():
+                for contract, data in monorepo_ids[deployment].items():
                     #action_ids_map[deployment][contract]
                     for function, action_id in data["actionIds"].items():
                         if function in change["function_caller_map"].keys():
@@ -53,37 +65,30 @@ def build_action_ids_map(input_data):
                                 fxcallers = [fxcallers]
                             for caller in fxcallers:
                                 if caller not in callers_map.keys():
-                                    print (f"caller:{caller}, function: {function}")
+                                    print (f"caller:{caller}, function: {function} not in caller map")
                                 action_ids_map[chain_name][deployment][function] = [action_id, caller]
     return action_ids_map
 
 
-def generate_change_list(actions_id_map, input_data, ignore_already_set=True):
+def generate_change_list(actions_id_map, ignore_already_set=True):
     changes = []
     for chain, deployments in actions_id_map.items():
-        registry = get_registry_by_chain_id(ALL_CHAINS_MAP[chain])
-        # Build a list of callers out of the multisigs and the other balancer addresses
-        callers = registry.balancer.multisigs
-        for name, value in registry.balancer.items():
-            assert name not in callers.keys()
-            if type(value) == str:
-                callers[name] = value
+        callers_map = DotMap(monorepo_addresses_by_name(chain))
         for deployment, functions in deployments.items():
             for function, action_id_and_caller_list in functions.items():
                 action_id = action_id_and_caller_list[0]
                 caller = action_id_and_caller_list[1]
-                assert type(callers[caller]) is str, f"caller {caller} has non-str target.  Does this name exist in the registry for this chain under balancer or balancer.mutlisigs?"
+                assert type(callers_map[caller]) is str, f"caller {caller} has non-str target of {callers_map[caller]}.  Does this name exist in the registry for this chain under balancer or balancer.multisigs?  Here is the full caller_map\n {callers_map}"
                 if function == "setSwapFeePercentage(uint256)" and chain == "mainnet":
-                    target_address=registry.balancer.gauntletFeeSetter
+                    target_address = callers_map.gauntletFeeSetter
                     target = "gauntletFeeSetter"
                 elif caller == "poolRecoveryHelper":
-                    target_address = registry.balancer.poolRecoveryHelper
+                    target_address = callers_map.poolRecoveryHelper
                     target = caller
                 else:
-                    target_address=callers[caller]
+                    target_address=callers_map[caller]
                     target = caller
-                #w3 = Web3(Web3.HTTPProvider(f"https://{chain}.infura.io/v3/{INFURA_KEY}"))
-                w3 = Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com"))
+                w3 = w3_by_chain[chain]
 
                 authorizer = w3.eth.contract(address="0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", abi=json.load(open("./abis/Authorizer.json")))
                 role_members = authorizer.functions.getRoleMemberCount(action_id).call()
@@ -185,11 +190,10 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
             json.dump(dict(data), f)
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/{today}.json"):
+def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/new-chain-template.json"):
     input_data = load_input_data(input_file)
-    action_ids_map = build_action_ids_map(input_data)
-    change_list = generate_change_list(action_ids_map, input_data, ignore_already_set=True)
-    print(change_list)
+    action_ids_map = build_action_ids_map(input_data=input_data)
+    change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=False)
     print_change_list(
         change_list=change_list,
         output_dir=output_dir
