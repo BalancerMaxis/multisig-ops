@@ -53,6 +53,13 @@ ADDRESSES_ETH = {
                 "xeonus": "0x7019Be4E4eB74cA5F61224FeAf687d2b43998516",
                 "danko": "0x200550cAD164E8e0Cb544A9c7Dc5c833122C1438",
                 "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F"
+            },
+            "blabs_ops": {
+                "Jeff": "0xBEf33200077A2A2AC3613aB92488b41FFc39AcE2",
+                "Markus": "0xCae6f77a6cf4C952BF36793D91519fb4Ae86C264",
+                "Mike": "0x91f4Df13350083eDb30515019cF527C6b0490c54",
+                "Nico": "0x815d654E930E840D0E0Ee1B18FFc8Fb4ddA4c6B3",
+                "Fernando": "0xbbF0Ae5195444264364CA7eb7E3BB1971B4c3eCb"
             }
         },
         "deployers": {
