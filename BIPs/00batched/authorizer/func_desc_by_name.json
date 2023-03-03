@@ -20,5 +20,7 @@
   "addTokenToGauge(address,address,address)": "Whitelists a new token to be used as a reward token for a particular gauge",
   "denylistToken(address)": "Adds a token to the ProtocolFeeWithdrawer deny list which prevents the withdrawal of that token from the ProtocolFeeCollector",
   "addPoolFactory(address)": "Adds a Pool Factory and all pools it created to the [poolRecoveryHelper](https://forum.balancer.fi/t/bip-121-permission-granting-recovery-mode/4045#grant-the-following-roles-to-the-balancer-labs-ops-multisigs-on-each-network-5) for monitoring",
-  "removePoolFactory(address)": "Removes a Pool Factory and all pools it created to the [poolRecoveryHelper](https://forum.balancer.fi/t/bip-121-permission-granting-recovery-mode/4045#grant-the-following-roles-to-the-balancer-labs-ops-multisigs-on-each-network-5) for monitoring"
+  "removePoolFactory(address)": "Removes a Pool Factory and all pools it created to the [poolRecoveryHelper](https://forum.balancer.fi/t/bip-121-permission-granting-recovery-mode/4045#grant-the-following-roles-to-the-balancer-labs-ops-multisigs-on-each-network-5) for monitoring",
+  "registerProtocolId(uint256,string)": "Register a new DeFi protocol in the [linear pool registry](https://forum.balancer.fi/t/bip-xxx-grant-balancer-maxis-the-authorisation-to-register-protocolids-for-linearpools/4435)",
+  "renameProtocolId(uint256,string)": "Change the name of a DeFi protocol in the [linear pool registry](https://forum.balancer.fi/t/bip-xxx-grant-balancer-maxis-the-authorisation-to-register-protocolids-for-linearpools/4435)"
 }

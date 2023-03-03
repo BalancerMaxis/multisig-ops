@@ -31,7 +31,8 @@ ALL_CHAINS_MAP = {
         "polygon": 137,
         "arbitrum": 42161,
         "optimism": 10,
-        "gnosis": 100
+        "gnosis": 100,
+        "goerli": 42
 }
 
 def load_input_data(input_json_file):
@@ -191,7 +192,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
             json.dump(dict(data), f)
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/new-chain-template.json"):
+def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/2023-03-03.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data=input_data)
     change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=False)
