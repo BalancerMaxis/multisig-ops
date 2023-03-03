@@ -1,0 +1,19 @@
+[
+  {
+    "deployments": [
+      "20230223-protocol-id-registry"
+    ],
+    "chain_map": {
+    "mainnet": 1,
+    "polygon": 137,
+    "arbitrum": 42161,
+    "optimism": 10,
+    "gnosis": 100,
+      "goerli": 42
+    },
+    "function_caller_map": {
+      "registerProtocolId(uint256,string)": "lm",
+      "renameProtocolId(uint256,string)" : "lm"
+    }
+  }
+]

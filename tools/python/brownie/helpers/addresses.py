@@ -336,6 +336,7 @@ ADDRESSES_GOERLI = {
         },
         "multisigs": {
             "maxi_ops": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7",
+            "lm": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7",
             "blab_ops": ZERO_ADDRESS
         }
     },
