@@ -10,15 +10,15 @@ from pandas import pandas as pd
 from brownie import interface
 
 fee_swap_target_token = r.tokens.USDC
-force_sweep_tokens = ["0x6a5ead5433a50472642cd268e584dafa5a394490"] # wstETH/LDO
-target_file = "../../../FeeSweep/2023-02-17-eth.json" ## Mainnet only
+#force_sweep_tokens = ["0x6a5ead5433a50472642cd268e584dafa5a394490"] # wstETH/LDO
+target_file = "../../../FeeSweep/2023-03-03-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
 
 
 today = str(date.today())
 
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
-dust_factor = 100000000
+dust_factor = 100000
 
 def setupSafe(address=r.balancer.multisigs.fees):
     safe = GreatApeSafe(r.balancer.multisigs.fees)
@@ -107,7 +107,7 @@ def cowswapFees(safe, sweeps):
     if len(error_tokens) > 0:
         print(f"The following tokens had problems and may not show up to be traded: {error_tokens}")
 
-def payFees(safe, half=False):
+def payFees(safe, half=True):
     distrbutor = safe.contract(r.balancer.feeDistributor)
     usd = safe.contract(r.tokens.bb_a_usd)
     bal = safe.contract(r.tokens.BAL)

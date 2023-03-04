@@ -82,7 +82,7 @@ def process_bribe_csv(
     return bribes
 
 def main(
-    csv_file="../../../Bribs/feb-17-2023.csv",
+    csv_file="../../../Bribs/2023-03-03.csv",
 ):
 
     safe = GreatApeSafe(r.balancer.multisigs.fees)
