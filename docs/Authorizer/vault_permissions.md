@@ -4,7 +4,7 @@
 ### Why Relayers?
 [Realyers](https://docs.balancer.fi/concepts/advanced/relayers.html) allow users to enable modular automations to asset in executing complex functions agains the vault.
 
-Beyond the migration example listed, here are some other cases in which relayers have been mentioned in governance:
+Beyond the migration example listed in the document above, here are some other cases in which relayers have been mentioned in governance:
 
 - [Nested join, exits and swaps](https://forum.balancer.fi/t/proposal-authorize-the-batch-relayer/2378): Allow more diverse joining/exit from pools with a single user transaction.
 - [Trading through boosted pools](https://forum.balancer.fi/t/proposal-polygon-authorize-batch-relayer-v2-for-usd-boosted-pool/2655)
@@ -23,7 +23,7 @@ For each of the functions listed below, the vault has special handling configure
 
 ### List of vault function selectors in the special Authroizer Permisisons Context
 
-- manageUserBalance : Utilize existing Vault allowances and internal balances so that a user does not have to re-approve the new relayer for each token.
+- manageUserBalance : Utilize existing Vault allowances and internal balances. Deposit and withdraw from the users balances in the vault.
 - joinPool : Add liquidity to a pool on the user’s behalf.
 - exitPool : Remove liquidity from a pool on the user’s behalf.
 - swap : Trade within a single pool on the user’s behalf.
@@ -31,3 +31,8 @@ For each of the functions listed below, the vault has special handling configure
 - setRelayerApproval : Approve another relayer on the user’s behalf ([user must still provide a signed message](https://github.com/balancer-labs/balancer-v2-monorepo/blob/63ffcf2018b02c038041540e4984bc6dd4a8c89c/pkg/vault/contracts/VaultAuthorization.sol#L96)).
 
 Because of heavy space optimizations in the vault source code, it is not obvious that these are the calls that participate in this context at glance. A third party review of the code that revealed this context better would make a nice Balancer Grant.
+
+### So what does it mean to approve a Relayer
+Functionally, if a relayer is approved both by Governance and an address the relayer can access all of the addresses vault positions as well as all ERC20 token approvals granted by the address to the vault contract.  
+
+Balancer relayers undergo strict security reviews and audits before authorizing relayers, but both users and multisigners should still take a minute to think about these transactions before executing.
