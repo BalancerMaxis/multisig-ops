@@ -1,0 +1,41 @@
+{
+  "transactions": [
+    {
+      "to": "0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "merkleProof",
+            "type": "bytes32[]"
+          }
+        ],
+        "name": "claim",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "index": "1",
+        "account": "0x03de3132e3D448cE03ADa2457F0bC779f18F553b",
+        "totalAmount": "1",
+        "merkleProof": "[]"
+      }
+    }
+  ]
+}

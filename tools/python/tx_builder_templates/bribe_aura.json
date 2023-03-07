@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1678120629582,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x73f80921e474cfb5384fe8343180d16087ec2efbba17dba8e3e4754373f9d01d"
+  },
+  "transactions": [
+    {
+      "to": "0x642c59937A62cf7dc92F70Fd78A13cEe0aa2Bd9c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "proposal",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "depositBribeERC20",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "proposal": "",
+        "token": "",
+        "amount": ""
+      }
+    }
+  ]
+}
