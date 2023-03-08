@@ -1,0 +1,190 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675964183483,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x404d83c03f32734e9342a0ae8a55a141feb6f1cd8faa4176ed26b3ab963d88f7"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xf49d7ffb5922642adc9f29cfb52b2214e81e0b0e54e9cd1e9f70439f0011f368",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    },
+    {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
+        "data": "0x3a04f9000000000000000000000000005a7f39435fd9c381e4932fa2047c9a5136a5e3e70000000000000000000000000000000000000000000000000000000000000004"
+      }
+    },
+    {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
+        "data": "0x3a04f900000000000000000000000000183d73da7adc5011ec3c46e33bb50271e59ec9760000000000000000000000000000000000000000000000000000000000000002"
+      }
+    },
+    {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
+        "data": "0x3a04f9000000000000000000000000007d890e2c7eeca435298880c083061a60dca8a8970000000000000000000000000000000000000000000000000000000000000002"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xf49d7ffb5922642adc9f29cfb52b2214e81e0b0e54e9cd1e9f70439f0011f368",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    },
+    {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x9703C0144e8b68280b97d9e30aC6f979Dd6A38d7",
+        "data": "0xab8f0945"
+      }
+    },
+    {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xC02b1b15888277B54Fb4903ef3Dedf4881a8c73A",
+        "data": "0xab8f0945"
+      }
+    }
+  ]
+}
