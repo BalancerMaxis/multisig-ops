@@ -92,7 +92,7 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                     target = caller
                 w3 = w3_by_chain[chain]
 
-                authorizer = w3.eth.contract(address="0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6", abi=json.load(open("./abis/Authorizer.json")))
+                authorizer = w3.eth.contract(address=callers_map["Authorizer"], abi=json.load(open("./abis/Authorizer.json")))
                 role_members = authorizer.functions.getRoleMemberCount(action_id).call()
                 if  role_members> 0:
                     if role_members == 1:
@@ -192,10 +192,11 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
             json.dump(dict(data), f)
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/2023-03-03.json"):
+
+def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data=input_data)
-    change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=False)
+    change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
     print_change_list(
         change_list=change_list,
         output_dir=output_dir
