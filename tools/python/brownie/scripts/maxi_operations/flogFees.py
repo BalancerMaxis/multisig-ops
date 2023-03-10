@@ -10,7 +10,7 @@ from pandas import pandas as pd
 from brownie import interface
 
 fee_swap_target_token = r.tokens.USDC
-#force_sweep_tokens = ["0x6a5ead5433a50472642cd268e584dafa5a394490"] # wstETH/LDO
+force_sweep_tokens = ["0x173063a30e095313eee39411f07e95a8a806014e", "0x5b3240B6BE3E7487d61cd1AFdFC7Fe4Fa1D81e64"] # temple and dollar w bbausd
 target_file = "../../../FeeSweep/2023-03-03-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
 
