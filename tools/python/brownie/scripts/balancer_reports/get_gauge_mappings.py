@@ -15,7 +15,7 @@ def dicts_to_table_string(dict_list, header=None):
         table.add_row(list(dict_.values()))
     return str(table)
 
-def main(tx_builder_json="../../../BIPs/BIP-200-to-204.json"):
+def main(tx_builder_json="../../../BIPs/BIP-208-209-210.json"):
     outputs = []
     with open(tx_builder_json, "r") as json_data:
         payload = json.load(json_data)
@@ -33,8 +33,8 @@ def main(tx_builder_json="../../../BIPs/BIP-200-to-204.json"):
         else: # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
             (command, inputs) = safe.contract(authorizer_target_contract).decode_input(transaction["contractInputsValues"]["data"])
 
-        print(command)
-        print(inputs)
+        #print(command)
+        #print(inputs)
         if len(inputs) == 0: ## Is a gauge kill
             gauge_type = "NA"
             gauge_address = transaction["contractInputsValues"]["target"]
@@ -44,14 +44,15 @@ def main(tx_builder_json="../../../BIPs/BIP-200-to-204.json"):
 
         #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
         gauge = safe.contract(gauge_address)
-        #print(f"processing {gauge} as a gauge with lp token {gauge.lp_token()}")
+        print(f"processing {gauge}")
         pool_token_list = []
-        print(gauge.selectors.values())
+        #print(gauge.selectors.values())
         fxSelectorToChain = {
             "getTotalBridgeCost": "L2: Arbitrum",
             "getPolygonBridge": "sidechain: Polygon",
             "getArbitrumBridge": "L2: Arbitrum",
-            "getGnosisBridge": "sidechain: Gnosis"
+            "getGnosisBridge": "sidechain: Gnosis",
+            "getOptimismBridge": "sidechain: Optimism"
         }
         sidechain = list(set(gauge.selectors.values()).intersection(list(fxSelectorToChain.keys())))
         if len(sidechain) > 0:
