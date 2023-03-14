@@ -28,7 +28,8 @@ MANAGED_CHAINS = {
     "polygon": 137,
     "arbitrum": 42161,
     "optimism": 10,
-    "gnosis": 100
+    "gnosis": 100,
+    "goerli": 5
 }
 
 ADDRESSES_ETH = {
@@ -266,7 +267,6 @@ ADDRESSES_ARBITRUM = {
             "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B",  # fees is feeManager on Arbitrum
             "emergency": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D",
             "blabs_ops": "0x56ebA8dcDcEC3161Dd220c4B4131c27aF201F892",
-
         },
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # TODO retire
@@ -305,10 +305,10 @@ ADDRESSES_OPTIMISM = {
     "zero": "0x0000000000000000000000000000000000000000",
     "balancer": {
         "multisigs": {
-            "lm": "0x09Df1626110803C7b3b07085Ef1E053494155089",
             "dao": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
             "fees": "0x09Df1626110803C7b3b07085Ef1E053494155089",  ## fees is LM on Optimism
             "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089",  ## fees is LM on Optimism
+            "lm": "0x09Df1626110803C7b3b07085Ef1E053494155089",
             "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
             "blabs_ops": "0xFB2ac3989B6AD0e043a8958004484d6BAAb2c6Ab"
 
@@ -338,6 +338,7 @@ ADDRESSES_GOERLI = {
         },
         "multisigs": {
             "maxi_ops": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7",
+            "lm": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7",
             "blab_ops": ZERO_ADDRESS
         }
     },

@@ -21,7 +21,8 @@ w3_by_chain = {
     "arbitrum": Web3(Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")),
     "optimism": Web3(Web3.HTTPProvider(f"https://optimism-mainnet.infura.io/v3/{INFURA_KEY}")),
     "polygon": Web3(Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")),
-    "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/"))
+    "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
+    "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
 }
 
 
@@ -30,7 +31,8 @@ ALL_CHAINS_MAP = {
         "polygon": 137,
         "arbitrum": 42161,
         "optimism": 10,
-        "gnosis": 100
+        "gnosis": 100,
+        "goerli": 42
 }
 
 def load_input_data(input_json_file):
@@ -189,6 +191,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         # Save tx builder json
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
             json.dump(dict(data), f)
+
 
 def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
