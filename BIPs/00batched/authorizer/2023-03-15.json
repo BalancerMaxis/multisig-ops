@@ -1,31 +1,22 @@
 [
   {
     "deployments": [
-      "20220908-weighted-pool-v2",
-      "20221122-composable-stable-pool-v2"
+      "20210418-vault"
     ],
     "chain_map": {
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
       "gnosis": 100
     },
     "function_caller_map": {
-      "disable()": "emergency"
-    }
-  },
-  {
-    "deployments": [
-      "20230206-weighted-pool-v3",
-      "20230206-composable-stable-pool-v3"
-    ],
-    "chain_map": {
-      "gnosis": 100
-    },
-    "function_caller_map": {
-      "setSwapFeePercentage(uint256)": "feeManager",
-      "startAmplificationParameterUpdate(uint256,uint256)": "feeManager",
-      "stopAmplificationParameterUpdate()": "feeManager",
-      "pause()": "emergency",
-      "disable()": "emergency",
-      "enableRecoveryMode()": "emergency"
+      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
+      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
+      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": "BalancerRelayer",
+      "manageUserBalance((uint8,address,uint256,address,address)[])": "BalancerRelayer",
+      "setRelayerApproval(address,address,bool)": "BalancerRelayer",
+      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": "BalancerRelayer"
     }
   }
 ]
