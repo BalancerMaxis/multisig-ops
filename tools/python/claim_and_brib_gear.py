@@ -55,6 +55,14 @@ def claim(claim_address, tree_address):
     return tx.toDict()
 
 
+def approve(token, spender, raw_amount):
+    with open("tx_builder_templates/approve.json", "r") as f:
+        tx = json.load(f)
+    tx["to"] = token
+    tx["contractInputsValues"]["spender"] = spender
+    tx["contractInputsValues"]["rawAmount"] = raw_amount
+    return tx
+
 def bribe_aura(gauge_address, bribe_token_address, amount):
     briber = w3.eth.contract(address=r.hidden_hand.aura_briber,abi=json.load(open("./abis/IAuraBriber.json")))
     target_name = get_gauge_name_map()[Web3.toChecksumAddress(gauge_address)]
@@ -64,7 +72,7 @@ def bribe_aura(gauge_address, bribe_token_address, amount):
     tx = data["transactions"][0]
     tx["contractInputsValues"]["proposal"] = prop
     tx["contractInputsValues"]["token"] = bribe_token_address
-    tx["contractInputsValues"]["amount"] = amount
+    tx["contractInputsValues"]["amount"] = str(amount)
     return tx
 
 
@@ -78,7 +86,10 @@ def main():
 
     ### Bribe
     claim_amount = claim_tx["contractInputsValues"]["totalAmount"]
-    bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.balancer.tokens.GEAR, amount=claim_amount)
+    print(f"Total CLaim {int(claim_amount)/10**18} GEAR")
+    approve_tx = approve(r.tokens.GEAR, r.balancer.multisigs.lm, claim_amount)
+    bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=claim_amount)
+    data["transactions"].append(approve_tx)
     data["transactions"].append(bribe_tx)
 
     data["meta"]["createdFromSafeAddress"] = r.balancer.multisigs.lm

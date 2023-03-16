@@ -7,7 +7,7 @@ import csv
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
 
-GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
@@ -42,7 +42,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     item_list = response.json()
     output = {}
     for mapping in item_list:
-        gauge_address = Web3.toChecksumAddress(mapping["gauge"])
+        gauge_address = Web3.toChecksumAddress(mapping["address"])
         output[gauge_address] = mapping["label"]
     return output
 
