@@ -87,13 +87,13 @@ def main():
     ### Bribe
     claim_amount = claim_tx["contractInputsValues"]["totalAmount"]
     print(f"Total CLaim {int(claim_amount)/10**18} GEAR")
-    approve_tx = approve(r.tokens.GEAR, r.balancer.multisigs.lm, claim_amount)
+    approve_tx = approve(r.tokens.GEAR, r.hidden_hand.bribe_vault, claim_amount)
     bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=claim_amount)
     data["transactions"].append(approve_tx)
     data["transactions"].append(bribe_tx)
 
     data["meta"]["createdFromSafeAddress"] = r.balancer.multisigs.lm
-    with open("result_payload.json", "w") as f: ## framework transaction
+    with open("gear_example_tx.json", "w") as f: ## framework transaction
         json.dump(data, f)
 
 
