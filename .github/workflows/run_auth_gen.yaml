@@ -45,6 +45,8 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Do Work
+      env:
+        INFURA_KEY: ${{ secrets.INFURA_KEY }}
       run: python3 gen_add_permissions_payload.py
 
     - name: Commit and push changes
