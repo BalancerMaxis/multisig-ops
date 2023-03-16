@@ -7,7 +7,7 @@ import csv
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
 
-GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/dca03719b4bdaec29fe7f28406abf4f4d2684c37/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/labels.json"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
