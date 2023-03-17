@@ -9,9 +9,14 @@ from helpers.addresses import r
 from pandas import pandas as pd
 from brownie import interface
 
-fee_swap_target_token = r.tokens.USDC
-force_sweep_tokens = ["0x173063a30e095313eee39411f07e95a8a806014e", "0x5b3240B6BE3E7487d61cd1AFdFC7Fe4Fa1D81e64"] # temple and dollar w bbausd
-target_file = "../../../FeeSweep/2023-03-03-eth.json" ## Mainnet only
+Adont_sweep_tokens = ["0xa718042E5622099E5F0aCe4E7122058ab39e1bbe",# TEMPLE/bbe
+                     "0xB5E3de837F869B0248825e0175DA73d4E8c3db6B", # RETH/bbeusd]
+                     "0x50Cf90B954958480b8DF7958A9E965752F627124", # bb-e-usd
+                     "0x4fD4687ec38220F805b6363C3c1E52D0dF3B5023", # wstETH/b-e-usd
+                    ]
+
+force_sweep_tokens = ["0xdac17f958d2ee523a2206206994597c13d831ec7"] # USDT
+target_file = "../../../FeeSweep/2023-17-03-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
 
 
@@ -43,6 +48,8 @@ def generateSweepFile(sourcefile):
         rounded_amount = "{:.4f}".format(amount)
         price = feeData["price"]
         usd_value = int(amount) * price
+        if address in dont_sweep_tokens:
+            continue
         if usd_value > sweep_limit or address in force_sweep_tokens:
             sweeps[address] = raw_amount
             report += f"Sweep {rounded_amount} of {symbol}({address}) worth ${usd_value}\n"
