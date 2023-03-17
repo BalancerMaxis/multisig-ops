@@ -15,6 +15,7 @@ dont_sweep_tokens = ["0xa718042E5622099E5F0aCe4E7122058ab39e1bbe".lower(),# TEMP
                      "0x4fD4687ec38220F805b6363C3c1E52D0dF3B5023".lower(), # wstETH/b-e-usd
                     ]
 
+swap_to_bal_tokens = [r.tokens.AURABAL, r.tokens.BalWeth8020]
 force_sweep_tokens = ["0xd33526068d116ce69f19a9ee46f0bd304f21a51f".lower()] # RPL
 target_file = "../../../FeeSweep/2023-03-17-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
@@ -83,15 +84,20 @@ def cowswapFees(safe, sweeps):
     error_tokens = []
     results = []
     usd = safe.contract(r.tokens.USDC)
+    bal = safe.contract(r.tokens.BAL)
     for address, amount in sweeps.items():
         if Web3.toChecksumAddress(address) == r.tokens.BAL or Web3.toChecksumAddress(address) == r.tokens.USDC:
             ## Don't sell BAL or USDC
             continue
         asset = safe.contract(address, Interface=interface.ERC20)
+        if address in swap_to_bal_tokens:
+            to_token = bal
+        else:
+            to_token = usd
         try:
             safe.cow.market_sell(
                 asset_sell=asset,
-                asset_buy=usd,
+                asset_buy=to_token,
                 mantissa_sell=amount,
                 deadline=60*60*4, ## 4 hours
                 chunks=1, # Use to break up large trades, if used more tha one resulting trade uid is returned.
