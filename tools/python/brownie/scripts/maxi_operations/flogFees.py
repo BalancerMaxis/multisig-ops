@@ -24,7 +24,7 @@ target_dir = "../../../FeeSweep" ## For reports
 today = str(date.today())
 
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
-dust_factor = 1000
+dust_factor = 1000000
 
 def setupSafe(address=r.balancer.multisigs.fees):
     safe = GreatApeSafe(r.balancer.multisigs.fees)
