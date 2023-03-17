@@ -5,7 +5,7 @@ from os import listdir
 from os.path import isfile, join
 
 ### Whitelist tokens are swept every run regardless of min amount.
-whitelist_tokens = ["0x6a5ead5433a50472642cd268e584dafa5a394490"]
+whitelist_tokens = []
 
 today = str(date.today())
 target_dir = "../../FeeSweep"
