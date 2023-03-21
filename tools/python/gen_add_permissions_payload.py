@@ -66,8 +66,8 @@ def build_action_ids_map(input_data,):
                             if isinstance(fxcallers, str):
                                 fxcallers = [fxcallers]
                             for caller in fxcallers:
-                                if caller not in callers_map.keys():
-                                    print (f"caller:{caller}, function: {function} not in caller map")
+                                #if caller not in callers_map.keys():
+                                #    print (f"caller:{caller}, function: {function} not in caller map")
                                 action_ids_map[chain_name][deployment][function] = [action_id, caller]
     return action_ids_map
 
@@ -80,14 +80,20 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
             for function, action_id_and_caller_list in functions.items():
                 action_id = action_id_and_caller_list[0]
                 caller = action_id_and_caller_list[1]
-                assert type(callers_map[caller]) is str, f"caller {caller} has non-str target of {callers_map[caller]}.  Does this name exist in the registry for this chain under balancer or balancer.multisigs?  Here is the full caller_map\n {callers_map}"
                 if function == "setSwapFeePercentage(uint256)" and chain == "mainnet":
                     target_address = callers_map.gauntletFeeSetter
                     target = "gauntletFeeSetter"
                 elif caller == "poolRecoveryHelper":
                     target_address = callers_map.poolRecoveryHelper
                     target = caller
+                elif "/" in caller:
+                    (task, contract) = caller.split("/")
+                    deployment_output = requests.get(
+                        f"{BALANCER_DEPLOYMENTS_URL}/tasks/{task}/output/{chain}.json").json()
+                    target = caller
+                    target_address = deployment_output[contract]
                 else:
+                    assert type(callers_map[caller]) is str, f"caller {caller} has non-str target of {callers_map[caller]}.  Does this name exist in the registry for this chain under balancer or balancer.multisigs?  Here is the full caller_map\n {callers_map}"
                     target_address=callers_map[caller]
                     target = caller
                 w3 = w3_by_chain[chain]
@@ -193,7 +199,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             json.dump(dict(data), f)
 
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/2023-03-16.json"):
+def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/BIP-214/inputs.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data=input_data)
     change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
