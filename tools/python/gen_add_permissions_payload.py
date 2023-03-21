@@ -199,7 +199,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             json.dump(dict(data), f)
 
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/BIP-214/inputs.json"):
+def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data=input_data)
     change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
