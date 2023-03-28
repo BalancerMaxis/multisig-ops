@@ -38,7 +38,7 @@ def main():
     # Extract the relevant information from the JSON file
     for json_file in json_files:
         if debug:
-            print(f"Processing ${json_file}")
+            print(f"Processing {json_file}")
         # Get the JSON file from the repository
         with open(f"{pr_branch_root}/{json_file}", "r") as json_data:
             data = json.load(json_data)

@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code (PR)
-        if: steps.BIPJSON.outputs.hasLabel == 'true'
         uses: actions/checkout@v3
         with:
           path: pr
