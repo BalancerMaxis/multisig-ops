@@ -15,7 +15,7 @@ def dicts_to_table_string(dict_list, header=None):
         table.add_row(list(dict_.values()))
     return str(table)
 
-def main(tx_builder_json="../../../BIPs/BIP-208-209-210.json"):
+def main(tx_builder_json="../../../BIPs/BIP-222-223.json"):
     outputs = []
     with open(tx_builder_json, "r") as json_data:
         payload = json.load(json_data)
