@@ -291,6 +291,7 @@ ADDRESSES_ARBITRUM = {
         "renBTC": "0xdbf31df14b66535af65aac99c32e9ea844e14501",
         "WETH": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
         "USDT": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+        "LDO": "0x13Ad51ed4F1B7e9Dc168d8a00cB3f4dDD85EfA60"
     },
     "coingecko_tokens": {
         "badger-dao": "0xbfa641051ba0a0ad1b0acf549a89536a0d76472e",
