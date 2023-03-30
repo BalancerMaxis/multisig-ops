@@ -87,6 +87,31 @@
       }
     },
     {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
+        "data": "0x3a04f9000000000000000000000000006661136537dfdca26eea05c8500502d7d5796e5e0000000000000000000000000000000000000000000000000000000000000002"
+      }
+    },
+    {
       "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
       "value": "0",
       "data": null,
