@@ -305,6 +305,10 @@ ADDRESSES_ARBITRUM = {
     "across": {
         "spoke_pool": "0xB88690461dDbaB6f04Dfad7df66B7725942FEb9C"
     },
+    "chainlink": {
+        "keeper_registry": "0x75c0530885F385721fddA23C539AF3701d6183D4",
+        "keeper_registrar": "0x4F3AF332A30973106Fe146Af0B4220bBBeA748eC",
+    },
     "sushi": {"router": "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"},
     "swapr": {"router": "0x530476d5583724A89c8841eB6Da76E7Af4C0F17E"},
     "arbitrum_node": "0x00000000000000000000000000000000000000C8",
@@ -380,6 +384,11 @@ OTHER_STUFF = {
     "ETH": {
         "chainlink_upkeeps": {
             "maxi_gas_station": "62602467182204477380138952081172885895406053754821061796893606503759482417757"
+        }
+    },
+    "ARB":  {
+        "chainlink_upkeeps": {
+            "LDO_Dripper": "23926380045016622619660764855689500906523687945821062548058919253617645725550"
         }
     }
 }
