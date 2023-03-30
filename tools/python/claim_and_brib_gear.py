@@ -19,7 +19,7 @@ GEARBOX_MERKLE_URL = "https://raw.githubusercontent.com/Gearbox-protocol/rewards
 GEARBOX_TREE="0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC"
 GAUGE_TO_BRIB="0x19A13793af96f534F0027b4b6a3eB699647368e7" ## bb-g-usd
 w3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}"))
-
+tree = w3.eth.contract(address=GEARBOX_TREE, abi=json.load(open("./abis/GearAirdropDistributor.json")))
 
 
 def sinlge_quote_list_string(list):
@@ -28,8 +28,7 @@ def sinlge_quote_list_string(list):
     return output
 
 
-def claim(claim_address, tree_address):
-    tree = w3.eth.contract(address=tree_address,abi=json.load(open("./abis/GearAirdropDistributor.json")))
+def claim(claim_address):
     b = tree.functions.merkleRoot().call()
     current_root =  binascii.hexlify(b).decode('utf-8')
     try:
@@ -77,15 +76,19 @@ def bribe_aura(gauge_address, bribe_token_address, amount):
 
 
 def main():
-    ### Claim
-    print(claim(r.balancer.multisigs.lm, GEARBOX_TREE))
+    ### Load Template
     with open("tx_builder_templates/base.json", "r") as f: ## framework transaction
         data = json.load(f)
-    claim_tx = claim(r.balancer.multisigs.lm, GEARBOX_TREE)
+
+    ### Claim
+    claim_tx = claim(r.balancer.multisigs.lm)
     data["transactions"].append(claim_tx)
+    total_earned = claim_tx["contractInputsValues"]["totalAmount"]
 
     ### Bribe
-    claim_amount = claim_tx["contractInputsValues"]["totalAmount"]
+    already_claimed = tree.functions.claimed(r.balancer.multisigs.lm).call()
+    claim_amount = str(int(total_earned) - int(already_claimed))
+
     print(f"Total CLaim {int(claim_amount)/10**18} GEAR")
     approve_tx = approve(r.tokens.GEAR, r.hidden_hand.bribe_vault, claim_amount)
     bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=claim_amount)
@@ -93,7 +96,7 @@ def main():
     data["transactions"].append(bribe_tx)
 
     data["meta"]["createdFromSafeAddress"] = r.balancer.multisigs.lm
-    with open("gear_example_tx.json", "w") as f: ## framework transaction
+    with open("../../Bribs/partner_lm/gear/2023w14.json", "w") as f: ## framework transaction
         json.dump(data, f)
 
 
