@@ -9,6 +9,8 @@ from helpers.addresses import r
 from pandas import pandas as pd
 from brownie import interface
 
+sweep_limit=2500
+
 dont_sweep_tokens = ["0xa718042E5622099E5F0aCe4E7122058ab39e1bbe".lower(),# TEMPLE/bbe
                      "0xB5E3de837F869B0248825e0175DA73d4E8c3db6B".lower(), # RETH/bbeusd]
                      "0x50Cf90B954958480b8DF7958A9E965752F627124".lower(), # bb-e-usd
@@ -39,7 +41,7 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
-    sweep_limit = 5000
+    sweep_limit
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
