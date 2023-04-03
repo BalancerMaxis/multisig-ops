@@ -59,40 +59,6 @@
       },
       "contractInputsValues": {
         "target": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
-        "data": "0x3a04f900000000000000000000000000508601c0ea0197afb08aa4cba698c1551f5da53f0000000000000000000000000000000000000000000000000000000000000003"
-      }
-    },
-    {
-      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          { "internalType": "address", "name": "target", "type": "address" },
-          { "internalType": "bytes", "name": "data", "type": "bytes" }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
-        "data": "0x3a04f90000000000000000000000000043E4bE3A89985c4f1fCB4c2D3bd7e6E0C5df42D30000000000000000000000000000000000000000000000000000000000000003"
-      }
-    },
-    {
-      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          { "internalType": "address", "name": "target", "type": "address" },
-          { "internalType": "bytes", "name": "data", "type": "bytes" }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
         "data": "0x3a04f9000000000000000000000000006661136537dfdca26eea05c8500502d7d5796e5e0000000000000000000000000000000000000000000000000000000000000002"
       }
     },
@@ -112,36 +78,6 @@
         "role": "0xf49d7ffb5922642adc9f29cfb52b2214e81e0b0e54e9cd1e9f70439f0011f368",
         "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
       }
-    },
-    {
-      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          { "internalType": "address", "name": "spender", "type": "address" },
-          { "internalType": "uint256", "name": "amount", "type": "uint256" }
-        ],
-        "name": "approve",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "spender": "0xA06a03d72F1b6350b3aA75524863823eB14dC864",
-        "amount": "200000000000000000000000"
-      }
-    },
-    {
-      "to": "0xA06a03d72F1b6350b3aA75524863823eB14dC864",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          { "internalType": "uint256", "name": "amount", "type": "uint256" }
-        ],
-        "name": "deposit",
-        "payable": false
-      },
-      "contractInputsValues": { "amount": "200000000000000000000000" }
     }
   ]
 }
