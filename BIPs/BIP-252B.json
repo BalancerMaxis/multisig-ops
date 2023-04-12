@@ -1,1 +1,40 @@
-{"version":"1.0","chainId":"1","createdAt":1681337103733,"meta":{"name":"timeless B","description":"","txBuilderVersion":"1.13.3","createdFromSafeAddress":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f","createdFromOwnerAddress":"","checksum":"0x41223d2681430f383148a3d31619e8b0526f185e3f40092f5aaea65cd61390f7"},"transactions":[{"to":"0x89f67f3054bFD662971854190Dbc18dcaBb416f6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"uint256","name":"_unlockTime","type":"uint256"},{"internalType":"uint256","name":"_minAmountOut","type":"uint256"}],"name":"createLock","payable":false},"contractInputsValues":{"_unlockTime":"1712959367","_minAmountOut":"0"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1681337103733,
+  "meta": {
+    "name": "timeless B",
+    "description": "",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x41223d2681430f383148a3d31619e8b0526f185e3f40092f5aaea65cd61390f7"
+  },
+  "transactions": [
+    {
+      "to": "0x89f67f3054bFD662971854190Dbc18dcaBb416f6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_unlockTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_minAmountOut",
+            "type": "uint256"
+          }
+        ],
+        "name": "createLock",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_unlockTime": "1712959367",
+        "_minAmountOut": "0"
+      }
+    }
+  ]
+}

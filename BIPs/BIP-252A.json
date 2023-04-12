@@ -1,1 +1,51 @@
-{"version":"1.0","chainId":"1","createdAt":1681337071060,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.13.3","createdFromSafeAddress":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f","createdFromOwnerAddress":"","checksum":"0xe0e739a0fe5e7ad5042cdc80a4e681ac5135fac96993b2a3d0b412eb4e9f19ac"},"transactions":[{"to":"0xba100000625a3754423978a60c9317c58a424e3D","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","payable":false},"contractInputsValues":{"recipient":"0x89f67f3054bFD662971854190Dbc18dcaBb416f6","amount":"50000000000000000000000"}},{"to":"0x7869296Efd0a76872fEE62A058C8fBca5c1c826C","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"address","name":"contractAddress","type":"address"}],"name":"allowlistAddress","payable":false},"contractInputsValues":{"contractAddress":"0x89f67f3054bFD662971854190Dbc18dcaBb416f6"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1681337071060,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xe0e739a0fe5e7ad5042cdc80a4e681ac5135fac96993b2a3d0b412eb4e9f19ac"
+  },
+  "transactions": [
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "recipient", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x89f67f3054bFD662971854190Dbc18dcaBb416f6",
+        "amount": "50000000000000000000000"
+      }
+    },
+    {
+      "to": "0x7869296Efd0a76872fEE62A058C8fBca5c1c826C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "contractAddress",
+            "type": "address"
+          }
+        ],
+        "name": "allowlistAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "contractAddress": "0x89f67f3054bFD662971854190Dbc18dcaBb416f6"
+      }
+    }
+  ]
+}
