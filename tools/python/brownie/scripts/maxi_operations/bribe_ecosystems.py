@@ -6,13 +6,14 @@ from web3 import Web3
 from great_ape_safe import GreatApeSafe
 from helpers.addresses import r
 import csv
-import time
+from datetime import date
 
+today = str(date.today())
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
 
-GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/dca03719b4bdaec29fe7f28406abf4f4d2684c37/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
@@ -47,7 +48,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     item_list = response.json()
     output = {}
     for mapping in item_list:
-        gauge_address = web3.toChecksumAddress(mapping["gauge"])
+        gauge_address = web3.toChecksumAddress(mapping["address"])
         output[gauge_address] = mapping["label"]
     return output
 
@@ -82,7 +83,7 @@ def process_bribe_csv(
     return bribes
 
 def main(
-    csv_file="../../../Bribs/2023-03-17.csv",
+    csv_file=f"../../../Bribs/{today}.csv",
 ):
 
     safe = GreatApeSafe(r.balancer.multisigs.fees)
