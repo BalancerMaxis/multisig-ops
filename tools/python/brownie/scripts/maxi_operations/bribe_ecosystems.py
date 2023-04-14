@@ -116,18 +116,20 @@ def main(
     usdc.approve(bribe_vault, total_mantissa)
 
     ### Do Payments
-    payments = 0
+    payments_usd = 0
     for target, amount in bribes["payment"].items():
         print(f"Paying out {amount} via direct transfer to {target}")
-        payments += amount;
-        usdc.transfer(target, amount)
-
+        usd_amount = amount * 10**usdc.decimals()
+        payments_usd = usd_amount
+        usdc.transfer(target, amount * 10**usdc.decimals())
+    payments = payments_usd * 10**usdc.decimals()
     ### Print report
+    print(f"******** Summary Report")
     print(f"*** Aura USDC: {total_aura_usdc}")
     print(f"*** Balancer USDC: {total_balancer_usdc}")
-    print(f"*** Payment USDC: {payments / 10**usdc.decimals}")
-    print(f"*** Total USDC: {total_usdc}")
-    print(f"*** Total mantissa: {total_mantissa}")
+    print(f"*** Payment USDC: {payments_usd}")
+    print(f"*** Total USDC: {total_usdc + payments_usd}")
+    print(f"*** Total mantissa: {int(total_mantissa + payments)}\n\n")
 
 
     ### BALANCER
@@ -135,12 +137,11 @@ def main(
         prop = web3.solidityKeccak(["address"], [Web3.toChecksumAddress(gauge)])
         mantissa = int(mantissa)
 
-        print("*** Posting Balancer Bribe:")
+        print("******* Posting Balancer Bribe:")
         print("*** Gauge Address:", gauge)
         print("*** Proposal hash:", prop.hex())
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
-        print("\n")
 
         if amount == 0:
             return
@@ -167,13 +168,12 @@ def main(
         prop = get_hh_aura_target(target_name)
         mantissa = int(amount * usdc_mantissa_multilpier)
         # NOTE: debugging prints to verify
-        print("*** Posting AURA Bribe:")
+        print("******* Posting AURA Bribe:")
         print("*** Target Gauge Address:", target)
         print("*** Target Gauge name:", target_name)
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
-        print("\n")
 
         if amount == 0:
             continue
