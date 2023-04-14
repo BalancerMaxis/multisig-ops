@@ -75,7 +75,8 @@ def process_bribe_csv(
     balancer_bribes = []
     bribes = {
         "aura": {},
-        "balancer": {}
+        "balancer": {},
+        "payment": {}
     }
     ## Parse briibes per platform
     for bribe in bribe_csv:
@@ -170,7 +171,12 @@ def main(
             usdc,  # address token
             mantissa,  # uint256 amount
         )
-
+    ### Payments
+    payments = 0
+    for target, amount in bribes["payment"].items():
+        print(f"Paying out {amount} via direct transfer to {target}")
+        payments += amount;
+        usdc.transfer(target, amount)
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")
     ### DO IT
