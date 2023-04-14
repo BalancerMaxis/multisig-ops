@@ -114,14 +114,18 @@ def main(
 
 
     usdc.approve(bribe_vault, total_mantissa)
-    ### Payments
+
+    ### Do Payments
     payments = 0
     for target, amount in bribes["payment"].items():
         print(f"Paying out {amount} via direct transfer to {target}")
         payments += amount;
         usdc.transfer(target, amount)
+
+    ### Print report
     print(f"*** Aura USDC: {total_aura_usdc}")
     print(f"*** Balancer USDC: {total_balancer_usdc}")
+    print(f"*** Payment USDC: {payments / 10**usdc.decimals}")
     print(f"*** Total USDC: {total_usdc}")
     print(f"*** Total mantissa: {total_mantissa}")
 
