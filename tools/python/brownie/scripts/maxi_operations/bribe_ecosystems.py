@@ -112,12 +112,19 @@ def main(
     total_usdc = total_balancer_usdc + total_aura_usdc
     total_mantissa = int(total_usdc * usdc_mantissa_multilpier)
 
+
+    usdc.approve(bribe_vault, total_mantissa)
+    ### Payments
+    payments = 0
+    for target, amount in bribes["payment"].items():
+        print(f"Paying out {amount} via direct transfer to {target}")
+        payments += amount;
+        usdc.transfer(target, amount)
     print(f"*** Aura USDC: {total_aura_usdc}")
     print(f"*** Balancer USDC: {total_balancer_usdc}")
     print(f"*** Total USDC: {total_usdc}")
     print(f"*** Total mantissa: {total_mantissa}")
 
-    usdc.approve(bribe_vault, total_mantissa)
 
     ### BALANCER
     def bribe_balancer(gauge, mantissa):
@@ -171,12 +178,7 @@ def main(
             usdc,  # address token
             mantissa,  # uint256 amount
         )
-    ### Payments
-    payments = 0
-    for target, amount in bribes["payment"].items():
-        print(f"Paying out {amount} via direct transfer to {target}")
-        payments += amount;
-        usdc.transfer(target, amount)
+
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")
     ### DO IT
