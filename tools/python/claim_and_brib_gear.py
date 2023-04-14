@@ -59,7 +59,7 @@ def approve(token, spender, raw_amount):
         tx = json.load(f)
     tx["to"] = token
     tx["contractInputsValues"]["spender"] = spender
-    tx["contractInputsValues"]["rawAmount"] = raw_amount
+    tx["contractInputsValues"]["rawAmount"] = str(raw_amount)
     return tx
 
 def bribe_aura(gauge_address, bribe_token_address, amount):
@@ -70,6 +70,22 @@ def bribe_aura(gauge_address, bribe_token_address, amount):
         data = json.load(f)
     tx = data["transactions"][0]
     tx["contractInputsValues"]["proposal"] = prop
+    tx["contractInputsValues"]["token"] = bribe_token_address
+    tx["contractInputsValues"]["amount"] = str(amount)
+    return tx
+
+def bribe_balancer(gauge_address, bribe_token_address, amount):
+    briber = w3.eth.contract(address=r.hidden_hand.balancer_briber, abi=json.load(open("./abis/IBalancerBribe.json")))
+    prop = Web3.solidityKeccak(["address"], [Web3.toChecksumAddress(gauge_address)])
+    amount = int(amount)
+
+    if amount == 0:
+        return
+
+    with open("tx_builder_templates/bribe_balancer.json", "r") as f:
+        data = json.load(f)
+    tx = data["transactions"][0]
+    tx["contractInputsValues"]["proposal"] = prop.hex()
     tx["contractInputsValues"]["token"] = bribe_token_address
     tx["contractInputsValues"]["amount"] = str(amount)
     return tx
@@ -87,16 +103,22 @@ def main():
 
     ### Bribe
     already_claimed = tree.functions.claimed(r.balancer.multisigs.lm).call()
-    claim_amount = str(int(total_earned) - int(already_claimed))
+    claim_amount = int(total_earned) - int(already_claimed)
+    aura_amount = int(claim_amount/2)
+    balancer_amount = claim_amount - aura_amount
 
     print(f"Total CLaim {int(claim_amount)/10**18} GEAR")
+    print(f"Aura: {int(aura_amount)/10**18}GEAR, Balancer: {int(balancer_amount)/10**18}")
+
     approve_tx = approve(r.tokens.GEAR, r.hidden_hand.bribe_vault, claim_amount)
-    bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=claim_amount)
+    bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(aura_amount))
     data["transactions"].append(approve_tx)
+    data["transactions"].append(bribe_tx)
+    bribe_tx = bribe_balancer(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(balancer_amount))
     data["transactions"].append(bribe_tx)
 
     data["meta"]["createdFromSafeAddress"] = r.balancer.multisigs.lm
-    with open("../../Bribs/partner_lm/gear/2023w14.json", "w") as f: ## framework transaction
+    with open(f"../../Bribs/partner_lm/gear/{today}.json", "w") as f: ## framework transaction
         json.dump(data, f)
 
 
