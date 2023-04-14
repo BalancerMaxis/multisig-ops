@@ -1,9 +1,11 @@
 from brownie import Contract
 from eth_abi import encode_abi
 import json
+from helpers.addresses import r
 
 
-multisig = "0x4D6175d58C5AceEf30F546C0d5A557efFa53A950"
+multisig = "0x7c68c42De679ffB0f16216154C996C354cF1161B"
+print (multisig)
 bbeusd= Contract("0x50Cf90B954958480b8DF7958A9E965752F627124")
 vault = Contract("0xBA12222222228d8Ba445958a75a0704d566BF2C8")
 bbeusdId = "0x50cf90b954958480b8df7958a9e965752f62712400000000000000000000046f"
@@ -22,7 +24,17 @@ types = ["uint8", "uint256"]
 tokens = {}
 
 txs = []
-## WD top level tokens
+
+## Sweep collector
+print("Sweeping fees")
+address_list = [bbeusd.address]
+amounts_list = [bbeusd.balanceOf(r.balancer.ProtocolFeesCollector) -1]
+sweeper = Contract(r.balancer.ProtocolFeesWithdrawer)
+print (address_list, amounts_list)
+txs.append(sweeper.withdrawCollectedFees(address_list, amounts_list, multisig, {"from": multisig}))
+
+
+## WD top level tokensswe
 for token in pooltokens:
     tokens[token] = Contract(token)
 
@@ -60,11 +72,12 @@ txlist = []
 
 # Pack all the input data from our txs into txjson format
 for tx in txs:
+    print(tx.input)
     j = txtemplate
     j["data"] = tx.input
     txlist.append(j)
 
-txtemplate = endjson["transactions"] = txlist
+endjson["transactions"] = txlist
 
 with open("eulerBreakoutOutput.json", "w") as f:
     json.dump(endjson, f)

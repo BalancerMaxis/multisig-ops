@@ -10,6 +10,7 @@ from pandas import pandas as pd
 from brownie import interface
 
 sweep_limit = 5000
+today = str(date.today())
 
 dont_sweep_tokens = ["0xa718042E5622099E5F0aCe4E7122058ab39e1bbe".lower(),# TEMPLE/bbe
                      "0xB5E3de837F869B0248825e0175DA73d4E8c3db6B".lower(), # RETH/bbeusd]
@@ -20,11 +21,10 @@ dont_sweep_tokens = ["0xa718042E5622099E5F0aCe4E7122058ab39e1bbe".lower(),# TEMP
 
 swap_to_bal_tokens = [r.tokens.AURABAL.lower(), r.tokens.BalWeth8020.lower()]
 force_sweep_tokens = []
-target_file = "../../../FeeSweep/2023-03-31-eth.json" ## Mainnet only
+target_file = f"../../../FeeSweep/{today}-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
 
 
-today = str(date.today())
 
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
 dust_factor = 1000000
@@ -151,7 +151,7 @@ def main():
     sweeps=generateSweepFile(target_file)
     claimFees(safe, sweeps)
     cowswapFees(safe, sweeps)
-    safe.post_safe_tx(gen_tenderly=False, replace_nonce=87)
+    safe.post_safe_tx(gen_tenderly=False)
 
 if __name__ == "__main__":
     main()
