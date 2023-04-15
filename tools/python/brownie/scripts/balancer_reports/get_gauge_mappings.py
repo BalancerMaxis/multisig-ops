@@ -95,7 +95,7 @@ def main(tx_builder_json="../../../BIPs/BIP-l2-gauge-migration/BIP-XXXB.json"):
             "gauge_type": gauge_type,
             "pool_name": pool_name,
             "lp_token": lp_token,
-            "styke": style
+            "style": style
         })
         #else:
         #    print(f"skipping non-mainnet gauge {gauge_address}")
