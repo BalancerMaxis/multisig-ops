@@ -16,17 +16,8 @@ def dicts_to_table_string(dict_list, header=None):
         table.add_row(list(dict_.values()))
     return str(table)
 
-INFURA_KEY  = os.getenv('WEB3_INFURA_PROJECT_ID')
-w3_by_chain = {
-    "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
-    "arbitrum": Web3(Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")),
-    "optimism": Web3(Web3.HTTPProvider(f"https://optimism-rpc.gateway.pokt.network")),
-    "polygon": Web3(Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")),
-    "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
-    "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
-}
 
-def main(tx_builder_json="../../../BIPs/BIP-242 thru 250.json"):
+def main(tx_builder_json="../../../BIPs/BIP-l2-gauge-migration/BIP-XXXB.json"):
     outputs = []
     with open(tx_builder_json, "r") as json_data:
         payload = json.load(json_data)
@@ -53,8 +44,8 @@ def main(tx_builder_json="../../../BIPs/BIP-242 thru 250.json"):
             gauge_type = inputs[1]
 
         #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
+        print(f"processing {gauge_address}")
         gauge = Contract(gauge_address)
-        print(f"processing {gauge}")
         pool_token_list = []
         #print(gauge.selectors.values())
         fxSelectorToChain = {
@@ -68,14 +59,23 @@ def main(tx_builder_json="../../../BIPs/BIP-242 thru 250.json"):
         fingerprintFx = list(set(gauge.selectors.values()).intersection(list(fxSelectorToChain.keys())))
         if len(fingerprintFx) > 0:  ## Is sidechain
             l2 = fxSelectorToChain[fingerprintFx[0]]
+            #print(l2, gauge.getRecipient())
             recipient = gauge.getRecipient()
             chain = f"{l2}-main"
             network.disconnect()
             network.connect(chain)
             l2hop1=Contract(recipient)
-            l2hop2=Contract(l2hop1.reward_receiver())
-            pool_name = l2hop2.name()
-            lp_token = l2hop2.lp_token()
+            ## Check if this is a new l0 style gauge
+            if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
+                l2hop2=Contract(l2hop1.reward_receiver())
+                pool_name = f"{l2}:{l2hop2.name()}"
+                lp_token = l2hop2.lp_token()
+                style = "ChildChainStreamer"
+            else: # L0 style
+                pool_name = f"{l2}:{l2hop1.name()}"
+                lp_token = l2hop1.lp_token()
+                style = "L0 sidechain"
+            ## Go back to mainnet
             network.disconnect()
             network.connect("mainnet")
         elif "name" not in gauge.selectors.values():
@@ -83,16 +83,19 @@ def main(tx_builder_json="../../../BIPs/BIP-242 thru 250.json"):
             escrow = Contract(recipient.getVotingEscrow())
             pool_name =  escrow.name()
             lp_token = Contract(escrow.token()).name()
+            style = "ve8020 Single Recipient"
         else:
             pool_name = gauge.name()
             lp_token = gauge.lp_token()
+            style = "mainnet"
 
         outputs.append({
             "function": command,
             "gauge_address": gauge_address,
             "gauge_type": gauge_type,
             "pool_name": pool_name,
-            "lp_token": lp_token
+            "lp_token": lp_token,
+            "styke": style
         })
         #else:
         #    print(f"skipping non-mainnet gauge {gauge_address}")
