@@ -14,6 +14,9 @@ def dicts_to_table_string(dict_list, header=None):
     table = PrettyTable(header)
     for dict_ in dict_list:
         table.add_row(list(dict_.values()))
+    table.align["pool_name"] = "l"
+    table.align["function"] = "l"
+    table.align["style"] = "l"
     return str(table)
 
 
@@ -68,11 +71,11 @@ def main(tx_builder_json="../../../BIPs/BIP-l2-gauge-migration/BIP-XXXB.json"):
             ## Check if this is a new l0 style gauge
             if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
                 l2hop2=Contract(l2hop1.reward_receiver())
-                pool_name = f"{l2}:{l2hop2.name()}"
+                pool_name = f"{l2.upper()}: {l2hop2.name()}"
                 lp_token = l2hop2.lp_token()
                 style = "ChildChainStreamer"
             else: # L0 style
-                pool_name = f"{l2}:{l2hop1.name()}"
+                pool_name = f"{l2.upper()}: {l2hop1.name()}"
                 lp_token = l2hop1.lp_token()
                 style = "L0 sidechain"
             ## Go back to mainnet
