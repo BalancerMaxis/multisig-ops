@@ -6,13 +6,14 @@ from web3 import Web3
 from great_ape_safe import GreatApeSafe
 from helpers.addresses import r
 import csv
-import time
+from datetime import date
 
+today = str(date.today())
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
 
-GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/dca03719b4bdaec29fe7f28406abf4f4d2684c37/tasks/snapshot/labels.json"
+GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 
 # queries for choices and proposals info
 QUERY_PROPOSAL_INFO = """
@@ -47,7 +48,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     item_list = response.json()
     output = {}
     for mapping in item_list:
-        gauge_address = web3.toChecksumAddress(mapping["gauge"])
+        gauge_address = web3.toChecksumAddress(mapping["address"])
         output[gauge_address] = mapping["label"]
     return output
 
@@ -74,7 +75,8 @@ def process_bribe_csv(
     balancer_bribes = []
     bribes = {
         "aura": {},
-        "balancer": {}
+        "balancer": {},
+        "payment": {}
     }
     ## Parse briibes per platform
     for bribe in bribe_csv:
@@ -82,7 +84,7 @@ def process_bribe_csv(
     return bribes
 
 def main(
-    csv_file="../../../Bribs/2023-03-17.csv",
+    csv_file=f"../../../Bribs/{today}.csv",
 ):
 
     safe = GreatApeSafe(r.balancer.multisigs.fees)
@@ -110,24 +112,36 @@ def main(
     total_usdc = total_balancer_usdc + total_aura_usdc
     total_mantissa = int(total_usdc * usdc_mantissa_multilpier)
 
-    print(f"*** Aura USDC: {total_aura_usdc}")
-    print(f"*** Balancer USDC: {total_balancer_usdc}")
-    print(f"*** Total USDC: {total_usdc}")
-    print(f"*** Total mantissa: {total_mantissa}")
 
     usdc.approve(bribe_vault, total_mantissa)
+
+    ### Do Payments
+    payments_usd = 0
+    for target, amount in bribes["payment"].items():
+        print(f"Paying out {amount} via direct transfer to {target}")
+        usd_amount = amount * 10**usdc.decimals()
+        payments_usd = usd_amount
+        usdc.transfer(target, amount * 10**usdc.decimals())
+    payments = payments_usd * 10**usdc.decimals()
+    ### Print report
+    print(f"******** Summary Report")
+    print(f"*** Aura USDC: {total_aura_usdc}")
+    print(f"*** Balancer USDC: {total_balancer_usdc}")
+    print(f"*** Payment USDC: {payments_usd}")
+    print(f"*** Total USDC: {total_usdc + payments_usd}")
+    print(f"*** Total mantissa: {int(total_mantissa + payments)}\n\n")
+
 
     ### BALANCER
     def bribe_balancer(gauge, mantissa):
         prop = web3.solidityKeccak(["address"], [Web3.toChecksumAddress(gauge)])
         mantissa = int(mantissa)
 
-        print("*** Posting Balancer Bribe:")
+        print("******* Posting Balancer Bribe:")
         print("*** Gauge Address:", gauge)
         print("*** Proposal hash:", prop.hex())
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
-        print("\n")
 
         if amount == 0:
             return
@@ -154,13 +168,12 @@ def main(
         prop = get_hh_aura_target(target_name)
         mantissa = int(amount * usdc_mantissa_multilpier)
         # NOTE: debugging prints to verify
-        print("*** Posting AURA Bribe:")
+        print("******* Posting AURA Bribe:")
         print("*** Target Gauge Address:", target)
         print("*** Target Gauge name:", target_name)
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
-        print("\n")
 
         if amount == 0:
             continue

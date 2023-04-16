@@ -9,19 +9,22 @@ from helpers.addresses import r
 from pandas import pandas as pd
 from brownie import interface
 
+sweep_limit = 5000
+today = str(date.today())
+
 dont_sweep_tokens = ["0xa718042E5622099E5F0aCe4E7122058ab39e1bbe".lower(),# TEMPLE/bbe
                      "0xB5E3de837F869B0248825e0175DA73d4E8c3db6B".lower(), # RETH/bbeusd]
                      "0x50Cf90B954958480b8DF7958A9E965752F627124".lower(), # bb-e-usd
                      "0x4fD4687ec38220F805b6363C3c1E52D0dF3B5023".lower(), # wstETH/b-e-usd
+                     "0x133d241F225750D2c92948E464A5a80111920331".lower(), # DOLA/bb-e-usd
                     ]
 
-swap_to_bal_tokens = [r.tokens.AURABAL, r.tokens.BalWeth8020]
-force_sweep_tokens = ["0xd33526068d116ce69f19a9ee46f0bd304f21a51f".lower()] # RPL
-target_file = "../../../FeeSweep/2023-03-17-eth.json" ## Mainnet only
+swap_to_bal_tokens = [r.tokens.AURABAL.lower(), r.tokens.BalWeth8020.lower()]
+force_sweep_tokens = []
+target_file = f"../../../FeeSweep/{today}-eth.json" ## Mainnet only
 target_dir = "../../../FeeSweep" ## For reports
 
 
-today = str(date.today())
 
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
 dust_factor = 1000000
@@ -39,7 +42,7 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
-    sweep_limit = 5000
+    sweep_limit
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
@@ -95,7 +98,7 @@ def cowswapFees(safe, sweeps):
         else:
             to_token = usd
         try:
-            safe.cow.market_sell(
+            result = safe.cow.market_sell(
                 asset_sell=asset,
                 asset_buy=to_token,
                 mantissa_sell=amount,
@@ -105,8 +108,9 @@ def cowswapFees(safe, sweeps):
             )
             results.append([str(asset.symbol()), str(asset.address), float(amount/10**asset.decimals()), str(result)])
         except:
-            print(f"Problems processing: {asset.address}")
-            error_tokens.append(asset.address)
+            if asset.address not in dont_sweep_tokens:
+                print(f"Problems processing: {asset.address}")
+                error_tokens.append(asset.address)
 
     ## Generate Report
     try:
@@ -144,7 +148,7 @@ def payFees(safe, half=True):
 
 def main():
     safe=setupSafe(r.balancer.multisigs.fees)
-    sweeps=generateSweepFile(safe, target_file)
+    sweeps=generateSweepFile(target_file)
     claimFees(safe, sweeps)
     cowswapFees(safe, sweeps)
     safe.post_safe_tx(gen_tenderly=False)
