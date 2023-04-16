@@ -13,7 +13,7 @@ target_dir = "../../FeeSweep"
 dust_factor = 1
 def generateSweepFile(sourcefile):
     # sweeps is a map with addresses as keys and sweep amounts as values
-    pct_to_sweep = 0.01
+    pct_to_sweep = 0.05
     sweeps = {}
     report = ""
     total = 0
