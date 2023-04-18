@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "chainId": 1,
+  "createdAt": 1680004312316,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "set_recipient_list(\"0xbaf1ee3d36347fab45acb987b9606ddbe99ba5d0\", [10*10**18, 20*10**18], [1,1,], \"0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A\", r.balancer.multisigs.lm, \"0x13Ad51ed4\n",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xc9ee3323e8dd9c717480579e569a38c8396a5b86b21b97a044912b993636afb1"
+  },
+  "transactions": [
+    {
+      "to": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "streamerAddresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "amountsPerPeriod",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint8[]",
+            "name": "maxPeriods",
+            "type": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "streamerAddresses": "[0xbaf1ee3d36347fab45acb987b9606ddbe99ba5d0, 0x48b024c6620b62ea65cd10914801ce062b436bb5]",
+        "amountsPerPeriod": [
+          10000000000000000000,
+          20000000000000000000
+        ],
+        "maxPeriods": [
+          1,
+          1
+        ]
+      }
+    }
+  ]
+}
