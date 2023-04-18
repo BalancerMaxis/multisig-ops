@@ -20,7 +20,7 @@ def dicts_to_table_string(dict_list, header=None):
     return str(table)
 
 
-def main(tx_builder_json="../../../BIPs/BIP-l2-gauge-migration/BIP-XXXB.json"):
+def main(tx_builder_json="../../../BIPs/BIP-262-L2-gauge-migration/BIP-262A.json"):
     outputs = []
     with open(tx_builder_json, "r") as json_data:
         payload = json.load(json_data)
