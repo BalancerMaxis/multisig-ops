@@ -37,7 +37,7 @@ jobs:
         run: |
           pwd
           ls
-          cd pools/python/brownie
+          cd tools/python/brownie
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements-actions.txt
