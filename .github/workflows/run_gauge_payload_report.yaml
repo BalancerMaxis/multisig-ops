@@ -12,50 +12,33 @@ jobs:
   payload_report:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v35
+      with:
+        files: |
+          **/BIPs/**/*.json
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
 
+    - name: Generate Report
+      id: gen-report
+      env:
+        PAYLOAD_LIST: steps.changed-files-specific.outputs.all_changed_files
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed == 'true'
+      run: |
+        cd tools/python/brownie
+        pip install -r requirements-actions.txt
+        cd tools/python/brownie
+        REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
+        echo "::set-output name=report-data::$REPORT"
 
-      - name: Checkout code (PR)
-        uses: actions/checkout@v2
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v35
-        with:
-          files: |
-            **/BIPs/**/*.json
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
-
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
-
-      - name: Install dependencies
-        run: |
-          pwd
-          ls
-          cd tools/python/brownie
-          python -m venv venv
-          source venv/bin/activate
-          pip install -r requirements-actions.txt
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
-
-      - name: Generate Report
-        id: gen-report
-        env:
-          PAYLOAD_LIST: steps.changed-files-specific.outputs.all_changed_files
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed == 'true'
-        run: |
-          cd tools/python/brownie
-          REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
-          echo "::set-output name=report-data::$REPORT"
-          
-      - name: Post Report as Comment
-        uses: mshick/add-pr-comment@v2
-        with:
-          message: |
-            ${{ steps.gen-report.outputs.report-data }}
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.gen-report.outputs.report-data != '' && steps.changed-files-specific.outputs.any_changed == 'true'
+    - name: Post Report as Comment
+      uses: mshick/add-pr-comment@v2
+      with:
+        message: |
+          ${{ steps.gen-report.outputs.report-data }}
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.gen-report.outputs.report-data != '' && steps.changed-files-specific.outputs.any_changed == 'true'
