@@ -32,7 +32,6 @@ jobs:
       run: |
         cd tools/python/brownie
         pip install -r requirements-actions.txt
-        cd tools/python/brownie
         REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
         echo "::set-output name=report-data::$REPORT"
 
