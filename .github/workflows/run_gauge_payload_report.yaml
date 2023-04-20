@@ -34,7 +34,7 @@ jobs:
         GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
         POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
         OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed :: 'true'
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed == 'true'
       run: |
         cd tools/python/brownie
         touch .env
