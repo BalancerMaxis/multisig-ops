@@ -39,12 +39,12 @@ jobs:
         cd tools/python/brownie
         touch .env
         pip install -r requirements-actions.txt
-        REPORT:`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
-        echo "::set-output name:report-data::$REPORT"
+        REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
+        echo "::set-output name=report-data::$REPORT"
 
     - name: Post Report as Comment
       uses: mshick/add-pr-comment@v2
       with:
         message: |
           ${{ steps.gen-report.outputs.report-data }}
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.gen-report.outputs.report-data !: '' && steps.changed-files-specific.outputs.any_changed :: 'true'
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.gen-report.outputs.report-data != '' && steps.changed-files-specific.outputs.any_changed == 'true'
