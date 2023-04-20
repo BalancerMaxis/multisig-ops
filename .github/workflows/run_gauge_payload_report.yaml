@@ -28,16 +28,23 @@ jobs:
       id: gen-report
       env:
         PAYLOAD_LIST: steps.changed-files-specific.outputs.all_changed_files
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed == 'true'
+        WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+        ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+        ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+        GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+        POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+        OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed :: 'true'
       run: |
         cd tools/python/brownie
+        touch .env
         pip install -r requirements-actions.txt
-        REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
-        echo "::set-output name=report-data::$REPORT"
+        REPORT:`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
+        echo "::set-output name:report-data::$REPORT"
 
     - name: Post Report as Comment
       uses: mshick/add-pr-comment@v2
       with:
         message: |
           ${{ steps.gen-report.outputs.report-data }}
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.gen-report.outputs.report-data != '' && steps.changed-files-specific.outputs.any_changed == 'true'
+      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.gen-report.outputs.report-data !: '' && steps.changed-files-specific.outputs.any_changed :: 'true'
