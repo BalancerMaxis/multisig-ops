@@ -12,21 +12,20 @@ jobs:
   merge_json:
     runs-on: ubuntu-latest
     steps:
+
+
+      - name: Checkout code (PR)
+        uses: actions/checkout@v2
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
+
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v35
         with:
           files: |
-            **/BIPs/**/*.json    
-
-      - name: Check for "GAUGE PAYLOADS" tag
+            **/BIPs/**/*.json
         if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
-        run: |
-          echo "GAUGE PAYLOADS tag is set"
 
-      - name: Checkout code (PR)
-        uses: actions/checkout@v2
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
