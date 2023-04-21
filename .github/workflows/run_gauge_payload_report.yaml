@@ -40,7 +40,11 @@ jobs:
         touch .env
         pip install -r requirements-actions.txt
         REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
+        echo "DEBUG CHECK"
+        echo $REPORT
         echo "::set-output name=report-data::$REPORT"
+        exit 0 
+        
 
     - name: Post Report as Comment
       uses: mshick/add-pr-comment@v2
