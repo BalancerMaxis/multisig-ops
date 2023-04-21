@@ -36,6 +36,8 @@ jobs:
         OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
       if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed == 'true'
       run: |
+        echo "CHANGED FILES"
+        echo $PAYLOAD_LIST
         cd tools/python/brownie
         touch .env
         pip install -r requirements-actions.txt
