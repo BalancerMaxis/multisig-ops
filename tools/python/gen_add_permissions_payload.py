@@ -97,6 +97,7 @@ def main(tx_builder_jsons=os.getenv('PAYLOAD_LIST')):
                 "pool_name": pool_name,
                 "lp_token": lp_token,
                 "style": style
+            })
 
     print(dicts_to_table_string(outputs, outputs[0].keys()))
 
