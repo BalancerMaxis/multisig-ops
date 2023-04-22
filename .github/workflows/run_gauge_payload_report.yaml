@@ -38,5 +38,5 @@ jobs:
     - name: Post Report as Comment
       uses: thollander/actions-comment-pull-request@v2
       with:
-        filePath: output.txt
+        filePath: action-scripts/brownie/output.txt
         reactions: eyes
