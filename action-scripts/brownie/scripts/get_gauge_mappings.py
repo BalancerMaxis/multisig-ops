@@ -45,7 +45,7 @@ def gen_report(payload_list):
     outputs = []
     report = ""
     for file in payload_list:
-        with open(f"../../../{file}", "r") as json_data:
+        with open(f"../../{file}", "r") as json_data:
             try:
                 payload = json.load(json_data)
             except:
