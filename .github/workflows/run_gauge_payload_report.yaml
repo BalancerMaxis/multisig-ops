@@ -26,7 +26,7 @@ jobs:
         GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
         POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
         OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-        PR_NUMBER: ${{ github.event.number }
+        PR_NUMBER: ${{ github.event.number }}
       run: |
         cd tools/python/brownie
         touch .env
