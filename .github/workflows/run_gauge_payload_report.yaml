@@ -36,8 +36,7 @@ jobs:
         echo output.txt "::set-output name=report-data::$REPORT"        
 
     - name: Post Report as Comment
-      uses: machine-learning-apps/pr-comment@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: thollander/actions-comment-pull-request@v2
       with:
-        path: output.txt
+        filePath: output.txt
+      reactions: eyes, rocket
