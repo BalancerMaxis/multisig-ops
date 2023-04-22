@@ -19,6 +19,8 @@ jobs:
     - name: Fetch pull request info
       id: pr-info
       uses: octokit/request-action@v2.x
+      env:
+        GITHUB_TOKEN = ${{ github.token }}
       with:
         route: GET /repos/:owner/:repo/pulls/:pull_number
         owner: ${{ github.repository_owner }}
