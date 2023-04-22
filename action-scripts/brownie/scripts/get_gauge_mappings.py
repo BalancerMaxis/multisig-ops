@@ -2,10 +2,12 @@ from brownie import Contract, network
 from helpers.addresses import r
 from web3 import Web3
 import json
-import requests
-from dotmap import DotMap
 from prettytable import PrettyTable
 import os
+from urllib.request import urlopen
+
+
+debug = False
 
 def dicts_to_table_string(dict_list, header=None):
     table = PrettyTable(header)
@@ -17,11 +19,41 @@ def dicts_to_table_string(dict_list, header=None):
     return str(table)
 
 
-def main(tx_builder_jsons=os.getenv('PAYLOAD_LIST')):
+
+def get_payload_list():
+    github_repo = os.environ["GITHUB_REPOSITORY"]
+    pr_number = os.environ["PR_NUMBER"]
+    api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
+    if debug:
+        print(f"api url: {api_url}")
+    url = urlopen(api_url)
+    pr_file_data = json.loads(url.read())
+
+    changed_files = []
+    for file_json in pr_file_data:
+        filename = (file_json['filename'])
+        if debug:
+            print(filename)
+        if "BIPs/" in filename and filename.endswith(".json"):
+            changed_files.append(filename)
+        if debug:
+            print(f"Changed Files:{changed_files}")
+    return changed_files
+
+
+def gen_report(payload_list):
     outputs = []
-    for payload in tx_builder_jsons:
-        with open(payload, "r") as json_data:
-            payload = json.load(json_data)
+    report = ""
+    for file in payload_list:
+        with open(f"../../{file}", "r") as json_data:
+            try:
+                payload = json.load(json_data)
+            except:
+                print(f"{file} is not proper json")
+                continue
+        if "transactions" not in payload.keys():
+            print(f"{file} json deos not contain a list of transactions")
+            continue
         tx_list = payload["transactions"]
         authorizer = Contract(r.balancer.authorizer_adapter)
         gauge_controller = Contract(r.balancer.gauge_controller)
@@ -89,16 +121,32 @@ def main(tx_builder_jsons=os.getenv('PAYLOAD_LIST')):
                 pool_name = gauge.name()
                 lp_token = gauge.lp_token()
                 style = "mainnet"
-
+            if "getRelativeWeightCap" in gauge.selectors.values():
+                cap = gauge.getRelativeWeightCap()/10**16
+            else:
+                cap = "N/A"
             outputs.append({
                 "function": command,
                 "gauge_address": gauge_address,
                 "gauge_type": gauge_type,
                 "pool_name": pool_name,
                 "lp_token": lp_token,
+                "gauge_cap": f"{cap}%",
                 "style": style
             })
 
-    print(dicts_to_table_string(outputs, outputs[0].keys()))
+        report += (f"Gauge changes found in {file}\n```")
+        report += dicts_to_table_string(outputs, outputs[0].keys())
+        report += "```\n"
+    return report
 
 
+def main():
+    report = gen_report(get_payload_list())
+    print(report)
+    with open("output.txt", "w") as f:
+        f.write(report)
+
+
+if __name__ == "__main__":
+    main()
