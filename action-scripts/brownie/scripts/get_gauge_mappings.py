@@ -137,7 +137,7 @@ def gen_report(payload_list):
 
         report += (f"Gauge changes found in {file}\n```")
         report += dicts_to_table_string(outputs, outputs[0].keys())
-        report += "```\n"
+        report += "\n```\n"
     return report
 
 
