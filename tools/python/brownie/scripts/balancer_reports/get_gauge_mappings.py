@@ -23,7 +23,14 @@ def main(tx_builder_jsons=os.getenv('PAYLOAD_LIST')):
     for payload in payload_list:
         print(payload)
         with open(payload, "r") as json_data:
-            payload = json.load(json_data)
+            try:
+                payload = json.load(json_data)
+            except:
+                print(f"{payload} is not proper json")
+                continue
+        if "transactions" not in payload.keys():
+            print(f"{payload} json deos not contain a list of transactions")
+            continue
         tx_list = payload["transactions"]
         authorizer = Contract(r.balancer.authorizer_adapter)
         gauge_controller = Contract(r.balancer.gauge_controller)
@@ -91,13 +98,17 @@ def main(tx_builder_jsons=os.getenv('PAYLOAD_LIST')):
                 pool_name = gauge.name()
                 lp_token = gauge.lp_token()
                 style = "mainnet"
-
+            if "getRelativeWeightCap" in gauge.selectors.values():
+                cap = gauge.getRelativeWeightCap()/10**16
+            else:
+                cap = "N/A"
             outputs.append({
                 "function": command,
                 "gauge_address": gauge_address,
                 "gauge_type": gauge_type,
                 "pool_name": pool_name,
                 "lp_token": lp_token,
+                "gauge_cap": f"{cap}%",
                 "style": style
             })
 

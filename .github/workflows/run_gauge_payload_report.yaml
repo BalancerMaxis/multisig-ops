@@ -1,42 +1,51 @@
 name: Generate Gauge Payload Report
-env:
-  LABEL: 'GAUGE PAYLOADS'
+
 on:
   pull_request:
-    types: [ opened, labeled, reopened ]
-    branches: [ main ]
-    tags:
-      - 'GAUGE PAYLOADS'
+    types: [opened, labeled, reopened]
+    branches: [main]
+
+env:
+  LABEL: 'Gauge Payloads'
 
 jobs:
   payload_report:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-    - name: Get changed files
-      id: changed-files
-      uses: tj-actions/changed-files@v35
-      with:
-        files: |
-          **/BIPs/**/*.json
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }}
 
-    - name: Generate Report
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Fetch pull request info
+      id: pr-info
+      uses: octokit/request-action@v2.x
+      with:
+        route: GET /repos/:owner/:repo/pulls/:pull_number
+        owner: ${{ github.repository_owner }}
+        repo: ${{ github.repository }}
+        pull_number: ${{ github.event.number }}
+        headers: |
+          Authorization: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get changed JSON files
+      id: changed-json-files
+      run: |
+        PR_FILES=$(echo ${{ steps.pr-info.outputs.data }} | jq -r '.files[].filename')
+        CHANGED_JSON_FILES=$(echo "$PR_FILES" | grep -E '^.*\.json$' || true)
+        echo "::set-output name=changed-json-files::${CHANGED_JSON_FILES}"
+
+    - name: Generate report
       id: gen-report
       env:
-        PAYLOAD_LIST: steps.changed-files-specific.outputs.all_changed_files
+        PAYLOAD_LIST: ${{ steps.changed-json-files.outputs.changed-json-files }}
         WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
         ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
         ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
         GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
         POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
         OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.changed-files-specific.outputs.any_changed == 'true'
       run: |
-        echo "CHANGED FILES"
+        echo "Changed JSON files:"
         echo $PAYLOAD_LIST
         cd tools/python/brownie
         touch .env
@@ -44,15 +53,6 @@ jobs:
         ## First one is for debug to print some outputs
         brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py
         REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
-        echo "DEBUG CHECK"
+        echo "Report:"
         echo $REPORT
-        echo "::set-output name=report-data::$REPORT"
-        exit 0 
-        
-
-    - name: Post Report as Comment
-      uses: mshick/add-pr-comment@v2
-      with:
-        message: |
-          ${{ steps.gen-report.outputs.report-data }}
-      if: ${{ contains(github.event.pull_request.labels.*.name, 'GAUGE PAYLOADS') }} && steps.gen-report.outputs.report-data != '' && steps.changed-files-specific.outputs.any_changed == 'true'
+       
