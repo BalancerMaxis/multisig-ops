@@ -31,8 +31,6 @@ jobs:
         cd tools/python/brownie
         touch .env
         pip install -r requirements-actions.txt
-        ## First one is for debug to print some outputs
-        brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py
         REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
         echo "::set-output name=report-data::$REPORT"        
 
