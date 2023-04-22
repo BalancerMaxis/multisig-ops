@@ -142,7 +142,8 @@ def gen_report(payload_list):
 
 
 def main():
-    report = gen_report(get_payload_list())
+    report = gen_report(["BIPs/BIP-261B.json"])
+    #report = gen_report(get_payload_list())
     print(report)
     with open("output.txt", "w") as f:
         f.write(report)
