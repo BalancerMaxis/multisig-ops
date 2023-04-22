@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 env:
-  LABEL: 'Gauge Payloads'
+  LABEL: 'GAUGE PAYLOADS'
 
 jobs:
   payload_report:
@@ -25,7 +25,7 @@ jobs:
         repo: ${{ github.repository }}
         pull_number: ${{ github.event.number }}
         headers: |
-          Authorization: ${{ secrets.GITHUB_TOKEN }}
+          Authorization: ${{ github.token }}
 
     - name: Get changed JSON files
       id: changed-json-files
