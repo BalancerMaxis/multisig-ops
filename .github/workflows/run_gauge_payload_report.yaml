@@ -16,26 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Fetch pull request info
-      id: pr-info
-      uses: octokit/request-action@v2.x
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        route: GET /repos/:owner/:repo/pulls/:pull_number
-        owner: ${{ github.repository_owner }}
-        repo: ${{ github.repository }}
-        pull_number: ${{ github.event.number }}
-        headers: |
-          Authorization: ${{ github.token }}
-
-    - name: Get changed JSON files
-      id: changed-json-files
-      run: |
-        PR_FILES=$(echo ${{ steps.pr-info.outputs.data }} | jq -r '.files[].filename')
-        CHANGED_JSON_FILES=$(echo "$PR_FILES" | grep -E '^.*\.json$' || true)
-        echo "::set-output name=changed-json-files::${CHANGED_JSON_FILES}"
-
     - name: Generate report
       id: gen-report
       env:
@@ -46,15 +26,18 @@ jobs:
         GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
         POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
         OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+        PR_NUMBER: ${{ github.event.number }
       run: |
-        echo "Changed JSON files:"
-        echo $PAYLOAD_LIST
         cd tools/python/brownie
         touch .env
         pip install -r requirements-actions.txt
         ## First one is for debug to print some outputs
         brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py
         REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
-        echo "Report:"
-        echo $REPORT
-       
+        echo "::set-output name=report-data::$REPORT"        
+
+    - name: Post Report as Comment
+      uses: mshick/add-pr-comment@v2
+      with:
+        message: |
+          ${{ steps.gen-report.outputs.report-data }}

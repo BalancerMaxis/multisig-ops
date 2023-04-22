@@ -2,10 +2,12 @@ from brownie import Contract, network
 from helpers.addresses import r
 from web3 import Web3
 import json
-import requests
-from dotmap import DotMap
 from prettytable import PrettyTable
 import os
+from urllib.request import urlopen
+
+
+debug = False
 
 def dicts_to_table_string(dict_list, header=None):
     table = PrettyTable(header)
@@ -17,19 +19,39 @@ def dicts_to_table_string(dict_list, header=None):
     return str(table)
 
 
-def main(tx_builder_jsons=os.getenv('PAYLOAD_LIST')):
-    payload_list = json.loads(tx_builder_jsons)
+
+def get_payload_list():
+    github_repo = os.environ["GITHUB_REPOSITORY"]
+    pr_number = os.environ["PR_NUMBER"]
+    api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
+    if debug:
+        print(f"api url: {api_url}")
+    url = urlopen(api_url)
+    pr_file_data = json.loads(url.read())
+
+    changed_files = []
+    for file_json in pr_file_data:
+        filename = (file_json['filename'])
+        if debug:
+            print(filename)
+        if "BIPs/" in filename and filename.endswith(".json"):
+            changed_files.append(filename)
+        if debug:
+            print(f"Changed Files:{changed_files}")
+    return changed_files
+
+
+def gen_report(payload_list):
     outputs = []
-    for payload in payload_list:
-        print(payload)
-        with open(payload, "r") as json_data:
+    for file in payload_list:
+        with open(f"../../../{file}", "r") as json_data:
             try:
                 payload = json.load(json_data)
             except:
-                print(f"{payload} is not proper json")
+                print(f"{file} is not proper json")
                 continue
         if "transactions" not in payload.keys():
-            print(f"{payload} json deos not contain a list of transactions")
+            print(f"{file} json deos not contain a list of transactions")
             continue
         tx_list = payload["transactions"]
         authorizer = Contract(r.balancer.authorizer_adapter)
@@ -111,7 +133,14 @@ def main(tx_builder_jsons=os.getenv('PAYLOAD_LIST')):
                 "gauge_cap": f"{cap}%",
                 "style": style
             })
+        print(f"Gauge changes found in {file}\n```")
+        print(dicts_to_table_string(outputs, outputs[0].keys()))
+        print("```\n")
 
-    print(dicts_to_table_string(outputs, outputs[0].keys()))
+
+def main():
+    gen_report(get_payload_list())
 
 
+if __name__ == "__main__":
+    main()
