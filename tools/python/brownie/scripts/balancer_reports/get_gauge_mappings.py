@@ -43,6 +43,7 @@ def get_payload_list():
 
 def gen_report(payload_list):
     outputs = []
+    report = ""
     for file in payload_list:
         with open(f"../../../{file}", "r") as json_data:
             try:
@@ -133,13 +134,18 @@ def gen_report(payload_list):
                 "gauge_cap": f"{cap}%",
                 "style": style
             })
-        print(f"Gauge changes found in {file}\n```")
-        print(dicts_to_table_string(outputs, outputs[0].keys()))
-        print("```\n")
+
+        report += (f"Gauge changes found in {file}\n```")
+        report += dicts_to_table_string(outputs, outputs[0].keys())
+        report += "```\n"
+    return report
 
 
 def main():
-    gen_report(get_payload_list())
+    report = gen_report(get_payload_list())
+    print(report)
+    with open("output.txt", "w") as f:
+        f.write(report)
 
 
 if __name__ == "__main__":

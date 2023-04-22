@@ -31,11 +31,13 @@ jobs:
         cd tools/python/brownie
         touch .env
         pip install -r requirements-actions.txt
-        REPORT=`brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py`
-        echo "::set-output name=report-data::$REPORT"        
+        brownie run --network mainnet scripts/balancer_reports/get_gauge_mappings.py
+        report = cat output.txt
+        echo output.txt "::set-output name=report-data::$REPORT"        
 
     - name: Post Report as Comment
-      uses: mshick/add-pr-comment@v2
+      uses: machine-learning-apps/pr-comment@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        message: |
-          ${{ steps.gen-report.outputs.report-data }}
+        path: output.txt
