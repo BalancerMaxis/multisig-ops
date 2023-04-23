@@ -12,6 +12,7 @@ except ImportError:
     chain = DotMap({"id": 1})
 
 
+
 def monorepo_addys_by_chain(chain_name):  ## TODO retire
     monorepo_addresses = {}
     response = requests.get(
@@ -482,25 +483,30 @@ def get_registry_by_chain_id(chain_id):
     elif chain_id == 100:
         return registry.gnosis
 
+try:
+    chain_id = chain.id
+except:
+    print("Error detecting chain.id from brownie, defaulting to 1.")
+    chain_id = 1
 
 def get_registry():
-    if chain.id == 1:
+    if chain_id == 1:
         return registry.eth
-    elif chain.id == 137:
+    elif chain_id == 137:
         return registry.poly
-    elif chain.id == 56:
+    elif chain_id == 56:
         return registry.bsc
-    elif chain.id == 42161:
+    elif chain_id == 42161:
         return registry.arbitrum
-    elif chain.id == 250:
+    elif chain_id == 250:
         return registry.ftm
-    elif chain.id == 10:
+    elif chain_id == 10:
         return registry.op
-    elif chain.id == 42:
+    elif chain_id == 42:
         return registry.kovan
-    elif chain.id == 5:
+    elif chain_id == 5:
         return registry.goerli
-    elif chain.id == 100:
+    elif chain_id == 100:
         return registry.gnosis
 
 
