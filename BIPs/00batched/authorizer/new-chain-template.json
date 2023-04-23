@@ -9,7 +9,7 @@
       "stopAmplificationParameterUpdate()": "lm",
       "pause()": "emergency",
       "disable()": "emergency",
-      "enableRecoveryMode()": ["emergency", "PoolRecoveryHelper"],
+      "enableRecoveryMode()": ["emergency", "20221123-pool-recovery-helper"],
       "setTargets": "lm"
     },
     "deployments": [
@@ -26,15 +26,15 @@
       "mainnet": 1
     },
     "function_caller_map": {
-      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
-      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
-      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": "BalancerRelayer",
-      "manageUserBalance((uint8,address,uint256,address,address)[])": "BalancerRelayer",
-      "setRelayerApproval(address,address,bool)": "BalancerRelayer",
-      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": "BalancerRelayer",
-      "withdrawCollectedFees(address[],uint256[],address)": "ProtocolFeesWithdrawer",
-      "setSwapFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
-      "setFlashLoanFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
+      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "20230314-batch-relayer-v5",
+      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "20230314-batch-relayer-v5",
+      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": "20230314-batch-relayer-v5",
+      "manageUserBalance((uint8,address,uint256,address,address)[])": "20230314-batch-relayer-v5",
+      "setRelayerApproval(address,address,bool)": "20230314-batch-relayer-v5",
+      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": "20230314-batch-relayer-v5",
+      "withdrawCollectedFees(address[],uint256[],address)": "20220517-protocol-fee-withdrawer",
+      "setSwapFeePercentage(uint256)": "20220517-protocol-fee-withdrawer",
+      "setFlashLoanFeePercentage(uint256)": "20220517-protocol-fee-withdrawer",
       "setPaused(bool)": "emergency"
     },
     "deployments": ["20210418-vault"]
