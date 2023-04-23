@@ -42,7 +42,6 @@ def get_payload_list():
 
 
 def gen_report(payload_list):
-    outputs = []
     report = ""
     for file in payload_list:
         with open(f"../../{file}", "r") as json_data:
@@ -54,6 +53,7 @@ def gen_report(payload_list):
         if "transactions" not in payload.keys():
             print(f"{file} json deos not contain a list of transactions")
             continue
+        outputs = []
         tx_list = payload["transactions"]
         authorizer = Contract(r.balancer.authorizer_adapter)
         gauge_controller = Contract(r.balancer.gauge_controller)
