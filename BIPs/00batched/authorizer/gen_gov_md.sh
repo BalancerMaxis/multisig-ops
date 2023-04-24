@@ -4,7 +4,7 @@
 
 #BIP_NUMBER = The BIP number for the governance
 #PR_NUMBER = The PR number for the governance
-date='2023-04-23'
+date=$(date '+%Y-%m-%d')
 BIP_DIR="../../BIP-$BIP_NUMBER"
 
 echo "Creating $BIP_DIR and moving generated files into place."
