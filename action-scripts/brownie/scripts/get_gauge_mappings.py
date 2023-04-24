@@ -5,6 +5,7 @@ import json
 from prettytable import PrettyTable
 import os
 from urllib.request import urlopen
+from pathlib import Path
 
 
 debug = False
@@ -41,18 +42,17 @@ def get_payload_list():
     return changed_files
 
 
-def gen_report(payload_list):
-    report = ""
-    for file in payload_list:
-        with open(f"../../{file}", "r") as json_data:
+
+def process_file(filename):
+        with open(filename, "r") as json_data:
             try:
                 payload = json.load(json_data)
             except:
-                print(f"{file} is not proper json")
-                continue
+                print(f"{filename} is not proper json")
+                return
         if "transactions" not in payload.keys():
-            print(f"{file} json deos not contain a list of transactions")
-            continue
+            print(f"{filename} json deos not contain a list of transactions")
+            return
         outputs = []
         tx_list = payload["transactions"]
         authorizer = Contract(r.balancer.authorizer_adapter)
@@ -66,7 +66,6 @@ def gen_report(payload_list):
                 (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
             else: # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
                 (command, inputs) = Contract(authorizer_target_contract).decode_input(transaction["contractInputsValues"]["data"])
-
             #print(command)
             #print(inputs)
             if len(inputs) == 0: ## Is a gauge kill
@@ -76,11 +75,9 @@ def gen_report(payload_list):
                 gauge_address = inputs[0]
                 gauge_type = inputs[1]
 
-            #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
-            #print(f"processing {gauge_address}")
+            print(f"processing {gauge_address}")
             gauge = Contract(gauge_address)
             pool_token_list = []
-            #print(gauge.selectors.values())
             fxSelectorToChain = {
                 "getTotalBridgeCost": "arbitrum",
                 "getPolygonBridge": "polygon",
@@ -102,11 +99,11 @@ def gen_report(payload_list):
                 if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
                     l2hop2=Contract(l2hop1.reward_receiver())
                     pool_name = f"{l2.upper()}: {l2hop2.name()}"
-                    lp_token = l2hop2.lp_token()
+                    lp_token = Contract(l2hop2.lp_token())
                     style = "ChildChainStreamer"
                 else: # L0 style
                     pool_name = f"{l2.upper()}: {l2hop1.name()}"
-                    lp_token = l2hop1.lp_token()
+                    lp_token = Contract(l2hop1.lp_token())
                     style = "L0 sidechain"
                 ## Go back to mainnet
                 network.disconnect()
@@ -115,37 +112,58 @@ def gen_report(payload_list):
                 recipient = Contract(gauge.getRecipient())
                 escrow = Contract(recipient.getVotingEscrow())
                 pool_name =  escrow.name()
-                lp_token = Contract(escrow.token()).name()
+                lp_token = Contract(escrow.token())
                 style = "ve8020 Single Recipient"
             else:
                 pool_name = gauge.name()
-                lp_token = gauge.lp_token()
+                lp_token = Contract(gauge.lp_token())
                 style = "mainnet"
             if "getRelativeWeightCap" in gauge.selectors.values():
                 cap = gauge.getRelativeWeightCap()/10**16
             else:
                 cap = "N/A"
+            if "getAmplificationParameter" in lp_token.selectors.values():
+                (aFactor, updating, percision) = lp_token.getAmplificationParameter()
+                aFactor = aFactor/percision
+                if updating:
+                    aFactor = f"UPDATING!! - {aFactor}"
+            else:
+                    aFactor  = "N/A"
             outputs.append({
                 "function": command,
                 "gauge_address": gauge_address,
-                "gauge_type": gauge_type,
+                "type": gauge_type,
                 "pool_name": pool_name,
                 "lp_token": lp_token,
-                "gauge_cap": f"{cap}%",
+                "cap": f"{cap}%",
+                "a_factor": aFactor,
                 "style": style
             })
 
-        report += (f"Gauge changes found in {file}\n```")
-        report += dicts_to_table_string(outputs, outputs[0].keys())
-        report += "\n```\n"
-    return report
+        return outputs
 
 
 def main():
-    report = gen_report(get_payload_list())
-    print(report)
+    #files = get_payload_list()
+    files = ["BIPs/BIP-200-to-204.json", "BIPs/test-1.json"]
+    comment = ""
+    for file in files:
+        file = f"../../{file}"
+        results = process_file(file)
+        if isinstance(results, dict):
+            #  Generate Comment
+            comment += (f"Gauge changes found in {file}\n```")
+            comment += dicts_to_table_string(results, results[0].keys())
+            comment += "\n```\n"
+            #  Write Report
+            p = Path(file)
+            p.rename(p.with_suffix('.report.txt'))
+            with open(p, "w") as report:
+                report.write(dicts_to_table_string(results, results[0].keys()))
+    # Handle comment
+    print(comment)
     with open("output.txt", "w") as f:
-        f.write(report)
+        f.write(comment)
 
 
 if __name__ == "__main__":
