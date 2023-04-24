@@ -484,23 +484,30 @@ def get_registry_by_chain_id(chain_id):
 
 
 def get_registry():
-    if chain.id == 1:
+    try:
+        chainId = chain.id
+    except AttributeError:
+        print(
+            "Warning.  Can't load brownie module in addresses.py.  get_registry() assumes mainnet, use get_registry_by_chain_id().  Assuming mainnet.")
+        chainId = 1
+
+    if chainId == 1:
         return registry.eth
-    elif chain.id == 137:
+    elif chainId == 137:
         return registry.poly
-    elif chain.id == 56:
+    elif chainId == 56:
         return registry.bsc
-    elif chain.id == 42161:
+    elif chainId == 42161:
         return registry.arbitrum
-    elif chain.id == 250:
+    elif chainId == 250:
         return registry.ftm
-    elif chain.id == 10:
+    elif chainId == 10:
         return registry.op
-    elif chain.id == 42:
+    elif chainId == 42:
         return registry.kovan
-    elif chain.id == 5:
+    elif chainId == 5:
         return registry.goerli
-    elif chain.id == 100:
+    elif chainId == 100:
         return registry.gnosis
 
 
