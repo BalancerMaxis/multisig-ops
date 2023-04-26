@@ -38,7 +38,6 @@ jobs:
         brownie run --network mainnet scripts/get_gauge_mappings.py
         REPORT=`cat output.txt`
         echo output.txt "::set-output name=report-data::$REPORT"
-        rm output.txt
 
     - name: Post Report as Comment
       uses: thollander/actions-comment-pull-request@v2
