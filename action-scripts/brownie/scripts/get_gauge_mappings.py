@@ -147,7 +147,7 @@ def gen_report(payload_list):
                 "style": style
             })
 
-        report += (f"{file}\n```\n")
+        report += (f"{file}\nCOMMIT: {os.environ['GITHUB_SHA']}\n```\n")
         report += dicts_to_table_string(outputs, outputs[0].keys())
         report += "\n```\n"
         reports.append(report)
@@ -156,8 +156,8 @@ def gen_report(payload_list):
 
 
 def main():
-    #reports = gen_report(["BIPs/BIP-262-L2-gauge-migration/BIP-262A.json"])
-    reports = gen_report(get_payload_list())
+    reports = gen_report(["BIPs/BIP-262-L2-gauge-migration/BIP-262A.json"])
+    #reports = gen_report(get_payload_list())
     ### Generate comment output
     with open("output.txt", "w") as f:
         for report in reports:
