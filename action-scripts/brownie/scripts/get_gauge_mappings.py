@@ -115,7 +115,7 @@ def gen_report(payload_list):
                 ## Check if this is a new l0 style gauge
                 if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
                     l2hop2=Contract(l2hop1.reward_receiver())
-                    (pool_name, pool_symbol, pool_address, poolId, pool_address, aFactor) = get_pool_info(l2hop2.lp_token())
+                    (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(l2hop2.lp_token())
                     style = "ChildChainStreamer"
                 else: # L0 style
                     (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(l2hop1.lp_token())
