@@ -156,8 +156,8 @@ def gen_report(payload_list):
 
 
 def main():
-    reports = gen_report(["BIPs/BIP-262-L2-gauge-migration/BIP-262A.json"])
-    #reports = gen_report(get_payload_list())
+    #reports = gen_report(["BIPs/BIP-262-L2-gauge-migration/BIP-262A.json"])
+    reports = gen_report(get_payload_list())
     ### Generate comment output
     with open("output.txt", "w") as f:
         for report in reports:
