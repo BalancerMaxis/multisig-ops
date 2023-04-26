@@ -44,3 +44,11 @@ jobs:
       with:
         filePath: action-scripts/brownie/output.txt
         reactions: eyes
+
+    - name: Commit and push reports
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Adding gauge reports to json payloads
+        commit_user_name: GitHub Actions
+        commit_user_email: github-actions[bot]@users.noreply.github.com
+        commit_author: Github Actions <noreply@users.noreply.github.com>

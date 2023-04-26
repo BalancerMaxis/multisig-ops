@@ -5,6 +5,7 @@ import json
 from prettytable import PrettyTable
 import os
 from urllib.request import urlopen
+from pathlib import Path
 
 
 debug = False
@@ -19,6 +20,16 @@ def dicts_to_table_string(dict_list, header=None):
     return str(table)
 
 
+def get_pool_info(poolAddress):
+    poolABI = json.load(open("abis/IBalPool.json", "r"))
+    Contract.from_abi
+    pool = Contract.from_abi(name="IBalPool", address=poolAddress, abi=poolABI)
+    try:
+        (aFactor, ramp, divisor) = pool.getAmplificationParameter()
+        aFactor = int(aFactor/divisor)
+    except:
+        aFactor = "N/A"
+    return(pool.name(), pool.symbol(), str(pool.getPoolId()), pool.address, aFactor)
 
 def get_payload_list():
     github_repo = os.environ["GITHUB_REPOSITORY"]
@@ -43,6 +54,7 @@ def get_payload_list():
 
 def gen_report(payload_list):
     report = ""
+    reports = []
     for file in payload_list:
         with open(f"../../{file}", "r") as json_data:
             try:
@@ -53,6 +65,8 @@ def gen_report(payload_list):
         if "transactions" not in payload.keys():
             print(f"{file} json deos not contain a list of transactions")
             continue
+        network.disconnect()
+        network.connect("mainnet")
         outputs = []
         tx_list = payload["transactions"]
         authorizer = Contract(r.balancer.authorizer_adapter)
@@ -101,12 +115,10 @@ def gen_report(payload_list):
                 ## Check if this is a new l0 style gauge
                 if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
                     l2hop2=Contract(l2hop1.reward_receiver())
-                    pool_name = f"{l2.upper()}: {l2hop2.name()}"
-                    lp_token = l2hop2.lp_token()
+                    (pool_name, pool_symbol, pool_address, poolId, pool_address, aFactor) = get_pool_info(l2hop2.lp_token())
                     style = "ChildChainStreamer"
                 else: # L0 style
-                    pool_name = f"{l2.upper()}: {l2hop1.name()}"
-                    lp_token = l2hop1.lp_token()
+                    (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(l2hop1.lp_token())
                     style = "L0 sidechain"
                 ## Go back to mainnet
                 network.disconnect()
@@ -114,12 +126,10 @@ def gen_report(payload_list):
             elif "name" not in gauge.selectors.values():
                 recipient = Contract(gauge.getRecipient())
                 escrow = Contract(recipient.getVotingEscrow())
-                pool_name =  escrow.name()
-                lp_token = Contract(escrow.token()).name()
+                (pool_name, pool_symbol, poolId, pool_address,  aFactor) = get_pool_info(escrow.token())
                 style = "ve8020 Single Recipient"
             else:
-                pool_name = gauge.name()
-                lp_token = gauge.lp_token()
+                (pool_name, pool_symbol, poolId, pool_address,  aFactor) = get_pool_info(gauge.lp_token())
                 style = "mainnet"
             if "getRelativeWeightCap" in gauge.selectors.values():
                 cap = gauge.getRelativeWeightCap()/10**16
@@ -127,25 +137,37 @@ def gen_report(payload_list):
                 cap = "N/A"
             outputs.append({
                 "function": command,
+                "pool_id": str(poolId),
+                "symbol": pool_symbol,
+                "pool_address": pool_address,
+                "aFactor": aFactor,
                 "gauge_address": gauge_address,
-                "gauge_type": gauge_type,
-                "pool_name": pool_name,
-                "lp_token": lp_token,
-                "gauge_cap": f"{cap}%",
+                "type": gauge_type,
+                "cap": f"{cap}%",
                 "style": style
             })
 
-        report += (f"Gauge changes found in {file}\n```")
+        report += (f"{file}\n```\n")
         report += dicts_to_table_string(outputs, outputs[0].keys())
         report += "\n```\n"
-    return report
+        reports.append(report)
+        report = ""
+    return reports
 
 
 def main():
-    report = gen_report(get_payload_list())
-    print(report)
+    #reports = gen_report(["BIPs/BIP-262-L2-gauge-migration/BIP-262A.json"])
+    reports = gen_report(get_payload_list())
+    ### Generate comment output
     with open("output.txt", "w") as f:
-        f.write(report)
+        for report in reports:
+            f.write(report)
+    ### Generate output files
+    for report in reports:
+        filename = Path(f"{report.splitlines()[0]}")
+        filename = filename.with_suffix(".report.txt")
+        with open(f"../../{filename}", "w") as f:
+            f.write(report)
 
 
 if __name__ == "__main__":
