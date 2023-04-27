@@ -91,6 +91,7 @@ def bribe_balancer(gauge_address, bribe_token_address, amount):
     return tx
 
 
+
 def main():
     ### Load Template
     with open("tx_builder_templates/base.json", "r") as f: ## framework transaction
@@ -101,7 +102,7 @@ def main():
     data["transactions"].append(claim_tx)
     total_earned = claim_tx["contractInputsValues"]["totalAmount"]
 
-    ### Bribe
+    ### Bribe Claimed
     already_claimed = tree.functions.claimed(r.balancer.multisigs.lm).call()
     claim_amount = int(total_earned) - int(already_claimed)
     aura_amount = int(claim_amount/2)
@@ -120,6 +121,21 @@ def main():
     data["meta"]["createdFromSafeAddress"] = r.balancer.multisigs.lm
     with open(f"../../Bribs/partner_lm/gear/{today}.json", "w") as f: ## framework transaction
         json.dump(data, f)
+
+    ### Build Payload for Gear
+    total_brib = 1000000 * 10**18
+    aura_amount = int(total_brib / 1)
+    balancer_amount = int(total_brib / 99)
+    approve_tx = approve(r.tokens.GEAR, r.hidden_hand.bribe_vault, claim_amount)
+    aura_bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(aura_amount))
+    bal_bribe_tx =  bribe_balancer(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(balancer_amount))
+    with open("tx_builder_templates/base.json", "r") as f: ## framework transaction
+        data = json.load(f)
+    data["transactions"] = [approve_tx, bal_bribe_tx, aura_bribe_tx]
+    with open(f"../../Bribs/partner_lm/gear/{today}-1m-gear.json", "w") as f: ## framework transaction
+        json.dump(data, f)
+
+
 
 
 if __name__ == "__main__":
