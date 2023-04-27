@@ -1,1 +1,138 @@
-{"version": "1.0", "chainId": "", "createdAt": 1675891944772, "meta": {"name": "Transactions Batch", "description": "", "txBuilderVersion": "1.13.2", "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860", "createdFromOwnerAddress": ""}, "transactions": [{"to": "0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC", "value": "0", "data": null, "contractMethod": {"inputs": [{"internalType": "uint256", "name": "index", "type": "uint256"}, {"internalType": "address", "name": "account", "type": "address"}, {"internalType": "uint256", "name": "totalAmount", "type": "uint256"}, {"internalType": "bytes32[]", "name": "merkleProof", "type": "bytes32[]"}], "name": "claim", "payable": false}, "contractInputsValues": {"index": "6915", "account": "0xc38c5f97B34E175FFd35407fc91a937300E33860", "totalAmount": "1569928055996348491364664", "merkleProof": "['0x11aa8ae448088fdb8a1efda71febbda71c4d73c3378446443ce2820cc2e3c1bc', '0xed730cb542effd1467050d93b99a45185e2b80472d2d686aeebd94e586cd567c', '0xa6ec70ee26cf1e42992785de1123c5de86fff042e997ad3cd5ffe5442d3ea975', '0x89e2a1341fb1ec16397ce79ed6b9d15d071be37d59573288cf50156cc7de0a27', '0xafb078e9689ea8d2ba9a72062e9638b3ad33bba8f56da96ebf78cefd5593667a', '0x950f0a7f2d35d3905b8eb0053d0c4326adeab20043a884df1f3235456b02c86b', '0x4e5ecb9adbeb76c75ab335d4f1cd959411f550c0debef21495941de057e2f8be', '0xb1e0d4d601bc19a8623340c51a286ebcd0711c58c5e2da93272acd66180ef6d6', '0x18560be87047eea6b0ef2dee48b3a6ad0be4180a7d41dc2eaa825338d3e45ab3', '0xccb1394b3b8b5e3467e8a187146479f33dc5ed82b7bb2a472efede792181b71b', '0xa5e9b54cfa42eb1563fb5b9afc62aa4279c7e682fa7e61bcdf95805e88328923', '0xa611a3107b8fab183251911559ba415506549ee1e7ddd9a4d9324904038b8177', '0x1df10ec847722b6888174de07368bb4b2f621a70d940f6ea5ade6878824d459a']"}}, {"to": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D", "value": "0", "data": null, "contractMethod": {"inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {"internalType": "uint256", "name": "rawAmount", "type": "uint256"}], "name": "approve", "payable": false}, "contractInputsValues": {"spender": "0x9DDb2da7Dd76612e0df237B89AF2CF4413733212", "rawAmount": "542695031927841866482477"}}, {"to": "0x642c59937A62cf7dc92F70Fd78A13cEe0aa2Bd9c", "value": "0", "data": null, "contractMethod": {"inputs": [{"internalType": "bytes32", "name": "proposal", "type": "bytes32"}, {"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "depositBribeERC20", "payable": false}, "contractInputsValues": {"proposal": "0xaf115a58c45e37d92502eef6fbc55fa5098602a3c96e2507898eedc1b361acf5", "token": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D", "amount": "271347515963920932143104"}}, {"to": "0x7Cdf753b45AB0729bcFe33DC12401E55d28308A9", "value": "0", "data": null, "contractMethod": {"inputs": [{"internalType": "bytes32", "name": "proposal", "type": "bytes32"}, {"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "depositBribeERC20", "payable": false}, "contractInputsValues": {"proposal": "0x4735553b91be8926bebb90d63080bc66942e8b953232f2257272e60476f1d7dd", "token": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D", "amount": "271347515963920934339373"}}]}
+{
+  "version": "1.0",
+  "chainId": "",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "merkleProof",
+            "type": "bytes32[]"
+          }
+        ],
+        "name": "claim",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "index": "6915",
+        "account": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "totalAmount": "1569928055996348491364664",
+        "merkleProof": "['0x11aa8ae448088fdb8a1efda71febbda71c4d73c3378446443ce2820cc2e3c1bc', '0xed730cb542effd1467050d93b99a45185e2b80472d2d686aeebd94e586cd567c', '0xa6ec70ee26cf1e42992785de1123c5de86fff042e997ad3cd5ffe5442d3ea975', '0x89e2a1341fb1ec16397ce79ed6b9d15d071be37d59573288cf50156cc7de0a27', '0xafb078e9689ea8d2ba9a72062e9638b3ad33bba8f56da96ebf78cefd5593667a', '0x950f0a7f2d35d3905b8eb0053d0c4326adeab20043a884df1f3235456b02c86b', '0x4e5ecb9adbeb76c75ab335d4f1cd959411f550c0debef21495941de057e2f8be', '0xb1e0d4d601bc19a8623340c51a286ebcd0711c58c5e2da93272acd66180ef6d6', '0x18560be87047eea6b0ef2dee48b3a6ad0be4180a7d41dc2eaa825338d3e45ab3', '0xccb1394b3b8b5e3467e8a187146479f33dc5ed82b7bb2a472efede792181b71b', '0xa5e9b54cfa42eb1563fb5b9afc62aa4279c7e682fa7e61bcdf95805e88328923', '0xa611a3107b8fab183251911559ba415506549ee1e7ddd9a4d9324904038b8177', '0x1df10ec847722b6888174de07368bb4b2f621a70d940f6ea5ade6878824d459a']"
+      }
+    },
+    {
+      "to": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x9DDb2da7Dd76612e0df237B89AF2CF4413733212",
+        "rawAmount": "542695031927841866482477"
+      }
+    },
+    {
+      "to": "0x642c59937A62cf7dc92F70Fd78A13cEe0aa2Bd9c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "proposal",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "depositBribeERC20",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "proposal": "0xaf115a58c45e37d92502eef6fbc55fa5098602a3c96e2507898eedc1b361acf5",
+        "token": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D",
+        "amount": "271347515963920932143104"
+      }
+    },
+    {
+      "to": "0x7Cdf753b45AB0729bcFe33DC12401E55d28308A9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "proposal",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "depositBribeERC20",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "proposal": "0x4735553b91be8926bebb90d63080bc66942e8b953232f2257272e60476f1d7dd",
+        "token": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D",
+        "amount": "271347515963920934339373"
+      }
+    }
+  ]
+}
