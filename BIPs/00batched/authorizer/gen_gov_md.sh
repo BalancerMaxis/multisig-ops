@@ -4,7 +4,8 @@
 
 #BIP_NUMBER = The BIP number for the governance
 #PR_NUMBER = The PR number for the governance
-date=$(date '+%Y-%m-%d')
+#date=$(date '+%Y-%m-%d')
+date=DATE
 BIP_DIR="../../BIP-$BIP_NUMBER"
 
 echo "Creating $BIP_DIR and moving generated files into place."
@@ -34,10 +35,10 @@ echo "[See Here](BIP-${BIP_NUMBER}.md) for the governance contents." > ${BIP_DIR
 
 rm .working*.md
 
+git pull
 git add $BIP_DIR/*
 git add -u # find moved files
 git commit -m "Setting up Payload Directory."
-git pull
 git push origin
 BRANCH=`git branch --show-current`
 git checkout staging

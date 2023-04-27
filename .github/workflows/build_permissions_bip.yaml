@@ -1,0 +1,35 @@
+name: Build Permissions Bip
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      PR_NUMBER:
+        description: 'The number of the PR with the a successful Generate Authorizor run'
+        require: true
+      BIP_NUMBER:
+        description: 'The number of the BIP to label everything as'
+        require: true
+      JSON_DATE:
+        description: 'The Date used on the generated JSON files (yyyy-mm-dd)'
+        require: true
+
+
+jobs:
+  refersh_books:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Generate Permissions BIP
+      id: doit
+      run: |
+          export PR_NUMBER=${{ github.event.inputs.PR_NUMBER }}
+          export BIP_NUMBER=${{ github.events.inputs.BIP_NUMBER }}
+          export DATE=${{ github.events.inputs.JSON_DATE }}
+          cd BIPs/00batched/authorizer
+          bash gen_gov_md.sh
+
