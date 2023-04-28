@@ -70,7 +70,7 @@ def process_bribe_csv(
 ):
     # Process the CSV
     # csv_format: target, platform, amount
-    bribe_csv = csv.DictReader(open(csv_file))
+    bribe_csv = list(csv.DictReader(open(csv_file)))
     aura_bribes = []
     balancer_bribes = []
     bribes = {
@@ -80,11 +80,15 @@ def process_bribe_csv(
     }
     ## Parse briibes per platform
     for bribe in bribe_csv:
-        bribes[bribe["platform"]][bribe["target"]] = float(bribe["amount"])
+        try:
+            bribes[bribe["platform"]][bribe["target"]] = float(bribe["amount"])
+        except:
+            assert(False, f"Error: The following brib didn't work, somethings probs obvisouly wrong: \b{bribe}")
     return bribes
 
 def main(
     csv_file=f"../../../Bribs/{today}.csv",
+    veBalFeeToken="0xa13a9247ea42d743238089903570127dda72fe44"
 ):
 
     safe = GreatApeSafe(r.balancer.multisigs.fees)
@@ -183,8 +187,12 @@ def main(
             mantissa,  # uint256 amount
         )
 
+    print(f"Swapping leftover USDC for {veBalFeeToken}")
+    usd = safe.contract(veBalFeeToken)
+    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), 8*60*60, 1, 0.995)
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")
+
     ### DO IT
     safe.post_safe_tx(gen_tenderly=False)
 

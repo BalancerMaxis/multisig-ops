@@ -10,7 +10,7 @@ whitelist_tokens = []
 today = str(date.today())
 target_dir = "../../FeeSweep"
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
-dust_factor = 100000000
+dust_factor = 10000
 def generateSweepFile(sourcefile):
     # sweeps is a map with addresses as keys and sweep amounts as values
     sweeps = {}
