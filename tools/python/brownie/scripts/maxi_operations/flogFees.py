@@ -12,12 +12,7 @@ from brownie import interface
 sweep_limit = 5000
 today = str(date.today())
 
-dont_sweep_tokens = ["0xa718042E5622099E5F0aCe4E7122058ab39e1bbe".lower(),# TEMPLE/bbe
-                     "0xB5E3de837F869B0248825e0175DA73d4E8c3db6B".lower(), # RETH/bbeusd]
-                     "0x50Cf90B954958480b8DF7958A9E965752F627124".lower(), # bb-e-usd
-                     "0x4fD4687ec38220F805b6363C3c1E52D0dF3B5023".lower(), # wstETH/b-e-usd
-                     "0x133d241F225750D2c92948E464A5a80111920331".lower(), # DOLA/bb-e-usd
-                    ]
+dont_sweep_tokens = []
 
 swap_to_bal_tokens = [r.tokens.AURABAL.lower(), r.tokens.BalWeth8020.lower()]
 force_sweep_tokens = []
@@ -102,9 +97,9 @@ def cowswapFees(safe, sweeps):
                 asset_sell=asset,
                 asset_buy=to_token,
                 mantissa_sell=amount,
-                deadline=60*60*4, ## 4 hours
+                deadline=60*60*8, ## 4 hours
                 chunks=1, # Use to break up large trades, if used more tha one resulting trade uid is returned.
-                coef=0.99 # Use to define slippage, this is multipled by the quoted market price to define min price.
+                coef=0.96 # Use to define slippage, this is multipled by the quoted market price to define min price.
             )
             results.append([str(asset.symbol()), str(asset.address), float(amount/10**asset.decimals()), str(result)])
         except:
