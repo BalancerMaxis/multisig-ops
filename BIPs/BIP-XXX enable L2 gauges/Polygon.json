@@ -1,1 +1,68 @@
-{"version":"1.0","chainId":"137","createdAt":1682696272010,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.13.3","createdFromSafeAddress":"0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85","createdFromOwnerAddress":"","checksum":"0x40e2dd994711928ec0a66d77ec4eb262b3a78d35a173712506f90e4473ba3d0e"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","payable":false},"contractInputsValues":{"role":"0x71b144ace6b2cd2762fedff00a9e45c9b7b742ee590f9d593c61e48b6c9ad790","account":"0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"}},{"to":"0x47B489bf5836f83ABD928C316F8e39bC0587B020","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"contract ILiquidityGaugeFactory","name":"factory","type":"address"}],"name":"addGaugeFactory","payable":false},"contractInputsValues":{"factory":"0x22625eEDd92c81a219A83e1dc48f88d54786B017"}},{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","payable":false},"contractInputsValues":{"role":"0x71b144ace6b2cd2762fedff00a9e45c9b7b742ee590f9d593c61e48b6c9ad790","account":"0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"}}]}
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1682696272010,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x40e2dd994711928ec0a66d77ec4eb262b3a78d35a173712506f90e4473ba3d0e"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x71b144ace6b2cd2762fedff00a9e45c9b7b742ee590f9d593c61e48b6c9ad790",
+        "account": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
+      }
+    },
+    {
+      "to": "0x47B489bf5836f83ABD928C316F8e39bC0587B020",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          }
+        ],
+        "name": "addGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0x22625eEDd92c81a219A83e1dc48f88d54786B017"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x71b144ace6b2cd2762fedff00a9e45c9b7b742ee590f9d593c61e48b6c9ad790",
+        "account": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
+      }
+    }
+  ]
+}
