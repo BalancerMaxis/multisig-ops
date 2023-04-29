@@ -8,7 +8,7 @@ debug = False
 
 
 def main():
-    all_bips = glob.glob("../../BIPs/**/*.json", recursive=True)
+    all_bips = glob.glob("../../BIPs/**/BIP-2*.json", recursive=True)
     runlist = []
     for file in all_bips:
         runlist.append(file.replace("../../",""))
@@ -18,12 +18,12 @@ def main():
     ### Generate comment output
     with open("output.txt", "w") as f:
         for report in reports:
-            f.write(report)
+            f.write(report)    `
     ### Generate output files
     for report in reports:
         filename = Path(f"{report.splitlines()[0]}")
         filename = filename.with_suffix(".report.txt")
-        with open(f"{filename}", "w") as f:
+        with open(f"../../{filename}", "w") as f:
             f.write(report)
 
 

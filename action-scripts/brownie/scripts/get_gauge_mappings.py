@@ -36,7 +36,6 @@ def get_pool_info(poolAddress):
         poolId = str(pool.getPoolId())
     except:
         poolId = "Custom"
-    print (poolAddress, aFactor)
     return(name,  symbol, poolId, pool.address, aFactor)
 
 def get_payload_list():
@@ -164,7 +163,7 @@ def gen_report(payload_list):
                 cap = "N/A"
 
             ### Do checks
-            print(pool_name)
+            print(f"Processed: {pool_name}, gauge: {gauge_address}, style: {style}")
             if "-gauge" in pool_symbol:
                 pool_address = f"ERROR: Gauge points to another Gauge: {pool_address}"
             if pool_symbol not in gauge_symbol:

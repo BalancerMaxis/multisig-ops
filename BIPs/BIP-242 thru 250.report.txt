@@ -1,0 +1,16 @@
+BIPs/BIP-242 thru 250.json
+COMMIT: custom
+```
++---------------------------+--------------------------------------------------------------------+----------------------+--------------------------------------------+---------+--------------------------------------------+------+--------+--------------------+
+| function                  |                              pool_id                               |        symbol        |                pool_address                | aFactor |               gauge_address                | type |  cap   | style              |
++---------------------------+--------------------------------------------------------------------+----------------------+--------------------------------------------+---------+--------------------------------------------+------+--------+--------------------+
+| add_gauge(address,int128) | 0x9001cbbd96f54a658ff4e6e65ab564ded76a543100000000000000000000050a | cbETH-bb-a-WETH-BPT  | 0x9001cBbD96F54a658FF4e6E65AB564DED76a5431 |    50   | 0x70c6A653e273523FADfB4dF99558737906c230c6 |  2   | 100.0% | mainnet            |
+| add_gauge(address,int128) | 0xee02583596aee94cccb7e8ccd3921d955f17982a00000000000000000000040a |       bb-a-USD       | 0xEE02583596AEE94ccCB7e8ccd3921d955f17982A |   2000  | 0xb2102335Ea09E0476F886Ef7a4e77170235c408E |  4   | 100.0% | ChildChainStreamer |
+| add_gauge(address,int128) | 0xb371aa09f5a110ab69b39a84b5469d29f9b22b76000000000000000000000b37 |      bb-am-USD       | 0xb371aA09F5a110AB69b39A84B5469d29f9b22B76 |   2000  | 0x8D7d227746eE06D2532903D6EF1F69D80647C0E7 |  3   | 100.0% | ChildChainStreamer |
+| add_gauge(address,int128) | 0x5a7f39435fd9c381e4932fa2047c9a5136a5e3e7000000000000000000000400 | wstETH-bb-a-WETH-BPT | 0x5A7f39435fD9c381e4932fa2047C9a5136A5E3E7 |   500   | 0x74d3aa5F9A2863DC22f6cF9c5faaca4E1fc86F75 |  4   | 100.0% | ChildChainStreamer |
+| add_gauge(address,int128) | 0x4a77ef015ddcd972fd9ba2c7d5d658689d090f1a000000000000000000000b38 | wstETH-bb-a-WETH-BPT | 0x4a77eF015ddcd972fd9BA2C7D5D658689D090f1A |   500   | 0x304a75f78C96767a814c36Aaa74d622ECf875d36 |  3   | 100.0% | ChildChainStreamer |
+| add_gauge(address,int128) | 0x87a867f5d240a782d43d90b6b06dea470f3f8f22000200000000000000000516 |  B-50COMP-50wstETH   | 0x87a867f5D240a782d43D90b6B06DEa470F3f8F22 |   N/A   | 0x2fC4506354166e8B9183FBB6A68cd9C5F3Fb9Bc5 |  2   | 100.0% | mainnet            |
+| add_gauge(address,int128) | 0x04248aabca09e9a1a3d5129a7ba05b7f17de768400000000000000000000050e |  qETH-bb-a-WETH-BPT  | 0x04248AAbca09E9a1a3D5129a7ba05b7F17DE7684 |   100   | 0xC764B55852F8849Ae69923e45ce077A576bF9a8d |  2   |  2.0%  | mainnet            |
+| add_gauge(address,int128) | 0x68e3266c9c8bbd44ad9dca5afbfe629022aee9fe000200000000000000000512 |    B-wjAura-wETH     | 0x68e3266C9C8bbD44ad9Dca5AFBfe629022AeE9fE |   N/A   | 0x2D42910D826e5500579D121596E98A6eb33C0a1b |  2   | 10.0%  | mainnet            |
++---------------------------+--------------------------------------------------------------------+----------------------+--------------------------------------------+---------+--------------------------------------------+------+--------+--------------------+
+```
