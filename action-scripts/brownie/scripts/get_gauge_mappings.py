@@ -7,7 +7,6 @@ import os
 from urllib.request import urlopen
 from pathlib import Path
 
-
 debug = False
 
 def dicts_to_table_string(dict_list, header=None):
@@ -70,6 +69,9 @@ def gen_report(payload_list):
             except:
                 print(f"{file} is not proper json")
                 continue
+        if isinstance(payload, dict) is False:
+            print(f"{file} json is not a dict")
+            continue
         if "transactions" not in payload.keys():
             print(f"{file} json deos not contain a list of transactions")
             continue
