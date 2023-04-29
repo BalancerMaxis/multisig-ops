@@ -168,7 +168,7 @@ def gen_report(payload_list):
             print(f"Processed: {pool_name}, gauge: {gauge_address}, style: {style}")
             if "-gauge" in pool_symbol:
                 pool_address = f"ERROR: Gauge points to another Gauge: {pool_address}"
-            if pool_symbol not in gauge_symbol:
+            if pool_symbol not in gauge_symbol and "N/A" not in gauge_symbol:
                 gauge_address = f"ERROR, {gauge_symbol} doesnt match {pool_symbol}: {gauge_address}"
 
             outputs.append({
