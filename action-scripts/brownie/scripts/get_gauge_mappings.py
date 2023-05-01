@@ -7,7 +7,6 @@ import os
 from urllib.request import urlopen
 from pathlib import Path
 
-
 debug = False
 
 def dicts_to_table_string(dict_list, header=None):
@@ -22,14 +21,21 @@ def dicts_to_table_string(dict_list, header=None):
 
 def get_pool_info(poolAddress):
     poolABI = json.load(open("abis/IBalPool.json", "r"))
-    Contract.from_abi
     pool = Contract.from_abi(name="IBalPool", address=poolAddress, abi=poolABI)
     try:
         (aFactor, ramp, divisor) = pool.getAmplificationParameter()
         aFactor = int(aFactor/divisor)
+        if not isinstance(aFactor, int):
+            aFactor = "N/A"
     except:
         aFactor = "N/A"
-    return(pool.name(), pool.symbol(), str(pool.getPoolId()), pool.address, aFactor)
+    name = pool.name()
+    symbol = pool.symbol()
+    try:
+        poolId = str(pool.getPoolId())
+    except:
+        poolId = "Custom"
+    return(name,  symbol, poolId, pool.address, aFactor)
 
 def get_payload_list():
     github_repo = os.environ["GITHUB_REPOSITORY"]
@@ -56,12 +62,16 @@ def gen_report(payload_list):
     report = ""
     reports = []
     for file in payload_list:
+        print(f"Processing: {file}")
         with open(f"../../{file}", "r") as json_data:
             try:
                 payload = json.load(json_data)
             except:
                 print(f"{file} is not proper json")
                 continue
+        if isinstance(payload, dict) is False:
+            print(f"{file} json is not a dict")
+            continue
         if "transactions" not in payload.keys():
             print(f"{file} json deos not contain a list of transactions")
             continue
@@ -69,15 +79,28 @@ def gen_report(payload_list):
         network.connect("mainnet")
         outputs = []
         tx_list = payload["transactions"]
-        authorizer = Contract(r.balancer.authorizer_adapter)
         gauge_controller = Contract(r.balancer.gauge_controller)
-        vault = Contract(r.balancer.vault)
         for transaction in tx_list:
             if transaction["contractMethod"]["name"] != "performAction":
                 continue ## Not an Authorizer tx
             authorizer_target_contract = Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
             if authorizer_target_contract == gauge_controller:
-                (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
+                try:
+                    (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
+                except:
+                    print(f"\n\n\n ERROR: bad call data to gauge controller: {transaction['contractInputsValues']['data']}")
+                    outputs.append({
+                        "function": "Bad Call Data",
+                        "pool_id": transaction["contractInputsValues"]["data"],
+                        "symbol": "!!!",
+                        "pool_address": "!!!",
+                        "aFactor": "!!!",
+                        "gauge_address": "!!!",
+                        "type": "!!!",
+                        "cap": f"!!!",
+                        "style": "!!!"
+                    })
+                    continue
             else: # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
                 (command, inputs) = Contract(authorizer_target_contract).decode_input(transaction["contractInputsValues"]["data"])
 
@@ -93,6 +116,7 @@ def gen_report(payload_list):
             #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
             #print(f"processing {gauge_address}")
             gauge = Contract(gauge_address)
+
             pool_token_list = []
             #print(gauge.selectors.values())
             fxSelectorToChain = {
@@ -117,9 +141,11 @@ def gen_report(payload_list):
                     l2hop2=Contract(l2hop1.reward_receiver())
                     (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(l2hop2.lp_token())
                     style = "ChildChainStreamer"
+                    gauge_symbol = l2hop2.symbol()
                 else: # L0 style
                     (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(l2hop1.lp_token())
                     style = "L0 sidechain"
+                    gauge_symbol = l2hop1.symbol()
                 ## Go back to mainnet
                 network.disconnect()
                 network.connect("mainnet")
@@ -128,13 +154,23 @@ def gen_report(payload_list):
                 escrow = Contract(recipient.getVotingEscrow())
                 (pool_name, pool_symbol, poolId, pool_address,  aFactor) = get_pool_info(escrow.token())
                 style = "ve8020 Single Recipient"
+                gauge_symbol = "N/A"
             else:
                 (pool_name, pool_symbol, poolId, pool_address,  aFactor) = get_pool_info(gauge.lp_token())
+                gauge_symbol = gauge.symbol()
                 style = "mainnet"
             if "getRelativeWeightCap" in gauge.selectors.values():
                 cap = gauge.getRelativeWeightCap()/10**16
             else:
                 cap = "N/A"
+
+            ### Do checks
+            print(f"Processed: {pool_name}, gauge: {gauge_address}, style: {style}")
+            if "-gauge" in pool_symbol:
+                pool_address = f"ERROR: Gauge points to another Gauge: {pool_address}"
+            if pool_symbol not in gauge_symbol and "N/A" not in gauge_symbol:
+                gauge_address = f"ERROR, {gauge_symbol} doesnt match {pool_symbol}: {gauge_address}"
+
             outputs.append({
                 "function": command,
                 "pool_id": str(poolId),
@@ -146,7 +182,9 @@ def gen_report(payload_list):
                 "cap": f"{cap}%",
                 "style": style
             })
-
+        if outputs == []:
+            print(f"No gauge changes found in {file}, skipping.")
+            continue
         report += (f"{file}\nCOMMIT: {os.environ['GITHUB_SHA']}\n```\n")
         report += dicts_to_table_string(outputs, outputs[0].keys())
         report += "\n```\n"
@@ -156,7 +194,6 @@ def gen_report(payload_list):
 
 
 def main():
-    #reports = gen_report(["BIPs/BIP-262-L2-gauge-migration/BIP-262A.json"])
     reports = gen_report(get_payload_list())
     ### Generate comment output
     with open("output.txt", "w") as f:
