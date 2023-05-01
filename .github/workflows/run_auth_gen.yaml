@@ -46,7 +46,7 @@ jobs:
 
     - name: Do Work
       env:
-        INFURA_KEY: ${{ secrets.INFURA_KEY }}
+        WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
       run: python3 gen_add_permissions_payload.py
 
     - name: Commit and push changes

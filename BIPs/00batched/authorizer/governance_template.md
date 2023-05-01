@@ -17,17 +17,8 @@ The following files can be found both linked below and in the payload PR linked 
 | [function_descriptions.md](https://github.com/BalancerMaxis/multisig-ops/blob/staging/BIPs/BIP-XXX/function_descriptions.md)         | A table that describes what each function that is being granted privileged access to allows.                                         |                                                                                                                                             |
 | [`chainname`.json](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/)                                         | For each change with changes, a transaction builder json named after said chain exists to apply the changes described in the tables. |
 
-In the tables above:
-
-The "emergency" caller group:
- - maps to the Balancer Emergency DAO Multisig as defined in [this vote](https://forum.balancer.fi/t/form-the-emergency-subdao/3197).
-
-The "feeManager" caller group:
- - maps to the feeManager multisig controlled by the Balancer Maxis on all chains except mainnet.
- - On mainnet a special feeSetter multisig exists to manage a-factors and a gautletFeeSetter contract that allows bulk changing of fees.  
- - The maxi's functionally control all contracts that make up the feeManager target group.
-
 _More information about the various Balancer Multisigs and their functions can be found in the [multisig-ops repo](https://github.com/BalancerMaxis/multisig-ops/blob/staging/multisigs.md)_
+
 # Specification
 
 As described in the payload json, the authorizer will be called to grant the roles as described.  
@@ -45,5 +36,4 @@ This BIP is routine operation for provisioning a new factory.  The new factories
 
 ## References
 
-[Directory of Addresses used by script which generated the table and multsig payloads](https://github.com/BalancerMaxis/multisig-ops/blob/main/tools/python/brownie/helpers/addresses.py)
-
+[Monorepo Deployment Addresses](https://github.com/balancer-labs/balancer-v2-monorepo/tree/master/pkg/deployments)
