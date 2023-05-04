@@ -2,7 +2,7 @@ name: Generate Gauge Payload Report
 
 on:
   pull_request:
-    types: [opened, labeled, reopened, commit]
+    types: [opened, labeled, reopened]
     branches: [main]
 
 env:
