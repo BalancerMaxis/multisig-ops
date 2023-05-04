@@ -35,6 +35,8 @@ def get_pool_info(poolAddress):
         poolId = str(pool.getPoolId())
     except:
         poolId = "Custom"
+    if pool.totalSupply ==  0:
+        symbol = f"WARN: {symbol} no initjoin"
     return(name,  symbol, poolId, pool.address, aFactor)
 
 def get_payload_list():
@@ -81,8 +83,12 @@ def gen_report(payload_list):
         tx_list = payload["transactions"]
         gauge_controller = Contract(r.balancer.gauge_controller)
         for transaction in tx_list:
-            if transaction["contractMethod"]["name"] != "performAction":
-                continue ## Not an Authorizer tx
+            try:
+                if transaction["contractMethod"]["name"] != "performAction":
+                    continue ## Not an Authorizer tx
+            except:
+                print(f"No ABI with name in payload, can't process this tx, probs not a gauge.")
+                continue
             authorizer_target_contract = Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
             if authorizer_target_contract == gauge_controller:
                 try:
@@ -185,7 +191,7 @@ def gen_report(payload_list):
         if outputs == []:
             print(f"No gauge changes found in {file}, skipping.")
             continue
-        report += (f"{file}\nCOMMIT: {os.environ['GITHUB_SHA']}\n```\n")
+        report += (f"{file}\nCOMMIT: {os.environ['COMMIT_SHA']}\n```\n")
         report += dicts_to_table_string(outputs, outputs[0].keys())
         report += "\n```\n"
         reports.append(report)
