@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1682696404374,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x5a64c9f6e69afa607313ccd059af75f0bb389eac9cff0db4d6247c4079b81536"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x212ccfca4a02e0eff2a0a5029495a2697d4efa7a8e95cdbf30e2f38c40ca648f",
+        "account": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc"
+      }
+    },
+    {
+      "to": "0x4fb47126Fa83A8734991E41B942Ac29A3266C968",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          }
+        ],
+        "name": "addGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0xa523f47A933D5020b23629dDf689695AA94612Dc"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x212ccfca4a02e0eff2a0a5029495a2697d4efa7a8e95cdbf30e2f38c40ca648f",
+        "account": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc"
+      }
+    }
+  ]
+}
