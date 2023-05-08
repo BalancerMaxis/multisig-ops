@@ -30,6 +30,7 @@ jobs:
         POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
         OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
         PR_NUMBER: ${{ github.event.number }}
+        COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
         cd action-scripts/brownie
         touch .env
