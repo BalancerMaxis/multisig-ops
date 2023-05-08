@@ -5,8 +5,12 @@
 #BIP_NUMBER = The BIP number for the governance
 #PR_NUMBER = The PR number for the governance
 #date=$(date '+%Y-%m-%d')
-date=DATE
+date=$DATE
 BIP_DIR="../../BIP-$BIP_NUMBER"
+
+## Setup git
+git config --global user.name "BIP Bot"
+git config --global user.email "bipbot@nowhere.gov"
 
 echo "Creating $BIP_DIR and moving generated files into place."
 mkdir $BIP_DIR
