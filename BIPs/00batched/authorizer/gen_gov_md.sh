@@ -19,7 +19,7 @@ if [ -z $PR_NUMBER ]; then
 fi
 
 BIP_DIR="../../BIP-$BIP_NUMBER"
-
+date=$DATE
 ## Setup git
 git config --global user.name "BIP Bot"
 git config --global user.email "bipbot@nowhere.gov"
@@ -52,7 +52,7 @@ echo "[See Here](BIP-${BIP_NUMBER}.md) for the governance contents." > ${BIP_DIR
 rm .working*.md
 
 git pull
-git add -a
+git add -A
 git add -u # find moved files
 git commit -m "Setting up Payload Directory."
 git push origin
