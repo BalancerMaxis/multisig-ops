@@ -26,10 +26,11 @@ jobs:
 
     - name: Generate Permissions BIP
       id: doit
+      with:
+        PR_NUMBER: ${{github.events.inputs.PR_NUMBER}}
+        BIP_NUMBER: ${{github.events.inputs.BIP_NUMBER}}
+        DATE: ${{github.events.inputs.JSON_DATE}}
       run: |
-          export PR_NUMBER=${{ github.event.inputs.PR_NUMBER }}
-          export BIP_NUMBER=${{ github.events.inputs.BIP_NUMBER }}
-          export DATE=${{ github.events.inputs.JSON_DATE }}
           cd BIPs/00batched/authorizer
           bash gen_gov_md.sh
 
