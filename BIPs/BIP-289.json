@@ -1,67 +1,66 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1683672249339,
-    "meta": {
-      "name": "Transactions Batch",
-      "description": "",
-      "txBuilderVersion": "1.13.3",
-      "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
-      "createdFromOwnerAddress": "",
-      "checksum": "0x200d9d9bc02742d928e0022e1ede98f13f01a8c06ae6a1e5aad8ee2dd85bd08f"
-    },
-    "transactions": [
-      {
-        "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-        "value": "0",
-        "data": null,
-        "contractMethod": {
-          "inputs": [
-            { "internalType": "bytes32", "name": "role", "type": "bytes32" },
-            { "internalType": "address", "name": "account", "type": "address" }
-          ],
-          "name": "grantRole",
-          "payable": false
-        },
-        "contractInputsValues": {
-          "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
-          "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
-        }
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1683672249339,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x200d9d9bc02742d928e0022e1ede98f13f01a8c06ae6a1e5aad8ee2dd85bd08f"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
       },
-      {
-        "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
-        "value": "0",
-        "data": null,
-        "contractMethod": {
-          "inputs": [
-            { "internalType": "address", "name": "target", "type": "address" },
-            { "internalType": "bytes", "name": "data", "type": "bytes" }
-          ],
-          "name": "performAction",
-          "payable": true
-        },
-        "contractInputsValues": {
-          "target": "0x183D73dA7adC5011EC3C46e33BB50271e59EC976",
-          "data": "0x10d3eb04000000000000000000000000000000000000000000000000016345785d8a0000"
-        }
-      },
-      {
-        "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-        "value": "0",
-        "data": null,
-        "contractMethod": {
-          "inputs": [
-            { "internalType": "bytes32", "name": "role", "type": "bytes32" },
-            { "internalType": "address", "name": "account", "type": "address" }
-          ],
-          "name": "revokeRole",
-          "payable": false
-        },
-        "contractInputsValues": {
-          "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
-          "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
-        }
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
       }
-    ]
-  }
-  
+    },
+    {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x183D73dA7adC5011EC3C46e33BB50271e59EC976",
+        "data": "0x10d3eb04000000000000000000000000000000000000000000000000016345785d8a0000"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    }
+  ]
+}
