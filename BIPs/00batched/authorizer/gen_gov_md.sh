@@ -19,7 +19,7 @@ if [ -z $PR_NUMBER ]; then
 fi
 
 BIP_DIR="../../BIP-$BIP_NUMBER"
-
+date=$DATE
 ## Setup git
 git config --global user.name "BIP Bot"
 git config --global user.email "bipbot@nowhere.gov"
