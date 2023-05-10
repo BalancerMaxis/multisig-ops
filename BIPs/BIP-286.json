@@ -1,1 +1,51 @@
-{"version":"1.0","chainId":"1","createdAt":1683680627613,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.13.3","createdFromSafeAddress":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f","createdFromOwnerAddress":"","checksum":"0xa93992919c74721a0cd9e306b2948a27447b23ad911567a8c064c0ad202d15a0"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32[]","name":"roles","type":"bytes32[]"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRoles","payable":false},"contractInputsValues":{"roles":"[0xdca97fd0f6129deaed487ba2e3adf2d101e747ebf894b46fdb04bd68d60422d3, 0xfaa3c2be9a62d3c8de73be6c928a01c6a72184079459d23038b9e8cfb595c53a, 0xe818738e338905496f604a2a26c7ca754558870a3810786cfbb89ae28d262dc5, 0x5c33d959f965f7cc61c2a953580cba4a6dee2f215ea40204e1e341f78148cc72, 0x9f58ae98f000a216e5a453fc8c3d3a3f72618e31af052cefea0990095359181c, 0x010cab59e1860b78f8f67210e267d2c06d77c17b4529f007c7c8acee11ea2fe0]","account":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"}},{"to":"0x5efBb12F01f27F0E020565866effC1dA491E91A4","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"contract IStakingLiquidityGauge","name":"gauge","type":"address"}],"name":"addEthereumGauge","payable":false},"contractInputsValues":{"gauge":"0x21cf9324D5B1AC739B7E6922B69500F1eEDB52e0"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1683680627613,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xa93992919c74721a0cd9e306b2948a27447b23ad911567a8c064c0ad202d15a0"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xdca97fd0f6129deaed487ba2e3adf2d101e747ebf894b46fdb04bd68d60422d3, 0xfaa3c2be9a62d3c8de73be6c928a01c6a72184079459d23038b9e8cfb595c53a, 0xe818738e338905496f604a2a26c7ca754558870a3810786cfbb89ae28d262dc5, 0x5c33d959f965f7cc61c2a953580cba4a6dee2f215ea40204e1e341f78148cc72, 0x9f58ae98f000a216e5a453fc8c3d3a3f72618e31af052cefea0990095359181c, 0x010cab59e1860b78f8f67210e267d2c06d77c17b4529f007c7c8acee11ea2fe0]",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    },
+    {
+      "to": "0x5efBb12F01f27F0E020565866effC1dA491E91A4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IStakingLiquidityGauge",
+            "name": "gauge",
+            "type": "address"
+          }
+        ],
+        "name": "addEthereumGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x21cf9324D5B1AC739B7E6922B69500F1eEDB52e0"
+      }
+    }
+  ]
+}
