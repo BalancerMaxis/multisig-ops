@@ -1,5 +1,5 @@
 from brownie import Contract, network
-from helpers.addresses import r
+from bal_addresses import AddrBook
 from web3 import Web3
 import json
 from prettytable import PrettyTable
@@ -7,6 +7,8 @@ import os
 from urllib.request import urlopen
 from pathlib import Path
 
+a = AddrBook("mainnet")
+f = a.flatbook
 debug = False
 
 def dicts_to_table_string(dict_list, header=None):
@@ -81,46 +83,56 @@ def gen_report(payload_list):
         network.connect("mainnet")
         outputs = []
         tx_list = payload["transactions"]
-        gauge_controller = Contract(r.balancer.gauge_controller)
+        gauge_controller = Contract(f[a.search_contract("GaugeController")])
         for transaction in tx_list:
-            try:
-                if transaction["contractMethod"]["name"] != "performAction":
-                    continue ## Not an Authorizer tx
-            except:
-                print(f"No ABI with name in payload, can't process this tx, probs not a gauge.")
-                continue
-            authorizer_target_contract = Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
-            if authorizer_target_contract == gauge_controller:
+            gauge_address = False
+            if transaction["to"] == f[a.search_contract("v3/GaugeAdder")]:
                 try:
-                    (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
+                    gauge_address = transaction["contractInputsValues"]["gauge"]
+                    gauge_type = "N/A"
+                    command = transaction["contractMethod"]["name"]
                 except:
-                    print(f"\n\n\n ERROR: bad call data to gauge controller: {transaction['contractInputsValues']['data']}")
-                    outputs.append({
-                        "function": "Bad Call Data",
-                        "pool_id": transaction["contractInputsValues"]["data"],
-                        "symbol": "!!!",
-                        "pool_address": "!!!",
-                        "aFactor": "!!!",
-                        "gauge_address": "!!!",
-                        "type": "!!!",
-                        "cap": f"!!!",
-                        "style": "!!!"
-                    })
+                    print("Call to gaugeaddr without a gauge, skipping")
                     continue
-            else: # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
-                (command, inputs) = Contract(authorizer_target_contract).decode_input(transaction["contractInputsValues"]["data"])
-
-            #print(command)
-            #print(inputs)
-            if len(inputs) == 0: ## Is a gauge kill
-                gauge_type = "NA"
-                gauge_address = transaction["contractInputsValues"]["target"]
             else:
-                gauge_address = inputs[0]
-                gauge_type = inputs[1]
+                try:
+                    if transaction["contractMethod"]["name"] != "performAction":
+                        continue ## Not a passthrough tx
+                except:
+                    print(f"No ABI with name in payload, can't process this tx, probs not a gauge.")
+                    continue
+            if gauge_address == False:
+                authorizer_target_contract = Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+                if authorizer_target_contract == gauge_controller:
+                    try:
+                        (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
+                    except:
+                        print(f"\n\n\n ERROR: bad call data to gauge controller: {transaction['contractInputsValues']['data']}")
+                        outputs.append({
+                            "function": "Bad Call Data",
+                            "pool_id": transaction["contractInputsValues"]["data"],
+                            "symbol": "!!!",
+                            "pool_address": "!!!",
+                            "aFactor": "!!!",
+                            "gauge_address": "!!!",
+                            "type": "!!!",
+                            "cap": f"!!!",
+                            "style": "!!!"
+                        })
+                        continue
+                else: # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
+                    (command, inputs) = Contract(authorizer_target_contract).decode_input(transaction["contractInputsValues"]["data"])
 
-            #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
-            #print(f"processing {gauge_address}")
+                #print(inputs)
+                if len(inputs) == 0: ## Is a gauge kill
+                    gauge_type = "NA"
+                    gauge_address = transaction["contractInputsValues"]["target"]
+                else:
+                    gauge_address = inputs[0]
+                    gauge_type = inputs[1]
+
+                #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
+                #print(f"processing {gauge_address}")
             gauge = Contract(gauge_address)
 
             pool_token_list = []
