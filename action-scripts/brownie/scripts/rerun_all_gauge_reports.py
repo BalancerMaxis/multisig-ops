@@ -13,7 +13,7 @@ def main():
     for file in all_bips:
         runlist.append(file.replace("../../", ""))
     reports = gen_report(runlist)
-    #reports = gen_report(["BIPs/BIP-151.json"])
+    #reports = gen_report(["BIPs/BIP-286.json"])
     #reports = gen_report(get_payload_list())
     ### Generate comment output
     with open("output.txt", "w") as f:

@@ -5,9 +5,21 @@
 #BIP_NUMBER = The BIP number for the governance
 #PR_NUMBER = The PR number for the governance
 #date=$(date '+%Y-%m-%d')
-date=$DATE
-BIP_DIR="../../BIP-$BIP_NUMBER"
+if [ -z $DATE ]; then
+  echo "No Date"
+  exit 2
+fi
+if [ -z $BIP_NUMBER ]; then
+  echo "No BIP NUMBER"
+  exit 3
+fi
+if [ -z $PR_NUMBER ]; then
+  echo "No PR NUMBER"
+  exit 4
+fi
 
+BIP_DIR="../../BIP-$BIP_NUMBER"
+date=$DATE
 ## Setup git
 git config --global user.name "BIP Bot"
 git config --global user.email "bipbot@nowhere.gov"
@@ -40,7 +52,7 @@ echo "[See Here](BIP-${BIP_NUMBER}.md) for the governance contents." > ${BIP_DIR
 rm .working*.md
 
 git pull
-git add $BIP_DIR/*
+git add -A
 git add -u # find moved files
 git commit -m "Setting up Payload Directory."
 git push origin
