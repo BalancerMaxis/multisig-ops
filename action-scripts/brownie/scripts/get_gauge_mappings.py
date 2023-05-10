@@ -9,6 +9,7 @@ from pathlib import Path
 
 a = AddrBook("mainnet")
 f = a.flatbook
+r = a.dotmap
 debug = False
 
 def dicts_to_table_string(dict_list, header=None):
@@ -85,6 +86,7 @@ def gen_report(payload_list):
         tx_list = payload["transactions"]
         gauge_controller = Contract(f[a.search_contract("GaugeController")])
         for transaction in tx_list:
+            style = False
             gauge_address = False
             if transaction["to"] == f[a.search_contract("v3/GaugeAdder")]:
                 try:
@@ -168,15 +170,20 @@ def gen_report(payload_list):
                 network.disconnect()
                 network.connect("mainnet")
             elif "name" not in gauge.selectors.values():
-                recipient = Contract(gauge.getRecipient())
-                escrow = Contract(recipient.getVotingEscrow())
-                (pool_name, pool_symbol, poolId, pool_address,  aFactor) = get_pool_info(escrow.token())
-                style = "ve8020 Single Recipient"
-                gauge_symbol = "N/A"
+                try:
+                    recipient = Contract(gauge.getRecipient())
+                    escrow = Contract(recipient.getVotingEscrow())
+                    (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(escrow.token())
+                    style = "Single Recipient"
+                    gauge_symbol = "N/A"
+                except:
+                    style = "Single Recipient"
+
             else:
                 (pool_name, pool_symbol, poolId, pool_address,  aFactor) = get_pool_info(gauge.lp_token())
                 gauge_symbol = gauge.symbol()
-                style = "mainnet"
+                if not style:
+                    style = "mainnet"
             if "getRelativeWeightCap" in gauge.selectors.values():
                 cap = gauge.getRelativeWeightCap()/10**16
             else:
