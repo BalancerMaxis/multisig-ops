@@ -4,13 +4,28 @@
       "mainnet": 1
     },
     "function_caller_map": {
-      "setSwapFeePercentage(uint256)": "lm",
-      "startAmplificationParameterUpdate(uint256,uint256)": "lm",
-      "stopAmplificationParameterUpdate()": "lm",
-      "pause()": "emergency",
-      "disable()": "emergency",
-      "enableRecoveryMode()": ["emergency", "20221123-pool-recovery-helper"],
-      "setTargets": "lm"
+      "setSwapFeePercentage(uint256)": [
+        "multisigs/lm"
+      ],
+      "startAmplificationParameterUpdate(uint256,uint256)": [
+        "multisigs/lm"
+      ],
+      "stopAmplificationParameterUpdate()": [
+        "multisigs/lm"
+      ],
+      "pause()": [
+        false
+      ],
+      "disable()": [
+        false
+      ],
+      "enableRecoveryMode()": [
+        false,
+        "20221123-pool-recovery-helper/PoolRecoveryHelper"
+      ],
+      "setTargets": [
+        "multisigs/lm"
+      ]
     },
     "deployments": [
       "20230206-weighted-pool-v4",
@@ -26,75 +41,126 @@
       "mainnet": 1
     },
     "function_caller_map": {
-      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "20230314-batch-relayer-v5",
-      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "20230314-batch-relayer-v5",
-      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": "20230314-batch-relayer-v5",
-      "manageUserBalance((uint8,address,uint256,address,address)[])": "20230314-batch-relayer-v5",
-      "setRelayerApproval(address,address,bool)": "20230314-batch-relayer-v5",
-      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": "20230314-batch-relayer-v5",
-      "withdrawCollectedFees(address[],uint256[],address)": "20220517-protocol-fee-withdrawer",
-      "setSwapFeePercentage(uint256)": "20220517-protocol-fee-withdrawer",
-      "setFlashLoanFeePercentage(uint256)": "20220517-protocol-fee-withdrawer",
-      "setPaused(bool)": "emergency"
+      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
+        false
+      ],
+      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
+        false
+      ],
+      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": [
+        false
+      ],
+      "manageUserBalance((uint8,address,uint256,address,address)[])": [
+        false
+      ],
+      "setRelayerApproval(address,address,bool)": [
+        false
+      ],
+      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": [
+        false
+      ],
+      "withdrawCollectedFees(address[],uint256[],address)": [
+        "20220517-protocol-fee-withdrawer/ProtocolFeesWithdrawer"
+      ],
+      "setSwapFeePercentage(uint256)": [
+        "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider"
+      ],
+      "setFlashLoanFeePercentage(uint256)": [
+        "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider"
+      ],
+      "setPaused(bool)": [
+        false
+      ]
     },
-    "deployments": ["20210418-vault"]
+    "deployments": [
+      "20210418-vault"
+    ]
   },
-
   {
     "chain_map": {
       "mainnet": 1
     },
     "function_caller_map": {
-      "setFeeTypePercentage(uint256,uint256)": "dao"
+      "setFeeTypePercentage(uint256,uint256)": [
+        false
+      ]
     },
-    "deployments": ["20220725-protocol-fee-percentages-provider"]
+    "deployments": [
+      "20220725-protocol-fee-percentages-provider"
+    ]
   },
   {
     "chain_map": {
       "gnosis": 100
     },
     "function_caller_map": {
-      "add_reward(address,address)": "lm"
+      "add_reward(address,address)": [
+        "multisigs/lm"
+      ]
     },
-    "deployments": ["20230316-child-chain-gauge-factory-v2"]
+    "deployments": [
+      "20230316-child-chain-gauge-factory-v2"
+    ]
   },
   {
     "chain_map": {
       "mainnet": 1
     },
     "function_caller_map": {
-      "denylistToken(address)": "emergency",
-      "withdrawCollectedFees(address[],uint256[],address)": "lm"
+      "denylistToken(address)": [
+        false
+      ],
+      "withdrawCollectedFees(address[],uint256[],address)": [
+        "multisigs/lm"
+      ]
     },
-    "deployments": ["20220517-protocol-fee-withdrawer"]
+    "deployments": [
+      "20220517-protocol-fee-withdrawer"
+    ]
   },
   {
     "chain_map": {
       "mainnet": 1
     },
     "function_caller_map": {
-      "removePoolFactory(address)": "blabs_ops",
-      "addPoolFactory(address)": "blabs_ops"
+      "removePoolFactory(address)": [
+        false
+      ],
+      "addPoolFactory(address)": [
+        false
+      ]
     },
-    "deployments": ["20221123-pool-recovery-helper"]
+    "deployments": [
+      "20221123-pool-recovery-helper"
+    ]
   },
   {
     "chain_map": {
       "mainnet": 1
     },
     "function_caller_map": {
-      "registerProtocolId(uint256,string)": "lm",
-      "renameProtocolId(uint256,string)": "lm"
+      "registerProtocolId(uint256,string)": [
+        "multisigs/lm"
+      ],
+      "renameProtocolId(uint256,string)": [
+        "multisigs/lm"
+      ]
     },
-    "deployments": ["20230223-protocol-id-registry"]
+    "deployments": [
+      "20230223-protocol-id-registry"
+    ]
   },
   {
     "chain_map": {
       "mainnet": 1
     },
     "function_caller_map": {
-      "addGaugeFactory(address)": "lm"
+      "addGaugeFactory(address)": [
+        "multisigs/lm"
+      ]
     },
-    "deployments": ["20230316-l2-balancer-pseudo-minter"]
+    "deployments": [
+      "20230316-l2-balancer-pseudo-minter"
+    ]
   }
 ]
