@@ -14,13 +14,13 @@
         "multisigs/lm"
       ],
       "pause()": [
-        false
+        "multisigs/emergency"
       ],
       "disable()": [
-        false
+        "multisigs/emergency"
       ],
       "enableRecoveryMode()": [
-        false,
+        "multisigs/emergency",
         "20221123-pool-recovery-helper/PoolRecoveryHelper"
       ],
       "setTargets": [
@@ -42,22 +42,22 @@
     },
     "function_caller_map": {
       "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
-        false
+        "20230314-batch-relayer-v5/BalancerRelayer"
       ],
       "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
-        false
+        "20230314-batch-relayer-v5/BalancerRelayer"
       ],
       "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": [
-        false
+        "20230314-batch-relayer-v5/BalancerRelayer"
       ],
       "manageUserBalance((uint8,address,uint256,address,address)[])": [
-        false
+        "20230314-batch-relayer-v5/BalancerRelayer"
       ],
       "setRelayerApproval(address,address,bool)": [
-        false
+        "20230314-batch-relayer-v5/BalancerRelayer"
       ],
       "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": [
-        false
+        "20230314-batch-relayer-v5/BalancerRelayer"
       ],
       "withdrawCollectedFees(address[],uint256[],address)": [
         "20220517-protocol-fee-withdrawer/ProtocolFeesWithdrawer"
@@ -69,7 +69,7 @@
         "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider"
       ],
       "setPaused(bool)": [
-        false
+        "mutlisigs/emergency"
       ]
     },
     "deployments": [
@@ -82,7 +82,7 @@
     },
     "function_caller_map": {
       "setFeeTypePercentage(uint256,uint256)": [
-        false
+        "multisigs/dao"
       ]
     },
     "deployments": [
@@ -108,7 +108,7 @@
     },
     "function_caller_map": {
       "denylistToken(address)": [
-        false
+        "multisigs/emergency"
       ],
       "withdrawCollectedFees(address[],uint256[],address)": [
         "multisigs/lm"
@@ -124,10 +124,10 @@
     },
     "function_caller_map": {
       "removePoolFactory(address)": [
-        false
+        "multisigs/blabs_ops"
       ],
       "addPoolFactory(address)": [
-        false
+        "multisigs/blabs_ops"
       ]
     },
     "deployments": [

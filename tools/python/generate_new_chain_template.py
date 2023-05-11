@@ -5,13 +5,16 @@ a = AddrBook("mainnet") # we don't care about addresses
 
 
 def lookup_caller(caller):
+    print(caller)
     if "/" in caller:
         print(f"caller: {caller} looks like it already is in flatbook format, skipping")
         return caller
     try:
         return a.search_unique(caller)
-    except:
-        return a.latest_contract(caller)
+    except AddrBook.MultipleMatchesError as error:
+        return a.reversebook[a.latest_contract(caller)]
+    ## If we haven't returned yet no match was found
+    raise AddrBook.NoResultsError(f"no match for {caller} found")
 
 
 

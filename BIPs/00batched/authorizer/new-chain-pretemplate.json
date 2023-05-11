@@ -7,9 +7,9 @@
       "setSwapFeePercentage(uint256)": "lm",
       "startAmplificationParameterUpdate(uint256,uint256)": "lm",
       "stopAmplificationParameterUpdate()": "lm",
-      "pause()": "emergency",
-      "disable()": "emergency",
-      "enableRecoveryMode()": ["emergency", "PoolRecoveryHelper"],
+      "pause()": "multisigs/emergency",
+      "disable()": "multisigs/emergency",
+      "enableRecoveryMode()": ["multisigs/emergency", "PoolRecoveryHelper"],
       "setTargets": "lm"
     },
     "deployments": [
@@ -35,7 +35,7 @@
       "withdrawCollectedFees(address[],uint256[],address)": "ProtocolFeesWithdrawer",
       "setSwapFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
       "setFlashLoanFeePercentage(uint256)": "ProtocolFeePercentagesProvider",
-      "setPaused(bool)": "emergency"
+      "setPaused(bool)": "mutlisigs/emergency"
     },
     "deployments": ["20210418-vault"]
   },
@@ -45,7 +45,7 @@
       "mainnet": 1
     },
     "function_caller_map": {
-      "setFeeTypePercentage(uint256,uint256)": "dao"
+      "setFeeTypePercentage(uint256,uint256)": "multisigs/dao"
     },
     "deployments": ["20220725-protocol-fee-percentages-provider"]
   },
@@ -63,7 +63,7 @@
       "mainnet": 1
     },
     "function_caller_map": {
-      "denylistToken(address)": "emergency",
+      "denylistToken(address)": "multisigs/emergency",
       "withdrawCollectedFees(address[],uint256[],address)": "lm"
     },
     "deployments": ["20220517-protocol-fee-withdrawer"]
@@ -73,8 +73,8 @@
       "mainnet": 1
     },
     "function_caller_map": {
-      "removePoolFactory(address)": "blabs_ops",
-      "addPoolFactory(address)": "blabs_ops"
+      "removePoolFactory(address)": "multisigs/blabs_ops",
+      "addPoolFactory(address)": "multisigs/blabs_ops"
     },
     "deployments": ["20221123-pool-recovery-helper"]
   },
