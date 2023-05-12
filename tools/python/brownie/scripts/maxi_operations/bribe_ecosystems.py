@@ -83,7 +83,7 @@ def process_bribe_csv(
         try:
             bribes[bribe["platform"]][bribe["target"]] = float(bribe["amount"])
         except:
-            assert(False, f"Error: The following brib didn't work, somethings probs obvisouly wrong: \b{bribe}")
+           assert False, f"Error: The following brib didn't work, somethings probs wrong: \b{bribe}"
     return bribes
 
 def main(
@@ -92,6 +92,7 @@ def main(
 ):
 
     safe = GreatApeSafe(r.balancer.multisigs.fees)
+    safe.init_cow()
     #safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
     usdc = safe.contract(r.tokens.USDC)
