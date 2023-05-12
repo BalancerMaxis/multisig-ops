@@ -56,15 +56,6 @@ def generateSweepFile(sourcefile):
     report += f"\n>>>Total USD Value of sweeps at time of input json: ${total}"
     print(report)
 
-    # Generate JSON
-    with open(target_file, "r") as f:
-        tx_builder = json.load(f)
-    tx_out_map = DotMap(tx_builder)
-    # TX builder wants lists in a string, addresses unquoted, and large integers without e+
-    tx_out_map.transactions[0].contractInputsValues.tokens = str(list(sweeps.keys())).replace("'", "")
-    tx_out_map.transactions[0].contractInputsValues.amounts = str(list(sweeps.values()))
-    with open(f"{target_dir}/out/{today}-{chain}.json", "w") as f:
-        json.dump(dict(tx_out_map), f)
     with open(f"{target_dir}/out/{today}-{chain}.report.txt", "w") as f:
         f.write(report)
     return sweeps
