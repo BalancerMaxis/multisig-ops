@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x12068567376f5214f735cd6e477a885e135c8964f6771112086ce1fda7cc475d,0xbe826ebecfd64701333db6557b090b44c6155461ce9aaf6efce57ad8dc12bd2e,0x9f637c196de3124bc0febbb78f206994fdb68c3f8fe8070b42230a76e14ece0b,0xf27a3cfffd6082308886cb5ef66425202d4b3180e84c6852d7d8109b4228a5ec]",
+        "account": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18"
+      }
+    },
+    {
+      "to": "0x9dd5Db2d38b50bEF682cE532bCca5DfD203915E1",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x9dA18982a33FD0c7051B19F0d7C76F2d5E7e017c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null
+    }
+  ]
+}
