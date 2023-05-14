@@ -21,7 +21,7 @@ jobs:
       - name: List JSON files
         id: json_files
         run: |
-          git diff --name-only --diff-filter=d ${{ github.inputs.start_commit }}..${{ github.inputs.end_commit }} '*.json' > json_files.actions.txt
+          git diff --name-only --diff-filter=d ${{ github.events.inputs.start_commit }}..${{ github.events.inputs.end_commit }} '*.json' > json_files.actions.txt
           echo "::set-output name=files::$(cat json_files.txt)"
 
       - name: Set up Python
