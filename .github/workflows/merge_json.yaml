@@ -17,12 +17,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: List JSON files
-        id: json_files
-        run: |
-          git diff --name-only --diff-filter=d ${{ github.event.inputs.start_commit }}..${{ github.event.inputs.end_commit }} '*.json' > json_files.actions.txt
-          echo "::set-output name=files::$(cat json_files.actions.txt)"
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -30,8 +24,9 @@ jobs:
 
       - name: Run script with JSON files
         run: |
-          # Use the ${{ steps.json_files.outputs.files }} variable to access the list of JSON files
-          python action-scripts/merge_pr_json.py ${{ steps.json_files.outputs.files }}
+          git diff --name-only --diff-filter=d ${{ github.event.inputs.start_commit }}^..${{ github.event.inputs.end_commit }} '*.json' > json_files.actions.txt
+          python action-scripts/merge_pr_json.py $(cat json_files.actions.txt )
+          rm json_files.actions.txt
 
       - name: pull-request
         uses: peter-evans/create-pull-request@v5

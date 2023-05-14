@@ -171,7 +171,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = r.balancer.multisigs.dao
+        data.meta.createdFromSafeAddress = r.balancer.multisigs.dao
 
         # Group roles on this chain by target address
         action_ids_by_address = {}

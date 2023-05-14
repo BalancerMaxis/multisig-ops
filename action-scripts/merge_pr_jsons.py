@@ -24,10 +24,11 @@ base_json =  json.loads('''
 ''')
 
 def main():
-    changed_files = sys.argv[1].split()
+    changed_files = json_files = sys.argv[1:]
     date = datetime.utcnow()
     # Filter the list of added files for json files
     json_files = [filename for filename in changed_files if filename.endswith(".json") and "BIPs/BIP" in filename]
+    print (json_files)
     txmap = {}
     # Extract the relevant information from the JSON file
     for json_file in json_files:
@@ -37,7 +38,11 @@ def main():
         with open(json_file, "r") as json_data:
             data = json.load(json_data)
         # Extract the relevant information from the JSON file
-        chain_id = data["chainId"]
+        try:
+         chain_id = data["chainId"]
+        except:
+            print(f"${json_file} does not appear to be a payload json.  Skipping")
+            continue
         if chain_id not in txmap.keys():
             txmap[chain_id]={}
         safe = data["meta"]["createdFromSafeAddress"]
@@ -45,7 +50,6 @@ def main():
         if safe not in txmap[chain_id].keys():
             txmap[chain_id][safe] = []
         txmap[chain_id][safe] = [*txmap[chain_id][safe], *data["transactions"]]
-        print(txmap)
 
     # Create the directory name.  %W is week of year, week starts on monday
     dir_name = f"00batched/{date.year}-{date.strftime('%U')}"
@@ -57,8 +61,10 @@ def main():
     for chain, safes in txmap.items():
         for safe, txlist in safes.items():
             result = base_json
+            result["meta"]["createdFromSafeAddress"] = safe
+            result["chainId"] = chain
             result["transactions"] = txlist
-            file_name = f"{chain_id}-{safe}.json"
+            file_name = f"{chain}-{safe}.json"
             with open(f"BIPs/{dir_name}/{file_name}", "w") as new_file:
                 json.dump(result, new_file, indent=2)
 
