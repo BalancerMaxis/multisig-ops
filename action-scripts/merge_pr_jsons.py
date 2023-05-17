@@ -61,6 +61,9 @@ def main():
     current_week = datetime.utcnow().strftime("%U")
     current_year = datetime.utcnow().year
     # get root directory of the project:
+    # To do this you need to go up 2 levels from the current file
+    # For instance, to get to the project root from: multisig-ops/action-scripts/merge_pr_jsons.py
+    # You need to jump up two steps with os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     bips_dir = os.path.join(root_dir, "BIPs")
     dir_with_target_bips = os.path.join(bips_dir, TARGET_DIR_WITH_BIPS)
