@@ -2,11 +2,8 @@ import json
 import os
 from collections import defaultdict
 from datetime import datetime
-from datetime import timedelta
-from datetime import timezone
 from json import JSONDecodeError
 from typing import Optional
-from typing import Tuple
 
 base_json = json.loads('''
 {
@@ -33,36 +30,18 @@ CHAIN_IDS = {
     137: "polygon",
     10: "optimism",
 }
-IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
+
+# Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
+TARGET_DIR_WITH_BIPS = "00merging"
 
 
-def _get_current_week_bounds() -> Tuple[int, int]:
-    now = datetime.now()
-
-    # Get the day of the week (Monday is 0, Sunday is 6)
-    weekday = now.weekday()
-
-    # Calculate the start of the week
-    start_of_week = now - timedelta(days=weekday)
-    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
-
-    # Calculate the end of the week
-    end_of_week = start_of_week + timedelta(days=6, hours=23, minutes=59, seconds=59)
-
-    # Convert them into Unix timestamps
-    start_of_week_unix = start_of_week.replace(tzinfo=timezone.utc).timestamp()
-    end_of_week_unix = end_of_week.replace(tzinfo=timezone.utc).timestamp()
-    return int(start_of_week_unix), int(end_of_week_unix)
-
-
-def _parse_bip_json(file_path: str, time_bound: Tuple[int, int], chain: int) -> Optional[dict]:
+def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
     """
     In case file was created within given date bounds and for given chain -
     parse it and return the data
     """
     # Check if the file is a json file
-    # Check if file path has ignored directories
-    if any(dir_name in file_path for dir_name in IGNORED_DIRECTORIES):
+    if not file_path.endswith(".json"):
         return None
     try:
         with open(file_path, "r") as json_file:
@@ -70,31 +49,34 @@ def _parse_bip_json(file_path: str, time_bound: Tuple[int, int], chain: int) -> 
             # Check if the file is a dictionary, not a list
             if not isinstance(data, dict):
                 return None
-            # Check if the file was created this week and chain is correct
-            if time_bound[0] <= data["createdAt"] <= time_bound[1] \
-                    and int(data["chainId"]) == int(chain):
+            # Check if chain id is the same as the one we are looking for
+            if int(data["chainId"]) == int(chain):
                 return data
     except JSONDecodeError:
         return None
 
 
-def main_upd():
+def main():
     current_week = datetime.utcnow().strftime("%U")
     current_year = datetime.utcnow().year
-    current_week_bounds = _get_current_week_bounds()  # type: Tuple[int, int]
     # get root directory of the project:
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     bips_dir = os.path.join(root_dir, "BIPs")
-
+    dir_with_target_bips = os.path.join(bips_dir, TARGET_DIR_WITH_BIPS)
+    if not os.path.exists(dir_with_target_bips):
+        raise ValueError(f"Directory {TARGET_DIR_WITH_BIPS} does not exist")
     target_files = defaultdict(list)
     # Walk through BIPs directory and find all the files that were created this week
-    for root, __, files in os.walk(bips_dir):
+    for root, __, files in os.walk(dir_with_target_bips):
+        if not files:
+            print(f"Directory {root} is empty. Please copy your BIPs and run again to merge JSONs")
+            break
         # Walk through all nested directories in BIPs
         for file in files:
             # Process files that are lying flat in BIPs directory
             for chain_id, chain_name in CHAIN_IDS.items():
                 data = _parse_bip_json(
-                    os.path.join(root, file), current_week_bounds, chain=chain_id
+                    os.path.join(root, file), chain=chain_id
                 )
                 if data:
                     # Add the file to the list of files to be merged
@@ -134,4 +116,4 @@ def main_upd():
 
 
 if __name__ == "__main__":
-    main_upd()
+    main()
