@@ -8,8 +8,7 @@ from urllib.request import urlopen
 from pathlib import Path
 
 a = AddrBook("mainnet")
-f = a.flatbook
-r = a.dotmap
+flatbook = a.flatbook
 debug = False
 
 def dicts_to_table_string(dict_list, header=None):
@@ -84,11 +83,11 @@ def gen_report(payload_list):
         network.connect("mainnet")
         outputs = []
         tx_list = payload["transactions"]
-        gauge_controller = Contract(f[a.search_contract("GaugeController")])
+        gauge_controller = Contract(flatbook[a.search_unique("GaugeController")])
         for transaction in tx_list:
             style = False
             gauge_address = False
-            if transaction["to"] == f[a.search_contract("v3/GaugeAdder")]:
+            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder")]:
                 try:
                     gauge_address = transaction["contractInputsValues"]["gauge"]
                     gauge_type = "N/A"
