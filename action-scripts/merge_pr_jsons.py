@@ -30,7 +30,7 @@ CHAIN_IDS = {
     137: "polygon",
     10: "optimism",
 }
-
+IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
 
@@ -56,6 +56,7 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
         return None
 
 
+# TODO: Feed directories as inputs
 def main():
     current_week = datetime.utcnow().strftime("%U")
     current_year = datetime.utcnow().year
@@ -68,9 +69,6 @@ def main():
     target_files = defaultdict(list)
     # Walk through BIPs directory and find all the files that were created this week
     for root, __, files in os.walk(dir_with_target_bips):
-        if not files:
-            print(f"Directory {root} is empty. Please copy your BIPs and run again to merge JSONs")
-            break
         # Walk through all nested directories in BIPs
         for file in files:
             # Process files that are lying flat in BIPs directory
