@@ -88,13 +88,17 @@ def gen_report(payload_list):
             style = False
             gauge_address = False
             if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder")]:
-                try:
-                    gauge_address = transaction["contractInputsValues"]["gauge"]
+                for k in transaction["contractInputsValues"].keys():
+                    if k == "rootGauge":
+                        gauge_address = transaction["contractInputsValues"]["rootGauge"]
+                    elif k == "gauge":
+                        gauge_address = transaction["contractInputsValues"]["gauge"]
+                    else:
+                        print("Call to gaugeaddr without a gauge, skipping")
+                        continue
                     gauge_type = "N/A"
                     command = transaction["contractMethod"]["name"]
-                except:
-                    print("Call to gaugeaddr without a gauge, skipping")
-                    continue
+
             else:
                 try:
                     if transaction["contractMethod"]["name"] != "performAction":
