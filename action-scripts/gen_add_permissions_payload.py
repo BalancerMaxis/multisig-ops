@@ -47,7 +47,6 @@ def build_action_ids_map(input_data,):
         action_ids_map[chain] = {}
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
-            callers_map = book_by_chain[chain_name].reversebook
             monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
             for deployment in change["deployments"]:
                 if deployment not in monorepo_ids.keys():
@@ -73,12 +72,13 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
     changes = []
     for chain, deployments in actions_id_map.items():
         print(chain)
-        callers_map = book_by_chain[chain].reversebook
+        book = book_by_chain[chain]
+        callers_map = book.reversebook
         for deployment, functions in deployments.items():
             print(deployment)
             for function, action_id_and_caller_list in functions.items():
                 action_id = action_id_and_caller_list[0]
-                caller = action_id_and_caller_list[1]
+                caller = book.search_unique(action_id_and_caller_list[1])
                 try:
                     deployment_output = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/tasks/{deployment}/output/{chain}.json")
                     deployment_output.raise_for_status()
@@ -87,20 +87,19 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                     break
                 deployment_output = deployment_output.json()
                 try:
-                    target_address = book_by_chain[chain].search_unique(caller)
+                    caller_address = book.flatbook[caller]
                 except:
                     f"caller {caller} does not have a single match in the address book.  Here is what was found\n{book_by_chain[chain].search_many(caller)}"
 
-                target = caller
                 w3 = W3_BY_CHAIN[chain]
 
                 relative_path = os.path.join(script_dir, "abis", "Authorizer.json")
-                authorizer = w3.eth.contract(address=book_by_chain[chain].flatbook["20210418-authorizer/Authorizer"], abi=json.load(open(relative_path)))
+                authorizer = w3.eth.contract(address=book.flatbook["20210418-authorizer/Authorizer"], abi=json.load(open(relative_path)))
                 role_members = authorizer.functions.getRoleMemberCount(action_id).call()
                 if  role_members> 0:
                     if role_members == 1:
                         only_member = authorizer.functions.getRoleMember(action_id, 0).call()
-                        if only_member == target_address:
+                        if only_member == caller_address:
                             print(f"{deployment}/{function} already has the proper owner set, skipping")
                             if ignore_already_set:
                                 continue
@@ -113,15 +112,15 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                     "chain": chain,
                     "function": function,
                     "role": action_id,
-                    "target": target,
-                    "target_address": target_address
+                    "caller": caller,
+                    "caller_address": caller_address
                 })
     return changes
 
 
 def print_change_list(change_list, output_dir, filename_root=today):
     df = pd.DataFrame(change_list)
-    chain_address_sorted = df.sort_values(by=["chain", "target_address"])
+    chain_address_sorted = df.sort_values(by=["chain", "caller_address"])
     chain_deployment_sorted = df.sort_values(by=["chain", "deployment", "function"])
     print(df.to_markdown(index=False))
     if output_dir:
@@ -168,23 +167,23 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = book_by_chain[chain_name].search_unique("multisigs/dao")
+        data.meta.createFromSafeAddress = book_by_chain[chain].reversebook["multisigs/dao"]
 
-        # Group roles on this chain by target address
+        # Group roles on this chain by caller address
         action_ids_by_address = {}
         for change in change_list:
             if change["chain"] != chain_name:
                 continue
-            if change["target_address"] not in action_ids_by_address:
-                action_ids_by_address[change["target_address"]] = []
-            action_ids_by_address[change["target_address"]].append(change["role"])
+            if change["caller_address"] not in action_ids_by_address:
+                action_ids_by_address[change["caller_address"]] = []
+            action_ids_by_address[change["caller_address"]].append(change["role"])
 
         # Build transaction list
         transactions = []
         tx_template = data.transactions[0]
         for address,actions in action_ids_by_address.items():
             transaction = DotMap(tx_template)
-            transaction.to = book.search_unique("20210418-authorizer/Authorizer")
+            transaction.to = book.flatbook["20210418-authorizer/Authorizer"]
             # TX builder wants lists in a string, addresses unquoted
             transaction.contractInputsValues.roles = str(actions).replace("'","")
             transaction.contractInputsValues.account = address
