@@ -41,13 +41,12 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Install Requirements
-      run: pip install -r requirements.txt
-
     - name: Do Work
       env:
         WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-      run: python3 gen_add_permissions_payload.py
+      run: |
+        pip3 install -r action-scripts/requirements.txt
+        python3 action-scripts/gen_add_permissions_payload.py
 
     - name: Commit and push changes
       uses:  stefanzweifel/git-auto-commit-action@v4

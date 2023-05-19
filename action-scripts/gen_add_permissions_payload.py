@@ -1,12 +1,11 @@
 import json
 import requests
 from dotmap import DotMap
-from helpers.addresses import get_registry_by_chain_id, monorepo_addresses_by_name
+from bal_addresses import AddrBook
 import pandas as pd
 from datetime import date
 from web3 import Web3
 import os
-
 
 today = str(date.today())
 debug = False
@@ -19,24 +18,19 @@ INFURA_KEY = os.getenv('WEB3_INFURA_PROJECT_ID')
 BALANCER_DEPLOYMENTS_DIR = "../../../balancer-v2-monorepo/pkg/deployments"
 BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments"
 
-w3_by_chain = {
+W3_BY_CHAIN = {
     "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
     "arbitrum": Web3(Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")),
     "optimism": Web3(Web3.HTTPProvider(f"https://optimism-rpc.gateway.pokt.network")),
     "polygon": Web3(Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "zkevm": Web3(Web3.HTTPProvider(f"https://zkevm-rpc.com")),
     "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
     "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
 }
 
-
-ALL_CHAINS_MAP = {
-        "mainnet": 1,
-        "polygon": 137,
-        "arbitrum": 42161,
-        "optimism": 10,
-        "gnosis": 100,
-        "goerli": 42
-}
+book_by_chain = {}
+for chain in AddrBook.CHAIN_IDS_BY_NAME.keys():
+    book_by_chain[chain] = AddrBook(chain)
 
 def load_input_data(input_json_file):
     with open(input_json_file, "r") as f:
@@ -49,11 +43,11 @@ def load_input_data(input_json_file):
 
 def build_action_ids_map(input_data,):
     action_ids_map = {}
-    for chain in ALL_CHAINS_MAP:
+    for chain in AddrBook.CHAIN_IDS_BY_NAME.keys():
         action_ids_map[chain] = {}
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
-            callers_map = DotMap(monorepo_addresses_by_name(chain_name))
+            callers_map = book_by_chain[chain_name].reversebook
             monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
             for deployment in change["deployments"]:
                 if deployment not in monorepo_ids.keys():
@@ -78,31 +72,30 @@ def build_action_ids_map(input_data,):
 def generate_change_list(actions_id_map, ignore_already_set=True):
     changes = []
     for chain, deployments in actions_id_map.items():
-        callers_map = DotMap(monorepo_addresses_by_name(chain))
+        print(chain)
+        callers_map = book_by_chain[chain].reversebook
         for deployment, functions in deployments.items():
+            print(deployment)
             for function, action_id_and_caller_list in functions.items():
                 action_id = action_id_and_caller_list[0]
                 caller = action_id_and_caller_list[1]
-                if function == "setSwapFeePercentage(uint256)" and chain == "mainnet":
-                    target_address = callers_map.gauntletFeeSetter
-                    target = "gauntletFeeSetter"
-                elif caller == "poolRecoveryHelper":
-                    target_address = callers_map.poolRecoveryHelper
-                    target = caller
-                elif "/" in caller:
-                    (task, contract) = caller.split("/")
-                    deployment_output = requests.get(
-                        f"{BALANCER_DEPLOYMENTS_URL}/tasks/{task}/output/{chain}.json").json()
-                    target = caller
-                    target_address = deployment_output[contract]
-                else:
-                    assert type(callers_map[caller]) is str, f"caller {caller} has non-str target of {callers_map[caller]}.  Does this name exist in the registry for this chain under balancer or balancer.multisigs?  Here is the full caller_map\n {callers_map}"
-                    target_address=callers_map[caller]
-                    target = caller
-                w3 = w3_by_chain[chain]
-                relative_path = os.path.join(script_dir, "abis", "Authorizer.json")
+                try:
+                    deployment_output = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/tasks/{deployment}/output/{chain}.json")
+                    deployment_output.raise_for_status()
+                except requests.exceptions.HTTPError as ERR:
+                    print(f"404: {deployment_output.url}")
+                    break
+                deployment_output = deployment_output.json()
+                try:
+                    target_address = book_by_chain[chain].search_unique(caller)
+                except:
+                    f"caller {caller} does not have a single match in the address book.  Here is what was found\n{book_by_chain[chain].search_many(caller)}"
 
-                authorizer = w3.eth.contract(address=callers_map["Authorizer"], abi=json.load(open(relative_path)))
+                target = caller
+                w3 = W3_BY_CHAIN[chain]
+
+                relative_path = os.path.join(script_dir, "abis", "Authorizer.json")
+                authorizer = w3.eth.contract(address=book_by_chain[chain].flatbook["20210418-authorizer/Authorizer"], abi=json.load(open(relative_path)))
                 role_members = authorizer.functions.getRoleMemberCount(action_id).call()
                 if  role_members> 0:
                     if role_members == 1:
@@ -168,14 +161,14 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             chains.append(change["chain"])
 
     for chain_name in chains:
-        chain_id = ALL_CHAINS_MAP[chain_name]
-        r = get_registry_by_chain_id(chain_id)
-        with open("tx_builder_templates/authorizor_grant_roles.json", "r") as f:
+        chain_id = AddrBook.CHAIN_IDS_BY_NAME[chain_name]
+        book = book_by_chain[chain_name]
+        with open(f"{script_dir}/tx_builder_templates/authorizor_grant_roles.json", "r") as f:
             data = DotMap(json.load(f))
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = r.balancer.multisigs.dao
+        data.meta.createFromSafeAddress = book_by_chain[chain_name].search_unique("multisigs/dao")
 
         # Group roles on this chain by target address
         action_ids_by_address = {}
@@ -191,7 +184,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         tx_template = data.transactions[0]
         for address,actions in action_ids_by_address.items():
             transaction = DotMap(tx_template)
-            transaction.to = r.balancer.Authorizer
+            transaction.to = book.search_unique("20210418-authorizer/Authorizer")
             # TX builder wants lists in a string, addresses unquoted
             transaction.contractInputsValues.roles = str(actions).replace("'","")
             transaction.contractInputsValues.account = address
@@ -203,7 +196,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             json.dump(dict(data), f)
 
 
-def main(output_dir="../BIPs/00batched/authorizer", input_file=f"../BIPs/00batched/authorizer/{today}.json"):
+def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data=input_data)
     change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
