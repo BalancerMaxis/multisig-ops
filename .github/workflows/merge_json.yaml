@@ -21,7 +21,7 @@ jobs:
           python-version: 3.9
       - name: Run script with JSON files
         run: |
-          python action-scripts/merge_pr_json.py ${{ github.event.inputs.directory }}
+          python action-scripts/merge_pr_jsons.py ${{ github.event.inputs.directory }}
       - name: pull-request
         uses: peter-evans/create-pull-request@v5
         with:
