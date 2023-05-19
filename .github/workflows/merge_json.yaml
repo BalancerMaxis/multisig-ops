@@ -25,8 +25,8 @@ jobs:
       - name: pull-request
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: "Combined JSON Payloads"
+          commit-message: "Combined JSON Payloads ${{ github.event.inputs.directory }}"
           title: "Combined JSON payloads"
           reviewers: "solarcurvey"
           assignees: "solarcurvey"
-          labels: "Automatic"
+          labels: "Gauge Payloads", "Merged Payloads"
