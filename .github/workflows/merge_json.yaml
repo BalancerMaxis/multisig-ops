@@ -7,7 +7,6 @@ on:
         description: 'Directory of payloads to merge like BIPs/2023-W##'
         required: true
 
-
 jobs:
   json_files:
     runs-on: ubuntu-latest
@@ -29,4 +28,4 @@ jobs:
           title: "Combined JSON payloads"
           reviewers: "solarcurvey"
           assignees: "solarcurvey"
-          labels: "Gauge Payloads", "Merged Payloads"
+          labels: "Gauge Payloads, Merged Payloads"
