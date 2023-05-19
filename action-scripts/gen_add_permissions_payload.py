@@ -26,6 +26,7 @@ W3_BY_CHAIN = {
     "zkevm": Web3(Web3.HTTPProvider(f"https://zkevm-rpc.com")),
     "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
     "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
+    "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")),
 }
 
 book_by_chain = {}
@@ -43,8 +44,8 @@ def load_input_data(input_json_file):
 
 def build_action_ids_map(input_data,):
     action_ids_map = {}
-    for chain in AddrBook.CHAIN_IDS_BY_NAME.keys():
-        action_ids_map[chain] = {}
+    for chain_name in AddrBook.CHAIN_IDS_BY_NAME.keys():
+        action_ids_map[chain_name] = {}
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
             monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
@@ -62,59 +63,47 @@ def build_action_ids_map(input_data,):
                             if isinstance(fxcallers, str):
                                 fxcallers = [fxcallers]
                             for caller in fxcallers:
-                                #if caller not in callers_map.keys():
-                                #    print (f"caller:{caller}, function: {function} not in caller map")
-                                action_ids_map[chain_name][deployment][function] = [action_id, caller]
+                                if caller not in book_by_chain[chain_name].flatbook.keys():
+                                    print (f"WARNING: caller:{caller}, function: {function} not in caller map")
+                                action_ids_map[chain_name][deployment][function] = {
+                                    "action_id": action_id,
+                                    "callers":  fxcallers
+                                }
     return action_ids_map
 
 
 def generate_change_list(actions_id_map, ignore_already_set=True):
     changes = []
+
     for chain, deployments in actions_id_map.items():
         print(chain)
         book = book_by_chain[chain]
-        callers_map = book.reversebook
+        w3 = W3_BY_CHAIN[chain]
+        relative_path = os.path.join(script_dir, "abis", "Authorizer.json")
+        authorizer = w3.eth.contract(address=book.flatbook["20210418-authorizer/Authorizer"],
+                                     abi=json.load(open(relative_path)))
         for deployment, functions in deployments.items():
             print(deployment)
-            for function, action_id_and_caller_list in functions.items():
-                action_id = action_id_and_caller_list[0]
-                caller = book.search_unique(action_id_and_caller_list[1])
-                try:
-                    deployment_output = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/tasks/{deployment}/output/{chain}.json")
-                    deployment_output.raise_for_status()
-                except requests.exceptions.HTTPError as ERR:
-                    print(f"404: {deployment_output.url}")
-                    break
-                deployment_output = deployment_output.json()
-                try:
-                    caller_address = book.flatbook[caller]
-                except:
-                    f"caller {caller} does not have a single match in the address book.  Here is what was found\n{book_by_chain[chain].search_many(caller)}"
-
-                w3 = W3_BY_CHAIN[chain]
-
-                relative_path = os.path.join(script_dir, "abis", "Authorizer.json")
-                authorizer = w3.eth.contract(address=book.flatbook["20210418-authorizer/Authorizer"], abi=json.load(open(relative_path)))
-                role_members = authorizer.functions.getRoleMemberCount(action_id).call()
-                if  role_members> 0:
-                    if role_members == 1:
-                        only_member = authorizer.functions.getRoleMember(action_id, 0).call()
-                        if only_member == caller_address:
-                            print(f"{deployment}/{function} already has the proper owner set, skipping")
-                            if ignore_already_set:
-                                continue
-                    else:
-                        print(f"WARNING: the following has {role_members} members already: {deployment}{function}{action_id}")
-                        if ignore_already_set:
-                            assert(False, "unexpected permissions found")
-                changes.append({
-                    "deployment": deployment,
-                    "chain": chain,
-                    "function": function,
-                    "role": action_id,
-                    "caller": caller,
-                    "caller_address": caller_address
-                })
+            for function, info in functions.items():
+                action_id = info["action_id"]
+                role_members = []
+                num_members = authorizer.functions.getRoleMemberCount(action_id).call()
+                for i in range(num_members):
+                    role_members.append(authorizer.functions.getRoleMember(action_id, 0).call())
+                callers = info["callers"]
+                for caller in callers:
+                    caller_address = book.flatbook[book.search_unique(caller)]
+                    if caller_address in role_members:
+                        print(f"{deployment}/{function} already has the proper owner set and {num_members} members, skipping.")
+                        continue
+                    changes.append({
+                        "deployment": deployment,
+                        "chain": chain,
+                        "function": function,
+                        "role": action_id,
+                        "caller": caller,
+                        "caller_address": caller_address
+                    })
     return changes
 
 
