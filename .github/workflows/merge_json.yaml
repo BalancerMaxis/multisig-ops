@@ -3,12 +3,10 @@ name: JSON Files Between Commits
 on:
   workflow_dispatch:
     inputs:
-      start_commit:
-        description: 'Start commit'
+      directory:
+        description: 'Directory of payloads to merge like BIPs/2023-W##'
         required: true
-      end_commit:
-        description: 'End commit'
-        required: true
+
 
 jobs:
   json_files:
@@ -17,22 +15,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: List JSON files
-        id: json_files
-        run: |
-          git diff --name-only --diff-filter=d ${{ github.event.inputs.start_commit }}..${{ github.event.inputs.end_commit }} '*.json' > json_files.actions.txt
-          echo "::set-output name=files::$(cat json_files.actions.txt)"
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-
       - name: Run script with JSON files
         run: |
-          # Use the ${{ steps.json_files.outputs.files }} variable to access the list of JSON files
-          python action-scripts/merge_pr_json.py ${{ steps.json_files.outputs.files }}
-
+          python action-scripts/merge_pr_json.py ${{ github.event.inputs.directory }}
       - name: pull-request
         uses: peter-evans/create-pull-request@v5
         with:

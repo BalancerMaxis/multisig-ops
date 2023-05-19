@@ -1,12 +1,12 @@
+import json
 import os
 import sys
-import json
+from collections import defaultdict
 from datetime import datetime
-from urllib.request import urlopen
+from json import JSONDecodeError
+from typing import Optional
 
-debug = True
-
-base_json =  json.loads('''
+base_json = json.loads('''
 {
   "version": "1.0",
   "chainId": "",
@@ -23,43 +23,112 @@ base_json =  json.loads('''
 }
 ''')
 
+CHAIN_IDS = {
+    1: "mainnet",
+    3: "ropsten",
+    42161: "arbitrum",
+    100: "gnosis",
+    137: "polygon",
+    10: "optimism",
+}
+IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
+# Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
+TARGET_DIR_WITH_BIPS = "00merging"
+
+
+def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
+    """
+    In case file was created within given date bounds and for given chain -
+    parse it and return the data
+    """
+    # Check if the file is a json file
+    if not file_path.endswith(".json"):
+        return None
+    try:
+        with open(file_path, "r") as json_file:
+            data = json.load(json_file)
+            # Check if the file is a dictionary, not a list
+            if not isinstance(data, dict):
+                return None
+            # Check if chain id is the same as the one we are looking for
+            if int(data["chainId"]) == int(chain):
+                return data
+    except JSONDecodeError:
+        return None
+
+
+# Example how to run: python action-scripts/merge_pr_jsons.py BIPs/BIP-289,BIPs/BIP-285
 def main():
-    changed_files = sys.argv[1].split()
-    date = datetime.utcnow()
-    # Filter the list of added files for json files
-    json_files = [filename for filename in changed_files if filename.endswith(".json") and "BIPs/BIP" in filename]
-    txmap = {}
-    # Extract the relevant information from the JSON file
-    for json_file in json_files:
-        if debug:
-            print(f"Processing {json_file}")
-        # Get the JSON file from the repository
-        with open(json_file, "r") as json_data:
-            data = json.load(json_data)
-        # Extract the relevant information from the JSON file
-        chain_id = data["chainId"]
-        if chain_id not in txmap.keys():
-            txmap[chain_id]={}
-        safe = data["meta"]["createdFromSafeAddress"]
-        print(safe)
-        if safe not in txmap[chain_id].keys():
-            txmap[chain_id][safe] = []
-        txmap[chain_id][safe] = [*txmap[chain_id][safe], *data["transactions"]]
-        print(txmap)
+    directories = sys.argv[1].split(",")
+    print(f"Directories to parse:{directories}")
 
-    # Create the directory name.  %W is week of year, week starts on monday
-    dir_name = f"00batched/{date.year}-{date.strftime('%U')}"
-    # Create the directory if it does not exist
-    if not os.path.exists(f"BIPs/{dir_name}"):
-        os.mkdir(f"BIPs/{dir_name}")
+    if not directories:
+        raise ValueError("No directories were passed in as arguments")
 
-    # Generate the files
-    for chain, safes in txmap.items():
-        for safe, txlist in safes.items():
+    current_week = datetime.utcnow().strftime("%U")
+    current_year = datetime.utcnow().year
+    # get root directory of the project:
+    # To do this you need to go up 2 levels from the current file
+    # For instance, to get to the project root from: multisig-ops/action-scripts/merge_pr_jsons.py
+    # You need to jump up two steps with os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    files_to_parse = []
+    target_files = defaultdict(list)
+    # Walk through all directories passed in as arguments and extract all files
+    for directory in directories:
+        # If directory doesn't exist, raise an error
+        if not os.path.exists(os.path.join(root_dir, directory)):
+            raise ValueError(f"Directory {directory} does not exist. Pass correct directory name")
+        # Parse each directory for underlying files
+        for root, __, files in os.walk(os.path.join(root_dir, directory)):
+            for file in files:
+                # Skip non json files
+                if not file.endswith(".json"):
+                    continue
+                files_to_parse.append(os.path.join(root, file))
+
+    # Walk through all nested directories in BIPs
+    for file in files_to_parse:
+        # Process files that are lying flat in BIPs directory
+        for chain_id, chain_name in CHAIN_IDS.items():
+            data = _parse_bip_json(
+                os.path.join(root_dir, file), chain=chain_id
+            )
+            if data:
+                # Add the file to the list of files to be merged
+                target_files[str(chain_id)].append(data)
+
+    # Now we have a list of files to be merged, let's merge them and save to files
+    dir_name_batched = f"BIPs/00batched/{current_year}-W{current_week}"
+    dir_name_batched_full = os.path.join(root_dir, dir_name_batched)
+    # Create the directory if it does not exist in root directory
+    if not os.path.exists(dir_name_batched_full):
+        os.mkdir(dir_name_batched_full)
+
+    # Now we need to group files by safe address as well
+    for chain_id, files in target_files.items():
+        # Group files by safe address
+        grouped_files = defaultdict(list)
+        for file in files:
+            safe_address = file["meta"]["createdFromSafeAddress"]
+            if not safe_address:
+                safe_address = file["meta"]["createFromSafeAddress"]
+            grouped_files[safe_address].append(file)
+
+        # Now we have a list of files grouped by safe address, let's merge them and save to files
+        for safe_address, fs in grouped_files.items():
+            # Merge all the files into one
             result = base_json
-            result["transactions"] = txlist
-            file_name = f"{chain_id}-{safe}.json"
-            with open(f"BIPs/{dir_name}/{file_name}", "w") as new_file:
+            result['meta']['createdFromSafeAddress'] = safe_address
+            result['chainId'] = chain_id
+            result["transactions"] = []
+            for file in fs:
+                result["transactions"] += file["transactions"]
+            # Save the result to file
+            file_name = f"{chain_id}-{safe_address}.json"
+            file_path = os.path.join(dir_name_batched_full, file_name)
+            with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
 
 
