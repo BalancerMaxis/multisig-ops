@@ -15,8 +15,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 
 ###TODO: The below settings must be set before running the script
 INFURA_KEY = os.getenv('WEB3_INFURA_PROJECT_ID')
-BALANCER_DEPLOYMENTS_DIR = "../../../balancer-v2-monorepo/pkg/deployments"
-BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments"
+BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer/balancer-deployments/master"
 
 W3_BY_CHAIN = {
     "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
@@ -48,7 +47,14 @@ def build_action_ids_map(input_data,):
         action_ids_map[chain_name] = {}
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
-            monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
+            try:
+                monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json")
+                monorepo_ids.raise_for_status()
+                monorepo_ids = monorepo_ids.json()
+            except requests.HTTPError as err:
+                print(f"error:{err}, url: {monorepo_ids.url}")
+                exit(0)
+
             for deployment in change["deployments"]:
                 if deployment not in monorepo_ids.keys():
                     continue ## This deployment is not on this chain
