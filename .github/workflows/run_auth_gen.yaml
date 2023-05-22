@@ -45,7 +45,7 @@ jobs:
       env:
         WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
       run: |
-        pip3 install -r action-scripts/requirements.txt
+        pip3 install -r action-scripts/requirements-actions.txt
         python3 action-scripts/gen_add_permissions_payload.py
 
     - name: Commit and push changes
