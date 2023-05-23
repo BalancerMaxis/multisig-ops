@@ -1,6 +1,5 @@
 name: Build Permissions Bip
 
-
 on:
   workflow_dispatch:
     inputs:
@@ -26,7 +25,7 @@ jobs:
 
     - name: Generate Permissions BIP
       id: doit
-      with:
+      env:
         PR_NUMBER: ${{github.events.inputs.PR_NUMBER}}
         BIP_NUMBER: ${{github.events.inputs.BIP_NUMBER}}
         DATE: ${{github.events.inputs.JSON_DATE}}
