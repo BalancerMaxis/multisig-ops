@@ -26,9 +26,9 @@ jobs:
     - name: Generate Permissions BIP
       id: doit
       env:
-        PR_NUMBER: ${{github.events.inputs.PR_NUMBER}}
-        BIP_NUMBER: ${{github.events.inputs.BIP_NUMBER}}
-        DATE: ${{github.events.inputs.JSON_DATE}}
+        PR_NUMBER: ${{github.event.inputs.PR_NUMBER}}
+        BIP_NUMBER: ${{github.event.inputs.BIP_NUMBER}}
+        DATE: ${{github.event.inputs.JSON_DATE}}
       run: |
           cd BIPs/00batched/authorizer
           bash gen_gov_md.sh
