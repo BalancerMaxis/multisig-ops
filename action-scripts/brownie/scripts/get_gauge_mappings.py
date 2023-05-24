@@ -202,8 +202,8 @@ def gen_report(payload_list):
                 "pool_address": pool_address,
                 "aFactor": aFactor,
                 "gauge_address": gauge_address,
-                "fee": f"%{fee}",
-                "cap": f"%{cap}",
+                "fee": f"{fee}%",
+                "cap": f"{cap}%",
                 "style": style
             })
         if outputs == []:
