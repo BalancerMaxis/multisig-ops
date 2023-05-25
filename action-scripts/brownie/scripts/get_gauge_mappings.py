@@ -37,9 +37,13 @@ def get_pool_info(poolAddress):
         poolId = str(pool.getPoolId())
     except:
         poolId = "Custom"
+    try:
+        fee = pool.getSwapFeePercentage() / 1e16
+    except:
+        fee = "Not Found"
     if pool.totalSupply ==  0:
         symbol = f"WARN: {symbol} no initjoin"
-    return(name,  symbol, poolId, pool.address, aFactor)
+    return(name,  symbol, poolId, pool.address, aFactor, fee)
 
 def get_payload_list():
     github_repo = os.environ["GITHUB_REPOSITORY"]
@@ -96,7 +100,6 @@ def gen_report(payload_list):
                     else:
                         print("Call to gaugeaddr without a gauge, skipping")
                         continue
-                    gauge_type = "N/A"
                     command = transaction["contractMethod"]["name"]
 
             else:
@@ -120,7 +123,6 @@ def gen_report(payload_list):
                             "pool_address": "!!!",
                             "aFactor": "!!!",
                             "gauge_address": "!!!",
-                            "type": "!!!",
                             "cap": f"!!!",
                             "style": "!!!"
                         })
@@ -130,18 +132,12 @@ def gen_report(payload_list):
 
                 #print(inputs)
                 if len(inputs) == 0: ## Is a gauge kill
-                    gauge_type = "NA"
                     gauge_address = transaction["contractInputsValues"]["target"]
                 else:
                     gauge_address = inputs[0]
-                    gauge_type = inputs[1]
 
-                #if type(gauge_type) != int or gauge_type == 2: ## 2 is mainnet gauge
-                #print(f"processing {gauge_address}")
             gauge = Contract(gauge_address)
 
-            pool_token_list = []
-            #print(gauge.selectors.values())
             fxSelectorToChain = {
                 "getTotalBridgeCost": "arbitrum",
                 "getPolygonBridge": "polygon",
@@ -162,11 +158,11 @@ def gen_report(payload_list):
                 ## Check if this is a new l0 style gauge
                 if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
                     l2hop2=Contract(l2hop1.reward_receiver())
-                    (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(l2hop2.lp_token())
+                    (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(l2hop2.lp_token())
                     style = "ChildChainStreamer"
                     gauge_symbol = l2hop2.symbol()
                 else: # L0 style
-                    (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(l2hop1.lp_token())
+                    (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(l2hop1.lp_token())
                     style = "L0 sidechain"
                     gauge_symbol = l2hop1.symbol()
                 ## Go back to mainnet
@@ -176,14 +172,14 @@ def gen_report(payload_list):
                 try:
                     recipient = Contract(gauge.getRecipient())
                     escrow = Contract(recipient.getVotingEscrow())
-                    (pool_name, pool_symbol, poolId, pool_address, aFactor) = get_pool_info(escrow.token())
+                    (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(escrow.token())
                     style = "Single Recipient"
                     gauge_symbol = "N/A"
                 except:
                     style = "Single Recipient"
 
             else:
-                (pool_name, pool_symbol, poolId, pool_address,  aFactor) = get_pool_info(gauge.lp_token())
+                (pool_name, pool_symbol, poolId, pool_address,  aFactor, fee) = get_pool_info(gauge.lp_token())
                 gauge_symbol = gauge.symbol()
                 if not style:
                     style = "mainnet"
@@ -206,7 +202,7 @@ def gen_report(payload_list):
                 "pool_address": pool_address,
                 "aFactor": aFactor,
                 "gauge_address": gauge_address,
-                "type": gauge_type,
+                "fee": f"{fee}%",
                 "cap": f"{cap}%",
                 "style": style
             })
