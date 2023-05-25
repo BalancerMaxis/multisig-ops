@@ -1,7 +1,7 @@
 [
   {
     "chain_map": {
-      "mainnet": 1
+      "zkevm": 1101
     },
     "function_caller_map": {
       "setSwapFeePercentage(uint256)": ["multisigs/lm"],
@@ -16,8 +16,8 @@
       "setTargets(uint256,uint256)": ["multisigs/lm"]
     },
     "deployments": [
-      "20230206-weighted-pool-v4",
-      "20230206-composable-stable-pool-v4",
+      "20230320-weighted-pool-v4",
+      "20230320-composable-stable-pool-v4",
       "20230409-erc4626-linear-pool-v4",
       "20230409-gearbox-linear-pool-v2",
       "20230409-yearn-linear-pool-v2",
@@ -28,7 +28,7 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "zkevm": 1101
     },
     "function_caller_map": {
       "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
@@ -58,13 +58,13 @@
       "setFlashLoanFeePercentage(uint256)": [
         "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider"
       ],
-      "setPaused(bool)": ["mutlisigs/emergency"]
+      "setPaused(bool)": ["multisigs/emergency"]
     },
     "deployments": ["20210418-vault"]
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "zkevm": 1101
     },
     "function_caller_map": {
       "setFeeTypePercentage(uint256,uint256)": ["multisigs/dao"]
@@ -73,7 +73,7 @@
   },
   {
     "chain_map": {
-      "gnosis": 100
+      "zkevm": 1101
     },
     "function_caller_map": {
       "add_reward(address,address)": ["multisigs/lm"]
@@ -82,7 +82,7 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "zkevm": 1101
     },
     "function_caller_map": {
       "denylistToken(address)": ["multisigs/emergency"],
@@ -92,17 +92,17 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "zkevm": 1101
     },
     "function_caller_map": {
-      "removePoolFactory(address)": ["multisigs/blabs_ops"],
-      "addPoolFactory(address)": ["multisigs/blabs_ops"]
+      "removePoolFactory(address)": ["multisigs/lm"],
+      "addPoolFactory(address)": ["multisigs/lm"]
     },
     "deployments": ["20221123-pool-recovery-helper"]
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "zkevm": 1101
     },
     "function_caller_map": {
       "registerProtocolId(uint256,string)": ["multisigs/lm"],

@@ -1,39 +1,36 @@
 import json
 import requests
 from dotmap import DotMap
-from helpers.addresses import get_registry_by_chain_id, monorepo_addresses_by_name
+from bal_addresses import AddrBook
 import pandas as pd
 from datetime import date
 from web3 import Web3
 import os
 
-
 today = str(date.today())
 debug = False
 
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
 ###TODO: The below settings must be set before running the script
 INFURA_KEY = os.getenv('WEB3_INFURA_PROJECT_ID')
-BALANCER_DEPLOYMENTS_DIR = "../../../balancer-v2-monorepo/pkg/deployments"
-BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments"
+BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer/balancer-deployments/master"
 
-w3_by_chain = {
+W3_BY_CHAIN = {
     "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
     "arbitrum": Web3(Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")),
     "optimism": Web3(Web3.HTTPProvider(f"https://optimism-rpc.gateway.pokt.network")),
     "polygon": Web3(Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "zkevm": Web3(Web3.HTTPProvider(f"https://zkevm-rpc.com")),
     "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
     "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
+    "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")),
 }
 
-
-ALL_CHAINS_MAP = {
-        "mainnet": 1,
-        "polygon": 137,
-        "arbitrum": 42161,
-        "optimism": 10,
-        "gnosis": 100,
-        "goerli": 42
-}
+book_by_chain = {}
+for chain in AddrBook.CHAIN_IDS_BY_NAME.keys():
+    book_by_chain[chain] = AddrBook(chain)
 
 def load_input_data(input_json_file):
     with open(input_json_file, "r") as f:
@@ -46,12 +43,18 @@ def load_input_data(input_json_file):
 
 def build_action_ids_map(input_data,):
     action_ids_map = {}
-    for chain in ALL_CHAINS_MAP:
-        action_ids_map[chain] = {}
+    for chain_name in AddrBook.CHAIN_IDS_BY_NAME.keys():
+        action_ids_map[chain_name] = {}
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
-            callers_map = DotMap(monorepo_addresses_by_name(chain_name))
-            monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json").json()
+            try:
+                monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json")
+                monorepo_ids.raise_for_status()
+                monorepo_ids = monorepo_ids.json()
+            except requests.HTTPError as err:
+                print(f"error:{err}, url: {monorepo_ids.url}")
+                exit(0)
+
             for deployment in change["deployments"]:
                 if deployment not in monorepo_ids.keys():
                     continue ## This deployment is not on this chain
@@ -66,65 +69,53 @@ def build_action_ids_map(input_data,):
                             if isinstance(fxcallers, str):
                                 fxcallers = [fxcallers]
                             for caller in fxcallers:
-                                #if caller not in callers_map.keys():
-                                #    print (f"caller:{caller}, function: {function} not in caller map")
-                                action_ids_map[chain_name][deployment][function] = [action_id, caller]
+                                if caller not in book_by_chain[chain_name].flatbook.keys():
+                                    print (f"WARNING: caller:{caller}, function: {function} not in caller map")
+                                action_ids_map[chain_name][deployment][function] = {
+                                    "action_id": action_id,
+                                    "callers":  fxcallers
+                                }
     return action_ids_map
 
 
 def generate_change_list(actions_id_map, ignore_already_set=True):
     changes = []
-    for chain, deployments in actions_id_map.items():
-        callers_map = DotMap(monorepo_addresses_by_name(chain))
-        for deployment, functions in deployments.items():
-            for function, action_id_and_caller_list in functions.items():
-                action_id = action_id_and_caller_list[0]
-                caller = action_id_and_caller_list[1]
-                if function == "setSwapFeePercentage(uint256)" and chain == "mainnet":
-                    target_address = callers_map.gauntletFeeSetter
-                    target = "gauntletFeeSetter"
-                elif caller == "poolRecoveryHelper":
-                    target_address = callers_map.poolRecoveryHelper
-                    target = caller
-                elif "/" in caller:
-                    (task, contract) = caller.split("/")
-                    deployment_output = requests.get(
-                        f"{BALANCER_DEPLOYMENTS_URL}/tasks/{task}/output/{chain}.json").json()
-                    target = caller
-                    target_address = deployment_output[contract]
-                else:
-                    assert type(callers_map[caller]) is str, f"caller {caller} has non-str target of {callers_map[caller]}.  Does this name exist in the registry for this chain under balancer or balancer.multisigs?  Here is the full caller_map\n {callers_map}"
-                    target_address=callers_map[caller]
-                    target = caller
-                w3 = w3_by_chain[chain]
 
-                authorizer = w3.eth.contract(address=callers_map["Authorizer"], abi=json.load(open("./abis/Authorizer.json")))
-                role_members = authorizer.functions.getRoleMemberCount(action_id).call()
-                if  role_members> 0:
-                    if role_members == 1:
-                        only_member = authorizer.functions.getRoleMember(action_id, 0).call()
-                        if only_member == target_address:
-                            print(f"{deployment}/{function} already has the proper owner set, skipping")
-                            if ignore_already_set:
-                                continue
-                    else:
-                        print(f"WARNING: the following has {role_members} members already: {deployment}{function}{action_id}")
-                        if ignore_already_set:
-                            assert(False, "unexpected permissions found")
-                changes.append({
-                    "deployment": deployment,
-                    "chain": chain,
-                    "function": function,
-                    "role": action_id,
-                    "target": target,
-                    "target_address": target_address
-                })
+    for chain, deployments in actions_id_map.items():
+        print(chain)
+        book = book_by_chain[chain]
+        w3 = W3_BY_CHAIN[chain]
+        relative_path = os.path.join(script_dir, "abis", "Authorizer.json")
+        authorizer = w3.eth.contract(address=book.flatbook["20210418-authorizer/Authorizer"],
+                                     abi=json.load(open(relative_path)))
+        for deployment, functions in deployments.items():
+            print(deployment)
+            for function, info in functions.items():
+                action_id = info["action_id"]
+                role_members = []
+                num_members = authorizer.functions.getRoleMemberCount(action_id).call()
+                for i in range(num_members):
+                    role_members.append(authorizer.functions.getRoleMember(action_id, 0).call())
+                callers = info["callers"]
+                for caller in callers:
+                    caller_address = book.flatbook[book.search_unique(caller)]
+                    if caller_address in role_members:
+                        print(f"{deployment}/{function} already has the proper owner set and {num_members} members, skipping.")
+                        continue
+                    changes.append({
+                        "deployment": deployment,
+                        "chain": chain,
+                        "function": function,
+                        "role": action_id,
+                        "caller": caller,
+                        "caller_address": caller_address
+                    })
     return changes
 
 
 def print_change_list(change_list, output_dir, filename_root=today):
     df = pd.DataFrame(change_list)
-    chain_address_sorted = df.sort_values(by=["chain", "target_address"])
+    chain_address_sorted = df.sort_values(by=["chain", "caller_address"])
     chain_deployment_sorted = df.sort_values(by=["chain", "deployment", "function"])
     print(df.to_markdown(index=False))
     if output_dir:
@@ -164,30 +155,30 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             chains.append(change["chain"])
 
     for chain_name in chains:
-        chain_id = ALL_CHAINS_MAP[chain_name]
-        r = get_registry_by_chain_id(chain_id)
-        with open("tx_builder_templates/authorizor_grant_roles.json", "r") as f:
+        chain_id = AddrBook.CHAIN_IDS_BY_NAME[chain_name]
+        book = book_by_chain[chain_name]
+        with open(f"{script_dir}/tx_builder_templates/authorizor_grant_roles.json", "r") as f:
             data = DotMap(json.load(f))
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = r.balancer.multisigs.dao
+        data.meta.createFromSafeAddress = book_by_chain[chain].reversebook["multisigs/dao"]
 
-        # Group roles on this chain by target address
+        # Group roles on this chain by caller address
         action_ids_by_address = {}
         for change in change_list:
             if change["chain"] != chain_name:
                 continue
-            if change["target_address"] not in action_ids_by_address:
-                action_ids_by_address[change["target_address"]] = []
-            action_ids_by_address[change["target_address"]].append(change["role"])
+            if change["caller_address"] not in action_ids_by_address:
+                action_ids_by_address[change["caller_address"]] = []
+            action_ids_by_address[change["caller_address"]].append(change["role"])
 
         # Build transaction list
         transactions = []
         tx_template = data.transactions[0]
         for address,actions in action_ids_by_address.items():
             transaction = DotMap(tx_template)
-            transaction.to = r.balancer.Authorizer
+            transaction.to = book.flatbook["20210418-authorizer/Authorizer"]
             # TX builder wants lists in a string, addresses unquoted
             transaction.contractInputsValues.roles = str(actions).replace("'","")
             transaction.contractInputsValues.account = address
@@ -199,7 +190,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             json.dump(dict(data), f)
 
 
-def main(output_dir="../../BIPs/00batched/authorizer", input_file=f"../../BIPs/00batched/authorizer/{today}.json"):
+def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
     action_ids_map = build_action_ids_map(input_data=input_data)
     change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
