@@ -11,43 +11,23 @@ env:
 jobs:
   gen_auth:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: tools/python
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Check label
-      run: |
-        if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
-          echo "Checking for label '${{ env.LABEL }}' on the pull request associated with commit '$GITHUB_SHA'"
-          pull_request_labels=$(jq --raw-output '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
-          if echo "$pull_request_labels" | grep -q '${{ env.LABEL }}'; then
-            echo "Label '${{ env.LABEL }}' found on pull request"
-          else
-            echo "Label '${{ env.LABEL }} not found on pull request"
-            echo "Exiting action"
-            exit 1
-          fi
-        else
-          echo "No pull request associated with commit '$GITHUB_SHA'"
-          echo "Exiting action"
-          exit 1
-        fi
 
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
 
-    - name: Install Requirements
-      run: pip install -r requirements.txt
-
     - name: Do Work
+      if: ${{ github.event.label.name }} == 'Generate Authorizer'
       env:
         WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-      run: python3 gen_add_permissions_payload.py
+      run: |
+        pwd
+        pip3 install -r action-scripts/requirements-actions.txt
+        python3 action-scripts/gen_add_permissions_payload.py
 
     - name: Commit and push changes
       uses:  stefanzweifel/git-auto-commit-action@v4
