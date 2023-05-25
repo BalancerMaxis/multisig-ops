@@ -3,6 +3,7 @@ name: Reformat single-line JSON
 on:
   pull_request:
     branches: [main]
+    types: [opened, reopened, synchronize]
 
 jobs:
   prettier:
