@@ -37,7 +37,6 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
-    sweep_limit
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
@@ -137,7 +136,7 @@ def main():
     sweeps=generateSweepFile(target_file)
     claimFees(safe, sweeps)
     cowswapFees(safe, sweeps)
-    safe.post_safe_tx(gen_tenderly=False)
+    safe.post_safe_tx(gen_tenderly=False, replace_nonce=141)
 
 if __name__ == "__main__":
     main()
