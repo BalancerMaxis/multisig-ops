@@ -121,7 +121,6 @@ class Cow:
 
         assert fee_amount > 0
         assert buy_amount_after_fee > 0
-
         # add deadline to current block timestamp
         deadline = chain.time() + deadline
 
