@@ -23,16 +23,7 @@ base_json = json.loads('''
   ]
 }
 ''')
-AddrBook.CHAIN_IDS_BY_NAME
-CHAIN_IDS = {
-    1: "mainnet",
-    3: "ropsten",
-    42161: "arbitrum",
-    100: "gnosis",
-    137: "polygon",
-    10: "optimism",
-    1101: "zkevm"
-}
+
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
