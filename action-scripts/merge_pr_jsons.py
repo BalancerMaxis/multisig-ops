@@ -5,6 +5,7 @@ from collections import defaultdict
 from datetime import datetime
 from json import JSONDecodeError
 from typing import Optional
+from bal_addresses import AddrBook
 
 base_json = json.loads('''
 {
@@ -22,7 +23,7 @@ base_json = json.loads('''
   ]
 }
 ''')
-
+AddrBook.CHAIN_IDS_BY_NAME
 CHAIN_IDS = {
     1: "mainnet",
     3: "ropsten",
@@ -30,6 +31,7 @@ CHAIN_IDS = {
     100: "gnosis",
     137: "polygon",
     10: "optimism",
+    1101: "zkevm"
 }
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
@@ -91,7 +93,7 @@ def main():
     # Walk through all nested directories in BIPs
     for file in files_to_parse:
         # Process files that are lying flat in BIPs directory
-        for chain_id, chain_name in CHAIN_IDS.items():
+        for chain_name, chain_id in AddrBook.CHAIN_IDS_BY_NAME:
             data = _parse_bip_json(
                 os.path.join(root_dir, file), chain=chain_id
             )
