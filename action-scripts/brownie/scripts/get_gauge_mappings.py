@@ -91,16 +91,19 @@ def gen_report(payload_list):
         for transaction in tx_list:
             style = False
             gauge_address = False
-            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder")]:
+            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder")] or transaction["to"] == flatbook[a.search_unique("v4/GaugeAdder")]:
                 for k in transaction["contractInputsValues"].keys():
                     if k == "rootGauge":
+                        command = transaction["contractMethod"]["name"]
                         gauge_address = transaction["contractInputsValues"]["rootGauge"]
+                        break
                     elif k == "gauge":
                         gauge_address = transaction["contractInputsValues"]["gauge"]
+                        command = transaction["contractMethod"]["name"]
+                        break
                     else:
-                        print("Call to gaugeaddr without a gauge, skipping")
+                        print("gauge address not found in GaugeAdder call")
                         continue
-                    command = transaction["contractMethod"]["name"]
 
             else:
                 try:
