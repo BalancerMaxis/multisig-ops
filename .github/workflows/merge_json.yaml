@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-node@v3
       - name: Run script with JSON files
         run: |
-          apt-
           python action-scripts/merge_pr_jsons.py ${{ github.event.inputs.directory }}
           npm install --save-dev --save-exact prettier
           npx prettier --write BIPs/00batched/**/*.json
