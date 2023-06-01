@@ -1,1 +1,100 @@
-{"version":"1.0","chainId":"1","createdAt":1685636319821,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.14.1","createdFromSafeAddress":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f","createdFromOwnerAddress":"","checksum":"0xe0a2a3143ed114acf0885ab3f17ca9072fb545d6c5540b4331606075663a6309"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32[]","name":"roles","type":"bytes32[]"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRoles","payable":false},"contractInputsValues":{"roles":"[0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151,0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166]","account":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"}},{"to":"0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"string","name":"gaugeType","type":"string"}],"name":"addGaugeType","payable":false},"contractInputsValues":{"gaugeType":"EthereumSingleRecipientGauge"}},{"to":"0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"contract ILiquidityGaugeFactory","name":"factory","type":"address"},{"internalType":"string","name":"gaugeType","type":"string"}],"name":"setGaugeFactory","payable":false},"contractInputsValues":{"factory":"0x4fb47126Fa83A8734991E41B942Ac29A3266C968","gaugeType":"EthereumSingleRecipientGauge"}},{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","payable":false},"contractInputsValues":{"role":"0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151","account":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"}},{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","payable":false},"contractInputsValues":{"role":"0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166","account":"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1685636319821,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xe0a2a3143ed114acf0885ab3f17ca9072fb545d6c5540b4331606075663a6309"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151,0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166]",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "string", "name": "gaugeType", "type": "string" }
+        ],
+        "name": "addGaugeType",
+        "payable": false
+      },
+      "contractInputsValues": { "gaugeType": "EthereumSingleRecipientGauge" }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          },
+          { "internalType": "string", "name": "gaugeType", "type": "string" }
+        ],
+        "name": "setGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0x4fb47126Fa83A8734991E41B942Ac29A3266C968",
+        "gaugeType": "EthereumSingleRecipientGauge"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    }
+  ]
+}
