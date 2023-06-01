@@ -17,16 +17,16 @@
       "contractMethod": {
         "inputs": [
           {
-            "internalType": "contract IStakingLiquidityGauge",
-            "name": "gauge",
+            "internalType": "address",
+            "name": "rootGauge",
             "type": "address"
           }
         ],
-        "name": "addEthereumGauge",
+        "name": "addArbitrumGauge",
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0xFa58735ceEAa83a7c9c13CA771F12378D40D7b05"
+        "rootGauge": "0xc4b6cc9A444337b1Cb8cBbDD9de4d983f609C391"
       }
     },
     {
@@ -45,7 +45,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "rootGauge": "0x8F7a0F9cf545DB78BF5120D3DBea7DE9c6220c10"
+        "rootGauge": "0xa8D974288Fe44ACC329D7d7a179707D27Ec4dd1c"
       }
     },
     {
@@ -64,7 +64,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0x6E7B9A1746a7eD4b23edFf0975B726E5aA673E21"
+        "gauge": "0xc43bF12A008d3Cc48AF7da1e8e87622A78dc64da"
       }
     },
     {
@@ -83,7 +83,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0x6F3b31296FD2457eba6Dca3BED65ec79e06c1295"
+        "gauge": "0x69F1077AeCE23D5b0344330B5eB13f05d5e410a1"
       }
     }
   ]
