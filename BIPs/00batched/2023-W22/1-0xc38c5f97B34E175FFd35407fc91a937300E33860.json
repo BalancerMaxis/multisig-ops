@@ -17,6 +17,25 @@
       "contractMethod": {
         "inputs": [
           {
+            "internalType": "address",
+            "name": "rootGauge",
+            "type": "address"
+          }
+        ],
+        "name": "addArbitrumGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rootGauge": "0xa8D974288Fe44ACC329D7d7a179707D27Ec4dd1c"
+      }
+    },
+    {
+      "to": "0x5efBb12F01f27F0E020565866effC1dA491E91A4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
             "internalType": "contract IStakingLiquidityGauge",
             "name": "gauge",
             "type": "address"
@@ -26,7 +45,26 @@
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0xFa58735ceEAa83a7c9c13CA771F12378D40D7b05"
+        "gauge": "0x69F1077AeCE23D5b0344330B5eB13f05d5e410a1"
+      }
+    },
+    {
+      "to": "0x5efBb12F01f27F0E020565866effC1dA491E91A4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IStakingLiquidityGauge",
+            "name": "gauge",
+            "type": "address"
+          }
+        ],
+        "name": "addEthereumGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xc43bF12A008d3Cc48AF7da1e8e87622A78dc64da"
       }
     },
     {
@@ -45,45 +83,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "rootGauge": "0x8F7a0F9cf545DB78BF5120D3DBea7DE9c6220c10"
-      }
-    },
-    {
-      "to": "0x5efBb12F01f27F0E020565866effC1dA491E91A4",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "contract IStakingLiquidityGauge",
-            "name": "gauge",
-            "type": "address"
-          }
-        ],
-        "name": "addEthereumGauge",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "gauge": "0x6E7B9A1746a7eD4b23edFf0975B726E5aA673E21"
-      }
-    },
-    {
-      "to": "0x5efBb12F01f27F0E020565866effC1dA491E91A4",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "contract IStakingLiquidityGauge",
-            "name": "gauge",
-            "type": "address"
-          }
-        ],
-        "name": "addEthereumGauge",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "gauge": "0x6F3b31296FD2457eba6Dca3BED65ec79e06c1295"
+        "rootGauge": "0xc4b6cc9A444337b1Cb8cBbDD9de4d983f609C391"
       }
     }
   ]
