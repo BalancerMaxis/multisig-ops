@@ -24,9 +24,11 @@ base_json = json.loads('''
 }
 ''')
 
+
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
+TEMPLATE_PATH = os.path.dirname(os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
 
 
 def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
@@ -51,8 +53,7 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
         return None
 
 def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
-    template_path = os.path.dirname(os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
-    with open(template_path, "r") as template:
+    with open(TEMPLATE_PATH, "r") as template:
         payload = json.load(template)
     #  Grab the example transaction and clear the transaction list.
     tx_template = payload["transactions"][0]
@@ -73,7 +74,7 @@ def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
 def main():
     directories = sys.argv[1].split(",")
     print(f"Directories to parse:{directories}")
-    gauge_lists_by_chain = {}
+    gauge_lists_by_chain = defaultdict(list)
 
     if not directories:
         raise ValueError("No directories were passed in as arguments")
@@ -145,8 +146,6 @@ def main():
                         try:
                             gauge_chain = tx["contractInputsValues"]["gaugeType"]
                             if gauge_chain != "Ethereum":
-                                if gauge_chain not in gauge_lists_by_chain.keys():
-                                    gauge_lists_by_chain[gauge_chain] = []
                                 gauge_lists_by_chain[gauge_chain].append(tx["contractInputsValues"]["gauge"])
                         except:
                             print(f"Skipping checkpointer add for addGauge tx as it doesn't have expected inputs:\n---\n {tx['contractInputsValues']}")
