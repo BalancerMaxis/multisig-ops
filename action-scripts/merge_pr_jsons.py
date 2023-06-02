@@ -153,7 +153,7 @@ def main():
                                     gauge_lists_by_chain[gauge_chain] = []
                                 gauge_lists_by_chain[gauge_chain].append(tx["contractInputsValues"]["gauge"])
                         except:
-                            print(f"Skipping checkpointer add for addGauge tx as it doesn't have expected inputs:\n---\n {new_gauges.append(tx['contractInputsValues'])}")
+                            print(f"Skipping checkpointer add for addGauge tx as it doesn't have expected inputs:\n---\n {tx['contractInputsValues']}")
 
             # Save the result to file
             file_name = f"{chain_id}-{safe_address}.json"
