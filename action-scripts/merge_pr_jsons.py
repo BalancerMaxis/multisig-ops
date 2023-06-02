@@ -52,7 +52,6 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
 
 def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
     template_path = os.path.dirname(os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
-    print (template_path)
     with open(template_path, "r") as template:
         payload = json.load(template)
     #  Grab the example transaction and clear the transaction list.
@@ -143,9 +142,6 @@ def main():
 
                 for tx in file["transactions"]:
                     if tx["contractMethod"]["name"] == "addGauge":
-                        print(result["transactions"])
-                        print("\n\n")
-
                         try:
                             gauge_chain = tx["contractInputsValues"]["gaugeType"]
                             if gauge_chain != "Ethereum":
@@ -160,7 +156,6 @@ def main():
             file_path = os.path.join(dir_name_batched_full, file_name)
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
-    print (gauge_lists_by_chain)
     if gauge_lists_by_chain != {}:
         _write_checkpointer_json(f"{dir_name_batched_full}/1-anySafeWillDo.json", gauge_lists_by_chain)
 
