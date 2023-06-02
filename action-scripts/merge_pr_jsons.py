@@ -46,11 +46,12 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
             if not isinstance(data, dict):
                 return None
             # Check if chain id is the same as the one we are looking for
-            # TODO  This crashes if it finds JSON that is not a payload file.  Discovered by running on BIPs/
+            # TODO  This crashes if it finds JSON that is not a payload file.  Discovered by running on BIPs
             if int(data["chainId"]) == int(chain):
                 return data
     except JSONDecodeError:
         return None
+
 
 def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
     with open(TEMPLATE_PATH, "r") as template:
