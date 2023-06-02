@@ -155,7 +155,7 @@ def main():
             file_path = os.path.join(dir_name_batched_full, file_name)
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
-    if gauge_lists_by_chain != {}:
+    if not gauge_lists_by_chain:
         _write_checkpointer_json(f"{dir_name_batched_full}/1-anySafeWillDo.json", gauge_lists_by_chain)
 
 
