@@ -5,6 +5,7 @@ from collections import defaultdict
 from datetime import datetime
 from json import JSONDecodeError
 from typing import Optional
+from bal_addresses import AddrBook
 
 base_json = json.loads('''
 {
@@ -23,17 +24,11 @@ base_json = json.loads('''
 }
 ''')
 
-CHAIN_IDS = {
-    1: "mainnet",
-    3: "ropsten",
-    42161: "arbitrum",
-    100: "gnosis",
-    137: "polygon",
-    10: "optimism",
-}
+
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
+TEMPLATE_PATH = os.path.dirname(os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
 
 
 def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
@@ -51,16 +46,36 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
             if not isinstance(data, dict):
                 return None
             # Check if chain id is the same as the one we are looking for
+            # TODO  This crashes if it finds JSON that is not a payload file.  Discovered by running on BIPs
             if int(data["chainId"]) == int(chain):
                 return data
     except JSONDecodeError:
         return None
 
 
+def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
+    with open(TEMPLATE_PATH, "r") as template:
+        payload = json.load(template)
+    #  Grab the example transaction and clear the transaction list.
+    tx_template = payload["transactions"][0]
+    payload["transactions"] = []
+
+    for chainname, gaugelist in gauges_by_chain.items():
+        tx = tx_template
+        tx["contractInputsValues"]["gaugeType"] = chainname
+        tx["contractInputsValues"]["gauges"] = gaugelist
+        payload["transactions"].append(tx)
+    with open(output_file_path, "w") as l2_payload_file:
+        json.dump(payload, l2_payload_file, indent=2)
+
+
+
+
 # Example how to run: python action-scripts/merge_pr_jsons.py BIPs/BIP-289,BIPs/BIP-285
 def main():
     directories = sys.argv[1].split(",")
     print(f"Directories to parse:{directories}")
+    gauge_lists_by_chain = defaultdict(list)
 
     if not directories:
         raise ValueError("No directories were passed in as arguments")
@@ -91,7 +106,7 @@ def main():
     # Walk through all nested directories in BIPs
     for file in files_to_parse:
         # Process files that are lying flat in BIPs directory
-        for chain_id, chain_name in CHAIN_IDS.items():
+        for chain_name, chain_id in AddrBook.CHAIN_IDS_BY_NAME.items():
             data = _parse_bip_json(
                 os.path.join(root_dir, file), chain=chain_id
             )
@@ -125,11 +140,26 @@ def main():
             result["transactions"] = []
             for file in fs:
                 result["transactions"] += file["transactions"]
+                #  Check for gauge adds and generate checkpoint list
+
+                for tx in file["transactions"]:
+                    if tx["contractMethod"]["name"] == "addGauge":
+                        try:
+                            gauge_chain = tx["contractInputsValues"]["gaugeType"]
+                            if gauge_chain != "Ethereum":
+                                gauge_lists_by_chain[gauge_chain].append(tx["contractInputsValues"]["gauge"])
+                        except:
+                            print(f"Skipping checkpointer add for addGauge tx as it doesn't have expected inputs:\n---\n {tx['contractInputsValues']}")
+
             # Save the result to file
             file_name = f"{chain_id}-{safe_address}.json"
             file_path = os.path.join(dir_name_batched_full, file_name)
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
+    if not gauge_lists_by_chain:
+        _write_checkpointer_json(f"{dir_name_batched_full}/1-anySafeWillDo.json", gauge_lists_by_chain)
+
+
 
 
 if __name__ == "__main__":
