@@ -23,7 +23,7 @@ jobs:
       - name: Run script with JSON files
         run: |
           pip3 install -r action-scripts/requirements-actions.txt
-          python action-scripts/merge_pr_jsons.py --target ${{ github.event.inputs.runWeekl }}
+          python action-scripts/merge_pr_jsons.py --target ${{ github.event.inputs.runWeek }}
           npm install --save-dev --save-exact prettier
           npx prettier --write BIPs/00batched/**/*.json
           rm -rf node_modules
