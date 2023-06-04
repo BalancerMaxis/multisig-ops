@@ -1,16 +1,11 @@
-import argparse
 import json
 import os
-import re
+import sys
 from collections import defaultdict
+from datetime import datetime
 from json import JSONDecodeError
 from typing import Optional
-
 from bal_addresses import AddrBook
-
-# Initialize the parser
-parser = argparse.ArgumentParser()
-parser.add_argument("--target", help="Target directory to merge BIPs from")
 
 base_json = json.loads('''
 {
@@ -75,19 +70,17 @@ def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
         json.dump(payload, l2_payload_file, indent=2)
 
 
-# Example how to run: `python action-scripts/merge_pr_jsons.py --target 2023-W23`
-# Note: if you need to merge multiple directories, you can use old multi_merge_pr_jsons.py script
+# Example how to run: python action-scripts/merge_pr_jsons.py BIPs/BIP-289,BIPs/BIP-285
 def main():
-    directory = parser.parse_args().target
-    if not directory:
-        raise ValueError("No directory was passed in as argument")
-    print(f"Directory to parse:{directory}")
+    directories = sys.argv[1].split(",")
+    print(f"Directories to parse:{directories}")
     gauge_lists_by_chain = defaultdict(list)
 
-    match = re.search(r'(\d{4})-W(\d{1,2})', directory)
-    if not match:
-        raise ValueError("Directory name is not in the correct format. Consider using YYYY-WW")
-    year, week = match.groups()
+    if not directories:
+        raise ValueError("No directories were passed in as arguments")
+
+    current_week = datetime.utcnow().strftime("%U")
+    current_year = datetime.utcnow().year
     # get root directory of the project:
     # To do this you need to go up 2 levels from the current file
     # For instance, to get to the project root from: multisig-ops/action-scripts/merge_pr_jsons.py
@@ -96,16 +89,18 @@ def main():
 
     files_to_parse = []
     target_files = defaultdict(list)
-    # If directory doesn't exist, raise an error
-    if not os.path.exists(os.path.join(root_dir, directory)):
-        raise ValueError(f"Directory {directory} does not exist. Pass correct directory name")
-    # Parse each directory for underlying files
-    for root, __, files in os.walk(os.path.join(root_dir, directory)):
-        for file in files:
-            # Skip non json files
-            if not file.endswith(".json"):
-                continue
-            files_to_parse.append(os.path.join(root, file))
+    # Walk through all directories passed in as arguments and extract all files
+    for directory in directories:
+        # If directory doesn't exist, raise an error
+        if not os.path.exists(os.path.join(root_dir, directory)):
+            raise ValueError(f"Directory {directory} does not exist. Pass correct directory name")
+        # Parse each directory for underlying files
+        for root, __, files in os.walk(os.path.join(root_dir, directory)):
+            for file in files:
+                # Skip non json files
+                if not file.endswith(".json"):
+                    continue
+                files_to_parse.append(os.path.join(root, file))
 
     # Walk through all nested directories in BIPs
     for file in files_to_parse:
@@ -119,7 +114,7 @@ def main():
                 target_files[str(chain_id)].append(data)
 
     # Now we have a list of files to be merged, let's merge them and save to files
-    dir_name_batched = f"BIPs/00batched/{year}-W{week}"
+    dir_name_batched = f"BIPs/00batched/{current_year}-W{current_week}"
     dir_name_batched_full = os.path.join(root_dir, dir_name_batched)
     # Create the directory if it does not exist in root directory
     if not os.path.exists(dir_name_batched_full):
