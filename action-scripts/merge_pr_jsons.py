@@ -75,7 +75,7 @@ def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
         json.dump(payload, l2_payload_file, indent=2)
 
 
-# Example how to run: python action-scripts/merge_pr_jsons.py 2023-W23
+# Example how to run: `python action-scripts/merge_pr_jsons.py --target 2023-W23`
 # Note: if you need to merge multiple directories, you can use old multi_merge_pr_jsons.py script
 def main():
     directory = parser.parse_args().target
