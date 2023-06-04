@@ -5,6 +5,7 @@ from collections import defaultdict
 from datetime import datetime
 from json import JSONDecodeError
 from typing import Optional
+
 from bal_addresses import AddrBook
 
 base_json = json.loads('''
@@ -24,11 +25,11 @@ base_json = json.loads('''
 }
 ''')
 
-
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
-TEMPLATE_PATH = os.path.dirname(os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
+TEMPLATE_PATH = os.path.dirname(
+    os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
 
 
 def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
@@ -46,7 +47,9 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
             if not isinstance(data, dict):
                 return None
             # Check if chain id is the same as the one we are looking for
-            # TODO  This crashes if it finds JSON that is not a payload file.  Discovered by running on BIPs
+            if not data.get("chainId"):
+                # Early return if chainId is not present
+                return None
             if int(data["chainId"]) == int(chain):
                 return data
     except JSONDecodeError:
@@ -69,11 +72,15 @@ def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
         json.dump(payload, l2_payload_file, indent=2)
 
 
-
-
 # Example how to run: python action-scripts/merge_pr_jsons.py BIPs/BIP-289,BIPs/BIP-285
+# Pass --output flag to specify the directory where to save the merged files
 def main():
     directories = sys.argv[1].split(",")
+    # Get --output flag value:
+    output_dir_path = None
+    if "--output" in sys.argv:
+        output_dir_path = sys.argv[sys.argv.index("--output") + 1]
+        print(f"Everything will be saved into '{output_dir_path}' directory")
     print(f"Directories to parse:{directories}")
     gauge_lists_by_chain = defaultdict(list)
 
@@ -114,8 +121,12 @@ def main():
                 # Add the file to the list of files to be merged
                 target_files[str(chain_id)].append(data)
 
-    # Now we have a list of files to be merged, let's merge them and save to files
-    dir_name_batched = f"BIPs/00batched/{current_year}-W{current_week}"
+    # If output directory is not specified, save the files to the current week directory
+    directory = "BIPs/00batched/"
+    if output_dir_path:
+        dir_name_batched = f"{directory}{output_dir_path}"
+    else:
+        dir_name_batched = f"{directory}{current_year}-W{current_week}"
     dir_name_batched_full = os.path.join(root_dir, dir_name_batched)
     # Create the directory if it does not exist in root directory
     if not os.path.exists(dir_name_batched_full):
@@ -147,9 +158,14 @@ def main():
                         try:
                             gauge_chain = tx["contractInputsValues"]["gaugeType"]
                             if gauge_chain != "Ethereum":
-                                gauge_lists_by_chain[gauge_chain].append(tx["contractInputsValues"]["gauge"])
-                        except:
-                            print(f"Skipping checkpointer add for addGauge tx as it doesn't have expected inputs:\n---\n {tx['contractInputsValues']}")
+                                gauge_lists_by_chain[gauge_chain].append(
+                                    tx["contractInputsValues"]["gauge"])
+                        except KeyError:
+                            print(
+                                f"Skipping checkpointer add for addGauge tx as "
+                                f"it doesn't have expected inputs:\n---\n "
+                                f"{tx['contractInputsValues']}"
+                            )
 
             # Save the result to file
             file_name = f"{chain_id}-{safe_address}.json"
@@ -157,9 +173,10 @@ def main():
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
     if not gauge_lists_by_chain:
-        _write_checkpointer_json(f"{dir_name_batched_full}/1-anySafeWillDo.json", gauge_lists_by_chain)
-
-
+        _write_checkpointer_json(
+            f"{dir_name_batched_full}/1-anySafeWillDo.json",
+            gauge_lists_by_chain
+        )
 
 
 if __name__ == "__main__":
