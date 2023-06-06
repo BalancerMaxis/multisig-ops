@@ -1,0 +1,113 @@
+[
+  {
+    "chain_map": {
+      "avalanche": 43114
+    },
+    "function_caller_map": {
+      "setSwapFeePercentage(uint256)": ["multisigs/lm"],
+      "startAmplificationParameterUpdate(uint256,uint256)": ["multisigs/lm"],
+      "stopAmplificationParameterUpdate()": ["multisigs/lm"],
+      "pause()": ["multisigs/emergency"],
+      "disable()": ["multisigs/emergency"],
+      "enableRecoveryMode()": [
+        "multisigs/emergency",
+        "20221123-pool-recovery-helper/PoolRecoveryHelper"
+      ],
+      "setTargets(uint256,uint256)": ["multisigs/lm"]
+    },
+    "deployments": [
+      "20230206-weighted-pool-v4",
+      "20230206-composable-stable-pool-v4",
+      "20230409-erc4626-linear-pool-v4",
+      "20230409-gearbox-linear-pool-v2",
+      "20230409-yearn-linear-pool-v2",
+      "20230410-aave-linear-pool-v5",
+      "20230411-managed-pool-v2",
+      "20230410-silo-linear-pool-v2"
+    ]
+  },
+  {
+    "chain_map": {
+      "avalanche": 43114
+    },
+    "function_caller_map": {
+      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
+        "20230314-batch-relayer-v5/BalancerRelayer"
+      ],
+      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
+        "20230314-batch-relayer-v5/BalancerRelayer"
+      ],
+      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": [
+        "20230314-batch-relayer-v5/BalancerRelayer"
+      ],
+      "manageUserBalance((uint8,address,uint256,address,address)[])": [
+        "20230314-batch-relayer-v5/BalancerRelayer"
+      ],
+      "setRelayerApproval(address,address,bool)": [
+        "20230314-batch-relayer-v5/BalancerRelayer"
+      ],
+      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": [
+        "20230314-batch-relayer-v5/BalancerRelayer"
+      ],
+      "withdrawCollectedFees(address[],uint256[],address)": [
+        "20220517-protocol-fee-withdrawer/ProtocolFeesWithdrawer"
+      ],
+      "setSwapFeePercentage(uint256)": [
+        "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider"
+      ],
+      "setFlashLoanFeePercentage(uint256)": [
+        "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider"
+      ],
+      "setPaused(bool)": ["mutlisigs/emergency"]
+    },
+    "deployments": ["20210418-vault"]
+  },
+  {
+    "chain_map": {
+      "avalanche": 43114
+    },
+    "function_caller_map": {
+      "setFeeTypePercentage(uint256,uint256)": ["multisigs/dao"]
+    },
+    "deployments": ["20220725-protocol-fee-percentages-provider"]
+  },
+  {
+    "chain_map": {
+      "avalanche": 43114
+    },
+    "function_caller_map": {
+      "add_reward(address,address)": ["multisigs/lm"]
+    },
+    "deployments": ["20230316-child-chain-gauge-factory-v2"]
+  },
+  {
+    "chain_map": {
+      "avalanche": 43114
+    },
+    "function_caller_map": {
+      "denylistToken(address)": ["multisigs/emergency"],
+      "withdrawCollectedFees(address[],uint256[],address)": ["multisigs/lm"]
+    },
+    "deployments": ["20220517-protocol-fee-withdrawer"]
+  },
+  {
+    "chain_map": {
+      "avalanche": 43114
+    },
+    "function_caller_map": {
+      "removePoolFactory(address)": ["multisigs/lm"],
+      "addPoolFactory(address)": ["multisigs/lm"]
+    },
+    "deployments": ["20221123-pool-recovery-helper"]
+  },
+  {
+    "chain_map": {
+      "avalanche": 43114
+    },
+    "function_caller_map": {
+      "registerProtocolId(uint256,string)": ["multisigs/lm"],
+      "renameProtocolId(uint256,string)": ["multisigs/lm"]
+    },
+    "deployments": ["20230223-protocol-id-registry"]
+  }
+]
