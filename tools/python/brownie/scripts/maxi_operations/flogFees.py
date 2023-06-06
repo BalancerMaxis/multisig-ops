@@ -111,7 +111,7 @@ def cowswapFees(safe, sweeps):
 
 def payFees(safe, half=True):
     distrbutor = safe.contract(r.balancer.feeDistributor)
-    usd = safe.contract(r.tokens.bb_a_usd)
+    usd = safe.contract("0xfebb0bbf162e64fb9d0dfe186e517d84c395f016") ## bb-a-usd v3
     bal = safe.contract(r.tokens.BAL)
     safe.take_snapshot([bal, usd])
     if half:
