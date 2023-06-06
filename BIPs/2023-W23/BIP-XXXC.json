@@ -1,1 +1,68 @@
-{"version":"1.0","chainId":"43114","createdAt":1686068946662,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.14.1","createdFromSafeAddress":"0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3","createdFromOwnerAddress":"","checksum":"0xeab75e48deff14b80dee97f3e36117ad773a19fea0bfcee5b957428e6a610603"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","payable":false},"contractInputsValues":{"role":"0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0","account":"0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"}},{"to":"0xBA12222222228d8Ba445958a75a0704d566BF2C8","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"contract IAuthorizer","name":"newAuthorizer","type":"address"}],"name":"setAuthorizer","payable":false},"contractInputsValues":{"newAuthorizer":"0x8df317a729fcaA260306d7de28888932cb579b88"}},{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","payable":false},"contractInputsValues":{"role":"0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0","account":"0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"}}]}
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1686068946662,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xeab75e48deff14b80dee97f3e36117ad773a19fea0bfcee5b957428e6a610603"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0",
+        "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
+      }
+    },
+    {
+      "to": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IAuthorizer",
+            "name": "newAuthorizer",
+            "type": "address"
+          }
+        ],
+        "name": "setAuthorizer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newAuthorizer": "0x8df317a729fcaA260306d7de28888932cb579b88"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0",
+        "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
+      }
+    }
+  ]
+}
