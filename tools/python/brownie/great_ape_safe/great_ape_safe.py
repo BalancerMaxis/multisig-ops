@@ -15,27 +15,10 @@ from rich.pretty import pprint
 from tqdm import tqdm
 from web3.exceptions import BadFunctionCallOutput
 
-from great_ape_safe.ape_api.aave import Aave
-from great_ape_safe.ape_api.across import Across
-from great_ape_safe.ape_api.anyswap import Anyswap
-from great_ape_safe.ape_api.aura import Aura
-from great_ape_safe.ape_api.badger import Badger
-from great_ape_safe.ape_api.balancer import Balancer
-from great_ape_safe.ape_api.chainlink import Chainlink
-from great_ape_safe.ape_api.compound import Compound
-from great_ape_safe.ape_api.convex import Convex
+
 from great_ape_safe.ape_api.cow import Cow
-from great_ape_safe.ape_api.curve import Curve
-from great_ape_safe.ape_api.curve_v2 import CurveV2
-from great_ape_safe.ape_api.euler import Euler
-from great_ape_safe.ape_api.maker import Maker
-from great_ape_safe.ape_api.opolis import Opolis
-from great_ape_safe.ape_api.pancakeswap_v2 import PancakeswapV2
-from great_ape_safe.ape_api.rari import Rari
 from great_ape_safe.ape_api.snapshot import Snapshot
 from great_ape_safe.ape_api.solidly import Solidly
-from great_ape_safe.ape_api.spookyswap import SpookySwap
-from great_ape_safe.ape_api.sushi import Sushi
 from great_ape_safe.ape_api.uni_v2 import UniV2
 from great_ape_safe.ape_api.uni_v3 import UniV3
 from helpers.chaindata import labels
