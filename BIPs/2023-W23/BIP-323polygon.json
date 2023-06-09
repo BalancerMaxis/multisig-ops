@@ -1,1 +1,32 @@
-{"version":"1.0","chainId":"137","createdAt":1686335026383,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.14.1","createdFromSafeAddress":"0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85","createdFromOwnerAddress":"","checksum":"0xb7ebb391dde5d86d77f0c5dd7853b408bbb69dfb64fa9b676a1e22513cb8a096"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","payable":false},"contractInputsValues":{"role":"0x25995e0bfb9b837ed9e3ed24df7d42689be47c45073cc1953bb0836b292faa13","account":"0x94Dd9C6152a2A0BBcB52d3297b723A6F01D5F9f7"}}]}
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1686335026383,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xb7ebb391dde5d86d77f0c5dd7853b408bbb69dfb64fa9b676a1e22513cb8a096"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x25995e0bfb9b837ed9e3ed24df7d42689be47c45073cc1953bb0836b292faa13",
+        "account": "0x94Dd9C6152a2A0BBcB52d3297b723A6F01D5F9f7"
+      }
+    }
+  ]
+}
