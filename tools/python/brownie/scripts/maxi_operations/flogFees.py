@@ -113,7 +113,7 @@ def cowswapFees(safe, sweeps):
         print(f"The following tokens had problems and may not show up to be traded: {error_tokens}")
 
 def payFees(safe, half=True):
-    distrbutor = safe.contract(r.balancer.feeDistributor)
+    distrbutor = safe.contract(a.flatbook["20220714-fee-distributor-v2/FeeDistributor"])
     usd = safe.contract("0xfebb0bbf162e64fb9d0dfe186e517d84c395f016") ## bb-a-usd v3
     bal = safe.contract(r.tokens.BAL)
     safe.take_snapshot([bal, usd])
