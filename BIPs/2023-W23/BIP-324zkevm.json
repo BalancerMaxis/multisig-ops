@@ -1,1 +1,68 @@
-{"version":"1.0","chainId":"1101","createdAt":1686335711515,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.14.1","createdFromSafeAddress":"0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa","createdFromOwnerAddress":"","checksum":"0xced05b506c5610b46a7da853bf956f59c89c42a453f0788d9575d87f78111ef0"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","payable":false},"contractInputsValues":{"role":"0xe1a833117678417df5b0aeb8002f897e410d84f7a8f1906e355a97151a3f38a9","account":"0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa"}},{"to":"0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"contract IVeDelegation","name":"delegation","type":"address"}],"name":"setDelegation","payable":false},"contractInputsValues":{"delegation":"0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5"}},{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","payable":false},"contractInputsValues":{"role":"0xe1a833117678417df5b0aeb8002f897e410d84f7a8f1906e355a97151a3f38a9","account":"0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa"}}]}
+{
+  "version": "1.0",
+  "chainId": "1101",
+  "createdAt": 1686335711515,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xced05b506c5610b46a7da853bf956f59c89c42a453f0788d9575d87f78111ef0"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xe1a833117678417df5b0aeb8002f897e410d84f7a8f1906e355a97151a3f38a9",
+        "account": "0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa"
+      }
+    },
+    {
+      "to": "0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IVeDelegation",
+            "name": "delegation",
+            "type": "address"
+          }
+        ],
+        "name": "setDelegation",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegation": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xe1a833117678417df5b0aeb8002f897e410d84f7a8f1906e355a97151a3f38a9",
+        "account": "0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa"
+      }
+    }
+  ]
+}
