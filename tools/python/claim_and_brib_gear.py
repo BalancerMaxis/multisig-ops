@@ -105,18 +105,20 @@ def main():
     ### Bribe Claimed
     already_claimed = tree.functions.claimed(r.balancer.multisigs.lm).call()
     claim_amount = int(total_earned) - int(already_claimed)
-    aura_amount = int(claim_amount/2)
-    balancer_amount = claim_amount - aura_amount
+    aura_amount = int(claim_amount)
+    balancer_amount = 0
 
     print(f"Total CLaim {int(claim_amount)/10**18} GEAR")
     print(f"Aura: {int(aura_amount)/10**18}GEAR, Balancer: {int(balancer_amount)/10**18}")
 
     approve_tx = approve(r.tokens.GEAR, r.hidden_hand.bribe_vault, claim_amount)
-    bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(aura_amount))
     data["transactions"].append(approve_tx)
-    data["transactions"].append(bribe_tx)
-    bribe_tx = bribe_balancer(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(balancer_amount))
-    data["transactions"].append(bribe_tx)
+    if aura_amount > 0:
+        bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(aura_amount))
+        data["transactions"].append(bribe_tx)
+    if balancer_amount > 0:
+        bribe_tx = bribe_balancer(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(balancer_amount))
+        data["transactions"].append(bribe_tx)
 
     data["meta"]["createdFromSafeAddress"] = r.balancer.multisigs.lm
     with open(f"../../Bribs/partner_lm/gear/{today}.json", "w") as f: ## framework transaction
