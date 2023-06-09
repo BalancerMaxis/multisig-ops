@@ -88,7 +88,7 @@ def process_bribe_csv(
 
 def main(
     csv_file=f"../../../Bribs/{today}.csv",
-    veBalFeeToken="0xa13a9247ea42d743238089903570127dda72fe44"
+    veBalFeeToken="0xfebb0bbf162e64fb9d0dfe186e517d84c395f016" ## bb-a-usd v3
 ):
 
     safe = GreatApeSafe(r.balancer.multisigs.fees)

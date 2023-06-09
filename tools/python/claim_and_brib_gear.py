@@ -127,8 +127,8 @@ def main():
     aura_amount = int(total_brib / 1)
     balancer_amount = int(total_brib / 99)
     approve_tx = approve(r.tokens.GEAR, r.hidden_hand.bribe_vault, claim_amount)
-    aura_bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(aura_amount))
     bal_bribe_tx =  bribe_balancer(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(balancer_amount))
+    aura_bribe_tx = bribe_aura(gauge_address=GAUGE_TO_BRIB, bribe_token_address=r.tokens.GEAR, amount=str(aura_amount))
     with open("tx_builder_templates/base.json", "r") as f: ## framework transaction
         data = json.load(f)
     data["transactions"] = [approve_tx, bal_bribe_tx, aura_bribe_tx]
