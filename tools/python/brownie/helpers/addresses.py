@@ -3,7 +3,7 @@ from dotmap import DotMap
 from web3 import Web3
 import requests
 import json
-
+from bal_addresses import AddrBook
 try:
     from brownie import chain
 except ImportError:
@@ -14,13 +14,8 @@ except ImportError:
 
 
 def monorepo_addys_by_chain(chain_name):  ## TODO retire
-    monorepo_addresses = {}
-    response = requests.get(
-        f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json")
-    data = response.json()
-    for address, info in data.items():
-        monorepo_addresses[info["name"]] = address
-    return monorepo_addresses
+
+    return AddrBook(chain_name).flatbook
 
 
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"

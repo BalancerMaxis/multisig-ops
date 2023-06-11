@@ -29,7 +29,7 @@ The watchlist can be updated using the setWatchList command.
 
 ### It's not working, what could be wrong.
 Check the [Automation Page](https://automation.chain.link/mainnet/62602467182204477380138952081172885895406053754821061796893606503759482417757) and make sure there is enough LINK.  If not you can use the button to fund the upkeep with more.
-![img.png](../images/fundUpkeep.png)
+![img.png](../docs/images/fundUpkeep.png)
 
 Check the [GasStation contract](https://etherscan.io/address/0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A): 
 

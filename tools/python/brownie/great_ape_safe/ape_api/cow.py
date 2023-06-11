@@ -7,9 +7,9 @@ from pprint import pprint
 from brownie import Contract, chain, interface, web3
 from rich.prompt import Confirm
 
-from helpers.addresses import registry
+from bal_addresses import AddrBook
 
-
+r = AddrBook("mainnet").dotmap
 class Cow:
     """
     docs: https://docs.cow.fi/
@@ -22,12 +22,13 @@ class Cow:
         self.prod = prod
 
         # contracts
-        self.vault_relayer = self.safe.contract(registry.eth.cow.vault_relayer)
+        self.vault_relayer = self.safe.contract(r.cow.vault_relayer)
+        self.vault_relayer = self.safe.contract(r.cow.vault_relayer)
         # self.vault_relayer = interface.IGPv2VaultRelayer(
         #     registry.eth.cow.vault_relayer, owner=self.safe.account
         # )
         self.settlement = interface.IGPv2Settlement(
-            registry.eth.cow.settlement, owner=self.safe.account
+            r.cow.settlement, owner=self.safe.account
         )
 
         # determine api url based on current chain id and `prod` parameter
