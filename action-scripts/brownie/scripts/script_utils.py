@@ -3,6 +3,8 @@ import os
 from json import JSONDecodeError
 
 import requests
+from brownie import Contract
+from prettytable import PrettyTable
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -29,6 +31,7 @@ def get_changed_files() -> list[dict]:
             with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
                 try:
                     payload = json.load(json_data)
+                    payload['file_name'] = filename
                 except JSONDecodeError:
                     print(f"{filename} is not proper json")
                     continue
@@ -40,3 +43,38 @@ def get_changed_files() -> list[dict]:
                     continue
             changed_files.append(payload)
     return changed_files
+
+
+def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str]:
+    pool_abi = json.load(open("abis/IBalPool.json", "r"))
+    pool = Contract.from_abi(name="IBalPool", address=pool_address, abi=pool_abi)
+    try:
+        (a_factor, ramp, divisor) = pool.getAmplificationParameter()
+        a_factor = int(a_factor/divisor)
+        if not isinstance(a_factor, int):
+            a_factor = "N/A"
+    except Exception:
+        a_factor = "N/A"
+    name = pool.name()
+    symbol = pool.symbol()
+    try:
+        poolId = str(pool.getPoolId())
+    except Exception:
+        poolId = "Custom"
+    try:
+        fee = pool.getSwapFeePercentage() / 1e16
+    except Exception:
+        fee = "Not Found"
+    if pool.totalSupply ==  0:
+        symbol = f"WARN: {symbol} no initjoin"
+    return name, symbol, poolId, pool.address, a_factor, fee
+
+
+def convert_output_into_table(outputs: list[dict], header: list[str]) -> str:
+    table = PrettyTable(header)
+    for dict_ in outputs:
+        table.add_row(list(dict_.values()))
+    table.align["pool_name"] = "l"
+    table.align["function"] = "l"
+    table.align["style"] = "l"
+    return str(table)
