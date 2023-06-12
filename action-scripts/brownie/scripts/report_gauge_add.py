@@ -155,6 +155,7 @@ def handle_added_gauges(files: list[dict]) -> list:
 
 def main() -> None:
     files = get_changed_files()
+    print(f"Found {len(files)} files with added gauges")
     added_gauges = handle_added_gauges(files)
     # Save report to report.txt file
     with open("output.txt", "w") as f:
