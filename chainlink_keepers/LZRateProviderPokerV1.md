@@ -8,7 +8,7 @@ This thing pokes layer zero rate providers on mainnet to update rates on child c
 Each poke costs 0.01 ETH which comes from the contract.  For it to keep working it needs to have enough eth to poke everything on the list, and enough link.
 
 
-https://etherscan.io/address/0x8e1b1d475dB8B11B75C18187D3d7320832146991#readContract
+https://etherscan.io/address/0xdDd5FF0E581f097573B13f247F6BE736f602F839#readContract
 
 You can see which rate providers are poked by calling getRateProviders.
 
