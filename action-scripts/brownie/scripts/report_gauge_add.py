@@ -1,4 +1,3 @@
-import os
 from typing import Optional
 
 from bal_addresses import AddrBook
@@ -7,21 +6,19 @@ from brownie import network
 from brownie.exceptions import VirtualMachineError
 from web3 import Web3
 
-from .script_utils import convert_output_into_table
+from .script_utils import format_into_report
 from .script_utils import get_changed_files
 from .script_utils import get_pool_info
 
-addr_book = AddrBook("mainnet")
-flatbook = addr_book.flatbook
+ADDR_BOOK = AddrBook("mainnet")
+FLATBOOK = ADDR_BOOK.flatbook
 
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
-ROOT_DIR = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
 
 STYLE_MAINNET = "Mainnet"
 STYLE_SINGLE_RECIPIENT = "Single Recipient"
 STYLE_CHILD_CHAIN_STREAMER = "ChildChainStreamer"
+
 SELECTOR_MAP = {
     "getTotalBridgeCost": "arbitrum",
     "getPolygonBridge": "polygon",
@@ -31,7 +28,7 @@ SELECTOR_MAP = {
 }
 
 
-def _parse_gauge_adder_transaction(transaction: dict) -> Optional[dict]:
+def _parse_added_transaction(transaction: dict) -> Optional[dict]:
     """
     Parse a gauge adder transaction and return a dict with parsed data.
 
@@ -45,7 +42,7 @@ def _parse_gauge_adder_transaction(transaction: dict) -> Optional[dict]:
     """
     network.disconnect()
     network.connect("mainnet")
-    if transaction['to'] != flatbook[addr_book.search_unique("v4/GaugeAdder")]:
+    if transaction['to'] != FLATBOOK[ADDR_BOOK.search_unique("v4/GaugeAdder")]:
         return
 
     # Parse only gauge add transactions
@@ -137,25 +134,19 @@ def handle_added_gauges(files: list[dict]) -> list:
         print(f"Processing: {file['file_name']}")
         tx_list = file["transactions"]
         for transaction in tx_list:
-            data = _parse_gauge_adder_transaction(transaction)
+            data = _parse_added_transaction(transaction)
             if data:
                 outputs.append(data)
         if not outputs:
             continue
-        file_report = f"File name: {file['file_name']}\n"
-        file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
-        file_report += "```\n"
-        file_report += convert_output_into_table(
-            outputs, list(outputs[0].keys())
-        )
-        file_report += "\n```\n"
-        reports.append(file_report)
+        reports.append(format_into_report(file, outputs))
     return reports
 
 
 def main() -> None:
     files = get_changed_files()
     print(f"Found {len(files)} files with added gauges")
+    # TODO: Add here more handlers for other types of transactions
     added_gauges = handle_added_gauges(files)
     # Save report to report.txt file
     with open("output.txt", "w") as f:

@@ -11,9 +11,17 @@ ROOT_DIR = os.path.dirname(
 )
 
 NA = "N/A"
+NOT_FOUND = "Not Found"
+POOL_ID_CUSTOM_FALLBACK = "Custom"
+BIPS_PRECISION = 1e16
 
 
 def get_changed_files() -> list[dict]:
+    """
+    Parses given GH repo and PR number to return a list of dicts of changed files
+
+    Each file should be a valid json with a list of transactions
+    """
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
     api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
@@ -49,8 +57,9 @@ def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str]:
     """
     Returns a tuple of pool info
     """
-    pool_abi = json.load(open("abis/IBalPool.json", "r"))
-    pool = Contract.from_abi(name="IBalPool", address=pool_address, abi=pool_abi)
+    pool = Contract.from_abi(
+        name="IBalPool", address=pool_address, abi=json.load(open("abis/IBalPool.json", "r"))
+    )
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
         a_factor = int(a_factor / divisor)
@@ -63,17 +72,20 @@ def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str]:
     try:
         pool_id = str(pool.getPoolId())
     except Exception:
-        pool_id = "Custom"
+        pool_id = POOL_ID_CUSTOM_FALLBACK
     try:
-        fee = pool.getSwapFeePercentage() / 1e16
+        fee = pool.getSwapFeePercentage() / BIPS_PRECISION
     except Exception:
-        fee = "Not Found"
+        fee = NOT_FOUND
     if pool.totalSupply == 0:
         symbol = f"WARN: {symbol} no initjoin"
     return name, symbol, pool_id, pool.address, a_factor, fee
 
 
 def convert_output_into_table(outputs: list[dict], header: list[str]) -> str:
+    """
+    Converts list of dicts into a pretty table
+    """
     table = PrettyTable(header)
     for dict_ in outputs:
         table.add_row(list(dict_.values()))
@@ -81,3 +93,17 @@ def convert_output_into_table(outputs: list[dict], header: list[str]) -> str:
     table.align["function"] = "l"
     table.align["style"] = "l"
     return str(table)
+
+
+def format_into_report(file: dict, transactions: list[dict]) -> str:
+    """
+    Formats a list of transactions into a report that can be posted as a comment on GH PR
+    """
+    file_report = f"File name: {file['file_name']}\n"
+    file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
+    file_report += "```\n"
+    file_report += convert_output_into_table(
+        transactions, list(transactions[0].keys())
+    )
+    file_report += "\n```\n"
+    return file_report
