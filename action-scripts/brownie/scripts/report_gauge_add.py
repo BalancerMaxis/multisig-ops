@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 
 from bal_addresses import AddrBook
@@ -12,7 +13,9 @@ from .script_utils import get_pool_info
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
-
+ROOT_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
 
 STYLE_MAINNET = "Mainnet"
@@ -113,7 +116,7 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
     }
 
 
-def handle_added_gauges(files: list[dict]) -> list:
+def handle_added_gauges(files: list[dict]) -> dict[str, str]:
     """
     Function that parses transaction list and tries to collect following data about added
     gauges:
@@ -128,7 +131,7 @@ def handle_added_gauges(files: list[dict]) -> list:
 
     Then it converts collected data into a formatted list of strings.
     """
-    reports = []
+    reports = {}
     for file in files:
         outputs = []
         print(f"Processing: {file['file_name']}")
@@ -139,7 +142,7 @@ def handle_added_gauges(files: list[dict]) -> list:
                 outputs.append(data)
         if not outputs:
             continue
-        reports.append(format_into_report(file, outputs))
+        reports[file['file_name']] = format_into_report(file, outputs)
     return reports
 
 
@@ -150,7 +153,12 @@ def main() -> None:
     added_gauges = handle_added_gauges(files)
     # Save report to report.txt file
     with open("output.txt", "w") as f:
-        for report in added_gauges:
+        for report in added_gauges.values():
+            f.write(report)
+    for filename, report in added_gauges.items():
+        # Replace .json with .report.txt
+        filename = filename.replace(".json", ".report.txt")
+        with open(f"../../{filename}", "w") as f:
             f.write(report)
 
 
