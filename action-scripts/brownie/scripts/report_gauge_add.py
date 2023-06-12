@@ -32,6 +32,17 @@ SELECTOR_MAP = {
 
 
 def _parse_gauge_adder_transaction(transaction: dict) -> Optional[dict]:
+    """
+    Parse a gauge adder transaction and return a dict with parsed data.
+
+    First, it tries to extract gauge address from the transaction data.
+    If it fails, it tries to extract gauge address from the transaction input.
+
+    Then, it extracts gauge data from mainnet or jump to sidechains if needed.
+
+    :param transaction: transaction to parse
+    :return: dict with parsed data
+    """
     network.disconnect()
     network.connect("mainnet")
     if transaction['to'] != flatbook[addr_book.search_unique("v4/GaugeAdder")]:
@@ -82,17 +93,14 @@ def _parse_gauge_adder_transaction(transaction: dict) -> Optional[dict]:
         pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
             sidechain_recipient.lp_token())
         style = STYLE_CHILD_CHAIN_STREAMER
-        gauge_symbol = sidechain_recipient.symbol()
     elif "name" not in gauge_selectors:
         recipient = Contract(gauge.getRecipient())
         escrow = Contract(recipient.getVotingEscrow())
         pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(escrow.token())
         style = STYLE_SINGLE_RECIPIENT
-        gauge_symbol = "N/A"
     else:
         (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee) = get_pool_info(
             gauge.lp_token())
-        gauge_symbol = gauge.symbol()
         style = STYLE_MAINNET
 
     return {
@@ -108,7 +116,7 @@ def _parse_gauge_adder_transaction(transaction: dict) -> Optional[dict]:
     }
 
 
-def handle_added_gauges(files: list[dict]) -> dict:
+def handle_added_gauges(files: list[dict]) -> list:
     """
     Function that parses transaction list and tries to collect following data about added
     gauges:
@@ -120,8 +128,10 @@ def handle_added_gauges(files: list[dict]) -> dict:
     - cap
     - fee
     - style
+
+    Then it converts collected data into a formatted list of strings.
     """
-    reports = {}
+    reports = []
     for file in files:
         outputs = []
         print(f"Processing: {file['file_name']}")
@@ -133,13 +143,13 @@ def handle_added_gauges(files: list[dict]) -> dict:
         if not outputs:
             continue
         file_report = f"File name: {file['file_name']}\n"
-        file_report += f"COMMIT: {os.getenv('COMMIT_SHA', 'N/A')}\n"
+        file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
         file_report += "```\n"
         file_report += convert_output_into_table(
             outputs, list(outputs[0].keys())
         )
         file_report += "\n```\n"
-        reports[file["file_name"]] = file_report
+        reports.append(file_report)
     return reports
 
 
@@ -148,7 +158,7 @@ def main() -> None:
     added_gauges = handle_added_gauges(files)
     # Save report to report.txt file
     with open("output.txt", "w") as f:
-        for report in added_gauges.values():
+        for report in added_gauges:
             f.write(report)
 
 

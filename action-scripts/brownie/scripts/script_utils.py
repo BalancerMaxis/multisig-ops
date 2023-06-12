@@ -10,12 +10,12 @@ ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
+NA = "N/A"
+
 
 def get_changed_files() -> list[dict]:
-    github_repo = "BalancerMaxis/multisig-ops"
-    # github_repo = os.environ["GITHUB_REPOSITORY"]
-    pr_number = 233
-    # pr_number = os.environ["PR_NUMBER"]
+    github_repo = os.environ["GITHUB_REPOSITORY"]
+    pr_number = os.environ["PR_NUMBER"]
     api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
     response = requests.get(api_url)
     pr_file_data = json.loads(response.text)
@@ -46,28 +46,31 @@ def get_changed_files() -> list[dict]:
 
 
 def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str]:
+    """
+    Returns a tuple of pool info
+    """
     pool_abi = json.load(open("abis/IBalPool.json", "r"))
     pool = Contract.from_abi(name="IBalPool", address=pool_address, abi=pool_abi)
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
-        a_factor = int(a_factor/divisor)
+        a_factor = int(a_factor / divisor)
         if not isinstance(a_factor, int):
-            a_factor = "N/A"
+            a_factor = NA
     except Exception:
-        a_factor = "N/A"
+        a_factor = NA
     name = pool.name()
     symbol = pool.symbol()
     try:
-        poolId = str(pool.getPoolId())
+        pool_id = str(pool.getPoolId())
     except Exception:
-        poolId = "Custom"
+        pool_id = "Custom"
     try:
         fee = pool.getSwapFeePercentage() / 1e16
     except Exception:
         fee = "Not Found"
-    if pool.totalSupply ==  0:
+    if pool.totalSupply == 0:
         symbol = f"WARN: {symbol} no initjoin"
-    return name, symbol, poolId, pool.address, a_factor, fee
+    return name, symbol, pool_id, pool.address, a_factor, fee
 
 
 def convert_output_into_table(outputs: list[dict], header: list[str]) -> str:

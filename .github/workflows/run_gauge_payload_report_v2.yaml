@@ -1,0 +1,54 @@
+name: Generate Gauge Payload Report
+
+on:
+  pull_request:
+    paths:
+      - "BIPs/**"
+
+env:
+  LABEL: 'GAUGE PAYLOADS'
+
+jobs:
+  payload_report:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Generate report
+      id: gen-report
+      env:
+        PAYLOAD_LIST: ${{ steps.changed-json-files.outputs.changed-json-files }}
+        WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+        ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+        ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+        GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+        POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+        OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+        PR_NUMBER: ${{ github.event.number }}
+        COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+      run: |
+        cd action-scripts/brownie
+        touch .env
+        pip install -r requirements-actions.txt
+        brownie run --network mainnet scripts/report_gauge_add.py
+        REPORT=`cat output.txt`
+        echo output.txt "::set-output name=report-data::$REPORT"
+
+    - name: Post Report as Comment
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        filePath: action-scripts/brownie/output.txt
+        reactions: eyes
+
+    - name: Commit and push reports
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Adding gauge reports to json payloads
+        commit_user_name: GitHub Actions
+        commit_user_email: github-actions[bot]@users.noreply.github.com
+        commit_author: Github Actions <noreply@users.noreply.github.com>
