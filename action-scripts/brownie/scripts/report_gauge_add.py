@@ -140,9 +140,8 @@ def handle_added_gauges(files: list[dict]) -> dict[str, str]:
             data = _parse_added_transaction(transaction)
             if data:
                 outputs.append(data)
-        if not outputs:
-            continue
-        reports[file['file_name']] = format_into_report(file, outputs)
+        if outputs:
+            reports[file['file_name']] = format_into_report(file, outputs)
     return reports
 
 
