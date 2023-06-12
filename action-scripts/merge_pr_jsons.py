@@ -133,7 +133,8 @@ def main():
             safe_address = file["meta"]["createdFromSafeAddress"]
             if not safe_address:
                 safe_address = file["meta"]["createFromSafeAddress"]
-            grouped_files[safe_address].append(file)
+            if safe_address and isinstance(safe_address, str):
+                grouped_files[safe_address].append(file)
 
         # Now we have a list of files grouped by safe address, let's merge them and save to files
         for safe_address, fs in grouped_files.items():
