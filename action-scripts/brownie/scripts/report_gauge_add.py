@@ -1,4 +1,3 @@
-import os
 from typing import Optional
 
 from bal_addresses import AddrBook
@@ -64,7 +63,9 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
         gauge_address = transaction["contractInputsValues"].get(method)
         if gauge_address:
             break
-
+    if not gauge_address:
+        print("! Gauge address not found in transaction data")
+        return
     # Finally, extract gauge data from mainnet or jump to sidechains if needed
     gauge = Contract(gauge_address)
     gauge_selectors = gauge.selectors.values()
