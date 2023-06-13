@@ -1,1 +1,32 @@
-{"version":"1.0","chainId":"42161","createdAt":1686680809740,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.14.1","createdFromSafeAddress":"0xaF23DC5983230E9eEAf93280e312e57539D098D0","createdFromOwnerAddress":"","checksum":"0x6bc298a090a72586f927aa6066dc968814a5229727f09d9dad7a85a3dff8fbc7"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"bytes32[]","name":"roles","type":"bytes32[]"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRoles","payable":false},"contractInputsValues":{"roles":"[0x80d8e99e3b5fd50648b67ce84571603afc8ed8ea28310c743deef793d7a98d00,0x6213e9042b9814b9567bde72d3c7a61372862c3ac88c2df77d3205221af6c871,0xbe1515c6c371fbc1aead7b0ed2f23f3bc176eb727e587494ac0055414c5b4c11,0xe4ae7db31fa76b12846f2837e5b8ee34891b1b170470345521a088bd662e4571,0x79cf7f42fcb330293c1d98b9ac2db3a3122a615e3630596ebc2584c6bf0d1346,0xcf5e03a737e4f5ba6d13e23f893a1e0255b362d8ce22e9568e1565fcf92789c7,0xdee20d81c6075dcc437dbaaf02d316ab255cfcae4a154e04b17abdebc70a5b48,0x92253d002d63e0211f775527924e2891f18bb060ff2ab3be19c6b242bafa5fec,0xc383be2c6e87a9b18ae919e677f011279a8d98346dbcd5cb326053f5f873b753,0x70368640683195889d0f146ab060210f43fbb1c317a87bdf17a4dca8d8feed86,0x50ccb689033ea83f58a1b54b091916255bb56c2334a12ed908ecb06f72d2a688]","account":"0xad3b67BCA8935Cb510C8D18bD45F0b94F54A968f"}}]}
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1686680809740,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x6bc298a090a72586f927aa6066dc968814a5229727f09d9dad7a85a3dff8fbc7"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x80d8e99e3b5fd50648b67ce84571603afc8ed8ea28310c743deef793d7a98d00,0x6213e9042b9814b9567bde72d3c7a61372862c3ac88c2df77d3205221af6c871,0xbe1515c6c371fbc1aead7b0ed2f23f3bc176eb727e587494ac0055414c5b4c11,0xe4ae7db31fa76b12846f2837e5b8ee34891b1b170470345521a088bd662e4571,0x79cf7f42fcb330293c1d98b9ac2db3a3122a615e3630596ebc2584c6bf0d1346,0xcf5e03a737e4f5ba6d13e23f893a1e0255b362d8ce22e9568e1565fcf92789c7,0xdee20d81c6075dcc437dbaaf02d316ab255cfcae4a154e04b17abdebc70a5b48,0x92253d002d63e0211f775527924e2891f18bb060ff2ab3be19c6b242bafa5fec,0xc383be2c6e87a9b18ae919e677f011279a8d98346dbcd5cb326053f5f873b753,0x70368640683195889d0f146ab060210f43fbb1c317a87bdf17a4dca8d8feed86,0x50ccb689033ea83f58a1b54b091916255bb56c2334a12ed908ecb06f72d2a688]",
+        "account": "0xad3b67BCA8935Cb510C8D18bD45F0b94F54A968f"
+      }
+    }
+  ]
+}
