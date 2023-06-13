@@ -4,8 +4,6 @@ from typing import Optional
 from bal_addresses import AddrBook
 from brownie import Contract
 from brownie import network
-from brownie.exceptions import VirtualMachineError
-from web3 import Web3
 
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
@@ -13,21 +11,24 @@ from .script_utils import get_pool_info
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
-ROOT_DIR = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
+
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
 
 STYLE_MAINNET = "Mainnet"
 STYLE_SINGLE_RECIPIENT = "Single Recipient"
 STYLE_CHILD_CHAIN_STREAMER = "ChildChainStreamer"
 
-SELECTOR_MAP = {
-    "getTotalBridgeCost": "arbitrum",
-    "getPolygonBridge": "polygon",
-    "getArbitrumBridge": "arbitrum",
-    "getGnosisBridge": "gnosis",
-    "getOptimismBridge": "optimism"
+CHAIN_MAINNET = "mainnet"
+# Update this if needed by pulling gauge types from gauge adder:
+# https://etherscan.io/address/0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd#readContract
+TYPE_TO_CHAIN_MAP = {
+    "Ethereum": CHAIN_MAINNET,
+    "Polygon": "polygon-main",
+    "Arbitrum": "arbitrum-main",
+    "Optimism": "optimism-main",
+    "Gnosis": "gnosis-main",
+    "PolygonZkEvm": "zkevm-main",
+    "EthereumSingleRecipientGauge": CHAIN_MAINNET
 }
 
 
@@ -44,7 +45,7 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
     :return: dict with parsed data
     """
     network.disconnect()
-    network.connect("mainnet")
+    network.connect(CHAIN_MAINNET)
     if transaction['to'] != FLATBOOK[ADDR_BOOK.search_unique("v4/GaugeAdder")]:
         return
 
@@ -53,26 +54,16 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
         return
     # Find command and gauge address
     command = transaction["contractMethod"]["name"]
+    gauge_type = transaction["contractInputsValues"].get("gaugeType")
+    if not gauge_type:
+        print("No gauge type found! Cannot process transaction")
+        return
+    chain = TYPE_TO_CHAIN_MAP.get(gauge_type)
     gauge_address = None
     for method in GAUGE_ADD_METHODS:
         gauge_address = transaction["contractInputsValues"].get(method)
         if gauge_address:
             break
-    # If no gauge address found, try to extract it from the encoded data
-    if not gauge_address:
-        target_contract = Web3.toChecksumAddress(
-            transaction["contractInputsValues"]["target"]
-        )
-        try:
-            (command, inputs) = Contract(target_contract).decode_input(
-                transaction["contractInputsValues"]["data"])
-        except (VirtualMachineError, Exception):
-            print(f"Failed to decode input for transaction: {transaction}")
-            return
-        gauge_address = inputs[0]
-    if not gauge_address:
-        print("! Gauge address not found in transaction data")
-        return
 
     # Finally, extract gauge data from mainnet or jump to sidechains if needed
     gauge = Contract(gauge_address)
@@ -81,24 +72,23 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
         f"{gauge.getRelativeWeightCap() / 10 ** 16}%"
         if "getRelativeWeightCap" in gauge_selectors else "N/A"
     )
-    intersection_selector = list(set(gauge_selectors).intersection(list(SELECTOR_MAP.keys())))
-    if len(intersection_selector) > 0:  # Is sidechain
-        chain = SELECTOR_MAP[intersection_selector[0]]
+    # Process sidechain gauges
+    if chain != CHAIN_MAINNET:
         recipient = gauge.getRecipient()
         network.disconnect()
-        network.connect(f"{chain}-main")
+        network.connect(chain)
         sidechain_recipient = Contract(recipient)
         if "reward_receiver" in sidechain_recipient.selectors.values():
             sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
         pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
             sidechain_recipient.lp_token())
         style = STYLE_CHILD_CHAIN_STREAMER
-    elif "name" not in gauge_selectors:
+    elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
         escrow = Contract(recipient.getVotingEscrow())
         pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(escrow.token())
         style = STYLE_SINGLE_RECIPIENT
-    else:
+    else:  # Process mainnet gauges
         (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee) = get_pool_info(
             gauge.lp_token())
         style = STYLE_MAINNET
