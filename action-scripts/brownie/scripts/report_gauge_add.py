@@ -16,6 +16,7 @@ GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
 STYLE_MAINNET = "Mainnet"
 STYLE_SINGLE_RECIPIENT = "Single Recipient"
 STYLE_CHILD_CHAIN_STREAMER = "ChildChainStreamer"
+STYLE_L0 = "L0 sidechain"
 
 CHAIN_MAINNET = "mainnet"
 # Update this if needed by pulling gauge types from gauge adder:
@@ -79,11 +80,13 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
         network.disconnect()
         network.connect(chain)
         sidechain_recipient = Contract(recipient)
+        style = None
         if "reward_receiver" in sidechain_recipient.selectors.values():
             sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
+            style = STYLE_CHILD_CHAIN_STREAMER
         pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
             sidechain_recipient.lp_token())
-        style = STYLE_CHILD_CHAIN_STREAMER
+        style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
         escrow = Contract(recipient.getVotingEscrow())
