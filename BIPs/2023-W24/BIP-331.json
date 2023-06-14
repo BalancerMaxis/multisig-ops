@@ -1,65 +1,65 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1686768416427,
-    "meta": {
-        "name": "Transactions Batch",
-        "description": "",
-        "txBuilderVersion": "1.14.1",
-        "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-        "createdFromOwnerAddress": "",
-        "checksum": "0xd02e4cb48190f6450f276def76790f525b38779528bbf8782f277ea5690a9ea8"
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1686768416427,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xd02e4cb48190f6450f276def76790f525b38779528bbf8782f277ea5690a9ea8"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x25869f277f474FA9459F40F5D4cB0D6A8Ab41967",
+        "gaugeType": "Arbitrum"
+      }
     },
-    "transactions": [
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0x25869f277f474FA9459F40F5D4cB0D6A8Ab41967",
-                "gaugeType": "Arbitrum"
-            }
-        },
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0xacE0D479040231e3c6b17479cFd4444182d521d4",
-                "gaugeType": "Arbitrum"
-            }
-        }
-    ]
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xacE0D479040231e3c6b17479cFd4444182d521d4",
+        "gaugeType": "Arbitrum"
+      }
+    }
+  ]
 }
