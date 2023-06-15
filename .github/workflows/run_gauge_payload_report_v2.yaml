@@ -29,6 +29,7 @@ jobs:
         GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
         POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
         OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+        ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
         PR_NUMBER: ${{ github.event.number }}
         COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
