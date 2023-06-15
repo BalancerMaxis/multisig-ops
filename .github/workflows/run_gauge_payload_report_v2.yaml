@@ -34,7 +34,6 @@ jobs:
         COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
         cd action-scripts/brownie
-        touch .env
         pip install -r requirements-actions.txt
         brownie run --network mainnet scripts/report_gauge_add.py
         REPORT=`cat output.txt`
