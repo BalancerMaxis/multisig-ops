@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 
 from bal_addresses import AddrBook
@@ -141,6 +142,7 @@ def handle_added_gauges(files: list[dict]) -> dict[str, str]:
 
 def main() -> None:
     files = get_changed_files()
+    print(f"ZKEVM token: {os.getenv('ZKEVMSCAN_TOKEN')}")
     print(f"Found {len(files)} files with added gauges")
     # TODO: Add here more handlers for other types of transactions
     added_gauges = handle_added_gauges(files)
