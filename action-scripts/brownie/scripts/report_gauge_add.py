@@ -3,17 +3,19 @@ from typing import Optional
 from bal_addresses import AddrBook
 from brownie import Contract
 from brownie import network
+from web3 import Web3
 
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
 from .script_utils import get_pool_info
+from .script_utils import merge_files
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
 
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
-
-STYLE_MAINNET = "Mainnet"
+CMD_GAUGE_KILL = "killGauge()"
+STYLE_MAINNET = "mainnet"
 STYLE_SINGLE_RECIPIENT = "Single Recipient"
 STYLE_CHILD_CHAIN_STREAMER = "ChildChainStreamer"
 STYLE_L0 = "L0 sidechain"
@@ -29,6 +31,15 @@ TYPE_TO_CHAIN_MAP = {
     "Gnosis": "gnosis-main",
     "PolygonZkEvm": "zkevm-main",
     "EthereumSingleRecipientGauge": CHAIN_MAINNET
+}
+
+SELECTORS_MAPPING = {
+    "getTotalBridgeCost": "arbitrum-main",
+    "getPolygonBridge": "polygon-main",
+    "getArbitrumBridge": "arbitrum",
+    "getGnosisBridge": "gnosis-main",
+    "getOptimismBridge": "optimism-main",
+    "getPolygonZkEVMBridge": "zkevm-main"
 }
 
 
@@ -111,6 +122,73 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
     }
 
 
+def _parse_removed_transaction(transaction: dict) -> Optional[dict]:
+    network.disconnect()
+    network.connect(CHAIN_MAINNET)
+    encoded_data = transaction["contractInputsValues"].get("data")
+    if not encoded_data:
+        print("No encoded data found! Not a gauge kill transaction")
+        return
+    (command, inputs) = Contract(
+        Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+    ).decode_input(transaction["contractInputsValues"]["data"])
+
+    if len(inputs) == 0 and command == CMD_GAUGE_KILL:
+        gauge_address = transaction["contractInputsValues"]["target"]
+    else:
+        print("Parse KillGauge: Not a gauge kill transaction")
+        return
+    gauge = Contract(gauge_address)
+    gauge_selectors = gauge.selectors.values()
+    gauge_cap = (
+        f"{gauge.getRelativeWeightCap() / 10 ** 16}%"
+        if "getRelativeWeightCap" in gauge_selectors else "N/A"
+    )
+    gauge_selectors = gauge.selectors.values()
+    # Find intersection between gauge selectors and SELECTORS_MAPPING
+    chain = CHAIN_MAINNET
+    for selector in gauge_selectors:
+        if selector in SELECTORS_MAPPING.keys():
+            chain = SELECTORS_MAPPING[selector]
+            break
+
+    # Process sidechain gauges
+    if chain != CHAIN_MAINNET:
+        recipient = gauge.getRecipient()
+        network.disconnect()
+        network.connect(chain)
+        sidechain_recipient = Contract(recipient)
+        style = None
+        if "reward_receiver" in sidechain_recipient.selectors.values():
+            sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
+            style = STYLE_CHILD_CHAIN_STREAMER
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
+            sidechain_recipient.lp_token())
+        style = style if style else STYLE_L0
+    elif "name" not in gauge_selectors:  # Process single recipient gauges
+        recipient = Contract(gauge.getRecipient())
+        escrow = Contract(recipient.getVotingEscrow())
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(escrow.token())
+        style = STYLE_SINGLE_RECIPIENT
+    else:  # Process mainnet gauges
+        (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee) = get_pool_info(
+            gauge.lp_token())
+        style = STYLE_MAINNET
+
+    return {
+        "function": command,
+        "pool_id": pool_id,
+        "symbol": pool_symbol,
+        "pool_address": pool_address,
+        "aFactor": a_factor,
+        "gauge_address": gauge_address,
+        "fee": f"{fee}%",
+        "cap": gauge_cap,
+        "style": style,
+        "chain": chain if chain else "mainnet",
+    }
+
+
 def handle_added_gauges(files: list[dict]) -> dict[str, str]:
     """
     Function that parses transaction list and tries to collect following data about added
@@ -141,16 +219,39 @@ def handle_added_gauges(files: list[dict]) -> dict[str, str]:
     return reports
 
 
+def handle_removed_gauges(files: list[dict]) -> dict[str, str]:
+    """
+    Function that parses transaction list and tries to collect data about removed gauges.
+    Format is the same as in handle_added_gauges.
+    """
+    reports = {}
+    for file in files:
+        outputs = []
+        print(f"Processing: {file['file_name']}")
+        tx_list = file["transactions"]
+        for transaction in tx_list:
+            data = _parse_removed_transaction(transaction)
+            if data:
+                outputs.append(data)
+
+        if outputs:
+            reports[file['file_name']] = format_into_report(file, outputs)
+    return reports
+
+
 def main() -> None:
     files = get_changed_files()
-    print(f"Found {len(files)} files with added gauges")
+    print(f"Found {len(files)} files with added/removed gauges")
     # TODO: Add here more handlers for other types of transactions
     added_gauges = handle_added_gauges(files)
+    removed_gauges = handle_removed_gauges(files)
+
+    merged_files = merge_files(added_gauges, removed_gauges)
     # Save report to report.txt file
     with open("output.txt", "w") as f:
-        for report in added_gauges.values():
+        for report in merged_files.values():
             f.write(report)
-    for filename, report in added_gauges.items():
+    for filename, report in merged_files.items():
         # Replace .json with .report.txt
         filename = filename.replace(".json", ".report.txt")
         with open(f"../../{filename}", "w") as f:
