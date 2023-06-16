@@ -107,6 +107,7 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
         "fee": f"{fee}%",
         "cap": gauge_cap,
         "style": style,
+        "chain": chain if chain else "mainnet",
     }
 
 

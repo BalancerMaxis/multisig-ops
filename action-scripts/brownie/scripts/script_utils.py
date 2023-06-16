@@ -82,13 +82,18 @@ def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str]:
     return name, symbol, pool_id, pool.address, a_factor, fee
 
 
-def convert_output_into_table(outputs: list[dict], header: list[str]) -> str:
+def convert_output_into_table(outputs: list[dict]) -> str:
     """
     Converts list of dicts into a pretty table
     """
+    # Headers without "chain"
+    header = [k for k in outputs[0].keys() if k != "chain"]
     table = PrettyTable(header)
     for dict_ in outputs:
-        table.add_row(list(dict_.values()))
+        # Create a dict comprehension to include all keys and values except "chain"
+        # As we don't want to display chain in the table
+        dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
+        table.add_row(list(dict_filtered.values()))
     table.align["pool_name"] = "l"
     table.align["function"] = "l"
     table.align["style"] = "l"
@@ -101,9 +106,15 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     """
     file_report = f"File name: {file['file_name']}\n"
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
-    file_report += "```\n"
-    file_report += convert_output_into_table(
-        transactions, list(transactions[0].keys())
+    # Format chains and remove "-main" from suffix of chain name
+    chains = set(
+        map(
+            lambda chain: chain.replace("-main", ""),
+            [transaction['chain'] for transaction in transactions]
+        )
     )
+    file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
+    file_report += "```\n"
+    file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
     return file_report
