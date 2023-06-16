@@ -14,3 +14,6 @@ Etherscan: https://etherscan.io/address/0x8bCDE6BA5E194cCb9957B38FE6085dA31BC698
 Chainlink Upkeep: https://automation.chain.link/mainnet/86126832535457445079976477509132399226385949469895005463102486894704911936831
 
 This contract and upkeep is owned by the lm multisig.
+
+## When does it run
+The injection should run as close to possible to the turn of the epoch.  This injected the fees that will be delivered and the start of the epoch that follows (next next epoch).
