@@ -5,10 +5,13 @@ from os import listdir
 from os.path import isfile, join
 from great_ape_safe import GreatApeSafe
 from web3 import Web3
-from helpers.addresses import r
+from bal_addresses import AddrBook
 from pandas import pandas as pd
 from brownie import interface
 
+a = AddrBook("mainnet")
+r = a.dotmap
+monorepo_addys_by_chain = a.reversebook
 sweep_limit = 5000
 today = str(date.today())
 
@@ -24,8 +27,8 @@ target_dir = "../../../FeeSweep" ## For reports
 # The input data is sometimes rounded.  amount - dust_factor/amount is swept.  Larger dust factor = less dust
 dust_factor = 1000000
 
-def setupSafe(address=r.balancer.multisigs.fees):
-    safe = GreatApeSafe(r.balancer.multisigs.fees)
+def setupSafe(address=r.multisigs.fees):
+    safe = GreatApeSafe(address)
     safe.init_cow(prod=True)  ## Set prod=true to not load swaps up on the staging cowswap interface (barn.cowswap.fi)
     return safe
 
@@ -37,7 +40,6 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
-    sweep_limit
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
@@ -65,7 +67,7 @@ def claimFees(safe, sweeps):
     print("Sweeping fees")
     address_list = list(sweeps.keys())
     amounts_list = list(sweeps.values())
-    sweeper = safe.contract(r.balancer.ProtocolFeesWithdrawer)
+    sweeper = safe.contract(a.flatbook["20220517-protocol-fee-withdrawer/ProtocolFeesWithdrawer"])
     sweeper.withdrawCollectedFees(address_list, amounts_list, safe.address)
 
 def cowswapFees(safe, sweeps):
@@ -111,8 +113,8 @@ def cowswapFees(safe, sweeps):
         print(f"The following tokens had problems and may not show up to be traded: {error_tokens}")
 
 def payFees(safe, half=True):
-    distrbutor = safe.contract(r.balancer.feeDistributor)
-    usd = safe.contract(r.tokens.bb_a_usd)
+    distrbutor = safe.contract(a.flatbook["20220714-fee-distributor-v2/FeeDistributor"])
+    usd = safe.contract("0xfebb0bbf162e64fb9d0dfe186e517d84c395f016") ## bb-a-usd v3
     bal = safe.contract(r.tokens.BAL)
     safe.take_snapshot([bal, usd])
     if half:
@@ -133,7 +135,7 @@ def payFees(safe, half=True):
 
 
 def main():
-    safe=setupSafe(r.balancer.multisigs.fees)
+    safe=setupSafe(r.multisigs.fees)
     sweeps=generateSweepFile(target_file)
     claimFees(safe, sweeps)
     cowswapFees(safe, sweeps)

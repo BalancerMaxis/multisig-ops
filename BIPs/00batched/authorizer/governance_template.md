@@ -22,7 +22,7 @@ _More information about the various Balancer Multisigs and their functions can b
 
 As described in the payload json, the authorizer will be called to grant the roles as described.  
 
-The change can be reviewed by the below by comparing the [results_deployment_sorted.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-183/results_deployment_sorted.md) file to the source of truth,  which should match the order found in the source of truth for actionIds on the [balancer-deployments](https://github.com/balancer/balancer-deployments/tree/master/action-ids).
+The change can be reviewed by the below by comparing the [results_deployment_sorted.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/results_deployment_sorted.md) file to the source of truth,  which should match the order found in the source of truth for actionIds on the [balancer-deployments](https://github.com/balancer/balancer-deployments/tree/master/action-ids).
 
 For record, the contents of [results_address_sorted.md](https://github.com/BalancerMaxis/multisig-ops/tree/staging/BIPs/BIP-XXX/results_address_sorted.md) are printed here:
 
