@@ -8,12 +8,12 @@ debug = False
 
 
 def main():
-    all_bips = glob.glob("../../BIPs/**/*.json", recursive=True)
+    #all_bips = glob.glob("../../BIPs/**/*.json", recursive=True)
     some_bips = glob.glob("../../BIPs/00batched/2023-W24/*.json", recursive=True)
     runlist = []
     for file in some_bips:
         runlist.append(file.replace("../../", ""))
-
+    runlist = ["BIPs/00batched/2023-W24/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json"]
     reports = gen_report(runlist)
     #reports = gen_report(["BIPs/2023-W21/BIP-305.json"])
 
