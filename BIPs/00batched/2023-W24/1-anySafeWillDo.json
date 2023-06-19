@@ -41,38 +41,6 @@
           "0x48799A2B0b9ec11E4fa158c781AD8bFAbB892D58"
         ]
       }
-    },
-    {
-      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "string",
-            "name": "gaugeType",
-            "type": "string"
-          },
-          {
-            "internalType": "contract IStakelessGauge[]",
-            "name": "gauges",
-            "type": "address[]"
-          }
-        ],
-        "name": "addGauges",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "gaugeType": "PolygonZkEvm",
-        "gauges": [
-          "0x54f220a891f468629027C3Cc8A58722D4F576402",
-          "0xce99399fb4De36056A6831b159572E271360ea40",
-          "0xF7d515DC47d5BD57786494628ed766d6bF31cd39",
-          "0x7949426d750FEFC25754F149B2FB446B60c39387",
-          "0xc85679E41f1F98E694D9F8983fdD484F98F2eB02",
-          "0x48799A2B0b9ec11E4fa158c781AD8bFAbB892D58"
-        ]
-      }
     }
   ]
 }
