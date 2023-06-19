@@ -1,5 +1,5 @@
 BIPs/2023-W24/BIP-326.json
-COMMIT: fae50e0344d531ae516051771bb1931af6ea83f7
+COMMIT: custom
 ```
 +-------------+--------------------------------------------------------------------+------------------------+--------------------------------------------+---------+--------------------------------------------+-------+--------+--------------+
 | function    |                              pool_id                               |         symbol         |                pool_address                | aFactor |               gauge_address                |  fee  |  cap   | style        |
@@ -9,7 +9,7 @@ COMMIT: fae50e0344d531ae516051771bb1931af6ea83f7
 | killGauge() | 0xa6f548df93de924d73be7d25dc02554c6bd66db500020000000000000000000e |    B-50WBTC-50WETH     | 0xA6F548DF93de924d73be7D25dC02554c6bD66dB5 |   N/A   | 0x4E3c048BE671852277Ad6ce29Fd5207aA12fabff | 0.25% |  N/A%  | mainnet      |
 | killGauge() | 0x0b09dea16768f0799065c475be02919503cb2a3500020000000000000000001a |     B-60WETH-40DAI     | 0x0b09deA16768f0799065C475bE02919503cB2a35 |   N/A   | 0x4ca6AC0509E6381Ca7CD872a6cdC0Fbf00600Fa1 | 0.05% |  N/A%  | mainnet      |
 | killGauge() | 0x178e029173417b1f9c8bc16dcec6f697bc32374600000000000000000000025d |          FUD           | 0x178E029173417b1F9C8bC16DCeC6f697bC323746 |   200   | 0xDD4Db3ff8A37FE418dB6FF34fC316655528B6bbC | 0.01% |  N/A%  | mainnet      |
-| killGauge() | 0x178e029173417b1f9c8bc16dcec6f697bc32374600000000000000000000025d |          FUD           | 0x178E029173417b1F9C8bC16DCeC6f697bC323746 |   200   | 0xDD4Db3ff8A37FE418dB6FF34fC316655528B6bbC | 0.01% |  N/A%  | mainnet      |
+| killGauge() | 0x15c1cdacd3da1e1c1304200b1beb080d50bbbc0f00020000000000000000045f |     50TRYB-50USDC      | 0x15C1cDAcd3dA1E1C1304200b1bEb080D50BbBc0F |   N/A   | 0x36365dA262dB3965Ba2E1C4411409Bf22508e0A1 |  0.1% |  2.0%  | mainnet      |
 | killGauge() | 0x831261f44931b7da8ba0dcc547223c60bb75b47f000200000000000000000460 |     B-wUSDR-STABLE     | 0x831261f44931B7dA8ba0DcC547223c60BB75B47F |   100   | 0xe9866B9dc2c1213433f614CbB22EdAA0FAFF9a66 | 0.04% |  2.0%  | mainnet      |
 | killGauge() | 0x519cce718fcd11ac09194cff4517f12d263be067000000000000000000000382 |        BPT-USD+        | 0x519cCe718FCD11AC09194CFf4517F12D263BE067 |   570   | 0x260779495dA7Ce3A76b44F5C994cD18EBDa8177f | 0.01% | 100.0% | L0 sidechain |
 | killGauge() | 0x64541216bafffeec8ea535bb71fbc927831d0595000100000000000000000002 | B-33WETH-33WBTC-33USDC | 0x64541216bAFFFEec8ea535BB71Fbc927831d0595 |   N/A   | 0xf460C9A5D00ef665F12Ee9634983A2b799dA5317 | 0.25% | 100.0% | L0 sidechain |
