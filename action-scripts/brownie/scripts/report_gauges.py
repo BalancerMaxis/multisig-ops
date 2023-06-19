@@ -43,6 +43,39 @@ SELECTORS_MAPPING = {
 }
 
 
+def _extract_pool(
+        chain: str, gauge: Contract, gauge_selectors: dict
+) -> tuple[str, str, str, str, str, str, str]:
+    """
+    Generic function used by handlers to extract pool info given chain and gauge.
+    Returns pool info
+    """
+    # Process sidechain gauges
+    if chain != CHAIN_MAINNET:
+        recipient = gauge.getRecipient()
+        network.disconnect()
+        network.connect(chain)
+        sidechain_recipient = Contract(recipient)
+        style = None
+        if "reward_receiver" in sidechain_recipient.selectors.values():
+            sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
+            style = STYLE_CHILD_CHAIN_STREAMER
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
+            sidechain_recipient.lp_token())
+        style = style if style else STYLE_L0
+    elif "name" not in gauge_selectors:  # Process single recipient gauges
+        recipient = Contract(gauge.getRecipient())
+        escrow = Contract(recipient.getVotingEscrow())
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(escrow.token())
+        style = STYLE_SINGLE_RECIPIENT
+    else:  # Process mainnet gauges
+        (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee) = get_pool_info(
+            gauge.lp_token())
+        style = STYLE_MAINNET
+
+    return pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style
+
+
 def _parse_added_transaction(transaction: dict) -> Optional[dict]:
     """
     Parse a gauge adder transaction and return a dict with parsed data.
@@ -86,27 +119,9 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
         if "getRelativeWeightCap" in gauge_selectors else "N/A"
     )
     # Process sidechain gauges
-    if chain != CHAIN_MAINNET:
-        recipient = gauge.getRecipient()
-        network.disconnect()
-        network.connect(chain)
-        sidechain_recipient = Contract(recipient)
-        style = None
-        if "reward_receiver" in sidechain_recipient.selectors.values():
-            sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
-            style = STYLE_CHILD_CHAIN_STREAMER
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
-            sidechain_recipient.lp_token())
-        style = style if style else STYLE_L0
-    elif "name" not in gauge_selectors:  # Process single recipient gauges
-        recipient = Contract(gauge.getRecipient())
-        escrow = Contract(recipient.getVotingEscrow())
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(escrow.token())
-        style = STYLE_SINGLE_RECIPIENT
-    else:  # Process mainnet gauges
-        (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee) = get_pool_info(
-            gauge.lp_token())
-        style = STYLE_MAINNET
+    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
+        chain, gauge, gauge_selectors
+    )
 
     return {
         "function": command,
@@ -152,29 +167,9 @@ def _parse_removed_transaction(transaction: dict) -> Optional[dict]:
             chain = SELECTORS_MAPPING[selector]
             break
 
-    # Process sidechain gauges
-    if chain != CHAIN_MAINNET:
-        recipient = gauge.getRecipient()
-        network.disconnect()
-        network.connect(chain)
-        sidechain_recipient = Contract(recipient)
-        style = None
-        if "reward_receiver" in sidechain_recipient.selectors.values():
-            sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
-            style = STYLE_CHILD_CHAIN_STREAMER
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
-            sidechain_recipient.lp_token())
-        style = style if style else STYLE_L0
-    elif "name" not in gauge_selectors:  # Process single recipient gauges
-        recipient = Contract(gauge.getRecipient())
-        escrow = Contract(recipient.getVotingEscrow())
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(escrow.token())
-        style = STYLE_SINGLE_RECIPIENT
-    else:  # Process mainnet gauges
-        (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee) = get_pool_info(
-            gauge.lp_token())
-        style = STYLE_MAINNET
-
+    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
+        chain, gauge, gauge_selectors
+    )
     return {
         "function": command,
         "pool_id": pool_id,
@@ -233,7 +228,6 @@ def handle_removed_gauges(files: list[dict]) -> dict[str, str]:
             data = _parse_removed_transaction(transaction)
             if data:
                 outputs.append(data)
-
         if outputs:
             reports[file['file_name']] = format_into_report(file, outputs)
     return reports
