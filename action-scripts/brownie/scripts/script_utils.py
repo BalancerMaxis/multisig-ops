@@ -118,3 +118,36 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
     return file_report
+
+
+def merge_files(added_gauges: dict[str, str], removed_gauges: dict[str, str]) -> dict[str, str]:
+    """
+    Function that merges two dictionaries into one.
+
+    Extend with more dictionaries if needed.
+
+    Say we have two dictionaries:
+    added_gauges = {
+        "file1.json": "report1",
+        "file2.json": "report2",
+    }
+    removed_gauges = {
+        "file1.json": "report3",
+        "file3.json": "report4",
+    }
+    Then the result of merging will be:
+    merged_dict = {
+        "file1.json": "report1report3",
+        "file2.json": "report2",
+        "file3.json": "report4",
+    }
+    """
+    merged_dict = added_gauges.copy()
+
+    for file_name, report in removed_gauges.items():
+        if file_name in merged_dict:
+            merged_dict[file_name] += report
+        else:
+            merged_dict[file_name] = report
+
+    return merged_dict
