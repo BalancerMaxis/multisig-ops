@@ -41,6 +41,32 @@
           "0x48799A2B0b9ec11E4fa158c781AD8bFAbB892D58"
         ]
       }
+    },{
+      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IStakelessGauge[]",
+            "name": "gauges",
+            "type": "address[]"
+          }
+        ],
+        "name": "addGauges",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Arbitrum",
+        "gauges": [
+          "0x6ba66967B0723718d616ad5F293c2AE6d7b0FCAE","0x25869f277f474FA9459F40F5D4cB0D6A8Ab41967","0xacE0D479040231e3c6b17479cFd4444182d521d4"
+        ]
+      }
     }
   ]
 }
