@@ -1,0 +1,23 @@
+File name: BIPs/00batched/2023-W24/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json
+COMMIT: `e47969f61570d3fad33ee051a25da865024e0eb4`
+CHAIN(S): `arbitrum, polygon, mainnet`
+```
++-------------+--------------------------------------------------------------------+------------------------+--------------------------------------------+---------+--------------------------------------------+-------+--------+--------------+
+| function    |                              pool_id                               |         symbol         |                pool_address                | aFactor |               gauge_address                |  fee  |  cap   | style        |
++-------------+--------------------------------------------------------------------+------------------------+--------------------------------------------+---------+--------------------------------------------+-------+--------+--------------+
+| killGauge() | 0x03cd191f589d12b0582a99808cf19851e468e6b500010000000000000000000a |          BPTC          | 0x03cD191F589d12b0582a99808cf19851E468E6B5 |   N/A   | 0x1604b7E80975555e0aCEaca9C81807FbB4D65Cf1 | 0.25% | 100.0% | L0 sidechain |
+| killGauge() | 0x96646936b91d6b9d7d0c47c496afbf3d6ec7b6f8000200000000000000000019 |    B-50USDC-50WETH     | 0x96646936b91d6B9D7D0c47C496AfBF3D6ec7B6f8 |   N/A   | 0x9AB7B0C7b154f626451c9e8a68dC04f58fb6e5Ce |  0.3% |  N/A   | mainnet      |
+| killGauge() | 0xa6f548df93de924d73be7d25dc02554c6bd66db500020000000000000000000e |    B-50WBTC-50WETH     | 0xA6F548DF93de924d73be7D25dC02554c6bD66dB5 |   N/A   | 0x4E3c048BE671852277Ad6ce29Fd5207aA12fabff | 0.25% |  N/A   | mainnet      |
+| killGauge() | 0x0b09dea16768f0799065c475be02919503cb2a3500020000000000000000001a |     B-60WETH-40DAI     | 0x0b09deA16768f0799065C475bE02919503cB2a35 |   N/A   | 0x4ca6AC0509E6381Ca7CD872a6cdC0Fbf00600Fa1 | 0.05% |  N/A   | mainnet      |
+| killGauge() | 0x178e029173417b1f9c8bc16dcec6f697bc32374600000000000000000000025d |          FUD           | 0x178E029173417b1F9C8bC16DCeC6f697bC323746 |   200   | 0xDD4Db3ff8A37FE418dB6FF34fC316655528B6bbC | 0.01% |  N/A   | mainnet      |
+| killGauge() | 0x15c1cdacd3da1e1c1304200b1beb080d50bbbc0f00020000000000000000045f |     50TRYB-50USDC      | 0x15C1cDAcd3dA1E1C1304200b1bEb080D50BbBc0F |   N/A   | 0x36365dA262dB3965Ba2E1C4411409Bf22508e0A1 |  0.1% |  2.0%  | mainnet      |
+| killGauge() | 0x831261f44931b7da8ba0dcc547223c60bb75b47f000200000000000000000460 |     B-wUSDR-STABLE     | 0x831261f44931B7dA8ba0DcC547223c60BB75B47F |   100   | 0xe9866B9dc2c1213433f614CbB22EdAA0FAFF9a66 | 0.04% |  2.0%  | mainnet      |
+| killGauge() | 0x519cce718fcd11ac09194cff4517f12d263be067000000000000000000000382 |        BPT-USD+        | 0x519cCe718FCD11AC09194CFf4517F12D263BE067 |   570   | 0x260779495dA7Ce3A76b44F5C994cD18EBDa8177f | 0.01% | 100.0% | L0 sidechain |
+| killGauge() | 0x64541216bafffeec8ea535bb71fbc927831d0595000100000000000000000002 | B-33WETH-33WBTC-33USDC | 0x64541216bAFFFEec8ea535BB71Fbc927831d0595 |   N/A   | 0xf460C9A5D00ef665F12Ee9634983A2b799dA5317 | 0.25% | 100.0% | L0 sidechain |
+| killGauge() | 0x9f9f548354b7c66dc9a9f3373077d86aaaccf8f2000200000000000000000a4a |     20USDC-80TNGBL     | 0x9F9F548354B7C66Dc9a9f3373077D86AAACCF8F2 |   N/A   | 0x2cc5BebcFdAAD20f2a608EC153d1C7BED66EeEC3 |  0.3% |  2.0%  | L0 sidechain |
+| killGauge() | 0x34a81e8956bf20b7448b31990a2c06f96830a6e4000200000000000000000a14 |     B-wUSDR-STABLE     | 0x34A81e8956BF20b7448b31990A2c06F96830a6e4 |   100   | 0xc534C30749b6C198D35a7836E26076E7745D8936 | 0.04% |  2.0%  | L0 sidechain |
+| killGauge() | 0x0297e37f1873d2dab4487aa67cd56b58e2f27875000100000000000000000002 |       B-POLYBASE       | 0x0297e37f1873D2DAb4487Aa67cD56B58E2F27875 |   N/A   | 0xF5C7F74103d4E9D1fF8FBa3420c6319723e3473A | 0.25% | 100.0% | L0 sidechain |
+| killGauge() | 0xf3aeb3abba741f0eece8a1b1d2f11b85899951cb000200000000000000000351 |      MAI-USDC-SP       | 0xf3AeB3aBbA741f0EEcE8a1B1D2F11b85899951CB |   500   | 0x91A75880b07d36672f5C8DFE0F2334f086e29D47 | 0.05% |  N/A   | mainnet      |
+| killGauge() | 0x186084ff790c65088ba694df11758fae4943ee9e000200000000000000000013 |     B-50WETH-50YFI     | 0x186084fF790C65088BA694Df11758faE4943EE9E |   N/A   | 0x5F4d57fd9Ca75625e4B7520c71c02948A48595d0 | 0.75% |  N/A   | mainnet      |
++-------------+--------------------------------------------------------------------+------------------------+--------------------------------------------+---------+--------------------------------------------+-------+--------+--------------+
+```
