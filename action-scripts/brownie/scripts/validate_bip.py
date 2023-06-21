@@ -47,6 +47,7 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
     return True, ""
 
 
+# Add more validators here as needed
 VALIDATORS = [
     validate_contains_msig,
     validate_msig_in_address_book,
@@ -70,12 +71,13 @@ def main() -> None:
             else:
                 results[file_path][validator.__name__] = "OK"
 
+    # Generate report for each file and save it in a list
     reports = []
     for file_path, file_results in results.items():
         report = f"BIP validation results for file {file_path}:\n"
         # Commit:
         report += f"Commit: `{os.getenv('COMMIT_SHA')}`\n"
-        # Convert output into table format
+        # Convert output for each file into table format
         table = PrettyTable()
         table.field_names = ["Validator", "Result"]
         for validator_name, result in file_results.items():
@@ -83,7 +85,7 @@ def main() -> None:
         report += f"```\n{table}\n```"
         reports.append(report)
 
-    # Save temporary file with results
+    # Save temporary file with results so that it can be used in github action later
     with open("validate_bip_results.txt", "w") as f:
         f.write("\n\n".join(reports))
 
