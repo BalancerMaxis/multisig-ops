@@ -25,6 +25,13 @@ jobs:
       env:
         PR_NUMBER: ${{ github.event.number }}
         COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+        WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+        ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+        ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+        GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+        POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+        OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+        ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
       run: |
         cd action-scripts/brownie
         touch .env
