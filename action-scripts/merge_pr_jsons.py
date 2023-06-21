@@ -8,6 +8,17 @@ from typing import Optional
 
 from bal_addresses import AddrBook
 
+ADDRESSES_MAINNET = AddrBook("mainnet").reversebook
+ADDRESSES_POLYGON = AddrBook("polygon").reversebook
+ADDRESSES_ARBITRUM = AddrBook("arbitrum").reversebook
+ADDRESSES_AVALANCHE = AddrBook("avalanche").reversebook
+ADDRESSES_OPTIMISM = AddrBook("optimism").reversebook
+ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
+ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
+# Merge all addresses into one dictionary
+ADDRESSES = {**ADDRESSES_MAINNET, **ADDRESSES_POLYGON, **ADDRESSES_ARBITRUM, **ADDRESSES_AVALANCHE,
+             **ADDRESSES_OPTIMISM, **ADDRESSES_GNOSIS, **ADDRESSES_ZKEVM}
+
 # Initialize the parser
 parser = argparse.ArgumentParser()
 parser.add_argument("--target", help="Target directory to merge BIPs from")
@@ -36,10 +47,24 @@ TEMPLATE_PATH = os.path.dirname(
     os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
 
 
+class NoMsigAddress(Exception):
+    pass
+
+
+class NoChainSpecified(Exception):
+    pass
+
+
+class AddressNotFound(Exception):
+    pass
+
+
 def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
     """
     In case file was created within given date bounds and for given chain -
-    parse it and return the data
+    parse it and return the data.
+
+    Also perform various validations on the file.
     """
     # Check if the file is a json file
     if not file_path.endswith(".json"):
@@ -47,16 +72,31 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
     try:
         with open(file_path, "r") as json_file:
             data = json.load(json_file)
-            # Check if the file is a dictionary, not a list
-            if not isinstance(data, dict):
-                return None
-            # Check if chain id is the same as the one we are looking for
-            # TODO  This crashes if it finds JSON that is not a payload file.
-            # TODO: Discovered by running on BIPs
-            if int(data["chainId"]) == int(chain):
-                return data
+            data['file_name'] = file_path
     except JSONDecodeError:
         return None
+
+    # VALIDATIONS. Everything should fail here if the file is not valid
+    # Check if the file is a dictionary, not a list
+    if not isinstance(data, dict) or not data.get('transactions'):
+        return None
+
+    # Check if chain id is the same as the one we are looking for
+    if not data.get("chainId"):
+        raise NoChainSpecified(f"No chain id found in file: {file_path}")
+
+    msig = data['meta'].get('createdFromSafeAddress') or data['meta'].get('createFromSafeAddress')
+    if not msig or not isinstance(msig, str):
+        raise NoMsigAddress(f"No msig address found in file: {file_path}, or it is not a string")
+
+    # Check if msig address is in the address book
+    if msig not in ADDRESSES:
+        raise AddressNotFound(
+            f"msig address {msig} not found in address book in file: {file_path}"
+        )
+
+    if int(data["chainId"]) == int(chain):
+        return data
 
 
 def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
@@ -93,6 +133,8 @@ def main():
     # For instance, to get to the project root from: multisig-ops/action-scripts/merge_pr_jsons.py
     # You need to jump up two steps with os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    dir_name_batched = f"BIPs/00batched/{year}-W{week}"
+    dir_name_batched_full = os.path.join(root_dir, dir_name_batched)
 
     files_to_parse = []
     target_files = defaultdict(list)
@@ -119,8 +161,6 @@ def main():
                 target_files[str(chain_id)].append(data)
 
     # Now we have a list of files to be merged, let's merge them and save to files
-    dir_name_batched = f"BIPs/00batched/{year}-W{week}"
-    dir_name_batched_full = os.path.join(root_dir, dir_name_batched)
     # Create the directory if it does not exist in root directory
     if not os.path.exists(dir_name_batched_full):
         os.mkdir(dir_name_batched_full)
@@ -130,11 +170,10 @@ def main():
         # Group files by safe address
         grouped_files = defaultdict(list)
         for file in files:
-            safe_address = file["meta"]["createdFromSafeAddress"]
-            if not safe_address:
-                safe_address = file["meta"]["createFromSafeAddress"]
-            if safe_address and isinstance(safe_address, str):
-                grouped_files[safe_address].append(file)
+            safe_address = file["meta"].get("createdFromSafeAddress") or file["meta"].get(
+                "createFromSafeAddress"
+            )
+            grouped_files[safe_address].append(file)
 
         # Now we have a list of files grouped by safe address, let's merge them and save to files
         for safe_address, fs in grouped_files.items():
@@ -146,7 +185,6 @@ def main():
             for file in fs:
                 result["transactions"] += file["transactions"]
                 #  Check for gauge adds and generate checkpoint list
-
                 for tx in file["transactions"]:
                     if tx["contractMethod"]["name"] == "addGauge":
                         try:
@@ -160,7 +198,6 @@ def main():
                                 f"as it doesn't have expected inputs:\n---\n "
                                 f"{tx['contractInputsValues']}"
                             )
-
             # Save the result to file
             file_name = f"{chain_id}-{safe_address}.json"
             file_path = os.path.join(dir_name_batched_full, file_name)
