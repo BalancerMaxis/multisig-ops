@@ -21,6 +21,8 @@ def get_changed_files() -> list[dict]:
     Parses given GH repo and PR number to return a list of dicts of changed files
 
     Each file should be a valid json with a list of transactions
+
+    Returns only BIPs
     """
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
