@@ -10,8 +10,8 @@ The contract includes admin functions to change the handled tokens and sweep ERC
 
 You can find out more information about the tokens handled, by calling getTokens() in the read functions of the contract.
 
-Etherscan: https://etherscan.io/address/0x8bCDE6BA5E194cCb9957B38FE6085dA31BC69880#readContract
-Chainlink Upkeep: https://automation.chain.link/mainnet/86126832535457445079976477509132399226385949469895005463102486894704911936831
+Etherscan: https://etherscan.io/address/0x8AD2512819A7eae1dd398973EFfaE48dafBe8255#readContract
+Chainlink Upkeep: https://automation.chain.link/mainnet/272064120448970968129350878338658121801758038303433171306878704282507266745
 
 This contract and upkeep is owned by the lm multisig.
 
