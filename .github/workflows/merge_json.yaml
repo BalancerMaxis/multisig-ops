@@ -50,6 +50,8 @@ jobs:
           POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
           OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
           ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+          COMMIT_SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
         run: |
           cd action-scripts/brownie
           touch .env
