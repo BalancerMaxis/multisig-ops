@@ -30,6 +30,7 @@ jobs:
           rm package-lock.json
           rm package.json
       - name: pull-request
+        id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "Combined JSON Payloads ${{ github.event.inputs.directory }}"
@@ -37,3 +38,17 @@ jobs:
           reviewers: "solarcurvey"
           assignees: "solarcurvey"
           labels: "Gauge Payloads, Merged Payloads"
+        env:
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+          COMMIT_SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
+      - name: Run custom script
+        run: |
+          brownie run --network mainnet scripts/report_gauges.py
+          REPORT=`cat output.txt`
+          echo output.txt "::set-output name=report-data::$REPORT"
+      - name: Post Report as Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: action-scripts/brownie/output.txt
+          pr_number: ${{ steps.cpr.outputs.pull-request-number }}
+          reactions: eyes
