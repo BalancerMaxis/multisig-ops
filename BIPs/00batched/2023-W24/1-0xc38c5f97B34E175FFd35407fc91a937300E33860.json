@@ -31,8 +31,8 @@
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0x6ba66967B0723718d616ad5F293c2AE6d7b0FCAE",
-        "gaugeType": "Arbitrum"
+        "gauge": "0xD3D5d45f4Edf82ba0dFaf061d230766032a10e07",
+        "gaugeType": "Ethereum"
       }
     },
     {
@@ -231,32 +231,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0x25869f277f474FA9459F40F5D4cB0D6A8Ab41967",
-        "gaugeType": "Arbitrum"
-      }
-    },
-    {
-      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "gauge",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "gaugeType",
-            "type": "string"
-          }
-        ],
-        "name": "addGauge",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "gauge": "0xacE0D479040231e3c6b17479cFd4444182d521d4",
+        "gauge": "0x6ba66967B0723718d616ad5F293c2AE6d7b0FCAE",
         "gaugeType": "Arbitrum"
       }
     },
@@ -306,8 +281,33 @@
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0xD3D5d45f4Edf82ba0dFaf061d230766032a10e07",
-        "gaugeType": "Ethereum"
+        "gauge": "0x25869f277f474FA9459F40F5D4cB0D6A8Ab41967",
+        "gaugeType": "Arbitrum"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xacE0D479040231e3c6b17479cFd4444182d521d4",
+        "gaugeType": "Arbitrum"
       }
     }
   ]
