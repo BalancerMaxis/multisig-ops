@@ -1,115 +1,115 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1687970751948,
-    "meta": {
-        "name": "Transactions Batch",
-        "description": "",
-        "txBuilderVersion": "1.16.0",
-        "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-        "createdFromOwnerAddress": "",
-        "checksum": "0x871c352af1dd23f5c4a8947fcb69f0c3e46347ece6e76df395964fa1c91a7d5e"
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1687970751948,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x871c352af1dd23f5c4a8947fcb69f0c3e46347ece6e76df395964fa1c91a7d5e"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x1Ce5bf7e6C16C567DeFd625e0911Bfd0FC7f2d7d",
+        "gaugeType": "Optimism"
+      }
     },
-    "transactions": [
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0x1Ce5bf7e6C16C567DeFd625e0911Bfd0FC7f2d7d",
-                "gaugeType": "Optimism"
-            }
-        },
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0xd0b6787589d33B4F7aA5a27f36497e091e78a2ad",
-                "gaugeType": "Optimism"
-            }
-        },
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0x0BFcF593C149Ddbeedb190667d24D30D2E38AF73",
-                "gaugeType": "Optimism"
-            }
-        },
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0xdc08146530DD9910F8ab4D0aD2C184f87e903540",
-                "gaugeType": "Optimism"
-            }
-        }
-    ]
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xd0b6787589d33B4F7aA5a27f36497e091e78a2ad",
+        "gaugeType": "Optimism"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x0BFcF593C149Ddbeedb190667d24D30D2E38AF73",
+        "gaugeType": "Optimism"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xdc08146530DD9910F8ab4D0aD2C184f87e903540",
+        "gaugeType": "Optimism"
+      }
+    }
+  ]
 }
