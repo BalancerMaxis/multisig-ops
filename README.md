@@ -57,6 +57,8 @@ Verbose and up-to-date docs about the balancer governance process can be found o
 ### Fees and Bribs
 - Check out the [Bribs](./Bribs) for artifacts from our Core Pools Fee redirection processes (BIP-19)
 - Check out [FeeSweep](./FeeSweep) for artifacts and info about our protocol fee processing activities
+
+### Assorted tooling
 - [tools](./tools) is a somewhat messy directory with a bunch of reports/automations and scripts we use to deal with the various workloads.
 - [action-scripts](./action-scripts) is where we build more final code and integrate more hashed out automations into github actions.
 
