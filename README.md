@@ -46,7 +46,7 @@ We are slowly developing a library of detailed examples for how to build BIP pay
 These examples can be found [HERE](BIPs/00examples)
 
 
-### Chain Link keepers
+### Chain Link Upkeeps
 The Maxi's have started using Chain Link automation to automate some regular processes that don't need deep review.
 
 Documentation of our various running keepers can be found in [chainlink_keepers](./chainlink_keepers)
