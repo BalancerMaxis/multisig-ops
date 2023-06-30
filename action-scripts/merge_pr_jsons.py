@@ -96,7 +96,6 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
         raise AddressNotFound(
             f"msig address {msig} not found in address book in file: {file_path}"
         )
-
     if int(data["chainId"]) == int(chain):
         return data
 
