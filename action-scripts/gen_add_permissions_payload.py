@@ -56,7 +56,8 @@ def build_action_ids_map(input_data,):
             except requests.HTTPError as err:
                 print(f"error:{err}, url: {monorepo_ids.url}")
                 exit(0)
-
+            # TODO figure out deployment unique searching in bal addresses and use it here.
+            # TODO more reporting around hit counts per chain posted to issue
             for deployment in change["deployments"]:
                 if deployment not in monorepo_ids.keys():
                     continue ## This deployment is not on this chain
@@ -165,7 +166,8 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         # Set global data
         data.chainId = chain_id
         data.meta.createFromSafeAddress = book_by_chain[chain].reversebook["multisigs/dao"]
-
+        assert Web3.toChecksumAddress(data.meta.createFromSafeAddress), \
+            f"ERROR: Safe for {chain_name} is {data.meta.createFromSafeAddress}, which is not a checksummed address"
         # Group roles on this chain by caller address
         action_ids_by_address = {}
         for change in change_list:
