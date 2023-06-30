@@ -72,6 +72,8 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
     try:
         with open(file_path, "r") as json_file:
             data = json.load(json_file)
+            if not isinstance(data, dict):
+                return None
             data['file_name'] = file_path
     except JSONDecodeError:
         return None
