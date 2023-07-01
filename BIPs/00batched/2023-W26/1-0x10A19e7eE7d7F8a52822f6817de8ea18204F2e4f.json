@@ -109,7 +109,31 @@
         "to": "0x166f54F44F271407f24AA1BE415a730035637325",
         "value": "25400000000000000000000"
       }
-    },{"to":"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","value":"20000000000000000000","data":null,"contractMethod":{"inputs":[],"name":"deposit","payable":true},"contractInputsValues":null},{"to":"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","value":"0","data":null,"contractMethod":{"inputs":[{"name":"dst","type":"address"},{"name":"wad","type":"uint256"}],"name":"transfer","payable":false},"contractInputsValues":{"dst":"0x166f54F44F271407f24AA1BE415a730035637325","wad":"20000000000000000000"}},
+    },
+    {
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "20000000000000000000",
+      "data": null,
+      "contractMethod": { "inputs": [], "name": "deposit", "payable": true },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "dst", "type": "address" },
+          { "name": "wad", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "dst": "0x166f54F44F271407f24AA1BE415a730035637325",
+        "wad": "20000000000000000000"
+      }
+    },
     {
       "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       "value": "0",
