@@ -4,9 +4,12 @@ from decimal import Decimal, InvalidOperation
 from brownie import web3, interface
 from web3 import Web3
 from great_ape_safe import GreatApeSafe
-from helpers.addresses import r
+from bal_addresses import AddrBook
 import csv
 from datetime import date
+
+a = AddrBook("mainnet")
+r = a.dotmap
 
 today = str(date.today())
 
@@ -91,9 +94,8 @@ def main(
     veBalFeeToken="0xfebb0bbf162e64fb9d0dfe186e517d84c395f016" ## bb-a-usd v3
 ):
 
-    safe = GreatApeSafe(r.balancer.multisigs.fees)
+    safe = GreatApeSafe(r.multisigs.fees)
     safe.init_cow()
-    #safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
     usdc = safe.contract(r.tokens.USDC)
     usdc_mantissa_multilpier = 10 ** int(usdc.decimals())
@@ -188,9 +190,11 @@ def main(
             mantissa,  # uint256 amount
         )
 
-    print(f"Swapping leftover USDC for {veBalFeeToken}")
+    print(f"Swapping leftover USDC for {veBalFeeToken} and sending fees to the injector")
     usd = safe.contract(veBalFeeToken)
-    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), 8*60*60, 1, 0.995)
+    bal = safe.contract(r.tokens.BAL)
+    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), 8*60*60, 1, 0.995, r.maxiKeepers.veBalFeeInjector)
+    bal.transfer(r.maxiKeepers.veBalFeeInjector, bal.balanceOf(safe.address))
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")
 
