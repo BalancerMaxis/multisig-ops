@@ -4,15 +4,19 @@ from decimal import Decimal, InvalidOperation
 from brownie import web3, interface
 from web3 import Web3
 from great_ape_safe import GreatApeSafe
-from helpers.addresses import r
+from bal_addresses import AddrBook
 import csv
 from datetime import date
+
+address_book = AddrBook("mainnet")
+addr_dotmap = address_book.dotmap
 
 today = str(date.today())
 
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
-
+COWSWAP_DEADLINE = 8*60*60  # 8 hours
+COWSWAP_SLIPPAGE = 0.005    # 0.05%
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 
 # queries for choices and proposals info
@@ -88,22 +92,21 @@ def process_bribe_csv(
 
 def main(
     csv_file=f"../../../Bribs/{today}.csv",
-    veBalFeeToken="0xfebb0bbf162e64fb9d0dfe186e517d84c395f016" ## bb-a-usd v3
+    usd_fee_token_address="0xfebb0bbf162e64fb9d0dfe186e517d84c395f016" ## bb-a-usd v3
 ):
 
-    safe = GreatApeSafe(r.balancer.multisigs.fees)
+    safe = GreatApeSafe(addr_dotmap.multisigs.fees)
     safe.init_cow()
-    #safe = GreatApeSafe("0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b")   # maxi playground safe
 
-    usdc = safe.contract(r.tokens.USDC)
+    usdc = safe.contract(addr_dotmap.tokens.USDC)
     usdc_mantissa_multilpier = 10 ** int(usdc.decimals())
 
     safe.take_snapshot([usdc])
 
-    bribe_vault = safe.contract(r.hidden_hand.bribe_vault, interface.IBribeVault)
-    aura_briber = safe.contract(r.hidden_hand.aura_briber, interface.IAuraBribe)
+    bribe_vault = safe.contract(addr_dotmap.hidden_hand.bribe_vault, interface.IBribeVault)
+    aura_briber = safe.contract(addr_dotmap.hidden_hand.aura_briber, interface.IAuraBribe)
     balancer_briber = safe.contract(
-        r.hidden_hand.balancer_briber, interface.IBalancerBribe
+        addr_dotmap.hidden_hand.balancer_briber, interface.IBalancerBribe
     )
     bribes = process_bribe_csv(csv_file)
 
@@ -188,9 +191,12 @@ def main(
             mantissa,  # uint256 amount
         )
 
-    print(f"Swapping leftover USDC for {veBalFeeToken}")
-    usd = safe.contract(veBalFeeToken)
-    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), 8*60*60, 1, 0.995)
+    print(f"Swapping leftover USDC for {usd_fee_token_address} and sending fees to the injector")
+    cowswap_chunks = 1
+    usd = safe.contract(usd_fee_token_address)
+    bal = safe.contract(addr_dotmap.tokens.BAL)
+    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), COWSWAP_DEADLINE, cowswap_chunks, 1-COWSWAP_SLIPPAGE, addr_dotmap.maxiKeepers.veBalFeeInjector)
+    bal.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, bal.balanceOf(safe.address))
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")
 
