@@ -146,9 +146,11 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-    encoded_data = transaction["contractInputsValues"].get("data")
+    input_values = transaction.get("contractInputsValues")
+    if not input_values or not isinstance(input_values, dict):
+        return
+    encoded_data = input_values.get("data")
     if not encoded_data:
-        print("No encoded data found! Not a gauge kill transaction")
         return
     (command, inputs) = Contract(
         Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
