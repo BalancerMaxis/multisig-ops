@@ -122,7 +122,11 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     return file_report
 
 
-def merge_files(added_gauges: dict[str, str], removed_gauges: dict[str, str]) -> dict[str, str]:
+def merge_files(
+        added_gauges: dict[str, str],
+        removed_gauges: dict[str, str],
+        transfers: dict[str, str],
+) -> dict[str, str]:
     """
     Function that merges two dictionaries into one.
 
@@ -144,12 +148,11 @@ def merge_files(added_gauges: dict[str, str], removed_gauges: dict[str, str]) ->
         "file3.json": "report4",
     }
     """
-    merged_dict = added_gauges.copy()
-
-    for file_name, report in removed_gauges.items():
-        if file_name in merged_dict:
-            merged_dict[file_name] += report
-        else:
-            merged_dict[file_name] = report
-
+    merged_dict = {}
+    for key in added_gauges.keys() | removed_gauges.keys() | transfers.keys():
+        merged_dict[key] = "".join([
+            added_gauges.get(key, ""),
+            removed_gauges.get(key, ""),
+            transfers.get(key, ""),
+        ])
     return merged_dict

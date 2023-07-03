@@ -1,3 +1,4 @@
+from typing import Callable
 from typing import Optional
 
 from bal_addresses import AddrBook
@@ -76,7 +77,7 @@ def _extract_pool(
     return pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style
 
 
-def _parse_added_transaction(transaction: dict) -> Optional[dict]:
+def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse a gauge adder transaction and return a dict with parsed data.
 
@@ -138,7 +139,10 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
     }
 
 
-def _parse_removed_transaction(transaction: dict) -> Optional[dict]:
+def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse a gauge remover transaction and return a dict with parsed data.
+    """
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
@@ -186,48 +190,62 @@ def _parse_removed_transaction(transaction: dict) -> Optional[dict]:
     }
 
 
-def handle_added_gauges(files: list[dict]) -> dict[str, str]:
+def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
-    Function that parses transaction list and tries to collect following data about added
-    gauges:
-    - pool_id
-    - symbol
-    - pool_address
-    - aFactor
-    - gauge_address
-    - cap
-    - fee
-    - style
+    Parse an ERC-20 transfer transaction and return a dict with parsed data
+    """
 
-    Then it converts collected data into a formatted list of strings.
+    # Parse only gauge add transactions
+    if transaction["contractMethod"]["name"] != "transfer":
+        return
+
+    chain_id = kwargs["chain_id"]
+    chain_alias = "{}-main"
+    chain_name = "main"
+    # Get chain name using address book and chain id
+    for c_name, c_id in AddrBook.CHAIN_IDS_BY_NAME.items():
+        if int(chain_id) == int(c_id):
+            chain_name = chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
+            break
+    if not chain_name:
+        print("Chain name not found! Cannot transfer transaction")
+        return
+    if network.is_connected():
+        network.disconnect()
+    network.connect(chain_name)
+    # Get input values
+    token = Contract(transaction["to"])
+    recipient_address = transaction["contractInputsValues"].get("to")
+    raw_amount = (
+        transaction["contractInputsValues"].get("amount")
+        or transaction["contractInputsValues"].get("value")
+    )
+    amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
+    symbol = token.symbol()
+    recipient_name = ADDR_BOOK.reversebook[recipient_address] or "N/A"
+    return {
+        "function": "transfer",
+        "token_symbol": symbol,
+        "recipient_name": recipient_name,
+        "amount": amount,
+        "token_address": token.address,
+        "recipient_address": recipient_address,
+        "raw_amount": raw_amount,
+        "chain": chain_name
+    }
+
+
+def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
+    """
+    Process a list of files and return a dict with parsed data.
     """
     reports = {}
+    print(f"Processing {len(files)} files... with {handler_func.__name__}")
     for file in files:
         outputs = []
-        print(f"Processing: {file['file_name']}")
         tx_list = file["transactions"]
         for transaction in tx_list:
-            data = _parse_added_transaction(transaction)
-            if data:
-                outputs.append(data)
-
-        if outputs:
-            reports[file['file_name']] = format_into_report(file, outputs)
-    return reports
-
-
-def handle_removed_gauges(files: list[dict]) -> dict[str, str]:
-    """
-    Function that parses transaction list and tries to collect data about removed gauges.
-    Format is the same as in handle_added_gauges.
-    """
-    reports = {}
-    for file in files:
-        outputs = []
-        print(f"Processing: {file['file_name']}")
-        tx_list = file["transactions"]
-        for transaction in tx_list:
-            data = _parse_removed_transaction(transaction)
+            data = handler_func(transaction, chain_id=file["chainId"])
             if data:
                 outputs.append(data)
         if outputs:
@@ -239,10 +257,11 @@ def main() -> None:
     files = get_changed_files()
     print(f"Found {len(files)} files with added/removed gauges")
     # TODO: Add here more handlers for other types of transactions
-    added_gauges = handle_added_gauges(files)
-    removed_gauges = handle_removed_gauges(files)
+    added_gauges = handler(files, _parse_added_transaction)
+    removed_gauges = handler(files, _parse_removed_transaction)
+    transfer_reports = handler(files, _parse_transfer)
 
-    merged_files = merge_files(added_gauges, removed_gauges)
+    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports)
     # Save report to report.txt file
     with open("output.txt", "w") as f:
         for report in merged_files.values():
