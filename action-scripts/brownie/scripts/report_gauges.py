@@ -88,7 +88,8 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
     :param transaction: transaction to parse
     :return: dict with parsed data
     """
-    network.disconnect()
+    if network.is_connected():
+        network.disconnect()
     network.connect(CHAIN_MAINNET)
     if transaction['to'] != FLATBOOK[ADDR_BOOK.search_unique("v4/GaugeAdder")]:
         return
@@ -138,7 +139,8 @@ def _parse_added_transaction(transaction: dict) -> Optional[dict]:
 
 
 def _parse_removed_transaction(transaction: dict) -> Optional[dict]:
-    network.disconnect()
+    if network.is_connected():
+        network.disconnect()
     network.connect(CHAIN_MAINNET)
     encoded_data = transaction["contractInputsValues"].get("data")
     if not encoded_data:
