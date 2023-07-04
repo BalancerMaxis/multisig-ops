@@ -44,7 +44,7 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
     """
     chain = file.get('chainId')
     chains = list(AddrBook.CHAIN_IDS_BY_NAME.values())
-    if chain not in chains:
+    if int(chain) not in chains:
         return False, f"No chain specified or is not found in known chain list: {chain} in {chains}"
     return True, ""
 
