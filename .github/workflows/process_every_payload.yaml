@@ -21,7 +21,7 @@ jobs:
       - name: Setup Python 3.9
         uses: actions/setup-python@v4
         with:
-          python-version: 'python3.9'
+          python-version: '3.9'
 
       - name: Add BIP Numbers
         # This script also rewrites all json files with indent=2 (prettify)
