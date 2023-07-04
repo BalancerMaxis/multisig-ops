@@ -67,7 +67,7 @@ VALIDATORS = [
     validate_contains_msig,
     validate_msig_in_address_book,
     validate_chain_specified,
-    validate_txs_have_extra_data()
+    validate_txs_have_extra_data,
 ]
 
 
