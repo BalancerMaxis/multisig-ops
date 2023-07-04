@@ -9,7 +9,8 @@
     "createdFromSafeAddress": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
     "createdFromOwnerAddress": "",
     "checksum": "",
-    "createFromSafeAddress": {}
+    "createFromSafeAddress": {},
+    "bip_number": "BIP-343"
   },
   "transactions": [
     {
@@ -18,8 +19,16 @@
       "data": null,
       "contractMethod": {
         "inputs": [
-          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
-          { "internalType": "address", "name": "account", "type": "address" }
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
         ],
         "name": "grantRoles",
         "payable": false
@@ -27,7 +36,10 @@
       "contractInputsValues": {
         "roles": "[0x29596d20dcc54c557d94ae57af84f08715a588be1d756198eec61a3dc368b6c1, 0x9023a208ea63197b4da99dc4a096d44fb3152b807b6e4d37f15239d9fff8beb2, 0x478e7f53087deab85ae5870218c02821a6bafa4a75984797ac58cdfd513a385b, 0x4b0cfb0e3afde1903ef88f0072b490a0d78f1027a165371b1b4732daa84a9559, 0x338ff79f4b040df80f9cbc5217e904e2c8dbb7fb58beb6100c837ffa25ab4197]",
         "account": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962"
-      }
+      },
+      "bip_number": "BIP-343",
+      "tx_count": 0
     }
-  ]
+  ],
+  "file_name": "BIPs/2023-W26/BIP-343-test/gnosis.json"
 }
