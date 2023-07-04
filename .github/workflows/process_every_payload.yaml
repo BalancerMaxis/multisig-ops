@@ -6,6 +6,17 @@ on:
     paths:
       - "BIPs/**"
 
+env:
+  PR_NUMBER: ${{ github.event.number }}
+  COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+  WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+  ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+  ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+  GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+  POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+  OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+  ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+
 jobs:
   preprocess-payloads:
     runs-on: ubuntu-latest
@@ -13,9 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
-          # This is important to fetch the changes to the previous commit
           fetch-depth: 0
 
       - name: Setup Python 3.9
@@ -24,17 +33,6 @@ jobs:
           python-version: '3.9'
 
       - name: Add BIP Numbers
-        # This script also rewrites all json files with indent=2 (prettify)
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
-          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
         run: |
           cd action-scripts/brownie
           pip install -r requirements-actions.txt
@@ -43,17 +41,6 @@ jobs:
 
       - name: Generate Validation Report
         id: validation-report
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
-          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
-        # We are already in the brownie directory with requirements installed
         run: |
           brownie run --network mainnet scripts/validate_bip.py
           REPORT=`cat validate_bip_results.txt`
@@ -69,16 +56,6 @@ jobs:
         id: gen-report
         env:
           PAYLOAD_LIST: ${{ steps.changed-json-files.outputs.changed-json-files }}
-          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
-          PR_NUMBER: ${{ github.event.number }}
-          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
-        # We are already in the brownie directory with requirements installed
         run: |
           brownie run --network mainnet scripts/report_gauges.py
           REPORT=`cat payload_reports.txt`

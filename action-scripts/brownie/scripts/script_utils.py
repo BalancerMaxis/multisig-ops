@@ -42,7 +42,6 @@ def get_changed_files() -> list[dict]:
             with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
                 try:
                     payload = json.load(json_data)
-                    payload['file_name'] = filename
                 except JSONDecodeError:
                     print(f"{filename} is not proper json")
                     continue
@@ -52,6 +51,7 @@ def get_changed_files() -> list[dict]:
                 if "transactions" not in payload.keys():
                     print(f"{filename} json deos not contain a list of transactions")
                     continue
+            payload['file_name'] = filename
             changed_files.append(payload)
     return changed_files
 
