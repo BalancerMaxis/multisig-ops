@@ -6,7 +6,6 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  LABEL: "Generate Authorizer"
 
 jobs:
   gen_auth:

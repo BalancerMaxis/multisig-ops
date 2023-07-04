@@ -1,0 +1,86 @@
+name: Process every payload
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled]
+    paths:
+      - "BIPs/**"
+
+jobs:
+  preprocess-payloads:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+          # This is important to fetch the changes to the previous commit
+          fetch-depth: 0
+      - name: Install Python
+        users: actions/setup-python@4
+        with:
+          python-version: '3.9'
+      - name: Add BIP Numbers
+        id: preprocess
+        # This script also rewrites all json files with indent=2 (prettify)
+        run: |
+          cd action-scripts/brownie
+          pip install -r requirements-actions.txt
+          python3.9 scripts/add_bip_numbers.py
+      - name: Generate Validation Report
+        id: validation-report
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+        # We are already in the brownie directory with requirements installed
+        run: |
+          touch .env
+          brownie run --network mainnet scripts/validate_bip.py
+          REPORT=`cat validate_bip_results.txt`
+          echo output.txt "::set-output name=report-data::$REPORT"
+      - name: Post Validation Report as Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: action-scripts/brownie/payload_reports.txt
+          reactions: eyes
+
+      - name: Generate Payload report
+        id: gen-report
+        env:
+          PAYLOAD_LIST: ${{ steps.changed-json-files.outputs.changed-json-files }}
+          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+        # We are already in the brownie directory with requirements installed and a .env
+        run: |
+          brownie run --network mainnet scripts/report_gauges.py
+          REPORT=`cat payload_reports.txt`
+          echo output.txt "::set-output name=report-data::$REPORT"
+
+      - name: Post Payload Report as Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: action-scripts/brownie/payload_reports.txt
+          reactions: eyes
+
+      - name: Commit and push reports
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automated processing of Payload PR (validations, transformations, and reports)
+          commit_user_name: GitHub Actions
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: Github Actions <noreply@users.noreply.github.com>

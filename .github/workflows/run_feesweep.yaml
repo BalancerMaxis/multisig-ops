@@ -18,23 +18,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Check label
-      run: |
-        if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
-          echo "Checking for label '${{ env.LABEL }}' on the pull request associated with commit '$GITHUB_SHA'"
-          pull_request_labels=$(jq --raw-output '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
-          if echo "$pull_request_labels" | grep -q '${{ env.LABEL }}'; then
-            echo "Label '${{ env.LABEL }}' found on pull request"
-          else
-            echo "Label '${{ env.LABEL }} not found on pull request"
-            echo "Exiting action"
-            exit 1
-          fi
-        else
-          echo "No pull request associated with commit '$GITHUB_SHA'"
-          echo "Exiting action"
-          exit 1
-        fi
     
     - name: Setup Python 3.9
       uses: actions/setup-python@v2
@@ -45,6 +28,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run Sweep
+      if: ${{ github.event.label.name }} == 'Sweep Fees'
       run: python3 sweepFees.py
 
     - name: Commit and push changes

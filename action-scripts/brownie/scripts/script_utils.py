@@ -5,6 +5,7 @@ from json import JSONDecodeError
 import requests
 from brownie import Contract
 from prettytable import PrettyTable
+import re
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -156,3 +157,40 @@ def merge_files(
             transfers.get(key, ""),
         ])
     return merged_dict
+
+def get_bip_number(path: str) -> str:
+    """
+    Function that gets a BIP number from a file name by searching BIP-### pattterns.
+    Will throw a ValueError if exactly 1 result is not found, otherwise return a result like BIP-###
+    """
+    # Define the regular expression pattern
+    pattern = r"BIP-\d{3,}"
+    # Search for the pattern in the given path
+    matches = re.findall(pattern, path)
+    if len(matches) == 1:
+        return matches[0]
+    else:
+        raise ValueError(f"Expect 1 and only 1 BIP number in file path, found: {matches}")
+
+
+
+def add_bip_number_data(files: list[dict]):
+    """
+    Function expects a list of payload dicts, with file_name included at the top level.
+    It will add bip_number from the file to the top level of the payload as well as to each transaction.
+    The function will throw an error if a single BIP number can not be found for each listed payload.
+    """
+    for payload in files:
+        new_tx_list = []
+        file_name = payload["file_name"]
+        assert isinstance(file_name, str), f"no filename in payload data. {payload}"
+        bip_number = get_bip_number(file_name)
+        payload["meta"]["bip_number"] = bip_number
+        for tx in payload["transactions"]:
+            tx["bip_number"] = bip_number
+        with open(file_name, "w") as f:
+            json.dump(payload, f, indent=2)
+
+
+
+
