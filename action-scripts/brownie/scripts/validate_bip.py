@@ -59,7 +59,7 @@ def validate_txs_have_extra_data(file: dict) -> Tuple[bool, str]:
             return False, f"file: {file['file_name']} has tx with no bip number at index {count}"
         bip_number = bip.split("-")[1]
         tx_count = tx.get("tx_count")
-        if not int(bip) >= FIRST_POSSIBLE_BIP_NUMBER:
+        if not int(bip_number) >= FIRST_POSSIBLE_BIP_NUMBER:
             return False, f"TX {count} in file {file['file_name']} has too low bip_number {bip_number}"
         if not tx_count == count:
             return False, f"Current tx count {count}, count from payload {tx_count}"
