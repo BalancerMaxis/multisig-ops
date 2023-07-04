@@ -37,10 +37,12 @@ jobs:
           cd action-scripts/brownie
           pip install -r requirements-actions.txt
           touch .env
+          pwd
 
       - name: Add BIP Numbers
         run: |
           brownie run --network mainnet scripts/add_bip_numbers.py
+          pwd
 
       - name: Generate Validation Report
         id: validation-report
