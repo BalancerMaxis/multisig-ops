@@ -8,7 +8,8 @@
     "txBuilderVersion": "1.16.0",
     "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
     "createdFromOwnerAddress": "",
-    "checksum": "0xae285cf93451a8c1bdba7452f6a6ce50166759e6e2683f1a68cc772e9d13dd9b"
+    "checksum": "0xae285cf93451a8c1bdba7452f6a6ce50166759e6e2683f1a68cc772e9d13dd9b",
+    "bip_number": "BIP-420"
   },
   "transactions": [
     {
@@ -17,8 +18,16 @@
       "data": null,
       "contractMethod": {
         "inputs": [
-          { "internalType": "address", "name": "to", "type": "address" },
-          { "internalType": "uint256", "name": "value", "type": "uint256" }
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
         ],
         "name": "transfer",
         "payable": false
@@ -26,7 +35,10 @@
       "contractInputsValues": {
         "to": "0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86",
         "value": "55000000000"
-      }
+      },
+      "bip_number": "BIP-420",
+      "tx_count": 0
     }
-  ]
+  ],
+  "file_name": "BIPs/test_bips_to_delete/BIP-420/BIP-420-later/BIP-420B.json"
 }

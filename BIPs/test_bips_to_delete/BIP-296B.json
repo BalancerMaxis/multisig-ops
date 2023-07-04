@@ -8,7 +8,8 @@
     "txBuilderVersion": "1.14.1",
     "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
     "createdFromOwnerAddress": "",
-    "checksum": "0x7306af67f2d3aae47f2341945a4be3b11cfac3052efbac9ae7e97c54406034da"
+    "checksum": "0x7306af67f2d3aae47f2341945a4be3b11cfac3052efbac9ae7e97c54406034da",
+    "bip_number": "BIP-296"
   },
   "transactions": [
     {
@@ -17,8 +18,16 @@
       "data": null,
       "contractMethod": {
         "inputs": [
-          { "internalType": "address", "name": "target", "type": "address" },
-          { "internalType": "bytes", "name": "data", "type": "bytes" }
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
         ],
         "name": "performAction",
         "payable": true
@@ -26,7 +35,10 @@
       "contractInputsValues": {
         "target": "0x21D8dB8a46393FEdE4e91eAfBc0cCf092faCb469",
         "data": "0xab8f0945"
-      }
+      },
+      "bip_number": "BIP-296",
+      "tx_count": 0
     }
-  ]
+  ],
+  "file_name": "BIPs/test_bips_to_delete/BIP-296B.json"
 }
