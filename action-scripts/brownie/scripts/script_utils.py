@@ -196,6 +196,7 @@ def add_extra_payload_data(files: list[dict]):
         for tx in payload["transactions"]:
             tx["bip_number"] = bip_number
             tx["tx_count"] = count
+            count += 1
         with open(f"../../{file_name}", "w") as f:
             json.dump(payload, f, indent=2)
 

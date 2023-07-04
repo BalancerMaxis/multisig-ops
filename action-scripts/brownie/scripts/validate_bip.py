@@ -55,15 +55,17 @@ def validate_txs_have_extra_data(file: dict) -> Tuple[bool, str]:
     FIRST_POSSIBLE_BIP_NUMBER = 130  # First BIP in repo looks to be 147 + a little room
     count = 0
     for tx in file["transactions"]:
+        cur_index = count
+        count += 1
         bip = tx.get("bip_number")
         if not isinstance(bip, str):
-            return False, f"file: {file['file_name']} has tx with no bip number at index {count}"
+            return False, f"file: {file['file_name']} has tx with no bip number at index {cur_index}"
         bip_number = bip.split("-")[1]
         tx_count = tx.get("tx_count")
         if not int(bip_number) >= FIRST_POSSIBLE_BIP_NUMBER:
-            return False, f"TX {count} in file {file['file_name']} has too low bip_number {bip_number}"
-        if not tx_count == count:
-            return False, f"Current tx count {count}, count from payload {tx_count}"
+            return False, f"TX {cur_index} in file {file['file_name']} has too low bip_number {bip_number}"
+        if not tx_count == cur_index:
+            return False, f"Current tx index {cur_index} does not match count from payload {tx_count}"
         return True, ""
 
 # Add more validators here as needed
