@@ -1,4 +1,4 @@
-name: Process every payload
+name: Process and Report - every payload
 
 on:
   pull_request:
@@ -28,7 +28,7 @@ jobs:
         run: |
           cd action-scripts/brownie
           pip install -r requirements-actions.txt
-          python3.9 scripts/add_bip_numbers.py
+          brownie run scripts/add_bip_numbers.py
 
       - name: Generate Validation Report
         id: validation-report
