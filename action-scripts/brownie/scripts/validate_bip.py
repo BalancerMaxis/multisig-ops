@@ -43,8 +43,9 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
     Validates that chain is specified in file
     """
     chain = file.get('chainId')
-    if chain not in AddrBook.CHAIN_IDS_BY_NAME.values():
-        return False, f"No chain specified or is not found in known chain list: {chain} in {AddrBook.CHAIN_IDS_BY_NAME.values()}"
+    chains = list(AddrBook.CHAIN_IDS_BY_NAME.values())
+    if chain not in chains:
+        return False, f"No chain specified or is not found in known chain list: {chain} in {chains}"
     return True, ""
 
 def validate_txs_have_extra_data(file: dict) -> Tuple[bool, str]:
