@@ -24,12 +24,11 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Install Requirements
-      run: pip install -r requirements.txt
-
     - name: Run Sweep
       if: ${{ github.event.label.name }} == 'Sweep Fees'
-      run: python3 sweepFees.py
+      run: |
+        pip install -r requirements.txt
+        python3 sweepFees.py
 
     - name: Commit and push changes
       uses:  stefanzweifel/git-auto-commit-action@v4
