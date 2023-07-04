@@ -139,7 +139,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "style": style,
         "chain": chain if chain else "mainnet",
         "bip": bip_number,
-        "index": tx_index
+        "original_index": tx_index
     }
 
 
@@ -196,7 +196,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "style": style,
         "chain": chain if chain else "mainnet",
         "bip": bip_number,
-        "index": tx_index
+        "original_index": tx_index
     }
 
 
@@ -245,7 +245,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         "raw_amount": raw_amount,
         "chain": chain_name,
         "bip": bip_number,
-        "index": tx_index
+        "original_index": tx_index
     }
 
 

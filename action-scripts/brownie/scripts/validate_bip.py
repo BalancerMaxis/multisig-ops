@@ -65,7 +65,7 @@ def validate_txs_have_extra_data(file: dict) -> Tuple[bool, str]:
         if not int(bip_number) >= FIRST_POSSIBLE_BIP_NUMBER:
             return False, f"TX {cur_index} in file {file['file_name']} has too low bip_number {bip_number}"
         if not tx_count == cur_index:
-            return False, f"Current tx index {cur_index} does not match count from payload {tx_count}"
+            return False, f"Count Mismatch: Merged BIP?"
         return True, ""
 
 # Add more validators here as needed
