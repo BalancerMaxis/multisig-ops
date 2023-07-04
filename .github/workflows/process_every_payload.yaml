@@ -41,12 +41,13 @@ jobs:
 
       - name: Add BIP Numbers
         run: |
-          pwd
+          cd action-scripts/brownie
           brownie run --network mainnet scripts/add_bip_numbers.py
 
       - name: Generate Validation Report
         id: validation-report
         run: |
+          cd action-scripts/brownie
           brownie run --network mainnet scripts/validate_bip.py
           REPORT=`cat validate_bip_results.txt`
           echo output.txt "::set-output name=report-data::$REPORT"
@@ -62,6 +63,7 @@ jobs:
         env:
           PAYLOAD_LIST: ${{ steps.changed-json-files.outputs.changed-json-files }}
         run: |
+          cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
           REPORT=`cat payload_reports.txt`
           echo output.txt "::set-output name=report-data::$REPORT"
