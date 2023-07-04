@@ -169,8 +169,11 @@ def get_bip_number(path: str) -> str:
     matches = re.findall(pattern, path)
     if len(matches) == 1:
         return matches[0]
+    elif len(matches) == 0:
+        print(f"No BIP number found in file: {path}")
+        return
     else:
-        raise ValueError(f"Expect 1 and only 1 BIP number in file path, found: {matches}, {path}")
+        raise ValueError(f"More than 1 BIP number in file path found: {matches}, {path}")
 
 
 
@@ -186,6 +189,8 @@ def add_bip_number_data(files: list[dict]):
         print(f"Adding BIP data to {file_name}")
         assert isinstance(file_name, str), f"no filename in payload data. {payload}"
         bip_number = get_bip_number(file_name)
+        if bip_number is None:
+            continue
         payload["meta"]["bip_number"] = bip_number
         for tx in payload["transactions"]:
             tx["bip_number"] = bip_number
