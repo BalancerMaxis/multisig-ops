@@ -24,7 +24,7 @@ def validate_contains_msig(file: dict) -> Tuple[bool, str]:
     """
     msig = file['meta'].get('createdFromSafeAddress') or file['meta'].get('createFromSafeAddress')
     if not msig or not isinstance(msig, str):
-        return False, "No msig address found or it is not a string"
+        return False, f"No msig address found or it is not a string {msig}"
     return True, ""
 
 
@@ -34,7 +34,7 @@ def validate_msig_in_address_book(file: dict) -> Tuple[bool, str]:
     """
     msig = file['meta'].get('createdFromSafeAddress') or file['meta'].get('createFromSafeAddress')
     if msig not in ADDRESSES:
-        return False, "Multisig address not found in address book"
+        return False, f"Multisig {msig} address not found in address book"
     return True, ""
 
 
@@ -43,8 +43,8 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
     Validates that chain is specified in file
     """
     chain = file.get('chainId')
-    if not chain or not isinstance(chain, str):
-        return False, "No chain specified or it is not a string"
+    if chain not in AddrBook.CHAIN_IDS_BY_NAME.values():
+        return False, f"No chain specified or is not found in known chain list {chain}"
     return True, ""
 
 def validate_txs_have_extra_data(file: dict) -> Tuple[bool, str]:
