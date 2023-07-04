@@ -194,7 +194,7 @@ def add_bip_number_data(files: list[dict]):
         payload["meta"]["bip_number"] = bip_number
         for tx in payload["transactions"]:
             tx["bip_number"] = bip_number
-        with open(file_name, "w") as f:
+        with open(f"../../{file_name}", "w") as f:
             json.dump(payload, f, indent=2)
 
 
