@@ -25,6 +25,8 @@ jobs:
 
       - name: Add BIP Numbers
         # This script also rewrites all json files with indent=2 (prettify)
+        env:
+          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
         run: |
           cd action-scripts/brownie
           pip install -r requirements-actions.txt
