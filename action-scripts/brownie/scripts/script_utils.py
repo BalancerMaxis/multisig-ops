@@ -170,7 +170,7 @@ def get_bip_number(path: str) -> str:
     if len(matches) == 1:
         return matches[0]
     else:
-        raise ValueError(f"Expect 1 and only 1 BIP number in file path, found: {matches}")
+        raise ValueError(f"Expect 1 and only 1 BIP number in file path, found: {matches}, {path}")
 
 
 
@@ -183,6 +183,7 @@ def add_bip_number_data(files: list[dict]):
     for payload in files:
         new_tx_list = []
         file_name = payload["file_name"]
+        print(f"Adding BIP data to {file_name}")
         assert isinstance(file_name, str), f"no filename in payload data. {payload}"
         bip_number = get_bip_number(file_name)
         payload["meta"]["bip_number"] = bip_number
