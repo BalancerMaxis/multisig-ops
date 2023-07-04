@@ -28,6 +28,7 @@ jobs:
         run: |
           cd action-scripts/brownie
           pip install -r requirements-actions.txt
+          touch .env
           brownie run scripts/add_bip_numbers.py
 
       - name: Generate Validation Report
@@ -44,7 +45,6 @@ jobs:
           ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
         # We are already in the brownie directory with requirements installed
         run: |
-          touch .env
           brownie run --network mainnet scripts/validate_bip.py
           REPORT=`cat validate_bip_results.txt`
           echo output.txt "::set-output name=report-data::$REPORT"
@@ -68,7 +68,7 @@ jobs:
           ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
           PR_NUMBER: ${{ github.event.number }}
           COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
-        # We are already in the brownie directory with requirements installed and a .env
+        # We are already in the brownie directory with requirements installed
         run: |
           brownie run --network mainnet scripts/report_gauges.py
           REPORT=`cat payload_reports.txt`
