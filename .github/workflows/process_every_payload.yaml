@@ -49,13 +49,12 @@ jobs:
         run: |
           cd action-scripts/brownie
           brownie run --network mainnet scripts/validate_bip.py
-          REPORT=`cat validate_bip_results.txt`
-          echo output.txt "::set-output name=report-data::$REPORT"
+          cat validate_bip_results.txt
 
       - name: Post Validation Report as Comment
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: action-scripts/brownie/payload_reports.txt
+          filePath: action-scripts/brownie/validate_bip_results.txt
           reactions: eyes
 
       - name: Generate Payload report
@@ -65,8 +64,7 @@ jobs:
         run: |
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
-          REPORT=`cat payload_reports.txt`
-          echo output.txt "::set-output name=report-data::$REPORT"
+          cat payload_reports.txt
 
       - name: Post Payload Report as Comment
         uses: thollander/actions-comment-pull-request@v2
