@@ -20,7 +20,7 @@ jobs:
         python-version: 3.9
 
     - name: Do Work
-      if: ${{ github.event.label.name }} == 'Generate Authorizer'
+      if: ${{ github.event.label.name == 'Generate Authorizer' }}
       env:
         WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
       run: |
