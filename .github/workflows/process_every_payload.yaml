@@ -41,8 +41,8 @@ jobs:
 
       - name: Add BIP Numbers
         run: |
-          brownie run --network mainnet scripts/add_bip_numbers.py
           pwd
+          brownie run --network mainnet scripts/add_bip_numbers.py
 
       - name: Generate Validation Report
         id: validation-report
