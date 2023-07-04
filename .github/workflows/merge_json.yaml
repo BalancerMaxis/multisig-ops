@@ -14,12 +14,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: Setup Node
-        uses: actions/setup-node@v3
+
       - name: Run script with JSON files
         run: |
           pip3 install -r action-scripts/requirements-actions.txt
@@ -29,6 +29,7 @@ jobs:
           rm -rf node_modules
           rm package-lock.json
           rm package.json
+
       - name: Create PR
         id: cpr
         uses: peter-evans/create-pull-request@v5
@@ -42,10 +43,12 @@ jobs:
           PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
           COMMIT_SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
       # Checkout the PR so we can run the report script
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           ref: create-pull-request/patch
+
       - name: Run report script
         env:
           WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
@@ -64,6 +67,7 @@ jobs:
           brownie run --network mainnet scripts/report_gauges.py
           REPORT=`cat output.txt`
           echo output.txt "::set-output name=report-data::$REPORT"
+
       - name: Post Report as Comment
         uses: thollander/actions-comment-pull-request@v2
         with:
