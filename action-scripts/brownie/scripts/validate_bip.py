@@ -5,6 +5,7 @@ from .script_utils import get_changed_files
 from bal_addresses import AddrBook
 from prettytable import PrettyTable
 
+
 ADDRESSES_MAINNET = AddrBook("mainnet").reversebook
 ADDRESSES_POLYGON = AddrBook("polygon").reversebook
 ADDRESSES_ARBITRUM = AddrBook("arbitrum").reversebook
@@ -46,12 +47,27 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
         return False, "No chain specified or it is not a string"
     return True, ""
 
+def validate_txs_have_extra_data(file: dict) -> Tuple[bool, str]:
+    """
+    Validates that every tx in every payload has a decent looking bip_number and tx_count
+    """
+    FIRST_POSSIBLE_BIP_NUMBER = 130  # First BIP in repo looks to be 147 + a little room
+    count = 0
+    for tx in file["transactions"]:
+        bip = tx.get("bip_number")
+        tx_count = tx.get("tx_count")
+        if not int(bip) >= FIRST_POSSIBLE_BIP_NUMBER:
+            return False, f"TX {count} in file {file['file_name']}"
+        if not tx_count == count:
+            return False, f"Current tx count {count}, count from payload {tx_count}"
+        return True, ""
 
 # Add more validators here as needed
 VALIDATORS = [
     validate_contains_msig,
     validate_msig_in_address_book,
     validate_chain_specified,
+    validate_txs_have_extra_data()
 ]
 
 

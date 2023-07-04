@@ -124,6 +124,8 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
         chain, gauge, gauge_selectors
     )
+    bip_number = transaction.get("bip_number")
+    tx_index = transaction.get("tx_count")
 
     return {
         "function": command,
@@ -136,6 +138,8 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "cap": gauge_cap,
         "style": style,
         "chain": chain if chain else "mainnet",
+        "bip": bip_number,
+        "index": tx_index
     }
 
 
@@ -178,6 +182,8 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
         chain, gauge, gauge_selectors
     )
+    bip_number = transaction.get("bip_number")
+    tx_index = transaction.get("tx_count")
     return {
         "function": command,
         "pool_id": pool_id,
@@ -189,6 +195,8 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "cap": gauge_cap,
         "style": style,
         "chain": chain if chain else "mainnet",
+        "bip": bip_number,
+        "index": tx_index
     }
 
 
@@ -225,6 +233,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
     recipient_name = ADDR_BOOK.reversebook[recipient_address] or "N/A"
+    bip_number = transaction.get("bip_number")
+    tx_index = transaction.get("tx_count")
     return {
         "function": "transfer",
         "token_symbol": symbol,
@@ -233,7 +243,9 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         "token_address": token.address,
         "recipient_address": recipient_address,
         "raw_amount": raw_amount,
-        "chain": chain_name
+        "chain": chain_name,
+        "bip": bip_number,
+        "index": tx_index
     }
 
 
@@ -265,7 +277,7 @@ def main() -> None:
 
     merged_files = merge_files(added_gauges, removed_gauges, transfer_reports)
     # Save report to report.txt file
-    with open("output.txt", "w") as f:
+    with open("payload_reports.txt", "w") as f:
         for report in merged_files.values():
             f.write(report)
     for filename, report in merged_files.items():

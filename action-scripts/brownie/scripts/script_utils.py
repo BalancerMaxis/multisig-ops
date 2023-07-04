@@ -177,7 +177,7 @@ def get_bip_number(path: str) -> str:
 
 
 
-def add_bip_number_data(files: list[dict]):
+def add_extra_payload_data(files: list[dict]):
     """
     Function expects a list of payload dicts, with file_name included at the top level.
     It will add bip_number from the file to the top level of the payload as well as to each transaction.
@@ -192,8 +192,10 @@ def add_bip_number_data(files: list[dict]):
         if bip_number is None:
             continue
         payload["meta"]["bip_number"] = bip_number
+        count = 0
         for tx in payload["transactions"]:
             tx["bip_number"] = bip_number
+            tx["tx_count"] = count
         with open(f"../../{file_name}", "w") as f:
             json.dump(payload, f, indent=2)
 
