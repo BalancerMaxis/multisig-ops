@@ -8,7 +8,8 @@
     "txBuilderVersion": "1.14.1",
     "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
     "createdFromOwnerAddress": "",
-    "checksum": "0x2373d02b5be1302149a35a0bf71364d6c42452db1bd111cbec63bd003d3f6ed1"
+    "checksum": "0x2373d02b5be1302149a35a0bf71364d6c42452db1bd111cbec63bd003d3f6ed1",
+    "bip_number": "BIP-313"
   },
   "transactions": [
     {
@@ -34,7 +35,9 @@
       "contractInputsValues": {
         "gauge": "0xf8C85bd74FeE26831336B51A90587145391a27Ba",
         "gaugeType": "Gnosis"
-      }
+      },
+      "bip_number": "BIP-313",
+      "tx_count": 0
     },
     {
       "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
@@ -59,7 +62,9 @@
       "contractInputsValues": {
         "gauge": "0x7F75ecd3cFd8cE8bf45f9639A226121ca8bBe4ff",
         "gaugeType": "Gnosis"
-      }
+      },
+      "bip_number": "BIP-313",
+      "tx_count": 1
     },
     {
       "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
@@ -84,7 +89,10 @@
       "contractInputsValues": {
         "gauge": "0xc61e7E858b5a60122607f5C7DF223a53b01a1389",
         "gaugeType": "Gnosis"
-      }
+      },
+      "bip_number": "BIP-313",
+      "tx_count": 2
     }
-  ]
+  ],
+  "file_name": "BIPs/test_bips_to_delete/BIP-313.json"
 }
