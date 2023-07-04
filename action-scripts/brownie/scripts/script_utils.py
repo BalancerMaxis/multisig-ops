@@ -167,7 +167,7 @@ def get_bip_number(path: str) -> str:
     pattern = r"BIP-\d{3,}"
     # Search for the pattern in the given path
     matches = re.findall(pattern, path)
-    if set(matches).len() == 1:
+    if len(set(matches)) == 1:  # dedup and check for 1 exact match
         return matches[0]
     elif len(matches) == 0:
         print(f"No BIP number found in file: {path}")
