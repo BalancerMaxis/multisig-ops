@@ -40,23 +40,11 @@ jobs:
       - name: Set PR Number Output
         run: |
           echo "MERGE_PR_NUMBER={{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_OUTPUT
-  
 
-  set_label_trigger_run:
-    needs: merge_jsons
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Set Merged_Payload label
-        uses: actions/github-script@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Trigger reports
+        uses: actions/trigger-workflow@v1
         with:
-          script: |
-            const prNumber = '${{ needs.merge_jsons.outputs.MERGE_PR_NUMBER }}';
-            await github.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              labels: ['Merged_Payload']
-            });
+          workflow: "process_every_payload.yml"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ steps.cpr.outputs.pull-request-ref }}
+          repository: ${{ github.repository }}

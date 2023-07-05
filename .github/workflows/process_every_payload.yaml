@@ -2,9 +2,15 @@ name: Process and Report - every payload
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, labeled]
+    types: [opened, reopened, synchronize]
     paths:
       - "BIPs/**"
+
+  workflow_run:
+    workflows:
+      - "Merge JSON payloads"
+    types:
+      - completed
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
