@@ -59,6 +59,25 @@ class AddressNotFound(Exception):
     pass
 
 
+def extract_bip_number(bip_file: dict) -> Optional[str]:
+    """
+    Extracts BIP number from file path or from transactions metadata
+    """
+    bip = None
+    # First, try to exctract BIP from file path
+    if bip_file.get('file_name') is not None:
+        bip_match = re.search(r"\bBIP-?\d+[A-Za-z]?\b", bip_file["file_name"])
+        bip = bip_match.group(0) if bip_match else None
+
+    # If no BIP in file path, try to extract it from transactions metadata
+    if not bip:
+        for tx in bip_file['transactions']:
+            if tx.get('meta', {}).get('bip') not in [None, "N/A"]:
+                bip = tx['meta']['bip']
+                break
+    return bip or "N/A"
+
+
 def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
     """
     In case file was created within given date bounds and for given chain -
@@ -185,9 +204,12 @@ def main():
             result['chainId'] = chain_id
             result["transactions"] = []
             for file in fs:
-                result["transactions"] += file["transactions"]
+                # Parse BIP-XXX number from the file name
+                bip_number = extract_bip_number(file)
+
                 #  Check for gauge adds and generate checkpoint list
                 for tx in file["transactions"]:
+                    tx["meta"] = {"bip_number": bip_number}
                     if tx["contractMethod"]["name"] == "addGauge":
                         try:
                             gauge_chain = tx["contractInputsValues"]["gaugeType"]
@@ -200,6 +222,7 @@ def main():
                                 f"as it doesn't have expected inputs:\n---\n "
                                 f"{tx['contractInputsValues']}"
                             )
+                result["transactions"] += file["transactions"]
             # Save the result to file
             file_name = f"{chain_id}-{safe_address}.json"
             file_path = os.path.join(dir_name_batched_full, file_name)

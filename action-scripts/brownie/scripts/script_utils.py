@@ -1,6 +1,8 @@
 import json
 import os
+import re
 from json import JSONDecodeError
+from typing import Optional
 
 import requests
 from brownie import Contract
@@ -156,3 +158,22 @@ def merge_files(
             transfers.get(key, ""),
         ])
     return merged_dict
+
+
+def extract_bip_number(bip_file: dict) -> Optional[str]:
+    """
+    Extracts BIP number from file path or from transactions metadata
+    """
+    bip = None
+    # First, try to exctract BIP from file path
+    if bip_file.get('file_name') is not None:
+        bip_match = re.search(r"\bBIP-?\d+[A-Za-z]?\b", bip_file["file_name"])
+        bip = bip_match.group(0) if bip_match else None
+
+    # If no BIP in file path, try to extract it from transactions metadata
+    if not bip:
+        for tx in bip_file['transactions']:
+            if tx.get('meta', {}).get('bip') not in [None, "N/A"]:
+                bip = tx['meta']['bip']
+                break
+    return bip or "N/A"
