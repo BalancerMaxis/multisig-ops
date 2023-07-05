@@ -60,15 +60,15 @@ jobs:
         id: check_files
         run: |
           if [ -f "action-scripts/brownie/validate_bip_results.txt" ]; then
-            echo "::set-output name=validation_exists::true"
+            echo "validation_exists=true" >> $GITHUB_STATE
           else
-            echo "::set-output name=validation_exists::false"
+            echo "validation_exists=false" >> $GITHUB_STATE
           fi
           
           if [ -f "action-scripts/brownie/payload_reports.txt" ]; then
-            echo "::set-output name=payload_reports::true"
+            echo "payload_reports=true" >> $GITHUB_STATE
           else
-            echo "::set-output name=payload_reports::false"
+            echo "payload_reports=false" >> $GITHUB_STATE
           fi
 
       - name: Post Validation Report as Comment
