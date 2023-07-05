@@ -1,0 +1,96 @@
+name: Process and Report - every payload
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled]
+    paths:
+      - "BIPs/**"
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PR_NUMBER: ${{ github.event.number }}
+  COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+  WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+  ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+  ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+  GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+  POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+  OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+  ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+
+jobs:
+  generate_reports:
+    needs: prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Setup Environment
+        run: |
+          cd action-scripts/brownie
+          pip install -r requirements-actions.txt
+          touch .env
+          pwd
+
+      - name: Generate Validation Report
+        id: validation-report
+        run: |
+          cd action-scripts/brownie
+          brownie run --network mainnet scripts/validate_bip.py
+
+      - name: Post Validation Report as Comment
+        uses: thollander/actions-comment-pull-request@v2
+        continue-on-error: true
+        with:
+          filePath: action-scripts/brownie/validate_bip_results.txt
+          reactions: eyes
+
+      - name: Generate Payload report
+        id: gen-report
+        env:
+          PAYLOAD_LIST: ${{ steps.changed-json-files.outputs.changed-json-files }}
+        run: |
+          cd action-scripts/brownie
+          brownie run --network mainnet scripts/report_gauges.py
+
+      - name: Post Payload Report as Comment
+        uses: thollander/actions-comment-pull-request@v2
+        continue-on-error: true
+        with:
+          filePath: action-scripts/brownie/payload_reports.txt
+          reactions: eyes
+
+      - name: Commit and push reports
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automated processing of Payload PR (validations, transformations, and reports)
+          commit_user_name: GitHub Actions
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: Github Actions <noreply@users.noreply.github.com>
+
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+          # This is important to fetch the changes to the previous commit
+          fetch-depth: 0
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write BIPs/**/*.json
+          commit_message: Reformatted JSON files

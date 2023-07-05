@@ -36,46 +36,25 @@ jobs:
           commit-message: "Combined JSON Payloads ${{ github.event.inputs.directory }}"
           title: "Combined JSON payloads"
           reviewers: "solarcurvey"
-          assignees: "solarcurvey"
-          labels: "Gauge Payloads, Merged Payloads"
+          assignees: "tritium-vlk"
         env:
           PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
           COMMIT_SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
-      # Checkout the PR so we can run the report script
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: create-pull-request/patch
-      - name: Run report script
-        env:
-          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
-          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
-          COMMIT_SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
-        run: |
-          cd action-scripts/brownie
-          touch .env
-          pip install -r requirements-actions.txt
-          brownie run --network mainnet scripts/report_gauges.py
-          REPORT=`cat output.txt`
-          echo output.txt "::set-output name=report-data::$REPORT"
-      - name: Post Report as Comment
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          filePath: action-scripts/brownie/output.txt
-          pr_number: ${{ steps.cpr.outputs.pull-request-number }}
-          reactions: eyes
 
-      - name: Commit and push reports
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Add Merged Payloads label
+        uses: actions/github-script@v4
         with:
-          branch: create-pull-request/patch
-          commit_message: Adding gauge reports to json payloads
-          commit_user_name: GitHub Actions
-          commit_user_email: github-actions[bot]@users.noreply.github.com
-          commit_author: Github Actions <noreply@users.noreply.github.com>
+          script: |
+            const { data: pr } = await github.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            });
+            await github.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              labels: ['Merged Payloads']
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
