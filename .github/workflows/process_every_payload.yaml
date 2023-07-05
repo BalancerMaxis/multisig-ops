@@ -47,27 +47,44 @@ jobs:
           cd action-scripts/brownie
           brownie run --network mainnet scripts/validate_bip.py
 
-      - name: Post Validation Report as Comment
-        uses: thollander/actions-comment-pull-request@v2
-        continue-on-error: true
-        with:
-          filePath: action-scripts/brownie/validate_bip_results.txt
-          reactions: eyes
-
       - name: Generate Payload report
         id: gen-report
+        continue-on-error: true
         env:
           PAYLOAD_LIST: ${{ steps.changed-json-files.outputs.changed-json-files }}
         run: |
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
 
+      - name: Check for comment files
+        id: check_files
+        run: |
+          if [ -f "action-scripts/brownie/validate_bip_results.txt" ]; then
+            echo "::set-output name=validation_exists::true"
+          else
+            echo "::set-output name=validation_exists::false"
+          fi
+          
+          if [ -f "action-scripts/brownie/payload_reports.txt" ]; then
+            echo "::set-output name=payload_reports::true"
+          else
+            echo "::set-output name=payload_reports::false"
+          fi
+
+      - name: Post Validation Report as Comment
+        if: steps.check_files.outputs.validation_exists == 'true'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: action-scripts/brownie/validate_bip_results.txt
+          reactions: eyes
+
       - name: Post Payload Report as Comment
         uses: thollander/actions-comment-pull-request@v2
-        continue-on-error: true
+        if: steps.check_files.outputs.payload_reports == 'true'
         with:
           filePath: action-scripts/brownie/payload_reports.txt
           reactions: eyes
+
 
       - name: Commit and push reports
         uses: stefanzweifel/git-auto-commit-action@v4
