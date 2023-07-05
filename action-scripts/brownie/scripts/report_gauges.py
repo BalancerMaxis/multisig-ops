@@ -253,11 +253,16 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
     for file in files:
         outputs = []
         tx_list = file["transactions"]
-        bip_number = extract_bip_number(file)
         for transaction in tx_list:
             data = handler_func(
-                transaction, chain_id=file["chainId"], bip_number=bip_number,
-                tx_index=tx_list.index(transaction)
+                transaction, chain_id=file["chainId"],
+                # Try to extract bip number from transaction meta first. If it's missing,
+                # It means merge jsons hasn't been run yet, so we extract it from the file name
+                bip_number=transaction.get(
+                    'meta', {}).get(
+                    'bip_number'
+                ) or extract_bip_number(file),
+                tx_index=transaction.get('meta', {}).get('tx_index', "N/A")
             )
             if data:
                 outputs.append(data)

@@ -204,12 +204,13 @@ def main():
             result['chainId'] = chain_id
             result["transactions"] = []
             for file in fs:
-                # Parse BIP-XXX number from the file name
-                bip_number = extract_bip_number(file)
-
                 #  Check for gauge adds and generate checkpoint list
                 for tx in file["transactions"]:
-                    tx["meta"] = {"bip_number": bip_number}
+                    tx["meta"] = {
+                        "tx_index": file["transactions"].index(tx),
+                        "origin_file_name": file['file_name'],
+                        "bip_number": extract_bip_number(file),
+                    }
                     if tx["contractMethod"]["name"] == "addGauge":
                         try:
                             gauge_chain = tx["contractInputsValues"]["gaugeType"]
