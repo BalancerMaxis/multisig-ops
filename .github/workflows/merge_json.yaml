@@ -14,14 +14,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
+
       - name: Run script with JSON files
         run: |
           pip3 install -r action-scripts/requirements-actions.txt
           python action-scripts/merge_pr_jsons.py --target BIPs/${{ github.event.inputs.runWeek }}
+
       - name: Create PR
         id: cpr
         uses: peter-evans/create-pull-request@v5
@@ -38,15 +41,11 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const { data: pr } = await github.pulls.get({
+            const prNumber = `${{ steps.cpr.outputs.pull-request-number }}`;
+            github.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
-            });
-            await github.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: pr.number,
+              issue_number: prNumber,
               labels: ['Merged Payloads']
             });
         env:
