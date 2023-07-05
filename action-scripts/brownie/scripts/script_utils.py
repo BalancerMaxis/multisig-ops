@@ -173,7 +173,7 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
     # If no BIP in file path, try to extract it from transactions metadata
     if not bip:
         for tx in bip_file['transactions']:
-            if tx.get('meta', {}).get('bip') not in [None, "N/A"]:
-                bip = tx['meta']['bip']
+            if tx.get('meta', {}).get('bip_number') not in [None, "N/A"]:
+                bip = tx['meta']['bip_number']
                 break
     return bip or "N/A"
