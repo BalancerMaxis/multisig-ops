@@ -10,6 +10,7 @@ from .script_utils import format_into_report
 from .script_utils import get_changed_files
 from .script_utils import get_pool_info
 from .script_utils import merge_files
+from .script_utils import extract_bip_number
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
@@ -136,6 +137,8 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "cap": gauge_cap,
         "style": style,
         "chain": chain if chain else "mainnet",
+        "bip": kwargs.get('bip_number', 'N/A'),
+        "transaction_index": kwargs.get('tx_index', 'N/A'),
     }
 
 
@@ -189,6 +192,8 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "cap": gauge_cap,
         "style": style,
         "chain": chain if chain else "mainnet",
+        "bip": kwargs.get('bip_number', 'N/A'),
+        "transaction_index": kwargs.get('tx_index', 'N/A'),
     }
 
 
@@ -233,7 +238,9 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         "token_address": token.address,
         "recipient_address": recipient_address,
         "raw_amount": raw_amount,
-        "chain": chain_name
+        "chain": chain_name,
+        "bip": kwargs.get('bip_number', 'N/A'),
+        "transaction_index": kwargs.get('tx_index', 'N/A'),
     }
 
 
@@ -247,7 +254,16 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
         outputs = []
         tx_list = file["transactions"]
         for transaction in tx_list:
-            data = handler_func(transaction, chain_id=file["chainId"])
+            data = handler_func(
+                transaction, chain_id=file["chainId"],
+                # Try to extract bip number from transaction meta first. If it's missing,
+                # It means merge jsons hasn't been run yet, so we extract it from the file name
+                bip_number=transaction.get(
+                    'meta', {}).get(
+                    'bip_number'
+                ) or extract_bip_number(file),
+                tx_index=transaction.get('meta', {}).get('tx_index', "N/A")
+            )
             if data:
                 outputs.append(data)
         if outputs:
