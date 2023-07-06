@@ -13,7 +13,7 @@ You can find the original code in [This Repo](https://github.com/BalancerMaxis/G
 
 The holds ETH(or whatever a chains native gas token is), and manages the configuration about when gas needs to be paid out.
 
-The Chainlink automation page describing chain links interaction with this contract to automate can be found [HERE](https://automation.chain.link/mainnet/62602467182204477380138952081172885895406053754821061796893606503759482417757).  You can also top up link needed to cover the costs of triggering the contract.
+The Chainlink automation page describing chain links interaction with this contract to automate can be found [HERE](https://automation.chain.link/mainnet/49137003109931569296061861008543141201993692712511923124729013217194676883059).  You can also top up link needed to cover the costs of triggering the contract.
 
 
 The chainlink side of the automation can be found here: 
