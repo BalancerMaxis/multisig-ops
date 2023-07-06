@@ -3,6 +3,8 @@ from collections import defaultdict
 import csv
 from bal_addresses import AddrBook
 import json
+import copy
+
 
 TX_BUILDER_GLOBAL_JSON = json.loads(
 '''{
@@ -11,7 +13,7 @@ TX_BUILDER_GLOBAL_JSON = json.loads(
   "createdAt": 1688559620808,
   "meta": {
     "name": "Transactions Batch",
-    "description": "Unpause Safu Pools",
+    "description": "disableRecoveryMode Safu Pools",
     "txBuilderVersion": "1.16.0",
     "createdFromSafeAddress": "",
     "createdFromOwnerAddress": ""
@@ -27,39 +29,38 @@ TX_BUILDER_TX_JSON = json.loads(
       "data": null,
       "contractMethod": {
         "inputs": [],
-        "name": "unpause",
+        "name": "disableRecoveryMode",
         "payable": false
       },
       "contractInputsValues": null
     }
+
 ''')
 
 CHAIN_NAMES_BY_ID =  {str(v): k for k, v in AddrBook.CHAIN_IDS_BY_NAME.iteritems()}
-csv_file = "../../BIPs/00notGov/07-2023-unpause/unpause.csv"
+csv_file = "../../BIPs/00notGov/07-2023-disableRecovery/readyPools.csv"
 def main():
     pool_csv = list(csv.DictReader(open(csv_file)))
-    txlist_by_chain = defaultdict(list[dict])
+    txlist_by_chain = defaultdict(list)
     ## Parse briibes per platform
     for poolinfo in pool_csv:
-        print(poolinfo)
         pool_id = poolinfo["current pool ID"]
-        chain_id = poolinfo["Network"]
-        pool_address = pool_id[:39]  ## first 40 characters of pool ID is address
-        tx = TX_BUILDER_TX_JSON
+        chain_id = str(poolinfo["Network"])
+        pool_address = pool_id[:42]  ## first 42 characters of pool ID is address
+        tx = copy.copy(TX_BUILDER_TX_JSON)
         tx["to"] = pool_address
         txlist_by_chain[chain_id].append(tx)
-    chaid_id = None ## reset
+    print (txlist_by_chain["137"])
     for chain_id, txlist in txlist_by_chain.items():
         chain_name = CHAIN_NAMES_BY_ID.get(chain_id)
         print(f"Processing: {chain_name}({chain_id})")
-
         book = AddrBook(chain_name)
         multisig = book.flatbook[book.search_unique("multisigs/emergency")]
         payload = TX_BUILDER_GLOBAL_JSON
-        payload["chainId"] = chaid_id
+        payload["chainId"] = chain_id
         payload["createdFromSafeAddress"] = multisig
         payload["transactions"] = txlist
-        with open(f"../../BIPs/00notGov/07-2023-unpause/{chain_id}-{multisig}", "w") as f:
+        with open(f"../../BIPs/00notGov/07-2023-disableRecovery/{chain_id}-{multisig}.json", "w") as f:
             json.dump(payload, f, indent=2)
 
 if __name__ == "__main__":

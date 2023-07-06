@@ -1,45 +1,45 @@
 {
   "version": "1.0",
-  "chainId": null,
+  "chainId": "42161",
   "createdAt": 1688559620808,
   "meta": {
     "name": "Transactions Batch",
-    "description": "Unpause Safu Pools",
+    "description": "disableRecoveryMode Safu Pools",
     "txBuilderVersion": "1.16.0",
     "createdFromSafeAddress": "",
     "createdFromOwnerAddress": ""
   },
-  "createdFromSafeAddress": "0x79b131498355daa2cC740936fcb9A7dF76A86223",
+  "createdFromSafeAddress": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D",
   "transactions": [
     {
-      "to": "0x20a61b948e33879ce7f23e535cc7baa3bc66c",
+      "to": "0x542f16da0efb162d20bf4358efa095b70a100f9e",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [],
-        "name": "unpause",
+        "name": "disableRecoveryMode",
         "payable": false
       },
       "contractInputsValues": null
     },
     {
-      "to": "0x20a61b948e33879ce7f23e535cc7baa3bc66c",
+      "to": "0x8bc65eed474d1a00555825c91feab6a8255c2107",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [],
-        "name": "unpause",
+        "name": "disableRecoveryMode",
         "payable": false
       },
       "contractInputsValues": null
     },
     {
-      "to": "0x20a61b948e33879ce7f23e535cc7baa3bc66c",
+      "to": "0x01990f1e6f7f32296f125ee9469705c1c070054d",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [],
-        "name": "unpause",
+        "name": "disableRecoveryMode",
         "payable": false
       },
       "contractInputsValues": null

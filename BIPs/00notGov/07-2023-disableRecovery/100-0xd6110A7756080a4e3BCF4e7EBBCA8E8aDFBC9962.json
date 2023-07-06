@@ -1,10 +1,10 @@
 {
   "version": "1.0",
-  "chainId": null,
+  "chainId": "100",
   "createdAt": 1688559620808,
   "meta": {
     "name": "Transactions Batch",
-    "description": "Unpause Safu Pools",
+    "description": "disableRecoveryMode Safu Pools",
     "txBuilderVersion": "1.16.0",
     "createdFromSafeAddress": "",
     "createdFromOwnerAddress": ""
@@ -12,23 +12,23 @@
   "createdFromSafeAddress": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
   "transactions": [
     {
-      "to": "0x20a61b948e33879ce7f23e535cc7baa3bc66c",
+      "to": "0xbad20c15a773bf03ab973302f61fabcea5101f0a",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [],
-        "name": "unpause",
+        "name": "disableRecoveryMode",
         "payable": false
       },
       "contractInputsValues": null
     },
     {
-      "to": "0x20a61b948e33879ce7f23e535cc7baa3bc66c",
+      "to": "0x5c78d05b8ecf97507d1cf70646082c54faa4da95",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [],
-        "name": "unpause",
+        "name": "disableRecoveryMode",
         "payable": false
       },
       "contractInputsValues": null
