@@ -109,7 +109,7 @@ def main(
 
     safe.take_snapshot([usdc])
 
-    bribe_vault = safe.contract(addr_dotmap.hidden_hand2.bribe_vault)
+    bribe_vault = safe.contract(addr_dotmap.hidden_hand2.bribe_vault, interface.IBribeMarket)
     aura_briber = safe.contract(addr_dotmap.hidden_hand2.aura_briber)
     balancer_briber = safe.contract(addr_dotmap.hidden_hand2.balancer_briber)
     bribes = process_bribe_csv(csv_file)
@@ -158,7 +158,7 @@ def main(
         if amount == 0:
             return
 
-        balancer_briber.depositBribeERC20(
+        balancer_briber.depositBribe(
             prop,  # bytes32 proposal
             usdc,  # address token
             mantissa,  # uint256 amount
@@ -191,7 +191,7 @@ def main(
 
         if amount == 0:
             continue
-        aura_briber.depositBribeERC20(
+        aura_briber.depositBribe(
             prop,  # bytes32 proposal
             usdc,  # address token
             mantissa,  # uint256 amount
