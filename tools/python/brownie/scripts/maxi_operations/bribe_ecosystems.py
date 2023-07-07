@@ -21,7 +21,7 @@ PERIODS_PER_EPOCH = {
 }
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
-COWSWAP_DEADLINE = 8*60*60  # 8 hours
+COWSWAP_DEADLINE = 24*60*60  # 24 hours
 COWSWAP_SLIPPAGE = 0.005    # 0.05%
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 
