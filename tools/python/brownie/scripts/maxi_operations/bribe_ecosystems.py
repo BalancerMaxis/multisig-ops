@@ -13,6 +13,12 @@ addr_dotmap = address_book.dotmap
 
 today = str(date.today())
 
+## Hidden hands ve2 config
+NO_MAX_TOKENS_PER_VOTE = 0 # No limit
+PERIODS_PER_EPOCH = {
+    "aura": 1,  # 1x 2 week round
+    "balancer": 2  # 2x 1 week rounds
+}
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
 COWSWAP_DEADLINE = 8*60*60  # 8 hours
@@ -103,11 +109,9 @@ def main(
 
     safe.take_snapshot([usdc])
 
-    bribe_vault = safe.contract(addr_dotmap.hidden_hand.bribe_vault, interface.IBribeVault)
-    aura_briber = safe.contract(addr_dotmap.hidden_hand.aura_briber, interface.IAuraBribe)
-    balancer_briber = safe.contract(
-        addr_dotmap.hidden_hand.balancer_briber, interface.IBalancerBribe
-    )
+    bribe_vault = safe.contract(addr_dotmap.hidden_hand2.bribe_vault)
+    aura_briber = safe.contract(addr_dotmap.hidden_hand2.aura_briber)
+    balancer_briber = safe.contract(addr_dotmap.hidden_hand2.balancer_briber)
     bribes = process_bribe_csv(csv_file)
 
     ### Calcualte total bribe
@@ -158,6 +162,8 @@ def main(
             prop,  # bytes32 proposal
             usdc,  # address token
             mantissa,  # uint256 amount
+            NO_MAX_TOKENS_PER_VOTE,  # uint256 maxTokensPerVote
+            PERIODS_PER_EPOCH["balancer"]  # uint246 periods
         )
 
     for target, amount in bribes["balancer"].items():
@@ -189,6 +195,8 @@ def main(
             prop,  # bytes32 proposal
             usdc,  # address token
             mantissa,  # uint256 amount
+            NO_MAX_TOKENS_PER_VOTE, # uint256 maxTokensPerVote
+            PERIODS_PER_EPOCH["aura"] # uint246 periods
         )
 
     print(f"Swapping leftover USDC for {usd_fee_token_address} and sending fees to the injector")
