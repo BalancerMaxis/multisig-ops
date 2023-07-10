@@ -281,7 +281,7 @@ def main() -> None:
 
     merged_files = merge_files(added_gauges, removed_gauges, transfer_reports)
     # Save report to report.txt file
-    with open("output.txt", "w") as f:
+    with open("payload_reports.txt", "w") as f:
         for report in merged_files.values():
             f.write(report)
     for filename, report in merged_files.items():
