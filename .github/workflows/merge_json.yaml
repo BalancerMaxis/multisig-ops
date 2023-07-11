@@ -33,10 +33,12 @@ jobs:
           title: "Combined JSON payloads"
           reviewers: "solarcurvey"
           assignees: "tritium-vlk"
-        env:
-          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
-          COMMIT_SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
 
-      - name: Set PR Number Output
-        run: |
-          echo "MERGE_PR_NUMBER={{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_OUTPUT
+
+  run_reports:
+    needs: merge_jsons
+    uses: BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yml@rework-reporting-and-merge-flow #TODO Change to main
+    with:
+      pr_number:  ${{ steps.cpr.outputs.pull-request-number }}
+      head_sha: ${{ steps.cpr.outputs.pull-request-head-sha }}
+
