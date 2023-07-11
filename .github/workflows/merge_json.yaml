@@ -34,13 +34,6 @@ jobs:
           reviewers: "solarcurvey"
           assignees: "tritium-vlk"
 
-      - name: Set outputs
-        id: set_outputs
-        run: |
-          echo "pull-request-number=${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_OUTPUT
-          echo "pull-request-head-sha=${{ steps.cpr.outputs.pull-request-head-sha }}" >> $GITHUB_OUTPUT 
-
-
   run_reports:
     needs: merge_jsons
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@rework-reporting-and-merge-flow"
