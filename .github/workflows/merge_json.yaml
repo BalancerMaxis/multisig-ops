@@ -32,10 +32,12 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "Combined JSON Payloads ${{ github.event.inputs.directory }}"
-          title: "Combined JSON payloads"
-          reviewers: "solarcurvey"
-          assignees: "tritium-vlk"
-          branch: "gha-payload-merge"
+          title: "Combined JSON payloads ${{ github.event.inputs.directory }}"
+          reviewers: solarcurvey
+          assignees: tritium-vlk
+          branch: gha-payload-merge
+          delete-branch: true
+          labels: "Merged Payloads"
 
   run_reports:
     needs: merge_jsons
