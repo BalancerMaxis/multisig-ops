@@ -38,6 +38,7 @@ jobs:
   run_reports:
     needs: merge_jsons
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@rework-reporting-and-merge-flow"
+    secrets: inherit
     with:
       pr_number:  ${{ steps.cpr.outputs.pull-request-number }}
       head_sha: ${{ steps.cpr.outputs.pull-request-head-sha }}
