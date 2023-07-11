@@ -64,7 +64,6 @@ jobs:
           OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
           ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
         run: |
-          env 
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
 
