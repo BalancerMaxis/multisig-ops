@@ -79,6 +79,7 @@ jobs:
         with:
           filePath: action-scripts/brownie/validate_bip_results.txt
           reactions: eyes
+          pr_number: ${{ inputs.pr_number }}
 
       - name: Post Payload Report as Comment
         uses: thollander/actions-comment-pull-request@v2
@@ -86,6 +87,7 @@ jobs:
         with:
           filePath: action-scripts/brownie/payload_reports.txt
           reactions: eyes
+          pr_number: ${{ inputs.pr_number }}
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
