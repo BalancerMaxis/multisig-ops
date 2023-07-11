@@ -6,11 +6,6 @@ on:
     paths:
       - "BIPs/**"
 
-  workflow_run:
-    workflows:
-      - "Merge JSON payloads"
-    types:
-      - completed
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
