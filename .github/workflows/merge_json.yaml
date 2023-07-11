@@ -10,7 +10,9 @@ on:
 jobs:
   merge_jsons:
     runs-on: ubuntu-latest
-
+    outputs:
+      pull-request-number: ${{ steps.cpr.outputs.pull-request-number}}
+      pull-request-head-sha: ${{ steps.cpr.outputs.pull-request-head-sha }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -39,6 +41,6 @@ jobs:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@rework-reporting-and-merge-flow"
     secrets: inherit
     with:
-      pr_number:  ${{ needs.merge_jsons.outputs.cpr.outputs.pull-request-number }}
-      head_sha: ${{ needs.merge_jsons.outputs.cpr.outputs.pull-request-head-sha }}
+      pr_number:  ${{ needs.merge_jsons.outputs.pull-request-number }}
+      head_sha: ${{ needs.merge_jsons.outputs.pull-request-head-sha }}
 
