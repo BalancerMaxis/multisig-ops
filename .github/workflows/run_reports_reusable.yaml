@@ -22,17 +22,6 @@ on:
 
 jobs:
   generate_reports:
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-      ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-      ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-      GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-      POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-      OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-      ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
-      PR_NUMBER: ${{ inputs.pr_number }}
-      COMMIT_SHA: ${{ inputs.head_sha }}
     needs: prettier
     runs-on: ubuntu-latest
     steps:
@@ -56,15 +45,36 @@ jobs:
 
       - name: Generate Validation Report
         id: validation-report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          COMMIT_SHA: ${{ inputs.head_sha }}
         run: |
           cd action-scripts/brownie
           brownie run --network mainnet scripts/validate_bip.py
 
       - name: Generate Payload report
         id: gen-report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          COMMIT_SHA: ${{ inputs.head_sha }}
         continue-on-error: true
         run: |
-          env 
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
 
