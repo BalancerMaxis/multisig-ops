@@ -6,7 +6,7 @@ on:
       pr_number:
         required: true
         type: string
-      head_sha:
+      checkout_ref:
         required: true
         type: string
 
@@ -23,12 +23,12 @@ jobs:
       OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
       ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
       PR_NUMBER: ${{ inputs.pr_number }}
-      COMMIT_SHA: ${{ inputs.head_sha }}
+      COMMIT_SHA: ${{ inputs.checkout_ref }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ inputs.head_sha }}
+          ref: ${{ inputs.checkout_ref }}
           fetch-depth: 0
 
       - name: Setup Python 3.9
@@ -46,6 +46,7 @@ jobs:
       - name: Generate Validation Report
         id: validation-report
         run: |
+          export COMMIT_SHA=`git rev-parse HEAD`
           cd action-scripts/brownie
           brownie run --network mainnet scripts/validate_bip.py
 
@@ -53,6 +54,7 @@ jobs:
         id: gen-report
         continue-on-error: true
         run: |
+          export COMMIT_SHA=`git rev-parse HEAD`
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
 
