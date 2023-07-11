@@ -57,6 +57,7 @@ jobs:
           PR_NUMBER: ${{ inputs.pr_number }}
           COMMIT_SHA: ${{ inputs.head_sha }}
         run: |
+          env
           cd action-scripts/brownie
           brownie run --network mainnet scripts/validate_bip.py
 
@@ -75,6 +76,7 @@ jobs:
           COMMIT_SHA: ${{ inputs.head_sha }}
         continue-on-error: true
         run: |
+          env
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
 
