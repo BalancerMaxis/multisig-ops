@@ -21,7 +21,6 @@ on:
 
 
 jobs:
-
   generate_reports:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,6 +68,7 @@ jobs:
           HEAD_SHA: ${{ inputs.head_sha }}
 
         run: |
+          env 
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
 
