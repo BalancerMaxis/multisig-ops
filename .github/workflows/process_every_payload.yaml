@@ -27,7 +27,7 @@ env:
 jobs:
   run_reports:
     needs: merge_jsons
-    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yml@rework-reporting-and-merge-flow"
+    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@rework-reporting-and-merge-flow"
     with:
       pr_number:  ${{ github.event.number }}
       head_sha: ${{ github.head_ref }}
