@@ -66,7 +66,7 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
     bip = None
     # First, try to exctract BIP from file path
     if bip_file.get('file_name') is not None:
-        bip_match = re.search(r"\bBIP-?\d+[A-Za-z]?\b", bip_file["file_name"])
+        bip_match = re.search(r"BIP-?\d+", bip_file["file_name"])
         bip = bip_match.group(0) if bip_match else None
 
     # If no BIP in file path, try to extract it from transactions metadata
