@@ -12,7 +12,6 @@ on:
 
 jobs:
   generate_reports:
-    needs: prettier
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -86,6 +85,12 @@ jobs:
           filePath: action-scripts/brownie/payload_reports.txt
           reactions: eyes
 
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write BIPs/**/*.json
+          commit_message: Reformatted JSON files
 
       - name: Commit and push reports
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -94,21 +99,3 @@ jobs:
           commit_user_name: GitHub Actions
           commit_user_email: github-actions[bot]@users.noreply.github.com
           commit_author: Github Actions <noreply@users.noreply.github.com>
-
-  prettier:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          # Make sure the actual branch is checked out when running on pull requests
-          ref: ${{ inputs.head_sha }}
-          # This is important to fetch the changes to the previous commit
-          fetch-depth: 0
-
-      - name: Prettify code
-        uses: creyD/prettier_action@v4.3
-        with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --write BIPs/**/*.json
-          commit_message: Reformatted JSON files

@@ -36,7 +36,7 @@ jobs:
           title: "Combined JSON payloads"
           reviewers: "solarcurvey"
           assignees: "tritium-vlk"
-          branch: "gha-payload-merge/autopatch"
+          branch: "gha-payload-merge"
 
   run_reports:
     needs: merge_jsons
