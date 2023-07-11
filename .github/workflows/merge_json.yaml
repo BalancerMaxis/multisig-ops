@@ -37,8 +37,8 @@ jobs:
       - name: Set outputs
         id: set_outputs
         run: |
-          echo "::set-output name=pull-request-number::${{ steps.cpr.outputs.pull-request-number }}"
-          echo "::set-output name=pull-request-head-sha::${{ steps.cpr.outputs.pull-request-head-sha }}"
+          echo "pull-request-number=${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_OUTPUT
+          echo "pull-request-head-sha=${{ steps.cpr.outputs.pull-request-head-sha }}" >> $GITHUB_OUTPUT 
 
 
   run_reports:
@@ -46,6 +46,6 @@ jobs:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@rework-reporting-and-merge-flow"
     secrets: inherit
     with:
-      pr_number: ${{ needs.merge_jsons.outputs.pull-request-number }}
-      head_sha: ${{ needs.merge_jsons.outputs.pull-request-head-sha }}
+      pr_number:  ${{ needs.merge_jsons.outputs.cpr.outputs.pull-request-number }}
+      head_sha: ${{ needs.merge_jsons.outputs.cpr.outputs.pull-request-head-sha }}
 
