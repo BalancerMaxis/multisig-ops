@@ -72,7 +72,6 @@ def build_action_ids_map(input_data,):
                             callers = []
                             if isinstance(caller_substr, str):
                                 caller_substr = [caller_substr]
-                            callers.append()
                             for substr in caller_substr:
                                 try:
                                      caller = book_by_chain[chain].search_unique(substr)
@@ -170,7 +169,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = book_by_chain[chain].reversebook["multisigs/dao"]
+        data.meta.createFromSafeAddress = book_by_chain[chain].flatbook[book_by_chain[chain].search_unique("multisigs/dao")]
         assert Web3.isChecksumAddress(data.meta.createFromSafeAddress), \
             f"ERROR: Safe for {chain_name} is {data.meta.createFromSafeAddress}, which is not a checksummed address... \n{data.meta}"
         # Group roles on this chain by caller address
