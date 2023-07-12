@@ -4,6 +4,7 @@ from typing import Tuple
 from .script_utils import get_changed_files, extract_bip_number
 from bal_addresses import AddrBook
 from prettytable import PrettyTable
+import re
 
 ADDRESSES_MAINNET = AddrBook("mainnet").reversebook
 ADDRESSES_POLYGON = AddrBook("polygon").reversebook
@@ -48,9 +49,22 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
     return True, ""
 
 def validate_file_has_bip(file: dict) -> Tuple[bool, str]:
+    """
+    Validates that a single BIP number can be determined from the file path
+    """
     bip = extract_bip_number(file)
     if bip == "N/A":
         return False, f"No BIP number found in file path {file['file_name']}"
+    return True, ""
+
+def validate_path_has_weekly_dir(file: dict) -> Tuple[bool, str]:
+    """
+    Validates that a files are in weekly directories can be determined from the file path
+    """
+    filename = file["file_name"]
+    match = re.search(r'(\d{4})-W(\d{1,2})', filename)
+    if not match:
+        return False, f"File {filename} has has no YYYY-W## in path"
     return True, ""
 
 # Add more validators here as needed
@@ -58,8 +72,11 @@ VALIDATORS = [
     validate_contains_msig,
     validate_msig_in_address_book,
     validate_chain_specified,
-    validate_file_has_bip
+    validate_file_has_bip,
+    validate_path_has_weekly_dir
 ]
+
+
 
 
 def main() -> None:
