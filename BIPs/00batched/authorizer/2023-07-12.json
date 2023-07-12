@@ -13,14 +13,14 @@
       "setSwapFeePercentage(uint256)": "lm",
       "startAmplificationParameterUpdate(uint256,uint256)": "lm",
       "stopAmplificationParameterUpdate()": "lm",
-      "pause()": "emergency",
-      "disable()": "emergency",
+      "pause()": "multisigs/emergency",
+      "disable()": "multisigs/emergency",
       "enableRecoveryMode()": [
-        "emergency",
+        "multisigs/emergency",
         "20221123-pool-recovery-helper/PoolRecoveryHelper"
       ],
       "setTargets": "lm",
-      "disableRecoveryMode()": "emergency"
+      "disableRecoveryMode()": "multisigs/emergency"
     },
     "deployments": ["20230711-composable-stable-pool-v5"]
   }
