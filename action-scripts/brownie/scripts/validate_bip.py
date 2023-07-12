@@ -1,7 +1,7 @@
 import os
 from typing import Tuple
 
-from .script_utils import get_changed_files
+from .script_utils import get_changed_files, extract_bip_number
 from bal_addresses import AddrBook
 from prettytable import PrettyTable
 
@@ -47,12 +47,18 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
         return False, f"No chain specified or is not found in known chain list: {chain} in {chains}"
     return True, ""
 
+def validate_file_has_bip(file: dict) -> Tuple[bool, str]:
+    bip = extract_bip_number(file)
+    if bip == "N/A":
+        return False, f"No BIP number found in file path {file['file_name']}"
+    return True, ""
 
 # Add more validators here as needed
 VALIDATORS = [
     validate_contains_msig,
     validate_msig_in_address_book,
     validate_chain_specified,
+    validate_file_has_bip
 ]
 
 
