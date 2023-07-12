@@ -68,15 +68,20 @@ def build_action_ids_map(input_data,):
                     for function, action_id in data["actionIds"].items():
                         if function in change["function_caller_map"].keys():
                             ## we could get a single string caller tag or a list of caller tags
-                            fxcallers = change["function_caller_map"][function]
-                            if isinstance(fxcallers, str):
-                                fxcallers = [fxcallers]
-                            for caller in fxcallers:
-                                if caller not in book_by_chain[chain_name].flatbook.keys():
-                                    print (f"WARNING: caller:{caller}, function: {function} not in caller map")
+                            caller_substr = change["function_caller_map"][function]
+                            callers = []
+                            if isinstance(caller_substr, str):
+                                caller_substr = [caller_substr]
+                            callers.append()
+                            for substr in caller_substr:
+                                try:
+                                     caller = book_by_chain[chain].search_unique(substr)
+                                     callers.append(caller)
+                                except:
+                                    print (f"WARNING: Callser substring:{substr}, function: {function} not in caller map")
                                 action_ids_map[chain_name][deployment][function] = {
                                     "action_id": action_id,
-                                    "callers":  fxcallers
+                                    "callers":  callers
                                 }
     return action_ids_map
 
@@ -166,8 +171,8 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         # Set global data
         data.chainId = chain_id
         data.meta.createFromSafeAddress = book_by_chain[chain].reversebook["multisigs/dao"]
-        assert Web3.toChecksumAddress(data.meta.createFromSafeAddress), \
-            f"ERROR: Safe for {chain_name} is {data.meta.createFromSafeAddress}, which is not a checksummed address"
+        assert Web3.isChecksumAddress(data.meta.createFromSafeAddress), \
+            f"ERROR: Safe for {chain_name} is {data.meta.createFromSafeAddress}, which is not a checksummed address... \n{data.meta}"
         # Group roles on this chain by caller address
         action_ids_by_address = {}
         for change in change_list:
