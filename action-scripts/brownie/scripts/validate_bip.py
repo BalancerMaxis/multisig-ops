@@ -50,7 +50,7 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
 def validate_file_has_bip(file: dict) -> Tuple[bool, str]:
     bip = extract_bip_number(file)
     if bip == "N/A":
-        return False, f"No BIP number found in file path {file[file]}"
+        return False, f"No BIP number found in file path {file['file_name']}"
     return True, ""
 
 # Add more validators here as needed
