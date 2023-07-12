@@ -1,40 +1,40 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1689190547700,
-    "meta": {
-        "name": "Transactions Batch",
-        "description": "",
-        "txBuilderVersion": "1.16.0",
-        "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-        "createdFromOwnerAddress": "",
-        "checksum": "0x49f626db5fa107f38a786017e558647d6f86f0df7ef5cd77f8947dc89d86770f"
-    },
-    "transactions": [
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0x9e3f4FB69058244066801404e50889592d33cA11",
-                "gaugeType": "Ethereum"
-            }
-        }
-    ]
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1689190547700,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x49f626db5fa107f38a786017e558647d6f86f0df7ef5cd77f8947dc89d86770f"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x9e3f4FB69058244066801404e50889592d33cA11",
+        "gaugeType": "Ethereum"
+      }
+    }
+  ]
 }
