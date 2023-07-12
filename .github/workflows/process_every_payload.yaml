@@ -1,0 +1,14 @@
+name: Process BIP PR
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - "BIPs/**"
+jobs:
+  run_reports:
+    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
+    secrets: inherit
+    with:
+      pr_number:  ${{ github.event.number }}
+      checkout_ref: ${{ github.head_ref }}

@@ -87,8 +87,9 @@ def main() -> None:
         reports.append(report)
 
     # Save temporary file with results so that it can be used in github action later
-    with open("validate_bip_results.txt", "w") as f:
-        f.write("\n\n".join(reports))
+    if reports:
+        with open("validate_bip_results.txt", "w") as f:
+            f.write("\n\n".join(reports))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,105 @@
+name: Process and Report PR
+
+on:
+  workflow_call:
+    inputs:
+      pr_number:
+        required: true
+        type: string
+      checkout_ref:
+        required: true
+        type: string
+
+jobs:
+  generate_reports:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+      ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+      ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+      GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+      POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+      OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+      ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+      PR_NUMBER: ${{ inputs.pr_number }}
+      COMMIT_SHA: ${{ inputs.checkout_ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.checkout_ref }}
+          fetch-depth: 0
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Setup Environment
+        run: |
+          cd action-scripts/brownie
+          pip install -r requirements-actions.txt
+          touch .env
+          pwd
+
+      - name: Generate Validation Report
+        id: validation-report
+        run: |
+          export COMMIT_SHA=`git rev-parse HEAD`
+          cd action-scripts/brownie
+          brownie run --network mainnet scripts/validate_bip.py
+
+      - name: Generate Payload report
+        id: gen-report
+        continue-on-error: true
+        run: |
+          export COMMIT_SHA=`git rev-parse HEAD`
+          cd action-scripts/brownie
+          brownie run --network mainnet scripts/report_gauges.py
+
+      - name: Check for comment files
+        id: check_files
+        run: |
+          if [ -f "action-scripts/brownie/validate_bip_results.txt" ]; then
+            echo "validation_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "validation_exists=false" >> $GITHUB_OUTPUT
+          fi
+          
+          if [ -f "action-scripts/brownie/payload_reports.txt" ]; then
+            echo "payload_reports=true" >> $GITHUB_OUTPUT
+          else
+            echo "payload_reports=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post Validation Report as Comment
+        if: steps.check_files.outputs.validation_exists == 'true'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: action-scripts/brownie/validate_bip_results.txt
+          reactions: eyes
+          pr_number: ${{ inputs.pr_number }}
+
+      - name: Post Payload Report as Comment
+        uses: thollander/actions-comment-pull-request@v2
+        if: steps.check_files.outputs.payload_reports == 'true'
+        with:
+          filePath: action-scripts/brownie/payload_reports.txt
+          reactions: eyes
+          pr_number: ${{ inputs.pr_number }}
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write BIPs/**/*.json
+          commit_message: Reformatted JSON files
+
+      - name: Commit and push reports
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automated processing of Payload PR (validations, transformations, and reports)
+          commit_user_name: GitHub Actions
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: Github Actions <noreply@users.noreply.github.com>
