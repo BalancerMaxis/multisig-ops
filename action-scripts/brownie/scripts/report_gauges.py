@@ -128,7 +128,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
 
     return {
         "function": command,
-        "chain": chain if chain else "mainnet",
+        "chain": chain.replace("-main", "") if chain else "mainnet",
         "pool_id": pool_id,
         "symbol": pool_symbol,
         "aFactor": a_factor,
@@ -182,7 +182,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     )
     return {
         "function": command,
-        "chain": chain if chain else "mainnet",
+        "chain": chain.replace("-main", "") if chain else "mainnet",
         "pool_id": pool_id,
         "symbol": pool_symbol,
         "pool_address": pool_address,
@@ -231,7 +231,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     recipient_name = ADDR_BOOK.reversebook[recipient_address] or "N/A"
     return {
         "function": "transfer",
-        "chain": chain_name,
+        "chain": chain_name.replace("-main", "") if chain_name else "mainnet",
         "token_symbol": symbol,
         "recipient_name": recipient_name,
         "amount": amount,
