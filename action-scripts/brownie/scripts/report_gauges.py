@@ -128,17 +128,16 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
 
     return {
         "function": command,
+        "chain": chain.replace("-main", "") if chain else "mainnet",
         "pool_id": pool_id,
         "symbol": pool_symbol,
-        "pool_address": pool_address,
         "aFactor": a_factor,
         "gauge_address": gauge_address,
         "fee": f"{fee}%",
         "cap": gauge_cap,
         "style": style,
-        "chain": chain if chain else "mainnet",
         "bip": kwargs.get('bip_number', 'N/A'),
-        "transaction_index": kwargs.get('tx_index', 'N/A'),
+        "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
 
@@ -183,6 +182,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     )
     return {
         "function": command,
+        "chain": chain.replace("-main", "") if chain else "mainnet",
         "pool_id": pool_id,
         "symbol": pool_symbol,
         "pool_address": pool_address,
@@ -191,9 +191,8 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "fee": f"{fee}%",
         "cap": gauge_cap,
         "style": style,
-        "chain": chain if chain else "mainnet",
         "bip": kwargs.get('bip_number', 'N/A'),
-        "transaction_index": kwargs.get('tx_index', 'N/A'),
+        "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
 
@@ -232,15 +231,15 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     recipient_name = ADDR_BOOK.reversebook[recipient_address] or "N/A"
     return {
         "function": "transfer",
+        "chain": chain_name.replace("-main", "") if chain_name else "mainnet",
         "token_symbol": symbol,
         "recipient_name": recipient_name,
         "amount": amount,
         "token_address": token.address,
         "recipient_address": recipient_address,
         "raw_amount": raw_amount,
-        "chain": chain_name,
         "bip": kwargs.get('bip_number', 'N/A'),
-        "transaction_index": kwargs.get('tx_index', 'N/A'),
+        "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
 
