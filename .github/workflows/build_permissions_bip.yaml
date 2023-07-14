@@ -12,6 +12,9 @@ on:
       JSON_DATE:
         description: 'The Date used on the generated JSON files (yyyy-mm-dd)'
         require: true
+      WEEKLY_DIR:
+        description: 'The weekly DIR for the bip like `YYYY-W##'
+        require: true
 
 
 jobs:
@@ -29,6 +32,8 @@ jobs:
         PR_NUMBER: ${{github.event.inputs.PR_NUMBER}}
         BIP_NUMBER: ${{github.event.inputs.BIP_NUMBER}}
         DATE: ${{github.event.inputs.JSON_DATE}}
+        WEEKLY_DIR: ${{github.event.inputs.WEEKLY_DIR}}
+
       run: |
           cd BIPs/00batched/authorizer
           bash gen_gov_md.sh
