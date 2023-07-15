@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1685726983450,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IStakelessGauge[]",
+            "name": "gauges",
+            "type": "address[]"
+          }
+        ],
+        "name": "addGauges",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Arbitrum",
+        "gauges": [
+          "0xb12ADA23eE766bd6b596E2bE556ea2046758b87c",
+          "0x80aed5C5C683FEC86817C98da334DD72424E7297",
+          "0x9ab40B6e1330Ce70B9e07cD691f281c1539944E6",
+          "0xD2C2b1C0F8Ad6E653eD7064fa7bAd7a22De8B249",
+          "0xCe540832f7c790d25345Aa19FB1Db3cfDEA04611"
+        ]
+      }
+    },
+    {
+      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IStakelessGauge[]",
+            "name": "gauges",
+            "type": "address[]"
+          }
+        ],
+        "name": "addGauges",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Arbitrum",
+        "gauges": [
+          "0xb12ADA23eE766bd6b596E2bE556ea2046758b87c",
+          "0x80aed5C5C683FEC86817C98da334DD72424E7297",
+          "0x9ab40B6e1330Ce70B9e07cD691f281c1539944E6",
+          "0xD2C2b1C0F8Ad6E653eD7064fa7bAd7a22De8B249",
+          "0xCe540832f7c790d25345Aa19FB1Db3cfDEA04611"
+        ]
+      }
+    }
+  ]
+}
