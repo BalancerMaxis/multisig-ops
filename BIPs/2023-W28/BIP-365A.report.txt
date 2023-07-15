@@ -1,0 +1,18 @@
+File name: BIPs/2023-W28/BIP-365A.json
+COMMIT: `7de76869e12e5ae0df6d9918c49e1c8f6446c4c6`
+CHAIN(S): `polygon, mainnet, arbitrum`
+```
++----------+--------------------------------------------------------------------+-------------------------+--------------------------------------------+---------+--------------------------------------------+---------+--------+--------------+---------+-------------------+
+| function |                              pool_id                               |          symbol         |                pool_address                | aFactor |               gauge_address                |   fee   |  cap   | style        |   bip   | transaction_index |
++----------+--------------------------------------------------------------------+-------------------------+--------------------------------------------+---------+--------------------------------------------+---------+--------+--------------+---------+-------------------+
+| addGauge | 0x42ed016f826165c2e5976fe5bc3df540c5ad0af700000000000000000000058b | wstETH-rETH-sfrxETH-BPT | 0x42ED016F826165C2e5976fe5bC3df540C5aD0Af7 |   1000  | 0x0021e01B9fAb840567a8291b864fF783894EabC6 |  0.01%  | 100.0% | mainnet      | BIP-365 |        N/A        |
+| addGauge | 0xc443c15033fcb6cf72cc24f1bda0db070ddd9786000000000000000000000593 |         bb-a-USD        | 0xc443C15033FCB6Cf72cC24f1BDA0Db070DdD9786 |   3000  | 0x21eC388000B5BA5D9e3DF3848EA0c1f58e054Af7 | 0.0001% | 100.0% | mainnet      | BIP-365 |        N/A        |
+| addGauge | 0x41503c9d499ddbd1dcdf818a1b05e9774203bf46000000000000000000000594 |   wstETH-bb-a-WETH-BPT  | 0x41503C9D499ddbd1dCdf818a1b05e9774203Bf46 |   1500  | 0x29488df9253171AcD0a0598FDdA92C5F6E767a38 | 0.0001% | 100.0% | mainnet      | BIP-365 |        N/A        |
+| addGauge | 0xd7edb56f63b2a0191742aea32df1f98ca81ed9c600000000000000000000058e |   B-wstETH/bb-ma3-weth  | 0xd7edb56F63b2a0191742aEa32DF1F98ca81ed9c6 |   1500  | 0x3eFd3E18504dC213188Ed2b694F886A305a6e5ed |  0.001% | 100.0% | mainnet      | BIP-365 |        N/A        |
+| addGauge | 0xac2cae8d2f78a4a8f92f20dbe74042cd0a8d5af3000000000000000000000be2 | stMATIC-bb-a-WMATIC-BPT | 0xAC2CaE8D2f78A4a8F92f20dbe74042Cd0a8d5Af3 |   2000  | 0x24E8787B4AC5325Fd082BC30b9fe7eb2F01304c7 |  0.01%  | 100.0% | L0 sidechain | BIP-365 |        N/A        |
+| addGauge | 0x402cfdb7781fa85d52f425352661128250b79e12000000000000000000000be3 |  MaticX-bb-a-WMATIC-BPT | 0x402cFDb7781fa85d52F425352661128250B79e12 |   2000  | 0xb7b9B9D35e7F9E324C762235FB69848175C03A19 |  0.01%  | 100.0% | L0 sidechain | BIP-365 |        N/A        |
+| addGauge | 0xbe0f30217be1e981add883848d0773a86d2d2cd4000000000000000000000471 |    rETH-bb-a-WETH-BPT   | 0xBe0f30217BE1e981aDD883848D0773A86d2d2CD4 |   1500  | 0xb12ADA23eE766bd6b596E2bE556ea2046758b87c |  0.01%  | 100.0% | L0 sidechain | BIP-365 |        N/A        |
+| addGauge | 0x45c4d1376943ab28802b995acffc04903eb5223f000000000000000000000470 |   wstETH-bb-a-WETH-BPT  | 0x45C4D1376943Ab28802B995aCfFC04903Eb5223f |   2000  | 0x80aed5C5C683FEC86817C98da334DD72424E7297 |  0.01%  | 100.0% | L0 sidechain | BIP-365 |        N/A        |
+| addGauge | 0xc6eee8cb7643ec2f05f46d569e9ec8ef8b41b389000000000000000000000475 |         bb-a-USD        | 0xc6EeE8cb7643eC2F05F46d569e9eC8EF8b41b389 |   3000  | 0x9ab40B6e1330Ce70B9e07cD691f281c1539944E6 |  0.01%  | 100.0% | L0 sidechain | BIP-365 |        N/A        |
++----------+--------------------------------------------------------------------+-------------------------+--------------------------------------------+---------+--------------------------------------------+---------+--------+--------------+---------+-------------------+
+```
