@@ -13,9 +13,15 @@ addr_dotmap = address_book.dotmap
 
 today = str(date.today())
 
+## Hidden hands ve2 config
+NO_MAX_TOKENS_PER_VOTE = 0 # No limit
+PERIODS_PER_EPOCH = {
+    "aura": 1,  # 1x 2 week round
+    "balancer": 2  # 2x 1 week rounds
+}
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
-COWSWAP_DEADLINE = 8*60*60  # 8 hours
+COWSWAP_DEADLINE = 24*60*60  # 24 hours
 COWSWAP_SLIPPAGE = 0.005    # 0.05%
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 
@@ -101,13 +107,12 @@ def main(
     usdc = safe.contract(addr_dotmap.tokens.USDC)
     usdc_mantissa_multilpier = 10 ** int(usdc.decimals())
 
-    safe.take_snapshot([usdc])
+    usdc_starting = usdc.balanceOf(safe.address)
 
-    bribe_vault = safe.contract(addr_dotmap.hidden_hand.bribe_vault, interface.IBribeVault)
-    aura_briber = safe.contract(addr_dotmap.hidden_hand.aura_briber, interface.IAuraBribe)
-    balancer_briber = safe.contract(
-        addr_dotmap.hidden_hand.balancer_briber, interface.IBalancerBribe
-    )
+    safe.take_snapshot([usdc])
+    bribe_vault = safe.contract(addr_dotmap.hidden_hand2.bribe_vault, interface.IBribeMarket)
+    aura_briber = safe.contract(addr_dotmap.hidden_hand2.aura_briber)
+    balancer_briber = safe.contract(addr_dotmap.hidden_hand2.balancer_briber)
     bribes = process_bribe_csv(csv_file)
 
     ### Calcualte total bribe
@@ -121,24 +126,27 @@ def main(
     total_mantissa = int(total_usdc * usdc_mantissa_multilpier)
 
 
-    usdc.approve(bribe_vault, total_mantissa)
+    usdc.approve(bribe_vault, total_mantissa + 1) #see if this fixes balance problems
 
     ### Do Payments
     payments_usd = 0
+    payments = 0
     for target, amount in bribes["payment"].items():
         print(f"Paying out {amount} via direct transfer to {target}")
-        usd_amount = amount * 10**usdc.decimals()
-        payments_usd = usd_amount
-        usdc.transfer(target, amount * 10**usdc.decimals())
-    payments = payments_usd * 10**usdc.decimals()
+        usdc_amount = amount * 10**usdc.decimals()
+        payments_usd += amount
+        usdc.transfer(target, usdc_amount)
+        payments += payments_usd * 10**usdc.decimals()
+
     ### Print report
     print(f"******** Summary Report")
     print(f"*** Aura USDC: {total_aura_usdc}")
     print(f"*** Balancer USDC: {total_balancer_usdc}")
     print(f"*** Payment USDC: {payments_usd}")
     print(f"*** Total USDC: {total_usdc + payments_usd}")
-    print(f"*** Total mantissa: {int(total_mantissa + payments)}\n\n")
-
+    print(f"*** Total mantissa: {int(total_mantissa + payments)}")
+    print(f"*** Curent USDC mantissa: {usdc_starting}\n\n")
+    print(f"Current USDC:", usdc.allowance(safe.address, bribe_vault) / usdc_mantissa_multilpier)
 
     ### BALANCER
     def bribe_balancer(gauge, mantissa):
@@ -150,15 +158,22 @@ def main(
         print("*** Proposal hash:", prop.hex())
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
+        print(f"Current USDC: {usdc.balanceOf(safe.address) / usdc_mantissa_multilpier}")
 
         if amount == 0:
             return
 
-        balancer_briber.depositBribeERC20(
+        b4brib = usdc.balanceOf(safe.address)
+        balancer_briber.depositBribe(
             prop,  # bytes32 proposal
             usdc,  # address token
             mantissa,  # uint256 amount
+            NO_MAX_TOKENS_PER_VOTE,  # uint256 maxTokensPerVote
+            PERIODS_PER_EPOCH["balancer"]  # uint246 periods
         )
+        assert b4brib - usdc.balanceOf(safe.address) == mantissa, "Unexpected tokens spent."
+
+
 
     for target, amount in bribes["balancer"].items():
         if amount == 0:
@@ -182,19 +197,26 @@ def main(
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
+        print(f"Current USDC:", usdc.allowance(safe.address, bribe_vault) / usdc_mantissa_multilpier)
 
         if amount == 0:
             continue
-        aura_briber.depositBribeERC20(
+        b4brib = usdc.balanceOf(safe.address)
+        aura_briber.depositBribe(
             prop,  # bytes32 proposal
             usdc,  # address token
             mantissa,  # uint256 amount
+            NO_MAX_TOKENS_PER_VOTE, # uint256 maxTokensPerVote
+            PERIODS_PER_EPOCH["aura"] # uint246 periods
         )
+        assert b4brib - usdc.balanceOf(safe.address) == mantissa, "Unexpected tokens spent,"
+
 
     print(f"Swapping leftover USDC for {usd_fee_token_address} and sending fees to the injector")
     cowswap_chunks = 1
     usd = safe.contract(usd_fee_token_address)
     bal = safe.contract(addr_dotmap.tokens.BAL)
+    print(f"Current USDC: {usdc.balanceOf(safe.address)/ 10** usdc.decimals()}")
     safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), COWSWAP_DEADLINE, cowswap_chunks, 1-COWSWAP_SLIPPAGE, addr_dotmap.maxiKeepers.veBalFeeInjector)
     bal.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, bal.balanceOf(safe.address))
     print("\n\nBuilding and pushing multisig payload")

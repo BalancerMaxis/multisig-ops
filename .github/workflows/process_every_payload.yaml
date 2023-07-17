@@ -7,7 +7,7 @@ on:
       - "BIPs/**"
 jobs:
   run_reports:
-    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@rework-reporting-and-merge-flow"
+    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     secrets: inherit
     with:
       pr_number:  ${{ github.event.number }}

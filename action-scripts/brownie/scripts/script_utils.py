@@ -91,12 +91,12 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     Converts list of dicts into a pretty table
     """
     # Headers without "chain"
-    header = [k for k in outputs[0].keys() if k != "chain"]
+    header = [k for k in outputs[0].keys()]
     table = PrettyTable(header)
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
-        dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
+        dict_filtered = {k: v for k, v in dict_.items()}
         table.add_row(list(dict_filtered.values()))
     table.align["pool_name"] = "l"
     table.align["function"] = "l"
@@ -167,7 +167,7 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
     bip = None
     # First, try to exctract BIP from file path
     if bip_file.get('file_name') is not None:
-        bip_match = re.search(r"\bBIP-?\d+[A-Za-z]?\b", bip_file["file_name"])
+        bip_match = re.search(r"BIP-?\d+", bip_file["file_name"])
         bip = bip_match.group(0) if bip_match else None
 
     # If no BIP in file path, try to extract it from transactions metadata

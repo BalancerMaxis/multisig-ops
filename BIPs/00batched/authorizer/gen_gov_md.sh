@@ -17,15 +17,19 @@ if [ -z $PR_NUMBER ]; then
   echo "No PR NUMBER"
   exit 4
 fi
+if [ -z $WEEKLY_DIR ]; then
+  echo "No Weekly DIR"
+  exit 5
+fi
 
-BIP_DIR="../../BIP-$BIP_NUMBER"
+BIP_DIR="../../$WEEKLY_DIR/BIP-$BIP_NUMBER"
 date=$DATE
 ## Setup git
 git config --global user.name "BIP Bot"
 git config --global user.email "bipbot@nowhere.gov"
 
 echo "Creating $BIP_DIR and moving generated files into place."
-mkdir $BIP_DIR
+mkdir -p $BIP_DIR
 mv ${date}.json ${BIP_DIR}/inputs.json
 mv ${date}_address_sorted.md ${BIP_DIR}/results_address_sorted.md
 mv ${date}_deployment_sorted.md ${BIP_DIR}/results_deployment_sorted.md
