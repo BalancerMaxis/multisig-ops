@@ -1,6 +1,6 @@
 File name: BIPs/2023-W29/BIP-366A.json
-COMMIT: `d35690da30ff0a5a11b56114fa665a08fb6d821f`
-CHAIN(S): `polygon, gnosis, mainnet, arbitrum`
+COMMIT: `af4d0f9def6f830dd93d1d12cd732d169367c5d9`
+CHAIN(S): `gnosis, arbitrum, mainnet, polygon`
 ```
 +----------+----------+--------------------------------------------------------------------+----------------------+---------+--------------------------------------------+--------+--------+--------------+---------+----------+
 | function |  chain   |                              pool_id                               |        symbol        | aFactor |               gauge_address                |  fee   |  cap   | style        |   bip   | tx_index |
@@ -22,5 +22,6 @@ CHAIN(S): `polygon, gnosis, mainnet, arbitrum`
 | addGauge | polygon  | 0xa8bf1c584519be0184311c48adbdc4c15cb2e8c1000000000000000000000bf6 |    FRAX-bb-am-USD    |   2000  | 0xdb218DC1394BbD787bb059dBd9F7E41063e16374 | 0.005% | 100.0% | L0 sidechain | BIP-366 |   N/A    |
 | addGauge | arbitrum | 0x00fcd3d55085e998e291a0005cedecf58ac14c4000020000000000000000047f |   50STG-50bbaUSD     |   N/A   | 0xCe3a024bAF36C91d315722B093928020a4F56622 |  1.0%  | 100.0% | L0 sidechain | BIP-366 |   N/A    |
 | addGauge | arbitrum | 0xbbf9d705b75f408cfcaee91da32966124d2c6f7d00000000000000000000047e |   DOLA/bbaUSD-BPT    |   200   | 0xBc771929359B1A6386801705e8D185205d8f1CBF | 0.04%  | 100.0% | L0 sidechain | BIP-366 |   N/A    |
+| addGauge | polygon  | 0xab269164a10fab22bc87c39946da06c870b172d6000000000000000000000bfc | wstETH-bb-a-WETH-BPT |   1500  | 0x95Ee4c90aC8AaFbAe0DfE18F08a290b59eacbc1b | 0.01%  | 100.0% | L0 sidechain | BIP-366 |   N/A    |
 +----------+----------+--------------------------------------------------------------------+----------------------+---------+--------------------------------------------+--------+--------+--------------+---------+----------+
 ```
