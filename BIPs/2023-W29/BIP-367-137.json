@@ -1,0 +1,54 @@
+{
+    "version": "1.0",
+    "chainId": "137",
+    "createdAt": 1689700384451,
+    "meta": {
+      "name": "Transactions Batch",
+      "description": "",
+      "txBuilderVersion": "1.16.0",
+      "createdFromSafeAddress": "0x3c58668054c299bE836a0bBB028Bee3aD4724846",
+      "createdFromOwnerAddress": "",
+      "checksum": "0xb18e276581384ae9af58e4255cfcecb4f142d38e89673f3243d0051b54152058"
+    },
+    "transactions": [
+      {
+        "to": "0x3c58668054c299bE836a0bBB028Bee3aD4724846",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+          "inputs": [
+            { "internalType": "address", "name": "prevOwner", "type": "address" },
+            { "internalType": "address", "name": "oldOwner", "type": "address" },
+            { "internalType": "address", "name": "newOwner", "type": "address" }
+          ],
+          "name": "swapOwner",
+          "payable": false
+        },
+        "contractInputsValues": {
+          "prevOwner": "0x7c2eA10D3e5922ba3bBBafa39Dc0677353D2AF17",
+          "oldOwner": "0x815d654E930E840D0E0Ee1B18FFc8Fb4ddA4c6B3",
+          "newOwner": "0xB5485e0F543eE6e01e221A57e58ED95268215Ac9"
+        }
+      },
+      {
+        "to": "0x3c58668054c299bE836a0bBB028Bee3aD4724846",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+          "inputs": [
+            { "internalType": "address", "name": "prevOwner", "type": "address" },
+            { "internalType": "address", "name": "oldOwner", "type": "address" },
+            { "internalType": "address", "name": "newOwner", "type": "address" }
+          ],
+          "name": "swapOwner",
+          "payable": false
+        },
+        "contractInputsValues": {
+          "prevOwner": "0x512fce9B07Ce64590849115EE6B32fd40eC0f5F3",
+          "oldOwner": "0x6bB4720473d4D7133f944785e5EE1A650C07f34e",
+          "newOwner": "0xCae6f77a6cf4C952BF36793D91519fb4Ae86C264"
+        }
+      }
+    ]
+  }
+  
