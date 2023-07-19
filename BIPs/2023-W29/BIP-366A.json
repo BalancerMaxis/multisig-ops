@@ -435,6 +435,23 @@
         "gauge": "0xBc771929359B1A6386801705e8D185205d8f1CBF",
         "gaugeType": "Arbitrum"
       }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "gauge", "type": "address" },
+          { "internalType": "string", "name": "gaugeType", "type": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x95Ee4c90aC8AaFbAe0DfE18F08a290b59eacbc1b",
+        "gaugeType": "Polygon"
+      }
     }
   ]
 }
