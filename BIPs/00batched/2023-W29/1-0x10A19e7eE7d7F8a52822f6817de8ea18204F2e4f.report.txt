@@ -1,0 +1,37 @@
+File name: BIPs/00batched/2023-W29/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json
+COMMIT: `2208d33b8717e975697fe20abf26e6717ea95668`
+CHAIN(S): `gnosis, arbitrum, polygon, mainnet`
+```
++-------------+----------+--------------------------------------------------------------------+----------------------+--------------------------------------------+---------+--------------------------------------------+---------+--------+--------------+---------+----------+
+| function    |  chain   |                              pool_id                               |        symbol        |                pool_address                | aFactor |               gauge_address                |   fee   |  cap   | style        |   bip   | tx_index |
++-------------+----------+--------------------------------------------------------------------+----------------------+--------------------------------------------+---------+--------------------------------------------+---------+--------+--------------+---------+----------+
+| killGauge() | mainnet  | 0x60683b05e9a39e3509d8fdb9c959f23170f8a0fa000000000000000000000489 |       bb-i-USD       | 0x60683B05e9a39E3509D8fdb9C959f23170f8A0fa |   2000  | 0x33BcAa8A390e6DcF2f18AE5fDd9e38fD248219eB | 0.0001% | 100.0% | mainnet      | BIP-366 |    0     |
+| killGauge() | mainnet  | 0xbfce47224b4a938865e3e2727dc34e0faa5b1d82000000000000000000000527 |     uniETH-WETH      | 0xbFCe47224B4A938865E3e2727DC34E0fAA5b1D82 |    50   | 0x6AF7bCA454f3C8165225Ed46FD4d78cc90E81fAA |  0.04%  |  2.0%  | mainnet      | BIP-366 |    1     |
+| killGauge() | mainnet  | 0x156c02f3f7fef64a3a9d80ccf7085f23cce91d76000000000000000000000570 |    vETH/WETH BPT     | 0x156C02f3f7fEf64a3A9D80CCF7085f23ccE91D76 |    50   | 0x1d157Cf1F1339864A3C291D1Bbe786d6Ee682434 |  0.04%  | 10.0%  | mainnet      | BIP-366 |    2     |
+| killGauge() | mainnet  | 0x9001cbbd96f54a658ff4e6e65ab564ded76a543100000000000000000000050a | cbETH-bb-a-WETH-BPT  | 0x9001cBbD96F54a658FF4e6E65AB564DED76a5431 |   700   | 0x70c6A653e273523FADfB4dF99558737906c230c6 | 0.0001% | 100.0% | mainnet      | BIP-366 |    3     |
+| killGauge() | mainnet  | 0x04248aabca09e9a1a3d5129a7ba05b7f17de768400000000000000000000050e |  qETH-bb-a-WETH-BPT  | 0x04248AAbca09E9a1a3D5129a7ba05b7F17DE7684 |   100   | 0xC764B55852F8849Ae69923e45ce077A576bF9a8d |  0.04%  |  2.0%  | mainnet      | BIP-366 |    4     |
+| killGauge() | mainnet  | 0x02d928e68d8f10c0358566152677db51e1e2dc8c00000000000000000000051e | swETH-bb-a-WETH-BPT  | 0x02D928E68D8F10C0358566152677Db51E1e2Dc8C |   500   | 0x11Ff498C7c2A29fc4638BF45D9fF995C3297fcA5 | 0.0001% | 100.0% | mainnet      | BIP-366 |    5     |
+| killGauge() | mainnet  | 0x481c5fc05d63a58aa2f0f2aa417c021b5d419cb200000000000000000000056a |   rETH/bbaWETH BPT   | 0x481C5fc05D63a58AA2f0F2aA417C021B5d419cB2 |   500   | 0x9fB7D6dCAC7b6aa20108BaD226c35B85A9e31B63 | 0.0001% | 100.0% | mainnet      | BIP-366 |    6     |
+| killGauge() |  gnosis  | 0x66f33ae36dd80327744207a48122f874634b3ada000100000000000000000013 | agUSD-agWETH-agWBTC  | 0x66F33Ae36dD80327744207a48122F874634B3adA |   N/A   | 0x21b2Ef3DC22B7bd4634205081c667e39742075E2 |   0.1%  | 100.0% | L0 sidechain | BIP-366 |    7     |
+| killGauge() |  gnosis  | 0xb973ca96a3f0d61045f53255e319aedb6ed49240000200000000000000000011 | 50bbagGNO-50bbagUSD  | 0xB973Ca96a3f0D61045f53255E319AEDb6ED49240 |   N/A   | 0xcB2c2AF6c3E88b4a89aa2aae1D7C8120EEe9Ad0e |   0.1%  | 100.0% | L0 sidechain | BIP-366 |    8     |
+| killGauge() |  gnosis  | 0xfedb19ec000d38d92af4b21436870f115db22725000000000000000000000010 |      bb-ag-USD       | 0xFEdb19Ec000d38d92Af4B21436870F115db22725 |   2000  | 0x3B6A85B5e1e6205ebF4d4eabf147D10e8e4bf0A5 |  0.005% | 100.0% | L0 sidechain | BIP-366 |    9     |
+| killGauge() | polygon  | 0xb3d658d5b95bf04e2932370dd1ff976fe18dd66a000000000000000000000ace |       bb-t-USD       | 0xb3d658d5b95BF04E2932370DD1FF976fe18dd66A |   2000  | 0x39cEEbb561a65216A4B776ea752d3137e9d6C0F0 |  0.005% | 100.0% | L0 sidechain | BIP-366 |    10    |
+| killGauge() | polygon  | 0xb371aa09f5a110ab69b39a84b5469d29f9b22b76000000000000000000000b37 |      bb-am-USD       | 0xb371aA09F5a110AB69b39A84B5469d29f9b22B76 |   2000  | 0x6b641e334f63f0D882538Fe189efC0702d961696 |  0.005% | 100.0% | L0 sidechain | BIP-366 |    11    |
+| killGauge() | polygon  | 0xd00f9ca46ce0e4a63067c4657986f0167b0de1e5000000000000000000000b42 |   frxETH-bb-a-WETH   | 0xD00f9Ca46ce0E4A63067c4657986f0167b0De1E5 |   120   | 0x416d15C36c6DaAd2b9410B79aE557e6F07DcB642 |  0.04%  | 100.0% | L0 sidechain | BIP-366 |    12    |
+| killGauge() | arbitrum | 0x567ecfcb22205d279bb8eed3e066989902bf03d5000000000000000000000452 |   DOLA/bbaUSD-BPT    | 0x567ECfCB22205D279BB8Eed3E066989902bF03D5 |   200   | 0xacE0D479040231e3c6b17479cFd4444182d521d4 |  0.04%  | 100.0% | L0 sidechain | BIP-366 |    13    |
+| killGauge() | arbitrum | 0xd3d5d45f4edf82ba0dfaf061d230766032a10e07000200000000000000000413 |    50STG-50bbaUSD    | 0xD3D5d45f4Edf82ba0dFaf061d230766032a10e07 |   N/A   | 0x8204b749B808818DEb7957DbD030ceEA44D1FE18 |   1.0%  | 100.0% | L0 sidechain | BIP-366 |    14    |
+| killGauge() | polygon  | 0x8fbd0f8e490735cfc3abf4f29cbddd5c3289b9a7000000000000000000000b5b |    FRAX-bb-am-USD    | 0x8fbd0F8e490735CFc3AbF4f29cBdDD5c3289b9A7 |   2000  | 0xecF0a26a290cbf3DDBAB7eC5Fb44Ef5A294cAc18 |  0.005% | 100.0% | L0 sidechain | BIP-366 |    15    |
+| killGauge() | polygon  | 0x3efb91c4f9b103ee45885695c67794591916f34e000200000000000000000b43 |     2BRL-bbamUSD     | 0x3Efb91C4F9B103Ee45885695C67794591916F34E |   N/A   | 0xBAdF0c8702B7Cb06bBEC351d18071804759e312c |   0.1%  |  2.0%  | L0 sidechain | BIP-366 |    16    |
+| killGauge() | polygon  | 0x4a77ef015ddcd972fd9ba2c7d5d658689d090f1a000000000000000000000b38 | wstETH-bb-a-WETH-BPT | 0x4a77eF015ddcd972fd9BA2C7D5D658689D090f1A |   1000  | 0x47D7269829Ba9571D98Eb6DDc34e9C8f1A4C327f |  0.005% | 100.0% | L0 sidechain | BIP-366 |    17    |
++-------------+----------+--------------------------------------------------------------------+----------------------+--------------------------------------------+---------+--------------------------------------------+---------+--------+--------------+---------+----------+
+```
+File name: BIPs/00batched/2023-W29/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json
+COMMIT: `2208d33b8717e975697fe20abf26e6717ea95668`
+CHAIN(S): `mainnet`
+```
++----------+---------+--------------+----------------+----------+--------------------------------------------+--------------------------------------------+--------------+---------+----------+
+| function |  chain  | token_symbol | recipient_name |  amount  |               token_address                |             recipient_address              |  raw_amount  |   bip   | tx_index |
++----------+---------+--------------+----------------+----------+--------------------------------------------+--------------------------------------------+--------------+---------+----------+
+| transfer | mainnet |     USDC     |  multisigs/lm  | 100000.0 | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | 0xc38c5f97B34E175FFd35407fc91a937300E33860 | 100000000000 | BIP-368 |    0     |
++----------+---------+--------------+----------------+----------+--------------------------------------------+--------------------------------------------+--------------+---------+----------+
+```
