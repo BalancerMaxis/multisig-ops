@@ -1,40 +1,40 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1690393201659,
-    "meta": {
-        "name": "Transactions Batch",
-        "description": "",
-        "txBuilderVersion": "1.16.1",
-        "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-        "createdFromOwnerAddress": "",
-        "checksum": "0xbc72487972aa1be7506a7fc81015cfd5e936b232d8b4a6843408c71e03098985"
-    },
-    "transactions": [
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "gauge",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "gaugeType",
-                        "type": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0xE9816654a37aaBAEC2A742f1a1cE4c99D42c08D2",
-                "gaugeType": "Optimism"
-            }
-        }
-    ]
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1690393201659,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xbc72487972aa1be7506a7fc81015cfd5e936b232d8b4a6843408c71e03098985"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xE9816654a37aaBAEC2A742f1a1cE4c99D42c08D2",
+        "gaugeType": "Optimism"
+      }
+    }
+  ]
 }
