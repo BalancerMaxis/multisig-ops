@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1686067971268,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x59381d53c574f2657107abe890b25a810d77cb46b581386c7fe77535cc956861"
+  },
+  "transactions": [
+    {
+      "to": "0xDEd7Fef7D8eCdcB74F22f0169e1A9EC696e6695d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "feeType", "type": "uint256" },
+          { "internalType": "uint256", "name": "newValue", "type": "uint256" }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "0",
+        "newValue": "500000000000000000"
+      }
+    },
+    {
+      "to": "0xDEd7Fef7D8eCdcB74F22f0169e1A9EC696e6695d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "feeType", "type": "uint256" },
+          { "internalType": "uint256", "name": "newValue", "type": "uint256" }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "2",
+        "newValue": "500000000000000000"
+      }
+    }
+  ]
+}
