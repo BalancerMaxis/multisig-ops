@@ -7,7 +7,7 @@
       "setSwapFeePercentage(uint256)": ["multisigs/lm"],
       "startAmplificationParameterUpdate(uint256,uint256)": ["multisigs/lm"],
       "stopAmplificationParameterUpdate()": ["multisigs/lm"],
-      "pause()": ["multisigs/emergency"],
+      "/pause()": ["multisigs/emergency"],
       "disable()": ["multisigs/emergency"],
       "enableRecoveryMode()": [
         "multisigs/emergency",
@@ -16,14 +16,14 @@
       "setTargets(uint256,uint256)": ["multisigs/lm"]
     },
     "deployments": [
-      "20230206-weighted-pool-v4",
-      "20230206-composable-stable-pool-v4",
+      "weighted-pool-v4",
+      "composable-stable-pool-v4",
       "20230409-erc4626-linear-pool-v4",
       "20230409-gearbox-linear-pool-v2",
-      "20230409-yearn-linear-pool-v2",
+      "yearn-linear-pool-v2",
       "20230410-aave-linear-pool-v5",
       "20230411-managed-pool-v2",
-      "20230410-silo-linear-pool-v2"
+      "silo-linear-pool-v2"
     ]
   },
   {
@@ -35,7 +35,7 @@
         "20230314-batch-relayer-v5/BalancerRelayer"
       ],
       "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
-        "20230314-batch-relayer-v5/BalancerRelayer"
+        "batch-relayer-v5/BalancerRelayer"
       ],
       "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": [
         "20230314-batch-relayer-v5/BalancerRelayer"
