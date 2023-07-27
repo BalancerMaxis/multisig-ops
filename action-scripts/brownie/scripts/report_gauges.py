@@ -1,7 +1,7 @@
 from typing import Callable
 from typing import Optional
 
-from bal_addresses import AddrBook
+from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResultError
 from brownie import Contract
 from brownie import network
 from web3 import Web3
@@ -14,15 +14,14 @@ from .script_utils import extract_bip_number
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
-
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
 CMD_GAUGE_KILL = "killGauge()"
 STYLE_MAINNET = "mainnet"
 STYLE_SINGLE_RECIPIENT = "Single Recipient"
 STYLE_CHILD_CHAIN_STREAMER = "ChildChainStreamer"
 STYLE_L0 = "L0 sidechain"
+CHAIN_MAINNET = "mainnet
 
-CHAIN_MAINNET = "mainnet"
 # Update this if needed by pulling gauge types from gauge adder:
 # https://etherscan.io/address/0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd#readContract
 TYPE_TO_CHAIN_MAP = {
@@ -93,7 +92,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-    if transaction['to'] != FLATBOOK[ADDR_BOOK.search_unique("v4/GaugeAdder")]:
+    if transaction['to'] != ADDR_BOOK.search_unique("v4/GaugeAdder").address:
         return
 
     # Parse only gauge add transactions
@@ -195,6 +194,50 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
+def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse Permissions changes made to the authorizer
+    """
+    chain_id = kwargs["chain_id"]
+    chain_name = ""
+    for c_name, c_id in AddrBook.chain_ids_by_name.items():
+        if int(c_id) == int(chain_id):
+            chain_name = c_name
+            break
+        if not chain_name:
+            print("Chain name not found! Cannot transfer transaction")
+            return
+    perms = BalPermissions(chain_name)
+    addr = AddrBook(chain_name)
+    function = transaction["contractMethod"].get("name")
+    ## Parse only role changes
+    if "Role" not in function:
+        return
+    action_ids = transaction["contractInputsValues"].get("roles")
+    if not action_ids:
+        action_ids = [transaction["contractInputsValues"].get("role")]
+    if not action_ids:
+        print(f"Function {function} has no findable action_ids.")
+        return
+    caller_address = transaction["contractInputsValues"].get("account")
+    caller_name = addr.reversebook.get(caller_address, "UNDEF")
+    fx_paths = []
+    for action_id in action_ids:
+        fx_paths.append(perms.paths_by_action_id[action_id])
+    fx_path_string = ""
+    for fx_path in fx_paths:
+        fx_path_string += fx_path + "\n"
+    return {
+        "function": function,
+        "chain": chain_name,
+        "caller_name": caller_name,
+        "caller_address": caller_address,
+        "fx_paths": "\n".join([i for i in fx_paths]),
+        "action_ids": "\n".join([i for i in action_ids]),
+        "bip": kwargs.get('bip_number', 'N/A'),
+        "tx_index": kwargs.get('tx_index', 'N/A')
+    }
+
 
 def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
@@ -277,8 +320,9 @@ def main() -> None:
     added_gauges = handler(files, _parse_added_transaction)
     removed_gauges = handler(files, _parse_removed_transaction)
     transfer_reports = handler(files, _parse_transfer)
+    permissions_reports = handler(files, _parse_permissions)
 
-    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports)
+    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports, permissions_reports)
     # Save report to report.txt file
     if merged_files:
         with open("payload_reports.txt", "w") as f:
