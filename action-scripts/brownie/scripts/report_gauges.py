@@ -212,11 +212,16 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     addr = AddrBook(chain_name)
     function = transaction["contractMethod"].get("name")
     ## Parse only role changes
-    if "Roles" not in function:
+    if "Role" not in function:
         return
     action_ids = transaction["contractInputsValues"].get("roles")
+    if not action_ids:
+        action_ids = [transaction["contractInputsValues"].get("role")]
+    if not action_ids:
+        print(f"Function {function} has no findable action_ids.")
+        return
     caller_address = transaction["contractInputsValues"].get("account")
-    caller_name = addr.reverseboo.get(caller_address, "UNDEF")
+    caller_name = addr.reversebook.get(caller_address, "UNDEF")
     fx_paths = {}
     for action_id in action_ids:
         fx_paths.append = perms.paths_by_action_id[action_id]
