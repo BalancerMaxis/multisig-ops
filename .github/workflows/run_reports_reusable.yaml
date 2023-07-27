@@ -73,21 +73,7 @@ jobs:
             echo "payload_reports=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Post Validation Report as Comment
-        if: steps.check_files.outputs.validation_exists == 'true'
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          filePath: action-scripts/brownie/validate_bip_results.txt
-          reactions: eyes
-          pr_number: ${{ inputs.pr_number }}
 
-      - name: Post Payload Report as Comment
-        uses: thollander/actions-comment-pull-request@v2
-        if: steps.check_files.outputs.payload_reports == 'true'
-        with:
-          filePath: action-scripts/brownie/payload_reports.txt
-          reactions: eyes
-          pr_number: ${{ inputs.pr_number }}
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
