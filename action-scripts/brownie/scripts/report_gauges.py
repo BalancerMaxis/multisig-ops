@@ -14,15 +14,14 @@ from .script_utils import extract_bip_number
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
-
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
 CMD_GAUGE_KILL = "killGauge()"
 STYLE_MAINNET = "mainnet"
 STYLE_SINGLE_RECIPIENT = "Single Recipient"
 STYLE_CHILD_CHAIN_STREAMER = "ChildChainStreamer"
 STYLE_L0 = "L0 sidechain"
+CHAIN_MAINNET = "mainnet
 
-CHAIN_MAINNET = "mainnet"
 # Update this if needed by pulling gauge types from gauge adder:
 # https://etherscan.io/address/0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd#readContract
 TYPE_TO_CHAIN_MAP = {
@@ -238,7 +237,6 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A')
     }
-
 
 
 def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
