@@ -1,7 +1,7 @@
 import json
 import requests
 from dotmap import DotMap
-from bal_addresses import AddrBook, BalPermissions
+from bal_addresses import AddrBook, BalPermissions, Errors
 import pandas as pd
 from datetime import date
 from web3 import Web3
@@ -66,7 +66,7 @@ def build_action_ids_map(input_data,):
                         callers = [callers]
                     try:
                         result = perms.search_unique_path_by_unique_deployment(deployment, function)
-                    except perms.NoResultError as err:
+                    except Errors.NoResultError as err:
                         warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: {err}\n"
 
                     for caller in callers:
@@ -88,7 +88,7 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                     (deployment, contract, function) = path.split("/")
                     try:
                         authorizered_callers = perms.allowed_addresses(action_id)
-                    except BalPermissions.NoResultError:
+                    except Errors.NoResultError:
                         authorizered_callers = []
                     if caller_address in authorizered_callers:
                         warnings += f"{deployment}/{function} already has the proper owner set, skipping.\n"
