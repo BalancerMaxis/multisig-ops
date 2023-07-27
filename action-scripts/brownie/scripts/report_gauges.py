@@ -224,16 +224,14 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     caller_name = addr.reversebook.get(caller_address, "UNDEF")
     fx_paths = []
     for action_id in action_ids:
-        paths = perms.paths_by_action_id[action_id]
-        for path in paths:
-            fx_paths.append(path)
+        fx_paths.append(perms.paths_by_action_id[action_id])
     fx_paths = set(fx_paths)
     return {
         "function": function,
         "chain": chain_name,
         "caller_name": caller_name,
         "caller_address": caller_address,
-        "fx_paths": "\n".join([str(i) for i in fx_paths]),
+        "fx_paths": fx_paths,
         "action_ids": action_ids,
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A')
