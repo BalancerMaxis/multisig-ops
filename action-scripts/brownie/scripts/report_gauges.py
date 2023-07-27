@@ -199,7 +199,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Permissions changes made to the authorizer
     """
-    chain_id = kwargs["chain-id"]
+    chain_id = kwargs["chain_id"]
     for c_name, c_id in AddrBook.chain_ids_by_name.items():
         if c_id == chain_id:
             chain_name = c_name
