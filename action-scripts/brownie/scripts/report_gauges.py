@@ -1,7 +1,7 @@
 from typing import Callable
 from typing import Optional
 
-from bal_addresses import AddrBook
+from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResultError
 from brownie import Contract
 from brownie import network
 from web3 import Web3
@@ -93,7 +93,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-    if transaction['to'] != FLATBOOK[ADDR_BOOK.search_unique("v4/GaugeAdder")]:
+    if transaction['to'] != ADDR_BOOK.search_unique("v4/GaugeAdder").address:
         return
 
     # Parse only gauge add transactions
@@ -195,6 +195,38 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
+def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse Permissions changes made to the authorizer
+    """
+    chain_id = kwargs["chain-id"]
+    for c_name, c_id in AddrBook.chain_ids_by_name.items():
+        if c_id == chain_id:
+            chain_name = c_name
+            break
+    perms = BalPermissions(chain_name)
+    addr = AddrBook(chain_name)
+    function = transaction["ContractMethod"].get("name")
+    ## Parse only role changes
+    if "Roles" not in function:
+        return
+    action_ids = transaction["contractInputsValues"].get("roles")
+    caller_address = transaction["contractInputsValues"].get("account")
+    caller_name = addr.reverseboo.get(caller_address, "UNDEF")
+    fx_paths = {}
+    for action_id in action_ids:
+        fx_paths.append = perms.paths_by_action_id[action_id]
+    return {
+        "function": function,
+        "chain": chain_name,
+        "caller_name": caller_name,
+        "caller_address": caller_address,
+        "fx_paths": fx_paths,
+        "action_ids": action_ids,
+        "bip": kwargs.get('bip_number', 'N/A'),
+        "tx_index": kwargs.get('tx_index', 'N/A')
+    }
+
 
 def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
@@ -277,8 +309,9 @@ def main() -> None:
     added_gauges = handler(files, _parse_added_transaction)
     removed_gauges = handler(files, _parse_removed_transaction)
     transfer_reports = handler(files, _parse_transfer)
+    permissions_reports = handler(files, _parse_permissions)
 
-    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports)
+    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports, permissions_reports)
     # Save report to report.txt file
     if merged_files:
         with open("payload_reports.txt", "w") as f:
