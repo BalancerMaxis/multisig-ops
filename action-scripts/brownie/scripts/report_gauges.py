@@ -230,7 +230,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     fx_paths = []
     for action_id in action_ids:
         paths = perms.paths_by_action_id[action_id]
-        fx_paths += list(paths)
+        fx_paths = [*fx_paths, *paths]
     return {
         "function": function,
         "chain": chain_name,
