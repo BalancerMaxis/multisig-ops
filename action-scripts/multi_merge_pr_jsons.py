@@ -105,7 +105,7 @@ def main():
     # Walk through all nested directories in BIPs
     for file in files_to_parse:
         # Process files that are lying flat in BIPs directory
-        for chain_name, chain_id in AddrBook.CHAIN_IDS_BY_NAME.items():
+        for chain_name, chain_id in AddrBook.chain_ids_by_name.items():
             data = _parse_bip_json(
                 os.path.join(root_dir, file), chain=chain_id
             )
