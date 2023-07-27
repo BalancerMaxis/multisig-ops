@@ -58,21 +58,6 @@ jobs:
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
 
-      - name: Check for comment files
-        id: check_files
-        run: |
-          if [ -f "action-scripts/brownie/validate_bip_results.txt" ]; then
-            echo "validation_exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "validation_exists=false" >> $GITHUB_OUTPUT
-          fi
-          
-          if [ -f "action-scripts/brownie/payload_reports.txt" ]; then
-            echo "payload_reports=true" >> $GITHUB_OUTPUT
-          else
-            echo "payload_reports=false" >> $GITHUB_OUTPUT
-          fi
-
 
 
       - name: Prettify code
