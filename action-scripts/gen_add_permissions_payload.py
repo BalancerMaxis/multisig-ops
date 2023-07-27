@@ -154,7 +154,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
+        data.meta.createdFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
         # Group roles on this chain by caller address
         action_ids_by_address = defaultdict(set)
         for change in change_list:
