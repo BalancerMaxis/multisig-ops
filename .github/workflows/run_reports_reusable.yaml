@@ -57,6 +57,7 @@ jobs:
           export COMMIT_SHA=`git rev-parse HEAD`
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
+          cat action-scripts/brownie/payload_reports.txt
 
       - name: Check for comment files
         id: check_files
@@ -74,6 +75,7 @@ jobs:
           fi
 
       - name: Post Validation Report as Comment
+        continue-on-error: true
         if: steps.check_files.outputs.validation_exists == 'true'
         uses: thollander/actions-comment-pull-request@v2
         with:
@@ -82,6 +84,7 @@ jobs:
           pr_number: ${{ inputs.pr_number }}
 
       - name: Post Payload Report as Comment
+        continue-on-error: true
         uses: thollander/actions-comment-pull-request@v2
         if: steps.check_files.outputs.payload_reports == 'true'
         with:
