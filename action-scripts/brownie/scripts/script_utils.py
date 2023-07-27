@@ -128,6 +128,7 @@ def merge_files(
         added_gauges: dict[str, str],
         removed_gauges: dict[str, str],
         transfers: dict[str, str],
+        permissions: dict[str, str]
 ) -> dict[str, str]:
     """
     Function that merges two dictionaries into one.
@@ -151,11 +152,12 @@ def merge_files(
     }
     """
     merged_dict = {}
-    for key in added_gauges.keys() | removed_gauges.keys() | transfers.keys():
+    for key in added_gauges.keys() | removed_gauges.keys() | transfers.keys() | permissions.keys():
         merged_dict[key] = "".join([
             added_gauges.get(key, ""),
             removed_gauges.get(key, ""),
             transfers.get(key, ""),
+            permissions.get(key, "")
         ])
     return merged_dict
 
