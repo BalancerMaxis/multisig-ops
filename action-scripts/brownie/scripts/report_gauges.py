@@ -12,6 +12,7 @@ from .script_utils import get_pool_info
 from .script_utils import merge_files
 from .script_utils import extract_bip_number
 
+
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
@@ -215,16 +216,21 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     perms = BalPermissions(chain_name)
     addr = AddrBook(chain_name)
     action_ids = transaction["contractInputsValues"].get("roles")
+    # Change from a txbuilder json format list of addresses to a python one
     if not action_ids:
         action_ids = [transaction["contractInputsValues"].get("role")]
-    if not action_ids:
-        print(f"Function {function} has no findable action_ids.")
+    else:
+        action_ids = action_ids.strip('[]')
+        action_ids = action_ids.split(",")
+    if not isinstance(action_ids, list):
+        print(f"Function {function} came up with {action_ids} which is not a valid list.")
         return
     caller_address = transaction["contractInputsValues"].get("account")
     caller_name = addr.reversebook.get(caller_address, "UNDEF")
     fx_paths = []
     for action_id in action_ids:
-        fx_paths.append(list(perms.paths_by_action_id[action_id]))
+        paths = perms.paths_by_action_id[action_id]
+        fx_paths += list(paths)
     return {
         "function": function,
         "chain": chain_name,
