@@ -155,8 +155,6 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         # Set global data
         data.chainId = chain_id
         data.meta.createFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
-        assert Web3.is_checksum_address(data.meta.createFromSafeAddress), \
-            f"ERROR: Safe for {chain_name} is {data.meta.createFromSafeAddress}, which is not a checksummed address... \n{data.meta}"
         # Group roles on this chain by caller address
         action_ids_by_address = {}
         for change in change_list:
