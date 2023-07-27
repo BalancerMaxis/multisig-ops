@@ -13,9 +13,10 @@ ADDRESSES_AVALANCHE = AddrBook("avalanche").reversebook
 ADDRESSES_OPTIMISM = AddrBook("optimism").reversebook
 ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
 ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
+ADDRESSES_BASE = AddrBook("base").reversebook
 # Merge all addresses into one dictionary
 ADDRESSES = {**ADDRESSES_MAINNET, **ADDRESSES_POLYGON, **ADDRESSES_ARBITRUM, **ADDRESSES_AVALANCHE,
-             **ADDRESSES_OPTIMISM, **ADDRESSES_GNOSIS, **ADDRESSES_ZKEVM}
+             **ADDRESSES_OPTIMISM, **ADDRESSES_GNOSIS, **ADDRESSES_ZKEVM, **ADDRESSES_BASE}
 
 
 def validate_contains_msig(file: dict) -> Tuple[bool, str]:

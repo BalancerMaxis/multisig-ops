@@ -12,6 +12,7 @@ from .script_utils import get_pool_info
 from .script_utils import merge_files
 from .script_utils import extract_bip_number
 
+
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
 GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
@@ -198,42 +199,46 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Permissions changes made to the authorizer
     """
+    function = transaction["contractMethod"].get("name")
+    ## Parse only role changes
+    if "Role" not in function:
+        return
+
     chain_id = kwargs["chain_id"]
     chain_name = ""
     for c_name, c_id in AddrBook.chain_ids_by_name.items():
         if int(c_id) == int(chain_id):
             chain_name = c_name
             break
-        if not chain_name:
-            print("Chain name not found! Cannot transfer transaction")
-            return
+    if not chain_name:
+        print("Chain name not found! Can not parse transaction.")
+        return
     perms = BalPermissions(chain_name)
     addr = AddrBook(chain_name)
-    function = transaction["contractMethod"].get("name")
-    ## Parse only role changes
-    if "Role" not in function:
-        return
     action_ids = transaction["contractInputsValues"].get("roles")
+    # Change from a txbuilder json format list of addresses to a python one
     if not action_ids:
         action_ids = [transaction["contractInputsValues"].get("role")]
-    if not action_ids:
-        print(f"Function {function} has no findable action_ids.")
+    else:
+        action_ids = action_ids.strip('[ ]')
+        action_ids = action_ids.replace(" ", "")
+        action_ids = action_ids.split(",")
+    if not isinstance(action_ids, list):
+        print(f"Function {function} came up with {action_ids} which is not a valid list.")
         return
     caller_address = transaction["contractInputsValues"].get("account")
     caller_name = addr.reversebook.get(caller_address, "UNDEF")
     fx_paths = []
     for action_id in action_ids:
-        fx_paths.append(perms.paths_by_action_id[action_id])
-    fx_path_string = ""
-    for fx_path in fx_paths:
-        fx_path_string += fx_path + "\n"
+        paths = perms.paths_by_action_id[action_id]
+        fx_paths = [*fx_paths, *paths]
     return {
         "function": function,
         "chain": chain_name,
         "caller_name": caller_name,
         "caller_address": caller_address,
-        "fx_paths": "\n".join([i for i in fx_paths]),
-        "action_ids": "\n".join([i for i in action_ids]),
+        "fx_paths": fx_paths,
+        "action_ids": action_ids,
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A')
     }

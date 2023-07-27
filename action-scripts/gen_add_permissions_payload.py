@@ -1,7 +1,7 @@
 import json
 import requests
 from dotmap import DotMap
-from bal_addresses import AddrBook, BalPermissions, Errors
+from bal_addresses import AddrBook, BalPermissions, NoResultError, MultipleMatchesError
 import pandas as pd
 from datetime import date
 from web3 import Web3
@@ -45,20 +45,11 @@ def build_action_ids_map(input_data,):
     warnings = ""
     action_ids_map = {}
     for chain_name in AddrBook.chain_ids_by_name.keys():
-        action_ids_map[chain_name] = defaultdict(list)
+        action_ids_map[chain_name] = defaultdict(set)
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
             book = book_by_chain[chain_name]
             perms = perms_by_chain[chain_name]
-            try:
-                monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json")
-                monorepo_ids.raise_for_status()
-                monorepo_ids = monorepo_ids.json()
-            except requests.HTTPError as err:
-                print(f"error:{err}, url: {monorepo_ids.url}")
-                exit(0)
-            # TODO figure out deployment unique searching in bal addresses and use it here.
-            # TODO more reporting around hit counts per chain posted to issue
             for deployment in change["deployments"]:
                 for function, callers in change["function_caller_map"].items():
                     # Turn a string into a  1 item list
@@ -66,11 +57,11 @@ def build_action_ids_map(input_data,):
                         callers = [callers]
                     try:
                         result = perms.search_unique_path_by_unique_deployment(deployment, function)
-                    except Errors.NoResultError as err:
-                        warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: {err}\n"
-
+                    except NoResultError as err:
+                        warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: found no matches, skipping\n"
+                        continue
                     for caller in callers:
-                        action_ids_map[chain_name][result.action_id].append(book.search_unique(caller).address)
+                        action_ids_map[chain_name][result.action_id].add(book.search_unique(caller).address)
     return action_ids_map, warnings
 
 
@@ -88,7 +79,7 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                     (deployment, contract, function) = path.split("/")
                     try:
                         authorizered_callers = perms.allowed_addresses(action_id)
-                    except Errors.NoResultError:
+                    except NoResultError:
                         authorizered_callers = []
                     if caller_address in authorizered_callers:
                         warnings += f"{deployment}/{function} already has the proper owner set, skipping.\n"
@@ -154,15 +145,13 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
+        data.meta.createdFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
         # Group roles on this chain by caller address
-        action_ids_by_address = {}
+        action_ids_by_address = defaultdict(set)
         for change in change_list:
             if change["chain"] != chain_name:
                 continue
-            if change["caller_address"] not in action_ids_by_address:
-                action_ids_by_address[change["caller_address"]] = []
-            action_ids_by_address[change["caller_address"]].append(change["role"])
+            action_ids_by_address[change["caller_address"]].add(change["role"])
 
         # Build transaction list
         transactions = []
@@ -171,6 +160,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             transaction = DotMap(tx_template)
             transaction.to = book.flatbook["20210418-authorizer/Authorizer"]
             # TX builder wants lists in a string, addresses unquoted
+            actions = list(actions)
             transaction.contractInputsValues.roles = str(actions).replace("'","")
             transaction.contractInputsValues.account = address
             transactions.append(dict(transaction))
