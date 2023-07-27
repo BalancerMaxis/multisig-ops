@@ -98,7 +98,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items()}
         table.append(list(dict_filtered.values()))
-    return str(tabulate(table, headers=header, maxcolwidths=90, tablefmt="grid"))
+    return str(tabulate(table, headers=header, tablefmt="grid"))
 
 
 def format_into_report(file: dict, transactions: list[dict]) -> str:
