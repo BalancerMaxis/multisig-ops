@@ -227,7 +227,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         print(f"Function {function} came up with {action_ids} which is not a valid list.")
         return
     caller_address = transaction["contractInputsValues"].get("account")
-    caller_name = addr.reversebook.get(caller_address, "UNDEF")
+    caller_name = addr.reversebook.get(caller_address, "!!NOT FOUND!!")
     fx_paths = []
     for action_id in action_ids:
         paths = perms.paths_by_action_id[action_id]
@@ -237,8 +237,8 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         "chain": chain_name,
         "caller_name": caller_name,
         "caller_address": caller_address,
-        "fx_paths": fx_paths,
-        "action_ids": action_ids,
+        "fx_paths": "\n".join([i for i in fx_paths]),
+        "action_ids": "\n".join([i for i in action_ids]),
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A')
     }
