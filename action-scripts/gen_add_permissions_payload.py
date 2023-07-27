@@ -156,13 +156,11 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         data.chainId = chain_id
         data.meta.createFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
         # Group roles on this chain by caller address
-        action_ids_by_address = {}
+        action_ids_by_address = defaultdict(set)
         for change in change_list:
             if change["chain"] != chain_name:
                 continue
-            if change["caller_address"] not in action_ids_by_address:
-                action_ids_by_address[change["caller_address"]] = []
-            action_ids_by_address[change["caller_address"]].append(change["role"])
+            action_ids_by_address[change["caller_address"]].add(change["role"])
 
         # Build transaction list
         transactions = []
@@ -171,6 +169,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             transaction = DotMap(tx_template)
             transaction.to = book.flatbook["20210418-authorizer/Authorizer"]
             # TX builder wants lists in a string, addresses unquoted
+            actions = list(actions)
             transaction.contractInputsValues.roles = str(actions).replace("'","")
             transaction.contractInputsValues.account = address
             transactions.append(dict(transaction))
