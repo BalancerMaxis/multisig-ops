@@ -87,11 +87,11 @@ def gen_report(payload_list):
         network.connect("mainnet")
         outputs = []
         tx_list = payload["transactions"]
-        gauge_controller = Contract(flatbook[a.search_unique("GaugeController")])
+        gauge_controller = Contract(flatbook[a.search_unique("GaugeController")].address)
         for transaction in tx_list:
             style = False
             gauge_address = False
-            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder")] or transaction["to"] == flatbook[a.search_unique("v4/GaugeAdder")]:
+            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder").address] or transaction["to"] == flatbook[a.search_unique("v4/GaugeAdder").address]:
                 for k in transaction["contractInputsValues"].keys():
                     if k == "rootGauge":
                         command = transaction["contractMethod"]["name"]

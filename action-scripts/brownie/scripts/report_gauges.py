@@ -93,7 +93,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-    if transaction['to'] != FLATBOOK[ADDR_BOOK.search_unique("v4/GaugeAdder")]:
+    if transaction['to'] != ADDR_BOOK.search_unique("v4/GaugeAdder").address:
         return
 
     # Parse only gauge add transactions
@@ -212,7 +212,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         return
     action_ids = transaction["contractInputsValues"].get("roles")
     caller_address = transaction["contractInputsValues"].get("account")
-    caller_name = addr.reversebook[caller_address]
+    caller_name = addr.reverseboo.get(caller_address, "UNDEF")
     fx_paths = {}
     for action_id in action_ids:
         fx_paths.append = perms.paths_by_action_id[action_id]
@@ -222,7 +222,9 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         "caller_name": caller_name,
         "caller_address": caller_address,
         "fx_paths": fx_paths,
-        "action_ids": action_ids
+        "action_ids": action_ids,
+        "bip": kwargs.get('bip_number', 'N/A'),
+        "tx_index": kwargs.get('tx_index', 'N/A')
     }
 
 
