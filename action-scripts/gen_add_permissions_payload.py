@@ -178,7 +178,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         data.transactions = transactions
         # Save tx builder json
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
-            json.dump(dict(data), f)
+            json.dump(dict(data), f, indent=2)
 
 
 def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json"):
