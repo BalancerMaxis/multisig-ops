@@ -3,10 +3,10 @@ import os
 import re
 from json import JSONDecodeError
 from typing import Optional
+import tabulate
 
 import requests
 from brownie import Contract
-from prettytable import PrettyTable
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -92,16 +92,13 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     """
     # Headers without "chain"
     header = [k for k in outputs[0].keys()]
-    table = PrettyTable(header)
+    table = tabulate(header=header, maxcolwidths=90, tablefmt="grid")
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items()}
         table.add_row(list(dict_filtered.values()))
-    table.align["pool_name"] = "l"
-    table.align["function"] = "l"
-    table.align["style"] = "l"
-    return str(table)
+    return  str(table)
 
 
 def format_into_report(file: dict, transactions: list[dict]) -> str:
