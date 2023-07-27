@@ -200,10 +200,14 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     Parse Permissions changes made to the authorizer
     """
     chain_id = kwargs["chain_id"]
+    chain_name = ""
     for c_name, c_id in AddrBook.chain_ids_by_name.items():
-        if c_id == chain_id:
+        if int(c_id) == int(chain_id):
             chain_name = c_name
             break
+        if not chain_name:
+            print("Chain name not found! Cannot transfer transaction")
+            return
     perms = BalPermissions(chain_name)
     addr = AddrBook(chain_name)
     function = transaction["ContractMethod"].get("name")
