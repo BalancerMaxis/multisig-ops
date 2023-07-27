@@ -1,12 +1,12 @@
 import json
 import requests
 from dotmap import DotMap
-from bal_addresses import AddrBook
+from bal_addresses import AddrBook, BalPermissions
 import pandas as pd
 from datetime import date
 from web3 import Web3
 import os
-
+from collections import defaultdict
 today = str(date.today())
 debug = False
 
@@ -31,24 +31,25 @@ W3_BY_CHAIN = {
 }
 
 book_by_chain = {}
-for chain in AddrBook.CHAIN_IDS_BY_NAME.keys():
+perms_by_chain = {}
+for chain in AddrBook.chain_ids_by_name.keys():
     book_by_chain[chain] = AddrBook(chain)
+    perms_by_chain[chain] = BalPermissions(chain)
 
 def load_input_data(input_json_file):
     with open(input_json_file, "r") as f:
         data = json.load(f)
         return data
 
-
-
-
-
 def build_action_ids_map(input_data,):
+    warnings = ""
     action_ids_map = {}
-    for chain_name in AddrBook.CHAIN_IDS_BY_NAME.keys():
-        action_ids_map[chain_name] = {}
+    for chain_name in AddrBook.chain_ids_by_name.keys():
+        action_ids_map[chain_name] = defaultdict(list)
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
+            book = book_by_chain[chain_name]
+            perms = perms_by_chain[chain_name]
             try:
                 monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json")
                 monorepo_ids.raise_for_status()
@@ -59,56 +60,40 @@ def build_action_ids_map(input_data,):
             # TODO figure out deployment unique searching in bal addresses and use it here.
             # TODO more reporting around hit counts per chain posted to issue
             for deployment in change["deployments"]:
-                if deployment not in monorepo_ids.keys():
-                    continue ## This deployment is not on this chain
-                print(deployment)
-                action_ids_map[chain_name][deployment] = {}
-                for contract, data in monorepo_ids[deployment].items():
-                    #action_ids_map[deployment][contract]
-                    for function, action_id in data["actionIds"].items():
-                        if function in change["function_caller_map"].keys():
-                            ## we could get a single string caller tag or a list of caller tags
-                            caller_substr = change["function_caller_map"][function]
-                            callers = []
-                            if isinstance(caller_substr, str):
-                                caller_substr = [caller_substr]
-                            for substr in caller_substr:
-                                try:
-                                     caller = book_by_chain[chain].search_unique(substr)
-                                     callers.append(caller)
-                                except:
-                                    print (f"WARNING: Callser substring:{substr}, function: {function} not in caller map")
-                                action_ids_map[chain_name][deployment][function] = {
-                                    "action_id": action_id,
-                                    "callers":  callers
-                                }
-    return action_ids_map
+                for function, callers in change["function_caller_map"].items():
+                    # Turn a string into a  1 item list
+                    if isinstance(callers, str):
+                        callers = [callers]
+                    try:
+                        result = perms.search_unique_path_by_unique_deployment(deployment, function)
+                    except perms.NoResultError as err:
+                        warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: {err}\n"
+
+                    for caller in callers:
+                        action_ids_map[chain_name][result.action_id].append(book.search_unique(caller).address)
+    return action_ids_map, warnings
 
 
 def generate_change_list(actions_id_map, ignore_already_set=True):
     changes = []
-
-    for chain, deployments in actions_id_map.items():
+    warnings = ""
+    for chain, action_id_infos in actions_id_map.items():
         print(chain)
         book = book_by_chain[chain]
-        w3 = W3_BY_CHAIN[chain]
-        relative_path = os.path.join(script_dir, "abis", "Authorizer.json")
-        authorizer = w3.eth.contract(address=book.flatbook["20210418-authorizer/Authorizer"],
-                                     abi=json.load(open(relative_path)))
-        for deployment, functions in deployments.items():
-            print(deployment)
-            for function, info in functions.items():
-                action_id = info["action_id"]
-                role_members = []
-                num_members = authorizer.functions.getRoleMemberCount(action_id).call()
-                for i in range(num_members):
-                    role_members.append(authorizer.functions.getRoleMember(action_id, 0).call())
-                callers = info["callers"]
-                for caller in callers:
-                    caller_address = book.flatbook[book.search_unique(caller)]
-                    if caller_address in role_members:
-                        print(f"{deployment}/{function} already has the proper owner set and {num_members} members, skipping.")
+        perms = perms_by_chain[chain]
+        for action_id, callers in action_id_infos.items():
+            paths = perms.paths_by_action_id[action_id]
+            for path in paths:
+                for caller_address in callers:
+                    (deployment, contract, function) = path.split("/")
+                    try:
+                        authorizered_callers = perms.allowed_addresses(action_id)
+                    except BalPermissions.NoResultError:
+                        authorizered_callers = []
+                    if caller_address in authorizered_callers:
+                        warnings += f"{deployment}/{function} already has the proper owner set, skipping.\n"
                         continue
+                    caller = book.reversebook[caller_address]
                     changes.append({
                         "deployment": deployment,
                         "chain": chain,
@@ -117,7 +102,7 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                         "caller": caller,
                         "caller_address": caller_address
                     })
-    return changes
+    return changes, warnings
 
 
 def print_change_list(change_list, output_dir, filename_root=today):
@@ -162,15 +147,15 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             chains.append(change["chain"])
 
     for chain_name in chains:
-        chain_id = AddrBook.CHAIN_IDS_BY_NAME[chain_name]
+        chain_id = AddrBook.chain_ids_by_name[chain_name]
         book = book_by_chain[chain_name]
         with open(f"{script_dir}/tx_builder_templates/authorizor_grant_roles.json", "r") as f:
             data = DotMap(json.load(f))
 
         # Set global data
         data.chainId = chain_id
-        data.meta.createFromSafeAddress = book_by_chain[chain].flatbook[book_by_chain[chain].search_unique("multisigs/dao")]
-        assert Web3.isChecksumAddress(data.meta.createFromSafeAddress), \
+        data.meta.createFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
+        assert Web3.is_checksum_address(data.meta.createFromSafeAddress), \
             f"ERROR: Safe for {chain_name} is {data.meta.createFromSafeAddress}, which is not a checksummed address... \n{data.meta}"
         # Group roles on this chain by caller address
         action_ids_by_address = {}
@@ -200,15 +185,18 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 
 def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
-    action_ids_map = build_action_ids_map(input_data=input_data)
-    change_list = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
+    (action_ids_map, warnings) = build_action_ids_map(input_data=input_data)
+    print (action_ids_map)
+    (change_list, w) = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
+    warnings += "\n" + w
     print_change_list(
         change_list=change_list,
         output_dir=output_dir
     )
     save_command_description_table(change_list=change_list, output_dir=output_dir)
     save_txbuilder_json(change_list=change_list,output_dir=output_dir)
-
+    with open(f"{output_dir}/{today}_warnings.txt", "w") as f:
+        f.write(warnings)
 
 if __name__ == "__main__":
     main()
