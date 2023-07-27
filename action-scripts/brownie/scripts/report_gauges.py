@@ -210,7 +210,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
             return
     perms = BalPermissions(chain_name)
     addr = AddrBook(chain_name)
-    function = transaction["ContractMethod"].get("name")
+    function = transaction["contractMethod"].get("name")
     ## Parse only role changes
     if "Roles" not in function:
         return
