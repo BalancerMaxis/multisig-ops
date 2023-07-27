@@ -57,8 +57,40 @@ jobs:
           export COMMIT_SHA=`git rev-parse HEAD`
           cd action-scripts/brownie
           brownie run --network mainnet scripts/report_gauges.py
+          cat action-scripts/brownie/payload_reports.txt
 
+      - name: Check for comment files
+        id: check_files
+        run: |
+          if [ -f "action-scripts/brownie/validate_bip_results.txt" ]; then
+            echo "validation_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "validation_exists=false" >> $GITHUB_OUTPUT
+          fi
+          
+          if [ -f "action-scripts/brownie/payload_reports.txt" ]; then
+            echo "payload_reports=true" >> $GITHUB_OUTPUT
+          else
+            echo "payload_reports=false" >> $GITHUB_OUTPUT
+          fi
 
+      - name: Post Validation Report as Comment
+        continue-on-error: true
+        if: steps.check_files.outputs.validation_exists == 'true'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: action-scripts/brownie/validate_bip_results.txt
+          reactions: eyes
+          pr_number: ${{ inputs.pr_number }}
+
+      - name: Post Payload Report as Comment
+        continue-on-error: true
+        uses: thollander/actions-comment-pull-request@v2
+        if: steps.check_files.outputs.payload_reports == 'true'
+        with:
+          filePath: action-scripts/brownie/payload_reports.txt
+          reactions: eyes
+          pr_number: ${{ inputs.pr_number }}
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
