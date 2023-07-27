@@ -27,8 +27,8 @@ BIP_DIR_FROM_REPO_ROOT="BIPS/$WEEKLY_DIR/BIP-$BIP_NUMBER"
 
 date=$DATE
 ## Setup git
-git config --global user.name "BIP Bot"
-git config --global user.email "bipbot@nowhere.gov"
+#git config --global user.name "BIP Bot"
+#git config --global user.email "bipbot@nowhere.gov"
 
 echo "Creating $BIP_DIR and moving generated files into place."
 mkdir -p $BIP_DIR
@@ -52,19 +52,19 @@ TABLE=${BIP_DIR}/results_address_sorted.md
 echo "Building governance forum md file.  Note you will need to review and update the top sections to talk a bit about the change and it's reasons."
 sed "s/{BIP_NUMBER}/$BIP_NUMBER/g" governance_template.md > .working.md
 sed "s/{PR_NUMBER}/$PR_NUMBER/g" .working.md > .working1.md
-sed "s/{BIP_DIR}/$BIP_DIR_FROM_REPO_ROOT/g" .working1.md > .working2.md
+sed "s'{BIP_DIR}'$BIP_DIR_FROM_REPO_ROOT'g" .working1.md > .working2.md
 sed "/ADDRESS_SORTED_MD_TABLE/r $TABLE" .working2.md | sed 's/ADDRESS_SORTED_MD_TABLE//' > ${BIP_DIR}/BIP-${BIP_NUMBER}.md
 echo "[See Here](BIP-${BIP_NUMBER}.md) for the governance contents." > ${BIP_DIR}/README.md
 
-rm .working*.md
+#rm .working*.md
 
-git pull
-git add -A
-git add -u # find moved files
-git commit -m "Setting up Payload Directory."
-git push origin
-BRANCH=`git branch --show-current`
-git checkout staging
-git merge $BRANCH
-git push origin
-git checkout $BRANCH
+#git pull
+#git add -A
+#git add -u # find moved files
+#git commit -m "Setting up Payload Directory."
+#git push origin
+#BRANCH=`git branch --show-current`
+#git checkout staging
+#git merge $BRANCH
+#git push origin
+#git checkout $BRANCH
