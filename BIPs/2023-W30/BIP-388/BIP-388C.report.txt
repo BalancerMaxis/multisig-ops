@@ -1,11 +1,11 @@
 File name: BIPs/2023-W30/BIP-388/BIP-388C.json
-COMMIT: `40486f6447200e60cc957cadcf3784697abc8e99`
+COMMIT: `662f166eea252793696c83270611df44e34d7d76`
 CHAIN(S): `base`
 ```
 +--------------+-------+---------------+--------------------------------------------+---------------------------------------------------+------------------------------------------------------------------------+---------+----------+
 | function     | chain |  caller_name  |               caller_address               |                      fx_paths                     |                               action_ids                               |   bip   | tx_index |
 +--------------+-------+---------------+--------------------------------------------+---------------------------------------------------+------------------------------------------------------------------------+---------+----------+
-| grantRole    |  base | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | [{'20210418-vault/Vault/setAuthorizer(address)'}] | ['0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0'] | BIP-388 |   N/A    |
-| renounceRole |  base | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | [{'20210418-vault/Vault/setAuthorizer(address)'}] | ['0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0'] | BIP-388 |   N/A    |
+| grantRole    |  base | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | [['20210418-vault/Vault/setAuthorizer(address)']] | ['0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0'] | BIP-388 |   N/A    |
+| renounceRole |  base | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | [['20210418-vault/Vault/setAuthorizer(address)']] | ['0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0'] | BIP-388 |   N/A    |
 +--------------+-------+---------------+--------------------------------------------+---------------------------------------------------+------------------------------------------------------------------------+---------+----------+
 ```
