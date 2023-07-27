@@ -257,7 +257,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     chain_alias = "{}-main"
     chain_name = "main"
     # Get chain name using address book and chain id
-    for c_name, c_id in AddrBook.CHAIN_IDS_BY_NAME.items():
+    for c_name, c_id in AddrBook.chain_ids_by_name.items():
         if int(chain_id) == int(c_id):
             chain_name = chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
             break

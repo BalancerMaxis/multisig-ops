@@ -15,9 +15,11 @@ ADDRESSES_AVALANCHE = AddrBook("avalanche").reversebook
 ADDRESSES_OPTIMISM = AddrBook("optimism").reversebook
 ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
 ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
+ADDRESSES_BASE = AddrBook("base").reversebook
+
 # Merge all addresses into one dictionary
 ADDRESSES = {**ADDRESSES_MAINNET, **ADDRESSES_POLYGON, **ADDRESSES_ARBITRUM, **ADDRESSES_AVALANCHE,
-             **ADDRESSES_OPTIMISM, **ADDRESSES_GNOSIS, **ADDRESSES_ZKEVM}
+             **ADDRESSES_OPTIMISM, **ADDRESSES_GNOSIS, **ADDRESSES_ZKEVM, **ADDRESSES_BASE}
 
 # Initialize the parser
 parser = argparse.ArgumentParser()
@@ -173,7 +175,7 @@ def main():
     # Walk through all nested directories in BIPs
     for file in files_to_parse:
         # Process files that are lying flat in BIPs directory
-        for chain_name, chain_id in AddrBook.CHAIN_IDS_BY_NAME.items():
+        for chain_name, chain_id in AddrBook.chain_ids_by_name.items():
             data = _parse_bip_json(
                 os.path.join(root_dir, file), chain=chain_id
             )
