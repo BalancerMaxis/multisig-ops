@@ -3,7 +3,7 @@ import os
 import re
 from json import JSONDecodeError
 from typing import Optional
-import tabulate
+from tabulate import tabulate
 
 import requests
 from brownie import Contract
