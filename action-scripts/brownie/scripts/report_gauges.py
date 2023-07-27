@@ -234,7 +234,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         "caller_name": caller_name,
         "caller_address": caller_address,
         "fx_paths": "\n".join([str(i) for i in fx_paths]),
-        "action_ids": "\n".join([i for i in action_ids]),
+        "action_ids": action_ids,
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A')
     }
