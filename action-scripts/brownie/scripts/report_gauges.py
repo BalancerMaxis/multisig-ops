@@ -240,6 +240,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
+
 def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse an ERC-20 transfer transaction and return a dict with parsed data
