@@ -17,13 +17,12 @@
     },
     "deployments": [
       "weighted-pool-v4",
-      "composable-stable-pool-v4",
+      "composable-stable-pool-v5",
       "20230409-erc4626-linear-pool-v4",
       "20230409-gearbox-linear-pool-v2",
       "yearn-linear-pool-v2",
       "20230410-aave-linear-pool-v5",
-      "20230411-managed-pool-v2",
-      "silo-linear-pool-v2"
+      "20230411-managed-pool-v2"
     ]
   },
   {
@@ -95,8 +94,8 @@
       "base": 8453
     },
     "function_caller_map": {
-      "removePoolFactory(address)": ["multisigs/dao"],
-      "addPoolFactory(address)": ["multisigs/dao"]
+      "removePoolFactory(address)": ["multisigs/lm"],
+      "addPoolFactory(address)": ["multisigs/lm"]
     },
     "deployments": ["20221123-pool-recovery-helper"]
   },
