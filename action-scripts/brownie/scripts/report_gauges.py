@@ -220,7 +220,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     if not action_ids:
         action_ids = [transaction["contractInputsValues"].get("role")]
     else:
-        action_ids = action_ids.strip('[]')
+        action_ids = action_ids.strip('[ ]')
         action_ids = action_ids.split(",")
     if not isinstance(action_ids, list):
         print(f"Function {function} came up with {action_ids} which is not a valid list.")
