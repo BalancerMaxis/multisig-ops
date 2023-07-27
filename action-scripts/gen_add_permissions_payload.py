@@ -45,20 +45,11 @@ def build_action_ids_map(input_data,):
     warnings = ""
     action_ids_map = {}
     for chain_name in AddrBook.chain_ids_by_name.keys():
-        action_ids_map[chain_name] = defaultdict(list)
+        action_ids_map[chain_name] = defaultdict(set)
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
             book = book_by_chain[chain_name]
             perms = perms_by_chain[chain_name]
-            try:
-                monorepo_ids = requests.get(f"{BALANCER_DEPLOYMENTS_URL}/action-ids/{chain_name}/action-ids.json")
-                monorepo_ids.raise_for_status()
-                monorepo_ids = monorepo_ids.json()
-            except requests.HTTPError as err:
-                print(f"error:{err}, url: {monorepo_ids.url}")
-                exit(0)
-            # TODO figure out deployment unique searching in bal addresses and use it here.
-            # TODO more reporting around hit counts per chain posted to issue
             for deployment in change["deployments"]:
                 for function, callers in change["function_caller_map"].items():
                     # Turn a string into a  1 item list
@@ -67,10 +58,10 @@ def build_action_ids_map(input_data,):
                     try:
                         result = perms.search_unique_path_by_unique_deployment(deployment, function)
                     except NoResultError as err:
-                        warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: {err}\n"
-
+                        warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: found no matches, skipping\n"
+                        continue
                     for caller in callers:
-                        action_ids_map[chain_name][result.action_id].append(book.search_unique(caller).address)
+                        action_ids_map[chain_name][result.action_id].add(book.search_unique(caller).address)
     return action_ids_map, warnings
 
 
