@@ -225,13 +225,16 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     fx_paths = []
     for action_id in action_ids:
         fx_paths.append(perms.paths_by_action_id[action_id])
+    fx_path_string = ""
+    for fx_path in fx_paths:
+        fx_path_string += fx_path + "\n"
     return {
         "function": function,
         "chain": chain_name,
         "caller_name": caller_name,
         "caller_address": caller_address,
-        "fx_paths": fx_paths,
-        "action_ids": action_ids,
+        "fx_paths": "\n".join([i for i in fx_paths]),
+        "action_ids": "\n".join([i for i in action_ids]),
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A')
     }
