@@ -93,7 +93,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-    if transaction['to'] != ADDR_BOOK.search_unique("v4/GaugeAdder").address:
+    if transaction['to'] != ADDR_BOOK.search_unique("20230519-gauge-adder-v4").address:
         return
 
     # Parse only gauge add transactions
