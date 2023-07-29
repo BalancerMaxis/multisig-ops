@@ -291,14 +291,6 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
-def _parse_missing_reports(indexs_by_file: dict(list)):
-    for file_name, covered_indexes in indexs_by_file.items():
-        report = []
-        covered_indexes.sort()
-        report.append({
-            "file_name": file_name,
-            "covered_tx_indexs": covered_indexes
-        })
 
 def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
     """
@@ -327,7 +319,6 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
                 outputs.append(data)
             i += 1
         if outputs:
-            outputs.append(_parse_missing_reports(covered_indexes_by_file))
             reports[file['file_name']] = format_into_report(file, outputs)
     return reports
 
