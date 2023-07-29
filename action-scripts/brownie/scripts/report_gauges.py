@@ -297,11 +297,11 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
     """
     reports = {}
     print(f"Processing {len(files)} files... with {handler_func.__name__}")
-    i = 0
     for file in files:
         outputs = []
         tx_list = file["transactions"]
         for transaction in tx_list:
+            i = 0
             data = handler_func(
                 transaction, chain_id=file["chainId"],
                 # Try to extract bip number from transaction meta first. If it's missing,
