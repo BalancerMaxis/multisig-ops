@@ -5,6 +5,7 @@ from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResu
 from brownie import Contract
 from brownie import network
 from web3 import Web3
+from collections import defaultdict
 
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
@@ -290,18 +291,27 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
+def _parse_missing_reports(indexs_by_file: dict(list)):
+    for file_name, covered_indexes in indexs_by_file.items():
+        report = []
+        covered_indexes.sort()
+        report.append({
+            "file_name": file_name,
+            "covered_tx_indexs": covered_indexes
+        })
 
 def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
     """
     Process a list of files and return a dict with parsed data.
     """
     reports = {}
+    covered_indexes_by_file = defaultdict(list)
     print(f"Processing {len(files)} files... with {handler_func.__name__}")
     for file in files:
         outputs = []
         tx_list = file["transactions"]
+        i = 0
         for transaction in tx_list:
-            i = 0
             data = handler_func(
                 transaction, chain_id=file["chainId"],
                 # Try to extract bip number from transaction meta first. If it's missing,
@@ -312,10 +322,12 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
                 ) or extract_bip_number(file),
                 tx_index=i
             )
-            i += 1
             if data:
+                covered_indexes_by_file[file['file_name']].append(i)
                 outputs.append(data)
+            i += 1
         if outputs:
+            outputs.append(_parse_missing_reports(covered_indexes_by_file))
             reports[file['file_name']] = format_into_report(file, outputs)
     return reports
 
