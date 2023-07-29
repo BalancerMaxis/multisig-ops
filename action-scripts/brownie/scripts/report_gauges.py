@@ -297,6 +297,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
     """
     reports = {}
     print(f"Processing {len(files)} files... with {handler_func.__name__}")
+    i = 0
     for file in files:
         outputs = []
         tx_list = file["transactions"]
@@ -309,8 +310,9 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
                     'meta', {}).get(
                     'bip_number'
                 ) or extract_bip_number(file),
-                tx_index=transaction.get('meta', {}).get('tx_index', "N/A")
+                tx_index=i
             )
+            i += 1
             if data:
                 outputs.append(data)
         if outputs:
