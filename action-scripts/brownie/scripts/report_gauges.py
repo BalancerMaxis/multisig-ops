@@ -292,53 +292,20 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
-def parse_missing_reports(all_reports: list[dict[str, dict]]) -> Optional[list]:
-    max_index_per_file = {}
-    covered_indexes_per_file = defaultdict(list)
-    output = []
-    for report_type in all_reports:
-        for file, report in report_type.items():
-            covered_indexes_per_file[file].append(report.get("tx_index"))
-            if report.get("max_tx_index"):
-                max_index_per_file[file] = report.get("max_tx_index")
-    for file, covered_indexes in covered_indexes_per_file.items():
-        max_index = max_index_per_file.get("file", 0)
-        all_reports = range(0, max_index)
-        no_reports = set(all_reports) ^ set(covered_indexes)
-        no_reports = list(no_reports).sort()
-
-        output.append({
-            "file_name": file,
-            "covered_tx_indexes": covered_indexes,
-            "uncovered_tx_indexes": no_reports,
-            "max_tx_index": max_index
-        })
-    reports = {}
-    reports["No Report Report - Uncovered TXs"] = {
-        "report_dicts": output,
-        "report_text": format_into_report(file, output),
-        "covered_indexes": covered_indexes,
-        "max_index": max_index
-    }
-    return reports
-
-
-def handler(files: list, handler_func: Callable) -> dict[str, str]:
+def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
     """
     Process a list of files and return a dict with parsed data.
     """
     reports = {}
+    covered_indexes_by_file = defaultdict(list)
     print(f"Processing {len(files)} files... with {handler_func.__name__}")
     for file in files:
-        covered_indexes = []
-        max_index = len(tx_list) - 1
         outputs = []
         tx_list = file["transactions"]
         i = 0
         for transaction in tx_list:
             data = handler_func(
-                transaction,
-                chain_id=file["chainId"],
+                transaction, chain_id=file["chainId"],
                 # Try to extract bip number from transaction meta first. If it's missing,
                 # It means merge jsons hasn't been run yet, so we extract it from the file name
                 bip_number=transaction.get(
@@ -347,11 +314,12 @@ def handler(files: list, handler_func: Callable) -> dict[str, str]:
                 ) or extract_bip_number(file),
                 tx_index=i
             )
+            if data:
+                covered_indexes_by_file[file['file_name']].append(i)
+                outputs.append(data)
+            i += 1
         if outputs:
-            reports[file['file_name']] = {
-                "report_dicts": outputs,
-                "report_text": format_into_report(file, outputs),
-            }
+            reports[file['file_name']] = format_into_report(file, outputs)
     return reports
 
 
@@ -363,9 +331,8 @@ def main() -> None:
     removed_gauges = handler(files, _parse_removed_transaction)
     transfer_reports = handler(files, _parse_transfer)
     permissions_reports = handler(files, _parse_permissions)
-    no_report_report = parse_missing_reports([added_gauges, removed_gauges, transfer_reports, permissions_reports])
 
-    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports, permissions_reports, no_report_report)
+    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports, permissions_reports)
     # Save report to report.txt file
     if merged_files:
         with open("payload_reports.txt", "w") as f:
