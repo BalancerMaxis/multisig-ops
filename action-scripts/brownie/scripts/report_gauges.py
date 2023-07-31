@@ -5,6 +5,7 @@ from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResu
 from brownie import Contract
 from brownie import network
 from web3 import Web3
+from collections import defaultdict
 
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
@@ -93,7 +94,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-    if transaction['to'] != ADDR_BOOK.search_unique("v4/GaugeAdder").address:
+    if transaction['to'] != ADDR_BOOK.search_unique("20230519-gauge-adder-v4").address:
         return
 
     # Parse only gauge add transactions
@@ -296,10 +297,12 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
     Process a list of files and return a dict with parsed data.
     """
     reports = {}
+    covered_indexes_by_file = defaultdict(list)
     print(f"Processing {len(files)} files... with {handler_func.__name__}")
     for file in files:
         outputs = []
         tx_list = file["transactions"]
+        i = 0
         for transaction in tx_list:
             data = handler_func(
                 transaction, chain_id=file["chainId"],
@@ -309,10 +312,12 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
                     'meta', {}).get(
                     'bip_number'
                 ) or extract_bip_number(file),
-                tx_index=transaction.get('meta', {}).get('tx_index', "N/A")
+                tx_index=i
             )
             if data:
+                covered_indexes_by_file[file['file_name']].append(i)
                 outputs.append(data)
+            i += 1
         if outputs:
             reports[file['file_name']] = format_into_report(file, outputs)
     return reports
