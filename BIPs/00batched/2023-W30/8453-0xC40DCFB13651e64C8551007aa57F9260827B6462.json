@@ -11,150 +11,6 @@
   },
   "transactions": [
     {
-      "to": "0xDEd7Fef7D8eCdcB74F22f0169e1A9EC696e6695d",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "feeType",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "newValue",
-            "type": "uint256"
-          }
-        ],
-        "name": "setFeeTypePercentage",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "feeType": "0",
-        "newValue": "500000000000000000"
-      },
-      "meta": {
-        "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388A.json",
-        "bip_number": "BIP-388"
-      }
-    },
-    {
-      "to": "0xDEd7Fef7D8eCdcB74F22f0169e1A9EC696e6695d",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "feeType",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "newValue",
-            "type": "uint256"
-          }
-        ],
-        "name": "setFeeTypePercentage",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "feeType": "2",
-        "newValue": "500000000000000000"
-      },
-      "meta": {
-        "tx_index": 1,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388A.json",
-        "bip_number": "BIP-388"
-      }
-    },
-    {
-      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "grantRole",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "role": "0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8",
-        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
-      },
-      "meta": {
-        "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388B.json",
-        "bip_number": "BIP-388"
-      }
-    },
-    {
-      "to": "0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "contract ILiquidityGaugeFactory",
-            "name": "factory",
-            "type": "address"
-          }
-        ],
-        "name": "addGaugeFactory",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "factory": "0x2498A2B0d6462d2260EAC50aE1C3e03F4829BA95"
-      },
-      "meta": {
-        "tx_index": 1,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388B.json",
-        "bip_number": "BIP-388"
-      }
-    },
-    {
-      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "renounceRole",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "role": "0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8",
-        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
-      },
-      "meta": {
-        "tx_index": 2,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388B.json",
-        "bip_number": "BIP-388"
-      }
-    },
-    {
       "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
       "value": "0",
       "data": null,
@@ -361,6 +217,149 @@
       "meta": {
         "tx_index": 6,
         "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/base.json",
+        "bip_number": "BIP-388"
+      }
+    },{
+      "to": "0xDEd7Fef7D8eCdcB74F22f0169e1A9EC696e6695d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "feeType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newValue",
+            "type": "uint256"
+          }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "0",
+        "newValue": "500000000000000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388A.json",
+        "bip_number": "BIP-388"
+      }
+    },
+    {
+      "to": "0xDEd7Fef7D8eCdcB74F22f0169e1A9EC696e6695d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "feeType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newValue",
+            "type": "uint256"
+          }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "2",
+        "newValue": "500000000000000000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388A.json",
+        "bip_number": "BIP-388"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388B.json",
+        "bip_number": "BIP-388"
+      }
+    },
+    {
+      "to": "0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          }
+        ],
+        "name": "addGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0x2498A2B0d6462d2260EAC50aE1C3e03F4829BA95"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388B.json",
+        "bip_number": "BIP-388"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W30/BIP-388/BIP-388B.json",
         "bip_number": "BIP-388"
       }
     },
