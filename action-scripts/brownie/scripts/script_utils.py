@@ -140,7 +140,7 @@ def prettify_contract_inputs_values(chain, contracts_inputs_values):
                 outputs[key] = f"{values[0]} ({perm.paths_by_action_id.get(value[0], 'N/A')})"
             else:
                 for value in values:
-                    outputs[key] =[]
+                    outputs[key] = []
                     outputs[key] = f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
         elif web3.Web3.isAddress(value):
             outputs[key] = f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')})"
@@ -150,7 +150,7 @@ def prettify_contract_inputs_values(chain, contracts_inputs_values):
 
 
 def merge_files(
-    results_outputs_list: list[dict[str, dict[str, dict]]],
+        results_outputs_list: list[dict[str, dict[str, dict]]],
 ) -> dict[str, str]:
     """
     Function that merges a list of report dicts into a dict of files and report strings.
@@ -186,6 +186,7 @@ def extract_bip_number_from_file_name(file_name: str) -> str:
         bip_match = re.search(r"BIP-?\d+", file_name)
         bip = bip_match.group(0) if bip_match else None
     return bip or "N/A"
+
 
 def extract_bip_number(bip_file: dict) -> Optional[str]:
     """
