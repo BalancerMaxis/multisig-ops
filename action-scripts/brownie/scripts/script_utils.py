@@ -130,9 +130,7 @@ def prettify_contract_inputs_values(chain, contracts_inputs_values):
     outputs = {}
     for k,v in contracts_inputs_values.items():
         if "role" in k:
-            v = v.strip('[ ]')
-            v = v.replace(" ", "")
-            v = v.split(",")
+            v = v.strip('[ ]').replace(" ", "").split(",")
             if len(v) == 1:
                 outputs[k] = f"{v[0]} ({perm.paths_by_action_id.get(v[0], 'N/A')})"
             else:
