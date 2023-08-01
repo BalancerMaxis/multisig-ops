@@ -124,7 +124,7 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     return file_report
 
 
-def prettify_contract_inputs_values(chain, contracts_inputs_values):
+def prettify_contract_inputs_values(chain: str , contracts_inputs_values: dict) -> dict:
     """
     Accepts contractInputsValues dict with key of input_name and value of input_value
     Tries to look for values to add human readability to and does so when possible
@@ -137,9 +137,9 @@ def prettify_contract_inputs_values(chain, contracts_inputs_values):
         values = valuestring.strip('[ ]f').replace(" ", "").split(",")
         for value in values:
             if "role" in key:
-                outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})")
+                outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) ")
             elif web3.Web3.isAddress(value):
-                outputs[key].append(f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')})")
+                outputs[key].append(f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) ")
         else:
             outputs[key] = valuestring
     return outputs
