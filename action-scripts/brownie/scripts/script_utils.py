@@ -150,15 +150,15 @@ def merge_files(
     results_outputs_list: list[dict[str, dict[str, dict]]],
 ) -> dict[str, str]:
     """
-    Function that merges a list of report dicts into a dict of files and report strings
+    Function that merges a list of report dicts into a dict of files and report strings.
 
 
-    Say we have two dictionaries:
-    added_gauges = {
+    Say we have two dictionaries in the list:
+    results_outputs_list[0] = {
         "file1.json": "report1",
         "file2.json": "report2",
     }
-    removed_gauges = {
+    results_outputs_list[1] = {
         "file1.json": "report3",
         "file3.json": "report4",
     }

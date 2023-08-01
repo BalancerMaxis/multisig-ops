@@ -15,12 +15,7 @@ from .script_utils import extract_bip_number
 from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
 
-
-
 import json
-
-
-DEBUG = True
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
@@ -108,9 +103,9 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if not gauge_type:
         print("No gauge type found! Cannot process transaction")
         return
-    if transaction['to'] != ADDR_BOOK.search_unique("20230519-gauge-adder-v4").address:
+    if transaction['to'] != ADDR_BOOK.search_unique("20230519-gauge-adder-v4/GaugeAdder").address:
         return
-    ## Reset connection to mainnet
+    # Reset connection to mainnet
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
