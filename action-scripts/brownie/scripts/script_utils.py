@@ -125,22 +125,27 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
 
 
 def prettify_contract_inputs_values(chain, contracts_inputs_values):
+    """
+    Accepts contractInputsValues dict with key of input_name and value of input_value
+    Tries to look for values to add human readability to and does so when possible
+    Retruns a non-executable but more human readable version of the inputs in the same format
+    """
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = {}
-    for k,v in contracts_inputs_values.items():
-        if "role" in k:
-            v = v.strip('[ ]').replace(" ", "").split(",")
-            if len(v) == 1:
-                outputs[k] = f"{v[0]} ({perm.paths_by_action_id.get(v[0], 'N/A')})"
+    for key, values in contracts_inputs_values.items():
+        if "role" in key:
+            values = value.strip('[ ]').replace(" ", "").split(",")
+            if len(value) == 1:
+                outputs[key] = f"{values[0]} ({perm.paths_by_action_id.get(value[0], 'N/A')})"
             else:
-                for value in v:
-                    outputs[k] =[]
-                    outputs[k] = f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
-        elif web3.Web3.isAddress(v):
-            outputs[k] = f"{v} ({addr.reversebook.get(web3.Web3.toChecksumAddress(v), 'N/A')})"
+                for value in values:
+                    outputs[key] =[]
+                    outputs[key] = f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
+        elif web3.Web3.isAddress(value):
+            outputs[key] = f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')})"
         else:
-            outputs[k] = v
+            outputs[key] = value
     return outputs
 
 
