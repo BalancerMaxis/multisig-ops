@@ -140,7 +140,7 @@ def prettify_contract_inputs_values(chain, contracts_inputs_values):
                 for value in v:
                     contracts_inputs_values[k] =[]
                     contracts_inputs_values[k] = f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}"
-        if "role" in k:
+        if "account" in k:
             v = v.strip('[ ]')
             v = v.replace(" ", "")
             v = v.split(",")
@@ -150,6 +150,8 @@ def prettify_contract_inputs_values(chain, contracts_inputs_values):
                 for value in v:
                     contracts_inputs_values[k] = []
                     contracts_inputs_values[k] = f"{value} ({addr.paths_by_action_id.get(value, 'N/A')})"
+        if int(v) > 1e13:
+            contracts_inputs_values[v] = f"{v} ({v/1e18})/1e18"
     return contracts_inputs_values
 
 
