@@ -13,6 +13,8 @@ from .script_utils import get_pool_info
 from .script_utils import merge_files
 from .script_utils import extract_bip_number
 from .script_utils import extract_bip_number_from_file_name
+from .script_utils import prettify_contract_inputs_values
+
 
 
 import json
@@ -326,7 +328,6 @@ def parse_no_reports_report(all_reports) -> dict[str, dict]:
         chain_name = AddrBook.chain_names_by_id.get(int(chain_id),"Chain_not_found")
         addr = AddrBook(chain_name)
         no_reports = []
-        print (f"uc:{uncovered_indexs}, c:{covered_indexes}, r:{all_indexes}")
         for i in uncovered_indexs:
             transaction = filedata_by_file[filename]["transactions"][i]
             #  Now we can do the reporting magic on each uncovered transaction
@@ -334,12 +335,14 @@ def parse_no_reports_report(all_reports) -> dict[str, dict]:
             bip_number = transaction.get(
                 'meta', {}).get(
                 'bip_number'
-            ) or extract_bip_number_from_file_name(filename),
+            ) or extract_bip_number_from_file_name(filename)
+            civ_parsed = prettify_contract_inputs_values(chain_name, transaction["contractInputsValues"])
+
             no_reports.append({
                 "chain": filedata_by_file[filename].get("chainId", "MISSING!"),
                 "to": f"{to} ({addr.reversebook.get(to, 'Not Found')}",
                 "fx_name": transaction["contractMethod"]["name"],
-                "inputs": json.dumps(transaction["contractInputsValues"], indent=2),
+                "inputs": json.dumps(civ_parsed, indent=2),
                 "bip_number": bip_number,
                 "tx_index": i,
 

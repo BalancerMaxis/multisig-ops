@@ -5,7 +5,7 @@ from json import JSONDecodeError
 from typing import Optional
 from tabulate import tabulate
 from collections import defaultdict
-
+from bal_addresses import AddrBook, BalPermissions
 import requests
 from brownie import Contract
 
@@ -122,8 +122,39 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     return file_report
 
 
+def prettify_contract_inputs_values(chain, contracts_inputs_values):
+    addr = AddrBook(chain)
+    perm = BalPermissions(chain)
+    civ= {
+        "role": "0x42bc3b76ebdb675c6f7836b464d27c7517e14b05dc08bb944a4837563fc805ca",
+        "account": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41"
+    }
+    for k,v in contracts_inputs_values.items():
+        if "role" in k:
+            v = v.strip('[ ]')
+            v = v.replace(" ", "")
+            v = v.split(",")
+            if len(v) == 1:
+                contracts_inputs_values[k] = f"{v[0]} ({perm.paths_by_action_id.get(v[0], 'N/A')}"
+            else:
+                for value in v:
+                    contracts_inputs_values[k] =[]
+                    contracts_inputs_values[k] = f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}"
+        if "role" in k:
+            v = v.strip('[ ]')
+            v = v.replace(" ", "")
+            v = v.split(",")
+            if len(v) == 1:
+                contracts_inputs_values[k] = f"{v[0]} ({addr.paths_by_action_id.get(v[0], 'N/A')})"
+            else:
+                for value in v:
+                    contracts_inputs_values[k] = []
+                    contracts_inputs_values[k] = f"{value} ({addr.paths_by_action_id.get(value, 'N/A')})"
+    return contracts_inputs_values
+
+
 def merge_files(
-        results_outputs_list: list[dict[str, dict[str, dict]]],
+    results_outputs_list: list[dict[str, dict[str, dict]]],
 ) -> dict[str, str]:
     """
     Function that merges a list of report dicts into a dict of files and report strings
@@ -146,8 +177,6 @@ def merge_files(
     }
     """
     strings_by_file = defaultdict(str)
-    ordered_strings_by_file = defaultdict(int, str)
-
     for result_output in results_outputs_list:
         for file, report_data in result_output.items():
             strings_by_file[file] += report_data["report_text"]
