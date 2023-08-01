@@ -3,6 +3,8 @@ import os
 import re
 from json import JSONDecodeError
 from typing import Optional
+
+import web3
 from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
@@ -92,7 +94,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     Converts list of dicts into a pretty table
     """
     # Headers without "chain"
-    header = [k for k in outputs[0].keys()]
+    header = [k for k in outputs[0].keys() if k != "chain"]
     table = []
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
@@ -125,34 +127,23 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
 def prettify_contract_inputs_values(chain, contracts_inputs_values):
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
-    civ= {
-        "role": "0x42bc3b76ebdb675c6f7836b464d27c7517e14b05dc08bb944a4837563fc805ca",
-        "account": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41"
-    }
+    outputs = {}
     for k,v in contracts_inputs_values.items():
         if "role" in k:
             v = v.strip('[ ]')
             v = v.replace(" ", "")
             v = v.split(",")
             if len(v) == 1:
-                contracts_inputs_values[k] = f"{v[0]} ({perm.paths_by_action_id.get(v[0], 'N/A')}"
+                outputs[k] = f"{v[0]} ({perm.paths_by_action_id.get(v[0], 'N/A')})"
             else:
                 for value in v:
-                    contracts_inputs_values[k] =[]
-                    contracts_inputs_values[k] = f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}"
-        if "account" in k:
-            v = v.strip('[ ]')
-            v = v.replace(" ", "")
-            v = v.split(",")
-            if len(v) == 1:
-                contracts_inputs_values[k] = f"{v[0]} ({addr.paths_by_action_id.get(v[0], 'N/A')})"
-            else:
-                for value in v:
-                    contracts_inputs_values[k] = []
-                    contracts_inputs_values[k] = f"{value} ({addr.paths_by_action_id.get(value, 'N/A')})"
-        if int(v) > 1e13:
-            contracts_inputs_values[v] = f"{v} ({v/1e18})/1e18"
-    return contracts_inputs_values
+                    outputs[k] =[]
+                    outputs[k] = f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
+        elif web3.Web3.isAddress(v):
+            outputs[k] = f"{v} ({addr.reversebook.get(web3.Web3.toChecksumAddress(v), 'N/A')})"
+        else:
+            outputs[k] = v
+    return outputs
 
 
 def merge_files(
