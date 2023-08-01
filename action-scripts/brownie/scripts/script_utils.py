@@ -4,6 +4,7 @@ import re
 from json import JSONDecodeError
 from typing import Optional
 from tabulate import tabulate
+from collections import defaultdict
 
 import requests
 from brownie import Contract
@@ -96,7 +97,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
-        dict_filtered = {k: v for k, v in dict_.items()}
+        dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
         table.append(list(dict_filtered.values()))
     return str(tabulate(table, headers=header, tablefmt="grid"))
 
@@ -122,15 +123,11 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
 
 
 def merge_files(
-        added_gauges: dict[str, str],
-        removed_gauges: dict[str, str],
-        transfers: dict[str, str],
-        permissions: dict[str, str]
+        results_outputs_list: list[dict[str, dict[str, dict]]],
 ) -> dict[str, str]:
     """
-    Function that merges two dictionaries into one.
+    Function that merges a list of report dicts into a dict of files and report strings
 
-    Extend with more dictionaries if needed.
 
     Say we have two dictionaries:
     added_gauges = {
@@ -148,16 +145,22 @@ def merge_files(
         "file3.json": "report4",
     }
     """
-    merged_dict = {}
-    for key in added_gauges.keys() | removed_gauges.keys() | transfers.keys() | permissions.keys():
-        merged_dict[key] = "".join([
-            added_gauges.get(key, ""),
-            removed_gauges.get(key, ""),
-            transfers.get(key, ""),
-            permissions.get(key, "")
-        ])
-    return merged_dict
+    strings_by_file = defaultdict(str)
+    ordered_strings_by_file = defaultdict(int, str)
 
+    for result_output in results_outputs_list:
+        for file, report_data in result_output.items():
+            strings_by_file[file] += report_data["report_text"]
+    return strings_by_file
+
+
+def extract_bip_number_from_file_name(file_name: str) -> str:
+    bip = None
+    # First, try to exctract BIP from file path
+    if file_name is not None:
+        bip_match = re.search(r"BIP-?\d+", file_name)
+        bip = bip_match.group(0) if bip_match else None
+    return bip or "N/A"
 
 def extract_bip_number(bip_file: dict) -> Optional[str]:
     """
