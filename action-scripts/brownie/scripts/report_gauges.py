@@ -351,7 +351,7 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
         # If there are no covered indexes this returns an empty set, but we know there is 1 uncovered tx at index 0
         if len(covered_indexes) == 0:
             uncovered_indexs.add(0)
-        print(f"covered: {covered_indexes}, uc:{uncovered_indexs}, all: {all_indexes}")
+        print(f"{filename}: covered: {covered_indexes}, uc:{uncovered_indexs}, all: {all_indexes}")
         if len(uncovered_indexs) == 0:
             print(f"BINGO!  100% coverage for {filename}")
             continue
