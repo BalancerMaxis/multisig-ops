@@ -132,12 +132,20 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         chain, gauge, gauge_selectors
     )
 
+    addr = AddrBook(AddrBook.chain_names_by_id[transaction["chainId"]])
+    to = transaction['to']
+    to_name = addr.reversebook.get([to], "!!NOT-FOUND")
+    if to_name == "20210418-authorizer/Authorizer":
+        to_string = "Authorizer"
+    elif isinstance(to_name, str):
+        to_string = f"!!f{to_name}??"
+
     return {
-        "function": command,
+        "function": f"{to_string}/{command}",
         "chain": chain.replace("-main", "") if chain else "mainnet",
         "pool_id": pool_id,
         "symbol": pool_symbol,
-        "aFactor": a_factor,
+        "a": a_factor,
         "gauge_address": gauge_address,
         "fee": f"{fee}%",
         "cap": gauge_cap,
@@ -188,13 +196,20 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
         chain, gauge, gauge_selectors
     )
+    addr =AddrBook(AddrBook.chain_names_by_id[transaction["chainId"]])
+    to = transaction['to']
+    to_name = addr.reversebook.get([to], "!!NOT-FOUND")
+    if to_name == "20210418-authorizer/Authorizer":
+        to_string = "Authorizer"
+    elif isinstance(to_name, str):
+        to_string = f"!!f{to_name}??"
+
     return {
-        "function": command,
+        "function": f"{to_string}/{command}",
         "chain": chain.replace("-main", "") if chain else "mainnet",
         "pool_id": pool_id,
         "symbol": pool_symbol,
-        "pool_address": pool_address,
-        "aFactor": a_factor,
+        "a": a_factor,
         "gauge_address": gauge_address,
         "fee": f"{fee}%",
         "cap": gauge_cap,
@@ -211,7 +226,6 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     ## Parse only role changes
     if "Role" not in function:
         return
-
     chain_id = kwargs["chain_id"]
     chain_name = ""
     for c_name, c_id in AddrBook.chain_ids_by_name.items():
@@ -234,6 +248,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     if not isinstance(action_ids, list):
         print(f"Function {function} came up with {action_ids} which is not a valid list.")
         return
+    to = addr.reversebook.get(transaction["to"], f"NOT-FOUND: {transaction['to']}")
     caller_address = transaction["contractInputsValues"].get("account")
     caller_name = addr.reversebook.get(caller_address, "!!NOT FOUND!!")
     fx_paths = []
@@ -241,7 +256,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         paths = perms.paths_by_action_id[action_id]
         fx_paths = [*fx_paths, *paths]
     return {
-        "function": function,
+        "function": f"{to}/{function}",
         "chain": chain_name,
         "caller_name": caller_name,
         "caller_address": caller_address,
@@ -288,12 +303,9 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     return {
         "function": "transfer",
         "chain": chain_name.replace("-main", "") if chain_name else "mainnet",
-        "token_symbol": symbol,
-        "recipient_name": recipient_name,
-        "amount": amount,
-        "token_address": token.address,
-        "recipient_address": recipient_address,
-        "raw_amount": raw_amount,
+        "token_symbol": f"{symbol}:{token.address}",
+        "recipient": f"{recipient_name}:{recipient_address}",
+        "amount": f"{amount} (RAW: {raw_amount})",
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A'),
     }
@@ -340,7 +352,7 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]]) -> dict[str, dic
 
             no_reports.append({
                 "fx_name": transaction["contractMethod"]["name"],
-               "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
+                "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
                 "chain": filedata_by_file[filename].get("chainId", 0),
                 "inputs": json.dumps(civ_parsed, indent=2),
                 "bip_number": bip_number,
