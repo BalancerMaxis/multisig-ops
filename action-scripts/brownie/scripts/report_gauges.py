@@ -12,7 +12,10 @@ from .script_utils import get_changed_files
 from .script_utils import get_pool_info
 from .script_utils import merge_files
 from .script_utils import extract_bip_number
+from .script_utils import extract_bip_number_from_file_name
+from .script_utils import prettify_contract_inputs_values
 
+import json
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
@@ -91,12 +94,6 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     :param transaction: transaction to parse
     :return: dict with parsed data
     """
-    if network.is_connected():
-        network.disconnect()
-    network.connect(CHAIN_MAINNET)
-    if transaction['to'] != ADDR_BOOK.search_unique("20230519-gauge-adder-v4").address:
-        return
-
     # Parse only gauge add transactions
     if not any(method in transaction["contractInputsValues"] for method in GAUGE_ADD_METHODS):
         return
@@ -106,6 +103,14 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if not gauge_type:
         print("No gauge type found! Cannot process transaction")
         return
+    if transaction['to'] != ADDR_BOOK.search_unique("20230519-gauge-adder-v4/GaugeAdder").address:
+        return
+    # Reset connection to mainnet
+    if network.is_connected():
+        network.disconnect()
+    network.connect(CHAIN_MAINNET)
+
+
     chain = TYPE_TO_CHAIN_MAP.get(gauge_type)
     gauge_address = None
     for method in GAUGE_ADD_METHODS:
@@ -146,15 +151,17 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse a gauge remover transaction and return a dict with parsed data.
     """
-    if network.is_connected():
-        network.disconnect()
-    network.connect(CHAIN_MAINNET)
     input_values = transaction.get("contractInputsValues")
     if not input_values or not isinstance(input_values, dict):
         return
     encoded_data = input_values.get("data")
     if not encoded_data:
         return
+
+    if network.is_connected():
+        network.disconnect()
+    network.connect(CHAIN_MAINNET)
+
     (command, inputs) = Contract(
         Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
     ).decode_input(transaction["contractInputsValues"]["data"])
@@ -292,12 +299,67 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
-def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
+def parse_no_reports_report(all_reports: list[dict[str, dict]]) -> dict[str, dict]:
+    """
+    Accepts a list of report outputs returned from the handler.  Returns a report with details about any transactions,
+    which have not been otherwise reported on in the same format as the input reports in the list.
+    """
+    covered_indexs_by_file = defaultdict(set)
+    uncovered_indexes_by_file = defaultdict(set)
+    tx_list_len_by_file = defaultdict(int)
+    filedata_by_file = defaultdict(dict)
+    reports = defaultdict(dict)
+    for report_info in all_reports:
+        for filename, info in report_info.items():
+            tx_list_len_by_file[filename] = len(info["report_data"]["file"]["transactions"])
+            filedata_by_file[filename] = info["report_data"]["file"]
+            for output in info["report_data"]["outputs"]:
+                covered_indexs_by_file[filename].add(output.get("tx_index"))
+    for filename, covered_indexes in covered_indexs_by_file.items():
+        all_indexes = range(tx_list_len_by_file[filename])
+        if covered_indexes == {None}:
+            covered_indexes = set()
+        uncovered_indexs = covered_indexes.symmetric_difference(all_indexes)
+        if len(uncovered_indexs) == 0:
+            print(f"BINGO!  100% coverage for {filename}")
+            continue
+        uncovered_indexes_by_file[filename] = uncovered_indexs
+        chain_id = filedata_by_file[filename]["chainId"]
+        chain_name = AddrBook.chain_names_by_id.get(int(chain_id),"Chain_not_found")
+        addr = AddrBook(chain_name)
+        no_reports = []
+        for i in uncovered_indexs:
+            transaction = filedata_by_file[filename]["transactions"][i]
+            #  Now we can do the reporting magic on each uncovered transaction
+            to = transaction['to']
+            bip_number = transaction.get(
+                'meta', {}).get(
+                'bip_number'
+            ) or extract_bip_number_from_file_name(filename)
+            civ_parsed = prettify_contract_inputs_values(chain_name, transaction["contractInputsValues"])
+
+            no_reports.append({
+                "fx_name": transaction["contractMethod"]["name"],
+               "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
+                "chain": filedata_by_file[filename].get("chainId", 0),
+                "inputs": json.dumps(civ_parsed, indent=2),
+                "bip_number": bip_number,
+                "tx_index": i,
+            })
+
+        reports[filename] = {
+            "report_text": format_into_report({"file_name": filename}, no_reports),
+            "report_data": {"file": {"file_name": filename}, "outputs": no_reports}
+            }
+    return reports
+
+
+
+def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
     """
     Process a list of files and return a dict with parsed data.
     """
     reports = {}
-    covered_indexes_by_file = defaultdict(list)
     print(f"Processing {len(files)} files... with {handler_func.__name__}")
     for file in files:
         outputs = []
@@ -315,11 +377,13 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, str]:
                 tx_index=i
             )
             if data:
-                covered_indexes_by_file[file['file_name']].append(i)
                 outputs.append(data)
             i += 1
         if outputs:
-            reports[file['file_name']] = format_into_report(file, outputs)
+            reports[file['file_name']] = {
+                "report_text": format_into_report(file, outputs),
+                "report_data": {"file": file, "outputs": outputs}
+                }
     return reports
 
 
@@ -327,12 +391,14 @@ def main() -> None:
     files = get_changed_files()
     print(f"Found {len(files)} files with added/removed gauges")
     # TODO: Add here more handlers for other types of transactions
-    added_gauges = handler(files, _parse_added_transaction)
-    removed_gauges = handler(files, _parse_removed_transaction)
-    transfer_reports = handler(files, _parse_transfer)
-    permissions_reports = handler(files, _parse_permissions)
-
-    merged_files = merge_files(added_gauges, removed_gauges, transfer_reports, permissions_reports)
+    all_reports = []
+    all_reports.append(handler(files, _parse_added_transaction))
+    all_reports.append(handler(files, _parse_removed_transaction))
+    all_reports.append(handler(files, _parse_transfer))
+    all_reports.append(handler(files, _parse_permissions))
+    no_reports_report = parse_no_reports_report(all_reports)
+    all_reports.append(no_reports_report)
+    merged_files = merge_files(all_reports)
     # Save report to report.txt file
     if merged_files:
         with open("payload_reports.txt", "w") as f:
