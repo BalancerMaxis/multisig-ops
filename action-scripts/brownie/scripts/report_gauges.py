@@ -94,6 +94,8 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     :param transaction: transaction to parse
     :return: dict with parsed data
     """
+    if not transaction.get("contractInputsValues"):
+        return
     # Parse only gauge add transactions
     if not any(method in transaction["contractInputsValues"] for method in GAUGE_ADD_METHODS):
         return
@@ -132,11 +134,11 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         chain, gauge, gauge_selectors
     )
 
-    addr = AddrBook(AddrBook.chain_names_by_id[transaction["chainId"]])
+    addr = AddrBook("mainnet")
     to = transaction['to']
-    to_name = addr.reversebook.get([to], "!!NOT-FOUND")
-    if to_name == "20210418-authorizer/Authorizer":
-        to_string = "Authorizer"
+    to_name = addr.reversebook.get(to, "!!NOT-FOUND")
+    if to_name == "20230519-gauge-adder-v4/GaugeAdder":
+        to_string = "GaugeAdderV4"
     elif isinstance(to_name, str):
         to_string = f"!!f{to_name}??"
 
@@ -159,6 +161,8 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse a gauge remover transaction and return a dict with parsed data.
     """
+    if not transaction.get("contractInputsValues"):
+        return
     input_values = transaction.get("contractInputsValues")
     if not input_values or not isinstance(input_values, dict):
         return
@@ -196,11 +200,11 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
         chain, gauge, gauge_selectors
     )
-    addr =AddrBook(AddrBook.chain_names_by_id[transaction["chainId"]])
+    addr =AddrBook("mainnet")
     to = transaction['to']
-    to_name = addr.reversebook.get([to], "!!NOT-FOUND")
-    if to_name == "20210418-authorizer/Authorizer":
-        to_string = "Authorizer"
+    to_name = addr.reversebook.get(to, "!!NOT-FOUND")
+    if to_name == "20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint":
+        to_string = "AAEntrypoint"
     elif isinstance(to_name, str):
         to_string = f"!!f{to_name}??"
 
@@ -222,6 +226,8 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Permissions changes made to the authorizer
     """
+    if not transaction.get("contractInputsValues"):
+        return
     function = transaction["contractMethod"].get("name")
     ## Parse only role changes
     if "Role" not in function:
@@ -248,7 +254,12 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     if not isinstance(action_ids, list):
         print(f"Function {function} came up with {action_ids} which is not a valid list.")
         return
-    to = addr.reversebook.get(transaction["to"], f"NOT-FOUND: {transaction['to']}")
+    to = transaction['to']
+    to_name = addr.reversebook.get(to, "!!NOT-FOUND")
+    if to_name == "20210418-authorizer/Authorizer":
+        to_string = "Authorizer"
+    elif isinstance(to_name, str):
+        to_string = f"!!f{to_name}??"
     caller_address = transaction["contractInputsValues"].get("account")
     caller_name = addr.reversebook.get(caller_address, "!!NOT FOUND!!")
     fx_paths = []
@@ -256,7 +267,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         paths = perms.paths_by_action_id[action_id]
         fx_paths = [*fx_paths, *paths]
     return {
-        "function": f"{to}/{function}",
+        "function": f"{to_string}/{function}",
         "chain": chain_name,
         "caller_name": caller_name,
         "caller_address": caller_address,
@@ -271,7 +282,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse an ERC-20 transfer transaction and return a dict with parsed data
     """
-
+    if not transaction.get("contractInputsValues"):
+        return
     # Parse only gauge add transactions
     if transaction["contractMethod"]["name"] != "transfer":
         return
@@ -311,22 +323,28 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
-def parse_no_reports_report(all_reports: list[dict[str, dict]]) -> dict[str, dict]:
+def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict]) -> dict[str, dict]:
     """
-    Accepts a list of report outputs returned from the handler.  Returns a report with details about any transactions,
-    which have not been otherwise reported on in the same format as the input reports in the list.
+    Accepts a list of report outputs returned from the handler, and the files list.
+    Returns a report with details about any transactions, which have not been otherwise reported on in the same format
+    as the input reports in the list.
     """
-    covered_indexs_by_file = defaultdict(set)
+    covered_indexs_by_file = {}
+    reports = defaultdict(dict)
     uncovered_indexes_by_file = defaultdict(set)
     tx_list_len_by_file = defaultdict(int)
     filedata_by_file = defaultdict(dict)
-    reports = defaultdict(dict)
+    # Generate a dict of sets of all files checked and a dict of all filedatas
+    for file in files:
+        covered_indexs_by_file[file["file_name"]] = set()
+        filedata_by_file[file["file_name"]] = file
+    # Figure out covered indexes per file based on provided reports
     for report_info in all_reports:
         for filename, info in report_info.items():
             tx_list_len_by_file[filename] = len(info["report_data"]["file"]["transactions"])
-            filedata_by_file[filename] = info["report_data"]["file"]
             for output in info["report_data"]["outputs"]:
                 covered_indexs_by_file[filename].add(output.get("tx_index"))
+    # Figure out uncovered indexes in the dict and report on them
     for filename, covered_indexes in covered_indexs_by_file.items():
         all_indexes = range(tx_list_len_by_file[filename])
         if covered_indexes == {None}:
@@ -348,12 +366,16 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]]) -> dict[str, dic
                 'meta', {}).get(
                 'bip_number'
             ) or extract_bip_number_from_file_name(filename)
-            civ_parsed = prettify_contract_inputs_values(chain_name, transaction["contractInputsValues"])
-
+            civ = transaction.get("contractInputsValues")
+            if civ:
+                civ_parsed = prettify_contract_inputs_values(chain_name, transaction["contractInputsValues"])
+            elif transaction.get("data"):
+                civ_parsed = transaction["data"]
             no_reports.append({
                 "fx_name": transaction["contractMethod"]["name"],
                 "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
                 "chain": filedata_by_file[filename].get("chainId", 0),
+                "value": transaction.get("value", "!!N/A!!"),
                 "inputs": json.dumps(civ_parsed, indent=2),
                 "bip_number": bip_number,
                 "tx_index": i,
@@ -408,7 +430,7 @@ def main() -> None:
     all_reports.append(handler(files, _parse_removed_transaction))
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
-    no_reports_report = parse_no_reports_report(all_reports)
+    no_reports_report = parse_no_reports_report(all_reports, files)
     all_reports.append(no_reports_report)
     merged_files = merge_files(all_reports)
     # Save report to report.txt file
