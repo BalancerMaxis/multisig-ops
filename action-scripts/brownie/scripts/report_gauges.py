@@ -349,7 +349,11 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
         all_indexes = range(tx_list_len_by_file[filename])
         if covered_indexes == {None}:
             covered_indexes = set()
-        uncovered_indexs = covered_indexes.symmetric_difference(all_indexes)
+        uncovered_indexs = set(all_indexes).symmetric_difference(covered_indexes)
+        # If there are no covered indexes this returns an empty set, but we know there is 1 uncovered tx at index 0
+        if len(uncovered_indexs) == 0:
+            uncovered_indexs.add(0)
+        print(f"covered: {covered_indexes}, uc:{uncovered_indexs}, all: {all_indexes}")
         if len(uncovered_indexs) == 0:
             print(f"BINGO!  100% coverage for {filename}")
             continue
