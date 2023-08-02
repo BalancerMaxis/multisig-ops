@@ -298,7 +298,12 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         "tx_index": kwargs.get('tx_index', 'N/A'),
     }
 
-def parse_no_reports_report(all_reports) -> dict[str, dict]:
+
+def parse_no_reports_report(all_reports: list[dict[str, dict]]) -> dict[str, dict]:
+    """
+    Accepts a list of report outputs returned from the handler.  Returns a report with details about any transactions,
+    which have not been otherwise reported on in the same format as the input reports in the list.
+    """
     covered_indexs_by_file = defaultdict(set)
     uncovered_indexes_by_file = defaultdict(set)
     tx_list_len_by_file = defaultdict(int)
