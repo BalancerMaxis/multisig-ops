@@ -1,0 +1,41 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1690998840227,
+    "meta": {
+      "name": "Transactions Batch",
+      "description": "",
+      "txBuilderVersion": "1.16.1",
+      "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+      "createdFromOwnerAddress": "",
+      "checksum": "0xb6add21a88cadfe3f40b3c035bf4d2f1f46255488fa20e3502a19a5fb2fea600"
+    },
+    "transactions": [
+      {
+        "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+        "value": "0",
+        "data": null,
+        "contractMethod": {
+          "inputs": [
+            {
+              "name": "gauge",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "gaugeType",
+              "type": "string",
+              "internalType": "string"
+            }
+          ],
+          "name": "addGauge",
+          "payable": false
+        },
+        "contractInputsValues": {
+          "gauge": "0x317e4966AE76fBf5110D2412c0c9332047399643",
+          "gaugeType": "Polygon"
+        }
+      }
+    ]
+  }
+  
