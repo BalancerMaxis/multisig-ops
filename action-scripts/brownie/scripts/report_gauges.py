@@ -335,7 +335,7 @@ def parse_no_reports_report(all_reports) -> dict[str, dict]:
 
             no_reports.append({
                 "fx_name": transaction["contractMethod"]["name"],
-                "to": f"{to} ({addr.reversebook.get(to, 'Not Found')}",
+               "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
                 "chain": filedata_by_file[filename].get("chainId", 0),
                 "inputs": json.dumps(civ_parsed, indent=2),
                 "bip_number": bip_number,
