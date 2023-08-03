@@ -3,8 +3,11 @@ import os
 import re
 from json import JSONDecodeError
 from typing import Optional
-from tabulate import tabulate
 
+import web3
+from tabulate import tabulate
+from collections import defaultdict
+from bal_addresses import AddrBook, BalPermissions
 import requests
 from brownie import Contract
 
@@ -91,12 +94,12 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     Converts list of dicts into a pretty table
     """
     # Headers without "chain"
-    header = [k for k in outputs[0].keys()]
+    header = [k for k in outputs[0].keys() if k != "chain"]
     table = []
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
-        dict_filtered = {k: v for k, v in dict_.items()}
+        dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
         table.append(list(dict_filtered.values()))
     return str(tabulate(table, headers=header, tablefmt="grid"))
 
@@ -121,23 +124,40 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     return file_report
 
 
+def prettify_contract_inputs_values(chain: str , contracts_inputs_values: dict) -> dict:
+    """
+    Accepts contractInputsValues dict with key of input_name and value of input_value
+    Tries to look for values to add human readability to and does so when possible
+    Retruns a non-executable but more human readable version of the inputs in the same format
+    """
+    addr = AddrBook(chain)
+    perm = BalPermissions(chain)
+    outputs = defaultdict(list)
+    for key, valuestring in contracts_inputs_values.items():
+        values = valuestring.strip('[ ]f').replace(" ", "").split(",")
+        for value in values:
+            if "role" in key:
+                outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) ")
+            elif web3.Web3.isAddress(value):
+                outputs[key].append(f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) ")
+        else:
+            outputs[key] = valuestring
+    return outputs
+
+
 def merge_files(
-        added_gauges: dict[str, str],
-        removed_gauges: dict[str, str],
-        transfers: dict[str, str],
-        permissions: dict[str, str]
+        results_outputs_list: list[dict[str, dict[str, dict]]],
 ) -> dict[str, str]:
     """
-    Function that merges two dictionaries into one.
+    Function that merges a list of report dicts into a dict of files and report strings.
 
-    Extend with more dictionaries if needed.
 
-    Say we have two dictionaries:
-    added_gauges = {
+    Say we have two dictionaries in the list:
+    results_outputs_list[0] = {
         "file1.json": "report1",
         "file2.json": "report2",
     }
-    removed_gauges = {
+    results_outputs_list[1] = {
         "file1.json": "report3",
         "file3.json": "report4",
     }
@@ -148,15 +168,20 @@ def merge_files(
         "file3.json": "report4",
     }
     """
-    merged_dict = {}
-    for key in added_gauges.keys() | removed_gauges.keys() | transfers.keys() | permissions.keys():
-        merged_dict[key] = "".join([
-            added_gauges.get(key, ""),
-            removed_gauges.get(key, ""),
-            transfers.get(key, ""),
-            permissions.get(key, "")
-        ])
-    return merged_dict
+    strings_by_file = defaultdict(str)
+    for result_output in results_outputs_list:
+        for file, report_data in result_output.items():
+            strings_by_file[file] += report_data["report_text"]
+    return strings_by_file
+
+
+def extract_bip_number_from_file_name(file_name: str) -> str:
+    bip = None
+    # First, try to exctract BIP from file path
+    if file_name is not None:
+        bip_match = re.search(r"BIP-?\d+", file_name)
+        bip = bip_match.group(0) if bip_match else None
+    return bip or "N/A"
 
 
 def extract_bip_number(bip_file: dict) -> Optional[str]:
