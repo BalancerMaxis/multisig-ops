@@ -133,15 +133,18 @@ def prettify_contract_inputs_values(chain: str , contracts_inputs_values: dict) 
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = defaultdict(list)
-    for key, valuestring in contracts_inputs_values.items():
-        values = valuestring.strip('[ ]f').replace(" ", "").split(",")
+    for key, valuedata in contracts_inputs_values.items():
+        if isinstance(valuedata, list):
+            values = valuedata
+        else:
+            values = valuedata.strip('[ ]f').replace(" ", "").split(",")
         for value in values:
             if "role" in key:
                 outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) ")
             elif web3.Web3.isAddress(value):
                 outputs[key].append(f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) ")
         else:
-            outputs[key] = valuestring
+            outputs[key] = valuedata
     return outputs
 
 

@@ -68,6 +68,7 @@ def validate_path_has_weekly_dir(file: dict) -> Tuple[bool, str]:
         return False, f"File {filename} has has no YYYY-W## in path"
     return True, ""
 
+
 # Add more validators here as needed
 VALIDATORS = [
     validate_contains_msig,
