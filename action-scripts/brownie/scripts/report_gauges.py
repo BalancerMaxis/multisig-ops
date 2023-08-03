@@ -259,7 +259,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     if to_name == "20210418-authorizer/Authorizer":
         to_string = "Authorizer"
     elif isinstance(to_name, str):
-        to_string = f"!!f{to_name}??"
+        to_string = f"!!{to_name}??"
     caller_address = transaction["contractInputsValues"].get("account")
     caller_name = addr.reversebook.get(caller_address, "!!NOT FOUND!!")
     fx_paths = []
