@@ -1,40 +1,40 @@
 {
-	"version": "1.0",
-	"chainId": "1",
-	"createdAt": 1691061221499,
-	"meta": {
-		"name": "Transactions Batch",
-		"description": "",
-		"txBuilderVersion": "1.16.1",
-		"createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
-		"createdFromOwnerAddress": "",
-		"checksum": "0xc3edecc9e8d3d858dcbd73fbbd22ddb4230e190faec80af7577d980661a4f7b6"
-	},
-	"transactions": [
-		{
-			"to": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
-			"value": "0",
-			"data": null,
-			"contractMethod": {
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "delegatee",
-						"type": "address"
-					},
-					{
-						"internalType": "enum IGovernancePowerDelegationToken.DelegationType",
-						"name": "delegationType",
-						"type": "uint8"
-					}
-				],
-				"name": "delegateByType",
-				"payable": false
-			},
-			"contractInputsValues": {
-				"delegatee": "0x2cc1ADE245020FC5AAE66Ad443e1F66e01c54Df1",
-				"delegationType": "1"
-			}
-		}
-	]
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1691061221499,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.1",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xc3edecc9e8d3d858dcbd73fbbd22ddb4230e190faec80af7577d980661a4f7b6"
+  },
+  "transactions": [
+    {
+      "to": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "delegatee",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IGovernancePowerDelegationToken.DelegationType",
+            "name": "delegationType",
+            "type": "uint8"
+          }
+        ],
+        "name": "delegateByType",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegatee": "0x2cc1ADE245020FC5AAE66Ad443e1F66e01c54Df1",
+        "delegationType": "1"
+      }
+    }
+  ]
 }
