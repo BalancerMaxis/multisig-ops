@@ -184,13 +184,15 @@ def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{
     (action_ids_map, warnings) = build_action_ids_map(input_data=input_data)
     (change_list, w) = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
     warnings += "\n" + w
-    print("changelist", json.dumps(change_list, indent=2))
-    print_change_list(
-        change_list=change_list,
-        output_dir=output_dir
-    )
-    save_command_description_table(change_list=change_list, output_dir=output_dir)
-    save_txbuilder_json(change_list=change_list,output_dir=output_dir)
+    if change_list:
+        print_change_list(
+            change_list=change_list,
+            output_dir=output_dir
+        )
+        save_command_description_table(change_list=change_list, output_dir=output_dir)
+        save_txbuilder_json(change_list=change_list,output_dir=output_dir)
+    else:
+        warnings += "Doing nothing as there is no changelist, everything up to date? \n"
     with open(f"{output_dir}/{today}_warnings.txt", "w") as f:
         f.write(warnings)
 
