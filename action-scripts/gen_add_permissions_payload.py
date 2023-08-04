@@ -48,6 +48,7 @@ def build_action_ids_map(input_data,):
         action_ids_map[chain_name] = defaultdict(set)
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
+            print(f"Processing {chain_name}({chain_id})")
             book = book_by_chain[chain_name]
             perms = perms_by_chain[chain_name]
             for deployment in change["deployments"]:
@@ -61,7 +62,13 @@ def build_action_ids_map(input_data,):
                         warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: found no matches, skipping\n"
                         continue
                     for caller in callers:
-                        action_ids_map[chain_name][result.action_id].add(book.search_unique(caller).address)
+                        # TODO rethink bal addresses here, output format is different for extras/msigs and deployments
+                        caller_lookup = book.search_unique(caller)
+                        if isinstance(caller_lookup, str):
+                            caller_address = caller_lookup
+                        else:
+                            caller_address = caller_lookup.address
+                        action_ids_map[chain_name][result.action_id].add(caller_address)
     return action_ids_map, warnings
 
 
