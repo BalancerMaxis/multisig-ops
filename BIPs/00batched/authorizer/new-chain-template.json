@@ -7,7 +7,7 @@
       "setSwapFeePercentage(uint256)": ["multisigs/lm"],
       "startAmplificationParameterUpdate(uint256,uint256)": ["multisigs/lm"],
       "stopAmplificationParameterUpdate()": ["multisigs/lm"],
-      "pause()": ["multisigs/emergency"],
+      "/pause()": ["multisigs/emergency"],
       "disable()": ["multisigs/emergency"],
       "enableRecoveryMode()": [
         "multisigs/emergency",
@@ -73,7 +73,7 @@
   },
   {
     "chain_map": {
-      "gnosis": 100
+      "mainnet": 1
     },
     "function_caller_map": {
       "add_reward(address,address)": ["multisigs/lm"]
