@@ -1,4 +1,0 @@
-| deployment              | chain   | function                | role                                                               | target   | target_address                             |
-|:------------------------|:--------|:------------------------|:-------------------------------------------------------------------|:---------|:-------------------------------------------|
-| 20230109-gauge-adder-v3 | mainnet | addGnosisGauge(address) | 0xe818738e338905496f604a2a26c7ca754558870a3810786cfbb89ae28d262dc5 | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |
-| 20230109-gauge-adder-v3 | mainnet | addZKSyncGauge(address) | 0x010cab59e1860b78f8f67210e267d2c06d77c17b4529f007c7c8acee11ea2fe0 | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |

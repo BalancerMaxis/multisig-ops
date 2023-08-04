@@ -48,6 +48,7 @@ def build_action_ids_map(input_data,):
         action_ids_map[chain_name] = defaultdict(set)
     for change in input_data:
         for chain_name, chain_id in change["chain_map"].items():
+            print(f"Processing {chain_name}({chain_id})")
             book = book_by_chain[chain_name]
             perms = perms_by_chain[chain_name]
             for deployment in change["deployments"]:
@@ -61,7 +62,13 @@ def build_action_ids_map(input_data,):
                         warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: found no matches, skipping\n"
                         continue
                     for caller in callers:
-                        action_ids_map[chain_name][result.action_id].add(book.search_unique(caller).address)
+                        # TODO rethink bal addresses here, output format is different for extras/msigs and deployments
+                        caller_lookup = book.search_unique(caller)
+                        if isinstance(caller_lookup, str):
+                            caller_address = caller_lookup
+                        else:
+                            caller_address = caller_lookup.address
+                        action_ids_map[chain_name][result.action_id].add(caller_address)
     return action_ids_map, warnings
 
 
@@ -98,6 +105,7 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
 
 def print_change_list(change_list, output_dir, filename_root=today):
     df = pd.DataFrame(change_list)
+    print(df)
     chain_address_sorted = df.sort_values(by=["chain", "caller_address"])
     chain_deployment_sorted = df.sort_values(by=["chain", "deployment", "function"])
     print(df.to_markdown(index=False))
@@ -174,15 +182,17 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
     (action_ids_map, warnings) = build_action_ids_map(input_data=input_data)
-    print (action_ids_map)
     (change_list, w) = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
     warnings += "\n" + w
-    print_change_list(
-        change_list=change_list,
-        output_dir=output_dir
-    )
-    save_command_description_table(change_list=change_list, output_dir=output_dir)
-    save_txbuilder_json(change_list=change_list,output_dir=output_dir)
+    if change_list:
+        print_change_list(
+            change_list=change_list,
+            output_dir=output_dir
+        )
+        save_command_description_table(change_list=change_list, output_dir=output_dir)
+        save_txbuilder_json(change_list=change_list,output_dir=output_dir)
+    else:
+        warnings += "Doing nothing as there is no changelist, everything up to date? \n"
     with open(f"{output_dir}/{today}_warnings.txt", "w") as f:
         f.write(warnings)
 

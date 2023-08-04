@@ -1,7 +1,14 @@
 [
   {
     "chain_map": {
-      "mainnet": 1
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100,
+      "zkevm": 1101,
+      "avalanche": 43114,
+      "base": 8453
     },
     "function_caller_map": {
       "setSwapFeePercentage(uint256)": ["multisigs/lm"],
@@ -28,7 +35,14 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100,
+      "zkevm": 1101,
+      "avalanche": 43114,
+      "base": 8453
     },
     "function_caller_map": {
       "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
@@ -64,7 +78,14 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100,
+      "zkevm": 1101,
+      "avalanche": 43114,
+      "base": 8453
     },
     "function_caller_map": {
       "setFeeTypePercentage(uint256,uint256)": ["multisigs/dao"]
@@ -73,7 +94,14 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100,
+      "zkevm": 1101,
+      "avalanche": 43114,
+      "base": 8453
     },
     "function_caller_map": {
       "add_reward(address,address)": ["multisigs/lm"]
@@ -82,7 +110,14 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100,
+      "zkevm": 1101,
+      "avalanche": 43114,
+      "base": 8453
     },
     "function_caller_map": {
       "denylistToken(address)": ["multisigs/emergency"],
@@ -92,7 +127,14 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "base": 8453,
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100,
+      "zkevm": 1101,
+      "avalanche": 43114
     },
     "function_caller_map": {
       "removePoolFactory(address)": ["multisigs/blabs_ops"],
@@ -102,7 +144,14 @@
   },
   {
     "chain_map": {
-      "mainnet": 1
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100,
+      "zkevm": 1101,
+      "avalanche": 43114,
+      "base": 8453
     },
     "function_caller_map": {
       "registerProtocolId(uint256,string)": ["multisigs/lm"],
