@@ -13,28 +13,16 @@
       "base": 8453
     },
     "function_caller_map": {
-      "setSwapFeePercentage(uint256)": [
-        "multisigs/lm"
-      ],
-      "startAmplificationParameterUpdate(uint256,uint256)": [
-        "multisigs/lm"
-      ],
-      "stopAmplificationParameterUpdate()": [
-        "multisigs/lm"
-      ],
-      "pause()": [
-        "multisigs/emergency"
-      ],
-      "disable()": [
-        "multisigs/emergency"
-      ],
+      "setSwapFeePercentage(uint256)": ["multisigs/lm"],
+      "startAmplificationParameterUpdate(uint256,uint256)": ["multisigs/lm"],
+      "stopAmplificationParameterUpdate()": ["multisigs/lm"],
+      "pause()": ["multisigs/emergency"],
+      "disable()": ["multisigs/emergency"],
       "enableRecoveryMode()": [
         "multisigs/emergency",
         "20221123-pool-recovery-helper/PoolRecoveryHelper"
       ],
-      "setTargets(uint256,uint256)": [
-        "multisigs/lm"
-      ]
+      "setTargets(uint256,uint256)": ["multisigs/lm"]
     },
     "deployments": [
       "20230206-weighted-pool-v4",
@@ -88,13 +76,9 @@
       "setFlashLoanFeePercentage(uint256)": [
         "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider"
       ],
-      "setPaused(bool)": [
-        "multisigs/emergency"
-      ]
+      "setPaused(bool)": ["multisigs/emergency"]
     },
-    "deployments": [
-      "20210418-vault"
-    ]
+    "deployments": ["20210418-vault"]
   },
   {
     "chain_map": {
@@ -110,13 +94,9 @@
       "base": 8453
     },
     "function_caller_map": {
-      "setFeeTypePercentage(uint256,uint256)": [
-        "multisigs/dao"
-      ]
+      "setFeeTypePercentage(uint256,uint256)": ["multisigs/dao"]
     },
-    "deployments": [
-      "20220725-protocol-fee-percentages-provider"
-    ]
+    "deployments": ["20220725-protocol-fee-percentages-provider"]
   },
   {
     "chain_map": {
@@ -132,13 +112,9 @@
       "base": 8453
     },
     "function_caller_map": {
-      "add_reward(address,address)": [
-        "multisigs/lm"
-      ]
+      "add_reward(address,address)": ["multisigs/lm"]
     },
-    "deployments": [
-      "20230316-child-chain-gauge-factory-v2"
-    ]
+    "deployments": ["20230316-child-chain-gauge-factory-v2"]
   },
   {
     "chain_map": {
@@ -154,16 +130,10 @@
       "base": 8453
     },
     "function_caller_map": {
-      "denylistToken(address)": [
-        "multisigs/emergency"
-      ],
-      "withdrawCollectedFees(address[],uint256[],address)": [
-        "multisigs/lm"
-      ]
+      "denylistToken(address)": ["multisigs/emergency"],
+      "withdrawCollectedFees(address[],uint256[],address)": ["multisigs/lm"]
     },
-    "deployments": [
-      "20220517-protocol-fee-withdrawer"
-    ]
+    "deployments": ["20220517-protocol-fee-withdrawer"]
   },
   {
     "chain_map": {
@@ -179,16 +149,10 @@
       "base": 8453
     },
     "function_caller_map": {
-      "removePoolFactory(address)": [
-        "multisigs/blabs_ops"
-      ],
-      "addPoolFactory(address)": [
-        "multisigs/blabs_ops"
-      ]
+      "removePoolFactory(address)": ["multisigs/blabs_ops"],
+      "addPoolFactory(address)": ["multisigs/blabs_ops"]
     },
-    "deployments": [
-      "20221123-pool-recovery-helper"
-    ]
+    "deployments": ["20221123-pool-recovery-helper"]
   },
   {
     "chain_map": {
@@ -204,15 +168,9 @@
       "base": 8453
     },
     "function_caller_map": {
-      "registerProtocolId(uint256,string)": [
-        "multisigs/lm"
-      ],
-      "renameProtocolId(uint256,string)": [
-        "multisigs/lm"
-      ]
+      "registerProtocolId(uint256,string)": ["multisigs/lm"],
+      "renameProtocolId(uint256,string)": ["multisigs/lm"]
     },
-    "deployments": [
-      "20230223-protocol-id-registry"
-    ]
+    "deployments": ["20230223-protocol-id-registry"]
   }
 ]
