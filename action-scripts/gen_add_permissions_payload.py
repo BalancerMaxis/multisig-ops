@@ -105,6 +105,7 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
 
 def print_change_list(change_list, output_dir, filename_root=today):
     df = pd.DataFrame(change_list)
+    print(df)
     chain_address_sorted = df.sort_values(by=["chain", "caller_address"])
     chain_deployment_sorted = df.sort_values(by=["chain", "deployment", "function"])
     print(df.to_markdown(index=False))
@@ -181,9 +182,9 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json"):
     input_data = load_input_data(input_file)
     (action_ids_map, warnings) = build_action_ids_map(input_data=input_data)
-    print (action_ids_map)
     (change_list, w) = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
     warnings += "\n" + w
+    print("changelist", json.dumps(change_list, indent=2))
     print_change_list(
         change_list=change_list,
         output_dir=output_dir
