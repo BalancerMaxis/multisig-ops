@@ -118,7 +118,7 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
         chain_name = AddrBook.chain_names_by_id(chain_id)
         book = AddrBook(chain_name)
         multisig = book.reversebook.get(web3.Web3.toChecksumAddress(address), "!NOT FOUND")
-        file_report =+ f"MERGED PAYLOAD: Chain:{chain_name}({chain_id}), Multisig: {multisig}({address})"
+        file_report += f"MERGED PAYLOAD: Chain:{chain_name}({chain_id}), Multisig: {multisig}({address})"
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
         map(
