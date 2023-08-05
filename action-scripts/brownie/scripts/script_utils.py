@@ -139,7 +139,7 @@ def extract_chain_id_and_address_from_filename(file_name: str):
     Grabs a chain_id and multisig address from a payload file name if it is formatted like chain-address.something
     """
     # Define the regular expression pattern to match the desired format
-    pattern = r'^(\d+)-0x([0-9a-fA-F]+)\.'
+    pattern = r'(\d+)-0x([0-9a-fA-F]+)\.'
 
     # Try to find a match in the input string
     match = re.match(pattern, file_name)
