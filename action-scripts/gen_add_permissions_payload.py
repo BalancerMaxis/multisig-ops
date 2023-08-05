@@ -166,11 +166,12 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         transactions = []
         tx_template = data.transactions[0]
         for address,actions in action_ids_by_address.items():
+            sorted_actions = list(actions)
+            sorted_actions.sort()
             transaction = DotMap(tx_template)
             transaction.to = book.flatbook["20210418-authorizer/Authorizer"]
             # TX builder wants lists in a string, addresses unquoted
-            actions = list(actions)
-            transaction.contractInputsValues.roles = str(actions).replace("'","")
+            transaction.contractInputsValues.roles = str(sorted_actions).replace("'","")
             transaction.contractInputsValues.account = address
             transactions.append(dict(transaction))
         # Inject transaction list
