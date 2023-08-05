@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1685726983450,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IStakelessGauge[]",
+            "name": "gauges",
+            "type": "address[]"
+          }
+        ],
+        "name": "addGauges",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Arbitrum",
+        "gauges": [
+          "0xF07b17DC2f1bCA19dDe307690b59bAE3322fAf0F"
+        ]
+      }
+    },
+    {
+      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IStakelessGauge[]",
+            "name": "gauges",
+            "type": "address[]"
+          }
+        ],
+        "name": "addGauges",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Arbitrum",
+        "gauges": [
+          "0xF07b17DC2f1bCA19dDe307690b59bAE3322fAf0F"
+        ]
+      }
+    }
+  ]
+}
