@@ -39,6 +39,36 @@
         "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W31/BIP-285-missing-perms/2023-08-04_avalanche.json",
         "bip_number": "BIP-285"
       }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x17bd7cdcf8501c46510667aaa9187771e0d83831a3367ff4cf81c00eac71137c,0x32725667b078898f78f53e59f45eb1837b34a9469dbe36f9270b674247b23abf]",
+        "account": "0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W31/BIP-285-missing-perms/2023-08-04_avalanche.json",
+        "bip_number": "BIP-285"
+      }
     }
   ]
 }
