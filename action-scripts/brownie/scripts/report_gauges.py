@@ -233,11 +233,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     if "Role" not in function:
         return
     chain_id = kwargs["chain_id"]
-    chain_name = ""
-    for c_name, c_id in AddrBook.chain_ids_by_name.items():
-        if int(c_id) == int(chain_id):
-            chain_name = c_name
-            break
+    chain_name = AddrBook.chain_names_by_id.get(chain_id)
     if not chain_name:
         print("Chain name not found! Can not parse transaction.")
         return
