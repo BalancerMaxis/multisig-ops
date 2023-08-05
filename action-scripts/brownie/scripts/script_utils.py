@@ -108,8 +108,17 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
     """
-    file_report = f"File name: {file['file_name']}\n"
+    file_name = file['file_name']
+    file_report = f"File name: {file_name}\n"
+
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
+    result = extract_chain_id_and_address_from_filename(file_name)
+    if result:
+        (chain_id, address) = result
+        chain_name = AddrBook.chain_names_by_id(chain_id)
+        book = AddrBook(chain_name)
+        multisig = book.reversebook.get(web3.Web3.toChecksumAddress(address), "!NOT FOUND")
+        file_report =+ f"MERGED PAYLOAD: Chain:{chain_name}({chain_id}), Multisig: {multisig}({address})"
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
         map(
@@ -122,6 +131,26 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
     return file_report
+
+
+def extract_chain_id_and_address_from_filename(file_name: str) -> Optional[{int, str}]:
+    """
+    Grabs a chain_id and multisig address from a payload file name if it is formatted like chain-address.something
+    """
+    # Define the regular expression pattern to match the desired format
+    pattern = r'^(\d+)-0x([0-9a-fA-F]+)\.'
+
+    # Try to find a match in the input string
+    match = re.match(pattern, file_name)
+
+    if match:
+        # Extract the chain_id and address from the matched groups
+        chain_id = int(match.group(1))
+        address = match.group(2)
+        return int(chain_id), address
+    else:
+        # Return None if the pattern does not match the input string
+        return None
 
 
 def prettify_contract_inputs_values(chain: str , contracts_inputs_values: dict) -> dict:

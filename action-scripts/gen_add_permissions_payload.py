@@ -1,7 +1,6 @@
 import json
-import requests
 from dotmap import DotMap
-from bal_addresses import AddrBook, BalPermissions, NoResultError, MultipleMatchesError
+from bal_addresses import AddrBook, BalPermissions, NoResultError
 import pandas as pd
 from datetime import date
 from web3 import Web3
@@ -32,9 +31,9 @@ W3_BY_CHAIN = {
 
 book_by_chain = {}
 perms_by_chain = {}
-for chain in AddrBook.chain_ids_by_name.keys():
-    book_by_chain[chain] = AddrBook(chain)
-    perms_by_chain[chain] = BalPermissions(chain)
+for chain_name in AddrBook.chain_ids_by_name.keys():
+    book_by_chain[chain_name] = AddrBook(chain_name)
+    perms_by_chain[chain_name] = BalPermissions(chain_name)
 
 def load_input_data(input_json_file):
     with open(input_json_file, "r") as f:
@@ -59,7 +58,7 @@ def build_action_ids_map(input_data,):
                     try:
                         result = perms.search_unique_path_by_unique_deployment(deployment, function)
                     except NoResultError as err:
-                        warnings += f"WARNING: On chain:{chain}:{deployment}/{function}: found no matches, skipping\n"
+                        warnings += f"WARNING: On chain:{chain_name}:{deployment}/{function}: found no matches, skipping\n"
                         continue
                     for caller in callers:
                         # TODO rethink bal addresses here, output format is different for extras/msigs and deployments
@@ -75,10 +74,10 @@ def build_action_ids_map(input_data,):
 def generate_change_list(actions_id_map, ignore_already_set=True):
     changes = []
     warnings = ""
-    for chain, action_id_infos in actions_id_map.items():
-        print(chain)
-        book = book_by_chain[chain]
-        perms = perms_by_chain[chain]
+    for chain_name, action_id_infos in actions_id_map.items():
+        print(f"generate list: {chain_name}")
+        book = book_by_chain[chain_name]
+        perms = perms_by_chain[chain_name]
         for action_id, callers in action_id_infos.items():
             paths = perms.paths_by_action_id[action_id]
             for path in paths:
@@ -94,9 +93,9 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                     caller = book.reversebook[caller_address]
                     changes.append({
                         "deployment": deployment,
-                        "chain": chain,
                         "function": function,
                         "role": action_id,
+                        "chain": chain_name,
                         "caller": caller,
                         "caller_address": caller_address
                     })
@@ -105,7 +104,6 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
 
 def print_change_list(change_list, output_dir, filename_root=today):
     df = pd.DataFrame(change_list)
-    print(df)
     chain_address_sorted = df.sort_values(by=["chain", "caller_address"])
     chain_deployment_sorted = df.sort_values(by=["chain", "deployment", "function"])
     print(df.to_markdown(index=False))
@@ -140,6 +138,7 @@ def save_command_description_table(change_list, output_dir, filename_root=today)
 
 def save_txbuilder_json(change_list, output_dir, filename_root=today):
     df = pd.DataFrame(change_list)
+    print("Dumping files")
     chains=[]
     for change in change_list:
         if change["chain"] not in chains:
@@ -147,13 +146,15 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
 
     for chain_name in chains:
         chain_id = AddrBook.chain_ids_by_name[chain_name]
+        print(f"chain:{chain_name}")
         book = book_by_chain[chain_name]
         with open(f"{script_dir}/tx_builder_templates/authorizor_grant_roles.json", "r") as f:
             data = DotMap(json.load(f))
-
+        print(f"book.chain:{book.chain}")
         # Set global data
+        print(book.search_unique("multisigs/dao").address)
         data.chainId = chain_id
-        data.meta.createdFromSafeAddress = book_by_chain[chain].search_unique("multisigs/dao").address
+        data.meta.createdFromSafeAddress = book.search_unique("multisigs/dao").address
         # Group roles on this chain by caller address
         action_ids_by_address = defaultdict(set)
         for change in change_list:
