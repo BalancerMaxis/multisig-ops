@@ -10,6 +10,7 @@ from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
 import requests
 from brownie import Contract
+from web3 import Web3
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -169,12 +170,12 @@ def prettify_contract_inputs_values(chain: str , contracts_inputs_values: dict) 
         else:
             values = valuedata.strip('[ ]f').replace(" ", "").split(",")
         for value in values:
-            if "role" in key:
-                outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) ")
-            elif web3.Web3.isAddress(value):
+            if Web3.isAddress(value):
                 outputs[key].append(f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) ")
-        else:
-            outputs[key] = valuedata
+            elif "role" in key or "Role" in key:
+                outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) ")
+            else:
+                outputs[key] = valuedata
     return outputs
 
 
