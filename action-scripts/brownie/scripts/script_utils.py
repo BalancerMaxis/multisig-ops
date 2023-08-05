@@ -133,7 +133,8 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     return file_report
 
 
-def extract_chain_id_and_address_from_filename(file_name: str) -> Optional[{int, str}]:
+def extract_chain_id_and_address_from_filename(file_name: str):
+    ## TODO set output type can be {int, str} or None
     """
     Grabs a chain_id and multisig address from a payload file name if it is formatted like chain-address.something
     """
