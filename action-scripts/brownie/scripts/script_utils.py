@@ -114,12 +114,13 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
 
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
     result = extract_chain_id_and_address_from_filename(file_name)
+    print(result)
     if result:
         (chain_id, address) = result
-        chain_name = AddrBook.chain_names_by_id(chain_id)
+        chain_name = AddrBook.chain_names_by_id[chain_id]
         book = AddrBook(chain_name)
         multisig = book.reversebook.get(web3.Web3.toChecksumAddress(address), "!NOT FOUND")
-        file_report += f"MERGED PAYLOAD: Chain:{chain_name}({chain_id}), Multisig: {multisig}({address})"
+        file_report += f"MERGED PAYLOAD: Chain:{chain_name} ({chain_id}), Multisig: {multisig} ({address})\n"
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
         map(
@@ -140,11 +141,10 @@ def extract_chain_id_and_address_from_filename(file_name: str):
     Grabs a chain_id and multisig address from a payload file name if it is formatted like chain-address.something
     """
     # Define the regular expression pattern to match the desired format
-    pattern = r'(\d+)-0x([0-9a-fA-F]+)\.'
+    pattern = r'(\d+)-(0x[0-9a-fA-F]+)'
 
     # Try to find a match in the input string
-    match = re.match(pattern, file_name)
-
+    match = re.search(pattern, file_name)
     if match:
         # Extract the chain_id and address from the matched groups
         chain_id = int(match.group(1))
