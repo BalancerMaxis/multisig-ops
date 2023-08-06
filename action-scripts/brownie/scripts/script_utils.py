@@ -9,7 +9,7 @@ from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
 import requests
-from brownie import Contract
+from brownie import Contract, chain, network
 from web3 import Web3
 
 ROOT_DIR = os.path.dirname(
@@ -61,12 +61,17 @@ def get_changed_files() -> list[dict]:
     return changed_files
 
 
-def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str]:
+def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str, list[str], list[str]]:
     """
     Returns a tuple of pool info
     """
     pool = Contract.from_abi(
         name="IBalPool", address=pool_address, abi=json.load(open("abis/IBalPool.json", "r"))
+    )
+    chain_name = AddrBook.chain_names_by_id[chain.id]
+    book = AddrBook(chain_name)
+    vault = Contract.from_abi(
+        name="Vault",  address=book.search_unique("vault/Vault").address, abi=json.load(open("abis/IVault.json"))
     )
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
@@ -85,9 +90,18 @@ def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str]:
         fee = pool.getSwapFeePercentage() / BIPS_PRECISION
     except Exception:
         fee = NOT_FOUND
+    try:
+        tokens = vault.getPoolTokens(pool_id)[0]
+    except Exception:
+        tokens = []
+    try:
+        rate_providers = pool.getRateProviders()
+    except Exception:
+        rate_providers = []
     if pool.totalSupply == 0:
         symbol = f"WARN: {symbol} no initjoin"
-    return name, symbol, pool_id, pool.address, a_factor, fee
+
+    return name, symbol, pool_id, pool.address, a_factor, fee, tokens, rate_providers
 
 
 def convert_output_into_table(outputs: list[dict]) -> str:
@@ -153,6 +167,27 @@ def extract_chain_id_and_address_from_filename(file_name: str):
     else:
         # Return None if the pattern does not match the input string
         return None
+
+
+def get_token_symbol(token_address) -> Optional[str]:
+    """
+    Try to look up a token symbol on chain and return it if it exists
+    """
+    try:
+        return Contract.from_abi("Token", token_address, json.load(open("abis/ERC20.json"))).symbol()
+    except Exception as err:
+        print(err)
+        return
+
+def prettify_tokens_list(token_addresses:list[str]) -> list[str]:
+    """
+    Return a list of token addresses and names in string format.
+    Uses onchain lookups with brownie, requires you are on the network of the token when run
+    """
+    results = []
+    for token in token_addresses:
+        results.append(f"{get_token_symbol(token)}({token})")
+    return results
 
 
 def prettify_contract_inputs_values(chain: str , contracts_inputs_values: dict) -> dict:

@@ -14,6 +14,9 @@ from .script_utils import merge_files
 from .script_utils import extract_bip_number
 from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
+from .script_utils import prettify_tokens_list
+
+from datetime import datetime
 
 import json
 
@@ -48,10 +51,11 @@ SELECTORS_MAPPING = {
     "getPolygonZkEVMBridge": "zkevm-main"
 }
 
+today = datetime.today().strftime('%Y-%m-%d')
 
 def _extract_pool(
         chain: str, gauge: Contract, gauge_selectors: dict
-) -> tuple[str, str, str, str, str, str, str]:
+) -> tuple[str, str, str, str, str, str, str, list[str], list[str]]:
     """
     Generic function used by handlers to extract pool info given chain and gauge.
     Returns pool info
@@ -66,20 +70,20 @@ def _extract_pool(
         if "reward_receiver" in sidechain_recipient.selectors.values():
             sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
             style = STYLE_CHILD_CHAIN_STREAMER
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers  = get_pool_info(
             sidechain_recipient.lp_token())
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
         escrow = Contract(recipient.getVotingEscrow())
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee = get_pool_info(escrow.token())
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers = get_pool_info(escrow.token())
         style = STYLE_SINGLE_RECIPIENT
     else:  # Process mainnet gauges
-        (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee) = get_pool_info(
+        (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers) = get_pool_info(
             gauge.lp_token())
         style = STYLE_MAINNET
-
-    return pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style
+    tokens = prettify_tokens_list(tokens)
+    return pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style, tokens, rate_providers
 
 
 def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
@@ -130,10 +134,9 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         if "getRelativeWeightCap" in gauge_selectors else "N/A"
     )
     # Process sidechain gauges
-    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
+    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style, tokens, rate_providers = _extract_pool(
         chain, gauge, gauge_selectors
     )
-
     addr = AddrBook("mainnet")
     to = transaction['to']
     to_name = addr.reversebook.get(to, "!!NOT-FOUND")
@@ -145,16 +148,15 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     return {
         "function": f"{to_string}/{command}",
         "chain": chain.replace("-main", "") if chain else "mainnet",
-        "pool_id": pool_id,
-        "symbol": pool_symbol,
-        "a": a_factor,
-        "gauge_address": gauge_address,
-        "fee": f"{fee}%",
-        "cap": gauge_cap,
-        "style": style,
+        "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
+        "symbol_and_info": f"{pool_symbol} \nfee: {fee}, a-factor: {a_factor}",
+        "gauge_address_and_info": f"{gauge_address} \n Style: {style}, cap: {gauge_cap}",
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A'),
+        "tokens": json.dumps(tokens, indent=2).strip("[\n]"),
+        "rate_providers": json.dumps(rate_providers, indent=2).strip("[\n]")
     }
+
 
 
 def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
@@ -197,9 +199,10 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
             chain = SELECTORS_MAPPING[selector]
             break
 
-    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style = _extract_pool(
+    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style, tokens, rate_providers = _extract_pool(
         chain, gauge, gauge_selectors
     )
+
     addr =AddrBook("mainnet")
     to = transaction['to']
     to_name = addr.reversebook.get(to, "!!NOT-FOUND")
@@ -220,6 +223,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "style": style,
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A'),
+        "tokens": tokens
     }
 
 def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
@@ -376,7 +380,7 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
                 "value": transaction.get("value", "!!N/A!!"),
                 "inputs": json.dumps(civ_parsed, indent=2),
                 "bip_number": bip_number,
-                "tx_index": i,
+                "tx_index": transaction.get("tx_index", "N/A"),
             })
 
         reports[filename] = {
