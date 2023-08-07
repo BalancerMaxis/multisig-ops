@@ -123,6 +123,8 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
 
 
 def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
+    for chain, gauges in gauges_by_chain:
+        gauges_by_chain[chain] = str(gauges).replace("'", "")
     with open(output_file_path, "w") as l2_payload_file:
         json.dump(gauges_by_chain, l2_payload_file, indent=2)
 
