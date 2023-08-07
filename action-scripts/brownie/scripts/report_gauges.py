@@ -53,6 +53,7 @@ SELECTORS_MAPPING = {
 
 today = datetime.today().strftime('%Y-%m-%d')
 
+
 def _extract_pool(
         chain: str, gauge: Contract, gauge_selectors: dict
 ) -> tuple[str, str, str, str, str, str, str, list[str], list[str]]:
@@ -70,13 +71,14 @@ def _extract_pool(
         if "reward_receiver" in sidechain_recipient.selectors.values():
             sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
             style = STYLE_CHILD_CHAIN_STREAMER
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers  = get_pool_info(
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers = get_pool_info(
             sidechain_recipient.lp_token())
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
         escrow = Contract(recipient.getVotingEscrow())
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers = get_pool_info(escrow.token())
+        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers = get_pool_info(
+            escrow.token())
         style = STYLE_SINGLE_RECIPIENT
     else:  # Process mainnet gauges
         (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers) = get_pool_info(
@@ -115,7 +117,6 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-
 
     chain = TYPE_TO_CHAIN_MAP.get(gauge_type)
     gauge_address = None
@@ -156,7 +157,6 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "bip": kwargs.get('bip_number', 'N/A'),
         "tx_index": kwargs.get('tx_index', 'N/A')
     }
-
 
 
 def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
@@ -203,7 +203,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         chain, gauge, gauge_selectors
     )
 
-    addr =AddrBook("mainnet")
+    addr = AddrBook("mainnet")
     to = transaction['to']
     to_name = addr.reversebook.get(to, "!!NOT-FOUND")
     if to_name == "20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint":
@@ -225,6 +225,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "tx_index": kwargs.get('tx_index', 'N/A'),
         "tokens": tokens
     }
+
 
 def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     """
@@ -306,8 +307,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     token = Contract(transaction["to"])
     recipient_address = transaction["contractInputsValues"].get("to")
     raw_amount = (
-        transaction["contractInputsValues"].get("amount")
-        or transaction["contractInputsValues"].get("value")
+            transaction["contractInputsValues"].get("amount")
+            or transaction["contractInputsValues"].get("value")
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
@@ -357,7 +358,7 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
             continue
         uncovered_indexes_by_file[filename] = uncovered_indexs
         chain_id = filedata_by_file[filename]["chainId"]
-        chain_name = AddrBook.chain_names_by_id.get(int(chain_id),"Chain_not_found")
+        chain_name = AddrBook.chain_names_by_id.get(int(chain_id), "Chain_not_found")
         addr = AddrBook(chain_name)
         no_reports = []
         for i in uncovered_indexs:
@@ -386,9 +387,8 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
         reports[filename] = {
             "report_text": format_into_report({"file_name": filename}, no_reports),
             "report_data": {"file": {"file_name": filename}, "outputs": no_reports}
-            }
+        }
     return reports
-
 
 
 def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
@@ -419,7 +419,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
             reports[file['file_name']] = {
                 "report_text": format_into_report(file, outputs),
                 "report_data": {"file": file, "outputs": outputs}
-                }
+            }
     return reports
 
 

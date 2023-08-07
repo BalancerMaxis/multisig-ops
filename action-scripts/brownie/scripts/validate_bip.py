@@ -49,6 +49,7 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
         return False, f"No chain specified or is not found in known chain list: {chain} in {chains}"
     return True, ""
 
+
 def validate_file_has_bip(file: dict) -> Tuple[bool, str]:
     """
     Validates that a single BIP number can be determined from the file path
@@ -57,6 +58,7 @@ def validate_file_has_bip(file: dict) -> Tuple[bool, str]:
     if bip == "N/A":
         return False, f"No BIP number found in file path {file['file_name']}"
     return True, ""
+
 
 def validate_path_has_weekly_dir(file: dict) -> Tuple[bool, str]:
     """
@@ -77,8 +79,6 @@ VALIDATORS = [
     validate_file_has_bip,
     validate_path_has_weekly_dir
 ]
-
-
 
 
 def main() -> None:

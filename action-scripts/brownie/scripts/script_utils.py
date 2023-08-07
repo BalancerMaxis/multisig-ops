@@ -71,7 +71,7 @@ def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str, list[str]
     chain_name = AddrBook.chain_names_by_id[chain.id]
     book = AddrBook(chain_name)
     vault = Contract.from_abi(
-        name="Vault",  address=book.search_unique("vault/Vault").address, abi=json.load(open("abis/IVault.json"))
+        name="Vault", address=book.search_unique("vault/Vault").address, abi=json.load(open("abis/IVault.json"))
     )
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
@@ -179,7 +179,8 @@ def get_token_symbol(token_address) -> Optional[str]:
         print(err)
         return
 
-def prettify_tokens_list(token_addresses:list[str]) -> list[str]:
+
+def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     """
     Return a list of token addresses and names in string format.
     Uses onchain lookups with brownie, requires you are on the network of the token when run
@@ -190,7 +191,7 @@ def prettify_tokens_list(token_addresses:list[str]) -> list[str]:
     return results
 
 
-def prettify_contract_inputs_values(chain: str , contracts_inputs_values: dict) -> dict:
+def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
     """
     Accepts contractInputsValues dict with key of input_name and value of input_value
     Tries to look for values to add human readability to and does so when possible
