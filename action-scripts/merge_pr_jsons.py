@@ -123,19 +123,8 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
 
 
 def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
-    with open(TEMPLATE_PATH, "r") as template:
-        payload = json.load(template)
-    #  Grab the example transaction and clear the transaction list.
-    tx_template = payload["transactions"][0]
-    payload["transactions"] = []
-
-    for chainname, gaugelist in gauges_by_chain.items():
-        tx = tx_template
-        tx["contractInputsValues"]["gaugeType"] = chainname
-        tx["contractInputsValues"]["gauges"] = gaugelist
-        payload["transactions"].append(tx)
     with open(output_file_path, "w") as l2_payload_file:
-        json.dump(payload, l2_payload_file, indent=2)
+        json.dump(gauges_by_chain, l2_payload_file, indent=2)
 
 
 # Example how to run: `python action-scripts/merge_pr_jsons.py --target 2023-W23`
@@ -232,7 +221,7 @@ def main():
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
     if gauge_lists_by_chain:
-        _write_checkpointer_json(f"{dir_name_batched_full}/1-anySafeWillDo.json",
+        _write_checkpointer_json(f"{dir_name_batched_full}/checkpointer_gauges_by_chain.json",
                                  gauge_lists_by_chain)
 
 
