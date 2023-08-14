@@ -11,6 +11,7 @@ a = AddrBook("mainnet")
 flatbook = a.flatbook
 debug = False
 
+
 def dicts_to_table_string(dict_list, header=None):
     table = PrettyTable(header)
     for dict_ in dict_list:
@@ -26,7 +27,7 @@ def get_pool_info(poolAddress):
     pool = Contract.from_abi(name="IBalPool", address=poolAddress, abi=poolABI)
     try:
         (aFactor, ramp, divisor) = pool.getAmplificationParameter()
-        aFactor = int(aFactor/divisor)
+        aFactor = int(aFactor / divisor)
         if not isinstance(aFactor, int):
             aFactor = "N/A"
     except:
@@ -41,9 +42,10 @@ def get_pool_info(poolAddress):
         fee = pool.getSwapFeePercentage() / 1e16
     except:
         fee = "Not Found"
-    if pool.totalSupply ==  0:
+    if pool.totalSupply == 0:
         symbol = f"WARN: {symbol} no initjoin"
-    return(name,  symbol, poolId, pool.address, aFactor, fee)
+    return (name, symbol, poolId, pool.address, aFactor, fee)
+
 
 def get_payload_list():
     github_repo = os.environ["GITHUB_REPOSITORY"]
@@ -91,7 +93,8 @@ def gen_report(payload_list):
         for transaction in tx_list:
             style = False
             gauge_address = False
-            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder").address] or transaction["to"] == flatbook[a.search_unique("v4/GaugeAdder").address]:
+            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder").address] or transaction["to"] == flatbook[
+                a.search_unique("v4/GaugeAdder").address]:
                 for k in transaction["contractInputsValues"].keys():
                     if k == "rootGauge":
                         command = transaction["contractMethod"]["name"]
@@ -108,7 +111,7 @@ def gen_report(payload_list):
             else:
                 try:
                     if transaction["contractMethod"]["name"] != "performAction":
-                        continue ## Not a passthrough tx
+                        continue  ## Not a passthrough tx
                 except:
                     print(f"No ABI with name in payload, can't process this tx, probs not a gauge.")
                     continue
@@ -118,7 +121,8 @@ def gen_report(payload_list):
                     try:
                         (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
                     except:
-                        print(f"\n\n\n ERROR: bad call data to gauge controller: {transaction['contractInputsValues']['data']}")
+                        print(
+                            f"\n\n\n ERROR: bad call data to gauge controller: {transaction['contractInputsValues']['data']}")
                         outputs.append({
                             "function": "Bad Call Data",
                             "pool_id": transaction["contractInputsValues"]["data"],
@@ -130,11 +134,12 @@ def gen_report(payload_list):
                             "style": "!!!"
                         })
                         continue
-                else: # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
-                    (command, inputs) = Contract(authorizer_target_contract).decode_input(transaction["contractInputsValues"]["data"])
+                else:  # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
+                    (command, inputs) = Contract(authorizer_target_contract).decode_input(
+                        transaction["contractInputsValues"]["data"])
 
-                #print(inputs)
-                if len(inputs) == 0: ## Is a gauge kill
+                # print(inputs)
+                if len(inputs) == 0:  ## Is a gauge kill
                     gauge_address = transaction["contractInputsValues"]["target"]
                 else:
                     gauge_address = inputs[0]
@@ -152,19 +157,19 @@ def gen_report(payload_list):
             fingerprintFx = list(set(gauge.selectors.values()).intersection(list(fxSelectorToChain.keys())))
             if len(fingerprintFx) > 0:  ## Is sidechain
                 l2 = fxSelectorToChain[fingerprintFx[0]]
-                #print(l2, gauge.getRecipient())
+                # print(l2, gauge.getRecipient())
                 recipient = gauge.getRecipient()
                 chain = f"{l2}-main"
                 network.disconnect()
                 network.connect(chain)
-                l2hop1=Contract(recipient)
+                l2hop1 = Contract(recipient)
                 ## Check if this is a new l0 style gauge
                 if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
-                    l2hop2=Contract(l2hop1.reward_receiver())
+                    l2hop2 = Contract(l2hop1.reward_receiver())
                     (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(l2hop2.lp_token())
                     style = "ChildChainStreamer"
                     gauge_symbol = l2hop2.symbol()
-                else: # L0 style
+                else:  # L0 style
                     (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(l2hop1.lp_token())
                     style = "L0 sidechain"
                     gauge_symbol = l2hop1.symbol()
@@ -182,12 +187,12 @@ def gen_report(payload_list):
                     style = "Single Recipient"
 
             else:
-                (pool_name, pool_symbol, poolId, pool_address,  aFactor, fee) = get_pool_info(gauge.lp_token())
+                (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(gauge.lp_token())
                 gauge_symbol = gauge.symbol()
                 if not style:
                     style = "mainnet"
             if "getRelativeWeightCap" in gauge.selectors.values():
-                cap = gauge.getRelativeWeightCap()/10**16
+                cap = gauge.getRelativeWeightCap() / 10 ** 16
             else:
                 cap = "N/A"
 
