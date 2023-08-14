@@ -1,0 +1,22 @@
+File name: BIPs/2023-W32/restore-emergencydao-killguage.json
+COMMIT: `d7697e1aacb25e347f5ff44f85e7239a40827f57`
+CHAIN(S): `mainnet`
+```
++----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------+-------+------------+
+| function             | caller_name         | caller_address                             | fx_paths                                                                    | action_ids                                                         | bip   |   tx_index |
++======================+=====================+============================================+=============================================================================+====================================================================+=======+============+
+| Authorizer/grantRole | multisigs/emergency | 0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888 | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/killGauge()        | 0xec1d467d9ab03a0079c22a89037209f5763aec973897ea763e2cf25d71a5f12e | N/A   |          0 |
+|                      |                     |                                            | 20220628-optimism-root-gauge-factory/OptimismRootGauge/killGauge()          |                                                                    |       |            |
+|                      |                     |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/killGauge()                 |                                                                    |       |            |
+|                      |                     |                                            | 20220413-polygon-root-gauge-factory/PolygonRootGauge/killGauge()            |                                                                    |       |            |
+|                      |                     |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/killGauge()         |                                                                    |       |            |
+|                      |                     |                                            | 20220413-arbitrum-root-gauge-factory/ArbitrumRootGauge/killGauge()          |                                                                    |       |            |
+|                      |                     |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/killGauge()              |                                                                    |       |            |
+|                      |                     |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/killGauge()       |                                                                    |       |            |
+|                      |                     |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/killGauge()       |                                                                    |       |            |
+|                      |                     |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/killGauge() |                                                                    |       |            |
+|                      |                     |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/killGauge()         |                                                                    |       |            |
+|                      |                     |                                            | 20220325-single-recipient-gauge-factory/SingleRecipientGauge/killGauge()    |                                                                    |       |            |
+|                      |                     |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/killGauge()              |                                                                    |       |            |
++----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------+-------+------------+
+```
