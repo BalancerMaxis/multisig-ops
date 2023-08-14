@@ -56,7 +56,7 @@
 ## Gnosis
 [Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/b7c7ace3-39af-40fb-82e9-ae0f5d607552)
 
-[Sign Nonce 19](https://app.safe.global/transactions/queue?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)
+[Sign Nonce 19](https://app.safe.global/home?safe=gno:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)
 
 
 ```
