@@ -1,40 +1,40 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1692206339937,
-    "meta": {
-        "name": "Transactions Batch",
-        "description": "",
-        "txBuilderVersion": "1.16.1",
-        "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-        "createdFromOwnerAddress": "",
-        "checksum": "0xe21a083b90f252a9c7c9b244baa7517a96a89bc65611d13ddd0c372a756543bf"
-    },
-    "transactions": [
-        {
-            "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-            "value": "0",
-            "data": null,
-            "contractMethod": {
-                "inputs": [
-                    {
-                        "name": "gauge",
-                        "type": "address",
-                        "internalType": "address"
-                    },
-                    {
-                        "name": "gaugeType",
-                        "type": "string",
-                        "internalType": "string"
-                    }
-                ],
-                "name": "addGauge",
-                "payable": false
-            },
-            "contractInputsValues": {
-                "gauge": "0x82bcaD0C8F51D88ec339141F0d8953Bc25cc3d8c",
-                "gaugeType": "Polygon"
-            }
-        }
-    ]
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1692206339937,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xe21a083b90f252a9c7c9b244baa7517a96a89bc65611d13ddd0c372a756543bf"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x82bcaD0C8F51D88ec339141F0d8953Bc25cc3d8c",
+        "gaugeType": "Polygon"
+      }
+    }
+  ]
 }
