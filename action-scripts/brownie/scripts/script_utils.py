@@ -85,7 +85,12 @@ def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str, list[str]
     try:
         pool_id = str(pool.getPoolId())
     except Exception:
-        pool_id = POOL_ID_CUSTOM_FALLBACK
+        try:
+            ## TWAMM pools
+            pool = Contract.from_explorer(pool.address)
+            pool_id = str(pool.POOL_ID())
+        except Exception:
+            pool_id = POOL_ID_CUSTOM_FALLBACK
     try:
         fee = pool.getSwapFeePercentage() / BIPS_PRECISION
     except Exception:
