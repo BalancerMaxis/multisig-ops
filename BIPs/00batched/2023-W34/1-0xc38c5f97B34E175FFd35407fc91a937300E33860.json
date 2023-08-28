@@ -159,6 +159,35 @@
         "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W34/BIP-407.json",
         "bip_number": "BIP-407"
       }
+    },{
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x276Df166BC23bC6A84Aac1EA48E1acC32264b652",
+        "gaugeType": "Ethereum"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "",
+        "bip_number": "BIP-398"
+      }
     }
   ]
 }
