@@ -1,0 +1,65 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1693414411806,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.16.2",
+        "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "createdFromOwnerAddress": "",
+        "checksum": "0xd10b6330fd1fcb594688bc990b816f7c40c2e9db28bc6f5ae88cca32f11106e6"
+    },
+    "transactions": [
+        {
+            "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "target",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "data",
+                        "type": "bytes",
+                        "internalType": "bytes"
+                    }
+                ],
+                "name": "performAction",
+                "payable": true
+            },
+            "contractInputsValues": {
+                "target": "0xcD4722B7c24C29e0413BDCd9e51404B4539D14aE",
+                "data": "0xab8f0945"
+            }
+        },
+        {
+            "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "target",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "data",
+                        "type": "bytes",
+                        "internalType": "bytes"
+                    }
+                ],
+                "name": "performAction",
+                "payable": true
+            },
+            "contractInputsValues": {
+                "target": "0xDf464348c4EC2Bf0e5D6926b9f707c8e02301adf",
+                "data": "0xab8f0945"
+            }
+        }
+    ]
+}
