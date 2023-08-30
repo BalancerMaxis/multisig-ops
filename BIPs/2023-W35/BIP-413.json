@@ -1,0 +1,90 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1693414762806,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.16.2",
+        "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "createdFromOwnerAddress": "",
+        "checksum": "0x785156b946e457c8d9b692282ebb3a2a12ad959e6f5bb17275615d8b164f0345"
+    },
+    "transactions": [
+        {
+            "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "target",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "data",
+                        "type": "bytes",
+                        "internalType": "bytes"
+                    }
+                ],
+                "name": "performAction",
+                "payable": true
+            },
+            "contractInputsValues": {
+                "target": "0x414Eae9a827f4174A63Fe4f10E975678Ca28C898",
+                "data": "0xab8f0945"
+            }
+        },
+        {
+            "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "target",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "data",
+                        "type": "bytes",
+                        "internalType": "bytes"
+                    }
+                ],
+                "name": "performAction",
+                "payable": true
+            },
+            "contractInputsValues": {
+                "target": "0x73f49a29F91e016CC9BdE5cdF6f5DC049280e5A9",
+                "data": "0xab8f0945"
+            }
+        },
+        {
+            "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "target",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "data",
+                        "type": "bytes",
+                        "internalType": "bytes"
+                    }
+                ],
+                "name": "performAction",
+                "payable": true
+            },
+            "contractInputsValues": {
+                "target": "0x5c23661E747F84E0c71d782e5f1513126041734B",
+                "data": "0xab8f0945"
+            }
+        }
+    ]
+}
