@@ -216,8 +216,8 @@ def main(
     cowswap_chunks = 1
     usd = safe.contract(usd_fee_token_address)
     bal = safe.contract(addr_dotmap.tokens.BAL)
-    print(f"Current USDC: {usdc.balanceOf(safe.address)/ 10** usdc.decimals()}")
-    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), COWSWAP_DEADLINE, cowswap_chunks, 1-COWSWAP_SLIPPAGE, addr_dotmap.maxiKeepers.veBalFeeInjector)
+    print(f"Current USDC: {usdc.balanceOf(safe.address)/ 10** usdc.decimals()} is being sent to veBalFeeInjectooooooor")
+    usd.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, usd.balanceOf(safe.address))
     bal.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, bal.balanceOf(safe.address))
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")
