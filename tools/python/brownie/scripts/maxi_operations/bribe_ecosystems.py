@@ -211,13 +211,12 @@ def main(
         )
         assert b4brib - usdc.balanceOf(safe.address) == mantissa, "Unexpected tokens spent,"
 
-
-    print(f"Swapping leftover USDC for {usd_fee_token_address} and sending fees to the injector")
-    cowswap_chunks = 1
-    usd = safe.contract(usd_fee_token_address)
+    usd = safe.contract(addr_dotmap.tokens.USDC)
     bal = safe.contract(addr_dotmap.tokens.BAL)
-    print(f"Current USDC: {usdc.balanceOf(safe.address)/ 10** usdc.decimals()}")
-    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), COWSWAP_DEADLINE, cowswap_chunks, 1-COWSWAP_SLIPPAGE, addr_dotmap.maxiKeepers.veBalFeeInjector)
+    print(f"Current USDC: {usd.balanceOf(safe.address)/ 10** usd.decimals()} is being sent to veBalFeeInjectooooooor")
+    print(f"Current BAL: {bal.balanceOf(safe.address)/ 10** usdc.decimals()} is being sent to veBalFeeInjectooooooor")
+
+    usdc.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, usdc.balanceOf(safe.address))
     bal.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, bal.balanceOf(safe.address))
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")
