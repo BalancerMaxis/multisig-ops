@@ -312,7 +312,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
-    recipient_name = ADDR_BOOK.reversebook[recipient_address] or "N/A"
+    recipient_name = ADDR_BOOK.reversebook.get(recipient_address, "N/A")
     return {
         "function": "transfer",
         "chain": chain_name.replace("-main", "") if chain_name else "mainnet",
