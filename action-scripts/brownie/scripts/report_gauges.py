@@ -66,6 +66,7 @@ def _extract_pool(
         recipient = gauge.getRecipient()
         network.disconnect()
         network.connect(chain)
+        print(f"Recipient: {recipient}")
         sidechain_recipient = Contract(recipient)
         style = None
         if "reward_receiver" in sidechain_recipient.selectors.values():
