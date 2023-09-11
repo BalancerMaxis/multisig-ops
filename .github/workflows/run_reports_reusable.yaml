@@ -22,6 +22,8 @@ jobs:
       POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
       OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
       ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+      SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
+      BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
       PR_NUMBER: ${{ inputs.pr_number }}
       COMMIT_SHA: ${{ inputs.checkout_ref }}
     steps:
