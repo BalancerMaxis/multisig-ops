@@ -79,9 +79,11 @@
 
 ## Avax
 
-[Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/7d74b015-47f3-4143-9491-e5bfcc1e26b0)
+[Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/2cedf3b8-177e-4c50-98aa-a27c7cfe89ce)
 
-[Nonce 11](https://app.safe.global/transactions/queue?safe=avax%3A0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)
+REJECT NONCE 11
+
+[Nonce 12](https://app.safe.global/transactions/queue?safe=avax%3A0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)
 
 ```
 +-----------------------+--------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
