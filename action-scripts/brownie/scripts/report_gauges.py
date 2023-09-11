@@ -40,6 +40,7 @@ TYPE_TO_CHAIN_MAP = {
     "Gnosis": "gnosis-main",
     "PolygonZkEvm": "zkevm-main",
     "Avalanche": "avax-main",
+    "Base": "base-main",
     "EthereumSingleRecipientGauge": CHAIN_MAINNET
 }
 
@@ -50,7 +51,8 @@ SELECTORS_MAPPING = {
     "getGnosisBridge": "gnosis-main",
     "getOptimismBridge": "optimism-main",
     "getPolygonZkEVMBridge": "zkevm-main",
-    "getAvalancheBridge": "avax-main"
+    "getAvalancheBridge": "avax-main",
+    "getBaseBridge": "base-main"
 }
 
 today = datetime.today().strftime('%Y-%m-%d')
