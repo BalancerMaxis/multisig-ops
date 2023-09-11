@@ -39,6 +39,7 @@ TYPE_TO_CHAIN_MAP = {
     "Optimism": "optimism-main",
     "Gnosis": "gnosis-main",
     "PolygonZkEvm": "zkevm-main",
+    "Avalanche": "avax-main",
     "EthereumSingleRecipientGauge": CHAIN_MAINNET
 }
 
@@ -48,7 +49,8 @@ SELECTORS_MAPPING = {
     "getArbitrumBridge": "arbitrum",
     "getGnosisBridge": "gnosis-main",
     "getOptimismBridge": "optimism-main",
-    "getPolygonZkEVMBridge": "zkevm-main"
+    "getPolygonZkEVMBridge": "zkevm-main",
+    "getAvalancheBridge": "avax-main"
 }
 
 today = datetime.today().strftime('%Y-%m-%d')
@@ -63,8 +65,11 @@ def _extract_pool(
     """
     # Process sidechain gauges
     if chain != CHAIN_MAINNET:
+        if chain == "avalanche":
+            chain = "avax-main"
         recipient = gauge.getRecipient()
         network.disconnect()
+        print(chain)
         network.connect(chain)
         print(f"Recipient: {recipient}")
         sidechain_recipient = Contract(recipient)
