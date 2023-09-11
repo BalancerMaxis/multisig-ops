@@ -82,16 +82,16 @@
 [Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/2cedf3b8-177e-4c50-98aa-a27c7cfe89ce)
 
 REJECT NONCE 11
+REJECT NONCE 12
 
-[Nonce 12](https://app.safe.global/transactions/queue?safe=avax%3A0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)
-
+[Nonce 13](https://app.safe.global/transactions/queue?safe=avax%3A0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)
 ```
 +-----------------------+--------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 | function              | caller_name                                      | caller_address                             | fx_paths                                                             | action_ids                                                         | bip     |   tx_index |
 +=======================+==================================================+============================================+======================================================================+====================================================================+=========+============+
-| Authorizer/grantRole  | multisigs/fees                                   | 0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6 | 20230320-weighted-pool-v4/WeightedPool/enableRecoveryMode()          | 0x8ceae9d0f076b4b0c529529f6bf11832835b93b533445c655b840015f7025e50 | BIP-422 |          0 |
+| Authorizer/grantRole  | multisigs/fees                                   | 0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6 | 20230320-weighted-pool-v4/WeightedPool/setSwapFeePercentage(uint256) | 0x32725667b078898f78f53e59f45eb1837b34a9469dbe36f9270b674247b23abf | BIP-422 |          0 |
 +-----------------------+--------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
-| Authorizer/grantRole  | 20221123-pool-recovery-helper/PoolRecoveryHelper | 0x3b8cA519122CdD8efb272b0D3085453404B25bD0 | 20230320-weighted-pool-v4/WeightedPool/setSwapFeePercentage(uint256) | 0x32725667b078898f78f53e59f45eb1837b34a9469dbe36f9270b674247b23abf | BIP-422 |          1 |
+| Authorizer/grantRole  | 20221123-pool-recovery-helper/PoolRecoveryHelper | 0x3b8cA519122CdD8efb272b0D3085453404B25bD0 | 20230320-weighted-pool-v4/WeightedPool/enableRecoveryMode()          | 0x8ceae9d0f076b4b0c529529f6bf11832835b93b533445c655b840015f7025e50 | BIP-422 |          1 |
 +-----------------------+--------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 | Authorizer/grantRoles | multisigs/emergency                              | 0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0 | 20230320-weighted-pool-v4/WeightedPool/enableRecoveryMode()          | 0x8ceae9d0f076b4b0c529529f6bf11832835b93b533445c655b840015f7025e50 | BIP-422 |          2 |
 |                       |                                                  |                                            | 20230320-weighted-pool-v4/WeightedPoolFactory/disable()              | 0xd7acda26118b9ff06dd8526d0197d58c0c7ed83074be6d915bff2db42b5581ae |         |            |
