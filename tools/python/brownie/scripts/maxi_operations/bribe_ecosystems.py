@@ -43,11 +43,11 @@ query {
 }
 """
 
-def get_hh_aura_target(target_name):
+def get_hh_aura_target(target):
     response = requests.get(f"{HH_API_URL}/aura")
     options = response.json()["data"]
     for option in options:
-        if option["title"] == target_name:
+        if Web3.toChecksumAddress(option["proposal"]) == target:
             return option["proposalHash"]
     return False  ## return false if no result
 
@@ -182,18 +182,16 @@ def main(
         bribe_balancer(target, mantissa)
 
     ### AURA
-    gauge_address_to_snapshot_name = get_gauge_name_map()
     for target, amount in bribes["aura"].items():
         if amount == 0:
             continue
-        target_name = gauge_address_to_snapshot_name[web3.toChecksumAddress(target)]
+        target = web3.toChecksumAddress(target)
         # grab data from proposals to find out the proposal index
-        prop = get_hh_aura_target(target_name)
+        prop = get_hh_aura_target(target)
         mantissa = int(amount * usdc_mantissa_multilpier)
         # NOTE: debugging prints to verify
         print("******* Posting AURA Bribe:")
         print("*** Target Gauge Address:", target)
-        print("*** Target Gauge name:", target_name)
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
