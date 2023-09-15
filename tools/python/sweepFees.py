@@ -4,6 +4,7 @@ from datetime import date
 from os import listdir
 from os.path import isfile, join
 
+
 ### Whitelist tokens are swept every run regardless of min amount.
 whitelist_tokens = []
 
@@ -19,7 +20,7 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
-    sweep_limit = 5000
+    sweep_limit = 1000
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
