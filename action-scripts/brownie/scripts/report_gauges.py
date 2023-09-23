@@ -384,6 +384,8 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
                 civ_parsed = prettify_contract_inputs_values(chain_name, transaction["contractInputsValues"])
             elif transaction.get("data"):
                 civ_parsed = transaction["data"]
+            else:
+                continue
             no_reports.append({
                 "fx_name": transaction["contractMethod"]["name"],
                 "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
