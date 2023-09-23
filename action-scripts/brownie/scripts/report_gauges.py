@@ -385,7 +385,7 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
             elif transaction.get("data"):
                 civ_parsed = transaction["data"]
             else:
-                continue
+                civ_parsed = "N/A"
             no_reports.append({
                 "fx_name": transaction["contractMethod"]["name"],
                 "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
