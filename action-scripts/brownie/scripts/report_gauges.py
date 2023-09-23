@@ -316,6 +316,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     recipient_address = (
             transaction["contractInputsValues"].get("to")
             or transaction["contractInputsValues"].get("dst")
+            or transaction["contractInputsValues"].get("recipient")
     )
     if Web3.isAddress(recipient_address):
         recipient_address = Web3.toChecksumAddress(recipient_address)
