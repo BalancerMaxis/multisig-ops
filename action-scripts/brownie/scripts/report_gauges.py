@@ -313,12 +313,20 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     network.connect(chain_name)
     # Get input values
     token = Contract(transaction["to"])
-    recipient_address = transaction["contractInputsValues"].get("to")
+    recipient_address = (
+            transaction["contractInputsValues"].get("to")
+            or transaction["contractInputsValues"].get("dst")
+            or transaction["contractInputsValues"].get("recipient")
+    )
     if Web3.isAddress(recipient_address):
         recipient_address = Web3.toChecksumAddress(recipient_address)
+    else:
+        print("ERROR: can't find recipient address")
+        recipient_address = None
     raw_amount = (
             transaction["contractInputsValues"].get("amount")
             or transaction["contractInputsValues"].get("value")
+            or transaction["contractInputsValues"].get("wad")
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
@@ -384,6 +392,8 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
                 civ_parsed = prettify_contract_inputs_values(chain_name, transaction["contractInputsValues"])
             elif transaction.get("data"):
                 civ_parsed = transaction["data"]
+            else:
+                civ_parsed = "N/A"
             no_reports.append({
                 "fx_name": transaction["contractMethod"]["name"],
                 "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
