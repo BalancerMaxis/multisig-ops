@@ -314,13 +314,15 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     # Get input values
     token = Contract(transaction["to"])
     recipient_address = transaction["contractInputsValues"].get("to")
+    if Web3.isAddress(recipient_address):
+        recipient_address = Web3.toChecksumAddress(recipient_address)
     raw_amount = (
             transaction["contractInputsValues"].get("amount")
             or transaction["contractInputsValues"].get("value")
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
-    recipient_name = ADDR_BOOK.reversebook.get(Web3.toChecksumAddress(recipient_address), "N/A")
+    recipient_name = ADDR_BOOK.reversebook.get(recipient_address, "N/A")
     return {
         "function": "transfer",
         "chain": chain_name.replace("-main", "") if chain_name else "mainnet",
