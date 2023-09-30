@@ -7,7 +7,7 @@ from great_ape_safe import GreatApeSafe
 from web3 import Web3
 from bal_addresses import AddrBook
 from pandas import pandas as pd
-from brownie import interface
+from brownie import interface, Contract
 
 a = AddrBook("mainnet")
 r = a.dotmap
@@ -70,6 +70,13 @@ def claimFees(safe, sweeps):
     sweeper = safe.contract(a.flatbook["20220517-protocol-fee-withdrawer/ProtocolFeesWithdrawer"])
     sweeper.withdrawCollectedFees(address_list, amounts_list, safe.address)
 
+def genSweepsFromTokenList(tokenlist, collector):
+    sweeps = {}
+    for address in tokenlist:
+        address = Web3.toChecksumAddress(address)
+        token = Contract(address)
+        sweeps[address]  = token.balanceOf(collector)
+    return sweeps
 def cowswapFees(safe, sweeps):
     print("Setting up cowswap orders")
     error_tokens = []
