@@ -1,0 +1,215 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "increase swap fee and reduce amp for non-linear, non-bricked pools",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6",
+  "transactions": [
+    {
+      "to": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "addresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "fees",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "setSwapFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "addresses": "[0x133d241F225750D2c92948E464A5a80111920331]",
+        "fees": "[100000000000000000]"
+      }
+    },
+    {
+      "to": "0x133d241F225750D2c92948E464A5a80111920331",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "101",
+        "endTime": "1692921600"
+      }
+    },
+    {
+      "to": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "addresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "fees",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "setSwapFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "addresses": "[0x50Cf90B954958480b8DF7958A9E965752F627124]",
+        "fees": "[100000000000000000]"
+      }
+    },
+    {
+      "to": "0x50Cf90B954958480b8DF7958A9E965752F627124",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "1001",
+        "endTime": "1692921600"
+      }
+    },
+    {
+      "to": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "addresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "fees",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "setSwapFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "addresses": "[0x60683B05e9a39E3509D8fdb9C959f23170f8A0fa]",
+        "fees": "[100000000000000000]"
+      }
+    },
+    {
+      "to": "0x60683B05e9a39E3509D8fdb9C959f23170f8A0fa",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "1001",
+        "endTime": "1692921600"
+      }
+    },
+    {
+      "to": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "addresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "fees",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "setSwapFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "addresses": "[0x99c88AD7dc566616548adde8ED3eFfa730eB6C34]",
+        "fees": "[100000000000000000]"
+      }
+    },
+    {
+      "to": "0x99c88AD7dc566616548adde8ED3eFfa730eB6C34",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "1001",
+        "endTime": "1692921600"
+      }
+    }
+  ]
+}

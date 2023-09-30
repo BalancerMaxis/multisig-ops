@@ -102,7 +102,7 @@ def main(
 ):
 
     safe = GreatApeSafe(addr_dotmap.multisigs.fees)
-    safe.init_cow()
+    safe.init_cow(prod=True)
 
     usdc = safe.contract(addr_dotmap.tokens.USDC)
     usdc_mantissa_multilpier = 10 ** int(usdc.decimals())
