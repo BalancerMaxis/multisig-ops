@@ -4,10 +4,10 @@ from copy import deepcopy
 
 from web3 import Web3
 
-CSV = "../../../../BIPs/00batched/2023-w38/BIP-431-airdrop.csv"
-JSON = "../../../../BIPs/00batched/2023-w38/BIP-431-airdrop.json"
-TX_TEMPLATE = "../../tx_builder_templates/erc20_transfer.json"
-BASE_TEMPLATE = "../../tx_builder_templates/base.json"
+CSV = "../../../BIPs/00batched/2023-w38/BIP-431-airdrop.csv"
+JSON = "../../../BIPs/00batched/2023-w38/BIP-431-airdrop.json"
+TX_TEMPLATE = "../tx_builder_templates/erc20_transfer.json"
+BASE_TEMPLATE = "../tx_builder_templates/base.json"
 
 ERC20_ABI = [
     {
@@ -44,7 +44,7 @@ def main():
         raw_amount = int(amount * 10 ** token_contract.functions.decimals().call())
         tx_data = deepcopy(tx_template)
         tx_data["contractInputsValues"]["to"] = receiver
-        tx_data["contractInputsValues"]["value"] = raw_amount
+        tx_data["contractInputsValues"]["value"] = str(raw_amount)
         tx_data["to"] = token_address
         txlist.append(tx_data)
         print(tx_data)
