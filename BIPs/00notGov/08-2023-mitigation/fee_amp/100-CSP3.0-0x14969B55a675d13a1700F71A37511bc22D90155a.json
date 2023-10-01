@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "increase swap fee and reduce amp for non-linear, non-bricked pools",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+  "transactions": [
+    {
+      "to": "0xFEdb19Ec000d38d92Af4B21436870F115db22725",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "swapFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "swapFeePercentage": "100000000000000000"
+      }
+    },
+    {
+      "to": "0xFEdb19Ec000d38d92Af4B21436870F115db22725",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "1001",
+        "endTime": "1692921600"
+      }
+    }
+  ]
+}

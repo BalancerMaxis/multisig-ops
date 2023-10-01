@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "chainId": "",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "merkleProof",
+            "type": "bytes32[]"
+          }
+        ],
+        "name": "claim",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "index": "7254",
+        "account": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "totalAmount": "9738818785230600642703572",
+        "merkleProof": "['0x0da3be7ff077290c3a1efba29595087cefe9e346ec42e8ef1014b555553ec0c6', '0x894b07294a9fca2409fcec6f05800604d6099646ed0f0d7580ed3d3470be6571', '0xa5a7fbca81917b604b001447b7025cdae97831d568a583ab86b9178731ba6aa4', '0x9ca706558ad217ce018c24e238844542d922d8f85573f3a5d5a1ee32d6dfc1ba', '0xf0c4cf9533f8f66275b278e653234df8a1ef3b1a21f80b0c7c04ccdc73c6992f', '0x57a66cacee4fd65a8641a95c1c197028b34baab0bea9c03a2f162f6fbdd76884', '0xaeba46f7ecef35ec9260fa550a2f16865fb8d3083b5aee4133d10fea8511c5bc', '0xe173758a54b9652fbbe6ef5e524f77d6f34b9e5eb89ee55604b2a5f8a4403901', '0x7655928fa280bd1af14066f538635bdb2fb45be35ba00357283c31fc8604d782', '0xc4d254d5650c84c681a6cbfe2c1435a5f238b76d40dbbd0acefa8a398dd5994e', '0xb4abdaeee71c33fa38f9c978c68fd7349b7374e601d070507a8a00870694f7a3', '0x7ea93b38956f929ff070e01d941ae39afabc1d358695296f95d1a3367aa02b12', '0x8d4d4c04765307a1960722f3d56e727fb40d65dff38d60cdcf485ba81945481a', '0x3337c08e09c030b2fdbaae2aa9ac3df918562196af766b563a1ff58a5bb0e4e7']"
+      }
+    },
+    {
+      "to": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x7b065Fcb0760dF0CEA8CFd144e08554F3CeA73D1",
+        "value": "2458459376291492112521187"
+      }
+    }
+  ]
+}
