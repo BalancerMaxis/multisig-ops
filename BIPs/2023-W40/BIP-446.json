@@ -60,31 +60,6 @@
         "gauge": "0x99e2fAfD901645FB611F6D56476AF8Ad25263ea5",
         "gaugeType": "Arbitrum"
       }
-    },
-    {
-      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "gauge",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "gaugeType",
-            "type": "string",
-            "internalType": "string"
-          }
-        ],
-        "name": "addGauge",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "gauge": "0xDd6220870fc73562ac13d3aE2c0eb2eaA0922A25",
-        "gaugeType": "Base"
-      }
     }
   ]
 }
