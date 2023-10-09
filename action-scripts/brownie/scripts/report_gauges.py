@@ -108,7 +108,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     :param transaction: transaction to parse
     :return: dict with parsed data
     """
-    if not transaction.get("contractInputsValues"):
+    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
         return
     # Parse only gauge add transactions
     if not any(method in transaction["contractInputsValues"] for method in GAUGE_ADD_METHODS):
@@ -171,7 +171,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse a gauge remover transaction and return a dict with parsed data.
     """
-    if not transaction.get("contractInputsValues"):
+    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
         return
     input_values = transaction.get("contractInputsValues")
     if not input_values or not isinstance(input_values, dict):
@@ -239,7 +239,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Permissions changes made to the authorizer
     """
-    if not transaction.get("contractInputsValues"):
+    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
         return
     function = transaction["contractMethod"].get("name")
     ## Parse only role changes
@@ -291,7 +291,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse an ERC-20 transfer transaction and return a dict with parsed data
     """
-    if not transaction.get("contractInputsValues"):
+    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
         return
     # Parse only gauge add transactions
     if transaction["contractMethod"]["name"] != "transfer":

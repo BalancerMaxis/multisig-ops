@@ -33,7 +33,6 @@ jobs:
         with:
           commit-message: "Combined JSON Payloads ${{ github.event.inputs.directory }}"
           title: "Combined JSON payloads ${{ github.event.inputs.directory }}"
-          reviewers: solarcurvey
           assignees: tritium-vlk
           branch: gha-payload-merge
           delete-branch: true

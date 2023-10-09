@@ -204,18 +204,19 @@ def main():
                         "origin_file_name": file['file_name'],
                         "bip_number": extract_bip_number(file),
                     }
-                    if tx["contractMethod"]["name"] == "addGauge":
-                        try:
-                            gauge_chain = tx["contractInputsValues"]["gaugeType"]
-                            if gauge_chain != "Ethereum":
-                                gauge_lists_by_chain[gauge_chain].append(
-                                    tx["contractInputsValues"]["gauge"])
-                        except KeyError:
-                            print(
-                                f"Skipping checkpointer add for addGauge tx "
-                                f"as it doesn't have expected inputs:\n---\n "
-                                f"{tx['contractInputsValues']}"
-                            )
+                    if "contractMethod" in tx.keys():
+                        if tx["contractMethod"]["name"] == "addGauge":
+                            try:
+                                gauge_chain = tx["contractInputsValues"]["gaugeType"]
+                                if gauge_chain != "Ethereum":
+                                    gauge_lists_by_chain[gauge_chain].append(
+                                        tx["contractInputsValues"]["gauge"])
+                            except KeyError:
+                                print(
+                                    f"Skipping checkpointer add for addGauge tx "
+                                    f"as it doesn't have expected inputs:\n---\n "
+                                    f"{tx['contractInputsValues']}"
+                                )
                 result["transactions"] += file["transactions"]
             # Save the result to file
             file_name = f"{chain_id}-{safe_address}.json"
