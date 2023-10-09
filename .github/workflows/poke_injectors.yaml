@@ -3,7 +3,7 @@ name: Poke Onchain Rewards Injectors
 on:
   workflow_dispatch:
   schedule:
-    cron: "0/5 * * * *"
+  - cron: "0/5 * * * *"
 env:
   KEYWORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
 jobs:
