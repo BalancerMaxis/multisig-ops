@@ -3,7 +3,7 @@ from brownie import network, accounts, Contract
 import os
 
 ## LOAD wallet
-mnemonic =  os.environ["GITHUB_REPOSITORY"]
+mnemonic =  os.environ["KEYWORDS"]
 account = accounts.from_mnemonic(mnemonic)
 print(f"Keeper Address: {account.address}")
 ## ZKEVM
