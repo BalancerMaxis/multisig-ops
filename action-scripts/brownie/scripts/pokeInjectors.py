@@ -2,7 +2,7 @@ from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResu
 from brownie import network, accounts, Contract
 import os
 
-def main()
+def main():
     ## LOAD wallet
     mnemonic =  os.environ["KEYWORDS"]
     account = accounts.from_mnemonic(mnemonic)
