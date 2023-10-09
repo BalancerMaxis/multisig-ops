@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "chainId": "1101",
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "setTokenRateCacheDuration for affected meta stable pools",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa",
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[\"0xb56db1d3fcc3ae3614e049f605dd7f4d5d9e33d63253ac144e2bcc2521e8fb7d\"]",
+        "account": "0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa"
+      }
+    },
+    {
+      "to": "0xe274c9deb6ed34cfe4130F8D0A8a948deA5bB286",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          }
+        ],
+        "name": "setTokenRateCacheDuration",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x16c9a4d841e88e52b51936106010f27085a529ec",
+        "duration": "0"
+      }
+    },
+    {
+      "to": "0xe274c9deb6ed34cfe4130F8D0A8a948deA5bB286",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          }
+        ],
+        "name": "setTokenRateCacheDuration",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x4b718e0e2fea1da68b763cd50c446fba03ceb2ea",
+        "duration": "0"
+      }
+    }
+  ]
+}

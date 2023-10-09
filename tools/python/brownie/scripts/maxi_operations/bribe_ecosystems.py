@@ -43,11 +43,11 @@ query {
 }
 """
 
-def get_hh_aura_target(target_name):
+def get_hh_aura_target(target):
     response = requests.get(f"{HH_API_URL}/aura")
     options = response.json()["data"]
     for option in options:
-        if option["title"] == target_name:
+        if Web3.toChecksumAddress(option["proposal"]) == target:
             return option["proposalHash"]
     return False  ## return false if no result
 
@@ -182,18 +182,16 @@ def main(
         bribe_balancer(target, mantissa)
 
     ### AURA
-    gauge_address_to_snapshot_name = get_gauge_name_map()
     for target, amount in bribes["aura"].items():
         if amount == 0:
             continue
-        target_name = gauge_address_to_snapshot_name[web3.toChecksumAddress(target)]
+        target = web3.toChecksumAddress(target)
         # grab data from proposals to find out the proposal index
-        prop = get_hh_aura_target(target_name)
+        prop = get_hh_aura_target(target)
         mantissa = int(amount * usdc_mantissa_multilpier)
         # NOTE: debugging prints to verify
         print("******* Posting AURA Bribe:")
         print("*** Target Gauge Address:", target)
-        print("*** Target Gauge name:", target_name)
         print("*** Proposal hash:", prop)
         print("*** Amount:", amount)
         print("*** Mantissa Amount:", mantissa)
@@ -211,13 +209,12 @@ def main(
         )
         assert b4brib - usdc.balanceOf(safe.address) == mantissa, "Unexpected tokens spent,"
 
-
-    print(f"Swapping leftover USDC for {usd_fee_token_address} and sending fees to the injector")
-    cowswap_chunks = 1
-    usd = safe.contract(usd_fee_token_address)
+    usd = safe.contract(addr_dotmap.tokens.USDC)
     bal = safe.contract(addr_dotmap.tokens.BAL)
-    print(f"Current USDC: {usdc.balanceOf(safe.address)/ 10** usdc.decimals()}")
-    safe.cow.market_sell(usdc, usd, usdc.balanceOf(safe.address), COWSWAP_DEADLINE, cowswap_chunks, 1-COWSWAP_SLIPPAGE, addr_dotmap.maxiKeepers.veBalFeeInjector)
+    print(f"Current USDC: {usd.balanceOf(safe.address)/ 10** usd.decimals()} is being sent to veBalFeeInjectooooooor")
+    print(f"Current BAL: {bal.balanceOf(safe.address)/ 10** usdc.decimals()} is being sent to veBalFeeInjectooooooor")
+
+    usdc.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, usdc.balanceOf(safe.address))
     bal.transfer(addr_dotmap.maxiKeepers.veBalFeeInjector, bal.balanceOf(safe.address))
     print("\n\nBuilding and pushing multisig payload")
     print ("Preparing to post transaction")

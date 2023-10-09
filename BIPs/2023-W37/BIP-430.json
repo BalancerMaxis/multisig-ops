@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1694648326708,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.2",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x3f612b954a03fd673dcd5cf64bfb606b17228f0423cf98a69f035cf9c70cbfa3"
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x033f3ebfdc58141797e7786a8115159707118fe37ae8f6d7b98929e4465349fb",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0xD87F44Df0159DC78029AB9CA7D7e57E7249F5ACD",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IVeDelegation",
+            "name": "delegation",
+            "type": "address"
+          }
+        ],
+        "name": "setDelegation",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegation": "0xE42FFA682A26EF8F25891db4882932711D42e467"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x033f3ebfdc58141797e7786a8115159707118fe37ae8f6d7b98929e4465349fb",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    }
+  ]
+}
