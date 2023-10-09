@@ -7,7 +7,7 @@ on:
 env:
   KEYWORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
 jobs:
-  merge_jsons:
+  poke_injectors:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,8 +17,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: Run script with JSON files
+      - name: Poke'em
         run: |
           cd action-scripts/brownie
           pip3 install -r requirements-actions.txt
+          touch .env
           brownie run scripts/pokeInjectors.py
