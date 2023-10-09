@@ -9,7 +9,7 @@ print(f"Keeper Address: {account.address}")
 ## ZKEVM
 network.disconnect()
 network.connect("zkevm-main")
-book = AddrBook("zkvem")
+book = AddrBook("zkevm")
 injectors =  book.extras.maxiKeepers.gaugeRewardsInjectors.values()
 for injectorAddress in injectors:
     injector = Contract(injectorAddress)
