@@ -204,7 +204,7 @@ def main():
                         "origin_file_name": file['file_name'],
                         "bip_number": extract_bip_number(file),
                     }
-                    if "contractMethod" not in tx.keys():
+                    if "contractMethod" in tx.keys():
                         if tx["contractMethod"]["name"] == "addGauge":
                             try:
                                 gauge_chain = tx["contractInputsValues"]["gaugeType"]
