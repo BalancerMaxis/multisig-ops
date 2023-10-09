@@ -5,6 +5,7 @@ import os
 ## LOAD wallet
 mnemonic =  os.environ["GITHUB_REPOSITORY"]
 account = accounts.from_mnemonic(mnemonic)
+print(f"Keeper Address: {account.address}")
 ## ZKEVM
 network.disconnect()
 network.connect("zkevm-main")
