@@ -1,1 +1,83 @@
-{"version":"1.0","chainId":"1101","createdAt":1696940219100,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.16.3","createdFromSafeAddress":"0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09","createdFromOwnerAddress":"","checksum":"0x609551a404a1811d27ae899a6afb25ea83e12e63530cd78bca076e0af372a8f9"},"transactions":[{"to":"0x7733650c7aaF2074FD1fCf98f70cbC09138E1Ea5","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_reward_token","type":"address"},{"name":"_distributor","type":"address"}],"name":"set_reward_distributor","payable":false},"contractInputsValues":{"_reward_token":"0xA8CE8aee21bC2A48a5EF670afCc9274C7bbbC035","_distributor":"0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"}},{"to":"0x544BDCE27174EA8Ba829939bd3568efc6A6c9c53","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_reward_token","type":"address"},{"name":"_distributor","type":"address"}],"name":"set_reward_distributor","payable":false},"contractInputsValues":{"_reward_token":"0xA8CE8aee21bC2A48a5EF670afCc9274C7bbbC035","_distributor":"0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"}},{"to":"0x544BDCE27174EA8Ba829939bd3568efc6A6c9c53","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_reward_token","type":"address"},{"name":"_distributor","type":"address"}],"name":"set_reward_distributor","payable":false},"contractInputsValues":{"_reward_token":"0xa2036f0538221a77A3937F1379699f44945018d0","_distributor":"0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02"}},{"to":"0x05257970368Efd323aeFfeC95F7e28C806c2e37F","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_reward_token","type":"address"},{"name":"_distributor","type":"address"}],"name":"set_reward_distributor","payable":false},"contractInputsValues":{"_reward_token":"0xa2036f0538221a77A3937F1379699f44945018d0","_distributor":"0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02"}}]}
+{
+  "version": "1.0",
+  "chainId": "1101",
+  "createdAt": 1696940219100,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x609551a404a1811d27ae899a6afb25ea83e12e63530cd78bca076e0af372a8f9"
+  },
+  "transactions": [
+    {
+      "to": "0x7733650c7aaF2074FD1fCf98f70cbC09138E1Ea5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xA8CE8aee21bC2A48a5EF670afCc9274C7bbbC035",
+        "_distributor": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"
+      }
+    },
+    {
+      "to": "0x544BDCE27174EA8Ba829939bd3568efc6A6c9c53",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xA8CE8aee21bC2A48a5EF670afCc9274C7bbbC035",
+        "_distributor": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A"
+      }
+    },
+    {
+      "to": "0x544BDCE27174EA8Ba829939bd3568efc6A6c9c53",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xa2036f0538221a77A3937F1379699f44945018d0",
+        "_distributor": "0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02"
+      }
+    },
+    {
+      "to": "0x05257970368Efd323aeFfeC95F7e28C806c2e37F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xa2036f0538221a77A3937F1379699f44945018d0",
+        "_distributor": "0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02"
+      }
+    }
+  ]
+}
