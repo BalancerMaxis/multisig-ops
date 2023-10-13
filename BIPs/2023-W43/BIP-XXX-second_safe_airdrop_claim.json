@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1697190543299,
+  "meta": {
+    "name": "Second SAFE Airdrop Claim",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xca98ac3ac5275fb6e421534148d11e0def245792ea23a64fc0d8ddd4468747b5",
+    "bipNumber": 132,
+    "author": "gosuto.eth"
+  },
+  "transactions": [
+    {
+      "to": "0xC0fde70A65C7569Fe919bE57492228DEE8cDb585",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint8", "name": "curveType", "type": "uint8" },
+          {
+            "internalType": "uint16",
+            "name": "durationWeeks",
+            "type": "uint16"
+          },
+          { "internalType": "uint64", "name": "startDate", "type": "uint64" },
+          { "internalType": "uint128", "name": "amount", "type": "uint128" },
+          { "internalType": "bytes32[]", "name": "proof", "type": "bytes32[]" }
+        ],
+        "name": "redeem",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "curveType": "0",
+        "durationWeeks": "208",
+        "startDate": "1662026400",
+        "amount": "5226757080486618000000",
+        "proof": "[0xe2c51661a283840fecf3cfaa9cc95b93aaebdcfe4a4f62a0162fd599ec039453,0xdb9970a77a4e031a8056c33c905b9bd7cb88d43da148aa11db63c72e39976469,0xec12235a00ca0e9020112e2e069d3a29906a9f70a80fb3402c3d9719233a1f8f,0x6e26f3cc44d2d3f9050512b419d95ca882f3a489ee043f4560e0fc02dedc790c,0x9c395ce5b3be7aa8f055358115b2a7ff6d0069612287527b732ac6bffb78851c,0x2284e66fa8327e7868bdaf84774ed78fc93583b206998a8fc95e540c8f639199,0x0475d4f9203785ad8e1d3911cc91e6b1cf687afbe672385b608fd67128dfb687,0x541dc2b261cfe6550a9ef0a1c8fcf63fc70c21c4a69726d519e383b0387db00d,0x24d9026ea0277bf122c85ebbd729b24c3c9a1e38f141a468d4ca736c4ed82c76,0x062565790f6e2dc017dc549fdfadc0bf055a1eca6452ec59e636c08bbb8294b6,0x875e2435fb36357427d33ac691ca01f2556dc3ff1425a6e460a742b1d6b58a61,0x14e29bb1ad35d88d686bf44b9274aef151bc01fe317beaacfc8cb30800a48023,0xe2b06e3ef3c26a6f4f600b9dd10fb39ce0edf9b7a68a9cfc3c823a9d1c674f0b,0xcdcda7e7a0107576ab65577d5d9ae431cfeec31a94a3da554b3b45f8a8dc4542]"
+      }
+    },
+    {
+      "to": "0xC0fde70A65C7569Fe919bE57492228DEE8cDb585",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "vestingId", "type": "bytes32" },
+          {
+            "internalType": "address",
+            "name": "beneficiary",
+            "type": "address"
+          },
+          {
+            "internalType": "uint128",
+            "name": "tokensToClaim",
+            "type": "uint128"
+          }
+        ],
+        "name": "claimVestedTokensViaModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "vestingId": "0x7737be5963938ff3a68c4b15e6e5fe2517f8fa2e7256959fcd85982885d1d673",
+        "beneficiary": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "tokensToClaim": "340282366920938463463374607431768211455"
+      }
+    },
+    {
+      "to": "0xA0b937D5c8E32a80E3a8ed4227CD020221544ee6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "vestingId", "type": "bytes32", "internalType": "bytes32" },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "tokensToClaim",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ],
+        "name": "claimVestedTokensViaModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "vestingId": "0x0348741aae78ee3ae9ac34b37e8dbc68753367eea275850c4208e3a040a91bbe",
+        "beneficiary": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "tokensToClaim": "340282366920938463463374607431768211455"
+      }
+    }
+  ]
+}
