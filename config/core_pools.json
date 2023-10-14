@@ -1,11 +1,4 @@
-{
-  "config": {
-    "min_aura_bribe": 500,
-    "min_bribe_amount": 500,
-    "vebal_share_pct": 0.325,
-    "dao_share_pct": 0.175,
-    "bribe_pct": 0.5,
-    "core_pools": {
+ {
       "mainnet": {
         "0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2": "wstETH-WETH",
         "0x1e19cf2d73a72ef1332c882f20534b6519be0276000200000000000000000112": "B-rETH-STABLE",
@@ -22,7 +15,8 @@
         "0xf01b0684c98cd7ada480bfdf6e43876422fa1fc10002000000000000000005de": "ECLP-wstETH-wETH",
         "0x36be1e97ea98ab43b4debf92742517266f5731a3000200000000000000000466": "50wstETH-50ACX",
         "0x42ed016f826165c2e5976fe5bc3df540c5ad0af700000000000000000000058b": "wstETH-rETH-sfrxETH",
-        "0x37b18b10ce5635a84834b26095a0ae5639dcb7520000000000000000000005cb": "ETHx-WETH"
+        "0x37b18b10ce5635a84834b26095a0ae5639dcb7520000000000000000000005cb": "ETHx-WETH",
+        "0x3fd4954a851ead144c2ff72b1f5a38ea5976bd54000000000000000000000480": "wstETH/ankrETH"
       },
       "polygon": {
         "0xf0ad209e2e969eaaa8c882aac71f02d8a047d5c2000200000000000000000b49": "ECLP-WMATIC-stMATIC",
@@ -50,8 +44,3 @@
         "0x55bec22f8f6c69137ceaf284d9b441db1b9bfedc000200000000000000000011": "BPT"
       }
     },
-    "reroute_config": {
-      "mainnet": {}
-    }
-  }
-}
