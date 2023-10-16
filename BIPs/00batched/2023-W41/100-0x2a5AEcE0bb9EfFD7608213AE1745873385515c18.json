@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x73c3332de64a6f7b137bea3255a221d779cc0f170ea4892ff0581faf799230ff",
+        "account": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W41/BIP-447C.json",
+        "bip_number": "BIP-447"
+      }
+    },
+    {
+      "to": "0x0C1B9CE6Bf6C01f587C2ee98b0ef4B20C6648753",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null,
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2023-W41/BIP-447C.json",
+        "bip_number": "BIP-447"
+      }
+    }
+  ]
+}
