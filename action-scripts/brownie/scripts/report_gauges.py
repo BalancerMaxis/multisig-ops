@@ -143,6 +143,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         if "getRelativeWeightCap" in gauge_selectors else "N/A"
     )
     # Process sidechain gauges
+    print(f"root gauge: {gauge_address}")
     pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style, tokens, rate_providers = _extract_pool(
         chain, gauge, gauge_selectors
     )
