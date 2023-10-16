@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1696893189459,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x21fd0d4a8c117586efe7619647958d1fc03bf723fc92ef0295f84c21d1e01136"
+  },
+  "transactions": [
+    {
+      "to": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "delegatee", "type": "address", "internalType": "address" }
+        ],
+        "name": "delegate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegatee": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
+      }
+    }
+  ]
+}
