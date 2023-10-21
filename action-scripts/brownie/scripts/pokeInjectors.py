@@ -18,7 +18,19 @@ def main():
         if ready:
             injector.performUpkeep(performdata, {"from": account})
         else:
-            print(f"{injector.address} not ready")
+            print(f"ZKEVM: {injector.address} not ready")
+    ## Gnosis
+    network.disconnect()
+    network.connect("gnosis-main")
+    book = AddrBook("gnosis")
+    injectors =  book.extras.maxiKeepers.gaugeRewardsInjectors.values()
+    for injectorAddress in injectors:
+        injector = Contract(injectorAddress)
+        (ready, performdata) = injector.checkUpkeep(b"")
+        if ready:
+            injector.performUpkeep(performdata, {"from": account})
+        else:
+            print(f"GNOSIS: {injector.address} not ready")
 
 if __name__ == "__main__":
     main()
