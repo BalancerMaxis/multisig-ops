@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1698140461134,
+  "meta": {
+    "name": "Enable New Tetubal Gauge",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "author": "gosuto.eth"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xF6A814eD60653Cb0e36DA247B01E6309318328d4",
+        "gaugeType": "Polygon"
+      }
+    }
+  ]
+}
