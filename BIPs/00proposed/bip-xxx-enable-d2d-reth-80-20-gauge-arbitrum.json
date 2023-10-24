@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1698158272014,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable rETH/WETH gauge [zkEVM]",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "author": "gosuto.eth"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x2D02Bf5EA195dc09854E18E7d2857A16bF376963",
+        "gaugeType": "Arbitrum"
+      }
+    }
+  ]
+}
