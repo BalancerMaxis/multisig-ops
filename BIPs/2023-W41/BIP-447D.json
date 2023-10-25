@@ -1,0 +1,155 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1697894131488,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x53c4f07d566736fad6ab3d75e0323a11e166f5ba09ca28d040375a48fd0fd318"
+  },
+  "transactions": [
+    {
+      "to": "0x87c921be1fd8ee7E5eda4394aDB849DB72847aE9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptOwnership",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x87c921be1fd8ee7E5eda4394aDB849DB72847aE9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          { "name": "maxPeriods", "type": "uint8[]", "internalType": "uint8[]" }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xBB2598b89202596A743BE0b615001D7D5164f167]",
+        "amountsPerPeriod": "[9979830058]",
+        "maxPeriods": "[2]"
+      }
+    },
+    {
+      "to": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_to", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x87c921be1fd8ee7E5eda4394aDB849DB72847aE9",
+        "_value": "19959660116"
+      }
+    },
+    {
+      "to": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_to", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x6068eb7490748A1A49830B58524C002b545c1Ce2",
+        "_value": "6653220039"
+      }
+    },
+    {
+      "to": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_spender", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0xBB2598b89202596A743BE0b615001D7D5164f167",
+        "_value": "6653220039"
+      }
+    },
+    {
+      "to": "0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xBB2598b89202596A743BE0b615001D7D5164f167",
+        "data": "0xe8de0d4d000000000000000000000000ddafbb505ad214d7b80b1f830fccc89b60fb7a8300000000000000000000000014969b55a675d13a1700f71a37511bc22d90155a"
+      }
+    },
+    {
+      "to": "0xBB2598b89202596A743BE0b615001D7D5164f167",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_amount", "type": "uint256" }
+        ],
+        "name": "deposit_reward_token",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
+        "_amount": "6653220039"
+      }
+    },
+    {
+      "to": "0xBB2598b89202596A743BE0b615001D7D5164f167",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
+        "_distributor": "0x87c921be1fd8ee7E5eda4394aDB849DB72847aE9"
+      }
+    }
+  ]
+}

@@ -184,10 +184,13 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if network.is_connected():
         network.disconnect()
     network.connect(CHAIN_MAINNET)
-
-    (command, inputs) = Contract(
-        Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
-    ).decode_input(transaction["contractInputsValues"]["data"])
+    try:
+        (command, inputs) = Contract(
+            Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+        ).decode_input(transaction["contractInputsValues"]["data"])
+    except:
+        ## Doesn't look like a gauge add, maybe contract isn't on mainnet
+        return
 
     if len(inputs) == 0 and command == CMD_GAUGE_KILL:
         gauge_address = transaction["contractInputsValues"]["target"]
@@ -318,6 +321,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
             transaction["contractInputsValues"].get("to")
             or transaction["contractInputsValues"].get("dst")
             or transaction["contractInputsValues"].get("recipient")
+            or transaction["contractInputsValues"].get("_to")
+
     )
     if Web3.isAddress(recipient_address):
         recipient_address = Web3.toChecksumAddress(recipient_address)
@@ -328,6 +333,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
             transaction["contractInputsValues"].get("amount")
             or transaction["contractInputsValues"].get("value")
             or transaction["contractInputsValues"].get("wad")
+            or transaction["contractInputsValues"].get("_value")
+
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
