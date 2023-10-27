@@ -7,6 +7,7 @@ from bal_addresses import AddrBook
 import csv
 from datetime import date
 import json
+import copy
 
 address_book = AddrBook("mainnet")
 safe = address_book.multisigs.fees
@@ -130,7 +131,7 @@ def main(
     total_mantissa = int(total_usdc * usdc_mantissa_multilpier)
 
 
-    usdc_approve = APPROVE
+    usdc_approve = copy.copy(APPROVE)
     usdc_approve["to"] = usdc.address
     usdc_approve["contractInputsValues"]["spender"] = bribe_vault
     usdc_approve["contractInputsValues"]["rawAmount"] = str(total_mantissa + 1)
@@ -142,7 +143,7 @@ def main(
         print(f"Paying out {amount} via direct transfer to {target}")
         usdc_amount = amount * 10**usdc.decimals()
         payments_usd += amount
-        transfer = TRANSFER
+        transfer = copy.copy(TRANSFER)
         transfer["to"] = usdc.address
         transfer["contractInputsValues"]["value"] = str(usdc_amount)
         transfer["contractInputsValues"]["to"] = target
@@ -170,12 +171,12 @@ def main(
 
         if amount == 0:
             return
-        tx = BALANCER_BRIB
-        tx["contractInputsValues"]["proposal"]= prop
-        tx["contractInputsValues"]["token"]= usdc.address
-        tx["contractInputsValues"]["amount"]= mantissa
+        bal_tx = copy.copy(BALANCER_BRIB)
+        bal_tx["contractInputsValues"]["proposal"]= "0x" + prop.hex()
+        bal_tx["contractInputsValues"]["token"]= usdc.address
+        bal_tx["contractInputsValues"]["amount"]= str(mantissa)
 
-        tx_list.append(tx)
+        tx_list.append(bal_tx)
 
     for target, amount in bribes["balancer"].items():
         if amount == 0:
@@ -200,10 +201,10 @@ def main(
 
         if amount == 0:
             return
-        tx = BALANCER_BRIB
-        tx["contractInputsValues"]["proposal"]= prop
-        tx["contractInputsValues"]["token"]= usdc.address
-        tx["contractInputsValues"]["amount"]= mantissa
+        tx = copy.deepcopy(AURA_BRIB)
+        tx["contractInputsValues"]["proposal"] = prop
+        tx["contractInputsValues"]["token"] = usdc.address
+        tx["contractInputsValues"]["amount"] = str(mantissa)
         tx_list.append(tx)
 
     usd = Contract(address_book.extras.tokens.USDC)
@@ -212,7 +213,7 @@ def main(
     print(f"Current BAL: {bal.balanceOf(safe)/ 10** usdc.decimals()} is being sent to veBalFeeInjectooooooor")
 
     spent_usdc = payments + total_balancer_usdc + total_aura_usdc
-    usdc_trasfer = TRANSFER
+    usdc_trasfer = copy.copy(TRANSFER)
     usdc_trasfer["to"] = usdc.address
     usdc_trasfer["contractInputsValues"]["to"] = address_book.extras.maxiKeepers.veBalFeeInjector
     usdc_trasfer["contractInputsValues"]["value"] = str(usdc.balanceOf(safe)  - spent_usdc)
@@ -227,6 +228,7 @@ def main(
     payload = PAYLOAD
     payload["meta"]["createdFromSafeAddress"] = safe
     payload["transactions"] = tx_list
+    print(payload)
     with open(f"../../../BIPs/00corePools/{today}.json", "w") as f:
         json.dump(payload, f)
 
