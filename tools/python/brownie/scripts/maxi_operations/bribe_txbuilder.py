@@ -228,5 +228,5 @@ def main(
     payload["meta"]["createdFromSafeAddress"] = safe
     payload["transactions"] = tx_list
     with open(f"../../../BIPs/00corePools/{today}.json", "w") as f:
-        json.dump(tx_list, f)
+        json.dump(payload, f)
 
