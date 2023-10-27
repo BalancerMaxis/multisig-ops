@@ -41,7 +41,8 @@ query {
   }
 }
 """
-
+with open("../tx_builder_templates/bribe_balancer.json", "r") as f:
+    PAYLOAD = json.load(f)
 with open("../tx_builder_templates/bribe_balancer.json", "r") as f:
     BALANCER_BRIB = json.load(f)["transactions"][0]
 with open("../tx_builder_templates/bribe_aura.json", "r") as f:
@@ -214,15 +215,18 @@ def main(
     usdc_trasfer = TRANSFER
     usdc_trasfer["to"] = usdc.address
     usdc_trasfer["contractInputsValues"]["to"] = address_book.extras.maxiKeepers.veBalFeeInjector
-    usdc_trasfer["contractInputsValues"]["value"] = usdc.balanceOf(safe)  - spent_usdc
+    usdc_trasfer["contractInputsValues"]["value"] = str(usdc.balanceOf(safe)  - spent_usdc)
     tx_list.append(usdc_trasfer)
     bal_trasfer = TRANSFER
     bal_trasfer["to"] = bal.address
     bal_trasfer["contractInputsValues"]["to"] = address_book.extras.maxiKeepers.veBalFeeInjector
-    bal_trasfer["contractInputsValues"]["value"] = bal.balanceOf(safe)
+    bal_trasfer["contractInputsValues"]["value"] = str(bal.balanceOf(safe))
     tx_list.append(bal_trasfer)
     print("\n\nBuilding and pushing multisig payload")
     print ("saving payload")
+    payload = PAYLOAD
+    payload["meta"]["createdFromSafeAddress"] = safe
+    payload["transactions"] = tx_list
     with open(f"../../../BIPs/00corePools/{today}.json", "w") as f:
         json.dump(tx_list, f)
 
