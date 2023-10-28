@@ -215,7 +215,7 @@ def main(
     print(f"Current USDC: {usd.balanceOf(safe)/ 10** usd.decimals()} is being sent to veBalFeeInjectooooooor")
     print(f"Current BAL: {bal.balanceOf(safe)/ 10** usdc.decimals()} is being sent to veBalFeeInjectooooooor")
 
-    spent_usdc = payments + total_mantissa + 1
+    spent_usdc = payments + total_mantissa
     print(spent_usdc)
     usdc_trasfer = copy.deepcopy(TRANSFER)
     usdc_trasfer["to"] = usdc.address
@@ -232,7 +232,10 @@ def main(
     payload = PAYLOAD
     payload["meta"]["createdFromSafeAddress"] = safe
     payload["transactions"] = tx_list
-    print(payload)
     with open(f"../../../BIPs/00corePools/{today}.json", "w") as f:
         json.dump(payload, f)
-
+    print(f"balance: {usdc.balanceOf(safe)}")
+    print(f"USDC to Bribs: {total_mantissa}")
+    print(f"USDC payments: {payments}")
+    print(f"USDC to veBAL: {usdc.balanceOf(safe)  - spent_usdc}")
+    print(f"BAL to veBAL: {bal.balanceOf(safe)}")
