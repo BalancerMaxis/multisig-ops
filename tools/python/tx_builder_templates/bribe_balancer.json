@@ -1,44 +1,57 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1681392739151,
+  "createdAt": 1698450039804,
   "meta": {
     "name": "Transactions Batch",
-    "txBuilderVersion": "1.13.3",
-    "createdFromSafeAddress": ""
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x3704d87561b30cd3e968794be71c31d7b8fc93308d17611f0c7f117b75a8a1fc"
   },
   "transactions": [
     {
-      "to": "0x7Cdf753b45AB0729bcFe33DC12401E55d28308A9",
+      "to": "0x45Bc37b18E73A42A4a826357a8348cDC042cCBBc",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [
           {
-            "internalType": "bytes32",
-            "name": "proposal",
-            "type": "bytes32"
+            "name": "_proposal",
+            "type": "bytes32",
+            "internalType": "bytes32"
           },
           {
-            "internalType": "address",
-            "name": "token",
-            "type": "address"
+            "name": "_token",
+            "type": "address",
+            "internalType": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
+            "name": "_amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_maxTokensPerVote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_periods",
+            "type": "uint256",
+            "internalType": "uint256"
           }
         ],
-        "name": "depositBribeERC20",
+        "name": "depositBribe",
         "payable": false
       },
       "contractInputsValues": {
-        "proposal": "",
-        "token": "",
-        "amount": "",
-        "maxTokensPerVote": "0",
-        "periods": "2"
+        "_proposal": "",
+        "_token": "",
+        "_amount": "0",
+        "_maxTokensPerVote": "0",
+        "_periods": "2"
       }
     }
   ]
