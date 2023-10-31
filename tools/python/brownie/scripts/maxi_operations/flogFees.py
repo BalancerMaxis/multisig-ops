@@ -12,7 +12,7 @@ from brownie import interface, Contract
 a = AddrBook("mainnet")
 r = a.dotmap
 monorepo_addys_by_chain = a.reversebook
-sweep_limit = 4000
+sweep_limit = 3000
 today = str(date.today())
 
 dont_sweep_tokens = []
