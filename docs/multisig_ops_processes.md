@@ -24,7 +24,7 @@ Here is an [example combined payload report](https://github.com/BalancerMaxis/mu
 
 Following the end of voting, if any votes are rejected, their payload files are moved the [00rejected](../BIPs/00rejected) directory and the combine action is rerun.  All of the combined payloads are then loaded into the DAO multisigs per chain.  The combined payloads are merged into a final [Signer Report](https://github.com/BalancerMaxis/multisig-ops/blob/main/BIPs/00batched/2023-W42/combined-report.md).  This report as well as links to the safe are sent to signers.  
 
-Another member of the Maxis completes an independent review of the loaded payloads to sanity check and shares an independent and detailed report of what the payload will do with the signers.
+Another member of the Maxis completes an independent review of the loaded payloads to sanity check and shares a detailed report of what the payload will do with the signers.
 
 Transactions are then signed and executed.
 
