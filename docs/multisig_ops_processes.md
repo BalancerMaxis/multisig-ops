@@ -32,10 +32,11 @@ Transactions are then signed and executed.
 
 ### Operation Multisigs
 
-Many operational flows have been delegated the Maxis to administer.   This includes administration of extra incentive flows and fee distribution and other operational aspects of the DAO.  All of this work is done based on the frameworks set-forth by governance.  With the exception of gauge additions, which follow the DAO multisig process described above, most of the rest of the operational work is completed by the Maxis using a combination of automation found in this repo, hand crafted transaction builder payloads, and various Safe Apps.   Attention is spent to ensure that operational Multisigs do not control critical amounts of value nor have dangerous influence over the DAO.  
+Many operational flows have been delegated the Maxis to administer.   This includes administration of extra incentive flows and fee distribution and other operational aspects of the DAO.  All of this work is done based on the frameworks set-forth by governance.  With the exception of gauge additions, which follow the DAO multisig process described above,  operational multisig work is completed by the Maxis using a combination of automation found in this repo, hand crafted transaction builder payloads, and various Safe Apps.   Each payload undergoes detailed review my multiple signers.  Complex transactions such as incentive payments are reviewed against artifacts founds in this repo. 
 
 More and more of the operational work is being moved to a payload and report flow.  Artifacts of most of our work can be found in the multisig-ops repo.
 
+Attention is spent to ensure that operational Multisigs do not control critical amounts of value nor have dangerous influence over the protocol.
 
 ### Emergency SubDAO Multisig
 
