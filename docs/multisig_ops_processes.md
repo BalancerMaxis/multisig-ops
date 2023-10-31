@@ -10,7 +10,7 @@ The rest of the safes use the Maxi signer set which is 3/6
 
 
 ### DAO Multisigs
-There is one DAO Multisig per chain.  Except for in emergency circumstances, each execution must be linked to approved governance.
+There is one DAO Multisig per chain.  Except for in emergency circumstances, each execution must be directly linked to approved governance.
 
 The DAO multisig currently operates on a weekly cadence.  Each the Balancer Maxi's facilitate and track the [Governance Process](https://github.com/orgs/BalancerMaxis/projects/1).
 
