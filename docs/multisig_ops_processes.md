@@ -12,7 +12,7 @@ The rest of the safes use the Maxi signer set which is 3/6
 ### DAO Multisigs
 There is one DAO Multisig per chain.  Except for in emergency circumstances, each execution must be directly linked to approved governance.
 
-The DAO multisig currently operates on a weekly cadence.  Each the Balancer Maxi's facilitate and track the [Governance Process](https://github.com/orgs/BalancerMaxis/projects/1).
+The DAO multisig currently operates on a weekly cadence.  Each week the Balancer Maxis facilitate and track the [Governance Process](https://github.com/orgs/BalancerMaxis/projects/1).
 
 In this process, BIPs that are deemed ready for execution have pull-requests with [Safe Transaction-Builder paylaods](https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs) prepared in a directory structure that grouped by execution weeks. 
 ![img.png](img.png)
@@ -24,13 +24,17 @@ Payloads and reports are reviewed in github and merged.
 Following the end of voting, any rejected votes are moved to the [00rejected](../BIPs/00rejected) directory.  Then an [Automated Action](https://github.com/BalancerMaxis/multisig-ops/actions/workflows/merge_json.yaml) is run to combine all payloads for the current week by multisig.  New reports are generated on the [Combined Payloads](https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs/00batched) an additional review is conducted.
 Here is an [example combined payload report](https://github.com/BalancerMaxis/multisig-ops/blob/main/BIPs/00batched/2023-W43/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.report.txt).
 
-All of the combined payloads are then loaded into the DAO multisig.  The combined payloads are merged into a final [Signer Report](https://github.com/BalancerMaxis/multisig-ops/blob/main/BIPs/00batched/2023-W42/combined-report.md).  This report as well as links to the safe are sent to signers.  Another member of the Maxis completes an independent review of the loaded payloads to sanity check and shares an independent and detailed report of what the payload will do with the signers.
+All of the combined payloads are then loaded into the DAO multisigs per chain.  The combined payloads are merged into a final [Signer Report](https://github.com/BalancerMaxis/multisig-ops/blob/main/BIPs/00batched/2023-W42/combined-report.md).  This report as well as links to the safe are sent to signers.  
+
+Another member of the Maxis completes an independent review of the loaded payloads to sanity check and shares an independent and detailed report of what the payload will do with the signers.
 
 Transactions are then signed and executed.
 
 ### Operation Multisigs
 
-Many governance topics have delegated the Maxi's responsibilities for managing incetive flows, fee distribution and other operational aspects of the DAO.  With the exception of gauge additions, which follow the DAO multisig process described above.  Most of the rest of the operational work is completed by the Maxis using a combination of automation found in this repo, hand crafted transaction builder payloads, and various Safe Apps.   Attention is spent to ensure that Operational Multisigs do not control critical amounts of value nor have dangerious influence over the DAO.  More and more of the operational work is being moved to a payload and report flow.  Artifacts of most of our work can be found in the multisig-ops repo.
+Many operational flows have been delegated the Maxis to administer.   This includes administration of extra incentive flows and fee distribution and other operational aspects of the DAO.  All of this work is done based on the frameworks set-forth by governance.  With the exception of gauge additions, which follow the DAO multisig process described above, most of the rest of the operational work is completed by the Maxis using a combination of automation found in this repo, hand crafted transaction builder payloads, and various Safe Apps.   Attention is spent to ensure that operational Multisigs do not control critical amounts of value nor have dangerous influence over the DAO.  
+
+More and more of the operational work is being moved to a payload and report flow.  Artifacts of most of our work can be found in the multisig-ops repo.
 
 
 ### Emergency SubDAO Multisig
