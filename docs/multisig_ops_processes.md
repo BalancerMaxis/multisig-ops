@@ -1,7 +1,7 @@
 # Multisig Operations Processes
 
 ## The Multisigs and signer sets
-Balancer maintains a verities of multisigs.  Each execution is intended to somehow link back to governance.
+Balancer maintains a varieties of multisigs.  Each execution is intended to somehow link back to governance.
 
 The source of truth for all multisigs and signer addresses [here](https://github.com/BalancerMaxis/bal_addresses/blob/main/extras/multisigs.json).  
 
