@@ -5,6 +5,7 @@ from .script_utils import get_changed_files, extract_bip_number
 from bal_addresses import AddrBook
 from prettytable import PrettyTable
 import re
+import web3
 
 ADDRESSES_MAINNET = AddrBook("mainnet").reversebook
 ADDRESSES_POLYGON = AddrBook("polygon").reversebook
@@ -34,7 +35,7 @@ def validate_msig_in_address_book(file: dict) -> Tuple[bool, str]:
     Validates that multisig address is in address book
     """
     msig = file['meta'].get('createdFromSafeAddress') or file['meta'].get('createFromSafeAddress')
-    if msig not in ADDRESSES:
+    if web3.Web3.toChecksumAddress(msig) not in ADDRESSES:
         return False, "Multisig address not found in address book"
     return True, ""
 
