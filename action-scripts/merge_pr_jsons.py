@@ -5,7 +5,7 @@ import re
 from collections import defaultdict
 from json import JSONDecodeError
 from typing import Optional
-
+from web3 import Web3
 from bal_addresses import AddrBook
 
 ADDRESSES_MAINNET = AddrBook("mainnet").reversebook
@@ -113,7 +113,7 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
         raise NoMsigAddress(f"No msig address found in file: {file_path}, or it is not a string")
 
     # Check if msig address is in the address book
-    if msig not in ADDRESSES:
+    if Web3.toChecksumAddress(msig) not in ADDRESSES:
         raise AddressNotFound(
             f"msig address {msig} not found in address book in file: {file_path}"
         )
