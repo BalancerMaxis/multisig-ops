@@ -308,10 +308,12 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     for c_name, c_id in AddrBook.chain_ids_by_name.items():
         if int(chain_id) == int(c_id):
             chain_name = chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
+            addresses = AddrBook(c_name)
             break
     if not chain_name:
         print("Chain name not found! Cannot transfer transaction")
         return
+    print(chain_name)
     if network.is_connected():
         network.disconnect()
     network.connect(chain_name)
@@ -322,7 +324,6 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
             or transaction["contractInputsValues"].get("dst")
             or transaction["contractInputsValues"].get("recipient")
             or transaction["contractInputsValues"].get("_to")
-
     )
     if Web3.isAddress(recipient_address):
         recipient_address = Web3.toChecksumAddress(recipient_address)
@@ -338,7 +339,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
-    recipient_name = ADDR_BOOK.reversebook.get(recipient_address, "N/A")
+    recipient_name = addresses.reversebook.get(recipient_address, "N/A")
     return {
         "function": "transfer",
         "chain": chain_name.replace("-main", "") if chain_name else "mainnet",
