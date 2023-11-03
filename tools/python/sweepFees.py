@@ -3,7 +3,7 @@ from dotmap import DotMap
 from datetime import date
 from os import listdir
 from os.path import isfile, join
-
+from bal_addresses import AddrBook
 
 ### Whitelist tokens are swept every run regardless of min amount.
 whitelist_tokens = []
@@ -20,6 +20,12 @@ def generateSweepFile(sourcefile):
     with open(sourcefile, "r") as f:
         data = json.load(f)
     chain = data[0]["chain"]
+    if chain == "avax":
+        chain = "avalanche"
+    if chain == "eth":
+        chain = "mainnet"
+    print(chain)
+    a = AddrBook(chain)
     sweep_limit = 1000
     for feeData in data:
         symbol = feeData["symbol"]
@@ -42,6 +48,8 @@ def generateSweepFile(sourcefile):
         tx_builder = json.load(f)
     tx_out_map = DotMap(tx_builder)
     # TX builder wants lists in a string, addresses unquoted, and large integers without e+
+    tx_out_map.transactions[0].to =  a.search_unique("FeesWithdraw").address
+
     tx_out_map.transactions[0].contractInputsValues.tokens = str(list(sweeps.keys())).replace("'", "")
     tx_out_map.transactions[0].contractInputsValues.amounts = str(list(sweeps.values()))
     with open(f"{target_dir}/out/{today}-{chain}.json", "w") as f:
