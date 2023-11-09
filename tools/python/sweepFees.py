@@ -24,6 +24,8 @@ def generateSweepFile(sourcefile):
         chain = "avalanche"
     if chain == "eth":
         chain = "mainnet"
+    if chain == "pze":
+        chain = "zkevm"
     print(chain)
     a = AddrBook(chain)
     sweep_limit = 1000
