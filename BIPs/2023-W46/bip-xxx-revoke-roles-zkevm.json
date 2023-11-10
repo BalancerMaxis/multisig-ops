@@ -1,1 +1,66 @@
-{"version":"1.0","chainId":"1101","createdAt":1699630112123,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.16.3","createdFromSafeAddress":"0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa","createdFromOwnerAddress":"","checksum":"0x84133c3a954e77fb8a1b6097d8f702ee68a50d932ac5b04371ad81073ce1d8b5"},"transactions":[{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"name":"role","type":"bytes32","internalType":"bytes32"},{"name":"account","type":"address","internalType":"address"}],"name":"revokeRole","payable":false},"contractInputsValues":{"role":"0x6fa5acf6e6e303c2d281bf1af5f4d83642a125c5a3308cdf67e956bec276b69e","account":"0xf7D5DcE55E6D47852F054697BAB6A1B48A00ddbd"}},{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"name":"roles","type":"bytes32[]","internalType":"bytes32[]"},{"name":"account","type":"address","internalType":"address"}],"name":"revokeRoles","payable":false},"contractInputsValues":{"roles":"[0x0ebf042d38f8e1bb630c3010c686232d7334f90360a82eb23623fd01fbe8e656,0xcfd45e344ead8485b80a5f9da66791663c8306984e9c6dc12eda2ee747cce604,0xa5d55e5978cb5ab0a8b23eed8889931ca33b54522edde10e348f4f96d35f0b35]","account":"0x79b131498355daa2cC740936fcb9A7dF76A86223"}},{"to":"0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6","value":"0","data":null,"contractMethod":{"inputs":[{"name":"roles","type":"bytes32[]","internalType":"bytes32[]"},{"name":"account","type":"address","internalType":"address"}],"name":"revokeRoles","payable":false},"contractInputsValues":{"roles":"[0x04dd8b85ae9bff95ec24f18269d23bd2d04784d5f5d8b35261545b82ed754a85,0x1307ea331d8ab1feffafb967ddf20c66fd92ce496eda1de129a4608d4b40f313,0xbd408e756684e5ea83089ee33aa05ce9410b392967bffc71c11fb394026e7a09]","account":"0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09"}}]}
+{
+  "version": "1.0",
+  "chainId": "1101",
+  "createdAt": 1699630112123,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x84133c3a954e77fb8a1b6097d8f702ee68a50d932ac5b04371ad81073ce1d8b5"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "role", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "account", "type": "address", "internalType": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x6fa5acf6e6e303c2d281bf1af5f4d83642a125c5a3308cdf67e956bec276b69e",
+        "account": "0xf7D5DcE55E6D47852F054697BAB6A1B48A00ddbd"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "roles", "type": "bytes32[]", "internalType": "bytes32[]" },
+          { "name": "account", "type": "address", "internalType": "address" }
+        ],
+        "name": "revokeRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0ebf042d38f8e1bb630c3010c686232d7334f90360a82eb23623fd01fbe8e656,0xcfd45e344ead8485b80a5f9da66791663c8306984e9c6dc12eda2ee747cce604,0xa5d55e5978cb5ab0a8b23eed8889931ca33b54522edde10e348f4f96d35f0b35]",
+        "account": "0x79b131498355daa2cC740936fcb9A7dF76A86223"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "roles", "type": "bytes32[]", "internalType": "bytes32[]" },
+          { "name": "account", "type": "address", "internalType": "address" }
+        ],
+        "name": "revokeRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x04dd8b85ae9bff95ec24f18269d23bd2d04784d5f5d8b35261545b82ed754a85,0x1307ea331d8ab1feffafb967ddf20c66fd92ce496eda1de129a4608d4b40f313,0xbd408e756684e5ea83089ee33aa05ce9410b392967bffc71c11fb394026e7a09]",
+        "account": "0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09"
+      }
+    }
+  ]
+}
