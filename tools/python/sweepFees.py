@@ -26,7 +26,10 @@ def generateSweepFile(sourcefile):
         chain = "mainnet"
     print(chain)
     a = AddrBook(chain)
-    sweep_limit = 1000
+    if chain == "mainnet":
+        sweep_limit = 500
+    else:
+        sweep_limit = 100
     for feeData in data:
         symbol = feeData["symbol"]
         address = feeData["id"]
