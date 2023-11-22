@@ -18,14 +18,23 @@ ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
 ADDRESSES_BASE = AddrBook("base").reversebook
 
 # Merge all addresses into one dictionary
-ADDRESSES = {**ADDRESSES_MAINNET, **ADDRESSES_POLYGON, **ADDRESSES_ARBITRUM, **ADDRESSES_AVALANCHE,
-             **ADDRESSES_OPTIMISM, **ADDRESSES_GNOSIS, **ADDRESSES_ZKEVM, **ADDRESSES_BASE}
+ADDRESSES = {
+    **ADDRESSES_MAINNET,
+    **ADDRESSES_POLYGON,
+    **ADDRESSES_ARBITRUM,
+    **ADDRESSES_AVALANCHE,
+    **ADDRESSES_OPTIMISM,
+    **ADDRESSES_GNOSIS,
+    **ADDRESSES_ZKEVM,
+    **ADDRESSES_BASE,
+}
 
 # Initialize the parser
 parser = argparse.ArgumentParser()
 parser.add_argument("--target", help="Target directory to merge BIPs from")
 
-base_json = json.loads('''
+base_json = json.loads(
+    """
 {
   "version": "1.0",
   "chainId": "",
@@ -40,13 +49,16 @@ base_json = json.loads('''
   "transactions": [
   ]
 }
-''')
+"""
+)
 
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
-TEMPLATE_PATH = os.path.dirname(
-    os.path.abspath(__file__)) + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
+TEMPLATE_PATH = (
+    os.path.dirname(os.path.abspath(__file__))
+    + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
+)
 
 
 class NoMsigAddress(Exception):
@@ -67,15 +79,15 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
     """
     bip = None
     # First, try to exctract BIP from file path
-    if bip_file.get('file_name') is not None:
+    if bip_file.get("file_name") is not None:
         bip_match = re.search(r"BIP-?\d+", bip_file["file_name"])
         bip = bip_match.group(0) if bip_match else None
 
     # If no BIP in file path, try to extract it from transactions metadata
     if not bip:
-        for tx in bip_file['transactions']:
-            if tx.get('meta', {}).get('bip') not in [None, "N/A"]:
-                bip = tx['meta']['bip']
+        for tx in bip_file["transactions"]:
+            if tx.get("meta", {}).get("bip") not in [None, "N/A"]:
+                bip = tx["meta"]["bip"]
                 break
     return bip or "N/A"
 
@@ -95,22 +107,26 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
             data = json.load(json_file)
             if not isinstance(data, dict):
                 return None
-            data['file_name'] = file_path
+            data["file_name"] = file_path
     except JSONDecodeError:
         return None
 
     # VALIDATIONS. Everything should fail here if the file is not valid
     # Check if the file is a dictionary, not a list
-    if not isinstance(data, dict) or not data.get('transactions'):
+    if not isinstance(data, dict) or not data.get("transactions"):
         return None
 
     # Check if chain id is the same as the one we are looking for
     if not data.get("chainId"):
         raise NoChainSpecified(f"No chain id found in file: {file_path}")
 
-    msig = data['meta'].get('createdFromSafeAddress') or data['meta'].get('createFromSafeAddress')
+    msig = data["meta"].get("createdFromSafeAddress") or data["meta"].get(
+        "createFromSafeAddress"
+    )
     if not msig or not isinstance(msig, str):
-        raise NoMsigAddress(f"No msig address found in file: {file_path}, or it is not a string")
+        raise NoMsigAddress(
+            f"No msig address found in file: {file_path}, or it is not a string"
+        )
 
     # Check if msig address is in the address book
     if Web3.toChecksumAddress(msig) not in ADDRESSES:
@@ -138,9 +154,11 @@ def main():
     print(f"Directory to parse:{directory}")
     gauge_lists_by_chain = defaultdict(list)
 
-    match = re.search(r'(\d{4})-W(\d{1,2})', directory)
+    match = re.search(r"(\d{4})-W(\d{1,2})", directory)
     if not match:
-        raise ValueError("Directory name is not in the correct format. Consider using YYYY-WW")
+        raise ValueError(
+            "Directory name is not in the correct format. Consider using YYYY-WW"
+        )
     year, week = match.groups()
     # get root directory of the project:
     # To do this you need to go up 2 levels from the current file
@@ -154,7 +172,9 @@ def main():
     target_files = defaultdict(list)
     # If directory doesn't exist, raise an error
     if not os.path.exists(os.path.join(root_dir, directory)):
-        raise ValueError(f"Directory {directory} does not exist. Pass correct directory name")
+        raise ValueError(
+            f"Directory {directory} does not exist. Pass correct directory name"
+        )
     # Parse each directory for underlying files
     for root, __, files in os.walk(os.path.join(root_dir, directory)):
         for file in files:
@@ -167,9 +187,7 @@ def main():
     for file in files_to_parse:
         # Process files that are lying flat in BIPs directory
         for chain_name, chain_id in AddrBook.chain_ids_by_name.items():
-            data = _parse_bip_json(
-                os.path.join(root_dir, file), chain=chain_id
-            )
+            data = _parse_bip_json(os.path.join(root_dir, file), chain=chain_id)
             if data:
                 # Add the file to the list of files to be merged
                 target_files[str(chain_id)].append(data)
@@ -184,24 +202,24 @@ def main():
         # Group files by safe address
         grouped_files = defaultdict(list)
         for file in files:
-            safe_address = file["meta"].get("createdFromSafeAddress") or file["meta"].get(
-                "createFromSafeAddress"
-            )
+            safe_address = file["meta"].get("createdFromSafeAddress") or file[
+                "meta"
+            ].get("createFromSafeAddress")
             grouped_files[safe_address].append(file)
 
         # Now we have a list of files grouped by safe address, let's merge them and save to files
         for safe_address, fs in grouped_files.items():
             # Merge all the files into one
             result = base_json
-            result['meta']['createdFromSafeAddress'] = safe_address
-            result['chainId'] = chain_id
+            result["meta"]["createdFromSafeAddress"] = safe_address
+            result["chainId"] = chain_id
             result["transactions"] = []
             for file in fs:
                 #  Check for gauge adds and generate checkpoint list
                 for tx in file["transactions"]:
                     tx["meta"] = {
                         "tx_index": file["transactions"].index(tx),
-                        "origin_file_name": file['file_name'],
+                        "origin_file_name": file["file_name"],
                         "bip_number": extract_bip_number(file),
                     }
                     if "contractMethod" in tx.keys():
@@ -210,7 +228,8 @@ def main():
                                 gauge_chain = tx["contractInputsValues"]["gaugeType"]
                                 if gauge_chain != "Ethereum":
                                     gauge_lists_by_chain[gauge_chain].append(
-                                        tx["contractInputsValues"]["gauge"])
+                                        tx["contractInputsValues"]["gauge"]
+                                    )
                             except KeyError:
                                 print(
                                     f"Skipping checkpointer add for addGauge tx "
@@ -224,8 +243,10 @@ def main():
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
     if gauge_lists_by_chain:
-        _write_checkpointer_json(f"{dir_name_batched_full}/checkpointer_gauges_by_chain.json",
-                                 gauge_lists_by_chain)
+        _write_checkpointer_json(
+            f"{dir_name_batched_full}/checkpointer_gauges_by_chain.json",
+            gauge_lists_by_chain,
+        )
 
 
 if __name__ == "__main__":

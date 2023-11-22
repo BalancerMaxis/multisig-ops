@@ -50,7 +50,7 @@ def get_pool_info(poolAddress):
 def get_payload_list():
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
+    api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files"
     if debug:
         print(f"api url: {api_url}")
     url = urlopen(api_url)
@@ -58,7 +58,7 @@ def get_payload_list():
 
     changed_files = []
     for file_json in pr_file_data:
-        filename = (file_json['filename'])
+        filename = file_json["filename"]
         if debug:
             print(filename)
         if "BIPs/" in filename and filename.endswith(".json"):
@@ -89,12 +89,17 @@ def gen_report(payload_list):
         network.connect("mainnet")
         outputs = []
         tx_list = payload["transactions"]
-        gauge_controller = Contract(flatbook[a.search_unique("GaugeController")].address)
+        gauge_controller = Contract(
+            flatbook[a.search_unique("GaugeController")].address
+        )
         for transaction in tx_list:
             style = False
             gauge_address = False
-            if transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder").address] or transaction["to"] == flatbook[
-                a.search_unique("v4/GaugeAdder").address]:
+            if (
+                transaction["to"] == flatbook[a.search_unique("v3/GaugeAdder").address]
+                or transaction["to"]
+                == flatbook[a.search_unique("v4/GaugeAdder").address]
+            ):
                 for k in transaction["contractInputsValues"].keys():
                     if k == "rootGauge":
                         command = transaction["contractMethod"]["name"]
@@ -113,30 +118,40 @@ def gen_report(payload_list):
                     if transaction["contractMethod"]["name"] != "performAction":
                         continue  ## Not a passthrough tx
                 except:
-                    print(f"No ABI with name in payload, can't process this tx, probs not a gauge.")
+                    print(
+                        f"No ABI with name in payload, can't process this tx, probs not a gauge."
+                    )
                     continue
             if gauge_address == False:
-                authorizer_target_contract = Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+                authorizer_target_contract = Web3.toChecksumAddress(
+                    transaction["contractInputsValues"]["target"]
+                )
                 if authorizer_target_contract == gauge_controller:
                     try:
-                        (command, inputs) = gauge_controller.decode_input(transaction["contractInputsValues"]["data"])
+                        (command, inputs) = gauge_controller.decode_input(
+                            transaction["contractInputsValues"]["data"]
+                        )
                     except:
                         print(
-                            f"\n\n\n ERROR: bad call data to gauge controller: {transaction['contractInputsValues']['data']}")
-                        outputs.append({
-                            "function": "Bad Call Data",
-                            "pool_id": transaction["contractInputsValues"]["data"],
-                            "symbol": "!!!",
-                            "pool_address": "!!!",
-                            "aFactor": "!!!",
-                            "gauge_address": "!!!",
-                            "cap": f"!!!",
-                            "style": "!!!"
-                        })
+                            f"\n\n\n ERROR: bad call data to gauge controller: {transaction['contractInputsValues']['data']}"
+                        )
+                        outputs.append(
+                            {
+                                "function": "Bad Call Data",
+                                "pool_id": transaction["contractInputsValues"]["data"],
+                                "symbol": "!!!",
+                                "pool_address": "!!!",
+                                "aFactor": "!!!",
+                                "gauge_address": "!!!",
+                                "cap": f"!!!",
+                                "style": "!!!",
+                            }
+                        )
                         continue
                 else:  # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
-                    (command, inputs) = Contract(authorizer_target_contract).decode_input(
-                        transaction["contractInputsValues"]["data"])
+                    (command, inputs) = Contract(
+                        authorizer_target_contract
+                    ).decode_input(transaction["contractInputsValues"]["data"])
 
                 # print(inputs)
                 if len(inputs) == 0:  ## Is a gauge kill
@@ -151,10 +166,14 @@ def gen_report(payload_list):
                 "getPolygonBridge": "polygon",
                 "getArbitrumBridge": "arbitrum",
                 "getGnosisBridge": "gnosis",
-                "getOptimismBridge": "optimism"
+                "getOptimismBridge": "optimism",
             }
 
-            fingerprintFx = list(set(gauge.selectors.values()).intersection(list(fxSelectorToChain.keys())))
+            fingerprintFx = list(
+                set(gauge.selectors.values()).intersection(
+                    list(fxSelectorToChain.keys())
+                )
+            )
             if len(fingerprintFx) > 0:  ## Is sidechain
                 l2 = fxSelectorToChain[fingerprintFx[0]]
                 # print(l2, gauge.getRecipient())
@@ -164,13 +183,29 @@ def gen_report(payload_list):
                 network.connect(chain)
                 l2hop1 = Contract(recipient)
                 ## Check if this is a new l0 style gauge
-                if "reward_receiver" in l2hop1.selectors.values():  ## Old child chain streamer style
+                if (
+                    "reward_receiver" in l2hop1.selectors.values()
+                ):  ## Old child chain streamer style
                     l2hop2 = Contract(l2hop1.reward_receiver())
-                    (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(l2hop2.lp_token())
+                    (
+                        pool_name,
+                        pool_symbol,
+                        poolId,
+                        pool_address,
+                        aFactor,
+                        fee,
+                    ) = get_pool_info(l2hop2.lp_token())
                     style = "ChildChainStreamer"
                     gauge_symbol = l2hop2.symbol()
                 else:  # L0 style
-                    (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(l2hop1.lp_token())
+                    (
+                        pool_name,
+                        pool_symbol,
+                        poolId,
+                        pool_address,
+                        aFactor,
+                        fee,
+                    ) = get_pool_info(l2hop1.lp_token())
                     style = "L0 sidechain"
                     gauge_symbol = l2hop1.symbol()
                 ## Go back to mainnet
@@ -180,19 +215,33 @@ def gen_report(payload_list):
                 try:
                     recipient = Contract(gauge.getRecipient())
                     escrow = Contract(recipient.getVotingEscrow())
-                    (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(escrow.token())
+                    (
+                        pool_name,
+                        pool_symbol,
+                        poolId,
+                        pool_address,
+                        aFactor,
+                        fee,
+                    ) = get_pool_info(escrow.token())
                     style = "Single Recipient"
                     gauge_symbol = "N/A"
                 except:
                     style = "Single Recipient"
 
             else:
-                (pool_name, pool_symbol, poolId, pool_address, aFactor, fee) = get_pool_info(gauge.lp_token())
+                (
+                    pool_name,
+                    pool_symbol,
+                    poolId,
+                    pool_address,
+                    aFactor,
+                    fee,
+                ) = get_pool_info(gauge.lp_token())
                 gauge_symbol = gauge.symbol()
                 if not style:
                     style = "mainnet"
             if "getRelativeWeightCap" in gauge.selectors.values():
-                cap = gauge.getRelativeWeightCap() / 10 ** 16
+                cap = gauge.getRelativeWeightCap() / 10**16
             else:
                 cap = "N/A"
 
@@ -201,23 +250,27 @@ def gen_report(payload_list):
             if "-gauge" in pool_symbol:
                 pool_address = f"ERROR: Gauge points to another Gauge: {pool_address}"
             if pool_symbol not in gauge_symbol and "N/A" not in gauge_symbol:
-                gauge_address = f"ERROR, {gauge_symbol} doesnt match {pool_symbol}: {gauge_address}"
+                gauge_address = (
+                    f"ERROR, {gauge_symbol} doesnt match {pool_symbol}: {gauge_address}"
+                )
 
-            outputs.append({
-                "function": command,
-                "pool_id": str(poolId),
-                "symbol": pool_symbol,
-                "pool_address": pool_address,
-                "aFactor": aFactor,
-                "gauge_address": gauge_address,
-                "fee": f"{fee}%",
-                "cap": f"{cap}%",
-                "style": style
-            })
+            outputs.append(
+                {
+                    "function": command,
+                    "pool_id": str(poolId),
+                    "symbol": pool_symbol,
+                    "pool_address": pool_address,
+                    "aFactor": aFactor,
+                    "gauge_address": gauge_address,
+                    "fee": f"{fee}%",
+                    "cap": f"{cap}%",
+                    "style": style,
+                }
+            )
         if outputs == []:
             print(f"No gauge changes found in {file}, skipping.")
             continue
-        report += (f"{file}\nCOMMIT: {os.environ['COMMIT_SHA']}\n```\n")
+        report += f"{file}\nCOMMIT: {os.environ['COMMIT_SHA']}\n```\n"
         report += dicts_to_table_string(outputs, outputs[0].keys())
         report += "\n```\n"
         reports.append(report)

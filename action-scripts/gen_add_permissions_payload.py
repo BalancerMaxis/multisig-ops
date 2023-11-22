@@ -6,24 +6,30 @@ from datetime import date
 from web3 import Web3
 import os
 from collections import defaultdict
+
+
 today = str(date.today())
 debug = False
-
-
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-###TODO: The below settings must be set before running the script
-INFURA_KEY = os.getenv('WEB3_INFURA_PROJECT_ID')
-BALANCER_DEPLOYMENTS_URL = "https://raw.githubusercontent.com/balancer/balancer-deployments/master"
-
-
+# TODO: The below settings must be set before running the script
+INFURA_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
+BALANCER_DEPLOYMENTS_URL = (
+    "https://raw.githubusercontent.com/balancer/balancer-deployments/master"
+)
 W3_BY_CHAIN = {
     "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
-    "arbitrum": Web3(Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "arbitrum": Web3(
+        Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")
+    ),
     "optimism": Web3(Web3.HTTPProvider(f"https://optimism-rpc.gateway.pokt.network")),
-    "polygon": Web3(Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "polygon": Web3(
+        Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")
+    ),
     "zkevm": Web3(Web3.HTTPProvider(f"https://zkevm-rpc.com")),
-    "avalanche": Web3(Web3.HTTPProvider(f"https://avalanche-mainnet.infura.io/v3/{INFURA_KEY}")),
+    "avalanche": Web3(
+        Web3.HTTPProvider(f"https://avalanche-mainnet.infura.io/v3/{INFURA_KEY}")
+    ),
     "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
     "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
     "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")),
@@ -35,12 +41,14 @@ for chain_name in AddrBook.chain_ids_by_name.keys():
     book_by_chain[chain_name] = AddrBook(chain_name)
     perms_by_chain[chain_name] = BalPermissions(chain_name)
 
+
 def load_input_data(input_json_file):
     with open(input_json_file, "r") as f:
         data = json.load(f)
         return data
 
-def build_action_ids_map(input_data,):
+
+def build_action_ids_map(input_data):
     warnings = ""
     action_ids_map = {}
     for chain_name in AddrBook.chain_ids_by_name.keys():
@@ -56,7 +64,9 @@ def build_action_ids_map(input_data,):
                     if isinstance(callers, str):
                         callers = [callers]
                     try:
-                        result = perms.search_unique_path_by_unique_deployment(deployment, function)
+                        result = perms.search_unique_path_by_unique_deployment(
+                            deployment, function
+                        )
                     except NoResultError as err:
                         warnings += f"WARNING: On chain:{chain_name}:{deployment}/{function}: found no matches, skipping\n"
                         continue
@@ -71,7 +81,7 @@ def build_action_ids_map(input_data,):
     return action_ids_map, warnings
 
 
-def generate_change_list(actions_id_map, ignore_already_set=True):
+def generate_change_list(actions_id_map):
     changes = []
     warnings = ""
     for chain_name, action_id_infos in actions_id_map.items():
@@ -82,7 +92,7 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
             paths = perms.paths_by_action_id[action_id]
             for path in paths:
                 for caller_address in callers:
-                    (deployment, contract, function) = path.split("/")
+                    (deployment, _, function) = path.split("/")
                     try:
                         authorizered_callers = perms.allowed_addresses(action_id)
                     except NoResultError:
@@ -91,14 +101,16 @@ def generate_change_list(actions_id_map, ignore_already_set=True):
                         warnings += f"{deployment}/{function} already has the proper owner set, skipping.\n"
                         continue
                     caller = book.reversebook[caller_address]
-                    changes.append({
-                        "deployment": deployment,
-                        "function": function,
-                        "role": action_id,
-                        "chain": chain_name,
-                        "caller": caller,
-                        "caller_address": caller_address
-                    })
+                    changes.append(
+                        {
+                            "deployment": deployment,
+                            "function": function,
+                            "role": action_id,
+                            "chain": chain_name,
+                            "caller": caller,
+                            "caller_address": caller_address,
+                        }
+                    )
     return changes, warnings
 
 
@@ -113,10 +125,11 @@ def print_change_list(change_list, output_dir, filename_root=today):
         with open(f"{output_dir}/{filename_root}_deployment_sorted.md", "w") as f:
             chain_deployment_sorted.to_markdown(index=False, buf=f)
 
+
 def save_command_description_table(change_list, output_dir, filename_root=today):
     referenced_calls = []
-    functions=[]
-    descriptions=[]
+    functions = []
+    descriptions = []
     with open(f"{output_dir}/func_desc_by_name.json", "r") as f:
         func_desc_by_name = json.load(f)
     for change in change_list:
@@ -128,18 +141,14 @@ def save_command_description_table(change_list, output_dir, filename_root=today)
                     descriptions.append(func_desc_by_name[function])
                 except:
                     descriptions.append("description not found in map")
-    df = pd.DataFrame({
-        "function": functions,
-        "description": descriptions
-    })
+    df = pd.DataFrame({"function": functions, "description": descriptions})
     with open(f"{output_dir}/{filename_root}_function_descriptions.md", "w") as f:
         df.to_markdown(buf=f, index=False)
 
 
 def save_txbuilder_json(change_list, output_dir, filename_root=today):
-    df = pd.DataFrame(change_list)
     print("Dumping files")
-    chains=[]
+    chains = []
     for change in change_list:
         if change["chain"] not in chains:
             chains.append(change["chain"])
@@ -148,7 +157,9 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         chain_id = AddrBook.chain_ids_by_name[chain_name]
         print(f"chain:{chain_name}")
         book = book_by_chain[chain_name]
-        with open(f"{script_dir}/tx_builder_templates/authorizor_grant_roles.json", "r") as f:
+        with open(
+            f"{script_dir}/tx_builder_templates/authorizor_grant_roles.json", "r"
+        ) as f:
             data = DotMap(json.load(f))
         print(f"book.chain:{book.chain}")
         # Set global data
@@ -165,13 +176,15 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         # Build transaction list
         transactions = []
         tx_template = data.transactions[0]
-        for address,actions in action_ids_by_address.items():
+        for address, actions in action_ids_by_address.items():
             sorted_actions = list(actions)
             sorted_actions.sort()
             transaction = DotMap(tx_template)
             transaction.to = book.flatbook["20210418-authorizer/Authorizer"]
             # TX builder wants lists in a string, addresses unquoted
-            transaction.contractInputsValues.roles = str(sorted_actions).replace("'","")
+            transaction.contractInputsValues.roles = str(sorted_actions).replace(
+                "'", ""
+            )
             transaction.contractInputsValues.account = address
             transactions.append(dict(transaction))
         # Inject transaction list
@@ -181,22 +194,25 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
             json.dump(dict(data), f, indent=2)
 
 
-def main(output_dir=f"{script_dir}/../BIPs/00batched/authorizer", input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json"):
+def main(
+    output_dir=f"{script_dir}/../BIPs/00batched/authorizer",
+    input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json",
+):
     input_data = load_input_data(input_file)
     (action_ids_map, warnings) = build_action_ids_map(input_data=input_data)
-    (change_list, w) = generate_change_list(actions_id_map=action_ids_map, ignore_already_set=True)
+    (change_list, w) = generate_change_list(
+        actions_id_map=action_ids_map, ignore_already_set=True
+    )
     warnings += "\n" + w
     if change_list:
-        print_change_list(
-            change_list=change_list,
-            output_dir=output_dir
-        )
+        print_change_list(change_list=change_list, output_dir=output_dir)
         save_command_description_table(change_list=change_list, output_dir=output_dir)
-        save_txbuilder_json(change_list=change_list,output_dir=output_dir)
+        save_txbuilder_json(change_list=change_list, output_dir=output_dir)
     else:
         warnings += "Doing nothing as there is no changelist, everything up to date? \n"
     with open(f"{output_dir}/{today}_warnings.txt", "w") as f:
         f.write(warnings)
+
 
 if __name__ == "__main__":
     main()
