@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "badger-multisig"
+name = "maxis-msig-ops-tools-python-brownie"
 version = "0.1.0"
 description = "Badger DAO's EVM multisig operations."
 authors = ["Gosuto Inzasheru <mail@gosuto.ai>"]
@@ -16,6 +16,7 @@ rich = "*"
 sympy = "*"
 tabulate = "*"
 tqdm = "*"
+bal-addresses = {git = "https://github.com/BalancerMaxis/bal_addresses", rev = "925d0b9694dc0ebe9ad57ef6d49dcb652cb31046"}
 
 [tool.poetry.group.dev.dependencies]
 black = "21.9b0"
