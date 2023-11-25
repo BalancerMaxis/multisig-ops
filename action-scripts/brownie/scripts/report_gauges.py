@@ -256,19 +256,19 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         else "N/A"
     )
     if gauge._name == "AvalancheRootGauge":
-        chain = "avax"
+        chain = "avax-main"
     elif gauge._name == "PolygonZkEVMRootGauge":
-        chain = "zkevm"
+        chain = "zkevm-main"
     elif gauge._name == "PolygonRootGauge":
-        chain = "polygon"
+        chain = "polygon-main"
     elif gauge._name == "ArbitrumRootGauge":
-        chain = "arbitrum"
+        chain = "arbitrum-main"
     elif gauge._name == "OptimismRootGauge":
-        chain = "optimism"
+        chain = "optimism-main"
     elif gauge._name == "GnosisRootGauge":
-        chain = "gnosis"
+        chain = "gnosis-main"
     elif gauge._name == "BaseRootGauge":
-        chain = "base"
+        chain = "base-main"
     else:
         # Find intersection between gauge selectors and SELECTORS_MAPPING
         chain = CHAIN_MAINNET
