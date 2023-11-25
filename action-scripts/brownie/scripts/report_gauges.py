@@ -45,9 +45,8 @@ TYPE_TO_CHAIN_MAP = {
 }
 
 SELECTORS_MAPPING = {
-    "getTotalBridgeCost": "arbitrum-main",
     "getPolygonBridge": "polygon-main",
-    "getArbitrumBridge": "arbitrum",
+    "getArbitrumBridge": "arbitrum-main",
     "getGnosisBridge": "gnosis-main",
     "getOptimismBridge": "optimism-main",
     "getPolygonZkEVMBridge": "zkevm-main",
@@ -256,13 +255,27 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         if "getRelativeWeightCap" in gauge_selectors
         else "N/A"
     )
-    gauge_selectors = gauge.selectors.values()
-    # Find intersection between gauge selectors and SELECTORS_MAPPING
-    chain = CHAIN_MAINNET
-    for selector in gauge_selectors:
-        if selector in SELECTORS_MAPPING.keys():
-            chain = SELECTORS_MAPPING[selector]
-            break
+    if gauge._name == "AvalancheRootGauge":
+        chain = "avax"
+    elif gauge._name == "PolygonZkEVMRootGauge":
+        chain = "zkevm"
+    elif gauge._name == "PolygonRootGauge":
+        chain = "polygon"
+    elif gauge._name == "ArbitrumRootGauge":
+        chain = "arbitrum"
+    elif gauge._name == "OptimismRootGauge":
+        chain = "optimism"
+    elif gauge._name == "GnosisRootGauge":
+        chain = "gnosis"
+    elif gauge._name == "BaseRootGauge":
+        chain = "base"
+    else:
+        # Find intersection between gauge selectors and SELECTORS_MAPPING
+        chain = CHAIN_MAINNET
+        for selector in gauge_selectors:
+            if selector in SELECTORS_MAPPING.keys():
+                chain = SELECTORS_MAPPING[selector]
+                break
 
     (
         pool_name,
