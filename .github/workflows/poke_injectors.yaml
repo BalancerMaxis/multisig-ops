@@ -3,7 +3,7 @@ name: Poke Onchain Rewards Injectors
 on:
   workflow_dispatch:
   schedule:
-  - cron: "0/5 * * * *"
+    - cron: "0/5 * * * *"
 env:
   KEYWORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
   WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
@@ -21,6 +21,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Cache Compiler Installations
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: compiler-cache
 
       - name: Set up Python
         uses: actions/setup-python@v2
