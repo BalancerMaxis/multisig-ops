@@ -66,28 +66,40 @@ def _extract_pool(
     """
     # Process sidechain gauges
     if chain != CHAIN_MAINNET:
+        recipient = gauge.getRecipient()
+        print(f"Recipient: {recipient}")
         if chain == "avalanche":
             chain = "avax-main"
-        recipient = gauge.getRecipient()
-        network.disconnect()
-        print(chain)
-        network.connect(chain)
-        print(f"Recipient: {recipient}")
-        sidechain_recipient = Contract(recipient)
-        style = None
-        if "reward_receiver" in sidechain_recipient.selectors.values():
-            sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
-            style = STYLE_CHILD_CHAIN_STREAMER
-        (
-            pool_name,
-            pool_symbol,
-            pool_id,
-            pool_address,
-            a_factor,
-            fee,
-            tokens,
-            rate_providers,
-        ) = get_pool_info(sidechain_recipient.lp_token())
+            # this is a temp fix due to snowtrace.io explorer being offline,
+            # and no other explorer with verified contract source code being
+            # available
+            pool_name = "AVAX_UNKNOWN"
+            pool_symbol = "AVAX_UNKNOWN"
+            pool_id = "AVAX_UNKNOWN"
+            pool_address = "AVAX_UNKNOWN"
+            a_factor = "AVAX_UNKNOWN"
+            fee = "AVAX_UNKNOWN"
+            tokens = []
+            rate_providers = []
+        else:
+            network.disconnect()
+            print(chain)
+            network.connect(chain)
+            sidechain_recipient = Contract(recipient)
+            style = None
+            if "reward_receiver" in sidechain_recipient.selectors.values():
+                sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
+                style = STYLE_CHILD_CHAIN_STREAMER
+            (
+                pool_name,
+                pool_symbol,
+                pool_id,
+                pool_address,
+                a_factor,
+                fee,
+                tokens,
+                rate_providers,
+            ) = get_pool_info(sidechain_recipient.lp_token())
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
