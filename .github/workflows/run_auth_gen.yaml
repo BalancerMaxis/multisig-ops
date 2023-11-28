@@ -2,7 +2,7 @@ name: Generate new Authorizer Payloads
 
 on:
   pull_request:
-    types: [ labeled, synchronize ]
+    types: [labeled, synchronize]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -11,27 +11,35 @@ jobs:
   gen_auth:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Setup Python 3.9
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+      - name: Cache Compiler Installations
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: compiler-cache
 
-    - name: Do Work
-      if: ${{ github.event.label.name == 'Generate Authorizer' }}
-      env:
-        WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-      run: |
-        pwd
-        pip3 install -r action-scripts/requirements-actions.txt
-        python3 action-scripts/gen_add_permissions_payload.py
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
-    - name: Commit and push changes
-      uses:  stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Generate permissions add payload and tables
-        commit_user_name:  GitHub Actions
-        commit_user_email: github-actions[bot]@users.noreply.github.com
-        commit_author: Github Actions <noreply@users.noreply.github.com>
+      - name: Do Work
+        if: ${{ github.event.label.name == 'Generate Authorizer' }}
+        env:
+          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+        run: |
+          pwd
+          pip3 install -r action-scripts/requirements-actions.txt
+          python3 action-scripts/gen_add_permissions_payload.py
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Generate permissions add payload and tables
+          commit_user_name: GitHub Actions
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: Github Actions <noreply@users.noreply.github.com>
