@@ -70,6 +70,7 @@ def _extract_pool(
         print(f"Recipient: {recipient}")
         if chain == "avalanche":
             chain = "avax-main"
+        if chain == "avax-main":
             # this is a temp fix due to snowtrace.io explorer being offline,
             # and no other explorer with verified contract source code being
             # available
