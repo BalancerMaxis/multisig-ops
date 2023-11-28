@@ -32,12 +32,12 @@ def get_changed_files() -> list[dict]:
     """
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
+    api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files"
     response = requests.get(api_url)
     pr_file_data = json.loads(response.text)
     changed_files = []
     for file_json in pr_file_data:
-        filename = (file_json['filename'])
+        filename = file_json["filename"]
         if "BIPs/" in filename and filename.endswith(".json"):
             # Check if file exists first
             if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
@@ -56,22 +56,28 @@ def get_changed_files() -> list[dict]:
                 if "transactions" not in payload.keys():
                     print(f"{filename} json deos not contain a list of transactions")
                     continue
-            payload['file_name'] = filename
+            payload["file_name"] = filename
             changed_files.append(payload)
     return changed_files
 
 
-def get_pool_info(pool_address) -> tuple[str, str, str, str, str, str, list[str], list[str]]:
+def get_pool_info(
+    pool_address,
+) -> tuple[str, str, str, str, str, str, list[str], list[str]]:
     """
     Returns a tuple of pool info
     """
     pool = Contract.from_abi(
-        name="IBalPool", address=pool_address, abi=json.load(open("abis/IBalPool.json", "r"))
+        name="IBalPool",
+        address=pool_address,
+        abi=json.load(open("abis/IBalPool.json", "r")),
     )
     chain_name = AddrBook.chain_names_by_id[chain.id]
     book = AddrBook(chain_name)
     vault = Contract.from_abi(
-        name="Vault", address=book.search_unique("vault/Vault").address, abi=json.load(open("abis/IVault.json"))
+        name="Vault",
+        address=book.search_unique("vault/Vault").address,
+        abi=json.load(open("abis/IVault.json")),
     )
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
@@ -128,7 +134,7 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
     """
-    file_name = file['file_name']
+    file_name = file["file_name"]
     file_report = f"File name: {file_name}\n"
 
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
@@ -138,13 +144,15 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
         (chain_id, address) = result
         chain_name = AddrBook.chain_names_by_id[chain_id]
         book = AddrBook(chain_name)
-        multisig = book.reversebook.get(web3.Web3.toChecksumAddress(address), "!NOT FOUND")
+        multisig = book.reversebook.get(
+            web3.Web3.toChecksumAddress(address), "!NOT FOUND"
+        )
         file_report += f"MERGED PAYLOAD: Chain:{chain_name} ({chain_id}), Multisig: {multisig} ({address})\n"
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
         map(
             lambda chain: chain.replace("-main", ""),
-            [transaction['chain'] for transaction in transactions]
+            [transaction["chain"] for transaction in transactions],
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
@@ -160,7 +168,7 @@ def extract_chain_id_and_address_from_filename(file_name: str):
     Grabs a chain_id and multisig address from a payload file name if it is formatted like chain-address.something
     """
     # Define the regular expression pattern to match the desired format
-    pattern = r'(\d+)-(0x[0-9a-fA-F]+)'
+    pattern = r"(\d+)-(0x[0-9a-fA-F]+)"
 
     # Try to find a match in the input string
     match = re.search(pattern, file_name)
@@ -179,7 +187,9 @@ def get_token_symbol(token_address) -> Optional[str]:
     Try to look up a token symbol on chain and return it if it exists
     """
     try:
-        return Contract.from_abi("Token", token_address, json.load(open("abis/ERC20.json"))).symbol()
+        return Contract.from_abi(
+            "Token", token_address, json.load(open("abis/ERC20.json"))
+        ).symbol()
     except Exception as err:
         print(err)
         return
@@ -209,19 +219,23 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
         if isinstance(valuedata, list):
             values = valuedata
         else:
-            values = valuedata.strip('[ ]f').replace(" ", "").split(",")
+            values = valuedata.strip("[ ]f").replace(" ", "").split(",")
         for value in values:
             if Web3.isAddress(value):
-                outputs[key].append(f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) ")
+                outputs[key].append(
+                    f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) "
+                )
             elif "role" in key or "Role" in key:
-                outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) ")
+                outputs[key].append(
+                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
+                )
             else:
                 outputs[key] = valuedata
     return outputs
 
 
 def merge_files(
-        results_outputs_list: list[dict[str, dict[str, dict]]],
+    results_outputs_list: list[dict[str, dict[str, dict]]],
 ) -> dict[str, str]:
     """
     Function that merges a list of report dicts into a dict of files and report strings.
@@ -265,14 +279,14 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
     """
     bip = None
     # First, try to exctract BIP from file path
-    if bip_file.get('file_name') is not None:
+    if bip_file.get("file_name") is not None:
         bip_match = re.search(r"BIP-?\d+", bip_file["file_name"])
         bip = bip_match.group(0) if bip_match else None
 
     # If no BIP in file path, try to extract it from transactions metadata
     if not bip:
-        for tx in bip_file['transactions']:
-            if tx.get('meta', {}).get('bip_number') not in [None, "N/A"]:
-                bip = tx['meta']['bip_number']
+        for tx in bip_file["transactions"]:
+            if tx.get("meta", {}).get("bip_number") not in [None, "N/A"]:
+                bip = tx["meta"]["bip_number"]
                 break
     return bip or "N/A"
