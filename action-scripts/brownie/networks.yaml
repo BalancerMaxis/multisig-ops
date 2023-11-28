@@ -1,8 +1,16 @@
 live:
-- name: Gnosis Chain
-  networks:
-  - chainid: 100
-    explorer: https://api.gnosisscan.io/api
-    host: https://rpc.gnosischain.com/
-    id: gnosis-main
-    name: Mainnet
+  - name: Gnosis Chain
+    networks:
+      - chainid: 100
+        explorer: https://api.gnosisscan.io/api
+        host: https://rpc.gnosischain.com/
+        id: gnosis-main
+        name: Mainnet
+
+  - name: Avalanche
+    networks:
+      - chainid: 43114
+        explorer: https://api.routescan.io/v2/network/mainnet/evm/43114/etherscan/api
+        host: https://avalanche-c-chain.publicnode.com
+        id: avax-main
+        name: C-Chain
