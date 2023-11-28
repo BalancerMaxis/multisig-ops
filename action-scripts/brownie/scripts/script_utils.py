@@ -148,6 +148,9 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
             web3.Web3.toChecksumAddress(address), "!NOT FOUND"
         )
         file_report += f"MERGED PAYLOAD: Chain:{chain_name} ({chain_id}), Multisig: {multisig} ({address})\n"
+    else:
+        for tx in transactions:
+            file_report += f"MULTISIG: `{tx['caller_name'] (tx['caller_address'])}`\n"
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
         map(
