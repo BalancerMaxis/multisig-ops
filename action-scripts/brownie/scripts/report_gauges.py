@@ -68,6 +68,7 @@ def _extract_pool(
     if chain != CHAIN_MAINNET:
         recipient = gauge.getRecipient()
         print(f"Recipient: {recipient}")
+        style = None
         if chain == "avalanche":
             chain = "avax-main"
         if chain == "avax-main":
@@ -87,7 +88,6 @@ def _extract_pool(
             print(chain)
             network.connect(chain)
             sidechain_recipient = Contract(recipient)
-            style = None
             if "reward_receiver" in sidechain_recipient.selectors.values():
                 sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
                 style = STYLE_CHILD_CHAIN_STREAMER
