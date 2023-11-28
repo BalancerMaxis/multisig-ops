@@ -33,10 +33,18 @@ jobs:
           ref: ${{ inputs.checkout_ref }}
           fetch-depth: 0
 
+      - name: Cache Compiler Installations
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: compiler-cache
+
       - name: Setup Python 3.9
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Setup Environment
         run: |
@@ -68,7 +76,7 @@ jobs:
           else
             echo "validation_exists=false" >> $GITHUB_OUTPUT
           fi
-          
+
           if [ -f "action-scripts/brownie/payload_reports.txt" ]; then
             echo "payload_reports=true" >> $GITHUB_OUTPUT
           else

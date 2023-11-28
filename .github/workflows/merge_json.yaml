@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       runWeek:
-        description: 'The week to run on like YYYY-W##, should match a directory in BIPs/'
+        description: "The week to run on like YYYY-W##, should match a directory in BIPs/"
         required: true
 
 jobs:
@@ -16,6 +16,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Cache Compiler Installations
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: compiler-cache
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -43,5 +51,5 @@ jobs:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     secrets: inherit
     with:
-      pr_number:  ${{ needs.merge_jsons.outputs.pull-request-number }}
+      pr_number: ${{ needs.merge_jsons.outputs.pull-request-number }}
       checkout_ref: "gha-payload-merge"

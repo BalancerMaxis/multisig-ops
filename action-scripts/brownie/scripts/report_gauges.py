@@ -22,7 +22,7 @@ import json
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
-GAUGE_ADD_METHODS = ['gauge', 'rootGauge']
+GAUGE_ADD_METHODS = ["gauge", "rootGauge"]
 CMD_GAUGE_KILL = "killGauge()"
 STYLE_MAINNET = "mainnet"
 STYLE_SINGLE_RECIPIENT = "Single Recipient"
@@ -41,25 +41,24 @@ TYPE_TO_CHAIN_MAP = {
     "PolygonZkEvm": "zkevm-main",
     "Avalanche": "avax-main",
     "Base": "base-main",
-    "EthereumSingleRecipientGauge": CHAIN_MAINNET
+    "EthereumSingleRecipientGauge": CHAIN_MAINNET,
 }
 
 SELECTORS_MAPPING = {
-    "getTotalBridgeCost": "arbitrum-main",
     "getPolygonBridge": "polygon-main",
-    "getArbitrumBridge": "arbitrum",
+    "getArbitrumBridge": "arbitrum-main",
     "getGnosisBridge": "gnosis-main",
     "getOptimismBridge": "optimism-main",
     "getPolygonZkEVMBridge": "zkevm-main",
     "getAvalancheBridge": "avax-main",
-    "getBaseBridge": "base-main"
+    "getBaseBridge": "base-main",
 }
 
-today = datetime.today().strftime('%Y-%m-%d')
+today = datetime.today().strftime("%Y-%m-%d")
 
 
 def _extract_pool(
-        chain: str, gauge: Contract, gauge_selectors: dict
+    chain: str, gauge: Contract, gauge_selectors: dict
 ) -> tuple[str, str, str, str, str, str, str, list[str], list[str]]:
     """
     Generic function used by handlers to extract pool info given chain and gauge.
@@ -67,33 +66,80 @@ def _extract_pool(
     """
     # Process sidechain gauges
     if chain != CHAIN_MAINNET:
+        recipient = gauge.getRecipient()
+        print(f"Recipient: {recipient}")
+        style = None
         if chain == "avalanche":
             chain = "avax-main"
-        recipient = gauge.getRecipient()
-        network.disconnect()
-        print(chain)
-        network.connect(chain)
-        print(f"Recipient: {recipient}")
-        sidechain_recipient = Contract(recipient)
-        style = None
-        if "reward_receiver" in sidechain_recipient.selectors.values():
-            sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
-            style = STYLE_CHILD_CHAIN_STREAMER
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers = get_pool_info(
-            sidechain_recipient.lp_token())
+        if chain == "avax-main":
+            # this is a temp fix due to snowtrace.io explorer being offline,
+            # and no other explorer with verified contract source code being
+            # available
+            pool_name = "AVAX_UNKNOWN"
+            pool_symbol = "AVAX_UNKNOWN"
+            pool_id = "AVAX_UNKNOWN"
+            pool_address = "AVAX_UNKNOWN"
+            a_factor = "AVAX_UNKNOWN"
+            fee = "AVAX_UNKNOWN"
+            tokens = []
+            rate_providers = []
+        else:
+            network.disconnect()
+            print(chain)
+            network.connect(chain)
+            sidechain_recipient = Contract(recipient)
+            if "reward_receiver" in sidechain_recipient.selectors.values():
+                sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
+                style = STYLE_CHILD_CHAIN_STREAMER
+            (
+                pool_name,
+                pool_symbol,
+                pool_id,
+                pool_address,
+                a_factor,
+                fee,
+                tokens,
+                rate_providers,
+            ) = get_pool_info(sidechain_recipient.lp_token())
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
         escrow = Contract(recipient.getVotingEscrow())
-        pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers = get_pool_info(
-            escrow.token())
+        (
+            pool_name,
+            pool_symbol,
+            pool_id,
+            pool_address,
+            a_factor,
+            fee,
+            tokens,
+            rate_providers,
+        ) = get_pool_info(escrow.token())
         style = STYLE_SINGLE_RECIPIENT
     else:  # Process mainnet gauges
-        (pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, tokens, rate_providers) = get_pool_info(
-            gauge.lp_token())
+        (
+            pool_name,
+            pool_symbol,
+            pool_id,
+            pool_address,
+            a_factor,
+            fee,
+            tokens,
+            rate_providers,
+        ) = get_pool_info(gauge.lp_token())
         style = STYLE_MAINNET
     tokens = prettify_tokens_list(tokens)
-    return pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style, tokens, rate_providers
+    return (
+        pool_name,
+        pool_symbol,
+        pool_id,
+        pool_address,
+        a_factor,
+        fee,
+        style,
+        tokens,
+        rate_providers,
+    )
 
 
 def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
@@ -108,10 +154,14 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     :param transaction: transaction to parse
     :return: dict with parsed data
     """
-    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
         return
     # Parse only gauge add transactions
-    if not any(method in transaction["contractInputsValues"] for method in GAUGE_ADD_METHODS):
+    if not any(
+        method in transaction["contractInputsValues"] for method in GAUGE_ADD_METHODS
+    ):
         return
     # Find command and gauge address
     command = transaction["contractMethod"]["name"]
@@ -119,7 +169,10 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if not gauge_type:
         print("No gauge type found! Cannot process transaction")
         return
-    if transaction['to'] != ADDR_BOOK.search_unique("20230519-gauge-adder-v4/GaugeAdder").address:
+    if (
+        transaction["to"]
+        != ADDR_BOOK.search_unique("20230519-gauge-adder-v4/GaugeAdder").address
+    ):
         return
     # Reset connection to mainnet
     if network.is_connected():
@@ -140,15 +193,24 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     gauge_selectors = gauge.selectors.values()
     gauge_cap = (
         f"{gauge.getRelativeWeightCap() / 10 ** 16}%"
-        if "getRelativeWeightCap" in gauge_selectors else "N/A"
+        if "getRelativeWeightCap" in gauge_selectors
+        else "N/A"
     )
     # Process sidechain gauges
     print(f"root gauge: {gauge_address}")
-    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style, tokens, rate_providers = _extract_pool(
-        chain, gauge, gauge_selectors
-    )
+    (
+        pool_name,
+        pool_symbol,
+        pool_id,
+        pool_address,
+        a_factor,
+        fee,
+        style,
+        tokens,
+        rate_providers,
+    ) = _extract_pool(chain, gauge, gauge_selectors)
     addr = AddrBook("mainnet")
-    to = transaction['to']
+    to = transaction["to"]
     to_name = addr.reversebook.get(to, "!!NOT-FOUND")
     if to_name == "20230519-gauge-adder-v4/GaugeAdder":
         to_string = "GaugeAdderV4"
@@ -163,8 +225,8 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "gauge_address_and_info": f"{gauge_address}\n Style: {style}, cap: {gauge_cap}",
         "tokens": json.dumps(tokens, indent=2).strip("[\n]"),
         "rate_providers": json.dumps(rate_providers, indent=2).strip("[\n ]"),
-        "bip": kwargs.get('bip_number', 'N/A'),
-        "tx_index": kwargs.get('tx_index', 'N/A')
+        "bip": kwargs.get("bip_number", "N/A"),
+        "tx_index": kwargs.get("tx_index", "N/A"),
     }
 
 
@@ -172,7 +234,9 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse a gauge remover transaction and return a dict with parsed data.
     """
-    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
         return
     input_values = transaction.get("contractInputsValues")
     if not input_values or not isinstance(input_values, dict):
@@ -201,22 +265,45 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     gauge_selectors = gauge.selectors.values()
     gauge_cap = (
         f"{gauge.getRelativeWeightCap() / 10 ** 16}%"
-        if "getRelativeWeightCap" in gauge_selectors else "N/A"
+        if "getRelativeWeightCap" in gauge_selectors
+        else "N/A"
     )
-    gauge_selectors = gauge.selectors.values()
-    # Find intersection between gauge selectors and SELECTORS_MAPPING
-    chain = CHAIN_MAINNET
-    for selector in gauge_selectors:
-        if selector in SELECTORS_MAPPING.keys():
-            chain = SELECTORS_MAPPING[selector]
-            break
+    if gauge._name == "AvalancheRootGauge":
+        chain = "avax-main"
+    elif gauge._name == "PolygonZkEVMRootGauge":
+        chain = "zkevm-main"
+    elif gauge._name == "PolygonRootGauge":
+        chain = "polygon-main"
+    elif gauge._name == "ArbitrumRootGauge":
+        chain = "arbitrum-main"
+    elif gauge._name == "OptimismRootGauge":
+        chain = "optimism-main"
+    elif gauge._name == "GnosisRootGauge":
+        chain = "gnosis-main"
+    elif gauge._name == "BaseRootGauge":
+        chain = "base-main"
+    else:
+        # Find intersection between gauge selectors and SELECTORS_MAPPING
+        chain = CHAIN_MAINNET
+        for selector in gauge_selectors:
+            if selector in SELECTORS_MAPPING.keys():
+                chain = SELECTORS_MAPPING[selector]
+                break
 
-    pool_name, pool_symbol, pool_id, pool_address, a_factor, fee, style, tokens, rate_providers = _extract_pool(
-        chain, gauge, gauge_selectors
-    )
+    (
+        pool_name,
+        pool_symbol,
+        pool_id,
+        pool_address,
+        a_factor,
+        fee,
+        style,
+        tokens,
+        rate_providers,
+    ) = _extract_pool(chain, gauge, gauge_selectors)
 
     addr = AddrBook("mainnet")
-    to = transaction['to']
+    to = transaction["to"]
     to_name = addr.reversebook.get(to, "!!NOT-FOUND")
     if to_name == "20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint":
         to_string = "AAEntrypoint"
@@ -233,9 +320,9 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "fee": f"{fee}%",
         "cap": gauge_cap,
         "style": style,
-        "bip": kwargs.get('bip_number', 'N/A'),
-        "tx_index": kwargs.get('tx_index', 'N/A'),
-        "tokens": tokens
+        "bip": kwargs.get("bip_number", "N/A"),
+        "tx_index": kwargs.get("tx_index", "N/A"),
+        "tokens": tokens,
     }
 
 
@@ -243,7 +330,9 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Permissions changes made to the authorizer
     """
-    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
         return
     function = transaction["contractMethod"].get("name")
     ## Parse only role changes
@@ -261,13 +350,15 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     if not action_ids:
         action_ids = [transaction["contractInputsValues"].get("role")]
     else:
-        action_ids = action_ids.strip('[ ]')
+        action_ids = action_ids.strip("[ ]")
         action_ids = action_ids.replace(" ", "")
         action_ids = action_ids.split(",")
     if not isinstance(action_ids, list):
-        print(f"Function {function} came up with {action_ids} which is not a valid list.")
+        print(
+            f"Function {function} came up with {action_ids} which is not a valid list."
+        )
         return
-    to = transaction['to']
+    to = transaction["to"]
     to_name = addr.reversebook.get(to, "!!NOT-FOUND")
     if to_name == "20210418-authorizer/Authorizer":
         to_string = "Authorizer"
@@ -286,8 +377,8 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
         "caller_address": caller_address,
         "fx_paths": "\n".join([i for i in fx_paths]),
         "action_ids": "\n".join([i for i in action_ids]),
-        "bip": kwargs.get('bip_number', 'N/A'),
-        "tx_index": kwargs.get('tx_index', 'N/A')
+        "bip": kwargs.get("bip_number", "N/A"),
+        "tx_index": kwargs.get("tx_index", "N/A"),
     }
 
 
@@ -295,7 +386,9 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse an ERC-20 transfer transaction and return a dict with parsed data
     """
-    if not transaction.get("contractInputsValues") or not transaction.get("contractMethod"):
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
         return
     # Parse only gauge add transactions
     if transaction["contractMethod"]["name"] != "transfer":
@@ -307,7 +400,9 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     # Get chain name using address book and chain id
     for c_name, c_id in AddrBook.chain_ids_by_name.items():
         if int(chain_id) == int(c_id):
-            chain_name = chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
+            chain_name = (
+                chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
+            )
             addresses = AddrBook(c_name)
             break
     if not chain_name:
@@ -320,10 +415,10 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     # Get input values
     token = Contract(transaction["to"])
     recipient_address = (
-            transaction["contractInputsValues"].get("to")
-            or transaction["contractInputsValues"].get("dst")
-            or transaction["contractInputsValues"].get("recipient")
-            or transaction["contractInputsValues"].get("_to")
+        transaction["contractInputsValues"].get("to")
+        or transaction["contractInputsValues"].get("dst")
+        or transaction["contractInputsValues"].get("recipient")
+        or transaction["contractInputsValues"].get("_to")
     )
     if Web3.isAddress(recipient_address):
         recipient_address = Web3.toChecksumAddress(recipient_address)
@@ -331,11 +426,10 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         print("ERROR: can't find recipient address")
         recipient_address = None
     raw_amount = (
-            transaction["contractInputsValues"].get("amount")
-            or transaction["contractInputsValues"].get("value")
-            or transaction["contractInputsValues"].get("wad")
-            or transaction["contractInputsValues"].get("_value")
-
+        transaction["contractInputsValues"].get("amount")
+        or transaction["contractInputsValues"].get("value")
+        or transaction["contractInputsValues"].get("wad")
+        or transaction["contractInputsValues"].get("_value")
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
@@ -346,12 +440,14 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         "token_symbol": f"{symbol}:{token.address}",
         "recipient": f"{recipient_name}:{recipient_address}",
         "amount": f"{amount} (RAW: {raw_amount})",
-        "bip": kwargs.get('bip_number', 'N/A'),
-        "tx_index": kwargs.get('tx_index', 'N/A'),
+        "bip": kwargs.get("bip_number", "N/A"),
+        "tx_index": kwargs.get("tx_index", "N/A"),
     }
 
 
-def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict]) -> dict[str, dict]:
+def parse_no_reports_report(
+    all_reports: list[dict[str, dict]], files: list[dict]
+) -> dict[str, dict]:
     """
     Accepts a list of report outputs returned from the handler, and the files list.
     Returns a report with details about any transactions, which have not been otherwise reported on in the same format
@@ -379,7 +475,9 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
         # If there are no covered indexes this returns an empty set, but we know there is 1 uncovered tx at index 0
         if len(covered_indexes) == 0:
             uncovered_indexs.add(0)
-        print(f"{filename}: covered: {covered_indexes}, uc:{uncovered_indexs}, all: {all_indexes}")
+        print(
+            f"{filename}: covered: {covered_indexes}, uc:{uncovered_indexs}, all: {all_indexes}"
+        )
         if len(uncovered_indexs) == 0:
             print(f"BINGO!  100% coverage for {filename}")
             continue
@@ -391,32 +489,35 @@ def parse_no_reports_report(all_reports: list[dict[str, dict]], files: list[dict
         for i in uncovered_indexs:
             transaction = filedata_by_file[filename]["transactions"][i]
             #  Now we can do the reporting magic on each uncovered transaction
-            to = transaction['to']
-            bip_number = transaction.get(
-                'meta', {}).get(
-                'bip_number'
+            to = transaction["to"]
+            bip_number = transaction.get("meta", {}).get(
+                "bip_number"
             ) or extract_bip_number_from_file_name(filename)
             civ = transaction.get("contractInputsValues")
             if civ:
-                civ_parsed = prettify_contract_inputs_values(chain_name, transaction["contractInputsValues"])
+                civ_parsed = prettify_contract_inputs_values(
+                    chain_name, transaction["contractInputsValues"]
+                )
             elif transaction.get("data"):
                 civ_parsed = transaction["data"]
             else:
                 civ_parsed = "N/A"
-            contractMethod = transaction.get("contractMethod",{})
-            no_reports.append({
-                "fx_name": contractMethod.get("name", "!!N/A!!"),
-                "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
-                "chain": filedata_by_file[filename].get("chainId", 0),
-                "value": transaction.get("value", "!!N/A!!"),
-                "inputs": json.dumps(civ_parsed, indent=2),
-                "bip_number": bip_number,
-                "tx_index": transaction.get("tx_index", "N/A"),
-            })
+            contractMethod = transaction.get("contractMethod", {})
+            no_reports.append(
+                {
+                    "fx_name": contractMethod.get("name", "!!N/A!!"),
+                    "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
+                    "chain": filedata_by_file[filename].get("chainId", 0),
+                    "value": transaction.get("value", "!!N/A!!"),
+                    "inputs": json.dumps(civ_parsed, indent=2),
+                    "bip_number": bip_number,
+                    "tx_index": transaction.get("tx_index", "N/A"),
+                }
+            )
 
         reports[filename] = {
             "report_text": format_into_report({"file_name": filename}, no_reports),
-            "report_data": {"file": {"file_name": filename}, "outputs": no_reports}
+            "report_data": {"file": {"file_name": filename}, "outputs": no_reports},
         }
     return reports
 
@@ -433,22 +534,21 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
         i = 0
         for transaction in tx_list:
             data = handler_func(
-                transaction, chain_id=file["chainId"],
+                transaction,
+                chain_id=file["chainId"],
                 # Try to extract bip number from transaction meta first. If it's missing,
                 # It means merge jsons hasn't been run yet, so we extract it from the file name
-                bip_number=transaction.get(
-                    'meta', {}).get(
-                    'bip_number'
-                ) or extract_bip_number(file),
-                tx_index=i
+                bip_number=transaction.get("meta", {}).get("bip_number")
+                or extract_bip_number(file),
+                tx_index=i,
             )
             if data:
                 outputs.append(data)
             i += 1
         if outputs:
-            reports[file['file_name']] = {
+            reports[file["file_name"]] = {
                 "report_text": format_into_report(file, outputs),
-                "report_data": {"file": file, "outputs": outputs}
+                "report_data": {"file": file, "outputs": outputs},
             }
     return reports
 
