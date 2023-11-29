@@ -146,7 +146,7 @@ def format_into_report(
     )
     file_name = file["file_name"]
     file_report = f"File name: {file_name}\n"
-    file_report += f"MULTISIG: `{msig_label (msig_addr)}`\n"
+    file_report += f"MULTISIG: `{msig_label} ({msig_addr})`\n"
     file_report += f"MULTISIG CHAIN: `{chain_id}`\n"
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
     result = extract_chain_id_and_address_from_filename(file_name)
