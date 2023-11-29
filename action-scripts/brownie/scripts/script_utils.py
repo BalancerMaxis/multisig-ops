@@ -130,13 +130,22 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     return str(tabulate(table, headers=header, tablefmt="grid"))
 
 
-def format_into_report(file: dict, transactions: list[dict]) -> str:
+def format_into_report(
+    file: dict,
+    transactions: list[dict],
+    msig_addr: str,
+    chain_id: int,
+) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
     """
+    msig_label = book.reversebook.get(
+        web3.Web3.toChecksumAddress(msig_addr), "!NOT FOUND"
+    )
     file_name = file["file_name"]
     file_report = f"File name: {file_name}\n"
-
+    file_report += f"MULTISIG: `{msig_label (msig_addr)}`\n"
+    file_report += f"MULTISIG CHAIN: `{chain_id}`\n"
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
     result = extract_chain_id_and_address_from_filename(file_name)
     print(result)
@@ -148,9 +157,6 @@ def format_into_report(file: dict, transactions: list[dict]) -> str:
             web3.Web3.toChecksumAddress(address), "!NOT FOUND"
         )
         file_report += f"MERGED PAYLOAD: Chain:{chain_name} ({chain_id}), Multisig: {multisig} ({address})\n"
-    else:
-        for tx in transactions:
-            file_report += f"MULTISIG: `{tx['caller_name'] (tx['caller_address'])}`\n"
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
         map(
