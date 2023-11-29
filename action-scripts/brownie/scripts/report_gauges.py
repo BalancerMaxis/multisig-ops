@@ -521,7 +521,7 @@ def parse_no_reports_report(
                 {"file_name": filename},
                 no_reports,
                 multisig,
-                chain_id,
+                int(chain_id),
             ),
             "report_data": {"file": {"file_name": filename}, "outputs": no_reports},
         }
@@ -557,7 +557,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
                     file,
                     outputs,
                     file["meta"]["createdFromSafeAddress"],
-                    file["chainId"],
+                    int(file["chainId"]),
                 ),
                 "report_data": {"file": file, "outputs": outputs},
             }
