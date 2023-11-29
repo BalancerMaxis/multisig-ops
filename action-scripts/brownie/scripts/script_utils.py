@@ -139,6 +139,8 @@ def format_into_report(
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
     """
+    chain_name = AddrBook.chain_names_by_id[chain_id]
+    book = AddrBook(chain_name)
     msig_label = book.reversebook.get(
         web3.Web3.toChecksumAddress(msig_addr), "!NOT FOUND"
     )
