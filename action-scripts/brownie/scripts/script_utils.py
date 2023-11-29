@@ -146,18 +146,10 @@ def format_into_report(
     )
     file_name = file["file_name"]
     file_report = f"FILENAME: `{file_name}`\n"
-    file_report += f"MULTISIG: `{msig_label} ({msig_addr}, {AddrBook.chain_names_by_id[chain_id]})`\n"
+    file_report += f"MULTISIG: `{msig_label} ({AddrBook.chain_names_by_id[chain_id]}:{msig_addr})`\n"
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
     result = extract_chain_id_and_address_from_filename(file_name)
-    print(result)
-    if result:
-        (chain_id, address) = result
-        chain_name = AddrBook.chain_names_by_id[chain_id]
-        book = AddrBook(chain_name)
-        multisig = book.reversebook.get(
-            web3.Web3.toChecksumAddress(address), "!NOT FOUND"
-        )
-        file_report += f"MERGED PAYLOAD: Chain:{chain_name} ({chain_id}), Multisig: {multisig} ({address})\n"
+
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
         map(
