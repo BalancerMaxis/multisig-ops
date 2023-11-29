@@ -145,7 +145,7 @@ def format_into_report(
         web3.Web3.toChecksumAddress(msig_addr), "!NOT FOUND"
     )
     file_name = file["file_name"]
-    file_report = f"File name: {file_name}\n"
+    file_report = f"FILENAME: `{file_name}`\n"
     file_report += f"MULTISIG: `{msig_label} ({msig_addr})`\n"
     file_report += f"MULTISIG CHAIN: `{chain_id}`\n"
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
