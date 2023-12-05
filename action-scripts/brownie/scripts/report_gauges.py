@@ -482,6 +482,7 @@ def parse_no_reports_report(
             print(f"BINGO!  100% coverage for {filename}")
             continue
         uncovered_indexes_by_file[filename] = uncovered_indexs
+        multisig = filedata_by_file[filename]["meta"]["createdFromSafeAddress"]
         chain_id = filedata_by_file[filename]["chainId"]
         chain_name = AddrBook.chain_names_by_id.get(int(chain_id), "Chain_not_found")
         addr = AddrBook(chain_name)
@@ -507,7 +508,7 @@ def parse_no_reports_report(
                 {
                     "fx_name": contractMethod.get("name", "!!N/A!!"),
                     "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
-                    "chain": filedata_by_file[filename].get("chainId", 0),
+                    "chain": chain_name,
                     "value": transaction.get("value", "!!N/A!!"),
                     "inputs": json.dumps(civ_parsed, indent=2),
                     "bip_number": bip_number,
@@ -516,7 +517,12 @@ def parse_no_reports_report(
             )
 
         reports[filename] = {
-            "report_text": format_into_report({"file_name": filename}, no_reports),
+            "report_text": format_into_report(
+                {"file_name": filename},
+                no_reports,
+                multisig,
+                int(chain_id),
+            ),
             "report_data": {"file": {"file_name": filename}, "outputs": no_reports},
         }
     return reports
@@ -547,7 +553,12 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
             i += 1
         if outputs:
             reports[file["file_name"]] = {
-                "report_text": format_into_report(file, outputs),
+                "report_text": format_into_report(
+                    file,
+                    outputs,
+                    file["meta"]["createdFromSafeAddress"],
+                    int(file["chainId"]),
+                ),
                 "report_data": {"file": file, "outputs": outputs},
             }
     return reports
