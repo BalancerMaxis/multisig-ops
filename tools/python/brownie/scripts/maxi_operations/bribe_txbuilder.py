@@ -108,7 +108,7 @@ def process_bribe_csv(
     return bribes
 
 def main(
-    csv_file=f"../../../Bribs/{today}.csv",
+    csv_file=f"../../../Bribs/2023-12-07.csv",
     usd_fee_token_address="0xfebb0bbf162e64fb9d0dfe186e517d84c395f016" ## bb-a-usd v3
 ):
     tx_list = []
