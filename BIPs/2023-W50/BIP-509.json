@@ -1,34 +1,34 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1702566200887,
-    "meta": {
-      "name": "Transactions Batch",
-      "description": "Set Aura Delegate",
-      "txBuilderVersion": "1.16.3",
-      "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
-      "createdFromOwnerAddress": "",
-      "checksum": ""
-    },
-    "transactions": [
-      {
-        "to": "0x3fa73f1e5d8a792c80f426fc8f84fbf7ce9bbcac",
-        "value": "0",
-        "data": null,
-        "contractMethod": {
-          "inputs": [
-            {
-              "name": "newDelegate",
-              "type": "address",
-              "internalType": "address"
-            }
-          ],
-          "name": "delegate",
-          "payable": false
-        },
-        "contractInputsValues": {
-          "newDelegate": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
-        }
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1702566200887,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set Aura Delegate",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x3fa73f1e5d8a792c80f426fc8f84fbf7ce9bbcac",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "newDelegate",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "delegate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newDelegate": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
       }
-    ]
-  }
+    }
+  ]
+}
