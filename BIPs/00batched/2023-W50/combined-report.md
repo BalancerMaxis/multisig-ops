@@ -76,10 +76,7 @@
 [Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/d9e7b951-d26c-45f5-bc27-d6f12ebd95c6)
 
 [Sign Nonce 32](https://app.safe.global/transactions/history?safe=matic:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)
-FILENAME: `BIPs/00batched/2023-W50/137-0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85.json`
-MULTISIG: `multisigs/dao (polygon:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)`
-COMMIT: `51ceaac9074502053c003034ff669d059bfe9682`
-CHAIN(S): `polygon`
+
 ```
 +-----------------------+-------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 | function              | caller_name                               | caller_address                             | fx_paths                                                                                                                               | action_ids                                                         | bip     |   tx_index |
