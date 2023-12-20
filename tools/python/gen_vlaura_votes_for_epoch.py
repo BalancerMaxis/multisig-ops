@@ -33,17 +33,28 @@ def get_stable_pools_with_rate_provider():
     result = []
     for chain in config:
         url = get_subgraph_url(chain)
-        query = f"""{{
+        query = """{
             pools(
-                where: {{
-                    priceRateProviders_: {{
-                        address_not: "0x0000000000000000000000000000000000000000"}},
-                        poolType_contains_nocase: "stable"
-                }}
-            ) {{
-                address
-            }}
-        }}"""
+                first: 1000,
+                where: {
+                    and: [
+                        {
+                            priceRateProviders_: {
+                                address_not: "0x0000000000000000000000000000000000000000"
+                            }
+                        },
+                        {
+                            or: [
+                                {poolType_contains_nocase: "stable"},
+                                {poolType_contains_nocase: "gyro"}
+                            ]
+                        }
+                    ]
+                }
+            ) {
+                address,poolType
+            }
+        }"""
         r = requests.post(url, json={"query": query})
         r.raise_for_status()
         for pool in r.json()["data"]["pools"]:
