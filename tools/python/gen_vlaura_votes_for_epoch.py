@@ -12,7 +12,51 @@ from helpers import get_subgraph_url
 dune = DuneClient.from_env()
 
 
-def get_df_revenue(start="2023-11-29 00:00:00", end="2023-12-13 00:00:00"):
+def _determine_date_range():
+    # https://docs.aura.finance/aura/governance/gauge-voting#gauge-voting-rules-and-information
+    query = """{
+        proposals(
+            where: {
+                space: "gauges.aurafinance.eth"
+            },
+            orderBy: "created",
+            orderDirection: desc
+        ) {
+            id
+            title
+            start
+            end
+            state
+        }
+    }"""
+    r = requests.post("https://hub.snapshot.org/graphql", json={"query": query})
+    r.raise_for_status()
+
+    # make sure we grab an actual biweekly gauge vote prop
+    for prop in r.json()["data"]["proposals"]:
+        if "Gauge Weight for Week of " in prop["title"]:
+            print(f'latest proposal is: "{prop["title"]}" ({prop["id"]})')
+            break
+
+    if prop["state"] == "active":
+        # date range should be the 14 days right before the prop started
+        end = prop["start"]
+        start = end - 2 * 7 * 24 * 60 * 60
+    else:
+        # date range should be the start of the last prop up until now
+        # NOTE: this is only to check what the running vote looks like; not final!
+        end = int(pd.Timestamp.now(tz="UTC").timestamp())
+        start = prop["start"]
+
+    # convert timestamps to string (localised to utc but drop offset from the string)
+    start = str(pd.to_datetime(start, unit="s").tz_localize("UTC"))[:-6]
+    end = str(pd.to_datetime(end, unit="s").tz_localize("UTC"))[:-6]
+
+    print(f"date range: {start} - {end}")
+    return start, end
+
+
+def get_df_revenue(start="2023-12-07 02:00:00", end="2023-12-21 02:00:00"):
     query = QueryBase(
         name="@balancer / Protocol Fee Collected",
         query_id=3293596,
@@ -64,9 +108,10 @@ def get_stable_pools_with_rate_provider():
 
 def main():
     # get all revenue data for a given epoch
-    df = get_df_revenue()
+    start, end = _determine_date_range()
+    df = get_df_revenue(start, end)
 
-    # dev: uncomment to use cached data in dev mode
+    # dev: uncomment to use cached data in dev mode (and save dune credits)
     # df.to_csv("cache.csv", index=False)
     # df = pd.read_csv("cache.csv")
 
