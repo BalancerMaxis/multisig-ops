@@ -218,27 +218,12 @@ def main(
     print(f"Current USDC: {usd.balanceOf(safe)/ 10** usd.decimals()} is being sent to veBalFeeInjectooooooor")
     print(f"Current BAL: {bal.balanceOf(safe)/ 10** usdc.decimals()} is being sent to veBalFeeInjectooooooor")
 
-    spent_usdc = payments + total_mantissa
-    print(spent_usdc)
-    usdc_trasfer = copy.deepcopy(TRANSFER)
-    usdc_trasfer["to"] = usdc.address
-    usdc_trasfer["contractInputsValues"]["to"] = address_book.extras.maxiKeepers.veBalFeeInjector
-    usdc_trasfer["contractInputsValues"]["value"] = str(usdc.balanceOf(safe)  - spent_usdc)
-    tx_list.append(usdc_trasfer)
-    bal_trasfer = TRANSFER
-    bal_trasfer["to"] = bal.address
-    bal_trasfer["contractInputsValues"]["to"] = address_book.extras.maxiKeepers.veBalFeeInjector
-    bal_trasfer["contractInputsValues"]["value"] = str(bal.balanceOf(safe))
-    tx_list.append(bal_trasfer)
     print("\n\nBuilding and pushing multisig payload")
     print ("saving payload")
     payload = PAYLOAD
     payload["meta"]["createdFromSafeAddress"] = safe
     payload["transactions"] = tx_list
-    with open(f"../../../BIPs/00corePools/{today}.json", "w") as f:
+    with open(f"../../../BIPs/00rebateRecycling/{today}.json", "w") as f:
         json.dump(payload, f)
-    print(f"balance: {usdc.balanceOf(safe)}")
     print(f"USDC to Bribs: {total_mantissa}")
     print(f"USDC payments: {payments}")
-    print(f"USDC to veBAL: {usdc.balanceOf(safe)  - spent_usdc}")
-    print(f"BAL to veBAL: {bal.balanceOf(safe)}")
