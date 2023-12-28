@@ -90,25 +90,25 @@ def process_bribe_csv(
        csv_file
 ):
     # Process the CSV
-    # csv_format: target, platform, amount
+    # csv_format: target, platform, amount, rounds
     bribe_csv = list(csv.DictReader(open(csv_file)))
     aura_bribes = []
     balancer_bribes = []
     bribes = {
         "aura": {},
         "balancer": {},
-        "payment": {}
+        "payment": {},
     }
     ## Parse briibes per platform
     for bribe in bribe_csv:
         try:
-            bribes[bribe["platform"]][bribe["target"]] = float(bribe["amount"])
+            bribes[bribe["platform"]][bribe["target"]] = [float(bribe["amount"]), int(bribe["rounds"])]
         except:
            assert False, f"Error: The following brib didn't work, somethings probs wrong: \b{bribe}"
     return bribes
 
 def main(
-    csv_file=f"../../../Bribs/2023-12-07.csv",
+    csv_file=f"../../../Bribs/2023-12-22.csv",
     usd_fee_token_address="0xfebb0bbf162e64fb9d0dfe186e517d84c395f016" ## bb-a-usd v3
 ):
     tx_list = []
@@ -123,10 +123,10 @@ def main(
     ### Calcualte total bribe
     total_balancer_usdc = 0
     total_aura_usdc = 0
-    for target, amount in bribes["balancer"].items():
-        total_balancer_usdc += amount
-    for target, amount in bribes["aura"].items():
-        total_aura_usdc += amount
+    for target, amounts in bribes["balancer"].items():
+        total_balancer_usdc += amounts[0]
+    for target, amounts in bribes["aura"].items():
+        total_aura_usdc += amounts[0]
     total_usdc = total_balancer_usdc + total_aura_usdc
     total_mantissa = int(total_usdc * usdc_mantissa_multilpier)
 
@@ -139,7 +139,8 @@ def main(
     ### Do Payments
     payments_usd = 0
     payments = 0
-    for target, amount in bribes["payment"].items():
+    for target, amounts in bribes["payment"].items():
+        (amount, rounds) = amounts
         print(f"Paying out {amount} via direct transfer to {target}")
         print(amount)
         usdc_amount = amount * 10**usdc.decimals()
@@ -161,7 +162,7 @@ def main(
     print(f"*** Total mantissa: {int(total_mantissa + payments)}")
 
     ### BALANCER
-    def bribe_balancer(gauge, mantissa):
+    def bribe_balancer(gauge, mantissa, amount, rounds):
         prop = web3.solidityKeccak(["address"], [Web3.toChecksumAddress(gauge)])
         mantissa = int(mantissa)
 
@@ -177,7 +178,7 @@ def main(
         bal_tx["contractInputsValues"]["_proposal"]=  prop.hex()
         bal_tx["contractInputsValues"]["_token"]= usdc.address
         bal_tx["contractInputsValues"]["_amount"]= str(mantissa)
-
+        bal_tx["contractInputsValues"]["_periods"] = str(rounds)
 
         tx_list.append(bal_tx)
 
@@ -188,7 +189,8 @@ def main(
         bribe_balancer(target, mantissa)
 
     ### AURA
-    for target, amount in bribes["aura"].items():
+    for target, amounts in bribes["aura"].items():
+        (amount, rounds) = amounts
         if amount == 0:
             continue
         target = web3.toChecksumAddress(target)
@@ -208,6 +210,7 @@ def main(
         tx["contractInputsValues"]["_proposal"] = prop
         tx["contractInputsValues"]["_token"] = usdc.address
         tx["contractInputsValues"]["_amount"] = str(mantissa)
+        tx["contractInputsValues"]["_periods"] = str(rounds)
         tx_list.append(tx)
 
     usd = Contract(address_book.extras.tokens.USDC)
@@ -215,27 +218,12 @@ def main(
     print(f"Current USDC: {usd.balanceOf(safe)/ 10** usd.decimals()} is being sent to veBalFeeInjectooooooor")
     print(f"Current BAL: {bal.balanceOf(safe)/ 10** usdc.decimals()} is being sent to veBalFeeInjectooooooor")
 
-    spent_usdc = payments + total_mantissa
-    print(spent_usdc)
-    usdc_trasfer = copy.deepcopy(TRANSFER)
-    usdc_trasfer["to"] = usdc.address
-    usdc_trasfer["contractInputsValues"]["to"] = address_book.extras.maxiKeepers.veBalFeeInjector
-    usdc_trasfer["contractInputsValues"]["value"] = str(usdc.balanceOf(safe)  - spent_usdc)
-    tx_list.append(usdc_trasfer)
-    bal_trasfer = TRANSFER
-    bal_trasfer["to"] = bal.address
-    bal_trasfer["contractInputsValues"]["to"] = address_book.extras.maxiKeepers.veBalFeeInjector
-    bal_trasfer["contractInputsValues"]["value"] = str(bal.balanceOf(safe))
-    tx_list.append(bal_trasfer)
     print("\n\nBuilding and pushing multisig payload")
     print ("saving payload")
     payload = PAYLOAD
     payload["meta"]["createdFromSafeAddress"] = safe
     payload["transactions"] = tx_list
-    with open(f"../../../BIPs/00corePools/{today}.json", "w") as f:
+    with open(f"../../../BIPs/00rebateRecycling/{today}.json", "w") as f:
         json.dump(payload, f)
-    print(f"balance: {usdc.balanceOf(safe)}")
     print(f"USDC to Bribs: {total_mantissa}")
     print(f"USDC payments: {payments}")
-    print(f"USDC to veBAL: {usdc.balanceOf(safe)  - spent_usdc}")
-    print(f"BAL to veBAL: {bal.balanceOf(safe)}")
