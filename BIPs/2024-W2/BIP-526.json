@@ -95,6 +95,24 @@
         "recipient": "0x823DF0278e4998cD0D06FB857fBD51e85b18A250",
         "amount": "500000000000000000000"
       }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "recipient", "type": "address", "internalType": "address" },
+          { "name": "amount", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x9F7dfAb2222A473284205cdDF08a677726d786A0",
+        "amount": "500000000000000000000"
+      }
     }
+
   ]
 }
