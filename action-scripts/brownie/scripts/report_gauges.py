@@ -6,6 +6,7 @@ from brownie import Contract
 from brownie import network
 from web3 import Web3
 from collections import defaultdict
+import requests
 
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
@@ -15,6 +16,7 @@ from .script_utils import extract_bip_number
 from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
+from .script_utils import return_hh_brib_maps
 
 from datetime import datetime
 
@@ -55,7 +57,6 @@ SELECTORS_MAPPING = {
 }
 
 today = datetime.today().strftime("%Y-%m-%d")
-
 
 def _extract_pool(
     chain: str, gauge: Contract, gauge_selectors: dict
@@ -140,6 +141,67 @@ def _extract_pool(
         tokens,
         rate_providers,
     )
+
+def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse Hidden Hand Bribe transactions
+
+    Look up the proposals and return a human readable pool + amount.
+
+    :param transaction: transaction to parse
+    :return: dict with parsed data
+    """
+
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
+        return
+    if not transaction["contractMethod"].get("name") == "depositBribe":
+        return
+    ## Grab Proposal data and briber addresses
+    prop_map = return_hh_brib_maps()
+    aura_briber = ADDR_BOOK.extras.hidden_hand2.aura_briber
+    bal_briber = ADDR_BOOK.extras.hidden_hand2.balancer_briber
+
+    ##  Parse TX
+    ### Determine market
+    to_address = Web3.toChecksumAddress(transaction["to"])
+    if to_address == aura_briber:
+        market = "aura"
+    elif to_address == bal_briber:
+        market = "balancer"
+    else:
+        print(f"Couldn't determine bribe market for {json.dumps(transaction, indent=2)}")
+        return
+    ### Grab info about token and amounts
+    token_address =  transaction["contractInputsValues"].get("_token")
+    token = Contract(token_address)
+    token_symbol = token.symbol()
+    token_decimals = token.decimals()
+    raw_amount =int( transaction["contractInputsValues"]["_amount"])
+    proposal_hash = transaction["contractInputsValues"]["_proposal"]
+    whole_amount = raw_amount/10**token_decimals
+    periods = transaction["contractInputsValues"].get("_periods", "N/A")
+    ### Determine pool
+    prop_data = prop_map[market].get(proposal_hash)
+    if not isinstance(prop_data, dict):
+        return {
+            "function": "depositBribe",
+            "chain": "mainnet",
+            "error": f"Can not find proposal {proposal_hash} on the {market} incentive market.",
+            "bip": kwargs.get("bip_number", "N/A"),
+            "tx_index": kwargs.get("tx_index", "N/A"),
+        }
+
+    return {
+        "function": "depositBribe",
+        "chain": "mainnet",
+        "title_and_poolId": f"{prop_data.get('title', 'Not Found')} \n{prop_data.get('poolId', 'Not Found')}",
+        "incentive_paid": f"{token_symbol} {whole_amount}({raw_amount})",
+        "market_and_prophash": f"{market} \n{proposal_hash}",
+        "periods": periods,
+        "tx_index": kwargs.get("tx_index", "N/A"),
+    }
 
 
 def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
@@ -573,6 +635,9 @@ def main() -> None:
     all_reports.append(handler(files, _parse_removed_transaction))
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
+    all_reports.append(handler(files, _parse_hh_brib))
+
+    ## Catch All should run after all other handlers.
     no_reports_report = parse_no_reports_report(all_reports, files)
     all_reports.append(no_reports_report)
     merged_files = merge_files(all_reports)
