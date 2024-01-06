@@ -182,7 +182,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     proposal_hash = transaction["contractInputsValues"]["_proposal"]
     whole_amount = raw_amount/10**token_decimals
     periods = transaction["contractInputsValues"].get("_periods", "N/A")
-    ### Determine pool
+    ### Lookup Proposal and return report
     prop_data = prop_map[market].get(proposal_hash)
     if not isinstance(prop_data, dict):
         return {
