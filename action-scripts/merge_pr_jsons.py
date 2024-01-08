@@ -223,7 +223,7 @@ def main():
                         "bip_number": extract_bip_number(file),
                     }
                     if "contractMethod" in tx.keys():
-                        if tx["contractMethod"]["name"] == "addGauge":
+                        if tx["contractMethod"].get(["name") == "addGauge":
                             try:
                                 gauge_chain = tx["contractInputsValues"]["gaugeType"]
                                 if gauge_chain != "Ethereum":
