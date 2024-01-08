@@ -25,7 +25,7 @@
 
 [Sign Nonce 47](https://app.safe.global/transactions/queue?safe=eth:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89)
 
-BIP-473 updates the permissions on the Karpatkey managed treasury safe.  The provided payload is raw call data.  The [report](./1-0x0efccbb9e2c09ea29551879bd9da32362b32fc89.report.txt) renders little useful information.
+BIP-473 updates the permissions on the Karpatkey managed treasury safe.  The provided payload is raw call data.  The [report](1-0x0efccbb9e2c09ea29551879bd9da32362b32fc89.report.txt) renders little useful information.
 A complete audit of the payload was completed as part of the governance process.  The details be found [here](https://forum.balancer.fi/t/bip-473-permissions-preset-update-request-2-revised-version-of-bip-442/5281/3?u=tritium).
 
 
