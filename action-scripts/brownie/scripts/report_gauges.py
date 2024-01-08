@@ -568,7 +568,11 @@ def parse_no_reports_report(
             contractMethod = transaction.get("contractMethod", {})
             no_reports.append(
                 {
-                    "fx_name": contractMethod.get("name", "!!N/A!!"),
+                    "fx_name": (
+                        contractMethod.get("name", "!!N/A!!")
+                        if contractMethod
+                        else "!!N/A!!"
+                    ),
                     "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
                     "chain": chain_name,
                     "value": transaction.get("value", "!!N/A!!"),
