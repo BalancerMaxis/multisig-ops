@@ -9,7 +9,7 @@ from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
 import requests
-from brownie import Contract, chain, network
+from brownie import Contract, chain
 from web3 import Web3
 
 ROOT_DIR = os.path.dirname(
