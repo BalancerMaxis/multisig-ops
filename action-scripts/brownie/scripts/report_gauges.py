@@ -58,6 +58,7 @@ SELECTORS_MAPPING = {
 
 today = datetime.today().strftime("%Y-%m-%d")
 
+
 def _extract_pool(
     chain: str, gauge: Contract, gauge_selectors: dict
 ) -> tuple[str, str, str, str, str, str, str, list[str], list[str]]:
@@ -142,6 +143,7 @@ def _extract_pool(
         rate_providers,
     )
 
+
 def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Hidden Hand Bribe transactions
@@ -171,16 +173,18 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     elif to_address == bal_briber:
         market = "balancer"
     else:
-        print(f"Couldn't determine bribe market for {json.dumps(transaction, indent=2)}")
+        print(
+            f"Couldn't determine bribe market for {json.dumps(transaction, indent=2)}"
+        )
         return
     ### Grab info about token and amounts
-    token_address =  transaction["contractInputsValues"].get("_token")
+    token_address = transaction["contractInputsValues"].get("_token")
     token = Contract(token_address)
     token_symbol = token.symbol()
     token_decimals = token.decimals()
-    raw_amount =int( transaction["contractInputsValues"]["_amount"])
+    raw_amount = int(transaction["contractInputsValues"]["_amount"])
     proposal_hash = transaction["contractInputsValues"]["_proposal"]
-    whole_amount = raw_amount/10**token_decimals
+    whole_amount = raw_amount / 10**token_decimals
     periods = transaction["contractInputsValues"].get("_periods", "N/A")
     ### Lookup Proposal and return report
     prop_data = prop_map[market].get(proposal_hash)
