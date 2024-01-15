@@ -3,7 +3,7 @@
 [Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/633983eb-85a7-4bc1-9f76-84679e6e18a8)
 
 [Sign Nonce 234](https://app.safe.global/transactions/queue?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)
-PLease sign Nonce 235 on the same safe, which is BIP-521 changes to snapshot configuration.  
+Please sign Nonce 235 on the same safe, which is BIP-521 changes to snapshot configuration.  
 The report for Nonce 234 is included below.  I will share posting notes for the snapshot change in our telegram channel and @mikeb and I have used 4 eyes to load.
 ```
 +------------+-------------------------------------------------+---------------------------------------------------------------------+----------------------------+---------+------------+
