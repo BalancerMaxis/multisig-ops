@@ -30,15 +30,13 @@ def return_hh_brib_maps() -> dict:
     hh_bal_props.raise_for_status()
     hh_aura_props = requests.get("https://api.hiddenhand.finance/proposal/aura")
     hh_aura_props.raise_for_status()
-    results = {
-        "aura": {},
-        "balancer": {}
-    }
+    results = {"aura": {}, "balancer": {}}
     for prop in hh_bal_props.json()["data"]:
         results["balancer"][prop["proposalHash"]] = prop
     for prop in hh_aura_props.json()["data"]:
         results["aura"][prop["proposalHash"]] = prop
     return results
+
 
 def get_changed_files() -> list[dict]:
     """
