@@ -1,12 +1,11 @@
 from typing import Callable
 from typing import Optional
 
-from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResultError
+from bal_addresses import AddrBook, BalPermissions
 from brownie import Contract
 from brownie import network
 from web3 import Web3
 from collections import defaultdict
-import requests
 
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
