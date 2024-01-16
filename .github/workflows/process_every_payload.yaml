@@ -6,6 +6,7 @@ on:
     paths:
       - "BIPs/**"
       - "config/**"
+      - "MaxiOps/**"
 jobs:
   run_reports:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
