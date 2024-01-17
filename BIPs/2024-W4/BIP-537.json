@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1705516006060,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Pay BAL for GGP comp",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "value": "6545000000000000000000"
+      }
+    }
+  ]
+}
