@@ -22,6 +22,24 @@ POOL_ID_CUSTOM_FALLBACK = "Custom"
 BIPS_PRECISION = 1e16
 
 
+def return_hh_brib_maps() -> dict:
+    """
+    Grabs and reformats hidden hand API data into a dict that has data for each proposal formatted like prop.market.prop_data_dict
+    """
+    hh_bal_props = requests.get("https://api.hiddenhand.finance/proposal/balancer")
+    hh_bal_props.raise_for_status()
+    hh_aura_props = requests.get("https://api.hiddenhand.finance/proposal/aura")
+    hh_aura_props.raise_for_status()
+    results = {
+        "aura": {},
+        "balancer": {}
+    }
+    for prop in hh_bal_props.json()["data"]:
+        results["balancer"][prop["proposalHash"]] = prop
+    for prop in hh_aura_props.json()["data"]:
+        results["aura"][prop["proposalHash"]] = prop
+    return results
+
 def get_changed_files() -> list[dict]:
     """
     Parses given GH repo and PR number to return a list of dicts of changed files

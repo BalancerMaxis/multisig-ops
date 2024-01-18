@@ -105,13 +105,13 @@ jobs:
         uses: creyD/prettier_action@v4.3
         with:
           # This part is also where you can pass other options, for example:
-          prettier_options: --write BIPs/**/*.json
-          commit_message: Reformatted JSON files
+          prettier_options: --write BIPs/**/*.json config/*.json MaxiOps/**/*.json
+          commit_message: Automated processing of Payload PR (validations, transformations, and reports) + reformat JSON
 
       - name: Commit and push reports
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Automated processing of Payload PR (validations, transformations, and reports)
+          commit_message:
           commit_user_name: GitHub Actions
           commit_user_email: github-actions[bot]@users.noreply.github.com
           commit_author: Github Actions <noreply@users.noreply.github.com>

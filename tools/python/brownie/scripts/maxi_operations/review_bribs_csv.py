@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 
 
-def main(date="2023-12-07"):
+def main(date="2024-01-05"):
     """
     map prop hashes in the payload with their pool id via the hidden hand api
     dump csv with pool id and usd amount
