@@ -146,6 +146,77 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     return str(tabulate(table, headers=header, tablefmt="grid"))
 
 
+def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
+    """
+    generates a tenderly simulation
+    returns the url and if it was successful or not
+    """
+    user = os.getenv("TENDERLY_ACCOUNT_NAME")
+    project = os.getenv("TENDERLY_PROJECT_NAME")
+    sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
+    api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
+
+    safe = Contract.from_abi(
+        name="IGnosisSafe",
+        address=safe_addr,
+        abi=json.load(open("abis/IGnosisSafe.json", "r")),
+    )
+
+    owner = safe.getOwners()[0]
+
+    # TODO
+    input = None
+    multisend_call_only = "0x40A2aCCbd92BCA938b02010E17A5b8929b49130D"
+    # ('execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)',
+    #  {'to': '0x9641d764fc13c8B624c04430C7356C1C7C8102e2',
+    #   'value': 0,
+    #   'data': HexBytes('0x8d80ff0a0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000018700a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000e2a4de267cdd4ff5ed9ba13552f5c624b12db9b2000000000000000000000000000000000000000000000000000000012a05f20000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000c7e84373fc63a17b5b22ebaf86219141b630cd7a00000000000000000000000000000000000000000000000000000004a817c80000c7e84373fc63a17b5b22ebaf86219141b630cd7a0000000000000000000000000000000000000000000000000429d069189e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'),
+    #   'operation': 1,
+    #   'safeTxGas': 0,
+    #   'baseGas': 0,
+    #   'gasPrice': 0,
+    #   'gasToken': '0x0000000000000000000000000000000000000000',
+    #   'refundReceiver': '0x0000000000000000000000000000000000000000',
+    #   'signatures': HexBytes('0x000000000000000000000000cf4ff1e03830d692f52eb094c52a5a6a2181ab3f000000000000000000000000000000000000000000000000000000000000000001')})
+
+    # ('multiSend(bytes)',
+    #  {'transactions': HexBytes('0x00a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000e2a4de267cdd4ff5ed9ba13552f5c624b12db9b2000000000000000000000000000000000000000000000000000000012a05f20000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000c7e84373fc63a17b5b22ebaf86219141b630cd7a00000000000000000000000000000000000000000000000000000004a817c80000c7e84373fc63a17b5b22ebaf86219141b630cd7a0000000000000000000000000000000000000000000000000429d069189e00000000000000000000000000000000000000000000000000000000000000000000')})
+
+    # TODO
+    value = 0
+
+    data = {
+        "network_id": network_id,
+        "from": owner,
+        "input": input,
+        "to": safe_addr,
+        "value": value,
+        "save": True,
+        "save_if_fails": True,
+        "simulation_type": "quick",
+        "state_objects": {
+            safe_addr: {
+                "storage": {
+                    "0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"
+                }
+            }
+        },
+    }
+    r = requests.post(
+        url=f"{api_base_url}/simulate",
+        json=data,
+        headers={
+            "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
+            "Content-Type": "application/json",
+        },
+    )
+    r.raise_for_status()
+    result = r.json()
+    url = f"{sim_base_url}{result['simulation']['id']}"
+    success = result["simulation"]["status"]
+    return url, success
+
+
 def format_into_report(
     file: dict,
     transactions: list[dict],
@@ -172,6 +243,7 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
+    file_report += f"TENDERLY: {None}\n"
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
