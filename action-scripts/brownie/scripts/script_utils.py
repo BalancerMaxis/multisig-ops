@@ -11,6 +11,10 @@ from bal_addresses import AddrBook, BalPermissions
 import requests
 from brownie import Contract, chain
 from web3 import Web3
+from eth_abi import encode_abi
+from gnosis.eth import EthereumClient
+from gnosis.safe import Safe, SafeOperation
+from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -155,53 +159,52 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     project = os.getenv("TENDERLY_PROJECT_NAME")
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
+    rpc_url = f"https://eth-mainnet.g.alchemy.com/v2/{os.getenv('ALCHEMYAPI_TOKEN')}"
 
-    safe = Contract.from_abi(
-        name="IGnosisSafe",
-        address=safe_addr,
-        abi=json.load(open("abis/IGnosisSafe.json", "r")),
+    # build multicall data
+    ethereum_client = EthereumClient(rpc_url)
+    safe = Safe(safe_addr, ethereum_client)
+    owners = safe.retrieve_owners()
+    multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
+    txs = [
+        MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
+        for tx in transactions
+    ]
+    data = MultiSend(ethereum_client).build_tx_data(txs)
+
+    # build execTransaction data
+    # execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
+    exec_tx = {
+        "to": multisend_call_only,
+        "value": 0,
+        "data": data,
+        "operation": SafeOperation.DELEGATE_CALL.value,
+        "safeTxGas": 0,
+        "baseGas": 0,
+        "gasPrice": 0,
+        "gasToken": "0x0000000000000000000000000000000000000000",
+        "refundReceiver": "0x0000000000000000000000000000000000000000",
+        "signatures": b''.join([encode_abi(['address', 'uint'], [str(owner), 0]) + b'\x01' for owner in owners]),
+    }
+    w3 = Web3(Web3.HTTPProvider(rpc_url))
+    safe = w3.eth.contract(
+        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
     )
+    input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
-    owner = safe.getOwners()[0]
-
-    # TODO
-    input = None
-    multisend_call_only = "0x40A2aCCbd92BCA938b02010E17A5b8929b49130D"
-    # ('execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)',
-    #  {'to': '0x9641d764fc13c8B624c04430C7356C1C7C8102e2',
-    #   'value': 0,
-    #   'data': HexBytes('0x8d80ff0a0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000018700a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000e2a4de267cdd4ff5ed9ba13552f5c624b12db9b2000000000000000000000000000000000000000000000000000000012a05f20000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000c7e84373fc63a17b5b22ebaf86219141b630cd7a00000000000000000000000000000000000000000000000000000004a817c80000c7e84373fc63a17b5b22ebaf86219141b630cd7a0000000000000000000000000000000000000000000000000429d069189e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'),
-    #   'operation': 1,
-    #   'safeTxGas': 0,
-    #   'baseGas': 0,
-    #   'gasPrice': 0,
-    #   'gasToken': '0x0000000000000000000000000000000000000000',
-    #   'refundReceiver': '0x0000000000000000000000000000000000000000',
-    #   'signatures': HexBytes('0x000000000000000000000000cf4ff1e03830d692f52eb094c52a5a6a2181ab3f000000000000000000000000000000000000000000000000000000000000000001')})
-
-    # ('multiSend(bytes)',
-    #  {'transactions': HexBytes('0x00a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000e2a4de267cdd4ff5ed9ba13552f5c624b12db9b2000000000000000000000000000000000000000000000000000000012a05f20000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb000000000000000000000000c7e84373fc63a17b5b22ebaf86219141b630cd7a00000000000000000000000000000000000000000000000000000004a817c80000c7e84373fc63a17b5b22ebaf86219141b630cd7a0000000000000000000000000000000000000000000000000429d069189e00000000000000000000000000000000000000000000000000000000000000000000')})
-
-    # TODO
-    value = 0
-
+    # build tenderly data
     data = {
         "network_id": network_id,
-        "from": owner,
-        "input": input,
+        "from": owners[0],
         "to": safe_addr,
-        "value": value,
+        "input": input,
         "save": True,
         "save_if_fails": True,
         "simulation_type": "quick",
-        "state_objects": {
-            safe_addr: {
-                "storage": {
-                    "0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"
-                }
-            }
-        },
+        "state_objects": {safe_addr:  {"storage": {"0x04": "0x01"}}},
     }
+
+    # post to tenderly api
     r = requests.post(
         url=f"{api_base_url}/simulate",
         json=data,
@@ -210,7 +213,11 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             "Content-Type": "application/json",
         },
     )
-    r.raise_for_status()
+    try:
+        r.raise_for_status()
+    except:
+        print(r.json())
+
     result = r.json()
     url = f"{sim_base_url}{result['simulation']['id']}"
     success = result["simulation"]["status"]
