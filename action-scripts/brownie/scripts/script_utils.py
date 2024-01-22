@@ -160,7 +160,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     project = os.getenv("TENDERLY_PROJECT_NAME")
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
-    rpc_url = f"https://mainnet.infura.io/v3/{os.getenv('WEB3_INFURA_PROJECT_ID')}"  # f"https://eth-mainnet.g.alchemy.com/v2/{os.getenv('ALCHEMYAPI_TOKEN')}"
+    rpc_url = 'https://eth.llamarpc.com'
+    # f"https://mainnet.infura.io/v3/{os.getenv('WEB3_INFURA_PROJECT_ID')}"
+    # f"https://eth-mainnet.g.alchemy.com/v2/{os.getenv('ALCHEMYAPI_TOKEN')}"
 
     w3 = Web3(Web3.HTTPProvider(rpc_url))
 
@@ -169,8 +171,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         if tx['contractMethod']:
             tx['contractMethod']['type'] = 'function'
             contract = w3.eth.contract(address=tx['to'], abi=[tx['contractMethod']])
-            if 'value' in tx['contractInputsValues']:
-                tx['contractInputsValues']['value'] = int(tx['contractInputsValues']['value'])
+            for input in tx['contractMethod']['inputs']:
+                if input['type'] == 'uint256':
+                    tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
             tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
 
     # build multicall data
