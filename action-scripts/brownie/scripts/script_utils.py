@@ -58,7 +58,7 @@ def get_changed_files() -> list[dict]:
     changed_files = []
     for file_json in pr_file_data:
         filename = file_json["filename"]
-        if "BIPs/" in filename and filename.endswith(".json"):
+        if "BIPs/" or "MaxiOps/" in filename and filename.endswith(".json"):
             # Check if file exists first
             if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
                 print(f"{filename} does not exist")
