@@ -12,8 +12,8 @@ import requests
 from brownie import Contract, chain
 from web3 import Web3
 from eth_abi import encode_abi
-from gnosis.eth import EthereumClient
-from gnosis.safe import Safe, SafeOperation
+from gnosis.eth.constants import NULL_ADDRESS
+from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
 
 ROOT_DIR = os.path.dirname(
@@ -155,22 +155,35 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     generates a tenderly simulation
     returns the url and if it was successful or not
     """
+    # build urls
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
     rpc_url = f"https://eth-mainnet.g.alchemy.com/v2/{os.getenv('ALCHEMYAPI_TOKEN')}"
 
+    w3 = Web3(Web3.HTTPProvider(rpc_url))
+
+    # build individual tx data
+    for tx in transactions:
+        if tx['contractMethod']:
+            tx['contractMethod']['type'] = 'function'
+            contract = w3.eth.contract(address=tx['to'], abi=[tx['contractMethod']])
+            if 'value' in tx['contractInputsValues']:
+                tx['contractInputsValues']['value'] = int(tx['contractInputsValues']['value'])
+            tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
+
     # build multicall data
-    ethereum_client = EthereumClient(rpc_url)
-    safe = Safe(safe_addr, ethereum_client)
-    owners = safe.retrieve_owners()
+    safe = w3.eth.contract(
+        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
+    )
+    owners = safe.functions.getOwners().call()
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
     txs = [
         MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
         for tx in transactions
     ]
-    data = MultiSend(ethereum_client).build_tx_data(txs)
+    data = MultiSend().build_tx_data(txs)
 
     # build execTransaction data
     # execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
@@ -182,14 +195,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "safeTxGas": 0,
         "baseGas": 0,
         "gasPrice": 0,
-        "gasToken": "0x0000000000000000000000000000000000000000",
-        "refundReceiver": "0x0000000000000000000000000000000000000000",
+        "gasToken": NULL_ADDRESS,
+        "refundReceiver": NULL_ADDRESS,
         "signatures": b''.join([encode_abi(['address', 'uint'], [str(owner), 0]) + b'\x01' for owner in owners]),
     }
-    w3 = Web3(Web3.HTTPProvider(rpc_url))
-    safe = w3.eth.contract(
-        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
-    )
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
     # build tenderly data
@@ -201,7 +210,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "save": True,
         "save_if_fails": True,
         "simulation_type": "quick",
-        "state_objects": {safe_addr:  {"storage": {"0x04": "0x01"}}},
+        "state_objects": {safe_addr:  {"storage": {"0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"}}},
     }
 
     # post to tenderly api
@@ -229,6 +238,8 @@ def format_into_report(
     transactions: list[dict],
     msig_addr: str,
     chain_id: int,
+    tenderly_url: str = None,
+    tenderly_success: bool = False,
 ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
@@ -250,7 +261,11 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    file_report += f"TENDERLY: {None}\n"
+    if tenderly_url:
+        if tenderly_success:
+            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+        else:
+            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
