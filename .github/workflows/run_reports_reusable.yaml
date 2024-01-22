@@ -49,7 +49,6 @@ jobs:
       - name: Setup Environment
         run: |
           cd action-scripts/brownie
-          pip install "cython<3.0.0" wheel
           pip install -r requirements-actions.txt
           touch .env
           pwd
