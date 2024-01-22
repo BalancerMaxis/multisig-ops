@@ -608,9 +608,6 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
         outputs = []
         tx_list = file["transactions"]
         i = 0
-        tenderly_url, tenderly_success = run_tenderly_sim(
-            file["chainId"], file["meta"]["createdFromSafeAddress"], tx_list
-        )
 
         # Reset connection to mainnet
         if network.is_connected():
@@ -637,8 +634,6 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
                     outputs,
                     file["meta"]["createdFromSafeAddress"],
                     int(file["chainId"]),
-                    tenderly_url,
-                    tenderly_success,
                 ),
                 "report_data": {"file": file, "outputs": outputs},
             }

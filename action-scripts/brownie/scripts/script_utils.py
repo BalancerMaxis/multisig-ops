@@ -11,6 +11,7 @@ import requests
 from web3 import Web3  # don't move below brownie import
 from brownie import Contract, chain
 from eth_abi import encode_abi
+from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
@@ -106,6 +107,7 @@ def get_pool_info(
             a_factor = NA
     except Exception:
         a_factor = NA
+    print(pool_address)
     name = pool.name()
     symbol = pool.symbol()
     try:
@@ -160,9 +162,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     project = os.getenv("TENDERLY_PROJECT_NAME")
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
-    rpc_url = 'https://eth.llamarpc.com'
-    # f"https://mainnet.infura.io/v3/{os.getenv('WEB3_INFURA_PROJECT_ID')}"
-    # f"https://eth-mainnet.g.alchemy.com/v2/{os.getenv('ALCHEMYAPI_TOKEN')}"
+    # rpc_url = 'https://eth.llamarpc.com'
+    # rpc_url = f"https://mainnet.infura.io/v3/{os.getenv('WEB3_INFURA_PROJECT_ID')}"
+    rpc_url = f"https://eth-mainnet.g.alchemy.com/v2/{os.getenv('ALCHEMYAPI_TOKEN')}"
 
     w3 = Web3(Web3.HTTPProvider(rpc_url))
 
@@ -186,7 +188,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
         for tx in transactions
     ]
-    data = MultiSend().build_tx_data(txs)
+    data = MultiSend(EthereumClient(rpc_url)).build_tx_data(txs)
 
     # build execTransaction data
     # execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
@@ -241,8 +243,6 @@ def format_into_report(
     transactions: list[dict],
     msig_addr: str,
     chain_id: int,
-    tenderly_url: str = None,
-    tenderly_success: bool = False,
 ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
@@ -264,11 +264,13 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    if tenderly_url:
-        if tenderly_success:
-            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
-        else:
-            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+    tenderly_url, tenderly_success = run_tenderly_sim(
+        file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
+    )
+    if tenderly_success:
+        file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+    else:
+        file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
