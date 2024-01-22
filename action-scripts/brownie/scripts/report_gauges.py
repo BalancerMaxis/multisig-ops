@@ -16,6 +16,7 @@ from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import return_hh_brib_maps
+from .script_utils import run_tenderly_sim
 
 from datetime import datetime
 
@@ -86,7 +87,7 @@ def _extract_pool(
             rate_providers = []
         else:
             network.disconnect()
-            print(chain)
+            # print(chain)
             network.connect(chain)
             sidechain_recipient = Contract(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
@@ -473,7 +474,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     if not chain_name:
         print("Chain name not found! Cannot transfer transaction")
         return
-    print(chain_name)
+    # print(chain_name)
     if network.is_connected():
         network.disconnect()
     network.connect(chain_name)
@@ -607,6 +608,15 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
         outputs = []
         tx_list = file["transactions"]
         i = 0
+        tenderly_url, tenderly_success = run_tenderly_sim(
+            file["chainId"], file["meta"]["createdFromSafeAddress"], tx_list
+        )
+
+        # Reset connection to mainnet
+        if network.is_connected():
+            network.disconnect()
+        network.connect(CHAIN_MAINNET)
+
         for transaction in tx_list:
             data = handler_func(
                 transaction,
@@ -627,6 +637,8 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
                     outputs,
                     file["meta"]["createdFromSafeAddress"],
                     int(file["chainId"]),
+                    tenderly_url,
+                    tenderly_success,
                 ),
                 "report_data": {"file": file, "outputs": outputs},
             }
