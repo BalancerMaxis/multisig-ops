@@ -49,6 +49,9 @@ jobs:
       - name: Setup Environment
         run: |
           cd action-scripts/brownie
+          : # https://github.com/yaml/pyyaml/issues/724#issuecomment-1848423837
+          pip install "cython<3.0.0" wheel
+          pip install "pyyaml==5.4.1" --no-build-isolation
           pip install -r requirements-actions.txt
           touch .env
           pwd
