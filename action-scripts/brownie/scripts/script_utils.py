@@ -4,17 +4,17 @@ import re
 from json import JSONDecodeError
 from typing import Optional
 
-import web3
 from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
 import requests
+from web3 import Web3  # don't move below brownie import
 from brownie import Contract, chain
-from web3 import Web3
 from eth_abi import encode_abi
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
+
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -250,7 +250,7 @@ def format_into_report(
     chain_name = AddrBook.chain_names_by_id[chain_id]
     book = AddrBook(chain_name)
     msig_label = book.reversebook.get(
-        web3.Web3.toChecksumAddress(msig_addr), "!NOT FOUND"
+        Web3.toChecksumAddress(msig_addr), "!NOT FOUND"
     )
     file_name = file["file_name"]
     file_report = f"FILENAME: `{file_name}`\n"
@@ -336,7 +336,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
         for value in values:
             if Web3.isAddress(value):
                 outputs[key].append(
-                    f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) "
+                    f"{value} ({addr.reversebook.get(Web3.toChecksumAddress(value), 'N/A')}) "
                 )
             elif "role" in key or "Role" in key:
                 outputs[key].append(
