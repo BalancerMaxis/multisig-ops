@@ -87,7 +87,6 @@ def _extract_pool(
         else:
             network.disconnect()
             print('reconnecting to', chain)
-            chain = chain.replace("-main", "")
             network.connect(chain)
             sidechain_recipient = Contract(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
