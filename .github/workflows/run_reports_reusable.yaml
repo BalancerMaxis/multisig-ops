@@ -24,6 +24,9 @@ jobs:
       ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
       SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
       BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
+      TENDERLY_ACCESS_KEY: ${{ secrets.TENDERLY_ACCESS_KEY }}
+      TENDERLY_ACCOUNT_NAME: ${{ secrets.TENDERLY_ACCOUNT_NAME }}
+      TENDERLY_PROJECT_NAME: ${{ secrets.TENDERLY_PROJECT_NAME }}
       PR_NUMBER: ${{ inputs.pr_number }}
       COMMIT_SHA: ${{ inputs.checkout_ref }}
     steps:
