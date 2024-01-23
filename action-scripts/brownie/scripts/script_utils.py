@@ -8,8 +8,7 @@ from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
 import requests
-from web3 import Web3  # don't move below brownie import
-from brownie import Contract, chain
+from brownie import Contract, chain, network, web3
 from eth_abi import encode_abi
 from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
@@ -107,7 +106,6 @@ def get_pool_info(
             a_factor = NA
     except Exception:
         a_factor = NA
-    print(pool_address)
     name = pool.name()
     symbol = pool.symbol()
     try:
@@ -162,33 +160,30 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     project = os.getenv("TENDERLY_PROJECT_NAME")
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
-    # rpc_url = 'https://eth.llamarpc.com'
-    # rpc_url = f"https://mainnet.infura.io/v3/{os.getenv('WEB3_INFURA_PROJECT_ID')}"
-    rpc_url = f"https://eth-mainnet.g.alchemy.com/v2/{os.getenv('ALCHEMYAPI_TOKEN')}"
 
-    w3 = Web3(Web3.HTTPProvider(rpc_url))
+    # TODO: reset connection to network on which the safe is deployed
+    if network.is_connected():
+        network.disconnect()
+    network.connect('mainnet')
 
     # build individual tx data
     for tx in transactions:
         if tx['contractMethod']:
             tx['contractMethod']['type'] = 'function'
-            contract = w3.eth.contract(address=tx['to'], abi=[tx['contractMethod']])
+            contract = web3.eth.contract(address=tx['to'], abi=[tx['contractMethod']])
             for input in tx['contractMethod']['inputs']:
                 if input['type'] == 'uint256':
                     tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
             tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
 
     # build multicall data
-    safe = w3.eth.contract(
-        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
-    )
-    owners = safe.functions.getOwners().call()
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
     txs = [
         MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
         for tx in transactions
     ]
-    data = MultiSend(EthereumClient(rpc_url)).build_tx_data(txs)
+    data = MultiSend(EthereumClient(web3.provider.endpoint_uri)).build_tx_data(txs)
+    owners = Contract(safe_addr).getOwners()
 
     # build execTransaction data
     # execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
@@ -204,7 +199,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "refundReceiver": NULL_ADDRESS,
         "signatures": b''.join([encode_abi(['address', 'uint'], [str(owner), 0]) + b'\x01' for owner in owners]),
     }
-    input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
+    input = web3.eth.contract(
+        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
+    ).encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
     # build tenderly data
     data = {
@@ -235,6 +232,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     result = r.json()
     url = f"{sim_base_url}{result['simulation']['id']}"
     success = result["simulation"]["status"]
+    # print(url, success)
     return url, success
 
 
@@ -250,7 +248,7 @@ def format_into_report(
     chain_name = AddrBook.chain_names_by_id[chain_id]
     book = AddrBook(chain_name)
     msig_label = book.reversebook.get(
-        Web3.toChecksumAddress(msig_addr), "!NOT FOUND"
+        web3.toChecksumAddress(msig_addr), "!NOT FOUND"
     )
     file_name = file["file_name"]
     file_report = f"FILENAME: `{file_name}`\n"
@@ -264,13 +262,14 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    tenderly_url, tenderly_success = run_tenderly_sim(
-        file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
-    )
-    if tenderly_success:
-        file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
-    else:
-        file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+    if not file.get("meta") == None:
+        tenderly_url, tenderly_success = run_tenderly_sim(
+            file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
+        )
+        if tenderly_success:
+            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+        else:
+            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
@@ -336,9 +335,9 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
         else:
             values = valuedata.strip("[ ]f").replace(" ", "").split(",")
         for value in values:
-            if Web3.isAddress(value):
+            if web3.isAddress(value):
                 outputs[key].append(
-                    f"{value} ({addr.reversebook.get(Web3.toChecksumAddress(value), 'N/A')}) "
+                    f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
                 )
             elif "role" in key or "Role" in key:
                 outputs[key].append(
