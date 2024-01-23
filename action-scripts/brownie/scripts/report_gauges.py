@@ -4,7 +4,7 @@ from typing import Optional
 from bal_addresses import AddrBook, BalPermissions
 from brownie import Contract
 from brownie import network
-from web3 import Web3
+from brownie import web3
 from collections import defaultdict
 
 from .script_utils import format_into_report
@@ -16,7 +16,6 @@ from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import return_hh_brib_maps
-from .script_utils import run_tenderly_sim
 
 from datetime import datetime
 
@@ -87,7 +86,8 @@ def _extract_pool(
             rate_providers = []
         else:
             network.disconnect()
-            # print(chain)
+            print('reconnecting to', chain)
+            chain = chain.replace("-main", "")
             network.connect(chain)
             sidechain_recipient = Contract(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
@@ -167,7 +167,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
 
     ##  Parse TX
     ### Determine market
-    to_address = Web3.toChecksumAddress(transaction["to"])
+    to_address = web3.toChecksumAddress(transaction["to"])
     if to_address == aura_briber:
         market = "aura"
     elif to_address == bal_briber:
@@ -316,7 +316,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     network.connect(CHAIN_MAINNET)
     try:
         (command, inputs) = Contract(
-            Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+            web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
         ).decode_input(transaction["contractInputsValues"]["data"])
     except:
         ## Doesn't look like a gauge add, maybe contract isn't on mainnet
@@ -474,7 +474,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     if not chain_name:
         print("Chain name not found! Cannot transfer transaction")
         return
-    # print(chain_name)
+    print('reconnecting to', chain_name)
     if network.is_connected():
         network.disconnect()
     network.connect(chain_name)
@@ -486,8 +486,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("recipient")
         or transaction["contractInputsValues"].get("_to")
     )
-    if Web3.isAddress(recipient_address):
-        recipient_address = Web3.toChecksumAddress(recipient_address)
+    if web3.isAddress(recipient_address):
+        recipient_address = web3.toChecksumAddress(recipient_address)
     else:
         print("ERROR: can't find recipient address")
         recipient_address = None
@@ -608,12 +608,6 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
         outputs = []
         tx_list = file["transactions"]
         i = 0
-
-        # Reset connection to mainnet
-        if network.is_connected():
-            network.disconnect()
-        network.connect(CHAIN_MAINNET)
-
         for transaction in tx_list:
             data = handler_func(
                 transaction,
