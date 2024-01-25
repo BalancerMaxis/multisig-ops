@@ -20,15 +20,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10
+          python-version: 3.9
 
       - name: Pull files from STIP repo
         run: |
           cd ../
-          git clone git@github.com:BalancerMaxis/STIP_automation
+          git clone https://github.com/BalancerMaxis/STIP_automation
+          ls
           cd -
-          cd MaxiOps/STIP
-          cp ../STIP_automation/*${{ github.event.inputs.epoch_end_date }}.* .
+          cp ../STIP_automation/output/*${{ github.event.inputs.epoch_end_date }}.* MaxiOps/STIP
 
       - name: Create PR
         id: cpr
@@ -37,14 +37,13 @@ jobs:
           commit-message: "STIP Payment Payload"
           title: "STIP Distribution Payload"
           branch: gha-stip
-          branch-suffix: timestamp
           delete-branch: true
           labels: "STIP"
 
   run_reports:
-    needs: merge_jsons
+    needs: STIP_PR
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     secrets: inherit
     with:
       pr_number: ${{ needs.merge_jsons.outputs.pull-request-number }}
-      checkout_ref: "gha-payload-merge"
+      checkout_ref: "gha-stip"
