@@ -42,7 +42,7 @@ jobs:
           labels: "STIP"
 
   run_reports:
-    needs: merge_jsons
+    needs: STIP_PR
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     secrets: inherit
     with:
