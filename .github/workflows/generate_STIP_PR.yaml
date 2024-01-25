@@ -28,7 +28,7 @@ jobs:
           git clone https://github.com/BalancerMaxis/STIP_automation
           cd -
           cd MaxiOps/STIP
-          cp ../STIP_automation/*${{ github.event.inputs.epoch_end_date }}.* .
+          cp ../STIP_automation/output/*${{ github.event.inputs.epoch_end_date }}.* .
 
       - name: Create PR
         id: cpr
