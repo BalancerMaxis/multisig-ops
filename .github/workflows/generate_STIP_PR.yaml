@@ -37,7 +37,6 @@ jobs:
           commit-message: "STIP Payment Payload"
           title: "STIP Distribution Payload"
           branch: gha-stip
-          branch-suffix: timestamp
           delete-branch: true
           labels: "STIP"
 
@@ -47,4 +46,4 @@ jobs:
     secrets: inherit
     with:
       pr_number: ${{ needs.merge_jsons.outputs.pull-request-number }}
-      checkout_ref: "gha-payload-merge"
+      checkout_ref: "gha-stip"
