@@ -51,10 +51,14 @@ Beethoven has agreed to pay half of the `5_861.28 * .75 = 4_395.96` USD due to v
 ## Addition of a late reporter on Arbitrum with special handling
 A user with the address [0x8484e288b7c2edad1b5214ed9df3bae4af7dadf5](https://arbiscan.io/address/0x8484e288b7c2edad1b5214ed9df3bae4af7dadf5) showed up on Discord after the end of the claim period reporting [losses](https://arbiscan.io/tx/0xe135f72acc1214b05fb68a1977d11a951960bb3fa323b2ab2b3fdf8f4d159c96) from the USD+ pool on Arbitrum. The total losses were calculated using the same methods as other claimants:
 `pre-hack value = 2_312.80701209198413362 BPTs * 1.01542668 USDperBPT = 2_348.48594577 USD`
+
 `recovered value wUSD+ = 106.19`
+
 `recpvered value USD = (106.19 USD in USD+) + (66.35 USDC) = 172.54 `
+
 `total loss = 2_312.8070120919841336 -  172.54 = 2140.267012092 in USD vaue lost`
-Support and the Balancer Maxis agreed to include this address in this restituion BIP barring any strong objections stated in comments before snapshot.
+
+Support and the Balancer Maxis agreed to include this address in this restitution BIP barring any strong objections stated in comments before snapshot.
 
 Based on the 75% payback at the currently used BAL price this equates to `2140.267012092 * .75 / 3.57 = 449.6359269101 $BAL`.  As with other claims this amount will be recalculated if the price of BAL drops more than 5 cents.
 
