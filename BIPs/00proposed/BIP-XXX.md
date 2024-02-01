@@ -1,4 +1,5 @@
 # Payload
+
 https://github.com/BalancerMaxis/multisig-ops/pull/780
 
 # TL;DR:
@@ -7,10 +8,9 @@ This BIP is concerning what to do with $376k USD in losses reported pertaining t
 
 It proposes back paying holders 75% of the lost value in BAL by way of a direct airdrop based on the discussion held here: https://forum.balancer.fi/t/rfc-linear-pool-hack-restitution/5504.
 
-If passed, BAL amounts will be finally calculated based on pricing before a direct airdrop TX is loaded.  Based on current pricing the total amount is 75,026 $BAL.
+If passed, BAL amounts will be finally calculated based on pricing before a direct airdrop TX is loaded. Based on current pricing the total amount is 75,026 $BAL.
 
-If any users bring up concerns about being dropped BAL, they may request themselves to be removed before the final payload is loaded on Monday.  We can then handle that in separate governance.
-
+If any users bring up concerns about being dropped BAL, they may request themselves to be removed before the final payload is loaded on Monday. We can then handle that in separate governance.
 
 # Background:
 
@@ -39,24 +39,62 @@ The addresses on Optimism do not look like they have gas on mainnet. Further, Be
 
 # The amount of payment:
 
-An RFC was held https://forum.balancer.fi/t/rfc-linear-pool-hack-restitution/5504 to collect community feedback around this issue.  A poll was staged asking if this BIP should offer 75% of the amount lost or 100% and opened the floor to discuss other options.  
-In the discussion the primary other option that people thought should be included was 0, or no restitution, but a rejection of this BIP has the same functional effect while not blocking further governance. 
+An RFC was held https://forum.balancer.fi/t/rfc-linear-pool-hack-restitution/5504 to collect community feedback around this issue. A poll was staged asking if this BIP should offer 75% of the amount lost or 100% and opened the floor to discuss other options.
 
- - More inidividuals selected the 75% option to the 25% option.  
- - A number of major hodlers or delegates polled on both sides
-   - @humpydumpy007 and a number of other sizeable delegates choosing  75%, 
-   - @jameskbh was the only delegate with real vote weight choosing 100% .  
-  
-Therefore this BIP proposes that 75% of the amount lost is paid back.  This results in a total of **AMOUNT???** USD of value, which results in a total of **AMOUNT??** BAL at the time of this vote.   If the price of BAL moves by more than 5 cents by noon on Monday after a successful yes vote, the payload will be regenerated using new BAL pricing and the total amount of BAL paid out may change.
+In the discussion the primary other option that people thought should be included was 0, or no restitution, but a rejection of this BIP has the same functional effect while not blocking further governance.
 
-Finally, Bethooven has agreed to pay half of the  **AMOUNT?? in USD** due to victims as decided by Balancer, which is 50% of the final value owed to Optimsim based victims will be sent to the Beets Treasury on Mainnet `0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86`. This reduces the total amount due to Balancer by **AMOUNT**
+- More inidividuals selected the 75% option to the 25% option.
+- A number of major hodlers or delegates polled on both sides
+  - @humpydumpy007 and a number of other sizeable delegates choosing 75%,
+  - @jameskbh was the only delegate with real vote weight choosing 100% .
+
+Therefore this BIP proposes that 75% of the amount lost is paid back. This results in a total of `376_032.42 * .75 = 282_024.32` USD of value, which results in a total of `282_024.32 / 3.57 = 78_998.40896359` BAL at the time of this vote. If the price of BAL moves by more than 5 cents by noon on Monday after a successful yes vote, the payload will be regenerated using new BAL pricing and the total amount of BAL paid out may change.
+
+Finally, Beethoven has agreed to pay half of the `5_861.28 * .75 = 4_395.96` USD due to victims as decided by Balancer, which is 50% of the final value owed to Optimsim based victims will be sent to the Beets Treasury on Mainnet `0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86`. This reduces the total amount due by Balancer by `615.68067227` BAL (see first row of the airdrop csv).
 
 # Specification
 
-Around Noon GMT on Monday the final price of BAL should be checked.  If it deviates from the current payload price of 3.65 by more then 5 cents, the payload CSV will be renegerated from the google sheet using the new current price.  The final payload will then be reviewed by at least 2 Balancer Maxis on github before being loaded into the DAO multisig as part of the regular process.
+Around Noon GMT on Monday the final price of BAL should be checked. If it deviates from the current payload price of `$3.57` by more then 5 cents, the payload CSV will be renegerated from the google sheet using the new current price. The final payload will then be reviewed by at least 2 Balancer Maxis on github before being loaded into the DAO multisig as part of the regular process.
 
 # The List of Payouts
-The current CSV, that may be revised based on BAL pricing and does not include Optimsim victims, but does include the Beethoven Treasury is below.  If you reported, please check this.  If you will be unable to access $BAL sent to this address, please comment on this forum post or contact @gosuto or myself or any of the Maxis here or on [Discord](https://discord.balancer.fi).
 
+The current CSV, that may be revised based on BAL pricing and does not include Optimsim victims, but does include the Beethoven Treasury is below. If you reported, please check this. If you will be unable to access $BAL sent to this address, please comment on this forum post or contact @gosuto or myself or any of the Maxis here or on [Discord](https://discord.balancer.fi).
 
-**MD Table of address/usd lost/ BAL to airdrop/ USD value**
+| token_type | token_address                              | receiver                                   | amount                 | id  |
+| ---------- | ------------------------------------------ | ------------------------------------------ | ---------------------- | --- |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86 | 615.680672270000000000 |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x0412ed8438b5fae246606909ef8ba365f9103783 | 9990.995101387800      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x4281e53938c3b1c1d3e8afd21c02ce8512cdbc93 | 8942.947050640030      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xbb19053e031d9b2b364351b21a8ed3568b21399b | 5482.156847619760      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x6aee9dc09702dffab334f3f8e6f3f97c0e7261f4 | 3977.461595932680      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xda6b2a5e0c56542984d84a710f90eefd94ca1991 | 3864.324848292750      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x1c39babd4e0d7bff33bc27c6cc5a4f1d74c9f562 | 3602.251184687360      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x66c9e1e4fe518cebfe59c9de16e1c780ef5bacd3 | 3311.989335451880      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xe7a76d8513e55578c80e4b26fc61ee7d4906d4cd | 2900.083047791250      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x91b9e59614995e13a32e36440ac524825f7ae39e | 2853.241920880260      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x19ae63358648795aaf29e36733f04fcef683aa69 | 2403.861226346110      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xd519d5704b41511951c8cf9f65fee9ab9bef2611 | 2366.325069629450      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x9b71dbccd9ffb858899ef3244b09a5354b16048e | 2360.939491636720      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x74c3646adad7e196102d1fe35267adfd401a568b | 2323.821488996030      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xba5c2f2165ddd691f99e12a23ec75cc1519930b4 | 2320.708830947810      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x1cbad69d9cc22962a0a885921518c06ed2f04ffd | 2112.388067695380      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x1c8bcb6348c84122e67a50e513a1e183c0e6929a | 1884.150318266970      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x6724f3fbb16f542401bfc42c464ce91b6c31001e | 1728.214666145720      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xff052381092420b7f24cc97fded9c0c17b2cbbb9 | 1589.773016013600      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x242d7cd78cce454946f35f0a263b54fbe228852c | 1528.094110852380      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x6d5dda04760f0515dc131ff4df76a5188ffcdfcb | 1135.468489356770      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x6e33b41e44ca2be27e8f65b5231ae61a21044b4a | 1112.924127446140      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xf96cd1cf416b50b60358a17bc8593060148de422 | 1061.983717838710      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x0a29500ccc6af0b11c72d4e171d925eb0bb7ee15 | 1061.701293477720      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xd3238d8be92fd856146f53a8b6582bc88e887559 | 1060.813502101100      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xfe73b5a595405bac396c329c674571a7a3db528c | 1042.239302185270      |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x438fd34eab0e80814a231a983d8bfaf507ae16d4 | 968.698971879056       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xc9cea7a3984cefd7a8d2a0405999cb62e8d206dc | 860.314807351138       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x0b177b7f10faeadd6eee6d2cc46d783f460566c8 | 820.182974078841       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xaa857ddce7b5b9cb17296c790cb40e8c11a3d4f0 | 797.803289831699       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xe68d7a6c421e2d220b5840116008c9abdbcf53b2 | 636.180089970680       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xd09ca75315e70bd3988a47958a0c6c5b30b830e1 | 614.709047199336       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x54c3c925b9d715af541b77f9817544bdc663345e | 363.682947565343       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0x36cc7b13029b5dee4034745fb4f24034f3f2ffc6 | 345.292784038761       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xcaab2680d81df6b3e2ece585bb45cee97bf30cd7 | 302.655365607094       |     |
+| erc20      | 0xba100000625a3754423978a60c9317c58a424e3D | 0xcb926f497763ea5cf993912a442431e6a91d5a64 | 38.666901111201        |     |
