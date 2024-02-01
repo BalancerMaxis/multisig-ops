@@ -53,9 +53,7 @@ A user with the address [0x8484e288b7c2edad1b5214ed9df3bae4af7dadf5](https://arb
 
 ```
 pre-hack value = 2_312.80701209198413362 BPTs * 1.01542668 USDperBPT = 2_348.48594577 USD
-
 recpvered value USD = (106.19 USD in USD+) + (66.35 USDC) = 172.54 
-
 total loss = 2_312.8070120919841336 -  172.54 = 2140.267012092 in USD vaue lost
 ```
 
