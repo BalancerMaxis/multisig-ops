@@ -185,7 +185,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         for tx in transactions
     ]
     data = MultiSend(EthereumClient(web3.provider.endpoint_uri)).build_tx_data(txs)
-    owners = Contract(safe_addr).getOwners()
+    safe = web3.eth.contract(
+        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
+    )
+    owners = list(safe.functions.getOwners().call())
 
     # build execTransaction data
     # execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
@@ -201,9 +204,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "refundReceiver": NULL_ADDRESS,
         "signatures": b''.join([encode_abi(['address', 'uint'], [str(owner), 0]) + b'\x01' for owner in owners]),
     }
-    input = web3.eth.contract(
-        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
-    ).encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
+    input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
     # build tenderly data
     data = {
