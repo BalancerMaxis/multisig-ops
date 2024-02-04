@@ -241,7 +241,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             "Content-Type": "application/json",
         },
     )
-    assert r.raise_for_status(), r.json()
+    try:
+        r.raise_for_status()
+    except:
+        print(r.json())
 
     result = r.json()
 
@@ -253,7 +256,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             "Content-Type": "application/json",
         },
     )
-    assert r.raise_for_status(), r.json()
+    try:
+        r.raise_for_status()
+    except:
+        print(r.json())
 
     url = f"{sim_base_url}{result['simulation']['id']}"
     success = result["simulation"]["status"]
