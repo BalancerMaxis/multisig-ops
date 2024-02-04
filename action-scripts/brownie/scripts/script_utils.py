@@ -174,6 +174,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             for input in tx['contractMethod']['inputs']:
                 if input['type'] == 'uint256':
                     tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
+                if input['type'] == 'address':
+                    tx['contractInputsValues'][input['name']] = web3.toChecksumAddress(tx['contractInputsValues'][input['name']])
             tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
 
     # build multicall data
