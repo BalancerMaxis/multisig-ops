@@ -261,7 +261,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     except:
         print(r.json())
 
-    url = f"{sim_base_url}{result['simulation']['id']}"
+    url = "https://www.tdly.co/shared/simulation/{result['simulation']['id']}"
     success = result["simulation"]["status"]
     return url, success
 
