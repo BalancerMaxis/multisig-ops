@@ -227,10 +227,6 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             "Content-Type": "application/json",
         },
     )
-    print(len(os.getenv("TENDERLY_ACCESS_KEY")))
-    print(len(os.getenv("TENDERLY_ACCOUNT_NAME")))
-    print(len(os.getenv("TENDERLY_PROJECT_NAME")))
-    print(os.getenv("TEST_SECRET_EXPOSE_ME"))
     try:
         r.raise_for_status()
     except:
