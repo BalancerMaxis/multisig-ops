@@ -241,15 +241,22 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             "Content-Type": "application/json",
         },
     )
-    try:
-        r.raise_for_status()
-    except:
-        print(r.json())
+    assert r.raise_for_status(), r.json()
 
     result = r.json()
+
+    # make the simulation public
+    r = requests.post(
+        url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
+        headers={
+            "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
+            "Content-Type": "application/json",
+        },
+    )
+    assert r.raise_for_status(), r.json()
+
     url = f"{sim_base_url}{result['simulation']['id']}"
     success = result["simulation"]["status"]
-    # print(url, success)
     return url, success
 
 
