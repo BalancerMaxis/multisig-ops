@@ -150,6 +150,19 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     return str(tabulate(table, headers=header, tablefmt="grid"))
 
 
+def switch_chain_if_needed(network_id: int) -> None:
+    network_id = int(network_id)
+    if web3.chain_id != network_id:
+        network.disconnect()
+        chain_name = AddrBook.chain_names_by_id[int(network_id)]
+        chain_name = 'avax' if chain_name == 'avalanche' else chain_name
+        chain_name = f'{chain_name}-main' if chain_name != 'mainnet' else 'mainnet'
+        print('reconnecting to', chain_name)
+        network.connect(chain_name)
+        assert web3.chain_id == network_id, (web3.chain_id, network_id)
+        assert network.is_connected()
+
+
 def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     """
     generates a tenderly simulation
@@ -162,27 +175,22 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
 
     # reset connection to network on which the safe is deployed
-    if str(web3.chain_id) != network_id:
-        network.disconnect()
-        chain_alias = AddrBook.chain_names_by_id[int(network_id)]
-        chain_alias = 'avax' if chain_alias == 'avalanche' else chain_alias
-        chain_alias = f'{chain_alias}-main' if chain_alias != 'mainnet' else 'mainnet'
-        print('reconnecting to', chain_alias)
-        network.connect(chain_alias)
-        assert str(web3.chain_id) == network_id, (web3.chain_id, network_id)
-        assert network.is_connected()
+    switch_chain_if_needed(network_id)
 
     # build individual tx data
     for tx in transactions:
         if tx['contractMethod']:
             tx['contractMethod']['type'] = 'function'
             contract = web3.eth.contract(address=web3.toChecksumAddress(tx['to']), abi=[tx['contractMethod']])
-            for input in tx['contractMethod']['inputs']:
-                if input['type'] == 'uint256':
-                    tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
-                if input['type'] == 'address':
-                    tx['contractInputsValues'][input['name']] = web3.toChecksumAddress(tx['contractInputsValues'][input['name']])
-            tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
+            if len( tx['contractMethod']['inputs']) > 0:
+                for input in tx['contractMethod']['inputs']:
+                    if input['type'] == 'uint256':
+                        tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
+                    if input['type'] == 'address':
+                        tx['contractInputsValues'][input['name']] = web3.toChecksumAddress(tx['contractInputsValues'][input['name']])
+                tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
+            else:
+                tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=[])
 
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
@@ -272,14 +280,13 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    if not file.get("meta") == None:
-        tenderly_url, tenderly_success = run_tenderly_sim(
-            file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
-        )
-        if tenderly_success:
-            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
-        else:
-            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+    tenderly_url, tenderly_success = run_tenderly_sim(
+        file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
+    )
+    if tenderly_success:
+        file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+    else:
+        file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"

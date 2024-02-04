@@ -16,6 +16,7 @@ from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import return_hh_brib_maps
+from .script_utils import switch_chain_if_needed
 
 from datetime import datetime
 
@@ -85,9 +86,8 @@ def _extract_pool(
             tokens = []
             rate_providers = []
         else:
-            network.disconnect()
-            print('reconnecting to', chain)
-            network.connect(chain)
+            network_id = ADDR_BOOK.chain_ids_by_name[chain.replace("-main", "")]
+            switch_chain_if_needed(network_id=network_id)
             sidechain_recipient = Contract(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
                 sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
@@ -240,9 +240,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     ):
         return
     # Reset connection to mainnet
-    if network.is_connected():
-        network.disconnect()
-    network.connect(CHAIN_MAINNET)
+    switch_chain_if_needed(network_id=1)
 
     chain = TYPE_TO_CHAIN_MAP.get(gauge_type)
     gauge_address = None
@@ -310,9 +308,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if not encoded_data:
         return
 
-    if network.is_connected():
-        network.disconnect()
-    network.connect(CHAIN_MAINNET)
+    switch_chain_if_needed(network_id=1)
     try:
         (command, inputs) = Contract(
             web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
@@ -473,10 +469,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     if not chain_name:
         print("Chain name not found! Cannot transfer transaction")
         return
-    print('reconnecting to', chain_name)
-    if network.is_connected():
-        network.disconnect()
-    network.connect(chain_name)
+    switch_chain_if_needed(chain_id)
     # Get input values
     token = Contract(transaction["to"])
     recipient_address = (
@@ -587,7 +580,7 @@ def parse_no_reports_report(
 
         reports[filename] = {
             "report_text": format_into_report(
-                {"file_name": filename},
+                filedata_by_file[filename],
                 no_reports,
                 multisig,
                 int(chain_id),
