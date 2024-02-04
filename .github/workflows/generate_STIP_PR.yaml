@@ -1,0 +1,49 @@
+name: Generate STIP PR
+on:
+  workflow_dispatch:
+    inputs:
+      epoch_end_date:
+        description: 'The date like YYYY-MM-DD that was used to run the report in BalancerMaxis/STIP_Automation.  Use the action there to create a PR and merge it to main first.'
+        require: true
+
+
+jobs:
+  STIP_PR:
+    runs-on: ubuntu-latest
+    outputs:
+      pull-request-number: ${{ steps.cpr.outputs.pull-request-number}}
+      pull-request-head-sha: ${{ steps.cpr.outputs.pull-request-head-sha }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Pull files from STIP repo
+        run: |
+          cd ../
+          git clone https://github.com/BalancerMaxis/STIP_automation
+          ls
+          cd -
+          cp ../STIP_automation/output/*${{ github.event.inputs.epoch_end_date }}.* MaxiOps/STIP
+
+      - name: Create PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "STIP Payment Payload"
+          title: "STIP Distribution Payload"
+          branch: gha-stip
+          delete-branch: true
+          labels: "STIP"
+
+  run_reports:
+    needs: STIP_PR
+    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
+    secrets: inherit
+    with:
+      pr_number: ${{ needs.merge_jsons.outputs.pull-request-number }}
+      checkout_ref: "gha-stip"
