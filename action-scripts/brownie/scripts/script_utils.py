@@ -161,10 +161,16 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
 
-    # TODO: reset connection to network on which the safe is deployed
-    if network.is_connected():
+    # reset connection to network on which the safe is deployed
+    if str(web3.chain_id) != network_id:
         network.disconnect()
-    network.connect('mainnet')
+        chain_alias = AddrBook.chain_names_by_id[int(network_id)]
+        chain_alias = 'avax' if chain_alias == 'avalanche' else chain_alias
+        chain_alias = f'{chain_alias}-main' if chain_alias != 'mainnet' else 'mainnet'
+        print('reconnecting to', chain_alias)
+        network.connect(chain_alias)
+        assert str(web3.chain_id) == network_id, (web3.chain_id, network_id)
+        assert network.is_connected()
 
     # build individual tx data
     for tx in transactions:
@@ -254,6 +260,7 @@ def format_into_report(
         web3.toChecksumAddress(msig_addr), "!NOT FOUND"
     )
     file_name = file["file_name"]
+    print(f"Writing report for {file_name}...")
     file_report = f"FILENAME: `{file_name}`\n"
     file_report += f"MULTISIG: `{msig_label} ({AddrBook.chain_names_by_id[chain_id]}:{msig_addr})`\n"
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
