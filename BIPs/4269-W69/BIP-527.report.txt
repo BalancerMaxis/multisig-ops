@@ -1,8 +1,8 @@
 FILENAME: `BIPs/4269-W69/BIP-527.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `8ce4d62c3d38dd4756987ef3f6ca9b5c48cf7003`
+COMMIT: `af935003230a69277657961d6c22c64acc12c7a7`
 CHAIN(S): `polygon`
-TENDERLY: [SUCCESS](https://dashboard.tenderly.co/balancer/maxis/simulator/7c6e7133-9291-4efd-9869-3474c39a0384)
+TENDERLY: [SUCCESS](https://dashboard.tenderly.co/balancer/maxis/simulator/f539da27-7b16-4cd8-acd9-d8d22e291754)
 ```
 +--------------------------+--------------------------------------------------------------------+--------------+-----+--------------------------------------------+-------+-------+--------------+---------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | function                 | pool_id                                                            | symbol       |   a | gauge_address                              | fee   | cap   | style        | bip     |   tx_index | tokens                                                                                                                                                                |
@@ -12,50 +12,51 @@ TENDERLY: [SUCCESS](https://dashboard.tenderly.co/balancer/maxis/simulator/7c6e7
 ```
 FILENAME: `BIPs/4269-W69/BIP-527.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `8ce4d62c3d38dd4756987ef3f6ca9b5c48cf7003`
+COMMIT: `af935003230a69277657961d6c22c64acc12c7a7`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://dashboard.tenderly.co/balancer/maxis/simulator/95b27fa5-3389-4c54-85e4-6d01307521f6)
+TENDERLY: [SUCCESS](https://dashboard.tenderly.co/balancer/maxis/simulator/b191c947-535e-4334-87fa-35de8ac7a1f4)
 ```
 +-----------------------+---------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 | function              | caller_name   | caller_address                             | fx_paths                                                                      | action_ids                                                         | bip     |   tx_index |
 +=======================+===============+============================================+===============================================================================+====================================================================+=========+============+
 | Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220413-arbitrum-root-gauge-factory/ArbitrumRootGauge/unkillGauge()          | 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea | BIP-527 |          0 |
-|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
+|                       |               |                                            | 20220628-optimism-root-gauge-factory/OptimismRootGauge/unkillGauge()          |                                                                    |         |            |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() |                                                                    |         |            |
+|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/unkillGauge()     |                                                                    |         |            |
+|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/unkillGauge()       |                                                                    |         |            |
 |                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/unkillGauge()                 |                                                                    |         |            |
-|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/unkillGauge()                  |                                                                    |         |            |
+|                       |               |                                            | 20220413-polygon-root-gauge-factory/PolygonRootGauge/unkillGauge()            |                                                                    |         |            |
 |                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/unkillGauge()       |                                                                    |         |            |
 |                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/unkillGauge()         |                                                                    |         |            |
-|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() |                                                                    |         |            |
-|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/unkillGauge()                  |                                                                    |         |            |
-|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
 |                       |               |                                            | 20220325-single-recipient-gauge-factory/SingleRecipientGauge/unkillGauge()    |                                                                    |         |            |
-|                       |               |                                            | 20220628-optimism-root-gauge-factory/OptimismRootGauge/unkillGauge()          |                                                                    |         |            |
-|                       |               |                                            | 20220413-polygon-root-gauge-factory/PolygonRootGauge/unkillGauge()            |                                                                    |         |            |
-|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/unkillGauge()       |                                                                    |         |            |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
 +-----------------------+---------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 | Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220413-arbitrum-root-gauge-factory/ArbitrumRootGauge/unkillGauge()          | 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea | BIP-527 |          2 |
-|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
+|                       |               |                                            | 20220628-optimism-root-gauge-factory/OptimismRootGauge/unkillGauge()          |                                                                    |         |            |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() |                                                                    |         |            |
+|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/unkillGauge()     |                                                                    |         |            |
+|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/unkillGauge()       |                                                                    |         |            |
 |                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/unkillGauge()                 |                                                                    |         |            |
-|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/unkillGauge()                  |                                                                    |         |            |
+|                       |               |                                            | 20220413-polygon-root-gauge-factory/PolygonRootGauge/unkillGauge()            |                                                                    |         |            |
 |                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/unkillGauge()       |                                                                    |         |            |
 |                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/unkillGauge()         |                                                                    |         |            |
-|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() |                                                                    |         |            |
-|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/unkillGauge()                  |                                                                    |         |            |
-|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
 |                       |               |                                            | 20220325-single-recipient-gauge-factory/SingleRecipientGauge/unkillGauge()    |                                                                    |         |            |
-|                       |               |                                            | 20220628-optimism-root-gauge-factory/OptimismRootGauge/unkillGauge()          |                                                                    |         |            |
-|                       |               |                                            | 20220413-polygon-root-gauge-factory/PolygonRootGauge/unkillGauge()            |                                                                    |         |            |
-|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/unkillGauge()       |                                                                    |         |            |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
 +-----------------------+---------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 ```
 FILENAME: `BIPs/4269-W69/BIP-527.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `8ce4d62c3d38dd4756987ef3f6ca9b5c48cf7003`
+COMMIT: `af935003230a69277657961d6c22c64acc12c7a7`
 CHAIN(S): `mainnet`
+TENDERLY: [SUCCESS](https://dashboard.tenderly.co/balancer/maxis/simulator/4468ac72-402d-4094-9df4-1b5ec292a065)
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+---------+---------------------------------------------------------+--------------+------------+
 | fx_name       | to                                                                                                              |   value | inputs                                                  | bip_number   | tx_index   |
