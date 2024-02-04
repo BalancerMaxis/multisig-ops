@@ -170,7 +170,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     for tx in transactions:
         if tx['contractMethod']:
             tx['contractMethod']['type'] = 'function'
-            contract = web3.eth.contract(address=tx['to'], abi=[tx['contractMethod']])
+            contract = web3.eth.contract(address=web3.toChecksumAddress(tx['to']), abi=[tx['contractMethod']])
             for input in tx['contractMethod']['inputs']:
                 if input['type'] == 'uint256':
                     tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
