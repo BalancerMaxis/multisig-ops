@@ -4,13 +4,17 @@ import re
 from json import JSONDecodeError
 from typing import Optional
 
-import web3
 from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
 import requests
-from brownie import Contract, chain, network
-from web3 import Web3
+from brownie import Contract, chain, network, web3
+from eth_abi import encode_abi
+from gnosis.eth import EthereumClient
+from gnosis.eth.constants import NULL_ADDRESS
+from gnosis.safe import SafeOperation
+from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
+
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -30,15 +34,13 @@ def return_hh_brib_maps() -> dict:
     hh_bal_props.raise_for_status()
     hh_aura_props = requests.get("https://api.hiddenhand.finance/proposal/aura")
     hh_aura_props.raise_for_status()
-    results = {
-        "aura": {},
-        "balancer": {}
-    }
+    results = {"aura": {}, "balancer": {}}
     for prop in hh_bal_props.json()["data"]:
         results["balancer"][prop["proposalHash"]] = prop
     for prop in hh_aura_props.json()["data"]:
         results["aura"][prop["proposalHash"]] = prop
     return results
+
 
 def get_changed_files() -> list[dict]:
     """
@@ -148,6 +150,122 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     return str(tabulate(table, headers=header, tablefmt="grid"))
 
 
+def switch_chain_if_needed(network_id: int) -> None:
+    network_id = int(network_id)
+    if web3.chain_id != network_id:
+        network.disconnect()
+        chain_name = AddrBook.chain_names_by_id[int(network_id)]
+        chain_name = 'avax' if chain_name == 'avalanche' else chain_name
+        chain_name = f'{chain_name}-main' if chain_name != 'mainnet' else 'mainnet'
+        print('reconnecting to', chain_name)
+        network.connect(chain_name)
+        assert web3.chain_id == network_id, (web3.chain_id, network_id)
+        assert network.is_connected()
+
+
+def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
+    """
+    generates a tenderly simulation
+    returns the url and if it was successful or not
+    """
+    # build urls
+    user = os.getenv("TENDERLY_ACCOUNT_NAME")
+    project = os.getenv("TENDERLY_PROJECT_NAME")
+    sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
+    api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
+
+    # reset connection to network on which the safe is deployed
+    switch_chain_if_needed(network_id)
+
+    # build individual tx data
+    for tx in transactions:
+        if tx['contractMethod']:
+            tx['contractMethod']['type'] = 'function'
+            contract = web3.eth.contract(address=web3.toChecksumAddress(tx['to']), abi=[tx['contractMethod']])
+            if len( tx['contractMethod']['inputs']) > 0:
+                for input in tx['contractMethod']['inputs']:
+                    if input['type'] == 'uint256':
+                        tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
+                    if input['type'] == 'address':
+                        tx['contractInputsValues'][input['name']] = web3.toChecksumAddress(tx['contractInputsValues'][input['name']])
+                tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
+            else:
+                tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=[])
+
+    # build multicall data
+    multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
+    txs = [
+        MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
+        for tx in transactions
+    ]
+    data = MultiSend(EthereumClient(web3.provider.endpoint_uri)).build_tx_data(txs)
+    safe = web3.eth.contract(
+        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
+    )
+    owners = list(safe.functions.getOwners().call())
+
+    # build execTransaction data
+    # execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
+    exec_tx = {
+        "to": multisend_call_only,
+        "value": 0,
+        "data": data,
+        "operation": SafeOperation.DELEGATE_CALL.value,
+        "safeTxGas": 0,
+        "baseGas": 0,
+        "gasPrice": 0,
+        "gasToken": NULL_ADDRESS,
+        "refundReceiver": NULL_ADDRESS,
+        "signatures": b''.join([encode_abi(['address', 'uint'], [str(owner), 0]) + b'\x01' for owner in owners]),
+    }
+    input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
+
+    # build tenderly data
+    data = {
+        "network_id": network_id,
+        "from": owners[0],
+        "to": safe_addr,
+        "input": input,
+        "save": True,
+        "save_if_fails": True,
+        "simulation_type": "quick",
+        "state_objects": {safe_addr:  {"storage": {"0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"}}},
+    }
+
+    # post to tenderly api
+    r = requests.post(
+        url=f"{api_base_url}/simulate",
+        json=data,
+        headers={
+            "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        r.raise_for_status()
+    except:
+        print(r.json())
+
+    result = r.json()
+
+    # make the simulation public
+    r = requests.post(
+        url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
+        headers={
+            "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        r.raise_for_status()
+    except:
+        print(r.json())
+
+    url = f"https://www.tdly.co/shared/simulation/{result['simulation']['id']}"
+    success = result["simulation"]["status"]
+    return url, success
+
+
 def format_into_report(
     file: dict,
     transactions: list[dict],
@@ -160,9 +278,10 @@ def format_into_report(
     chain_name = AddrBook.chain_names_by_id[chain_id]
     book = AddrBook(chain_name)
     msig_label = book.reversebook.get(
-        web3.Web3.toChecksumAddress(msig_addr), "!NOT FOUND"
+        web3.toChecksumAddress(msig_addr), "!NOT FOUND"
     )
     file_name = file["file_name"]
+    print(f"Writing report for {file_name}...")
     file_report = f"FILENAME: `{file_name}`\n"
     file_report += f"MULTISIG: `{msig_label} ({AddrBook.chain_names_by_id[chain_id]}:{msig_addr})`\n"
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
@@ -174,6 +293,13 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
+    tenderly_url, tenderly_success = run_tenderly_sim(
+        file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
+    )
+    if tenderly_success:
+        file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+    else:
+        file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
@@ -239,9 +365,9 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
         else:
             values = valuedata.strip("[ ]f").replace(" ", "").split(",")
         for value in values:
-            if Web3.isAddress(value):
+            if web3.isAddress(value):
                 outputs[key].append(
-                    f"{value} ({addr.reversebook.get(web3.Web3.toChecksumAddress(value), 'N/A')}) "
+                    f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
                 )
             elif "role" in key or "Role" in key:
                 outputs[key].append(
