@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1704201602059,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "[BIP-XXX] Business Development Funding Proposal Q1-2024 and Retroactive Q4-2023 Funding",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x3e172d8a9c00fe1479e8fd9a6ce95f01528e1c053fae439f064d486258f32b28"
+  },
+  "transactions": [
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" },
+          { "name": "value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xE2A4DE267cdD4fF5ED9Ba13552F5c624b12db9b2",
+        "value": "5000000000"
+      }
+    },
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" },
+          { "name": "value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xC7E84373FC63A17B5B22EBaF86219141B630cD7a",
+        "value": "20000000000"
+      }
+    },
+    {
+      "to": "0xC7E84373FC63A17B5B22EBaF86219141B630cD7a",
+      "value": "300000000000000000",
+      "data": "0x",
+      "contractMethod": null,
+      "contractInputsValues": { "spender": "", "value": "" }
+    }
+  ]
+}

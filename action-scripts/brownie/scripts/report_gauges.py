@@ -1,12 +1,11 @@
 from typing import Callable
 from typing import Optional
 
-from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResultError
+from bal_addresses import AddrBook, BalPermissions
 from brownie import Contract
 from brownie import network
-from web3 import Web3
+from brownie import web3
 from collections import defaultdict
-import requests
 
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
@@ -17,6 +16,7 @@ from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import return_hh_brib_maps
+from .script_utils import switch_chain_if_needed
 
 from datetime import datetime
 
@@ -58,6 +58,7 @@ SELECTORS_MAPPING = {
 
 today = datetime.today().strftime("%Y-%m-%d")
 
+
 def _extract_pool(
     chain: str, gauge: Contract, gauge_selectors: dict
 ) -> tuple[str, str, str, str, str, str, str, list[str], list[str]]:
@@ -85,9 +86,8 @@ def _extract_pool(
             tokens = []
             rate_providers = []
         else:
-            network.disconnect()
-            print(chain)
-            network.connect(chain)
+            network_id = ADDR_BOOK.chain_ids_by_name[chain.replace("-main", "")]
+            switch_chain_if_needed(network_id=network_id)
             sidechain_recipient = Contract(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
                 sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
@@ -142,6 +142,7 @@ def _extract_pool(
         rate_providers,
     )
 
+
 def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Hidden Hand Bribe transactions
@@ -165,22 +166,24 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
 
     ##  Parse TX
     ### Determine market
-    to_address = Web3.toChecksumAddress(transaction["to"])
+    to_address = web3.toChecksumAddress(transaction["to"])
     if to_address == aura_briber:
         market = "aura"
     elif to_address == bal_briber:
         market = "balancer"
     else:
-        print(f"Couldn't determine bribe market for {json.dumps(transaction, indent=2)}")
+        print(
+            f"Couldn't determine bribe market for {json.dumps(transaction, indent=2)}"
+        )
         return
     ### Grab info about token and amounts
-    token_address =  transaction["contractInputsValues"].get("_token")
+    token_address = transaction["contractInputsValues"].get("_token")
     token = Contract(token_address)
     token_symbol = token.symbol()
     token_decimals = token.decimals()
-    raw_amount =int( transaction["contractInputsValues"]["_amount"])
+    raw_amount = int(transaction["contractInputsValues"]["_amount"])
     proposal_hash = transaction["contractInputsValues"]["_proposal"]
-    whole_amount = raw_amount/10**token_decimals
+    whole_amount = raw_amount / 10**token_decimals
     periods = transaction["contractInputsValues"].get("_periods", "N/A")
     ### Lookup Proposal and return report
     prop_data = prop_map[market].get(proposal_hash)
@@ -237,9 +240,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     ):
         return
     # Reset connection to mainnet
-    if network.is_connected():
-        network.disconnect()
-    network.connect(CHAIN_MAINNET)
+    switch_chain_if_needed(network_id=1)
 
     chain = TYPE_TO_CHAIN_MAP.get(gauge_type)
     gauge_address = None
@@ -307,12 +308,10 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     if not encoded_data:
         return
 
-    if network.is_connected():
-        network.disconnect()
-    network.connect(CHAIN_MAINNET)
+    switch_chain_if_needed(network_id=1)
     try:
         (command, inputs) = Contract(
-            Web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+            web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
         ).decode_input(transaction["contractInputsValues"]["data"])
     except:
         ## Doesn't look like a gauge add, maybe contract isn't on mainnet
@@ -470,10 +469,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     if not chain_name:
         print("Chain name not found! Cannot transfer transaction")
         return
-    print(chain_name)
-    if network.is_connected():
-        network.disconnect()
-    network.connect(chain_name)
+    switch_chain_if_needed(chain_id)
     # Get input values
     token = Contract(transaction["to"])
     recipient_address = (
@@ -482,8 +478,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("recipient")
         or transaction["contractInputsValues"].get("_to")
     )
-    if Web3.isAddress(recipient_address):
-        recipient_address = Web3.toChecksumAddress(recipient_address)
+    if web3.isAddress(recipient_address):
+        recipient_address = web3.toChecksumAddress(recipient_address)
     else:
         print("ERROR: can't find recipient address")
         recipient_address = None
@@ -584,7 +580,7 @@ def parse_no_reports_report(
 
         reports[filename] = {
             "report_text": format_into_report(
-                {"file_name": filename},
+                filedata_by_file[filename],
                 no_reports,
                 multisig,
                 int(chain_id),
