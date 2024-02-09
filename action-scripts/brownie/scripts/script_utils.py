@@ -184,10 +184,18 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             contract = web3.eth.contract(address=web3.toChecksumAddress(tx['to']), abi=[tx['contractMethod']])
             if len( tx['contractMethod']['inputs']) > 0:
                 for input in tx['contractMethod']['inputs']:
-                    if input['type'] == 'uint256':
-                        tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
-                    if input['type'] == 'address':
-                        tx['contractInputsValues'][input['name']] = web3.toChecksumAddress(tx['contractInputsValues'][input['name']])
+                    if re.search(r'int[0-9]+', input['type']):
+                        if '[]' in input['type']:
+                            if type(tx['contractInputsValues'][input['name']]) != list:
+                                tx['contractInputsValues'][input['name']] = [int(x) for x in tx['contractInputsValues'][input['name']].strip('[]').split(",")]
+                        else:
+                            tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
+                    if 'address' in input['type']:
+                        if '[]' in input['type']:
+                            if type(tx['contractInputsValues'][input['name']]) != list:
+                                tx['contractInputsValues'][input['name']] = [web3.toChecksumAddress(x) for x in tx['contractInputsValues'][input['name']].strip('[]').split(",")]
+                        else:
+                            tx['contractInputsValues'][input['name']] = web3.toChecksumAddress(tx['contractInputsValues'][input['name']])
                 tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
             else:
                 tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=[])
