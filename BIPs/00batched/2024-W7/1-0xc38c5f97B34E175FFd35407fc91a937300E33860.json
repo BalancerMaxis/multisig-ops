@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xc028EFDa059e040b42998c96FF7fe0b126FA87fA",
+        "gaugeType": "Arbitrum"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W7/BIP-543.json",
+        "bip_number": "BIP-543"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xD98ed0426D18B115d6388923803e33ad8aaF11F8",
+        "gaugeType": "Ethereum"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W7/BIP-542.json",
+        "bip_number": "BIP-542"
+      }
+    }
+  ]
+}
