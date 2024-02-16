@@ -1,8 +1,8 @@
 FILENAME: `BIPs/4269-W69/fee_distro_example.json`
 MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
-COMMIT: `87c22a3370cdd63c4536cc00cd68c79323eec963`
+COMMIT: `fb36996a9da9b82e2e28b1bb31ddbda0eba13177`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/7462122b-80de-4c4a-951b-177e8dd23cfc)
+TENDERLY: SKIPPED
 ```
 +------------+-------------------------------------------------+-------------------------------------------------------------------------+--------------------------------------------------+-------+------------+
 | function   | token_symbol                                    | recipient                                                               | amount                                           | bip   |   tx_index |
@@ -16,9 +16,9 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/7462122b-80de-4c4a-951
 ```
 FILENAME: `BIPs/4269-W69/fee_distro_example.json`
 MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
-COMMIT: `87c22a3370cdd63c4536cc00cd68c79323eec963`
+COMMIT: `fb36996a9da9b82e2e28b1bb31ddbda0eba13177`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/9569937c-40c3-49cf-9d8c-e6500a41ef2b)
+TENDERLY: SKIPPED
 ```
 +--------------+--------------------------------------------------------------------+----------------------------+--------------------------------------------------------------------+-----------+------------+
 | function     | title_and_poolId                                                   | incentive_paid             | market_and_prophash                                                |   periods |   tx_index |
@@ -215,9 +215,9 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/9569937c-40c3-49cf-9d8
 ```
 FILENAME: `BIPs/4269-W69/fee_distro_example.json`
 MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
-COMMIT: `87c22a3370cdd63c4536cc00cd68c79323eec963`
+COMMIT: `fb36996a9da9b82e2e28b1bb31ddbda0eba13177`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/31e0748b-f935-4601-9ed2-e0490216aaab)
+TENDERLY: SKIPPED
 ```
 +-----------+----------------------------------------------------------+---------+------------------------------------------------------------------------------+--------------+------------+
 | fx_name   | to                                                       |   value | inputs                                                                       | bip_number   | tx_index   |
@@ -226,7 +226,7 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/31e0748b-f935-4601-9ed
 |           |                                                          |         |   "spender": [                                                               |              |            |
 |           |                                                          |         |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault) " |              |            |
 |           |                                                          |         |   ],                                                                         |              |            |
-|           |                                                          |         |   "rawAmount": 157174020001                                                  |              |            |
+|           |                                                          |         |   "rawAmount": "157174020001"                                                |              |            |
 |           |                                                          |         | }                                                                            |              |            |
 +-----------+----------------------------------------------------------+---------+------------------------------------------------------------------------------+--------------+------------+
 ```
