@@ -171,7 +171,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     # build urls
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
-    sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
+    if user or project is None:
+        return "", False
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
 
     # reset connection to network on which the safe is deployed
@@ -304,10 +305,13 @@ def format_into_report(
     tenderly_url, tenderly_success = run_tenderly_sim(
         file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
     )
-    if tenderly_success:
-        file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+    if tenderly_url == "":
+        file_report += f"TENDERLY: SKIPPED\n"
     else:
-        file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+        if tenderly_success:
+            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+        else:
+            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
