@@ -26,7 +26,7 @@ The steps to adding a reward token involve several prequisites.
 
 ![TransactionBuilderInterface.png](TransactionBuilderInterface.png)
 
-- data(byes): See step 5. 
+- data(bytes): See step 5. 
 
 5. Depending on the wallet used this step will vary slightly, but the goal is to simulate an add_reward function via an EOA and retrieve the proper data from that transaction. Note that this transaction will be rejected. Firstly, go to the etherscan or equivalent site for the gauge you are adding a reward for. 
 
