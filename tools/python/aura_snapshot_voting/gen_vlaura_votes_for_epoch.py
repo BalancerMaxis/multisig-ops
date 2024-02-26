@@ -1,4 +1,6 @@
 import json
+import os
+import sys
 
 import pandas as pd
 import requests
@@ -6,13 +8,16 @@ from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
 from dune_client.query import QueryBase
 
+# hack so that we can import get_subgraph_url
+root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, root)
+    
 from helpers import get_subgraph_url
-
 
 dune = DuneClient.from_env()
 
 
-def _determine_date_range():
+def _get_prop_and_determine_date_range():
     # https://docs.aura.finance/aura/governance/gauge-voting#gauge-voting-rules-and-information
     query = """{
         proposals(
@@ -27,6 +32,7 @@ def _determine_date_range():
             start
             end
             state
+            choices
         }
     }"""
     r = requests.post("https://hub.snapshot.org/graphql", json={"query": query})
@@ -53,7 +59,7 @@ def _determine_date_range():
     end = str(pd.to_datetime(end, unit="s").tz_localize("UTC"))[:-6]
 
     print(f"date range: {start} - {end}")
-    return start, end
+    return prop, start, end
 
 
 def get_df_revenue(start="2023-12-07 02:00:00", end="2023-12-21 02:00:00"):
@@ -71,7 +77,7 @@ def get_df_revenue(start="2023-12-07 02:00:00", end="2023-12-21 02:00:00"):
 
 def get_stable_pools_with_rate_provider():
     # leverage core pools config for chain labels
-    with open("../../config/core_pools.json") as f:
+    with open("../../../config/core_pools.json") as f:
         config = json.load(f)
 
     result = []
@@ -106,14 +112,16 @@ def get_stable_pools_with_rate_provider():
     return result
 
 
-def main():
+def gen_rev_data():
     # get all revenue data for a given epoch
-    start, end = _determine_date_range()
-    df = get_df_revenue(start, end)
+    prop, start, end = _get_prop_and_determine_date_range()
 
     # dev: uncomment to use cached data in dev mode (and save dune credits)
     # df.to_csv("cache.csv", index=False)
     # df = pd.read_csv("cache.csv")
+    # return df, prop
+
+    df = get_df_revenue(start, end)
 
     # clean data
     df = df.rename(columns={"protocol_fee_collected": "revenue"})
@@ -127,15 +135,8 @@ def main():
     sustainable_pools = get_stable_pools_with_rate_provider()
     df = df[df["pool_address"].isin(sustainable_pools)]
 
-    # get top 6 pools by revenue
-    df = df.sort_values(by=["revenue"], ascending=False).head(6)
-
-    # add column with share of total revenue
-    total_revenue = df["revenue"].sum()
-    df["share"] = df["revenue"] / total_revenue
+    # grab the first 50 to ensure at least 6 will have eligible gauges that can be voted for
+    df = df.sort_values(by=["revenue"], ascending=False).head(50)
 
     print(df.to_markdown(index=False))
-
-
-if __name__ == "__main__":
-    main()
+    return df, prop
