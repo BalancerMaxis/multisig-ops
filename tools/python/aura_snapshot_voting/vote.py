@@ -79,4 +79,15 @@ if __name__ == "__main__":
     data["message"]["choice"] = str(vote_choices)
 
     hash = hash_eip712_message(data)
+    
+    with open("../tx_builder_templates/sign_message.json", "r") as f:
+        data = json.load(f)
 
+    data["transactions"][0]["contractInputsValues"]["_data"] = "0x" + hash.hex()
+    
+    with open(f"vote_txs/vote_{hash.hex()}.json", "w") as f:
+        json.dump(data, f)
+
+    print(f"voting for: \n{df['snapshot_label']}")
+    print(f"snapshot choice indexes: \n{vote_choices}")
+    print(f"transaction saved to: \nvote_txs/vote_{hash.hex()}.json")
