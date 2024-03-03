@@ -10,6 +10,8 @@ from eth_utils import keccak
 from gen_vlaura_votes_for_epoch import gen_rev_data
 
 
+POOL_SHARE_PER_TYPE = 0.4
+
 flatbook = AddrBook("mainnet").flatbook
 
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
@@ -59,14 +61,16 @@ if __name__ == "__main__":
     df["snapshot_label"] = df["pool_address"].apply(
         lambda x: pool_labels.get(Web3.to_checksum_address(x))
     )
-    df = df.dropna(subset=["snapshot_label"]).head(6)
 
-    total_revenue = df["revenue"].sum()
-    df["share"] = df["revenue"] / total_revenue
+    # grab top 6 pool for each type
+    df = df.dropna(subset=["snapshot_label"]).groupby("type").head(6).copy()
+
+    rev_per_type = df.groupby("type")["revenue"].transform("sum")
+    df["share"] = (df["revenue"] / rev_per_type) * POOL_SHARE_PER_TYPE
 
     vote_choices = {
         str(choices.index(row["snapshot_label"]) - 1): row["share"]
-        for i, row in df.iterrows()
+        for _, row in df.iterrows()
     }
 
     with open("eip712_template.json", "r") as f:
@@ -79,12 +83,12 @@ if __name__ == "__main__":
     data["message"]["choice"] = str(vote_choices)
 
     hash = hash_eip712_message(data)
-    
+
     with open("../tx_builder_templates/sign_message.json", "r") as f:
         data = json.load(f)
 
     data["transactions"][0]["contractInputsValues"]["_data"] = "0x" + hash.hex()
-    
+
     with open(f"vote_txs/vote_{hash.hex()}.json", "w") as f:
         json.dump(data, f)
 

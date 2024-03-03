@@ -11,7 +11,7 @@ from dune_client.query import QueryBase
 # hack so that we can import get_subgraph_url
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, root)
-    
+
 from helpers import get_subgraph_url
 
 dune = DuneClient.from_env()
@@ -112,6 +112,13 @@ def get_stable_pools_with_rate_provider():
     return result
 
 
+def get_core_pools():
+    with open("../../../config/core_pools.json") as f:
+        config = json.load(f)
+
+    return [pool[:42] for chain in config for pool in config[chain]]
+
+
 def gen_rev_data():
     # get all revenue data for a given epoch
     prop, start, end = _get_prop_and_determine_date_range()
@@ -133,10 +140,17 @@ def gen_rev_data():
 
     # keep only stable pools with a rate provider
     sustainable_pools = get_stable_pools_with_rate_provider()
-    df = df[df["pool_address"].isin(sustainable_pools)]
+    core_pools = [p for p in get_core_pools() if p not in sustainable_pools]
 
-    # grab the first 50 to ensure at least 6 will have eligible gauges that can be voted for
-    df = df.sort_values(by=["revenue"], ascending=False).head(50)
+    df["type"] = df["pool_address"].apply(
+        lambda x: "sustainable"
+        if x in sustainable_pools
+        else "core"
+        if x in core_pools
+        else pd.NA
+    )
 
-    print(df.to_markdown(index=False))
+    df = df.dropna(subset=["type"])
+    df = df.sort_values(by=["revenue"], ascending=False)
+
     return df, prop
