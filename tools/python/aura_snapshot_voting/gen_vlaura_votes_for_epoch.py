@@ -126,7 +126,6 @@ def gen_rev_data():
     # dev: uncomment to use cached data in dev mode (and save dune credits)
     # df.to_csv("cache.csv", index=False)
     # df = pd.read_csv("cache.csv")
-    # return df, prop
 
     df = get_df_revenue(start, end)
 
