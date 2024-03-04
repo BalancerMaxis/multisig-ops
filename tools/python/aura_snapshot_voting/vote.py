@@ -1,4 +1,5 @@
 import json
+import os
 import time
 
 import requests
@@ -31,11 +32,11 @@ def get_pool_labels(prop_choices):
     gauge_data = res.json()
 
     gauge_labels = {
-        Web3.to_checksum_address(gauge["address"]): gauge["label"]
+        Web3.toChecksumAddress(gauge["address"]): gauge["label"]
         for gauge in gauge_labels
     }
     gauge_pools = {
-        Web3.to_checksum_address(gauge["address"]): gauge["pool"]["address"]
+        Web3.toChecksumAddress(gauge["address"]): gauge["pool"]["address"]
         for gauge in gauge_data
     }
 
@@ -59,7 +60,7 @@ if __name__ == "__main__":
     pool_labels = get_pool_labels(choices)
 
     df["snapshot_label"] = df["pool_address"].apply(
-        lambda x: pool_labels.get(Web3.to_checksum_address(x))
+        lambda x: pool_labels.get(Web3.toChecksumAddress(x))
     )
 
     # grab top 6 pool for each type
@@ -77,8 +78,7 @@ if __name__ == "__main__":
         data = json.load(f)
 
     data["message"]["timestamp"] = int(time.time())
-    # data["from"] = flatbook["multisigs/vote_incentive_recycling"]
-    data["message"]["from"] = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+    data["message"]["from"] = flatbook["multisigs/vote_incentive_recycling"]
     data["message"]["proposal"] = bytes.fromhex(prop["id"][2:])
     data["message"]["choice"] = str(vote_choices)
 
@@ -89,8 +89,9 @@ if __name__ == "__main__":
 
     data["transactions"][0]["contractInputsValues"]["_data"] = "0x" + hash.hex()
 
+    os.makedirs("vote_txs", exist_ok=True)
     with open(f"vote_txs/vote_{hash.hex()}.json", "w") as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=2)
 
     print(f"voting for: \n{df['snapshot_label']}")
     print(f"snapshot choice indexes: \n{vote_choices}")
