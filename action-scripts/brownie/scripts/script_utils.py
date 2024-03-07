@@ -171,6 +171,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     # build urls
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
+    if not user or not project:
+        return "N/A", "NOT RUN/NO CREDENTIALS"
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
 
@@ -389,6 +391,19 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
         results.append(f"{get_token_symbol(token)}({token})")
     return results
 
+def prettify_int_amounts(amounts: list, decimals: int) -> list[str]:
+    pretty_amounts = []
+    for amount in amounts:
+        amount=int(amount)
+        pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10^decimals}")
+
+def sum_list(amounts: list) -> int:
+    total = 0
+    for amount in amounts:
+        total += amount
+    return total
+
+
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
     """
@@ -474,3 +489,27 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
                 bip = tx["meta"]["bip_number"]
                 break
     return bip or "N/A"
+
+def parse_txbuilder_list_string(list_string):
+    # Change from a txbuilder json format list of addresses to a python one
+    list_string = list_string.strip("[ ]")
+    list_string = list_string.replace(" ", "")
+    list_string = list_string.split(",")
+    if isinstance(list_string, list):
+        return(list_string)
+
+def prettify_gauge_list(gauge_addresses, chainbook) -> list:
+    pretty_gauges = []
+    for gauge in gauge_addresses:
+        gauge_name = chainbook.reversebook.get(gauge)
+        if not gauge_name:
+            switch_chain_if_needed(chainbook.chain_ids_by_name[chainbook.chain])
+            gauge_interface = Contract(gauge)
+            try:
+                gauge_name = gauge_interface.name()
+            except:
+                gauge_name = "(N/A)"
+        pretty_gauges.append(f"{gauge} ({gauge_name}")
+    return pretty_gauges
+
+
