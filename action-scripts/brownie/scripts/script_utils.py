@@ -195,13 +195,12 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .strip("[]")
                                     .split(",")
                                 ]
-                            else:
-                                tx["contractInputsValues"][input["name"]] = (
-                                    True
-                                    if tx["contractInputsValues"][input["name"]]
-                                    == "true"
-                                    else False
-                                )
+                        else:
+                            tx["contractInputsValues"][input["name"]] = (
+                                True
+                                if tx["contractInputsValues"][input["name"]] == "true"
+                                else False
+                            )
                     if re.search(r"int[0-9]+", input["type"]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
