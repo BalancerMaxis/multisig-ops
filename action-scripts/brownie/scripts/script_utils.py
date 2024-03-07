@@ -195,12 +195,13 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .strip("[]")
                                     .split(",")
                                 ]
-                        else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                True
-                                if tx["contractInputsValues"][input["name"]] == "true"
-                                else False
-                            )
+                            else:
+                                tx["contractInputsValues"][input["name"]] = (
+                                    True
+                                    if tx["contractInputsValues"][input["name"]]
+                                    == "true"
+                                    else False
+                                )
                     if re.search(r"int[0-9]+", input["type"]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
@@ -409,7 +410,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     """
     Accepts contractInputsValues dict with key of input_name and value of input_value
     Tries to look for values to add human readability to and does so when possible
-    Retruns a non-executable but more human readable version of the inputs in the same format
+    Returns a non-executable but more human readable version of the inputs in the same format
     """
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
@@ -417,7 +418,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     for key, valuedata in contracts_inputs_values.items():
         if isinstance(valuedata, list):
             values = valuedata
-        else:
+        elif isinstance(valuedata, str):
             values = valuedata.strip("[ ]f").replace(" ", "").split(",")
         for value in values:
             if web3.isAddress(value):
