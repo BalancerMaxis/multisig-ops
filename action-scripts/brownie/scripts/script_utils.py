@@ -395,12 +395,13 @@ def prettify_int_amounts(amounts: list, decimals: int) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
         amount=int(amount)
-        pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10^decimals}")
+        pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
+    return pretty_amounts
 
 def sum_list(amounts: list) -> int:
     total = 0
     for amount in amounts:
-        total += amount
+        total += int(amount)
     return total
 
 
@@ -492,11 +493,13 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
 
 def parse_txbuilder_list_string(list_string):
     # Change from a txbuilder json format list of addresses to a python one
+    if isinstance(list_string, list):
+        return list_string
     list_string = list_string.strip("[ ]")
     list_string = list_string.replace(" ", "")
     list_string = list_string.split(",")
     if isinstance(list_string, list):
-        return(list_string)
+        return list_string
 
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
@@ -509,7 +512,7 @@ def prettify_gauge_list(gauge_addresses, chainbook) -> list:
                 gauge_name = gauge_interface.name()
             except:
                 gauge_name = "(N/A)"
-        pretty_gauges.append(f"{gauge} ({gauge_name}")
+        pretty_gauges.append(f"{gauge} ({gauge_name})")
     return pretty_gauges
 
 
