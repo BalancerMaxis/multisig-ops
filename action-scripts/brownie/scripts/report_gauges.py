@@ -593,7 +593,7 @@ def parse_no_reports_report(
                 "bip_number"
             ) or extract_bip_number_from_file_name(filename)
             civ = transaction.get("contractInputsValues")
-            if civ:
+            if isinstance(civ, dict):
                 civ_parsed = prettify_contract_inputs_values(
                     chain_name, transaction["contractInputsValues"]
                 )
