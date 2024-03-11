@@ -430,14 +430,16 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = defaultdict(list)
+    values = None
     for key, valuedata in contracts_inputs_values.items():
+        print(valuedata)
         if isinstance(valuedata, list):
             values = valuedata
         elif isinstance(valuedata, str):
             values = valuedata.strip("[ ]f").replace(" ", "").split(",")
-        if not isinstance(values, list):
+        if not isinstance(valuedata, list):
             print("Warning f{values} is not a list of values")
-            outputs[key] = values
+            outputs[key] = valuedata
         for value in values:
             if web3.isAddress(value):
                 outputs[key].append(
