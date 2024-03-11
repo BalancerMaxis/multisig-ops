@@ -439,7 +439,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
             values = valuedata.strip("[ ]f").replace(" ", "").split(",")
         if not isinstance(valuedata, list):
             print("Warning f{values} is not a list of values")
-            outputs[key] = valuedata
+            values = [valuedata]
         for value in values:
             if web3.isAddress(value):
                 outputs[key].append(
