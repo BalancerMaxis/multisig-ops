@@ -178,9 +178,9 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
-        "gaugeList": pretty_gauges,
-        "amounts_per_period":pretty_amounts,
-        "periods": max_periods,
+        "gaugeList":  json.dumps(pretty_gauges, indent=1),
+        "amounts_per_period":json.dumps(pretty_amounts, indent=1),
+        "periods": json.dumps(max_periods,indent=1),
         "total_amount": f"{total_amount}/1e18 = {total_amount / 1e18}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
