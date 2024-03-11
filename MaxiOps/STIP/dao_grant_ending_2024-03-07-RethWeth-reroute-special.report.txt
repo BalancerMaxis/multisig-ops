@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/STIP/dao_grant_ending_2024-03-07-RethWeth-reroute-special.json`
 MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
-COMMIT: `f38ac2f0730fc7f1be1d230d35e3580da2c66703`
+COMMIT: `3a32a4ddb5e0d044f9605c7c2d59f07bfcd77f93`
 CHAIN(S): `arbitrum`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/62560e45-7717-40c3-862e-294ca5869040)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/ba5ffd51-8c25-4e95-bfe7-1952e69f8fe0)
 ```
 +------------+------------------------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+-------+------------+
 | function   | token_symbol                                   | recipient                                                                                         | amount                                          | bip   |   tx_index |
@@ -12,21 +12,23 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/62560e45-7717-40c3-862
 ```
 FILENAME: `MaxiOps/STIP/dao_grant_ending_2024-03-07-RethWeth-reroute-special.json`
 MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
-COMMIT: `f38ac2f0730fc7f1be1d230d35e3580da2c66703`
+COMMIT: `3a32a4ddb5e0d044f9605c7c2d59f07bfcd77f93`
 CHAIN(S): `arbitrum`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/d1760665-86df-46e1-ad7c-5950eaf99139)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/ee96f7a9-557d-415c-8aff-af3393dcadea)
 ```
-+------------------+---------------------------------------------------------------------------------------+-----------------------------------------------------+-----------+-------------------------------------------------+------------+
-| function         | gaugeList                                                                             | amounts_per_period                                  | periods   | total_amount                                    |   tx_index |
-+==================+=======================================================================================+=====================================================+===========+=================================================+============+
-| setRecipientList | ['0x8ba2D53F34159C5C5e7add60B56C7dE3BBc1DA68 (Balancer rETH/wETH BPT Gauge Deposit)'] | ['4891634557775922530708/1e18 = 4891.634557775922'] | [2]       | 4891634557775922530708/1e18 = 4891.634557775923 |          1 |
-+------------------+---------------------------------------------------------------------------------------+-----------------------------------------------------+-----------+-------------------------------------------------+------------+
++------------------+--------------------------------------------------------------------------------------+----------------------------------------------------+-----------+-------------------------------------------------+------------+
+| function         | gaugeList                                                                            | amounts_per_period                                 | periods   | total_amount                                    |   tx_index |
++==================+======================================================================================+====================================================+===========+=================================================+============+
+| setRecipientList | [                                                                                    | [                                                  | [         | 4891634557775922530708/1e18 = 4891.634557775923 |          1 |
+|                  |  "0x8ba2D53F34159C5C5e7add60B56C7dE3BBc1DA68 (Balancer rETH/wETH BPT Gauge Deposit)" |  "4891634557775922530708/1e18 = 4891.634557775922" |  2        |                                                 |            |
+|                  | ]                                                                                    | ]                                                  | ]         |                                                 |            |
++------------------+--------------------------------------------------------------------------------------+----------------------------------------------------+-----------+-------------------------------------------------+------------+
 ```
 FILENAME: `MaxiOps/STIP/dao_grant_ending_2024-03-07-RethWeth-reroute-special.json`
 MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
-COMMIT: `f38ac2f0730fc7f1be1d230d35e3580da2c66703`
+COMMIT: `3a32a4ddb5e0d044f9605c7c2d59f07bfcd77f93`
 CHAIN(S): `arbitrum`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/f0d14204-84f3-469e-9fae-3b3b415e3994)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/5f430e97-c2e3-4779-a1f4-a5e532cfe089)
 ```
 +----------------+--------------------------------------------------------+---------+--------------+--------------+------------+
 | fx_name        | to                                                     |   value | inputs       | bip_number   | tx_index   |
