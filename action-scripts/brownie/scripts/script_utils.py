@@ -186,6 +186,21 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             )
             if len(tx["contractMethod"]["inputs"]) > 0:
                 for input in tx["contractMethod"]["inputs"]:
+                    if "bool" in input["type"]:
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    (True if x == "true" else False)
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
+                        else:
+                            tx["contractInputsValues"][input["name"]] = (
+                                True
+                                if tx["contractInputsValues"][input["name"]] == "true"
+                                else False
+                            )
                     if re.search(r"int[0-9]+", input["type"]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
