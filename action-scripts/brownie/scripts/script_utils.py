@@ -522,11 +522,10 @@ def parse_txbuilder_list_string(list_string) -> list:
     If it is anything else, return a single item list with whatever it is.
     """
     # Change from a txbuilder json format list of addresses to a python one
-    if isinstance(list_string, list):
-        return list_string
-    list_string = list_string.strip("[ ]")
-    list_string = list_string.replace(" ", "")
-    list_string = list_string.split(",")
+    if isinstance(list_string, str):
+        list_string = list_string.strip("[ ]")
+        list_string = list_string.replace(" ", "")
+        list_string = list_string.split(",")
     if isinstance(list_string, list):
         return list_string
     # If we still don't have a list, create a single item list with what we do have.
