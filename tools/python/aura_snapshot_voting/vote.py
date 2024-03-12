@@ -68,6 +68,8 @@ if __name__ == "__main__":
 
     rev_per_type = df.groupby("type")["revenue"].transform("sum")
     df["share"] = (df["revenue"] / rev_per_type) * POOL_SHARE_PER_TYPE
+    
+    df = df[df["share"] > 0]
 
     vote_choices = {
         str(choices.index(row["snapshot_label"]) - 1): row["share"]
