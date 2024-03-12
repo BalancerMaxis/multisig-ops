@@ -433,6 +433,8 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     values = None
     for key, valuedata in contracts_inputs_values.items():
         values = parse_txbuilder_list_string(valuedata)
+        if "value" in key.lower() or "amount" in key.lower():
+            prettify_int_amounts(values, 18)
         for value in values:
             ## Reverse resolve addresses
             if web3.isAddress(value):
@@ -445,17 +447,9 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
                 outputs[key].append(
                     f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
                 )
-            ## If it looks like an amount provide 1e18 denomination (hard to understand what decimals will so make it clear.
-            elif "value" in key.lower() or "amount" in key.lower():
-                try:
-                    outputs[key].append(f"{value} / 1e18 = {int(value)/1e18}")
-                except ValueError:
-                    pass
             else:
                 outputs[key].append([value])
-
     return outputs
-
 
 def merge_files(
     results_outputs_list: list[dict[str, dict[str, dict]]],
