@@ -93,6 +93,6 @@ if __name__ == "__main__":
     with open(f"vote_txs/vote_{hash.hex()}.json", "w") as f:
         json.dump(data, f, indent=2)
 
-    print(f"voting for: \n{df['snapshot_label']}")
+    print(f"voting for: \n{df[['blockchain', 'snapshot_label', 'share']]}")
     print(f"snapshot choice indexes: \n{vote_choices}")
     print(f"transaction saved to: \nvote_txs/vote_{hash.hex()}.json")
