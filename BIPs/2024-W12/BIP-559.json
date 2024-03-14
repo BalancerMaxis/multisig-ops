@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1710398209243,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Add ezETH-WETH gauge Arbitrum",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xCD41Bc6DC6e9821C4C36848Ff3397493e458A5d1",
+        "gaugeType": "Arbitrum"
+      }
+    }
+  ]
+}
