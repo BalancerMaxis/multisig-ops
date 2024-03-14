@@ -125,9 +125,9 @@ def gen_rev_data():
 
     # dev: uncomment to use cached data in dev mode (and save dune credits)
     # df.to_csv("cache.csv", index=False)
-    # df = pd.read_csv("cache.csv")
+    df = pd.read_csv("cache.csv")
 
-    df = get_df_revenue(start, end)
+    # df = get_df_revenue(start, end)
 
     # clean data
     df = df.rename(columns={"protocol_fee_collected": "revenue"})
@@ -146,10 +146,10 @@ def gen_rev_data():
         if x in sustainable_pools
         else "core"
         if x in core_pools
-        else pd.NA
+        else "NA"
     )
 
-    df = df.dropna(subset=["type"])
+    # df = df.dropna(subset=["type"])
     df = df.sort_values(by=["revenue"], ascending=False)
 
     return df, prop
