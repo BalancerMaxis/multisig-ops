@@ -7,6 +7,7 @@ from brownie import network
 from brownie import web3
 from collections import defaultdict
 
+from .script_utils import parse_txbuilder_list_string
 from .script_utils import format_into_report
 from .script_utils import get_changed_files
 from .script_utils import get_pool_info
@@ -15,6 +16,9 @@ from .script_utils import extract_bip_number
 from .script_utils import extract_bip_number_from_file_name
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
+from .script_utils import prettify_gauge_list
+from .script_utils import prettify_int_amounts
+from .script_utils import sum_list
 from .script_utils import return_hh_brib_maps
 from .script_utils import switch_chain_if_needed
 
@@ -143,6 +147,43 @@ def _extract_pool(
     )
 
 
+def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
+    """
+    Parse injector changes
+
+    Look up the proposals and return a human readable pool + amount.
+
+    :param transaction: transaction to parse
+    :return: dict with parsed data
+    """
+    chain_id = kwargs["chain_id"]
+    chain_name = AddrBook.chain_names_by_id.get(int(chain_id))
+    chainbook = AddrBook(chain_name)
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
+        return
+    if not transaction["contractMethod"].get("name") == "setRecipientList":
+        return
+    to_address = web3.toChecksumAddress(transaction["to"])
+    gauge_addresses = parse_txbuilder_list_string(transaction["contractInputsValues"]["gaugeAddresses"])
+    amounts_per_period = parse_txbuilder_list_string(transaction["contractInputsValues"]["amountsPerPeriod"])
+    max_periods = parse_txbuilder_list_string(transaction["contractInputsValues"]["maxPeriods"])
+    total_amount = 0
+    assert len(gauge_addresses) == len(amounts_per_period) and len(gauge_addresses) == len(max_periods), \
+        f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
+    pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
+    pretty_amounts = prettify_int_amounts(amounts_per_period, 18)
+    total_amount = sum_list(amounts_per_period)
+    return {
+        "function": "setRecipientList",
+        "chain": chainbook.chain,
+        "gaugeList":  json.dumps(pretty_gauges, indent=1),
+        "amounts_per_period":json.dumps(pretty_amounts, indent=1),
+        "periods": json.dumps(max_periods,indent=1),
+        "total_amount": f"{total_amount}/1e18 = {total_amount / 1e18}",
+        "tx_index": kwargs.get("tx_index", "N/A"),
+    }
 def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Hidden Hand Bribe transactions
@@ -163,7 +204,6 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     prop_map = return_hh_brib_maps()
     aura_briber = ADDR_BOOK.extras.hidden_hand2.aura_briber
     bal_briber = ADDR_BOOK.extras.hidden_hand2.balancer_briber
-
     ##  Parse TX
     ### Determine market
     to_address = web3.toChecksumAddress(transaction["to"])
@@ -553,7 +593,7 @@ def parse_no_reports_report(
                 "bip_number"
             ) or extract_bip_number_from_file_name(filename)
             civ = transaction.get("contractInputsValues")
-            if civ:
+            if isinstance(civ, dict):
                 civ_parsed = prettify_contract_inputs_values(
                     chain_name, transaction["contractInputsValues"]
                 )
@@ -636,6 +676,8 @@ def main() -> None:
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
+    all_reports.append(handler(files, _parse_set_receipient_list))
+
 
     ## Catch All should run after all other handlers.
     no_reports_report = parse_no_reports_report(all_reports, files)

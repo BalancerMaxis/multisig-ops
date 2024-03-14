@@ -1,0 +1,61 @@
+FILENAME: `MaxiOps/STIP/dao_grant_2024-02-22_2024-03-07.json`
+MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
+COMMIT: `3a32a4ddb5e0d044f9605c7c2d59f07bfcd77f93`
+CHAIN(S): `arbitrum`
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/6185d778-3a69-42b9-b7c5-866e34b8a437)
+```
++------------+------------------------------------------------+---------------------------------------------------------------------------------------------------+----------------------------------------+-------+------------+
+| function   | token_symbol                                   | recipient                                                                                         | amount                                 | bip   |   tx_index |
++============+================================================+===================================================================================================+========================================+=======+============+
+| transfer   | ARB:0x912CE59144191C1204E64559FE8253a0e49E6548 | maxiKeepers/gaugeRewardsInjectors/arb_rewards_injector:0xF23d8342881eDECcED51EA694AC21C2B68440929 | 82285.3 (RAW: 82285300000000002910383) | N/A   |          2 |
++------------+------------------------------------------------+---------------------------------------------------------------------------------------------------+----------------------------------------+-------+------------+
+```
+FILENAME: `MaxiOps/STIP/dao_grant_2024-02-22_2024-03-07.json`
+MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
+COMMIT: `3a32a4ddb5e0d044f9605c7c2d59f07bfcd77f93`
+CHAIN(S): `arbitrum`
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/3cc63d1b-273d-4421-b805-e2c684993371)
+```
++------------------+------------------------------------------------------------------------------------------------+------------------------------------------------------+-----------+-----------------------------------------+------------+
+| function         | gaugeList                                                                                      | amounts_per_period                                   | periods   | total_amount                            |   tx_index |
++==================+================================================================================================+======================================================+===========+=========================================+============+
+| setRecipientList | [                                                                                              | [                                                    | [         | 41142649999999999387500/1e18 = 41142.65 |          1 |
+|                  |  "0xae30333C4CFFeF017909460384CDD7B073281280 (Balancer 80LUMIN-20rETH Gauge Deposit)",         |  "211159012582608909269/1e18 = 211.1590125826089",   |  2,       |                                         |            |
+|                  |  "0x06eaf7bAabEac962301eE21296e711B3052F2c0d (Balancer wstETH/sfrxETH Gauge Deposit)",         |  "705106556868132543058/1e18 = 705.1065568681325",   |  2,       |                                         |            |
+|                  |  "0x2cFBD7aCC62709396b3C8c7698808384720A0BbF (Balancer 20WETH-80PAL Gauge Deposit)",           |  "211826898766961534192/1e18 = 211.82689876696153",  |  2,       |                                         |            |
+|                  |  "0x050fBe33699E56B577c3D6f090eCE9870A0966bd (Balancer sFRAX/4POOL Gauge Deposit)",            |  "6651127350440919144602/1e18 = 6651.127350440919",  |  2,       |                                         |            |
+|                  |  "0x5a0e92a55800BB5bFd5ec6C7340BfdE7f0947c3E (Balancer cbETH/rETH/wstETH Gauge Deposit)",      |  "1135048954410615124288/1e18 = 1135.0489544106151", |  2,       |                                         |            |
+|                  |  "0x82d2c7B67Eaa5028c89BE86CeA8e1DF5bd2119A1 (Balancer 55auraBal-45wsteth Gauge Deposit)",     |  "672778062199584610425/1e18 = 672.7780621995846",   |  2,       |                                         |            |
+|                  |  "0xcf9f895296F5e1D66a7D4dcf1d92e1B435E9f999 (Balancer RDNT-WETH Gauge Deposit)",              |  "4114265000000000327418/1e18 = 4114.265",           |  2,       |                                         |            |
+|                  |  "0x2eB5661002b68EBE887d29d415c3A3b52536912C (Balancer wstETH/rETH/cbETH Gauge Deposit)",      |  "56802692593886114025/1e18 = 56.802692593886114",   |  2,       |                                         |            |
+|                  |  "0x159be31493C26F8F924b3A2a7F428C2f41247e83 (Balancer GOLD-BAL-AURA-wstETH Gauge Deposit)",   |  "822853000000000065483/1e18 = 822.8530000000001",   |  2,       |                                         |            |
+|                  |  "0x089a2E069700B0f2B16f69A6e02b01818ce22e7d (Balancer D2D-rETH Gauge Deposit)",               |  "1334502510163109491259/1e18 = 1334.5025101631095", |  2,       |                                         |            |
+|                  |  "0x011417BBED6FC9cefF36C032D431b0eFcBA7f8B3 (Balancer 50tBTC-50WETH Gauge Deposit)",          |  "287348576781087672316/1e18 = 287.3485767810877",   |  2,       |                                         |            |
+|                  |  "0x34BDBEcd3B911a8DCB17aC68B961a8D16db52673 (Balancer wstETH/rETH/sfrxETH Gauge Deposit)",    |  "65581363014236941921/1e18 = 65.58136301423694",    |  2,       |                                         |            |
+|                  |  "0xeF767E740D83d410794519c2F93Db32e44359a5C (Balancer 50MAGIC-50USDC Gauge Deposit)",         |  "2400684628035122386791/1e18 = 2400.6846280351224", |  2,       |                                         |            |
+|                  |  "0xD7a5122a4e88EC9fBE94301A0Bff6114ddFe5d4B (Balancer STAR/USDC-BPT  Gauge Deposit)",         |  "655269597460754653184/1e18 = 655.2695974607547",   |  2,       |                                         |            |
+|                  |  "0x574c2146091Cced305A7ABa82d097DE36b736fac (Balancer 50DFX-50WETH Gauge Deposit)",           |  "129339672345674472353/1e18 = 129.33967234567447",  |  2,       |                                         |            |
+|                  |  "0xb438c6cc53315FfA3fcD1bc8b27d6c3155b0B56A (Balancer 2BTC Gauge Deposit)",                   |  "197823688989146859285/1e18 = 197.82368898914686",  |  2,       |                                         |            |
+|                  |  "0x2162abD00312a0496B4b72b20A6790Cc07268A25 (Balancer Savvy TriCrypto Pool Gauge Deposit)",   |  "683394537324530688238/1e18 = 683.3945373245307",   |  2,       |                                         |            |
+|                  |  "0x40F6bE0b26B229C4C3b2C3344e91f8eEe22a62fF (Balancer plsRDNT-Stable Gauge Deposit)",         |  "3226966864497410824696/1e18 = 3226.966864497411",  |  2,       |                                         |            |
+|                  |  "0xa14453084318277b11d38FbE05D857A4f647442B (Balancer 4POOL-BPT Gauge Deposit)",              |  "1935077994471550027810/1e18 = 1935.07799447155",   |  2,       |                                         |            |
+|                  |  "0xd956246EA5b06DEa930F0A7feC1FFf000436e3f2 (Balancer DOLA/USDC BPT Gauge Deposit)",          |  "1564967475983180065668/1e18 = 1564.96747598318",   |  2,       |                                         |            |
+|                  |  "0xcF853F14EF6111435Cb39c0C43C66366cc6300F1 (Balancer 50GOLD-25USDC-25WSTETH Gauge Deposit)", |  "3291412000000000261934/1e18 = 3291.4120000000003", |  2,       |                                         |            |
+|                  |  "0x260cbb867359a1084eC97de4157d06ca74e89415 (Balancer wstETH-WETH-BPT Gauge Deposit)",        |  "4010287275780118307011/1e18 = 4010.2872757801183", |  2,       |                                         |            |
+|                  |  "0xfC745035F31BCbaEb2D1a89aA9171495c671F6cE (Balancer ankrETH/wstETH-BPT Gauge Deposit)",     |  "1887391729515445831566/1e18 = 1887.3917295154458", |  2,       |                                         |            |
+|                  |  "0x8ba2D53F34159C5C5e7add60B56C7dE3BBc1DA68 (Balancer rETH/wETH BPT Gauge Deposit)"           |  "4891634557775922530708/1e18 = 4891.634557775922"   |  2        |                                         |            |
+|                  | ]                                                                                              | ]                                                    | ]         |                                         |            |
++------------------+------------------------------------------------------------------------------------------------+------------------------------------------------------+-----------+-----------------------------------------+------------+
+```
+FILENAME: `MaxiOps/STIP/dao_grant_2024-02-22_2024-03-07.json`
+MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
+COMMIT: `3a32a4ddb5e0d044f9605c7c2d59f07bfcd77f93`
+CHAIN(S): `arbitrum`
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/f57bf994-cfca-4ca2-b5aa-715c7f414bf5)
+```
++----------------+--------------------------------------------------------+---------+--------------+--------------+------------+
+| fx_name        | to                                                     |   value | inputs       | bip_number   | tx_index   |
++================+========================================================+=========+==============+==============+============+
+| redeemAllPlans | 0x2CDE9919e81b20B4B33DD562a48a84b54C48F00C (Not Found) |       0 | "0xb9bdac2c" | N/A          | N/A        |
++----------------+--------------------------------------------------------+---------+--------------+--------------+------------+
+```

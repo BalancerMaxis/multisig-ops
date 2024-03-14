@@ -155,9 +155,9 @@ def switch_chain_if_needed(network_id: int) -> None:
     if web3.chain_id != network_id:
         network.disconnect()
         chain_name = AddrBook.chain_names_by_id[int(network_id)]
-        chain_name = 'avax' if chain_name == 'avalanche' else chain_name
-        chain_name = f'{chain_name}-main' if chain_name != 'mainnet' else 'mainnet'
-        print('reconnecting to', chain_name)
+        chain_name = "avax" if chain_name == "avalanche" else chain_name
+        chain_name = f"{chain_name}-main" if chain_name != "mainnet" else "mainnet"
+        print("reconnecting to", chain_name)
         network.connect(chain_name)
         assert web3.chain_id == network_id, (web3.chain_id, network_id)
         assert network.is_connected()
@@ -171,6 +171,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     # build urls
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
+    if not user or not project:
+        return "N/A", "NOT RUN/NO CREDENTIALS"
     sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
 
@@ -179,26 +181,64 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     # build individual tx data
     for tx in transactions:
-        if tx['contractMethod']:
-            tx['contractMethod']['type'] = 'function'
-            contract = web3.eth.contract(address=web3.toChecksumAddress(tx['to']), abi=[tx['contractMethod']])
-            if len( tx['contractMethod']['inputs']) > 0:
-                for input in tx['contractMethod']['inputs']:
-                    if re.search(r'int[0-9]+', input['type']):
-                        if '[]' in input['type']:
-                            if type(tx['contractInputsValues'][input['name']]) != list:
-                                tx['contractInputsValues'][input['name']] = [int(x) for x in tx['contractInputsValues'][input['name']].strip('[]').split(",")]
+        if tx["contractMethod"]:
+            tx["contractMethod"]["type"] = "function"
+            contract = web3.eth.contract(
+                address=web3.toChecksumAddress(tx["to"]), abi=[tx["contractMethod"]]
+            )
+            if len(tx["contractMethod"]["inputs"]) > 0:
+                for input in tx["contractMethod"]["inputs"]:
+                    if "bool" in input["type"]:
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    (True if x == "true" else False)
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
                         else:
-                            tx['contractInputsValues'][input['name']] = int(tx['contractInputsValues'][input['name']])
-                    if 'address' in input['type']:
-                        if '[]' in input['type']:
-                            if type(tx['contractInputsValues'][input['name']]) != list:
-                                tx['contractInputsValues'][input['name']] = [web3.toChecksumAddress(x) for x in tx['contractInputsValues'][input['name']].strip('[]').split(",")]
+                            tx["contractInputsValues"][input["name"]] = (
+                                True
+                                if tx["contractInputsValues"][input["name"]] == "true"
+                                else False
+                            )
+                    if re.search(r"int[0-9]+", input["type"]):
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    int(x)
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
                         else:
-                            tx['contractInputsValues'][input['name']] = web3.toChecksumAddress(tx['contractInputsValues'][input['name']])
-                tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=list(tx['contractInputsValues'].values()))
+                            tx["contractInputsValues"][input["name"]] = int(
+                                tx["contractInputsValues"][input["name"]]
+                            )
+                    if "address" in input["type"]:
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    web3.toChecksumAddress(x)
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
+                        else:
+                            tx["contractInputsValues"][input["name"]] = (
+                                web3.toChecksumAddress(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
+                            )
+                tx["data"] = contract.encodeABI(
+                    fn_name=tx["contractMethod"]["name"],
+                    args=list(tx["contractInputsValues"].values()),
+                )
             else:
-                tx['data'] = contract.encodeABI(fn_name=tx['contractMethod']['name'], args=[])
+                tx["data"] = contract.encodeABI(
+                    fn_name=tx["contractMethod"]["name"], args=[]
+                )
 
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
@@ -224,7 +264,12 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "gasPrice": 0,
         "gasToken": NULL_ADDRESS,
         "refundReceiver": NULL_ADDRESS,
-        "signatures": b''.join([encode_abi(['address', 'uint'], [str(owner), 0]) + b'\x01' for owner in owners]),
+        "signatures": b"".join(
+            [
+                encode_abi(["address", "uint"], [str(owner), 0]) + b"\x01"
+                for owner in owners
+            ]
+        ),
     }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
@@ -237,7 +282,13 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "save": True,
         "save_if_fails": True,
         "simulation_type": "quick",
-        "state_objects": {safe_addr:  {"storage": {"0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"}}},
+        "state_objects": {
+            safe_addr: {
+                "storage": {
+                    "0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"
+                }
+            }
+        },
     }
 
     # post to tenderly api
@@ -285,9 +336,7 @@ def format_into_report(
     """
     chain_name = AddrBook.chain_names_by_id[chain_id]
     book = AddrBook(chain_name)
-    msig_label = book.reversebook.get(
-        web3.toChecksumAddress(msig_addr), "!NOT FOUND"
-    )
+    msig_label = book.reversebook.get(web3.toChecksumAddress(msig_addr), "!NOT FOUND")
     file_name = file["file_name"]
     print(f"Writing report for {file_name}...")
     file_report = f"FILENAME: `{file_name}`\n"
@@ -357,21 +406,40 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
         results.append(f"{get_token_symbol(token)}({token})")
     return results
 
+def prettify_int_amounts(amounts: list, decimals: int) -> list[str]:
+    pretty_amounts = []
+    for amount in amounts:
+        amount=int(amount)
+        pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
+    return pretty_amounts
+
+def sum_list(amounts: list) -> int:
+    total = 0
+    for amount in amounts:
+        total += int(amount)
+    return total
+
+
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
     """
     Accepts contractInputsValues dict with key of input_name and value of input_value
     Tries to look for values to add human readability to and does so when possible
-    Retruns a non-executable but more human readable version of the inputs in the same format
+    Returns a non-executable but more human readable version of the inputs in the same format
     """
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = defaultdict(list)
+    values = None
     for key, valuedata in contracts_inputs_values.items():
+        print(valuedata)
         if isinstance(valuedata, list):
             values = valuedata
-        else:
+        elif isinstance(valuedata, str):
             values = valuedata.strip("[ ]f").replace(" ", "").split(",")
+        if not isinstance(valuedata, list):
+            print(f"Warning f{values} is still not a list of values, putting what we have in single member list")
+            values = [valuedata]
         for value in values:
             if web3.isAddress(value):
                 outputs[key].append(
@@ -442,3 +510,29 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
                 bip = tx["meta"]["bip_number"]
                 break
     return bip or "N/A"
+
+def parse_txbuilder_list_string(list_string):
+    # Change from a txbuilder json format list of addresses to a python one
+    if isinstance(list_string, list):
+        return list_string
+    list_string = list_string.strip("[ ]")
+    list_string = list_string.replace(" ", "")
+    list_string = list_string.split(",")
+    if isinstance(list_string, list):
+        return list_string
+
+def prettify_gauge_list(gauge_addresses, chainbook) -> list:
+    pretty_gauges = []
+    for gauge in gauge_addresses:
+        gauge_name = chainbook.reversebook.get(gauge)
+        if not gauge_name:
+            switch_chain_if_needed(chainbook.chain_ids_by_name[chainbook.chain])
+            gauge_interface = Contract(gauge)
+            try:
+                gauge_name = gauge_interface.name()
+            except:
+                gauge_name = "(N/A)"
+        pretty_gauges.append(f"{gauge} ({gauge_name})")
+    return pretty_gauges
+
+
