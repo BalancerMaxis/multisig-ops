@@ -7,12 +7,8 @@ import requests
 from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
 from dune_client.query import QueryBase
+from bal_addresses.subgraph import Subgraph
 
-# hack so that we can import get_subgraph_url
-root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, root)
-
-from helpers import get_subgraph_url
 
 dune = DuneClient.from_env()
 
@@ -82,7 +78,7 @@ def get_stable_pools_with_rate_provider():
 
     result = []
     for chain in config:
-        url = get_subgraph_url(chain)
+        url = Subgraph(chain).get_subgraph_url("core")
         query = """{
             pools(
                 first: 1000,
