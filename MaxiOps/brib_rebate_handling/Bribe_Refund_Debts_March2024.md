@@ -13,3 +13,10 @@ During these two months refunds were based on the total value of fees collected,
 For January a similar scenario [Jan-20: 365,400](https://etherscan.io/tx/0xa81f07635a24b9660c174e27f4cf9ba03d14207089d822a195adeeb2a8d3fa03) and [Jan 5: 444254](https://etherscan.io/tx/0xd6d0689a995b7bdef50ff5f1ce2f05ac8b16ecc49e0309c9c9c05594c844d8c7) - 3% comes to 24289 USDC, however this should have been half resulting in 12144.5 net to Balancer in refund. The doubled amount was [received](0x9c16d7ec9e3bdf55048fa90579088e029676f9a6835d0ff780672b298c899202). 
 
 To compensate Hidden Hand for the overdraft and not leave Balancer DAO in debt to their team we will forfeight bribe refunds until the total debt of 21,522 is paid. For February the total refund would be February correctly calculated is worth 9,533. 3% of [txn 1](https://etherscan.io/tx/0x4b7ce1295f1c3790f5a0353c13e93beb8a1d6c915bf9dd36fcfeb798a44f88d2) and [txn 2](https://etherscan.io/tx/0xb7bd4177a1fddd18364a52dc0563e5f3efde4856b97778477fb37d176be15000). This means Balancer will cover 11989 more USDC in refund debt before Hidden Hand begins to release more USDC to the DAO. 
+
+### Update for Round dated March 2nd, 2024
+
+Transaction: https://etherscan.io/tx/0x1c94e9e5b761e2167e1a204f0fb83cbf401cdea17cb162a88624383a718a1345 
+Net Transfer to HH: 269405.73
+3% of Transfer: 8082.17
+Net Debt: **3907 USDC** = 11,989 - 8,082
