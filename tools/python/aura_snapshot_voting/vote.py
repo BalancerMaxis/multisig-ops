@@ -9,6 +9,7 @@ from bal_addresses import AddrBook
 from web3 import Web3
 from eth_account._utils.structured_data.hashing import hash_message, hash_domain
 from eth_utils import keccak
+import pandas as pd
 
 from gen_vlaura_votes_for_epoch import gen_rev_data
 
@@ -57,23 +58,19 @@ def get_pool_labels(prop_choices):
 def get_gauge_labels(prop_choices, gauge_choices):
     # get filtered gauge labels for manual voting
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
-    gauge_data = fetch_json_from_url(GAUGE_SNAPSHOT_URL)
 
     gauge_labels = {
         Web3.toChecksumAddress(item["address"]): item["label"]
         for item in gauge_labels
         if item["label"]
     }
-    gauge_data_addrs = [
-        Web3.toChecksumAddress(gauge["address"]) for gauge in gauge_data
-    ]
 
     eligible_gauge_choices = {}
 
     for addr in gauge_choices:
         addr = Web3.toChecksumAddress(addr)
         label = gauge_labels.get(addr)
-        if label and addr in gauge_data_addrs:
+        if label:
             if label in prop_choices:
                 eligible_gauge_choices[addr] = label
             else:
@@ -82,6 +79,21 @@ def get_gauge_labels(prop_choices, gauge_choices):
             raise ValueError(f"gauge {addr} not found")
 
     return eligible_gauge_choices
+
+
+def add_gauge_to_df(df, gauge_labels, gauges, alloc_pct):
+    for gauge in gauges:
+        address = Web3.toChecksumAddress(gauge["address"])
+        new_row = {
+            "pool_address": address,
+            "snapshot_label": gauge_labels.get(address),
+            "vote_alloc": alloc_pct,
+            "revenue": 0,
+            "share": gauge["weight"]
+        }
+        df = pd.concat([df,  pd.DataFrame([new_row])], ignore_index=True)
+    
+    return df
 
 
 def determine_allocation(row):
@@ -119,28 +131,30 @@ if __name__ == "__main__":
         with open("manual_voting_gauges.json", "r") as f:
             gauges = json.load(f)
 
-        core_gauges, CORE_ALLOC = (
-            gauges["core"]["gauges"],
-            gauges["core"]["allocation_pct"],
-        )
-        sustainable_gauges, SUSTAINABLE_ALLOC = (
-            gauges["sustainable"]["gauges"],
-            gauges["sustainable"]["allocation_pct"],
-        )
-        bd_gauges, BD_ALLOC = gauges["bd"]["gauges"], gauges["bd"]["allocation_pct"]
+        core_gauge_addresses = [g["address"] for g in gauges["core"]["gauges"]]
+        sustainable_gauge_addresses = [g["address"] for g in gauges["sustainable"]["gauges"]]
+        bd_gauge_addresses = [g["address"] for g in gauges["bd"]["gauges"]]
+
+        CORE_ALLOC = gauges["core"]["allocation_pct"]
+        SUSTAINABLE_ALLOC = gauges["sustainable"]["allocation_pct"]
+        BD_ALLOC = gauges["bd"]["allocation_pct"]
 
         gauge_labels = get_gauge_labels(
-            choices, core_gauges + sustainable_gauges + bd_gauges
+            choices, core_gauge_addresses + sustainable_gauge_addresses + bd_gauge_addresses
         )
+
+        df = add_gauge_to_df(df, gauge_labels, gauges["core"]["gauges"], CORE_ALLOC)
+        df = add_gauge_to_df(df, gauge_labels, gauges["sustainable"]["gauges"], SUSTAINABLE_ALLOC)
+        df = add_gauge_to_df(df, gauge_labels, gauges["bd"]["gauges"], BD_ALLOC)
         df = df[df["snapshot_label"].isin(gauge_labels.values())]
+
     else:
         df = df.dropna(subset=["snapshot_label"]).groupby("type").head(6).copy()
 
-    df["vote_alloc"] = df.apply(determine_allocation, axis=1)
-    rev_per_type = df.groupby("type")["revenue"].transform("sum")
-    df["share"] = (df["revenue"] / rev_per_type) * df["vote_alloc"]
-
-    df = df[df["share"] > 0]
+        df["vote_alloc"] = df.apply(determine_allocation, axis=1)
+        rev_per_type = df.groupby("type")["revenue"].transform("sum")
+        df["share"] = (df["revenue"] / rev_per_type) * df["vote_alloc"]
+        df = df[df["share"] > 0]
 
     assert df["share"].sum() == 1
 
