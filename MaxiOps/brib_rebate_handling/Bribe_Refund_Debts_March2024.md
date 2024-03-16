@@ -20,3 +20,11 @@ Transaction: https://etherscan.io/tx/0x1c94e9e5b761e2167e1a204f0fb83cbf401cdea17
 Net Transfer to HH: 269405.73
 3% of Transfer: 8082.17
 Net Debt: **3907 USDC** = 11,989 - 8,082
+
+### Update for Round dated March 16. 2024
+
+Transaction: https://etherscan.io/tx/0xe4f7f58819101be2e1f01c172e1fe8491a3bdde81222ada61b82ba04f3e7e3ce
+Net Transfer to HH: 374,274.269998
+3% of Transfer: 11228.23
+Net Debt:  **-7,321 USDC** = 3,907 - 11228.23 Balancer is back in the green. 
+Rolling Bribe refund amount: 7,321 USDC.
