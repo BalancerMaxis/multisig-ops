@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1710938659118,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Kill old rETH/WETH guage on zkEVM",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x42a3290a65CA16Adaf161c6FfAfDBE0913A169F4",
+        "data": "0xab8f0945"
+      }
+    }
+  ]
+}
