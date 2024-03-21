@@ -37,7 +37,7 @@ jobs:
           python3 action-scripts/gen_add_permissions_payload.py
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Generate permissions add payload and tables
           commit_user_name: GitHub Actions
