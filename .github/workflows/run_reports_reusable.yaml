@@ -72,6 +72,9 @@ jobs:
         run: |
           export COMMIT_SHA=`git rev-parse HEAD`
           cd action-scripts/brownie
+          brownie networks list True
+          brownie networks import networks.yaml True
+          brownie networks list True
           brownie run --network mainnet scripts/report_gauges.py
 
       - name: Check for comment files
