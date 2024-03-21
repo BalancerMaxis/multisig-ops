@@ -1,0 +1,13 @@
+FILENAME: `BIPs/2024-W13/BIP-570.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `a72ebe007b8673b169ac0a360ca3460c81b1ec5e`
+CHAIN(S): `avax`
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/7254b664-7187-4193-baca-cf9e163d79a4)
+```
++-----------------------+-----------------------------------+---------------------------------------------------------+--------------------------------------------+----------+------------------+---------+------------+
+| function              | pool_id_and_address               | symbol_and_info                                         | gauge_address_and_info                     | tokens   | rate_providers   | bip     |   tx_index |
++=======================+===================================+=========================================================+============================================+==========+==================+=========+============+
+| GaugeAdderV4/addGauge | CONTRACT_UNVERIFIED               | CONTRACT_UNVERIFIED                                     | 0x2911d599C3494A416B27c144E4084a6617cA4Ff0 |          |                  | BIP-570 |          0 |
+|                       | pool_address: CONTRACT_UNVERIFIED | fee: CONTRACT_UNVERIFIED, a-factor: CONTRACT_UNVERIFIED |  Style: L0 sidechain, cap: 2.0%            |          |                  |         |            |
++-----------------------+-----------------------------------+---------------------------------------------------------+--------------------------------------------+----------+------------------+---------+------------+
+```
