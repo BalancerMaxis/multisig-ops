@@ -80,7 +80,8 @@ def _extract_pool(
         ]
         switch_chain_if_needed(network_id=network_id)
         try:
-            sidechain_recipient = Contract(recipient)
+            print("brownie networks", network.main.CONFIG.networks)
+            sidechain_recipient = Contract.from_explorer(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
                 sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
                 style = STYLE_CHILD_CHAIN_STREAMER
