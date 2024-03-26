@@ -413,7 +413,9 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
             amount=int(amount)
         except:
             # Can't make this an int, leave it a lone
+            print(f"Can't make {amount} into an int to prettify")
             pretty_amounts.append(amount)
+            continue
         if isinstance(decimals, int):
             # We know decimals so use them
             pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")

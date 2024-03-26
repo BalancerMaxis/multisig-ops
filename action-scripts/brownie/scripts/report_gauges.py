@@ -182,10 +182,14 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     if not transaction["contractMethod"].get("name") == "setRecipientList":
         return
     to_address = web3.toChecksumAddress(transaction["to"])
+    switch_chain_if_needed(chain_id)
     injector = Contract(to_address)
-    token = Contract(injector.getInjectTokenAddress)
-    decimals = token.decimals
-    symbol = token.symbol
+    tokenAddress = injector.getInjectTokenAddress()
+    print(tokenAddress)
+    with  open("abis/ERC20.json", "r") as f:
+        token = Contract.from_abi("Token", tokenAddress, json.load(f))
+    decimals = token.decimals()
+    symbol = token.symbol()
     gauge_addresses = parse_txbuilder_list_string(transaction["contractInputsValues"]["gaugeAddresses"])
     amounts_per_period = parse_txbuilder_list_string(transaction["contractInputsValues"]["amountsPerPeriod"])
     max_periods = parse_txbuilder_list_string(transaction["contractInputsValues"]["maxPeriods"])
@@ -200,7 +204,7 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
         "symbol": symbol,
         "gaugeList":  json.dumps(pretty_gauges, indent=1),
-        "amounts_per_period": json.dumps(prettify_int_amounts(amounts_per_period, decimals=decimals), indent=1),
+        "amounts_per_period": pretty_amounts,
         "periods": json.dumps(max_periods,indent=1),
         "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount/10**decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
@@ -627,8 +631,11 @@ def parse_no_reports_report(
             contractMethod = transaction.get("contractMethod", {})
             value = transaction.get("value")
             if value:
-                # value is always gas token, which in our cases is always 1e18
+                # value is always gas token, which in our cases is always 1e18, don't need math for 0
                 value = int(value)
+                if value == 0:
+                    valuestring =value
+                else:
                 valuestring = f"{value}/1e18 = {int(value)/1e18}"
             else:
                 valuestring = "N/A"
