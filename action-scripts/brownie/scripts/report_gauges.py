@@ -112,17 +112,30 @@ def _extract_pool(
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
-        escrow = Contract(recipient.getVotingEscrow())
-        (
-            pool_name,
-            pool_symbol,
-            pool_id,
-            pool_address,
-            a_factor,
-            fee,
-            tokens,
-            rate_providers,
-        ) = get_pool_info(escrow.token())
+        try:
+            escrow = Contract(recipient.getVotingEscrow())
+            (
+                pool_name,
+                pool_symbol,
+                pool_id,
+                pool_address,
+                a_factor,
+                fee,
+                tokens,
+                rate_providers,
+            ) = get_pool_info(escrow.token())
+        except:
+            # Exception Handling for single recipient gauges that are setup without using an escrow contract
+            # The escrow contract is normally the thing that holds all the data about the pool.
+            print(f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}")
+            pool_name = "UNKNOWN - No escrow"
+            pool_symbol = "N/A"
+            pool_id = "N/A - No Escrow"
+            pool_address = "N/A"
+            a_factor = "N/A"
+            fee = "N/A"
+            tokens = ["UNKNOWN"]
+            rate_providers = ["UNKNOWN"]
         style = STYLE_SINGLE_RECIPIENT
     else:  # Process mainnet gauges
         (
