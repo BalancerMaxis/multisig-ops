@@ -121,7 +121,7 @@ def _extract_pool(
                 tokens,
                 rate_providers,
             ) = get_pool_info(escrow.token())
-        except:
+        except AttributeError:
             # Exception Handling for single recipient gauges that are setup without using an escrow contract
             # The escrow contract is normally the thing that holds all the data about the pool.
             print(f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}")
