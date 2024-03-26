@@ -151,7 +151,7 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
     """
     Parse injector changes
 
-    Look up the proposals and return a human readable pool + amount.
+    Look up injector addresses and parse amounts.
 
     :param transaction: transaction to parse
     :return: dict with parsed data
@@ -167,25 +167,28 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
         return
     to_address = web3.toChecksumAddress(transaction["to"])
     injector = Contract(to_address)
-
+    token = Contract(injector.getInjectTokenAddress)
+    decimals = token.decimals
+    symbol = token.symbol
     gauge_addresses = parse_txbuilder_list_string(transaction["contractInputsValues"]["gaugeAddresses"])
     amounts_per_period = parse_txbuilder_list_string(transaction["contractInputsValues"]["amountsPerPeriod"])
     max_periods = parse_txbuilder_list_string(transaction["contractInputsValues"]["maxPeriods"])
     assert len(gauge_addresses) == len(amounts_per_period) and len(gauge_addresses) == len(max_periods), \
         f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
-    pretty_amounts = prettify_int_amounts(amounts_per_period)
     total_amount = sum_list(amounts_per_period)
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
         "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
+        "symbol": symbol,
         "gaugeList":  json.dumps(pretty_gauges, indent=1),
-        "amounts_per_period": json.dumps(pretty_amounts, indent=1),
+        "amounts_per_period": json.dumps(prettify_int_amounts(amounts_per_period, decimals=decimals), indent=1),
         "periods": json.dumps(max_periods,indent=1),
-        "total_amount": f"raw: {total_amount}/1e18, 18 decimals: {total_amount / 1e18}, 6 decimals: {total_amount/1e6}",
+        "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount/10**decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
+
 def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Hidden Hand Bribe transactions
@@ -604,6 +607,13 @@ def parse_no_reports_report(
             else:
                 civ_parsed = "N/A"
             contractMethod = transaction.get("contractMethod", {})
+            value = transaction.get("value")
+            if value:
+                # value is always gas token, which in our cases is always 1e18
+                value = int(value)
+                valuestring = f"{value}/1e18 = {int(value)/1e18}"
+            else:
+                valuestring = "N/A"
             no_reports.append(
                 {
                     "fx_name": (
@@ -613,7 +623,7 @@ def parse_no_reports_report(
                     ),
                     "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
                     "chain": chain_name,
-                    "value": transaction.get("value", "!!N/A!!"),
+                    "value": valuestring,
                     "inputs": json.dumps(civ_parsed, indent=2),
                     "bip_number": bip_number,
                     "tx_index": transaction.get("tx_index", "N/A"),

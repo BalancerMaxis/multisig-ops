@@ -406,11 +406,21 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
         results.append(f"{get_token_symbol(token)}({token})")
     return results
 
-def prettify_int_amounts(amounts: list) -> list[str]:
+def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
-        amount=int(amount)
-        pretty_amounts.append(f"{amount} = 18 decimals: {amount/1e18}\n 6 decimals: {amount/1e6}")
+        try:
+            amount=int(amount)
+        except:
+            # Can't make this an int, leave it a lone
+            pretty_amounts.append(amount)
+        if isinstance(decimals, int):
+            # We know decimals so use them
+            pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
+        else:
+            # We don't know decimals so provide 18 and 6
+            pretty_amounts.append(f"raw:{amount}\n 18 decimals:{amount/1e18}, 6 decimals: {amount/1e6}")
+
     return pretty_amounts
 
 def sum_list(amounts: list) -> int:
@@ -432,8 +442,9 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     outputs = defaultdict(list)
     for key, valuedata in contracts_inputs_values.items():
         values = parse_txbuilder_list_string(valuedata)
+        # Look for things that look like values and do some decimal math
         if "value" in key.lower() or "amount" in key.lower():
-            prettify_int_amounts(values)
+            outputs[key].append(prettify_int_amounts(values))
         for value in values:
             ## Reverse resolve addresses
             if web3.isAddress(value):
