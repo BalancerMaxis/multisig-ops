@@ -112,18 +112,36 @@ def _extract_pool(
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
-        escrow = Contract(recipient.getVotingEscrow())
-        (
-            pool_name,
-            pool_symbol,
-            pool_id,
-            pool_address,
-            a_factor,
-            fee,
-            tokens,
-            rate_providers,
-        ) = get_pool_info(escrow.token())
-        style = STYLE_SINGLE_RECIPIENT
+        try:
+            escrow = Contract(recipient.getVotingEscrow())
+            (
+                pool_name,
+                pool_symbol,
+                pool_id,
+                pool_address,
+                a_factor,
+                fee,
+                tokens,
+                rate_providers,
+            ) = get_pool_info(escrow.token())
+            style = STYLE_SINGLE_RECIPIENT
+        except AttributeError as e:
+            if (
+                str(e)
+                == " Contract 'GnosisSafeProxy' object has no attribute 'getVotingEscrow'"
+            ):
+                # Alternative recipient
+                pool_name = ""
+                pool_symbol = ""
+                pool_id = ""
+                pool_address = ""
+                a_factor = ""
+                fee = ""
+                tokens = ""
+                rate_providers = ""
+                style = ""
+            else:
+                raise e
     else:  # Process mainnet gauges
         (
             pool_name,
