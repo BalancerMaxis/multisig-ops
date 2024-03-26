@@ -166,22 +166,24 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
     if not transaction["contractMethod"].get("name") == "setRecipientList":
         return
     to_address = web3.toChecksumAddress(transaction["to"])
+    injector = Contract(to_address)
+
     gauge_addresses = parse_txbuilder_list_string(transaction["contractInputsValues"]["gaugeAddresses"])
     amounts_per_period = parse_txbuilder_list_string(transaction["contractInputsValues"]["amountsPerPeriod"])
     max_periods = parse_txbuilder_list_string(transaction["contractInputsValues"]["maxPeriods"])
-    total_amount = 0
     assert len(gauge_addresses) == len(amounts_per_period) and len(gauge_addresses) == len(max_periods), \
         f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
-    pretty_amounts = prettify_int_amounts(amounts_per_period, 18)
+    pretty_amounts = prettify_int_amounts(amounts_per_period)
     total_amount = sum_list(amounts_per_period)
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
+        "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
         "gaugeList":  json.dumps(pretty_gauges, indent=1),
-        "amounts_per_period":json.dumps(pretty_amounts, indent=1),
+        "amounts_per_period": json.dumps(pretty_amounts, indent=1),
         "periods": json.dumps(max_periods,indent=1),
-        "total_amount": f"{total_amount}/1e18 = {total_amount / 1e18}",
+        "total_amount": f"raw: {total_amount}/1e18, 18 decimals: {total_amount / 1e18}, 6 decimals: {total_amount/1e6}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
 def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
