@@ -636,7 +636,7 @@ def parse_no_reports_report(
                 if value == 0:
                     valuestring =value
                 else:
-                valuestring = f"{value}/1e18 = {int(value)/1e18}"
+                    valuestring = f"{value}/1e18 = {int(value)/1e18}"
             else:
                 valuestring = "N/A"
             no_reports.append(
