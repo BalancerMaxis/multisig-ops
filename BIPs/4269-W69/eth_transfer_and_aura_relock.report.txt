@@ -1,8 +1,8 @@
 FILENAME: `BIPs/4269-W69/eth_transfer_and_aura_relock.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `N/A`
+COMMIT: `a4a7fb366c1db3795a2d0329a3e70c4da4fd9e2c`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](N/A)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/9ca7b16d-58f0-4d2e-9348-65a2c22761bb)
 ```
 +------------+-------------------------------------------------+-----------------------------------------------------------------------------+----------------------------+---------+------------+
 | function   | token_symbol                                    | recipient                                                                   | amount                     | bip     |   tx_index |
@@ -14,25 +14,25 @@ TENDERLY: [SUCCESS](N/A)
 ```
 FILENAME: `BIPs/4269-W69/eth_transfer_and_aura_relock.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `N/A`
+COMMIT: `a4a7fb366c1db3795a2d0329a3e70c4da4fd9e2c`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](N/A)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/01b93e2d-45d6-483e-9a49-bbc48fc7f4d5)
 ```
 +---------------------+-----------------------------------------------------------------+----------------------------------+----------------+--------------+------------+
 | fx_name             | to                                                              | value                            | inputs         | bip_number   | tx_index   |
 +=====================+=================================================================+==================================+================+==============+============+
-| processExpiredLocks | 0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC (aura/vlAURA)        | 0/1e18 = 0.0                     | {              | BIP-551      | N/A        |
+| processExpiredLocks | 0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC (aura/vlAURA)        | 0                                | {              | BIP-551      | N/A        |
 |                     |                                                                 |                                  |   "_relock": [ |              |            |
 |                     |                                                                 |                                  |     [          |              |            |
-|                     |                                                                 |                                  |       "true"   |              |            |
+|                     |                                                                 |                                  |       true     |              |            |
 |                     |                                                                 |                                  |     ]          |              |            |
 |                     |                                                                 |                                  |   ]            |              |            |
 |                     |                                                                 |                                  | }              |              |            |
 +---------------------+-----------------------------------------------------------------+----------------------------------+----------------+--------------+------------+
-| claim               | 0xFd72170339AC6d7bdda09D1eACA346B21a30D422 (Not Found)          | 0/1e18 = 0.0                     | {              | BIP-551      | N/A        |
+| claim               | 0xFd72170339AC6d7bdda09D1eACA346B21a30D422 (Not Found)          | 0                                | {              | BIP-551      | N/A        |
 |                     |                                                                 |                                  |   "_lock": [   |              |            |
 |                     |                                                                 |                                  |     [          |              |            |
-|                     |                                                                 |                                  |       "true"   |              |            |
+|                     |                                                                 |                                  |       true     |              |            |
 |                     |                                                                 |                                  |     ]          |              |            |
 |                     |                                                                 |                                  |   ]            |              |            |
 |                     |                                                                 |                                  | }              |              |            |
