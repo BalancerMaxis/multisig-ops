@@ -3,6 +3,8 @@ import os
 import time
 import argparse
 from functools import lru_cache
+from enum import IntEnum
+from pytest import approx
 
 import requests
 from bal_addresses import AddrBook
@@ -10,19 +12,45 @@ from web3 import Web3
 from eth_account._utils.structured_data.hashing import hash_message, hash_domain
 from eth_utils import keccak
 import pandas as pd
+from web3 import Web3
+from gnosis.safe import Safe
+from gnosis.eth import EthereumClient
+from gnosis.safe.api import TransactionServiceApi
+from eth_abi import encode
 
 from gen_vlaura_votes_for_epoch import gen_rev_data
 
 
-CORE_ALLOC = 0.4
-SUSTAINABLE_ALLOC = 0.4
-BD_ALLOC = 0.2
+INFURA_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
+PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 
-flatbook = AddrBook("mainnet").flatbook
-
+SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 VOTE_RELAYER_URL = "https://relayer.snapshot.org/api/msg"
+
+flatbook = AddrBook("mainnet").flatbook
+vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
+sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
+
+pool_types = ["core", "sustainable", "bd"]
+
+
+class Operation(IntEnum):
+    CALL = 0
+    DELEGATE_CALL = 1
+    CREATE = 2
+    
+
+def post_safe_tx(safe_address, to_address, value, data, operation):
+    ethereum_client = EthereumClient(INFURA_KEY)
+    safe = Safe(safe_address, ethereum_client)
+    safe_service = TransactionServiceApi(1, ethereum_client, SAFE_API_URL)
+
+    safe_tx = safe.build_multisig_tx(to_address, value, data, operation)
+    safe_tx.sign(PRIVATE_KEY)
+
+    safe_service.post_transaction(safe_tx)
 
 
 @lru_cache(maxsize=None)
@@ -40,11 +68,11 @@ def get_pool_labels(prop_choices):
     gauge_data = fetch_json_from_url(GAUGE_SNAPSHOT_URL)
 
     gauge_labels = {
-        Web3.toChecksumAddress(gauge["address"]): gauge["label"]
+        Web3.to_checksum_address(gauge["address"]): gauge["label"]
         for gauge in gauge_labels
     }
     gauge_pools = {
-        Web3.toChecksumAddress(gauge["address"]): gauge["pool"]["address"]
+        Web3.to_checksum_address(gauge["address"]): gauge["pool"]["address"]
         for gauge in gauge_data
     }
 
@@ -55,20 +83,21 @@ def get_pool_labels(prop_choices):
     }
 
 
-def get_gauge_labels(prop_choices, gauge_choices):
+def get_gauge_labels(prop_choices, gauges):
     # get filtered gauge labels for manual voting
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
 
     gauge_labels = {
-        Web3.toChecksumAddress(item["address"]): item["label"]
+        Web3.to_checksum_address(item["address"]): item["label"]
         for item in gauge_labels
         if item["label"]
     }
 
     eligible_gauge_choices = {}
+    gauge_addrs = [g["address"] for _type in pool_types for g in gauges[_type]["gauges"]]
 
-    for addr in gauge_choices:
-        addr = Web3.toChecksumAddress(addr)
+    for addr in gauge_addrs:
+        addr = Web3.to_checksum_address(addr)
         label = gauge_labels.get(addr)
         if label:
             if label in prop_choices:
@@ -81,28 +110,20 @@ def get_gauge_labels(prop_choices, gauge_choices):
     return eligible_gauge_choices
 
 
-def add_gauge_to_df(df, gauge_labels, gauges, alloc_pct):
-    for gauge in gauges:
-        address = Web3.toChecksumAddress(gauge["address"])
-        new_row = {
-            "pool_address": address,
-            "snapshot_label": gauge_labels.get(address),
-            "vote_alloc": alloc_pct,
-            "revenue": 0,
-            "share": gauge["weight"]
-        }
-        df = pd.concat([df,  pd.DataFrame([new_row])], ignore_index=True)
-    
+def add_json_gauges(df, gauges, gauge_labels):
+    for _type in pool_types:
+        if gauges[_type]["allocation_pct"] > 0:
+            for gauge in gauges[_type]["gauges"]:
+                address = Web3.to_checksum_address(gauge["address"])
+                new_row = {
+                    "pool_address": address,
+                    "snapshot_label": gauge_labels.get(address),
+                    "vote_alloc": gauges[_type]["allocation_pct"],
+                    "revenue": 0,
+                    "share": gauge["weight"]
+                }
+                df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
     return df
-
-
-def determine_allocation(row):
-    if row["type"] == "core":
-        return CORE_ALLOC
-    elif row["type"] == "sustainable":
-        return SUSTAINABLE_ALLOC
-    else:
-        return BD_ALLOC
 
 
 def hash_eip712_message(structured_data):
@@ -124,39 +145,44 @@ if __name__ == "__main__":
     pool_labels = get_pool_labels(choices)
 
     df["snapshot_label"] = df["pool_address"].apply(
-        lambda x: pool_labels.get(Web3.toChecksumAddress(x))
+        lambda x: pool_labels.get(Web3.to_checksum_address(x))
     )
+
+    remaining_alloc = 1
 
     if args.manual:
         with open("manual_voting_gauges.json", "r") as f:
             gauges = json.load(f)
 
-        core_gauge_addresses = [g["address"] for g in gauges["core"]["gauges"]]
-        sustainable_gauge_addresses = [g["address"] for g in gauges["sustainable"]["gauges"]]
-        bd_gauge_addresses = [g["address"] for g in gauges["bd"]["gauges"]]
-
-        CORE_ALLOC = gauges["core"]["allocation_pct"]
-        SUSTAINABLE_ALLOC = gauges["sustainable"]["allocation_pct"]
-        BD_ALLOC = gauges["bd"]["allocation_pct"]
-
         gauge_labels = get_gauge_labels(
-            choices, core_gauge_addresses + sustainable_gauge_addresses + bd_gauge_addresses
+            choices, gauges
         )
 
-        df = add_gauge_to_df(df, gauge_labels, gauges["core"]["gauges"], CORE_ALLOC)
-        df = add_gauge_to_df(df, gauge_labels, gauges["sustainable"]["gauges"], SUSTAINABLE_ALLOC)
-        df = add_gauge_to_df(df, gauge_labels, gauges["bd"]["gauges"], BD_ALLOC)
-        df = df[df["snapshot_label"].isin(gauge_labels.values())]
+        manual_df = df.copy()
+        manual_df = add_json_gauges(manual_df, gauges, gauge_labels)
+        manual_df = manual_df[manual_df["snapshot_label"].isin(gauge_labels.values())]
+        
+        remaining_alloc -= sum([gauges[t]["allocation_pct"] for t in pool_types])
 
-    else:
+    if remaining_alloc > 0:
+        # distribute `remaining_alloc` evenly between top 6 core & sustainable pools
+        if args.manual:
+            df = df[~df["snapshot_label"].isin(manual_df["snapshot_label"].values)]
+            
         df = df.dropna(subset=["snapshot_label"]).groupby("type").head(6).copy()
+        
+        alloc_per_type = remaining_alloc / 2
 
-        df["vote_alloc"] = df.apply(determine_allocation, axis=1)
+        df["vote_alloc"] = df["type"].apply(lambda x: alloc_per_type if x in ["core", "sustainable"] else 0)
         rev_per_type = df.groupby("type")["revenue"].transform("sum")
         df["share"] = (df["revenue"] / rev_per_type) * df["vote_alloc"]
-        df = df[df["share"] > 0]
+    
+    if args.manual:
+        df = pd.concat([df, manual_df])
 
-    assert df["share"].sum() == 1
+    df = df[df["share"] > 0]
+
+    assert df["share"].sum() == approx(1, abs=0.001)
 
     vote_choices = {
         str(choices.index(row["snapshot_label"]) - 1): row["share"]
@@ -167,21 +193,15 @@ if __name__ == "__main__":
         data = json.load(f)
 
     data["message"]["timestamp"] = int(time.time())
-    data["message"]["from"] = flatbook["multisigs/vote_incentive_recycling"]
+    data["message"]["from"] = vlaura_safe_addr
     data["message"]["proposal"] = bytes.fromhex(prop["id"][2:])
     data["message"]["choice"] = str(vote_choices)
-
+    
     hash = hash_eip712_message(data)
 
-    with open("../tx_builder_templates/sign_message.json", "r") as f:
-        data = json.load(f)
-
-    data["transactions"][0]["contractInputsValues"]["_data"] = "0x" + hash.hex()
-
-    os.makedirs("vote_txs", exist_ok=True)
-    with open(f"vote_txs/vote_{hash.hex()}.json", "w") as f:
-        json.dump(data, f, indent=2)
-
     print(f"voting for: \n{df[['blockchain', 'snapshot_label', 'share']]}")
-    print(f"snapshot choice indexes: \n{vote_choices}")
-    print(f"transaction saved to: \nvote_txs/vote_{hash.hex()}.json")
+    print(f"message payload: {data['message']}")
+
+    calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
+
+    post_safe_tx(vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL)

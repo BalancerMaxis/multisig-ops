@@ -120,10 +120,10 @@ def gen_rev_data():
     prop, start, end = _get_prop_and_determine_date_range()
 
     # dev: uncomment to use cached data in dev mode (and save dune credits)
-    # df.to_csv("cache.csv", index=False)
     # df = pd.read_csv("cache.csv")
 
     df = get_df_revenue(start, end)
+    # df.to_csv("cache.csv", index=False)
 
     # clean data
     df = df.rename(columns={"protocol_fee_collected": "revenue"})
