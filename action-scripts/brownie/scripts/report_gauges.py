@@ -127,7 +127,9 @@ def _extract_pool(
         except AttributeError:
             # Exception Handling for single recipient gauges that are setup without using an escrow contract
             # The escrow contract is normally the thing that holds all the data about the pool.
-            print(f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}")
+            print(
+                f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}"
+            )
             pool_name = "UNKNOWN - No escrow"
             pool_symbol = "N/A"
             pool_id = "N/A - No Escrow"
@@ -186,15 +188,24 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     injector = Contract(to_address)
     tokenAddress = injector.getInjectTokenAddress()
     print(tokenAddress)
-    with  open("abis/ERC20.json", "r") as f:
+    with open("abis/ERC20.json", "r") as f:
         token = Contract.from_abi("Token", tokenAddress, json.load(f))
     decimals = token.decimals()
     symbol = token.symbol()
-    gauge_addresses = parse_txbuilder_list_string(transaction["contractInputsValues"]["gaugeAddresses"])
-    amounts_per_period = parse_txbuilder_list_string(transaction["contractInputsValues"]["amountsPerPeriod"])
-    max_periods = parse_txbuilder_list_string(transaction["contractInputsValues"]["maxPeriods"])
-    assert len(gauge_addresses) == len(amounts_per_period) and len(gauge_addresses) == len(max_periods), \
-        f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
+    gauge_addresses = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["gaugeAddresses"]
+    )
+    amounts_per_period = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["amountsPerPeriod"]
+    )
+    max_periods = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["maxPeriods"]
+    )
+    assert len(gauge_addresses) == len(amounts_per_period) and len(
+        gauge_addresses
+    ) == len(
+        max_periods
+    ), f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
     pretty_amounts = prettify_int_amounts(amounts_per_period, 18)
     total_amount = sum_list(amounts_per_period)
@@ -203,9 +214,9 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         "chain": chainbook.chain,
         "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
         "symbol": symbol,
-        "gaugeList":  json.dumps(pretty_gauges, indent=1),
+        "gaugeList": json.dumps(pretty_gauges, indent=1),
         "amounts_per_period": pretty_amounts,
-        "periods": json.dumps(max_periods,indent=1),
+        "periods": json.dumps(max_periods, indent=1),
         "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount/10**decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
@@ -634,7 +645,7 @@ def parse_no_reports_report(
                 # value is always gas token, which in our cases is always 1e18, don't need math for 0
                 value = int(value)
                 if value == 0:
-                    valuestring =value
+                    valuestring = value
                 else:
                     valuestring = f"{value}/1e18 = {int(value)/1e18}"
             else:
