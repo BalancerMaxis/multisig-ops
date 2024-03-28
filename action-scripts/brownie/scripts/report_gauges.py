@@ -3,7 +3,6 @@ from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
 from brownie import Contract
-from brownie import network
 from brownie import web3
 from collections import defaultdict
 
@@ -187,7 +186,6 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     switch_chain_if_needed(chain_id)
     injector = Contract(to_address)
     tokenAddress = injector.getInjectTokenAddress()
-    print(tokenAddress)
     with open("abis/ERC20.json", "r") as f:
         token = Contract.from_abi("Token", tokenAddress, json.load(f))
     decimals = token.decimals()
