@@ -645,7 +645,7 @@ def parse_no_reports_report(
                 # value is always gas token, which in our cases is always 1e18, don't need math for 0
                 value = int(value)
                 if value == 0:
-                    valuestring = value
+                    valuestring = str(value)
                 else:
                     valuestring = f"{value}/1e18 = {int(value)/1e18}"
             else:
