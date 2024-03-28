@@ -1,0 +1,24 @@
+https://app.safe.global/transactions/tx?safe=eth:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e&id=multisig_0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e_0x64d73f4c244a568d3ed93f7abf78e7541b149315fd95fd7da1b6f3818b7d50b9
+
+`cd tools/python/aura_snapshot_voting && python vote.py --manual`
+
+latest proposal is: "Gauge Weight for Week of 28th March 2024" (0x6e4fdbf847617215ff6ef3cd730193ea3c1ba10b229104a05c52147e24bfe615)
+date range: 2024-03-14 02:00:00 - 2024-03-28 02:00:00
+voting for: 
+    blockchain                                     snapshot_label   share
+480        NaN                ComposableStable USDC-DAI-USDT/sDAI  0.2500
+481        NaN                 a-ComposableStable sFRAX/4POOL-BPT  0.0500
+482        NaN            a-ComposableStable DAI/USDT/USDC/USDC.e  0.0500
+483        NaN              b-ComposableStable USDC/USDbC/axlUSDC  0.1000
+484        NaN                ComposableStable ezETH/weETH/rswETH  0.0860
+485        NaN               a-ComposableStable wstETH/rETH/cbETH  0.0648
+486        NaN                                  Gyroe wstETH/WETH  0.0394
+487        NaN                        ComposableStable rETH/weETH  0.0345
+488        NaN                        ComposableStable WETH/ezETH  0.0669
+489        NaN                               MetaStable WETH/rETH  0.0583
+490        NaN  av-14/14/14/14/14/14/14 KIMBO/TECH/NOCHILL/GEC...  0.0573
+491        NaN                    a-ComposableStable ezETH/wstETH  0.0500
+492        NaN                  a-ComposableStable wstETH/sfrxETH  0.0500
+493        NaN                       a-ComposableStable rETH/WETH  0.0427
+
+message payload: {'space': 'gauges.aurafinance.eth', 'proposal': b'nO\xdb\xf8Gar\x15\xffn\xf3\xcds\x01\x93\xea<\x1b\xa1\x0b"\x91\x04\xa0\\R\x14~$\xbf\xe6\x15', 'choice': "{'73': 0.25, '140': 0.05, '132': 0.05, '214': 0.1, '57': 0.086, '147': 0.0648, '104': 0.0394, '66': 0.0345, '82': 0.0669, '105': 0.0583, '218': 0.0573, '135': 0.05, '148': 0.05, '139': 0.0427}", 'app': 'snapshot', 'reason': '', 'metadata': '{}', 'from': '0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e', 'timestamp': 1711658239}
