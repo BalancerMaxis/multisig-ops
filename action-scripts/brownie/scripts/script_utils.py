@@ -15,7 +15,6 @@ from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
 
-
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
@@ -58,31 +57,37 @@ def get_changed_files() -> list[dict]:
     changed_files = []
     for file_json in pr_file_data:
         filename = file_json["filename"]
-        if "BIPs/" or "MaxiOps/" in filename and filename.endswith(".json"):
-            # Check if file exists first
-            if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
-                print(f"{filename} does not exist")
+        if not "BIPs/" or "MaxiOps/" in filename:
+            print(f"{filename} not in BIPs/ or MaxiOps/ and is outside the scope of this job")
+            continue
+        # Check if file exists first
+        if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
+            print(f"{filename} does not exist")
+            continue
+        if not filename.endswith(".json"):
+            print(f"Skipping {filename} as it is not a .json file")
+            continue
+        # Validate that file is a valid json
+        with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
+            try:
+                payload = json.load(json_data)
+            except JSONDecodeError:
+                print(f"{filename} is not proper json")
                 continue
-            # Validate that file is a valid json
-            with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
-                try:
-                    payload = json.load(json_data)
-                except JSONDecodeError:
-                    print(f"{filename} is not proper json")
-                    continue
-                if isinstance(payload, dict) is False:
-                    print(f"{filename} json is not a dict")
-                    continue
-                if "transactions" not in payload.keys():
-                    print(f"{filename} json deos not contain a list of transactions")
-                    continue
-            payload["file_name"] = filename
-            changed_files.append(payload)
+            if isinstance(payload, dict) is False:
+                print(f"{filename} json is not a dict")
+                continue
+            if "transactions" not in payload.keys():
+                print(f"{filename} json deos not contain a list of transactions")
+                continue
+        print(f"Selecting {filename} analysis")
+        payload["file_name"] = filename
+        changed_files.append(payload)
     return changed_files
 
 
 def get_pool_info(
-    pool_address,
+        pool_address,
 ) -> tuple[str, str, str, str, str, str, list[str], list[str]]:
     """
     Returns a tuple of pool info
@@ -333,10 +338,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
 
 def format_into_report(
-    file: dict,
-    transactions: list[dict],
-    msig_addr: str,
-    chain_id: int,
+        file: dict,
+        transactions: list[dict],
+        msig_addr: str,
+        chain_id: int,
 ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
@@ -413,11 +418,12 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
         results.append(f"{get_token_symbol(token)}({token})")
     return results
 
+
 def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
         try:
-            amount=int(amount)
+            amount = int(amount)
         except:
             # Can't make this an int, leave it a lone
             print(f"Can't make {amount} into an int to prettify")
@@ -425,19 +431,19 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
             continue
         if isinstance(decimals, int):
             # We know decimals so use them
-            pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
+            pretty_amounts.append(f"{amount}/1e{decimals} = {amount / 10 ** decimals}")
         else:
             # We don't know decimals so provide 18 and 6
-            pretty_amounts.append(f"raw:{amount}, 18 decimals:{amount/1e18}, 6 decimals: {amount/1e6}")
+            pretty_amounts.append(f"raw:{amount}, 18 decimals:{amount / 1e18}, 6 decimals: {amount / 1e6}")
 
     return pretty_amounts
+
 
 def sum_list(amounts: list) -> int:
     total = 0
     for amount in amounts:
         total += int(amount)
     return total
-
 
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
@@ -470,8 +476,9 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
                 outputs[key].append([value])
     return outputs
 
+
 def merge_files(
-    results_outputs_list: list[dict[str, dict[str, dict]]],
+        results_outputs_list: list[dict[str, dict[str, dict]]],
 ) -> dict[str, str]:
     """
     Function that merges a list of report dicts into a dict of files and report strings.
@@ -527,6 +534,7 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
                 break
     return bip or "N/A"
 
+
 def parse_txbuilder_list_string(list_string) -> list:
     """
     Take an input from transaction builder and format it is as a list.
@@ -544,6 +552,7 @@ def parse_txbuilder_list_string(list_string) -> list:
     # If we still don't have a list, create a single item list with what we do have.
     return [list_string]
 
+
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
     for gauge in gauge_addresses:
@@ -557,5 +566,3 @@ def prettify_gauge_list(gauge_addresses, chainbook) -> list:
                 gauge_name = "(N/A)"
         pretty_gauges.append(f"{gauge} ({gauge_name})")
     return pretty_gauges
-
-

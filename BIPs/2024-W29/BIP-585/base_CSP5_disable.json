@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "chainId": 8453,
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Disable CSPV5 as per BIP-585",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xdaaee19ea07a42ead195d8bb23af2bef543fbc6c68646c53eac48ccce223ebd4]",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0x8df317a729fcaA260306d7de28888932cb579b88",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xdaaee19ea07a42ead195d8bb23af2bef543fbc6c68646c53eac48ccce223ebd4",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    }
+  ]
+}
