@@ -131,7 +131,7 @@ def get_pool_info(
         rate_providers = []
     if len(rate_providers) == 0:
         try:
-            rehype_pool = Contract(pool_address)
+            rehype_pool = Contract.from_explorer(pool_address)
             rate_providers.append(rehype_pool.rateProvider0())
             rate_providers.append(rehype_pool.rateProvider1())
         except Exception:
