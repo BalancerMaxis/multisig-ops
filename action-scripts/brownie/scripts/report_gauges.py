@@ -213,7 +213,7 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
         "symbol": symbol,
         "gaugeList": json.dumps(pretty_gauges, indent=1),
-        "amounts_per_period": pretty_amounts,
+        "amounts_per_period": json.dumps(pretty_amounts, indent=1),
         "periods": json.dumps(max_periods, indent=1),
         "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount/10**decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
