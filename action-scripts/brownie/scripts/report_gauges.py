@@ -3,7 +3,6 @@ from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
 from brownie import Contract
-from brownie import network
 from brownie import web3
 from collections import defaultdict
 
@@ -127,7 +126,9 @@ def _extract_pool(
         except AttributeError:
             # Exception Handling for single recipient gauges that are setup without using an escrow contract
             # The escrow contract is normally the thing that holds all the data about the pool.
-            print(f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}")
+            print(
+                f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}"
+            )
             pool_name = "UNKNOWN - No escrow"
             pool_symbol = "N/A"
             pool_id = "N/A - No Escrow"
@@ -167,7 +168,7 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse injector changes
 
-    Look up the proposals and return a human readable pool + amount.
+    Look up injector addresses and parse amounts.
 
     :param transaction: transaction to parse
     :return: dict with parsed data
@@ -182,6 +183,13 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     if not transaction["contractMethod"].get("name") == "setRecipientList":
         return
     to_address = web3.toChecksumAddress(transaction["to"])
+    switch_chain_if_needed(chain_id)
+    injector = Contract(to_address)
+    tokenAddress = injector.getInjectTokenAddress()
+    with open("abis/ERC20.json", "r") as f:
+        token = Contract.from_abi("Token", tokenAddress, json.load(f))
+    decimals = token.decimals()
+    symbol = token.symbol()
     gauge_addresses = parse_txbuilder_list_string(
         transaction["contractInputsValues"]["gaugeAddresses"]
     )
@@ -191,7 +199,6 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     max_periods = parse_txbuilder_list_string(
         transaction["contractInputsValues"]["maxPeriods"]
     )
-    total_amount = 0
     assert len(gauge_addresses) == len(amounts_per_period) and len(
         gauge_addresses
     ) == len(
@@ -203,10 +210,12 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
+        "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
+        "symbol": symbol,
         "gaugeList": json.dumps(pretty_gauges, indent=1),
         "amounts_per_period": json.dumps(pretty_amounts, indent=1),
         "periods": json.dumps(max_periods, indent=1),
-        "total_amount": f"{total_amount}/1e18 = {total_amount / 1e18}",
+        "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount/10**decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
 
@@ -629,6 +638,16 @@ def parse_no_reports_report(
             else:
                 civ_parsed = "N/A"
             contractMethod = transaction.get("contractMethod", {})
+            value = transaction.get("value")
+            if value:
+                # value is always gas token, which in our cases is always 1e18, don't need math for 0
+                value = int(value)
+                if value == 0:
+                    valuestring = str(value)
+                else:
+                    valuestring = f"{value}/1e18 = {int(value)/1e18}"
+            else:
+                valuestring = "N/A"
             no_reports.append(
                 {
                     "fx_name": (
@@ -638,7 +657,7 @@ def parse_no_reports_report(
                     ),
                     "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
                     "chain": chain_name,
-                    "value": transaction.get("value", "!!N/A!!"),
+                    "value": valuestring,
                     "inputs": json.dumps(civ_parsed, indent=2),
                     "bip_number": bip_number,
                     "tx_index": transaction.get("tx_index", "N/A"),

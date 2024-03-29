@@ -413,11 +413,23 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
         results.append(f"{get_token_symbol(token)}({token})")
     return results
 
-def prettify_int_amounts(amounts: list, decimals: int) -> list[str]:
+def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
-        amount=int(amount)
-        pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
+        try:
+            amount=int(amount)
+        except:
+            # Can't make this an int, leave it a lone
+            print(f"Can't make {amount} into an int to prettify")
+            pretty_amounts.append(amount)
+            continue
+        if isinstance(decimals, int):
+            # We know decimals so use them
+            pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
+        else:
+            # We don't know decimals so provide 18 and 6
+            pretty_amounts.append(f"raw:{amount}, 18 decimals:{amount/1e18}, 6 decimals: {amount/1e6}")
+
     return pretty_amounts
 
 def sum_list(amounts: list) -> int:
@@ -437,29 +449,26 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = defaultdict(list)
-    values = None
     for key, valuedata in contracts_inputs_values.items():
-        print(valuedata)
-        if isinstance(valuedata, list):
-            values = valuedata
-        elif isinstance(valuedata, str):
-            values = valuedata.strip("[ ]f").replace(" ", "").split(",")
-        if not isinstance(valuedata, list):
-            print(f"Warning f{values} is still not a list of values, putting what we have in single member list")
-            values = [valuedata]
+        values = parse_txbuilder_list_string(valuedata)
+        # Look for things that look like values and do some decimal math
+        if "value" in key.lower() or "amount" in key.lower():
+            outputs[key].append(prettify_int_amounts(values))
         for value in values:
+            ## Reverse resolve addresses
             if web3.isAddress(value):
                 outputs[key].append(
                     f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
                 )
-            elif "role" in key or "Role" in key:
+
+            ## Reverse resolve authorizor roles
+            elif "role" in key.lower():
                 outputs[key].append(
                     f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
                 )
             else:
-                outputs[key] = valuedata
+                outputs[key].append([value])
     return outputs
-
 
 def merge_files(
     results_outputs_list: list[dict[str, dict[str, dict]]],
@@ -518,15 +527,22 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
                 break
     return bip or "N/A"
 
-def parse_txbuilder_list_string(list_string):
+def parse_txbuilder_list_string(list_string) -> list:
+    """
+    Take an input from transaction builder and format it is as a list.
+    If it is already a list return it
+    If it is a string list from tx-builder then listify it and return that
+    If it is anything else, return a single item list with whatever it is.
+    """
     # Change from a txbuilder json format list of addresses to a python one
+    if isinstance(list_string, str):
+        list_string = list_string.strip("[ ]")
+        list_string = list_string.replace(" ", "")
+        list_string = list_string.split(",")
     if isinstance(list_string, list):
         return list_string
-    list_string = list_string.strip("[ ]")
-    list_string = list_string.replace(" ", "")
-    list_string = list_string.split(",")
-    if isinstance(list_string, list):
-        return list_string
+    # If we still don't have a list, create a single item list with what we do have.
+    return [list_string]
 
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
