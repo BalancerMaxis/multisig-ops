@@ -31,3 +31,13 @@ Net Transfer to HH: 374,274.269998 - 3% of Transfer: 11228.23
 Net Debt:  **-7,321 USDC** = 3,907 - 11228.23 Balancer is back in the green. 
 
 Rolling Bribe refund amount: 7,321 USDC.
+
+### Final amount for March 2024 after March 29th round.
+
+Transaction: https://etherscan.io/tx/0xfb123a687c777015c8ddc0079bd87469967908e7deec05348167c96a88d5a247
+
+Net Transfer to HH: 384,335.299998 - 3% of Transfer: 11,530
+
+Rolling bribe refund: 18,851 (11,530 + 7,321)
+
+*Total bribe refund for March 2024: 18,851 USDC*
