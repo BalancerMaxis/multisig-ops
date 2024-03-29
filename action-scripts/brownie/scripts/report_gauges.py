@@ -75,23 +75,11 @@ def _extract_pool(
         recipient = gauge.getRecipient()
         print(f"Recipient: {recipient}")
         style = None
-        if chain == "avalanche":
-            chain = "avax-main"
-        if chain == "avax-main":
-            # this is a temp fix due to snowtrace.io explorer being offline,
-            # and no other explorer with verified contract source code being
-            # available
-            pool_name = "AVAX_UNKNOWN"
-            pool_symbol = "AVAX_UNKNOWN"
-            pool_id = "AVAX_UNKNOWN"
-            pool_address = "AVAX_UNKNOWN"
-            a_factor = "AVAX_UNKNOWN"
-            fee = "AVAX_UNKNOWN"
-            tokens = []
-            rate_providers = []
-        else:
-            network_id = ADDR_BOOK.chain_ids_by_name[chain.replace("-main", "")]
-            switch_chain_if_needed(network_id=network_id)
+        network_id = ADDR_BOOK.chain_ids_by_name[
+            chain.replace("-main", "").replace("avax", "avalanche")
+        ]
+        switch_chain_if_needed(network_id=network_id)
+        try:
             sidechain_recipient = Contract(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
                 sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
@@ -106,20 +94,48 @@ def _extract_pool(
                 tokens,
                 rate_providers,
             ) = get_pool_info(sidechain_recipient.lp_token())
+        except ValueError as e:
+            if (
+                str(e)
+                == "Failed to retrieve data from API: {'status': '0', 'message': 'NOTOK', 'result': 'Contract source code not verified'}"
+            ):
+                pool_name = "CONTRACT_UNVERIFIED"
+                pool_symbol = "CONTRACT_UNVERIFIED"
+                pool_id = "CONTRACT_UNVERIFIED"
+                pool_address = "CONTRACT_UNVERIFIED"
+                a_factor = "CONTRACT_UNVERIFIED"
+                fee = "CONTRACT_UNVERIFIED"
+                tokens = []
+                rate_providers = []
+            else:
+                raise e
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
-        escrow = Contract(recipient.getVotingEscrow())
-        (
-            pool_name,
-            pool_symbol,
-            pool_id,
-            pool_address,
-            a_factor,
-            fee,
-            tokens,
-            rate_providers,
-        ) = get_pool_info(escrow.token())
+        try:
+            escrow = Contract(recipient.getVotingEscrow())
+            (
+                pool_name,
+                pool_symbol,
+                pool_id,
+                pool_address,
+                a_factor,
+                fee,
+                tokens,
+                rate_providers,
+            ) = get_pool_info(escrow.token())
+        except AttributeError:
+            # Exception Handling for single recipient gauges that are setup without using an escrow contract
+            # The escrow contract is normally the thing that holds all the data about the pool.
+            print(f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}")
+            pool_name = "UNKNOWN - No escrow"
+            pool_symbol = "N/A"
+            pool_id = "N/A - No Escrow"
+            pool_address = "N/A"
+            a_factor = "N/A"
+            fee = "N/A"
+            tokens = ["UNKNOWN"]
+            rate_providers = ["UNKNOWN"]
         style = STYLE_SINGLE_RECIPIENT
     else:  # Process mainnet gauges
         (
@@ -147,7 +163,7 @@ def _extract_pool(
     )
 
 
-def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
+def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse injector changes
 
@@ -166,24 +182,35 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
     if not transaction["contractMethod"].get("name") == "setRecipientList":
         return
     to_address = web3.toChecksumAddress(transaction["to"])
-    gauge_addresses = parse_txbuilder_list_string(transaction["contractInputsValues"]["gaugeAddresses"])
-    amounts_per_period = parse_txbuilder_list_string(transaction["contractInputsValues"]["amountsPerPeriod"])
-    max_periods = parse_txbuilder_list_string(transaction["contractInputsValues"]["maxPeriods"])
+    gauge_addresses = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["gaugeAddresses"]
+    )
+    amounts_per_period = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["amountsPerPeriod"]
+    )
+    max_periods = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["maxPeriods"]
+    )
     total_amount = 0
-    assert len(gauge_addresses) == len(amounts_per_period) and len(gauge_addresses) == len(max_periods), \
-        f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
+    assert len(gauge_addresses) == len(amounts_per_period) and len(
+        gauge_addresses
+    ) == len(
+        max_periods
+    ), f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
     pretty_amounts = prettify_int_amounts(amounts_per_period, 18)
     total_amount = sum_list(amounts_per_period)
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
-        "gaugeList":  json.dumps(pretty_gauges, indent=1),
-        "amounts_per_period":json.dumps(pretty_amounts, indent=1),
-        "periods": json.dumps(max_periods,indent=1),
+        "gaugeList": json.dumps(pretty_gauges, indent=1),
+        "amounts_per_period": json.dumps(pretty_amounts, indent=1),
+        "periods": json.dumps(max_periods, indent=1),
         "total_amount": f"{total_amount}/1e18 = {total_amount / 1e18}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
+
+
 def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Hidden Hand Bribe transactions
@@ -677,7 +704,6 @@ def main() -> None:
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
     all_reports.append(handler(files, _parse_set_receipient_list))
-
 
     ## Catch All should run after all other handlers.
     no_reports_report = parse_no_reports_report(all_reports, files)
