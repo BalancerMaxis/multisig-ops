@@ -1,8 +1,8 @@
 FILENAME: `BIPs/4269-W69/test/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `463e6474e12cebc394ae4db427230412b5196797`
+COMMIT: `763e60eb6d9ee9e83853d279895435c866a52f86`
 CHAIN(S): `polygon`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/219f0792-2e0d-48ba-af4f-617df2801eb6)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/e96289e4-afdf-495a-a1e2-b5d80c1e8c4e)
 ```
 +--------------------------+--------------------------------------------------------------------+--------------+-----+--------------------------------------------+-------+-------+--------------+---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | function                 | pool_id                                                            | symbol       |   a | gauge_address                              | fee   | cap   | style        | bip     |   tx_index | tokens                                                                                                                                                               |
@@ -12,9 +12,9 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/219f0792-2e0d-48ba-af4
 ```
 FILENAME: `BIPs/4269-W69/test/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `463e6474e12cebc394ae4db427230412b5196797`
+COMMIT: `763e60eb6d9ee9e83853d279895435c866a52f86`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/1b103f0e-2263-4ad8-a1e1-db5325eec409)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/32b5bb62-2220-48c1-804d-b9e783669ca7)
 ```
 +------------+-------------------------------------------------+------------------------------------------------------------------+----------------------------------------+---------+------------+
 | function   | token_symbol                                    | recipient                                                        | amount                                 | bip     |   tx_index |
@@ -42,51 +42,51 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/1b103f0e-2263-4ad8-a1e
 ```
 FILENAME: `BIPs/4269-W69/test/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `463e6474e12cebc394ae4db427230412b5196797`
+COMMIT: `763e60eb6d9ee9e83853d279895435c866a52f86`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/1d4ed08e-8d3b-4ae9-bcff-718ec0554344)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/859bf789-b96a-4899-80fc-ed5dd4d6fed6)
 ```
 +-----------------------+---------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 | function              | caller_name   | caller_address                             | fx_paths                                                                      | action_ids                                                         | bip     |   tx_index |
 +=======================+===============+============================================+===============================================================================+====================================================================+=========+============+
-| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() | 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea | BIP-527 |         11 |
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/unkillGauge()         | 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea | BIP-527 |         11 |
 |                       |               |                                            | 20220413-polygon-root-gauge-factory/PolygonRootGauge/unkillGauge()            |                                                                    |         |            |
-|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/unkillGauge()                 |                                                                    |         |            |
-|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/unkillGauge()         |                                                                    |         |            |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
-|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/unkillGauge()       |                                                                    |         |            |
+|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
 |                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/unkillGauge()       |                                                                    |         |            |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/unkillGauge()     |                                                                    |         |            |
+|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/unkillGauge()                 |                                                                    |         |            |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() |                                                                    |         |            |
+|                       |               |                                            | 20220325-single-recipient-gauge-factory/SingleRecipientGauge/unkillGauge()    |                                                                    |         |            |
+|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/unkillGauge()       |                                                                    |         |            |
 |                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/unkillGauge()                  |                                                                    |         |            |
 |                       |               |                                            | 20220413-arbitrum-root-gauge-factory/ArbitrumRootGauge/unkillGauge()          |                                                                    |         |            |
-|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
-|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
 |                       |               |                                            | 20220628-optimism-root-gauge-factory/OptimismRootGauge/unkillGauge()          |                                                                    |         |            |
-|                       |               |                                            | 20220325-single-recipient-gauge-factory/SingleRecipientGauge/unkillGauge()    |                                                                    |         |            |
-|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
 +-----------------------+---------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
-| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() | 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea | BIP-527 |         13 |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/unkillGauge()         | 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea | BIP-527 |         13 |
 |                       |               |                                            | 20220413-polygon-root-gauge-factory/PolygonRootGauge/unkillGauge()            |                                                                    |         |            |
-|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/unkillGauge()                 |                                                                    |         |            |
-|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/unkillGauge()         |                                                                    |         |            |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
-|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/unkillGauge()       |                                                                    |         |            |
+|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
 |                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/unkillGauge()       |                                                                    |         |            |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/unkillGauge()              |                                                                    |         |            |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/unkillGauge()     |                                                                    |         |            |
+|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/unkillGauge()                 |                                                                    |         |            |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/unkillGauge() |                                                                    |         |            |
+|                       |               |                                            | 20220325-single-recipient-gauge-factory/SingleRecipientGauge/unkillGauge()    |                                                                    |         |            |
+|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/unkillGauge()       |                                                                    |         |            |
 |                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/unkillGauge()                  |                                                                    |         |            |
 |                       |               |                                            | 20220413-arbitrum-root-gauge-factory/ArbitrumRootGauge/unkillGauge()          |                                                                    |         |            |
-|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/unkillGauge()         |                                                                    |         |            |
-|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
 |                       |               |                                            | 20220628-optimism-root-gauge-factory/OptimismRootGauge/unkillGauge()          |                                                                    |         |            |
-|                       |               |                                            | 20220325-single-recipient-gauge-factory/SingleRecipientGauge/unkillGauge()    |                                                                    |         |            |
-|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/unkillGauge()              |                                                                    |         |            |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/unkillGauge()        |                                                                    |         |            |
 +-----------------------+---------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 ```
 FILENAME: `BIPs/4269-W69/test/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `463e6474e12cebc394ae4db427230412b5196797`
+COMMIT: `763e60eb6d9ee9e83853d279895435c866a52f86`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/367b2640-06bb-40ca-95ca-9961879004bc)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/056014bb-dd06-4f03-a0bc-7de0a8afa2d3)
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------+----------------------------------------------------------------------------------------------+--------------+------------+
 | fx_name       | to                                                                                                              | value                         | inputs                                                                                       | bip_number   | tx_index   |
