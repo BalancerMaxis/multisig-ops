@@ -27,7 +27,7 @@ PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
-VOTE_RELAYER_URL = "https://relayer.snapshot.org/api/msg"
+VOTE_RELAYER_URL = "https://relayer.snapshot.org/"
 
 flatbook = AddrBook("mainnet").flatbook
 vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
@@ -161,7 +161,7 @@ if __name__ == "__main__":
         manual_df = df.copy()
         manual_df = add_json_gauges(manual_df, gauges, gauge_labels)
         manual_df = manual_df[manual_df["snapshot_label"].isin(gauge_labels.values())]
-        
+
         remaining_alloc -= sum([gauges[t]["allocation_pct"] for t in pool_types])
 
     if remaining_alloc > 0:
@@ -176,7 +176,7 @@ if __name__ == "__main__":
         df["vote_alloc"] = df["type"].apply(lambda x: alloc_per_type if x in ["core", "sustainable"] else 0)
         rev_per_type = df.groupby("type")["revenue"].transform("sum")
         df["share"] = (df["revenue"] / rev_per_type) * df["vote_alloc"]
-    
+
     if args.manual:
         df = pd.concat([df, manual_df])
 
@@ -196,12 +196,35 @@ if __name__ == "__main__":
     data["message"]["from"] = vlaura_safe_addr
     data["message"]["proposal"] = bytes.fromhex(prop["id"][2:])
     data["message"]["choice"] = str(vote_choices)
-    
+
     hash = hash_eip712_message(data)
 
     print(f"voting for: \n{df[['blockchain', 'snapshot_label', 'share']]}")
-    print(f"message payload: {data['message']}")
+    print(f"payload: {data}")
+    print(f"hash: {hash.hex()}")
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
 
     post_safe_tx(vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL)
+
+    # prep payload for relayer
+    data["types"].pop("EIP712Domain")
+    data.pop("primaryType")
+    data["message"]["proposal"] = prop["id"]
+
+    response = requests.post(
+        VOTE_RELAYER_URL,
+        headers={
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Referer": "https://snapshot.org/",
+        },
+        data=json.dumps({"address": vlaura_safe_addr, "data": data, "sig": "0x",}),
+    )
+
+    if response.ok:
+        print("Successfully posted to the vote relayer API.")
+        print(response.json())
+    else:
+        print("Failed to post to the vote relayer API.")
+        print(response.text)
