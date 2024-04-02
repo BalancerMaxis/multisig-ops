@@ -94,7 +94,7 @@ def get_gauge_labels(prop_choices, gauges):
     }
 
     eligible_gauge_choices = {}
-    gauge_addrs = [g["address"] for _type in pool_types for g in gauges[_type]["gauges"]]
+    gauge_addrs = [g["gauge_address"] for _type in pool_types for g in gauges[_type]["gauges"]]
 
     for addr in gauge_addrs:
         addr = Web3.to_checksum_address(addr)
@@ -114,13 +114,14 @@ def add_json_gauges(df, gauges, gauge_labels):
     for _type in pool_types:
         if gauges[_type]["allocation_pct"] > 0:
             for gauge in gauges[_type]["gauges"]:
-                address = Web3.to_checksum_address(gauge["address"])
+                address = Web3.to_checksum_address(gauge["gauge_address"])
                 new_row = {
                     "pool_address": address,
                     "snapshot_label": gauge_labels.get(address),
                     "vote_alloc": gauges[_type]["allocation_pct"],
                     "revenue": 0,
-                    "share": gauge["weight"]
+                    "share": gauge["weight"],
+                    "blockchain": ""
                 }
                 df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
     return df
@@ -151,9 +152,18 @@ if __name__ == "__main__":
     remaining_alloc = 1
 
     if args.manual:
-        with open("manual_voting_gauges.json", "r") as f:
-            gauges = json.load(f)
+        with open("manual_voting/manual_votes.json", "r") as f:
+            manual_voting = json.load(f)
+            
+        gauges = {}
 
+        base_dir = "manual_voting"
+        for pool_type, pool_data in manual_voting.items():
+            gauges[pool_type] = {}
+            df = pd.read_csv(f"{base_dir}/{pool_data['csv_file']}")
+            gauges[pool_type]["allocation_pct"] = pool_data["allocation_pct"]
+            gauges[pool_type]["gauges"] = df[['gauge_address', 'weight']].to_dict(orient='records')
+        
         gauge_labels = get_gauge_labels(
             choices, gauges
         )
@@ -182,7 +192,7 @@ if __name__ == "__main__":
 
     df = df[df["share"] > 0]
 
-    assert df["share"].sum() == approx(1, abs=0.001)
+    assert df["share"].sum() == approx(1, abs=0.001), f"Sum of shares is not 1: {df['share'].sum()}"
 
     vote_choices = {
         str(choices.index(row["snapshot_label"]) - 1): row["share"]
