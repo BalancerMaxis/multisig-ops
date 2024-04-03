@@ -25,6 +25,7 @@ jobs:
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
       run: |
         pwd
         cd tools/python
