@@ -1,0 +1,43 @@
+name: Process and run reports for a fee round
+
+on:
+  workflow_dispatch:
+    inputs:
+      manual:
+        description: 'Use manual mode to cast votes with gauges specified in csv files placed in `tools/python/aura_snapshot_voting/manual_voting`'
+        required: true
+
+
+jobs:
+  generate_fees_report:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: vlAURA Voting
+      env:
+        ETHNODEURL: ${{ secrets.ETHNODEURL }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      run: |
+        pwd
+        cd tools/python
+        pip3 install -r requirements.txt
+        cd aura_snapshot_voting
+        python3 vote.py ${{ github.event.inputs.manual == 'true' && ' --manual' || '' }}
+    - name: Create PR
+      id: cpr
+      uses: peter-evans/create-pull-request@v5
+      with:
+        commit-message: "task: vlaura vote report"
+        title: "vlaura vote report"
+        branch: "gha-biweekly-fees-${{ github.run_id }}"
+        branch-suffix: timestamp
+        delete-branch: true
+        labels: "Biweekly-Report"
