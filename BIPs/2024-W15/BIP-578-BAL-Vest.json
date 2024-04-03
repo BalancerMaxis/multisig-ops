@@ -1,0 +1,93 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1712146834833,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.16.3",
+        "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "createdFromOwnerAddress": "",
+        "checksum": "0x9472f72d847a5259def6cb04bca4a5239e1de4e1a6cb6cb9e16f6089d9d06058"
+    },
+    "transactions": [
+        {
+            "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "spender",
+                        "type": "address",
+                        "internalType": "address"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                    }
+                ],
+                "name": "approve",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "spender": "0x200C92Dd85730872Ab6A1e7d5E40A067066257cF",
+                "amount": "275000000000000000000000"
+            }
+        },
+        {
+            "to": "0x200C92Dd85730872Ab6A1e7d5E40A067066257cF",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "token",
+                        "type": "address"
+                    },
+                    {
+                        "name": "recipient",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "vesting_duration",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "vesting_start",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "cliff_length",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "open_claim",
+                        "type": "bool"
+                    },
+                    {
+                        "name": "support_vyper",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "deploy_vesting_contract",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "token": "0xba100000625a3754423978a60c9317c58a424e3D",
+                "recipient": "0x74fEa3FB0eD030e9228026E7F413D66186d3D107",
+                "amount": "275000000000000000000000",
+                "vesting_duration": "126144000",
+                "vesting_start": "1707868800",
+                "cliff_length": "0",
+                "open_claim": "false",
+                "support_vyper": "0"
+            }
+        }
+    ]
+}
