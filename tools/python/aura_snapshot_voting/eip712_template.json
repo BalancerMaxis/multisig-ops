@@ -1,0 +1,63 @@
+{
+	"domain": {
+		"name": "snapshot",
+		"version": "0.1.4"
+	},
+	"types": {
+        "EIP712Domain": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "version",
+				"type": "string"
+			}
+		],
+		"Vote": [
+			{
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"name": "space",
+				"type": "string"
+			},
+			{
+				"name": "timestamp",
+				"type": "uint64"
+			},
+			{
+				"name": "proposal",
+				"type": "bytes32"
+			},
+			{
+				"name": "choice",
+				"type": "string"
+			},
+			{
+				"name": "reason",
+				"type": "string"
+			},
+			{
+				"name": "app",
+				"type": "string"
+			},
+			{
+				"name": "metadata",
+				"type": "string"
+			}
+		]
+	},
+	"message": {
+		"space": "gauges.aurafinance.eth",
+		"proposal": "",
+		"choice": "",
+		"app": "snapshot",
+		"reason": "",
+		"metadata": "{}",
+		"from": "",
+		"timestamp": 0
+	},
+    "primaryType": "Vote"
+}

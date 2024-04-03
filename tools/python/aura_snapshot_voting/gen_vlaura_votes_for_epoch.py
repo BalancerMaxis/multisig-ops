@@ -1,18 +1,19 @@
 import json
+import os
+import sys
 
 import pandas as pd
 import requests
 from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
 from dune_client.query import QueryBase
-
-from helpers import get_subgraph_url
+from bal_addresses.subgraph import Subgraph
 
 
 dune = DuneClient.from_env()
 
 
-def _determine_date_range():
+def _get_prop_and_determine_date_range():
     # https://docs.aura.finance/aura/governance/gauge-voting#gauge-voting-rules-and-information
     query = """{
         proposals(
@@ -27,6 +28,7 @@ def _determine_date_range():
             start
             end
             state
+            choices
         }
     }"""
     r = requests.post("https://hub.snapshot.org/graphql", json={"query": query})
@@ -53,7 +55,7 @@ def _determine_date_range():
     end = str(pd.to_datetime(end, unit="s").tz_localize("UTC"))[:-6]
 
     print(f"date range: {start} - {end}")
-    return start, end
+    return prop, start, end
 
 
 def get_df_revenue(start="2023-12-07 02:00:00", end="2023-12-21 02:00:00"):
@@ -71,12 +73,12 @@ def get_df_revenue(start="2023-12-07 02:00:00", end="2023-12-21 02:00:00"):
 
 def get_stable_pools_with_rate_provider():
     # leverage core pools config for chain labels
-    with open("../../config/core_pools.json") as f:
+    with open("../../../config/core_pools.json") as f:
         config = json.load(f)
 
     result = []
     for chain in config:
-        url = get_subgraph_url(chain)
+        url = Subgraph(chain).get_subgraph_url("core")
         query = """{
             pools(
                 first: 1000,
@@ -106,14 +108,22 @@ def get_stable_pools_with_rate_provider():
     return result
 
 
-def main():
+def get_core_pools():
+    with open("../../../config/core_pools.json") as f:
+        config = json.load(f)
+
+    return [pool[:42] for chain in config for pool in config[chain]]
+
+
+def gen_rev_data():
     # get all revenue data for a given epoch
-    start, end = _determine_date_range()
-    df = get_df_revenue(start, end)
+    prop, start, end = _get_prop_and_determine_date_range()
 
     # dev: uncomment to use cached data in dev mode (and save dune credits)
-    # df.to_csv("cache.csv", index=False)
     # df = pd.read_csv("cache.csv")
+
+    df = get_df_revenue(start, end)
+    # df.to_csv("cache.csv", index=False)
 
     # clean data
     df = df.rename(columns={"protocol_fee_collected": "revenue"})
@@ -125,17 +135,17 @@ def main():
 
     # keep only stable pools with a rate provider
     sustainable_pools = get_stable_pools_with_rate_provider()
-    df = df[df["pool_address"].isin(sustainable_pools)]
+    core_pools = [p for p in get_core_pools() if p not in sustainable_pools]
 
-    # get top 6 pools by revenue
-    df = df.sort_values(by=["revenue"], ascending=False).head(6)
+    df["type"] = df["pool_address"].apply(
+        lambda x: "sustainable"
+        if x in sustainable_pools
+        else "core"
+        if x in core_pools
+        else "NA"
+    )
 
-    # add column with share of total revenue
-    total_revenue = df["revenue"].sum()
-    df["share"] = df["revenue"] / total_revenue
+    # df = df.dropna(subset=["type"])
+    df = df.sort_values(by=["revenue"], ascending=False)
 
-    print(df.to_markdown(index=False))
-
-
-if __name__ == "__main__":
-    main()
+    return df, prop
