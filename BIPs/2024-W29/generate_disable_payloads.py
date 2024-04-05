@@ -21,6 +21,7 @@ for chain_name in AddrBook.chain_ids_by_name.keys():
     # Grab chain specific values from bal_addresses
     dao_multisig = a.multisigs.dao
     authorizer = a.flatbook["20210418-authorizer/Authorizer"]
+    print(f"Chain:{chain_name}, Multisig:{dao_multisig}, Authorizer: {authorizer}, addrbook_chain: {a.chain}")
     # zkEVM has a secondary deployment that needs special handling
     if chain_name == "zkevm":
         action_id =  p.search_unique_path_by_unique_deployment("20230711-zkevm-composable-stable-pool-v5", "disable()").action_id
@@ -34,7 +35,7 @@ for chain_name in AddrBook.chain_ids_by_name.keys():
     tx["chainId"] = AddrBook.chain_ids_by_name[chain_name]
     tx["meta"]["createdFromSafeAddress"] = dao_multisig
     tx["meta"]["description"] = "Disable CSPV5 as per BIP-585"
-    tx_list = tx_tempate["transactions"]
+    tx_list = tx["transactions"]
 
     ## Handle grant role
     grant_tx = tx_list[0]
@@ -48,10 +49,18 @@ for chain_name in AddrBook.chain_ids_by_name.keys():
     disable_tx["to"] = cspv5_factory
 
     ## Handle revoke role
-    grant_tx["to"] = authorizer
-    grant_tx["contractInputsValues"]["role"] = action_id
-    grant_tx["contractInputsValues"]["account"] = dao_multisig
+    revoke_tx = tx_list[2]
+    revoke_tx["to"] = authorizer
+    revoke_tx["contractInputsValues"]["role"] = action_id
+    revoke_tx["contractInputsValues"]["account"] = dao_multisig
+
 
     ## Dump final results
     with open (f"{chain_name}_CSP5_disable.json", "w") as f:
         json.dump(tx, f, indent=1)
+
+    ## clear vars due for debugging
+    a = None
+    p = None
+    dao_multisig = None
+    authorizer = None
