@@ -28,6 +28,7 @@ SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 VOTE_RELAYER_URL = "https://relayer.snapshot.org/"
+VOTE_RELAYER_LOOKUP_URL = "https://relayer.snapshot.org/api/messages/{}"
 
 flatbook = AddrBook("mainnet").flatbook
 vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
@@ -238,3 +239,9 @@ if __name__ == "__main__":
     else:
         print("Failed to post to the vote relayer API.")
         print(response.text)
+    
+    with open(f"../../../MaxiOps/vlaura_voting/vote_0x{hash.hex()}-report.txt", "w") as f:
+        f.write(f"Voting for: {df['snapshot_label'].values}\n\n")
+        f.write(f"hash: 0x{hash.hex()}\n")
+        f.write(f"relayer: {VOTE_RELAYER_LOOKUP_URL.format(hash.hex())}\n\n")
+        f.write(f"payload: \n{json.dumps(data, indent=4)}\n\n")
