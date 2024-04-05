@@ -58,26 +58,32 @@ def get_changed_files() -> list[dict]:
     changed_files = []
     for file_json in pr_file_data:
         filename = file_json["filename"]
-        if "BIPs/" or "MaxiOps/" in filename and filename.endswith(".json"):
-            # Check if file exists first
-            if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
-                print(f"{filename} does not exist")
+        if not "BIPs/" or "MaxiOps/" in filename:
+            print(f"{filename} not in BIPs/ or MaxiOps/ and is outside the scope of this job")
+            continue
+        # Check if file exists first
+        if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
+            print(f"{filename} does not exist")
+            continue
+        if not filename.endswith(".json"):
+            print(f"Skipping {filename} as it is not a .json file")
+            continue
+        # Validate that file is a valid json
+        with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
+            try:
+                payload = json.load(json_data)
+            except JSONDecodeError:
+                print(f"{filename} is not proper json")
                 continue
-            # Validate that file is a valid json
-            with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
-                try:
-                    payload = json.load(json_data)
-                except JSONDecodeError:
-                    print(f"{filename} is not proper json")
-                    continue
-                if isinstance(payload, dict) is False:
-                    print(f"{filename} json is not a dict")
-                    continue
-                if "transactions" not in payload.keys():
-                    print(f"{filename} json deos not contain a list of transactions")
-                    continue
-            payload["file_name"] = filename
-            changed_files.append(payload)
+            if isinstance(payload, dict) is False:
+                print(f"{filename} json is not a dict")
+                continue
+            if "transactions" not in payload.keys():
+                print(f"{filename} json deos not contain a list of transactions")
+                continue
+        print(f"Selecting {filename} analysis")
+        payload["file_name"] = filename
+        changed_files.append(payload)
     return changed_files
 
 
