@@ -63,6 +63,9 @@ def get_changed_files() -> list[dict]:
             if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
                 print(f"{filename} does not exist")
                 continue
+            if not filename.endswith(".json"):
+                print(f"Skipping {filename} as it is not a .json file")
+                continue
             # Validate that file is a valid json
             with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
                 try:

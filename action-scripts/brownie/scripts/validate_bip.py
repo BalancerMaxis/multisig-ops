@@ -91,6 +91,7 @@ def main() -> None:
     for file in files:
         file_path = file["file_name"]
         if not file_path.endswith(".json"):
+            ## Unsure why this is needed should bec overed by the and above, but... it helps
             print(f"skipping non-json file {file_path}")
             continue
         print(f"Running on {file_path}")
