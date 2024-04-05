@@ -1,76 +1,76 @@
 {
-  "version": "1.0",
-  "chainId": 43114,
-  "createdAt": 1675891944772,
-  "meta": {
-    "name": "Transactions Batch",
-    "description": "Disable CSPV5 as per BIP-585",
-    "txBuilderVersion": "1.13.2",
-    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
-    "createdFromOwnerAddress": "",
-    "checksum": ""
+ "version": "1.0",
+ "chainId": 43114,
+ "createdAt": 1675891944772,
+ "meta": {
+  "name": "Transactions Batch",
+  "description": "Disable CSPV5 as per BIP-585",
+  "txBuilderVersion": "1.13.2",
+  "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+  "createdFromOwnerAddress": "",
+  "checksum": ""
+ },
+ "transactions": [
+  {
+   "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+   "value": "0",
+   "data": null,
+   "contractMethod": {
+    "inputs": [
+     {
+      "internalType": "bytes32[]",
+      "name": "roles",
+      "type": "bytes32[]"
+     },
+     {
+      "internalType": "address",
+      "name": "account",
+      "type": "address"
+     }
+    ],
+    "name": "grantRoles",
+    "payable": false
+   },
+   "contractInputsValues": {
+    "roles": "[0x1426567817459896eea032971802f23ffedf7dbce9ba83c56000f1f9616a25ed]",
+    "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
+   }
   },
-  "transactions": [
-    {
-      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "bytes32[]",
-            "name": "roles",
-            "type": "bytes32[]"
-          },
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "grantRoles",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "roles": "[0x1426567817459896eea032971802f23ffedf7dbce9ba83c56000f1f9616a25ed]",
-        "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
-      }
-    },
-    {
-      "to": "0xE42FFA682A26EF8F25891db4882932711D42e467",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [],
-        "name": "disable",
-        "payable": false
-      },
-      "contractInputsValues": null
-    },
-    {
-      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "revokeRole",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "role": "0x1426567817459896eea032971802f23ffedf7dbce9ba83c56000f1f9616a25ed",
-        "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
-      }
-    }
-  ]
+  {
+   "to": "0xE42FFA682A26EF8F25891db4882932711D42e467",
+   "value": "0",
+   "data": null,
+   "contractMethod": {
+    "inputs": [],
+    "name": "disable",
+    "payable": false
+   },
+   "contractInputsValues": null
+  },
+  {
+   "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+   "value": "0",
+   "data": null,
+   "contractMethod": {
+    "inputs": [
+     {
+      "internalType": "bytes32",
+      "name": "role",
+      "type": "bytes32"
+     },
+     {
+      "internalType": "address",
+      "name": "account",
+      "type": "address"
+     }
+    ],
+    "name": "revokeRole",
+    "payable": false
+   },
+   "contractInputsValues": {
+    "role": "0x1426567817459896eea032971802f23ffedf7dbce9ba83c56000f1f9616a25ed",
+    "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
+   }
+  }
+ ]
 }
