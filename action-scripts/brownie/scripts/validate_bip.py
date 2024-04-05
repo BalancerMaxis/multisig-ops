@@ -90,6 +90,10 @@ def main() -> None:
     results = {}
     for file in files:
         file_path = file["file_name"]
+        if not file_path.endswith(".json"):
+            print(f"skipping non-json file {file_path}")
+            continue
+        print(f"Running on {file_path}")
         results[file_path] = {}
         for validator in VALIDATORS:
             is_valid, output_msg = validator(file)
