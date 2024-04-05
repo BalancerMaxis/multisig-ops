@@ -1,77 +1,77 @@
 {
- "version": "1.0",
- "chainId": 10,
- "createdAt": 1675891944772,
- "meta": {
-  "name": "Transactions Batch",
-  "description": "Disable CSPV5 as per BIP-585",
-  "txBuilderVersion": "1.13.2",
-  "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
-  "createdFromOwnerAddress": "",
-  "checksum": ""
- },
- "transactions": [
-  {
-   "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-   "value": "0",
-   "data": null,
-   "contractMethod": {
-    "inputs": [
-     {
-      "internalType": "bytes32[]",
-      "name": "roles",
-      "type": "bytes32[]"
-     },
-     {
-      "internalType": "address",
-      "name": "account",
-      "type": "address"
-     }
-    ],
-    "name": "grantRoles",
-    "payable": false
-   },
-   "contractInputsValues": {
-    "roles": "[0x063bbaf4b25095681176c8be04d41958e40ee88e0a6fe895a8d225cda9bd64ad]",
-    "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
-    "role": "0x063bbaf4b25095681176c8be04d41958e40ee88e0a6fe895a8d225cda9bd64ad"
-   }
+  "version": "1.0",
+  "chainId": 10,
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Disable CSPV5 as per BIP-585",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
   },
-  {
-   "to": "0xA8920455934Da4D853faac1f94Fe7bEf72943eF1",
-   "value": "0",
-   "data": null,
-   "contractMethod": {
-    "inputs": [],
-    "name": "disable",
-    "payable": false
-   },
-   "contractInputsValues": null
-  },
-  {
-   "to": "Authorizor",
-   "value": "0",
-   "data": null,
-   "contractMethod": {
-    "inputs": [
-     {
-      "internalType": "bytes32",
-      "name": "role",
-      "type": "bytes32"
-     },
-     {
-      "internalType": "address",
-      "name": "account",
-      "type": "address"
-     }
-    ],
-    "name": "revokeRole",
-    "payable": false
-   },
-   "contractInputsValues": {
-    "role": "0xc5b13e35f09fd15aab1bed81874ea8815bd41e76d4a4e193c9f0d47d92f7f03a",
-    "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
-   }
-  }
- ]
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x063bbaf4b25095681176c8be04d41958e40ee88e0a6fe895a8d225cda9bd64ad]",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+        "role": "0x063bbaf4b25095681176c8be04d41958e40ee88e0a6fe895a8d225cda9bd64ad"
+      }
+    },
+    {
+      "to": "0xA8920455934Da4D853faac1f94Fe7bEf72943eF1",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "Authorizor",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xc5b13e35f09fd15aab1bed81874ea8815bd41e76d4a4e193c9f0d47d92f7f03a",
+        "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
+      }
+    }
+  ]
 }
