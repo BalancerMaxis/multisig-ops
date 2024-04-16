@@ -428,7 +428,7 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
             pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
         else:
             # We don't know decimals so provide 18 and 6
-            pretty_amounts.append(f"raw:{amount}, 18 decimals:{amount/1e18}, 6 decimals: {amount/1e6}")
+            pretty_amounts.append(f"raw:{amount}, 18 decimals:{int(amount/1e18)}, 6 decimals: {int(amount/1e6)}")
 
     return pretty_amounts
 
