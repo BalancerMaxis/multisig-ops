@@ -362,9 +362,11 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    tenderly_url, tenderly_success = run_tenderly_sim(
-        file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
-    )
+    ## TODO fix tenderly sims
+    #tenderly_url, tenderly_success = run_tenderly_sim(
+    #    file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
+    #)
+    tenderly_url, tenderly_success = ("", "")
     if tenderly_success:
         file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
     else:
