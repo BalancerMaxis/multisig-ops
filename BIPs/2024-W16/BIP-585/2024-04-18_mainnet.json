@@ -32,31 +32,6 @@
         "payable": false
       },
       "contractInputsValues": {
-        "roles": "[0x74bbca0eb5858285c56e762a11a2fff0427631476a3ba0c35195132e15f1fc6c, 0xcd61e70763e513c8c738ee449caf88b90566b2b193bb69d88856f6eb9d0d1f45, 0xdf9e7dec263e17ae8ec6c062f6f6076b90a1bccc2b50462ee12b4d98d23846c0]",
-        "account": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
-      }
-    },
-    {
-      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "bytes32[]",
-            "name": "roles",
-            "type": "bytes32[]"
-          },
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "grantRoles",
-        "payable": false
-      },
-      "contractInputsValues": {
         "roles": "[0x74bbca0eb5858285c56e762a11a2fff0427631476a3ba0c35195132e15f1fc6c]",
         "account": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41"
       }
@@ -84,6 +59,31 @@
       "contractInputsValues": {
         "roles": "[0x74bbca0eb5858285c56e762a11a2fff0427631476a3ba0c35195132e15f1fc6c]",
         "account": "0xad3b67BCA8935Cb510C8D18bD45F0b94F54A968f"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x74bbca0eb5858285c56e762a11a2fff0427631476a3ba0c35195132e15f1fc6c, 0xcd61e70763e513c8c738ee449caf88b90566b2b193bb69d88856f6eb9d0d1f45, 0xceeb84f98e049989237e570ba87203572b1ba663061d817739b66a9fb08a7901, 0xdf9e7dec263e17ae8ec6c062f6f6076b90a1bccc2b50462ee12b4d98d23846c0]",
+        "account": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
       }
     },
     {
