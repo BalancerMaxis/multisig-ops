@@ -11,9 +11,7 @@
       "base": 8453
     },
     "function_caller_map": {
-      "setSwapFeePercentage(uint256)": [
-        "multisigs/lm"
-      ],
+      "setSwapFeePercentage(uint256)": ["multisigs/lm"],
       "startAmplificationParameterUpdate(uint256,uint256)": "multisigs/lm",
       "stopAmplificationParameterUpdate()": "multisigs/lm",
       "/pause()": "multisigs/emergency",
@@ -25,22 +23,16 @@
       "setTargets": "multisigs/lm",
       "disableRecoveryMode()": "multisigs/emergency"
     },
-    "deployments": [
-      "composable-stable-pool-v6"
-    ]
+    "deployments": ["composable-stable-pool-v6"]
   },
   {
     "chain_map": {
       "mainnet": 1
     },
     "function_caller_map": {
-      "setSwapFeePercentage(uint256)": [
-        "cow/settlement"
-      ]
+      "setSwapFeePercentage(uint256)": ["cow/settlement"]
     },
-    "deployments": [
-      "composable-stable-pool-v6"
-    ]
+    "deployments": ["composable-stable-pool-v6"]
   },
   {
     "chain_map": {
@@ -49,13 +41,9 @@
       "arbitrum": 42161
     },
     "function_caller_map": {
-      "setSwapFeePercentage(uint256)": [
-        "one_inch/settlement"
-      ]
+      "setSwapFeePercentage(uint256)": ["one_inch/settlement"]
     },
-    "deployments": [
-      "composable-stable-pool-v6"
-    ]
+    "deployments": ["composable-stable-pool-v6"]
   },
   {
     "chain_map": {
