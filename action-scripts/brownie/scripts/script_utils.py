@@ -357,15 +357,17 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    ## TODO fix tenderly sims
-    #tenderly_url, tenderly_success = run_tenderly_sim(
-    #    file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
-    #)
-    tenderly_url, tenderly_success = ("", "")
-    if tenderly_success:
-        file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
-    else:
-        file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+    try:
+        tenderly_url, tenderly_success = run_tenderly_sim(
+        file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
+        )
+        if tenderly_success:
+            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+        else:
+            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+    except:
+        file_report += "TENDERLY: [SKIPPED]\n"
+
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
@@ -559,5 +561,3 @@ def prettify_gauge_list(gauge_addresses, chainbook) -> list:
                 gauge_name = "(N/A)"
         pretty_gauges.append(f"{gauge} ({gauge_name})")
     return pretty_gauges
-
-
