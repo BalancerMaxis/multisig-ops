@@ -246,7 +246,7 @@ if __name__ == "__main__":
         os.mkdir(f"../../../MaxiOps/vlaura_voting")
     
     with open(f"{report_dir}/vote_0x{hash.hex()}-report.txt", "w") as f:
-        f.write(f"Voting for: {df['snapshot_label'].values}\n\n")
+        f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: {VOTE_RELAYER_LOOKUP_URL.format(hash.hex())}\n\n")
         f.write(f"payload: \n{json.dumps(data, indent=4)}\n\n")
