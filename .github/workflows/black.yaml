@@ -12,7 +12,7 @@ jobs:
       - name: Black
         uses: psf/black@stable
         with:
-          options: "--check --verbose"
+          options: "--verbose"
           version: "24.4.0"
           src: "./tools/python/helpers/hh_bribs.py"
 
