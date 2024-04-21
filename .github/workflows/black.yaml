@@ -13,7 +13,7 @@ jobs:
         uses: psf/black@stable
         with:
           options: "--check --verbose"
-          use_pyproject: true
+          version: "24.4.0"
           src: "./tools/python/helpers/hh_bribs.py"
 
       - name: Auto commit
