@@ -1,10 +1,13 @@
-name: Process and run reports for a fee round
+name: Post vlAURA snapshot votes to voter multisig and send to the vote relayer
 
 on:
   workflow_dispatch:
     inputs:
       manual:
-        description: 'Use manual mode to cast votes with gauges specified in csv files placed in `tools/python/aura_snapshot_voting/manual_voting`'
+        description: 'Use manual mode (true/false). Manual votes are placed in `tools/python/aura_snapshot_voting/manual_voting/{pool_type}.csv`'
+        required: true
+      vote-day:
+        description: 'Date that votes are are being posted. should be YYYY-MM-DD'
         required: true
 
 
@@ -37,8 +40,8 @@ jobs:
       uses: peter-evans/create-pull-request@v5
       with:
         commit-message: "task: vlaura vote report"
-        title: "vlaura vote report"
-        branch: "gha-biweekly-fees-${{ github.run_id }}"
+        title: "vlaura vote report for ${{ github.events.inputs.vote-day }}"
+        branch: "gha-biweekly-vlaura-votes-${{ github.events.inputs.vote-day }}"
         branch-suffix: timestamp
         delete-branch: true
-        labels: "Biweekly-Report"
+        labels: "vlAURA-Vote-Report"
