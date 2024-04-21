@@ -64,7 +64,7 @@ def get_index(proposal_id, target):
 
 
 def process_bribe_csv(csv_file):
-    # Process the CSV
+    #   Process the CSV
     # csv_format: target, platform, amount
     bribe_csv = csv.DictReader(open(csv_file))
     aura_bribes = []
