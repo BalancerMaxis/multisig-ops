@@ -4,13 +4,14 @@ from web3 import Web3
 import requests
 import json
 from bal_addresses import AddrBook
+
 try:
     from brownie import chain
 except ImportError:
     print(
-        "Warning.  Can't load brownie module in addresses.py.  get_registry() assumes mainnet, use get_registry_by_chain_id()")
+        "Warning.  Can't load brownie module in addresses.py.  get_registry() assumes mainnet, use get_registry_by_chain_id()"
+    )
     chain = DotMap({"id": 1})
-
 
 
 def monorepo_addys_by_chain(chain_name):  ## TODO retire
@@ -25,7 +26,7 @@ MANAGED_CHAINS = {
     "arbitrum": 42161,
     "optimism": 10,
     "gnosis": 100,
-    "goerli": 5
+    "goerli": 5,
 }
 
 ADDRESSES_ETH = {
@@ -40,7 +41,7 @@ ADDRESSES_ETH = {
             "karpatkey": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
             "emergency": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
             "maxi_ops": "0x166f54F44F271407f24AA1BE415a730035637325",
-            "blabs_ops": "0x02f35dA6A02017154367Bc4d47bb6c7D06C7533B"
+            "blabs_ops": "0x02f35dA6A02017154367Bc4d47bb6c7D06C7533B",
         },
         "signers": {
             "maxis": {
@@ -50,21 +51,21 @@ ADDRESSES_ETH = {
                 "mikeb": "0xc4591c41e01a7a654B5427f39Bbd1dEe5bD45D1D",
                 "xeonus": "0x7019Be4E4eB74cA5F61224FeAf687d2b43998516",
                 "danko": "0x200550cAD164E8e0Cb544A9c7Dc5c833122C1438",
-                "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F"
+                "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F",
             },
             "blabs_ops": {
                 "Jeff": "0xBEf33200077A2A2AC3613aB92488b41FFc39AcE2",
                 "Markus": "0xCae6f77a6cf4C952BF36793D91519fb4Ae86C264",
                 "Mike": "0x91f4Df13350083eDb30515019cF527C6b0490c54",
                 "Nico": "0x815d654E930E840D0E0Ee1B18FFc8Fb4ddA4c6B3",
-                "Fernando": "0xbbF0Ae5195444264364CA7eb7E3BB1971B4c3eCb"
-            }
+                "Fernando": "0xbbF0Ae5195444264364CA7eb7E3BB1971B4c3eCb",
+            },
         },
         "deployers": {
             "solarcurve": "0x6409C2C1aC1B26aaaEF982572efd38412075586D",
             "zendragon": "0x854B004700885A61107B458f11eCC169A019b764",
             "mikeb": "0xc4591c41e01a7a654b5427f39bbd1dee5bd45d1d",
-            "tritium": "0x53a806789BBfd366d9dEB9Cbe5d622089e845fdb"
+            "tritium": "0x53a806789BBfd366d9dEB9Cbe5d622089e845fdb",
         },
         "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "gauge_factory": "0x4E7bBd911cf1EFa442BC1b2e9Ea01ffE785412EC",
@@ -129,7 +130,7 @@ ADDRESSES_ETH = {
         "ANGLE": "0x31429d1856aD1377A8A0079410B297e1a9e214c2",
         "ENS": "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
         "RETH": "0xae78736Cd615f374D3085123A210448E74Fc6393",
-        "GEAR": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D"
+        "GEAR": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D",
     },
     "helpers": {
         "balance_checker": "0xe92261c2D64C363109c36a754A87107142e61b72",
@@ -137,9 +138,7 @@ ADDRESSES_ETH = {
     "compound": {
         "comptroller": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
     },
-    "across": {
-        "spoke_pool": "0x4D9079Bb4165aeb4084c526a32695dCfd2F77381"
-    },
+    "across": {"spoke_pool": "0x4D9079Bb4165aeb4084c526a32695dCfd2F77381"},
     "aave": {
         "incentives_controller": "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5",
         "aave_lending_pool_v2": "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9",
@@ -166,7 +165,6 @@ ADDRESSES_ETH = {
         "bribe": "0x19BBC3463Dd8d07f55438014b021Fb457EBD4595",
         "multiMerkleStash": "0x378Ba9B73309bE80BF4C2c027aAD799766a7ED5A",
     },
-
     "uniswap": {
         "factoryV3": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
         "NonfungiblePositionManager": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
@@ -183,7 +181,6 @@ ADDRESSES_ETH = {
         "provider": "0x0000000022D53366457F9d5E68Ec105046FC4383",
         "factory": "0x0959158b6040D32d04c301A72CBFD6b39E21c9AE",
     },
-
     "hidden_hand": {
         "bribe_vault": "0x9DDb2da7Dd76612e0df237B89AF2CF4413733212",
         "tokenmak_briber": "0x7816b3D0935D668bCfc9A4aaB5a84EBc7fF320cf",
@@ -237,25 +234,21 @@ ADDRESSES_POLYGON = {
             "fees": "0x7c68c42De679ffB0f16216154C996C354cF1161B",
             "feeManager": "0x7c68c42De679ffB0f16216154C996C354cF1161B",  ## fees is feeManager on Polygon
             "emergency": "0x3c58668054c299bE836a0bBB028Bee3aD4724846",
-            "blabs_ops": "0xf9D6BdE5c2eef334AC88204CB2eEc07111DCBA97"
+            "blabs_ops": "0xf9D6BdE5c2eef334AC88204CB2eEc07111DCBA97",
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # TODO retire
         "poolRecoveryHelper": "0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA",
         # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/polygon.json
-
     },
     "tokens": {
         "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
         "WMATIC": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
         "WETH": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
         "BAL": "0x9a71012B13CA4d3D0Cdc72A177DF3ef03b0E76A3",
-        "WBTC": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6"
-
+        "WBTC": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
     },
-    "across": {
-        "spoke_pool": "0x69B5c72837769eF1e7C164Abc6515DcFf217F920"
-    },
+    "across": {"spoke_pool": "0x69B5c72837769eF1e7C164Abc6515DcFf217F920"},
 }
 
 ADDRESSES_ARBITRUM = {
@@ -275,7 +268,7 @@ ADDRESSES_ARBITRUM = {
         },
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # TODO retire
-        "poolRecoveryHelper": "0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2"
+        "poolRecoveryHelper": "0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2",
         # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/arbitrum.json
     },
     "tokens": {
@@ -287,7 +280,7 @@ ADDRESSES_ARBITRUM = {
         "renBTC": "0xdbf31df14b66535af65aac99c32e9ea844e14501",
         "WETH": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
         "USDT": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
-        "LDO": "0x13Ad51ed4F1B7e9Dc168d8a00cB3f4dDD85EfA60"
+        "LDO": "0x13Ad51ed4F1B7e9Dc168d8a00cB3f4dDD85EfA60",
     },
     "coingecko_tokens": {
         "badger-dao": "0xbfa641051ba0a0ad1b0acf549a89536a0d76472e",
@@ -298,9 +291,7 @@ ADDRESSES_ARBITRUM = {
         "weth": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
         "usdx": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
     },
-    "across": {
-        "spoke_pool": "0xB88690461dDbaB6f04Dfad7df66B7725942FEb9C"
-    },
+    "across": {"spoke_pool": "0xB88690461dDbaB6f04Dfad7df66B7725942FEb9C"},
     "chainlink": {
         "keeper_registry": "0x75c0530885F385721fddA23C539AF3701d6183D4",
         "keeper_registrar": "0x4F3AF332A30973106Fe146Af0B4220bBBeA748eC",
@@ -320,13 +311,11 @@ ADDRESSES_OPTIMISM = {
             "feeManager": "0x09Df1626110803C7b3b07085Ef1E053494155089",  ## fees is LM on Optimism
             "lm": "0x09Df1626110803C7b3b07085Ef1E053494155089",
             "emergency": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
-            "blabs_ops": "0xFB2ac3989B6AD0e043a8958004484d6BAAb2c6Ab"
-
+            "blabs_ops": "0xFB2ac3989B6AD0e043a8958004484d6BAAb2c6Ab",
         },
         "authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
         "Authorizer": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",  # TODO retire
-
-        "poolRecoveryHelper": "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9"
+        "poolRecoveryHelper": "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9",
         # https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/deployments/tasks/20221123-pool-recovery-helper/output/optimism.json
     },
     "tokens": {},
@@ -343,38 +332,38 @@ ADDRESSES_GOERLI = {
                 "mikeb": "0xc4591c41e01a7a654B5427f39Bbd1dEe5bD45D1D",
                 "xeonus": "0x7019Be4E4eB74cA5F61224FeAf687d2b43998516",
                 "danko": "0x200550cAD164E8e0Cb544A9c7Dc5c833122C1438",
-                "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F"
+                "tritium": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F",
             },
         },
         "multisigs": {
             "maxi_ops": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7",
             "lm": "0x040E995520F92F96142d1a76c16D4af21A2eFDE7",
-            "blab_ops": ZERO_ADDRESS
-        }
+            "blab_ops": ZERO_ADDRESS,
+        },
     },
     "chainlink": {
         "feed_registry": "0x47Fb2585D2C56Fe188D0E6ec628a38b74fCeeeDf",
         "keeper_registry": "0xE16Df59B887e3Caa439E0b29B42bA2e7976FD8b2",
         "keeper_registrar": "0x57A4a13b35d25EE78e084168aBaC5ad360252467",
     },
-    "tokens": {
-        "LINK": "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
-    }
+    "tokens": {"LINK": "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"},
 }
 
 ADDRESSES_GNOSIS = {
     "zero": "0x0000000000000000000000000000000000000000",
-    "balancer": dict(monorepo_addys_by_chain("gnosis"))
+    "balancer": dict(monorepo_addys_by_chain("gnosis")),
 }
-ADDRESSES_GNOSIS["balancer"]["multisigs"] = dict({
-    "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
-    "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
-    # All maxi operations concentrated into 1 multisig
-    "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
-    "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a",
-    "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
-    "blabs_ops": "0x955556b002d05c7B31a9394c10897c1DA19eAEab"
-})
+ADDRESSES_GNOSIS["balancer"]["multisigs"] = dict(
+    {
+        "emergency": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
+        "dao": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+        # All maxi operations concentrated into 1 multisig
+        "fees": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+        "feeManager": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+        "lm": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+        "blabs_ops": "0x955556b002d05c7B31a9394c10897c1DA19eAEab",
+    }
+)
 
 OTHER_STUFF = {
     "ETH": {
@@ -382,11 +371,11 @@ OTHER_STUFF = {
             "maxi_gas_station": "62602467182204477380138952081172885895406053754821061796893606503759482417757"
         }
     },
-    "ARB":  {
+    "ARB": {
         "chainlink_upkeeps": {
             "LDO_Dripper": "23926380045016622619660764855689500906523687945821062548058919253617645725550"
         }
-    }
+    },
 }
 
 
@@ -415,24 +404,28 @@ registry = DotMap(
         "arbitrum": checksum_address_dict(ADDRESSES_ARBITRUM),
         "op": checksum_address_dict(ADDRESSES_OPTIMISM),
         "gnosis": checksum_address_dict(ADDRESSES_GNOSIS),
-        "goerli": checksum_address_dict(ADDRESSES_GOERLI)
+        "goerli": checksum_address_dict(ADDRESSES_GOERLI),
     }
 )
 
 
 def monorepo_names_by_address(chain_name):
-    r = get_registry_by_chain_id(MANAGED_CHAINS[chain_name])  # todo adapt to handle given chain
+    r = get_registry_by_chain_id(
+        MANAGED_CHAINS[chain_name]
+    )  # todo adapt to handle given chain
     monorepo_names = {}
     response = requests.get(
-        f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json")
+        f"https://raw.githubusercontent.com/balancer-labs/balancer-v2-monorepo/master/pkg/deployments/addresses/{chain_name}.json"
+    )
     data = response.json()
     for address, info in data.items():
         monorepo_names[address] = info["name"]
     for name, address in r.balancer.multisigs.items():
         monorepo_names[address] = name
     if chain_name == "mainnet":
-        monorepo_names[
-            ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]] = "gauntletFeeSetter"  # TODO this is ugly clean it up
+        monorepo_names[ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]] = (
+            "gauntletFeeSetter"  # TODO this is ugly clean it up
+        )
     return monorepo_names
 
 
@@ -451,10 +444,13 @@ def flat_callers_by_chain(chain_name):
         if type(value) is str:
             if name in callers.keys():
                 print(
-                    f"WARNING: Collision between {name}:{value} which is already in the list with value {callers[name]}")
+                    f"WARNING: Collision between {name}:{value} which is already in the list with value {callers[name]}"
+                )
             callers[name] = value
     if chain_name == "mainnet":
-        callers["gauntletFeeSetter"] = ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]  # TODO this is ugly clean it up
+        callers["gauntletFeeSetter"] = ADDRESSES_ETH["balancer"][
+            "gauntletFeeSetter"
+        ]  # TODO this is ugly clean it up
     return callers
 
 
@@ -478,11 +474,13 @@ def get_registry_by_chain_id(chain_id):
     elif chain_id == 100:
         return registry.gnosis
 
+
 try:
     chain_id = chain.id
 except:
     print("Error detecting chain.id from brownie, defaulting to 1.")
     chain_id = 1
+
 
 def get_registry():
     if chain_id == 1:

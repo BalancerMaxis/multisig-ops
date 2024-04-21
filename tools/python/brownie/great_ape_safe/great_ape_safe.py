@@ -56,6 +56,7 @@ class GreatApeSafe(ApeSafe):
 
     def init_across(self):
         self.across = Across(self)
+
     def init_anyswap(self):
         self.anyswap = Anyswap(self)
 

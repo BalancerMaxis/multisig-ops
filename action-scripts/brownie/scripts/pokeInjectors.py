@@ -2,16 +2,17 @@ from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResu
 from brownie import network, accounts, Contract
 import os
 
+
 def main():
     ## LOAD wallet
-    mnemonic =  os.environ["KEYWORDS"]
+    mnemonic = os.environ["KEYWORDS"]
     account = accounts.from_mnemonic(mnemonic)
     print(f"Keeper Address: {account.address}")
     ## ZKEVM
     network.disconnect()
     network.connect("zkevm-main")
     book = AddrBook("zkevm")
-    injectors =  book.extras.maxiKeepers.gaugeRewardsInjectors.values()
+    injectors = book.extras.maxiKeepers.gaugeRewardsInjectors.values()
     for injectorAddress in injectors:
         injector = Contract(injectorAddress)
         (ready, performdata) = injector.checkUpkeep(b"")
@@ -23,7 +24,7 @@ def main():
     network.disconnect()
     network.connect("gnosis-main")
     book = AddrBook("gnosis")
-    injectors =  book.extras.maxiKeepers.gaugeRewardsInjectors.values()
+    injectors = book.extras.maxiKeepers.gaugeRewardsInjectors.values()
     for injectorAddress in injectors:
         injector = Contract(injectorAddress)
         (ready, performdata) = injector.checkUpkeep(b"")
@@ -31,6 +32,7 @@ def main():
             injector.performUpkeep(performdata, {"from": account})
         else:
             print(f"GNOSIS: {injector.address} not ready")
+
 
 if __name__ == "__main__":
     main()
