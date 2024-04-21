@@ -14,7 +14,6 @@ jobs:
         with:
           options: "--verbose"
           version: "24.4.0"
-          src: "./tools/python/helpers/hh_bribs.py"
 
       - name: Auto commit
         uses: stefanzweifel/git-auto-commit-action@v5.0.1
