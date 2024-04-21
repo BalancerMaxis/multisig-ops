@@ -234,10 +234,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                web3.toChecksumAddress(
-                                    tx["contractInputsValues"][input["name"]]
-                                )
+                            tx["contractInputsValues"][
+                                input["name"]
+                            ] = web3.toChecksumAddress(
+                                tx["contractInputsValues"][input["name"]]
                             )
                 tx["data"] = contract.encodeABI(
                     fn_name=tx["contractMethod"]["name"],
@@ -414,11 +414,12 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
         results.append(f"{get_token_symbol(token)}({token})")
     return results
 
+
 def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
         try:
-            amount=int(amount)
+            amount = int(amount)
         except:
             # Can't make this an int, leave it alone
             print(f"Can't make {amount} into an int to prettify")
@@ -429,16 +430,18 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
             pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
         else:
             # We don't know decimals so provide 18 and 6
-            pretty_amounts.append(f"raw:{amount}, 18 decimals:{Decimal(amount)/Decimal(1e18)}, 6 decimals: {Decimal(amount)/Decimal(1e6)}")
+            pretty_amounts.append(
+                f"raw:{amount}, 18 decimals:{Decimal(amount)/Decimal(1e18)}, 6 decimals: {Decimal(amount)/Decimal(1e6)}"
+            )
 
     return pretty_amounts
+
 
 def sum_list(amounts: list) -> int:
     total = 0
     for amount in amounts:
         total += int(amount)
     return total
-
 
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
@@ -469,6 +472,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
             else:
                 outputs[key].append([value])
     return outputs
+
 
 def merge_files(
     results_outputs_list: list[dict[str, dict[str, dict]]],
@@ -527,6 +531,7 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
                 break
     return bip or "N/A"
 
+
 def parse_txbuilder_list_string(list_string) -> list:
     """
     Take an input from transaction builder and format it is as a list.
@@ -543,6 +548,7 @@ def parse_txbuilder_list_string(list_string) -> list:
         return list_string
     # If we still don't have a list, create a single item list with what we do have.
     return [list_string]
+
 
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
