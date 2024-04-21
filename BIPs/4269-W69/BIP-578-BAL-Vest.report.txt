@@ -1,8 +1,8 @@
 FILENAME: `BIPs/4269-W69/BIP-578-BAL-Vest.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `ce4871d7735bdc98a8fad2f9eded4fbd793316b0`
+COMMIT: `e9ac56e83f282bdfdb9a7c1158cf29700c241f9a`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/6a4aeace-b1c0-40a8-9b86-eccedfa57abd)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/fe2b52fa-02a9-4cfb-87a8-b0eef3d16c13)
 ```
 +-------------------------+---------------------------------------------------------+---------+------------------------------------------------------------------------------------------+--------------+------------+
 | fx_name                 | to                                                      |   value | inputs                                                                                   | bip_number   | tx_index   |
@@ -14,9 +14,6 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/6a4aeace-b1c0-40a8-9b8
 |                         |                                                         |         |   "amount": [                                                                            |              |            |
 |                         |                                                         |         |     [                                                                                    |              |            |
 |                         |                                                         |         |       "raw:275000000000000000000000, 18 decimals:275000, 6 decimals: 275000000000000000" |              |            |
-|                         |                                                         |         |     ],                                                                                   |              |            |
-|                         |                                                         |         |     [                                                                                    |              |            |
-|                         |                                                         |         |       "275000000000000000000000"                                                         |              |            |
 |                         |                                                         |         |     ]                                                                                    |              |            |
 |                         |                                                         |         |   ]                                                                                      |              |            |
 |                         |                                                         |         | }                                                                                        |              |            |
@@ -31,9 +28,6 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/6a4aeace-b1c0-40a8-9b8
 |                         |                                                         |         |   "amount": [                                                                            |              |            |
 |                         |                                                         |         |     [                                                                                    |              |            |
 |                         |                                                         |         |       "raw:275000000000000000000000, 18 decimals:275000, 6 decimals: 275000000000000000" |              |            |
-|                         |                                                         |         |     ],                                                                                   |              |            |
-|                         |                                                         |         |     [                                                                                    |              |            |
-|                         |                                                         |         |       "275000000000000000000000"                                                         |              |            |
 |                         |                                                         |         |     ]                                                                                    |              |            |
 |                         |                                                         |         |   ],                                                                                     |              |            |
 |                         |                                                         |         |   "vesting_duration": [                                                                  |              |            |
