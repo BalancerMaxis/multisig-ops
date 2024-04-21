@@ -1,6 +1,7 @@
 import json
 import os
 import re
+from decimal import Decimal
 from json import JSONDecodeError
 from typing import Optional
 
@@ -419,7 +420,7 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
         try:
             amount=int(amount)
         except:
-            # Can't make this an int, leave it a lone
+            # Can't make this an int, leave it alone
             print(f"Can't make {amount} into an int to prettify")
             pretty_amounts.append(amount)
             continue
@@ -428,7 +429,7 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
             pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
         else:
             # We don't know decimals so provide 18 and 6
-            pretty_amounts.append(f"raw:{amount}, 18 decimals:{int(amount/1e18)}, 6 decimals: {int(amount/1e6)}")
+            pretty_amounts.append(f"raw:{amount}, 18 decimals:{Decimal(amount)/Decimal(1e18)}, 6 decimals: {Decimal(amount)/Decimal(1e6)}")
 
     return pretty_amounts
 
@@ -451,21 +452,20 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     outputs = defaultdict(list)
     for key, valuedata in contracts_inputs_values.items():
         values = parse_txbuilder_list_string(valuedata)
-        # Look for things that look like values and do some decimal math
-        if "value" in key.lower() or "amount" in key.lower():
-            outputs[key].append(prettify_int_amounts(values))
         for value in values:
             ## Reverse resolve addresses
             if web3.isAddress(value):
                 outputs[key].append(
                     f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
                 )
-
             ## Reverse resolve authorizor roles
             elif "role" in key.lower():
                 outputs[key].append(
                     f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
                 )
+            elif "value" in key.lower() or "amount" in key.lower():
+                # Look for things that look like values and do some decimal math
+                outputs[key].append(prettify_int_amounts(values))
             else:
                 outputs[key].append([value])
     return outputs
@@ -557,5 +557,3 @@ def prettify_gauge_list(gauge_addresses, chainbook) -> list:
                 gauge_name = "(N/A)"
         pretty_gauges.append(f"{gauge} ({gauge_name})")
     return pretty_gauges
-
-
