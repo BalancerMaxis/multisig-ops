@@ -27,6 +27,7 @@ query {
 }
 """
 
+
 def get_hh_aura_target(target_name):
     response = requests.get(f"{HH_API_URL}/aura")
     options = response.json()["data"]
@@ -34,6 +35,7 @@ def get_hh_aura_target(target_name):
         if option["title"] == target_name:
             return option["proposalHash"]
     return False  ## return false if no result
+
 
 def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     ## the url was not responding on IPv6 addresses
@@ -45,6 +47,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
         gauge_address = Web3.toChecksumAddress(mapping["address"])
         output[gauge_address] = mapping["label"]
     return output
+
 
 def get_index(proposal_id, target):
     # grab data from the snapshot endpoint re proposal choices
@@ -59,18 +62,14 @@ def get_index(proposal_id, target):
     choice = choices.index(target)
     return choice
 
-def process_bribe_csv(
-       csv_file
-):
+
+def process_bribe_csv(csv_file):
     # Process the CSV
     # csv_format: target, platform, amount
     bribe_csv = csv.DictReader(open(csv_file))
     aura_bribes = []
     balancer_bribes = []
-    bribes = {
-        "aura": {},
-        "balancer": {}
-    }
+    bribes = {"aura": {}, "balancer": {}}
     ## Parse briibes per platform
     for bribe in bribe_csv:
         bribes[bribe["platform"]][bribe["target"]] = float(bribe["amount"])

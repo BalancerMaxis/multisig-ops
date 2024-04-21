@@ -7,7 +7,7 @@ import copy
 
 
 TX_BUILDER_GLOBAL_JSON = json.loads(
-'''{
+    """{
   "version": "1.0",
   "chainId": "1",
   "createdAt": 1688559620808,
@@ -19,11 +19,12 @@ TX_BUILDER_GLOBAL_JSON = json.loads(
     "createdFromOwnerAddress": ""
   }
 }
-''')
+"""
+)
 
 
 TX_BUILDER_TX_JSON = json.loads(
-'''    {
+    """    {
       "to": "",
       "value": "0",
       "data": null,
@@ -35,10 +36,13 @@ TX_BUILDER_TX_JSON = json.loads(
       "contractInputsValues": null
     }
 
-''')
+"""
+)
 
-CHAIN_NAMES_BY_ID =  {str(v): k for k, v in AddrBook.CHAIN_IDS_BY_NAME.iteritems()}
+CHAIN_NAMES_BY_ID = {str(v): k for k, v in AddrBook.CHAIN_IDS_BY_NAME.iteritems()}
 csv_file = "../../BIPs/00notGov/07-2023-disableRecovery/readyPools.csv"
+
+
 def main():
     pool_csv = list(csv.DictReader(open(csv_file)))
     txlist_by_chain = defaultdict(list)
@@ -50,7 +54,7 @@ def main():
         tx = copy.copy(TX_BUILDER_TX_JSON)
         tx["to"] = pool_address
         txlist_by_chain[chain_id].append(tx)
-    print (txlist_by_chain["137"])
+    print(txlist_by_chain["137"])
     for chain_id, txlist in txlist_by_chain.items():
         chain_name = CHAIN_NAMES_BY_ID.get(chain_id)
         print(f"Processing: {chain_name}({chain_id})")
@@ -60,8 +64,12 @@ def main():
         payload["chainId"] = chain_id
         payload["createdFromSafeAddress"] = multisig
         payload["transactions"] = txlist
-        with open(f"../../BIPs/00notGov/07-2023-disableRecovery/{chain_id}-{multisig}.json", "w") as f:
+        with open(
+            f"../../BIPs/00notGov/07-2023-disableRecovery/{chain_id}-{multisig}.json",
+            "w",
+        ) as f:
             json.dump(payload, f, indent=2)
+
 
 if __name__ == "__main__":
     main()

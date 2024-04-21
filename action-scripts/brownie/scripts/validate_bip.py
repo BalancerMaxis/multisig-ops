@@ -16,15 +16,25 @@ ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
 ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
 ADDRESSES_BASE = AddrBook("base").reversebook
 # Merge all addresses into one dictionary
-ADDRESSES = {**ADDRESSES_MAINNET, **ADDRESSES_POLYGON, **ADDRESSES_ARBITRUM, **ADDRESSES_AVALANCHE,
-             **ADDRESSES_OPTIMISM, **ADDRESSES_GNOSIS, **ADDRESSES_ZKEVM, **ADDRESSES_BASE}
+ADDRESSES = {
+    **ADDRESSES_MAINNET,
+    **ADDRESSES_POLYGON,
+    **ADDRESSES_ARBITRUM,
+    **ADDRESSES_AVALANCHE,
+    **ADDRESSES_OPTIMISM,
+    **ADDRESSES_GNOSIS,
+    **ADDRESSES_ZKEVM,
+    **ADDRESSES_BASE,
+}
 
 
 def validate_contains_msig(file: dict) -> Tuple[bool, str]:
     """
     Validates that file contains a multisig transaction
     """
-    msig = file['meta'].get('createdFromSafeAddress') or file['meta'].get('createFromSafeAddress')
+    msig = file["meta"].get("createdFromSafeAddress") or file["meta"].get(
+        "createFromSafeAddress"
+    )
     if not msig or not isinstance(msig, str):
         return False, "No msig address found or it is not a string"
     return True, ""
@@ -34,7 +44,9 @@ def validate_msig_in_address_book(file: dict) -> Tuple[bool, str]:
     """
     Validates that multisig address is in address book
     """
-    msig = file['meta'].get('createdFromSafeAddress') or file['meta'].get('createFromSafeAddress')
+    msig = file["meta"].get("createdFromSafeAddress") or file["meta"].get(
+        "createFromSafeAddress"
+    )
     if web3.Web3.toChecksumAddress(msig) not in ADDRESSES:
         return False, "Multisig address not found in address book"
     return True, ""
@@ -44,10 +56,13 @@ def validate_chain_specified(file: dict) -> Tuple[bool, str]:
     """
     Validates that chain is specified in file
     """
-    chain = file.get('chainId')
+    chain = file.get("chainId")
     chains = list(AddrBook.chain_ids_by_name.values())
     if int(chain) not in chains:
-        return False, f"No chain specified or is not found in known chain list: {chain} in {chains}"
+        return (
+            False,
+            f"No chain specified or is not found in known chain list: {chain} in {chains}",
+        )
     return True, ""
 
 
@@ -66,7 +81,7 @@ def validate_path_has_weekly_dir(file: dict) -> Tuple[bool, str]:
     Validates that a files are in weekly directories can be determined from the file path
     """
     filename = file["file_name"]
-    match = re.search(r'(\d{4})-W(\d{1,2})', filename)
+    match = re.search(r"(\d{4})-W(\d{1,2})", filename)
     if not match:
         return False, f"File {filename} has has no YYYY-W## in path"
     return True, ""
@@ -78,7 +93,7 @@ VALIDATORS = [
     validate_msig_in_address_book,
     validate_chain_specified,
     validate_file_has_bip,
-    validate_path_has_weekly_dir
+    validate_path_has_weekly_dir,
 ]
 
 

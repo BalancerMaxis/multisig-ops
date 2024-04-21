@@ -4,18 +4,18 @@ from helpers.addresses import r
 
 
 def main():
-    addresses=[]
-    topup_amounts=[]
-    min_topups=[]
+    addresses = []
+    topup_amounts = []
+    min_topups = []
     safe = GreatApeSafe(r.balancer.multisigs.maxi_ops)
     signers = r.balancer.signers.maxis
     deployers = r.balancer.deployers
 
-    for name,address in deployers.items():
-            # Deployers get more gas in the deployer but no signer gas
-            addresses.append(address)
-            topup_amounts.append(int(0.5*10**18))  # .5 ETH  topup for deployers
-            min_topups.append(int(0.2*10**18))  # .2 ETH min topup = always has atleast .3
+    for name, address in deployers.items():
+        # Deployers get more gas in the deployer but no signer gas
+        addresses.append(address)
+        topup_amounts.append(int(0.5 * 10**18))  # .5 ETH  topup for deployers
+        min_topups.append(int(0.2 * 10**18))  # .2 ETH min topup = always has atleast .3
 
     gs = safe.contract(r.balancer.maxi_gas_station)
     gs.setWatchList(addresses, topup_amounts, min_topups)

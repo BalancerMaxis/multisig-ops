@@ -14,10 +14,12 @@ def main():
     pr_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/pr'
     main_branch_root = f'{os.environ["GITHUB_WORKSPACE"]}/main'
     if debug:
-        print(f"main_branch_rooot: ${main_branch_root}\npr_branch_root:{pr_branch_root}")
+        print(
+            f"main_branch_rooot: ${main_branch_root}\npr_branch_root:{pr_branch_root}"
+        )
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    api_url = f'https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files'
+    api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files"
     if debug:
         print(f"api url: {api_url}")
     url = urlopen(api_url)
@@ -29,11 +31,15 @@ def main():
     # Get the list of modified and added files
     changed_files = []
     for file_json in pr_file_data:
-        changed_files.append(file_json['filename'])
+        changed_files.append(file_json["filename"])
     if debug:
         print(f"Changed Files:{changed_files}")
     # Filter the list of added files for json files
-    json_files = [filename for filename in changed_files if filename.endswith(".json") and "BIPs/BIP" in filename]
+    json_files = [
+        filename
+        for filename in changed_files
+        if filename.endswith(".json") and "BIPs/BIP" in filename
+    ]
 
     # Extract the relevant information from the JSON file
     for json_file in json_files:
@@ -55,21 +61,31 @@ def main():
         file_name = f"{chain_id}-{created_from_safe_address}.json"
         # Check if the file already exists
         if debug:
-            print(f"output json file path is: {main_branch_root}/BIPs/{dir_name}/{file_name}")
+            print(
+                f"output json file path is: {main_branch_root}/BIPs/{dir_name}/{file_name}"
+            )
         if os.path.exists(f"{main_branch_root}/BIPs/{dir_name}/{file_name}"):
             # If the file exists, read the existing transactions
-            with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "r") as existing_file:
+            with open(
+                f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "r"
+            ) as existing_file:
                 existing_data = json.load(existing_file)
             # Add the new transactions to the existing transactions
             existing_data["transactions"].extend(transactions)
-        # Write the new file
+            # Write the new file
             if debug:
-                print(f"transactions to add as part of ${json_file} are : \n {transactions}")
-            with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w") as output_file:
+                print(
+                    f"transactions to add as part of ${json_file} are : \n {transactions}"
+                )
+            with open(
+                f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w"
+            ) as output_file:
                 json.dump(existing_data, output_file, indent=6)
         # Otherwise seed the new multisig file with the entirety of the source json
         else:
-            with open(f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w") as new_file:
+            with open(
+                f"{main_branch_root}/BIPs/{dir_name}/{file_name}", "w"
+            ) as new_file:
                 json.dump(data, new_file, indent=6)
 
 

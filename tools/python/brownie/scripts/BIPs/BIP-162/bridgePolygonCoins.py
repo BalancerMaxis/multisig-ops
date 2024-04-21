@@ -18,15 +18,16 @@ safe = GreatApeSafe(registry.poly.balancer.multisigs.lm)
 # Karpatkey Safe 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89,
 # BAL & WMATIC sent to the Treasury 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f
 tokens_dest_map = {
-        r.tokens.USDC: registry.eth.balancer.multisigs.karpatkey,
+    r.tokens.USDC: registry.eth.balancer.multisigs.karpatkey,
     #    registry.poly.tokens.WMATIC, #TODO bridge manually, across has no WMATIC support -> DAO MULTISIG
-        r.tokens.WETH: registry.eth.balancer.multisigs.karpatkey,
-        r.tokens.BAL: registry.eth.balancer.multisigs.dao
+    r.tokens.WETH: registry.eth.balancer.multisigs.karpatkey,
+    r.tokens.BAL: registry.eth.balancer.multisigs.dao,
 }
 
 safe.take_snapshot(tokens_dest_map.keys())
 
 destination_chain_id = 1
+
 
 def main():
 
@@ -36,16 +37,21 @@ def main():
         token = safe.contract(token_address)
         token_balance = token.balanceOf(safe.address)
         ##TODO remove test
-        amount = int(token_balance) # TODO remove divisor for full amount
+        amount = int(token_balance)  # TODO remove divisor for full amount
         if amount > 0:
 
-            deadline = safe.across.bridge_token(recipient_address=recipient,
-                                                origin_token=token,
-                                                amount=amount,
-                                                dest_chain_id=destination_chain_id
-                                               )
-            print(f">>>Bridging {amount/10**token.decimals()} of {token.symbol()} to {recipient} on chain with id {destination_chain_id} over Across.")
-            print(f">>>Execute by {datetime.datetime.fromtimestamp(deadline).strftime('%Y-%m-%d %H:%M:%S')} {LOCAL_TIMEZONE}\n\n")
+            deadline = safe.across.bridge_token(
+                recipient_address=recipient,
+                origin_token=token,
+                amount=amount,
+                dest_chain_id=destination_chain_id,
+            )
+            print(
+                f">>>Bridging {amount/10**token.decimals()} of {token.symbol()} to {recipient} on chain with id {destination_chain_id} over Across."
+            )
+            print(
+                f">>>Execute by {datetime.datetime.fromtimestamp(deadline).strftime('%Y-%m-%d %H:%M:%S')} {LOCAL_TIMEZONE}\n\n"
+            )
         else:
             print(f" === Balance for {token.symbol()} is zero === \n")
 

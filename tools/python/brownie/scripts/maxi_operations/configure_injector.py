@@ -15,10 +15,10 @@ REGISTRAR_BY_CHAIN = {
 
 LINK_BY_CHAIN = {
     42161: "0xf97f4df75117a78c1A5a0DBb814Af92458539FB4",
-    137: "0xb0897686c545045aFc77CF20eC7A532E3120E0F1"
+    137: "0xb0897686c545045aFc77CF20eC7A532E3120E0F1",
 }
 
-REGISTER_CHAINLINK_TEMPLATE = '''
+REGISTER_CHAINLINK_TEMPLATE = """
 {
   "version": "1.0",
   "chainId": "42161",
@@ -65,9 +65,9 @@ REGISTER_CHAINLINK_TEMPLATE = '''
     }
   ]
 }
-'''
+"""
 
-CONF_WATCHLIST_TEMPLATE = '''
+CONF_WATCHLIST_TEMPLATE = """
 {
   "version": "1.0",
   "chainId": "42161",
@@ -139,9 +139,9 @@ CONF_WATCHLIST_TEMPLATE = '''
     }
   ]
 }
-'''
+"""
 
-ACCEPT_OWNERSHIP_TEMPLATE = '''
+ACCEPT_OWNERSHIP_TEMPLATE = """
 {
   "version": "1.0",
   "chainId": "42161",
@@ -168,31 +168,32 @@ ACCEPT_OWNERSHIP_TEMPLATE = '''
     }
   ]
 }
-'''
+"""
 
 
-def register_upkeep(upkeep_contract,
-                                        name,
-                                        gas_limit,
-                                        link_deposit_gwei,
-                                        sender,
-                                        chain_id=chain.id,
-                                        calldata=b"",
-                                        source=69,
-                                        ):
+def register_upkeep(
+    upkeep_contract,
+    name,
+    gas_limit,
+    link_deposit_gwei,
+    sender,
+    chain_id=chain.id,
+    calldata=b"",
+    source=69,
+):
 
     registrar = interface.IKeeperRegistrar(REGISTRAR_BY_CHAIN[chain_id])
     link_address = LINK_BY_CHAIN[chain_id]
     calldata = registrar.register.encode_input(
-                name,  # string memory name,
-                b"",  # bytes calldata encryptedEmail,
-                upkeep_contract,  # address upkeepContract,
-                gas_limit,  # uint32 gasLimit,
-                sender,  # address adminAddress,
-                calldata,  # bytes calldata checkData,
-                link_deposit_gwei,  # uint96 amount,
-                source,  # source (uint8)
-                sender,  # address sender
+        name,  # string memory name,
+        b"",  # bytes calldata encryptedEmail,
+        upkeep_contract,  # address upkeepContract,
+        gas_limit,  # uint32 gasLimit,
+        sender,  # address adminAddress,
+        calldata,  # bytes calldata checkData,
+        link_deposit_gwei,  # uint96 amount,
+        source,  # source (uint8)
+        sender,  # address sender
     )
     payload = json.loads(REGISTER_CHAINLINK_TEMPLATE)
     payload["chainId"] = chain_id
@@ -204,16 +205,28 @@ def register_upkeep(upkeep_contract,
     return json.dumps(payload)
 
 
-def set_recipient_list(streamer_addresses, amounts_per_period, max_periods, injector_address, safe_address, token_address, chain_id=chain.id):
+def set_recipient_list(
+    streamer_addresses,
+    amounts_per_period,
+    max_periods,
+    injector_address,
+    safe_address,
+    token_address,
+    chain_id=chain.id,
+):
     payload = json.loads(CONF_WATCHLIST_TEMPLATE)
     payload["chainId"] = chain_id
     payload["meta"]["createdFromSafeAddress"] = safe_address
     payload["transactions"][0]["to"] = injector_address
-    payload["transactions"][0]["contractInputsValues"]["streamerAddresses"] = streamer_addresses
-    payload["transactions"][0]["contractInputsValues"]["amountsPerPeriod"] = amounts_per_period
+    payload["transactions"][0]["contractInputsValues"][
+        "streamerAddresses"
+    ] = streamer_addresses
+    payload["transactions"][0]["contractInputsValues"][
+        "amountsPerPeriod"
+    ] = amounts_per_period
     payload["transactions"][0]["contractInputsValues"]["maxPeriods"] = max_periods
     ### Send coins
-    total=0
+    total = 0
     for i in range(0, len(amounts_per_period), 1):
         total += amounts_per_period[i] * max_periods[i]
     payload["transactions"][1]["to"] = token_address
