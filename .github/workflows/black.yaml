@@ -1,0 +1,20 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Black
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose"
+          use_pyproject: true
+          src: "./tools/python/helpers/hh_bribs.py"
+
+      - name: Auto commit
+        uses: stefanzweifel/git-auto-commit-action@v5.0.1
