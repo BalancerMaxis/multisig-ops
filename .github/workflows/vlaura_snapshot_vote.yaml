@@ -40,8 +40,8 @@ jobs:
       uses: peter-evans/create-pull-request@v5
       with:
         commit-message: "task: vlaura vote report"
-        title: "vlaura vote report for ${{ github.events.inputs.vote-day }}"
-        branch: "gha-biweekly-vlaura-votes-${{ github.events.inputs.vote-day }}"
+        title: "vlaura vote report for ${{ github.event.inputs.vote-day }}"
+        branch: "gha-biweekly-vlaura-votes-${{ github.event.inputs.vote-day }}"
         branch-suffix: timestamp
         delete-branch: true
         labels: "vlAURA-Vote-Report"
