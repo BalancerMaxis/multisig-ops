@@ -137,7 +137,7 @@ def hash_eip712_message(structured_data):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vote processing script")
     parser.add_argument(
-        "--manual", action="store_true", help="Manual vote from json file"
+        "--manual", type=bool, default=False, help="Manual vote from json file (true/false)"
     )
     parser.add_argument(
         "--vote-day",
