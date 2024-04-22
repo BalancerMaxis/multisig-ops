@@ -15,7 +15,9 @@ def main():
         # Deployers get more gas in the deployer but no signer gas
         addresses.append(address)
         topup_amounts.append(int(0.5 * 10**18))  # .5 ETH  topup for deployers
-        min_topups.append(int(0.2 * 10**18))  # .2 ETH min topup = always has atleast .3
+        min_topups.append(
+            int(0.2 * 10**18)
+        )  # .2 ETH min topup = always has atleast .3
 
     gs = safe.contract(r.balancer.maxi_gas_station)
     gs.setWatchList(addresses, topup_amounts, min_topups)
