@@ -164,7 +164,7 @@ def _extract_pool(
     )
 
 
-def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional[dict]:
+def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse injector changes
 
@@ -722,7 +722,7 @@ def main() -> None:
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
-    all_reports.append(handler(files, _parse_set_receipient_list))
+    all_reports.append(handler(files, _parse_set_recipient_list))
 
     ## Catch All should run after all other handlers.
     no_reports_report = parse_no_reports_report(all_reports, files)
