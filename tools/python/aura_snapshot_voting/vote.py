@@ -265,7 +265,7 @@ if __name__ == "__main__":
     if not os.path.exists(report_dir):
         os.mkdir(report_dir)
 
-    with open(f"{report_dir}/vote_{args.vote_day}-report.txt", "w") as f:
+    with open(f"{report_dir}/{args.vote_day}-vote-report.txt", "w") as f:
         f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: {VOTE_RELAYER_LOOKUP_URL.format(hash.hex())}\n\n")
