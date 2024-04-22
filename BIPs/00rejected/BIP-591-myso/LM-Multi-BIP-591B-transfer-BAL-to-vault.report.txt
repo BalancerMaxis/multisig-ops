@@ -1,12 +1,12 @@
-FILENAME: `MaxiOps/BIP-592-MYSO/LM-Multi-BIP-591B-transfer-BAL-to-vault.json`
+FILENAME: `BIPs/00rejected/BIP-591-myso/LM-Multi-BIP-591B-transfer-BAL-to-vault.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `bda5526097969b7316f6032c35f2c0ab82fd52b3`
+COMMIT: `4f7aeb89197d90e710a028a499825bd6f5815fef`
 CHAIN(S): `mainnet`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/e907246e-fc98-4183-bc5b-62fd98980bd3)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/a0adc829-5732-4011-aa20-f5fc8e65d9de)
 ```
 +------------+------------------------------------------------+------------------------------------------------+----------------------------------------+---------+------------+
 | function   | token_symbol                                   | recipient                                      | amount                                 | bip     |   tx_index |
 +============+================================================+================================================+========================================+=========+============+
-| transfer   | BAL:0xba100000625a3754423978a60c9317c58a424e3D | N/A:0xdC84A5e6Bf288af75CC821226634644Ed6a7aB54 | 25000.0 (RAW: 25000000000000000000000) | BIP-592 |          0 |
+| transfer   | BAL:0xba100000625a3754423978a60c9317c58a424e3D | N/A:0xdC84A5e6Bf288af75CC821226634644Ed6a7aB54 | 25000.0 (RAW: 25000000000000000000000) | BIP-591 |          0 |
 +------------+------------------------------------------------+------------------------------------------------+----------------------------------------+---------+------------+
 ```
