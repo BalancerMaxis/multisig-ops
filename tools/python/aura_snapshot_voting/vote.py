@@ -139,6 +139,11 @@ if __name__ == "__main__":
     parser.add_argument(
         "--manual", action="store_true", help="Manual vote from json file"
     )
+    parser.add_argument(
+        "--vote-day",
+        type=str,
+        help="Date that votes are are being posted. should be YYYY-MM-DD",
+    )
     args = parser.parse_args()
 
     df, prop = gen_rev_data()
@@ -243,9 +248,9 @@ if __name__ == "__main__":
     report_dir = f"../../../MaxiOps/vlaura_voting"
         
     if not os.path.exists(report_dir):
-        os.mkdir(f"../../../MaxiOps/vlaura_voting")
-    
-    with open(f"{report_dir}/vote_0x{hash.hex()}-report.txt", "w") as f:
+        os.mkdir(report_dir)
+
+    with open(f"{report_dir}/vote_{args.vote_day}-report.txt", "w") as f:
         f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: {VOTE_RELAYER_LOOKUP_URL.format(hash.hex())}\n\n")
