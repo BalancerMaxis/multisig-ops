@@ -139,7 +139,15 @@ def hash_eip712_message(structured_data):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vote processing script")
     parser.add_argument(
-        "--manual", action="store_true", help="Manual vote from json file"
+        "--manual",
+        type=lambda v: True if v.lower() == "true" else False,
+        default=False,
+        help="Manual vote from json file (true/false)",
+    )
+    parser.add_argument(
+        "--vote-day",
+        type=str,
+        help="Date that votes are are being posted. should be YYYY-MM-DD",
     )
     args = parser.parse_args()
 
@@ -222,9 +230,7 @@ if __name__ == "__main__":
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
 
-    post_safe_tx(
-        vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
-    )
+    post_safe_tx(vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL)
 
     # prep payload for relayer
     data["types"].pop("EIP712Domain")
@@ -259,7 +265,7 @@ if __name__ == "__main__":
     if not os.path.exists(report_dir):
         os.mkdir(report_dir)
 
-    with open(f"{report_dir}/vote_0x{hash.hex()}-report.txt", "w") as f:
+    with open(f"{report_dir}/{args.vote_day}-vote-report.txt", "w") as f:
         f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: {VOTE_RELAYER_LOOKUP_URL.format(hash.hex())}\n\n")

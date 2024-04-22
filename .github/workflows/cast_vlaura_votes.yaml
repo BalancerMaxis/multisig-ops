@@ -7,7 +7,7 @@ on:
         description: 'Use manual mode (true/false). Manual votes are placed in `tools/python/aura_snapshot_voting/manual_voting/{pool_type}.csv`'
         required: true
       vote-day:
-        description: 'Date that votes are being posted. should be YYYY-MM-DD'
+        description: 'Date that votes are are being posted. should be YYYY-MM-DD'
         required: true
 
 
@@ -34,7 +34,7 @@ jobs:
         cd tools/python
         pip3 install -r requirements.txt
         cd aura_snapshot_voting
-        python3 vote.py ${{ github.event.inputs.manual == 'true' && ' --manual' || '' }}
+        python3 vote.py --manual ${{ github.event.inputs.manual }} --vote-day "${{ github.event.inputs.vote-day }}"
     - name: Create PR
       id: cpr
       uses: peter-evans/create-pull-request@v5
