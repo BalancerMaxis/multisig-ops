@@ -41,7 +41,7 @@ class Operation(IntEnum):
     CALL = 0
     DELEGATE_CALL = 1
     CREATE = 2
-    
+
 
 def post_safe_tx(safe_address, to_address, value, data, operation):
     ethereum_client = EthereumClient(INFURA_KEY)
@@ -95,7 +95,9 @@ def get_gauge_labels(prop_choices, gauges):
     }
 
     eligible_gauge_choices = {}
-    gauge_addrs = [g["gauge_address"] for _type in pool_types for g in gauges[_type]["gauges"]]
+    gauge_addrs = [
+        g["gauge_address"] for _type in pool_types for g in gauges[_type]["gauges"]
+    ]
 
     for addr in gauge_addrs:
         addr = Web3.to_checksum_address(addr)
@@ -122,7 +124,7 @@ def add_json_gauges(df, gauges, gauge_labels):
                     "vote_alloc": gauges[_type]["allocation_pct"],
                     "revenue": 0,
                     "share": gauge["weight"],
-                    "blockchain": ""
+                    "blockchain": "",
                 }
                 df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
     return df
@@ -137,7 +139,10 @@ def hash_eip712_message(structured_data):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vote processing script")
     parser.add_argument(
-        "--manual", type=bool, default=False, help="Manual vote from json file (true/false)"
+        "--manual",
+        type=lambda v: True if v.lower() == "true" else False,
+        default=False,
+        help="Manual vote from json file (true/false)",
     )
     parser.add_argument(
         "--vote-day",
@@ -160,7 +165,7 @@ if __name__ == "__main__":
     if args.manual:
         with open("manual_voting/manual_votes.json", "r") as f:
             manual_voting = json.load(f)
-            
+
         gauges = {}
 
         base_dir = "manual_voting"
@@ -168,11 +173,11 @@ if __name__ == "__main__":
             gauges[pool_type] = {}
             df = pd.read_csv(f"{base_dir}/{pool_data['csv_file']}")
             gauges[pool_type]["allocation_pct"] = pool_data["allocation_pct"]
-            gauges[pool_type]["gauges"] = df[['gauge_address', 'weight']].to_dict(orient='records')
-        
-        gauge_labels = get_gauge_labels(
-            choices, gauges
-        )
+            gauges[pool_type]["gauges"] = df[["gauge_address", "weight"]].to_dict(
+                orient="records"
+            )
+
+        gauge_labels = get_gauge_labels(choices, gauges)
 
         manual_df = df.copy()
         manual_df = add_json_gauges(manual_df, gauges, gauge_labels)
@@ -184,12 +189,14 @@ if __name__ == "__main__":
         # distribute `remaining_alloc` evenly between top 6 core & sustainable pools
         if args.manual:
             df = df[~df["snapshot_label"].isin(manual_df["snapshot_label"].values)]
-            
+
         df = df.dropna(subset=["snapshot_label"]).groupby("type").head(6).copy()
-        
+
         alloc_per_type = remaining_alloc / 2
 
-        df["vote_alloc"] = df["type"].apply(lambda x: alloc_per_type if x in ["core", "sustainable"] else 0)
+        df["vote_alloc"] = df["type"].apply(
+            lambda x: alloc_per_type if x in ["core", "sustainable"] else 0
+        )
         rev_per_type = df.groupby("type")["revenue"].transform("sum")
         df["share"] = (df["revenue"] / rev_per_type) * df["vote_alloc"]
 
@@ -198,7 +205,9 @@ if __name__ == "__main__":
 
     df = df[df["share"] > 0]
 
-    assert df["share"].sum() == approx(1, abs=0.001), f"Sum of shares is not 1: {df['share'].sum()}"
+    assert df["share"].sum() == approx(
+        1, abs=0.001
+    ), f"Sum of shares is not 1: {df['share'].sum()}"
 
     vote_choices = {
         str(choices.index(row["snapshot_label"]) - 1): row["share"]
@@ -235,7 +244,13 @@ if __name__ == "__main__":
             "Accept": "application/json",
             "Referer": "https://snapshot.org/",
         },
-        data=json.dumps({"address": vlaura_safe_addr, "data": data, "sig": "0x",}),
+        data=json.dumps(
+            {
+                "address": vlaura_safe_addr,
+                "data": data,
+                "sig": "0x",
+            }
+        ),
     )
 
     if response.ok:
@@ -244,9 +259,9 @@ if __name__ == "__main__":
     else:
         print("Failed to post to the vote relayer API.")
         print(response.text)
-        
+
     report_dir = f"../../../MaxiOps/vlaura_voting"
-        
+
     if not os.path.exists(report_dir):
         os.mkdir(report_dir)
 
