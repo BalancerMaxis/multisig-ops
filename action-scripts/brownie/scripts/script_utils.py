@@ -234,10 +234,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                web3.toChecksumAddress(
-                                    tx["contractInputsValues"][input["name"]]
-                                )
+                            tx["contractInputsValues"][
+                                input["name"]
+                            ] = web3.toChecksumAddress(
+                                tx["contractInputsValues"][input["name"]]
                             )
                 tx["data"] = contract.encodeABI(
                     fn_name=tx["contractMethod"]["name"],

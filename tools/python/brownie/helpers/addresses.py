@@ -423,9 +423,9 @@ def monorepo_names_by_address(chain_name):
     for name, address in r.balancer.multisigs.items():
         monorepo_names[address] = name
     if chain_name == "mainnet":
-        monorepo_names[ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]] = (
-            "gauntletFeeSetter"  # TODO this is ugly clean it up
-        )
+        monorepo_names[
+            ADDRESSES_ETH["balancer"]["gauntletFeeSetter"]
+        ] = "gauntletFeeSetter"  # TODO this is ugly clean it up
     return monorepo_names
 
 
