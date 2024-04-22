@@ -138,11 +138,11 @@ def gen_rev_data():
     core_pools = [p for p in get_core_pools() if p not in sustainable_pools]
 
     df["type"] = df["pool_address"].apply(
-        lambda x: "sustainable"
-        if x in sustainable_pools
-        else "core"
-        if x in core_pools
-        else "NA"
+        lambda x: (
+            "sustainable"
+            if x in sustainable_pools
+            else "core" if x in core_pools else "NA"
+        )
     )
 
     # df = df.dropna(subset=["type"])
