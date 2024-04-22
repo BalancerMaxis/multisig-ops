@@ -75,7 +75,7 @@ def get_changed_files() -> list[dict]:
                     print(f"{filename} json is not a dict")
                     continue
                 if "transactions" not in payload.keys():
-                    print(f"{filename} json deos not contain a list of transactions")
+                    print(f"{filename} json does not contain a list of transactions")
                     continue
             payload["file_name"] = filename
             changed_files.append(payload)
