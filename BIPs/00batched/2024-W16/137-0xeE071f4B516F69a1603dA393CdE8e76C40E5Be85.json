@@ -1,0 +1,134 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2a6eaae9c85d7b4026a2dc9a49abed2506a0cfc22a0597d33af9ddf2b8d8f186]",
+        "account": "0xad3b67BCA8935Cb510C8D18bD45F0b94F54A968f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W16/BIP-585/2024-04-18_polygon.json",
+        "bip_number": "BIP-585"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2a6eaae9c85d7b4026a2dc9a49abed2506a0cfc22a0597d33af9ddf2b8d8f186, 0x421e910d9d2e701d0e181f997548467a67a50d9164124de8434f6f8ad348d82e, 0x740f4332364e3e7815877d3129b935f10ce37584e973ed33b93e793000a1c263, 0xc58a329b76e9a2243a49522312dfe6f54cdc155e08499573ab4d7d6ffe75df5a]",
+        "account": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W16/BIP-585/2024-04-18_polygon.json",
+        "bip_number": "BIP-585"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0483d53ea1eab1f6633a661730adf42ee3fa58361709e86cea2f136357ac0198, 0x10b5720c4e051a8e97d7b590832a4392adb9304326a7dc1db23d73117d95ee81, 0x34f66ef5706b2abf916d3f719040884c962d3a419b90ec8af8fb2c1f6ea4e313, 0xdc8bb9d1a82e326efeefddf0b599e6bc40ffb40e96faf0cef63f9c6cd600633f]",
+        "account": "0x3c58668054c299bE836a0bBB028Bee3aD4724846"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W16/BIP-585/2024-04-18_polygon.json",
+        "bip_number": "BIP-585"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x10b5720c4e051a8e97d7b590832a4392adb9304326a7dc1db23d73117d95ee81]",
+        "account": "0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W16/BIP-585/2024-04-18_polygon.json",
+        "bip_number": "BIP-585"
+      }
+    }
+  ]
+}
