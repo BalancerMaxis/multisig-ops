@@ -195,6 +195,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             )
             if len(tx["contractMethod"]["inputs"]) > 0:
                 for input in tx["contractMethod"]["inputs"]:
+                    # bool
                     if "bool" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
@@ -210,7 +211,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 if tx["contractInputsValues"][input["name"]] == "true"
                                 else False
                             )
-                    if re.search(r"int[0-9]+", input["type"]):
+                    # int
+                    elif re.search(r"int[0-9]+", input["type"]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
@@ -223,7 +225,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             tx["contractInputsValues"][input["name"]] = int(
                                 tx["contractInputsValues"][input["name"]]
                             )
-                    if "address" in input["type"]:
+                    # address
+                    elif "address" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
@@ -233,9 +236,23 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = web3.toChecksumAddress(
+                            tx["contractInputsValues"][input["name"]] = (
+                                web3.toChecksumAddress(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
+                            )
+                    # catchall; cast to str
+                    else:
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    str(x).strip()
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
+                        else:
+                            tx["contractInputsValues"][input["name"]] = str(
                                 tx["contractInputsValues"][input["name"]]
                             )
                 tx["data"] = contract.encodeABI(
