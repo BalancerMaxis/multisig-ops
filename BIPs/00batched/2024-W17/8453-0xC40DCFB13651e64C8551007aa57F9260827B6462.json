@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x04dd8b85ae9bff95ec24f18269d23bd2d04784d5f5d8b35261545b82ed754a85, 0x1307ea331d8ab1feffafb967ddf20c66fd92ce496eda1de129a4608d4b40f313, 0xbd408e756684e5ea83089ee33aa05ce9410b392967bffc71c11fb394026e7a09, 0xdaaee19ea07a42ead195d8bb23af2bef543fbc6c68646c53eac48ccce223ebd4]",
+        "account": "0x65226673F3D202E0f897C862590d7e1A992B2048"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W17/BIP-585/2024-04-18_base.json",
+        "bip_number": "BIP-585"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0ebf042d38f8e1bb630c3010c686232d7334f90360a82eb23623fd01fbe8e656, 0x6fa5acf6e6e303c2d281bf1af5f4d83642a125c5a3308cdf67e956bec276b69e, 0xa5d55e5978cb5ab0a8b23eed8889931ca33b54522edde10e348f4f96d35f0b35, 0xcfd45e344ead8485b80a5f9da66791663c8306984e9c6dc12eda2ee747cce604]",
+        "account": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W17/BIP-585/2024-04-18_base.json",
+        "bip_number": "BIP-585"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6fa5acf6e6e303c2d281bf1af5f4d83642a125c5a3308cdf67e956bec276b69e]",
+        "account": "0x03F3Fb107e74F2EAC9358862E91ad3c692712054"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W17/BIP-585/2024-04-18_base.json",
+        "bip_number": "BIP-585"
+      }
+    }
+  ]
+}
