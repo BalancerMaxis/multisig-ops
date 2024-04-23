@@ -103,7 +103,7 @@
 ## zkEVM DAO Multisig
 No Tenderly
 
-[Sign Nonce 12](httpshttps://app.safe.global/transactions/queue?safe=zkevm%3A0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa)
+[Sign Nonce 12](https://app.safe.global/transactions/queue?safe=zkevm%3A0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa)
 
 ```
 +-----------------------+--------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
