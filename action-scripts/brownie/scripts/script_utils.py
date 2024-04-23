@@ -59,7 +59,7 @@ def get_changed_files() -> list[dict]:
     changed_files = []
     for file_json in pr_file_data:
         filename = file_json["filename"]
-        if "BIPs/" or "MaxiOps/" in filename and filename.endswith(".json"):
+        if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
             if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
                 print(f"{filename} does not exist")
@@ -75,7 +75,7 @@ def get_changed_files() -> list[dict]:
                     print(f"{filename} json is not a dict")
                     continue
                 if "transactions" not in payload.keys():
-                    print(f"{filename} json deos not contain a list of transactions")
+                    print(f"{filename} json does not contain a list of transactions")
                     continue
             payload["file_name"] = filename
             changed_files.append(payload)
@@ -180,8 +180,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
     if not user or not project:
-        return "N/A", "NOT RUN/NO CREDENTIALS"
-    sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
+        raise ValueError("TENDERLY_ACCOUNT_NAME and TENDERLY_PROJECT_NAME must be set")
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
 
     # reset connection to network on which the safe is deployed
@@ -196,6 +195,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             )
             if len(tx["contractMethod"]["inputs"]) > 0:
                 for input in tx["contractMethod"]["inputs"]:
+                    # bool
                     if "bool" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
@@ -211,7 +211,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 if tx["contractInputsValues"][input["name"]] == "true"
                                 else False
                             )
-                    if re.search(r"int[0-9]+", input["type"]):
+                    # int
+                    elif re.search(r"int[0-9]+", input["type"]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
@@ -224,7 +225,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             tx["contractInputsValues"][input["name"]] = int(
                                 tx["contractInputsValues"][input["name"]]
                             )
-                    if "address" in input["type"]:
+                    # address
+                    elif "address" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
@@ -234,10 +236,24 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                web3.toChecksumAddress(
-                                    tx["contractInputsValues"][input["name"]]
-                                )
+                            tx["contractInputsValues"][
+                                input["name"]
+                            ] = web3.toChecksumAddress(
+                                tx["contractInputsValues"][input["name"]]
+                            )
+                    # catchall; cast to str
+                    else:
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    str(x).strip()
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
+                        else:
+                            tx["contractInputsValues"][input["name"]] = str(
+                                tx["contractInputsValues"][input["name"]]
                             )
                 tx["data"] = contract.encodeABI(
                     fn_name=tx["contractMethod"]["name"],
@@ -368,8 +384,8 @@ def format_into_report(
             file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
         else:
             file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
-    except:
-        file_report += "TENDERLY: [SKIPPED]\n"
+    except Exception as e:
+        file_report += f"TENDERLY: SKIPPED (`{repr(e)}`)\n"
 
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)

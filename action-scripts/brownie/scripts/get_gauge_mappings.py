@@ -73,6 +73,8 @@ def gen_report(payload_list):
     reports = []
     for file in payload_list:
         print(f"Processing: {file}")
+        if not file.endswith(".json"):
+            continue
         with open(f"../../{file}", "r") as json_data:
             try:
                 payload = json.load(json_data)

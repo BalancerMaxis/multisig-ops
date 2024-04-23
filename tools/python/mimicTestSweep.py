@@ -52,7 +52,9 @@ def generateSweepFile(sourcefile):
         list(sweeps.keys())
     ).replace("'", "")
     tx_out_map.transactions[0].contractInputsValues.amounts = str(list(sweeps.values()))
-    tx_out_map.transactions[0].contractInputsValues.recipient = (
+    tx_out_map.transactions[
+        0
+    ].contractInputsValues.recipient = (
         "0x7f4b5250C63E24360055342D2a4427079290F044"  ## Mimic mock withdrawer (op)
     )
     with open(f"{target_dir}/out/{today}-{chain}.json", "w") as f:
