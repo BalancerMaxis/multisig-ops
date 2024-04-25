@@ -14,3 +14,11 @@ live:
         host: https://avalanche-c-chain.publicnode.com
         id: avax-main
         name: C-Chain
+
+  - name: Fantom Opera
+    networks:
+      - chainid: 250
+        explorer: https://api.ftmscan.com/api
+        host: https://rpcapi.fantom.network
+        id: fantom-main
+        name: Mainnet
