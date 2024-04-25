@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1714061627633,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x8aa01a7bc97fa81ff62206cb12b288ac20601893e6fbe0f971ff6187c4f5d296"
+  },
+  "transactions": [
+    {
+      "to": "0xD692B454255d072B1ACe1b624e6Ee2bFd939D80F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          }
+        ],
+        "name": "removeRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xe9735f7D85a57BFb860c1E2c1c7B4F587BA0F6e7]"
+      }
+    },
+    {
+      "to": "0xD692B454255d072B1ACe1b624e6Ee2bFd939D80F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "minBalanceWei",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "topUpToAmountWei",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xfb7d0D001BC8D0bC998071C762BfF53EE31b725F]",
+        "minBalanceWei": "15000000000000000000",
+        "topUpToAmountWei": "20000000000000000000"
+      }
+    }
+  ]
+}
