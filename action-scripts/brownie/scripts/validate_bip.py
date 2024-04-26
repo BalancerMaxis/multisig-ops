@@ -116,7 +116,7 @@ def main() -> None:
     # Generate report for each file and save it in a list
     reports = []
     for file_path, file_results in results.items():
-        report = f"BIP validation results for file {file_path}:\n"
+        report = f"BIP validation results for file `{file_path}`:\n"
         # Commit:
         report += f"Commit: `{os.getenv('COMMIT_SHA')}`\n"
         # Convert output for each file into table format
