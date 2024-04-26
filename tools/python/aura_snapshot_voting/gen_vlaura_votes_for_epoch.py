@@ -141,7 +141,9 @@ def gen_rev_data():
         lambda x: (
             "sustainable"
             if x in sustainable_pools
-            else "core" if x in core_pools else "NA"
+            else "core"
+            if x in core_pools
+            else "NA"
         )
     )
 
