@@ -41,7 +41,9 @@ def return_hh_brib_maps() -> dict:
     for prop in hh_aura_props.json()["data"]:
         results["aura"][prop["proposalHash"]] = prop
         try:
-            results["aura"][prop["proposalHash"]]['poolId'] = results['balancer'][prop["proposalHash"]]['poolId']
+            results["aura"][prop["proposalHash"]]["poolId"] = results["balancer"][
+                prop["proposalHash"]
+            ]["poolId"]
         except KeyError:
             pass
     return results
