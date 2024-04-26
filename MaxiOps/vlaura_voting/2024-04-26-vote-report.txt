@@ -1,0 +1,85 @@
+msg hash: 0x8f50b03e7950f6fe5f692fdbf6c5129113d999101cbda01da529edcb745bca7e
+
+Voting for: {
+    "ComposableStable USDC-DAI-USDT/sDAI": 0.15,
+    "a-ComposableStable sFRAX/4POOL-BPT": 0.15,
+    "a-ComposableStable USDT/DAI/USDC/USDC.e": 0.05,
+    "b-ComposableStable USDC/USDbC/axlUSDC": 0.075,
+    "Gyroe wstETH/WETH": 0.025,
+    "ComposableStable ezETH/weETH/rswETH": 0.0463,
+    "a-ComposableStable rETH/cbETH/wstETH": 0.0213,
+    "ComposableStable svETH/wstETH": 0.0243,
+    "ComposableStable rETH/weETH": 0.0444,
+    "ComposableStable WETH/ezETH": 0.1365,
+    "MetaStable WETH/rETH": 0.0272,
+    "a-ComposableStable USDC/sUSDe": 0.08,
+    "ComposableStable pufETH/wstETH": 0.12,
+    "a-Gyro AaveUSDCn/USDC": 0.025,
+    "a-Gyro AaveUSDT/USDT": 0.025
+}
+
+payload: 
+{
+    "domain": {
+        "name": "snapshot",
+        "version": "0.1.4"
+    },
+    "types": {
+        "EIP712Domain": [
+            {
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "name": "version",
+                "type": "string"
+            }
+        ],
+        "Vote": [
+            {
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "name": "space",
+                "type": "string"
+            },
+            {
+                "name": "timestamp",
+                "type": "uint64"
+            },
+            {
+                "name": "proposal",
+                "type": "bytes32"
+            },
+            {
+                "name": "choice",
+                "type": "string"
+            },
+            {
+                "name": "reason",
+                "type": "string"
+            },
+            {
+                "name": "app",
+                "type": "string"
+            },
+            {
+                "name": "metadata",
+                "type": "string"
+            }
+        ]
+    },
+    "message": {
+        "space": "gauges.aurafinance.eth",
+        "proposal": "0x959f5f4b98b6fbd521844262bc9e2ab7a46344efe823afcb8d09771a55aaab90",
+        "choice": "{'76': 0.15, '147': 0.15, '157': 0.05, '230': 0.075, '110': 0.025, '59': 0.0463, '143': 0.0213, '74': 0.0243, '68': 0.0444, '85': 0.1365, '111': 0.0272, '153': 0.08, '63': 0.12, '160': 0.025, '161': 0.025}",
+        "app": "snapshot",
+        "reason": "",
+        "metadata": "{}",
+        "from": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+        "timestamp": 1714150875
+    },
+    "primaryType": "Vote"
+}
+
