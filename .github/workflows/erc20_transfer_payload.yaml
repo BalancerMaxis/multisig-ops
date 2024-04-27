@@ -1,0 +1,58 @@
+name: Create ERC20 Transfer Payload
+on:
+  workflow_dispatch:
+    inputs:
+      token:
+        description: 'Token'
+        required: true
+      destination:
+        description: 'Destination Address'
+        required: true
+      whole_amount:
+        description: 'Whole Amount (provide either whole_amount or wei_amount)'
+        required: false
+      wei_amount:
+        description: 'Wei Amount'
+        required: false
+      multisig:
+        description: 'Source Multisig Address'
+        required: true
+      chain_name:
+        description: 'Chain Name.  One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia]'
+        required: true
+
+jobs:
+  run-script-and-create-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install web3
+
+    - name: Run script
+      run: python action-scripts/erc20_transfer_payload.py
+      env:
+        TOKEN: ${{ github.event.inputs.token }}
+        DESTINATION: ${{ github.event.inputs.destination }}
+        WHOLE_AMOUNT: ${{ github.event.inputs.whole_amount }}
+        WEI_AMOUNT: ${{ github.event.inputs.wei_amount }}
+        MULTISIG: ${{ github.event.inputs.multisig }}
+        CHAIN_NAME: ${{ github.event.inputs.chain_name }}
+        INFURA_KEY: ${{ secrets.INFURA_KEY }}
+        ALCHEMY_KEY: ${{ secrets.ALCHEMY_KEY }}
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        title: Update from workflow
+        branch: changes
