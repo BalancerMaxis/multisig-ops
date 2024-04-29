@@ -1,8 +1,20 @@
-FILENAME: `BIPs/2024-W18/BIP-592 Exit and Withdraw from BAL/AURA/BIP-592.json`
-MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
-COMMIT: `0c0d634a82542428f12888208454027ff0702d08`
-CHAIN(S): `arbitrum`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/2c312d56-fbf0-4dbf-8a6e-8e5ff541d42a)
+
+## Mainnet DAO Multisig
+[Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/4d1ac7c9-6a16-4946-a4a5-b90d37c18883)
+
+[Sign Nonce 244](https://app.safe.global/transactions/queue?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)
+```
++------------+-------------------------------------------------+-----------------------------------------------------------------+----------------------------+---------+------------+
+| function   | token_symbol                                    | recipient                                                       | amount                     | bip     |   tx_index |
++============+=================================================+=================================================================+============================+=========+============+
+| transfer   | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/wonderland:0x74fEa3FB0eD030e9228026E7F413D66186d3D107 | 30000.0 (RAW: 30000000000) | BIP-578 |          0 |
++------------+-------------------------------------------------+-----------------------------------------------------------------+----------------------------+---------+------------+
+```
+## Arbitrum DAO Multisig
+[Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/8a877a58-45da-44d6-9ccc-70a3cedf7f8f)
+
+[Sign Nonce 43](Arbitrum: https://app.safe.global/transactions/history?safe=arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0)
+
 ```
 +------------------+-----------------------------------------------------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------+--------------+------------+
 | fx_name          | to                                                                                      |   value | inputs                                                                                                               | bip_number   | tx_index   |
