@@ -488,7 +488,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
                 outputs[key].append(
                     f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
                 )
-            elif "value" in key.lower() or "amount" in key.lower() or "_minOuts" in key.lower():
+            elif "value" in key.lower() or "amount" in key.lower():
                 # Look for things that look like values and do some decimal math
                 outputs[key].append(prettify_int_amounts(values))
             else:
