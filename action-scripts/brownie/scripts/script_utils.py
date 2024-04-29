@@ -16,7 +16,6 @@ from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
 
-
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
@@ -443,25 +442,25 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     return results
 
 
+def prettify_int_amount(amount: int, decimals=None) -> list[str]:
+    try:
+        amount = int(amount)
+    except:
+        # Can't make this an int, leave it alone
+        print(f"Can't make {amount} into an int to prettify")
+        return amount
+    if isinstance(decimals, int):
+        # We know decimals so use them
+        return f"{amount}/1e{decimals} = {amount / 10 ** decimals}"
+    else:
+        # We don't know decimals so provide 18 and 6
+        return f"raw:{amount}, 18 decimals:{Decimal(amount) / Decimal(1e18)}, 6 decimals: {Decimal(amount) / Decimal(1e6)}"
+
+
 def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
-        try:
-            amount = int(amount)
-        except:
-            # Can't make this an int, leave it alone
-            print(f"Can't make {amount} into an int to prettify")
-            pretty_amounts.append(amount)
-            continue
-        if isinstance(decimals, int):
-            # We know decimals so use them
-            pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
-        else:
-            # We don't know decimals so provide 18 and 6
-            pretty_amounts.append(
-                f"raw:{amount}, 18 decimals:{Decimal(amount)/Decimal(1e18)}, 6 decimals: {Decimal(amount)/Decimal(1e6)}"
-            )
-
+        pretty_amounts.append(prettify_int_amount(amount, decimals))
     return pretty_amounts
 
 
@@ -483,6 +482,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     outputs = defaultdict(list)
     for key, valuedata in contracts_inputs_values.items():
         values = parse_txbuilder_list_string(valuedata)
+        print(values)
         for value in values:
             ## Reverse resolve addresses
             if web3.isAddress(value):
@@ -494,11 +494,15 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
                 outputs[key].append(
                     f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
                 )
-            elif "value" in key.lower() or "amount" in key.lower():
+            elif (
+                "value" in key.lower()
+                or "amount" in key.lower()
+                or "_minouts" in key.lower()
+            ):
                 # Look for things that look like values and do some decimal math
-                outputs[key].append(prettify_int_amounts(values))
+                outputs[key].append(prettify_int_amount(value))
             else:
-                outputs[key].append([value])
+                outputs[key].append(value)
     return outputs
 
 
