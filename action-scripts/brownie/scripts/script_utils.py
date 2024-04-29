@@ -16,10 +16,7 @@ from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
 
-
-ROOT_DIR = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 NA = "N/A"
 NOT_FOUND = "Not Found"
@@ -82,24 +79,15 @@ def get_changed_files() -> list[dict]:
     return changed_files
 
 
-def get_pool_info(
-    pool_address,
-) -> tuple[str, str, str, str, str, str, list[str], list[str]]:
+def get_pool_info(pool_address, ) -> tuple[str, str, str, str, str, str, list[str], list[str]]:
     """
     Returns a tuple of pool info
     """
-    pool = Contract.from_abi(
-        name="IBalPool",
-        address=pool_address,
-        abi=json.load(open("abis/IBalPool.json", "r")),
-    )
+    pool = Contract.from_abi(name="IBalPool", address=pool_address, abi=json.load(open("abis/IBalPool.json", "r")), )
     chain_name = AddrBook.chain_names_by_id[chain.id]
     book = AddrBook(chain_name)
-    vault = Contract.from_abi(
-        name="Vault",
-        address=book.search_unique("vault/Vault").address,
-        abi=json.load(open("abis/IVault.json")),
-    )
+    vault = Contract.from_abi(name="Vault", address=book.search_unique("vault/Vault").address,
+                              abi=json.load(open("abis/IVault.json")), )
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
         a_factor = int(a_factor / divisor)
@@ -190,140 +178,76 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     for tx in transactions:
         if tx["contractMethod"]:
             tx["contractMethod"]["type"] = "function"
-            contract = web3.eth.contract(
-                address=web3.toChecksumAddress(tx["to"]), abi=[tx["contractMethod"]]
-            )
+            contract = web3.eth.contract(address=web3.toChecksumAddress(tx["to"]), abi=[tx["contractMethod"]])
             if len(tx["contractMethod"]["inputs"]) > 0:
                 for input in tx["contractMethod"]["inputs"]:
                     # bool
                     if "bool" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    (True if x == "true" else False)
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
+                                tx["contractInputsValues"][input["name"]] = [(True if x == "true" else False) for x in
+                                                                             tx["contractInputsValues"][
+                                                                                 input["name"]].strip("[]").split(",")]
                         else:
                             tx["contractInputsValues"][input["name"]] = (
-                                True
-                                if tx["contractInputsValues"][input["name"]] == "true"
-                                else False
-                            )
+                                True if tx["contractInputsValues"][input["name"]] == "true" else False)
                     # int
                     elif re.search(r"int[0-9]+", input["type"]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    int(x)
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
+                                tx["contractInputsValues"][input["name"]] = [int(x) for x in
+                                                                             tx["contractInputsValues"][
+                                                                                 input["name"]].strip("[]").split(",")]
                         else:
-                            tx["contractInputsValues"][input["name"]] = int(
-                                tx["contractInputsValues"][input["name"]]
-                            )
+                            tx["contractInputsValues"][input["name"]] = int(tx["contractInputsValues"][input["name"]])
                     # address
                     elif "address" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    web3.toChecksumAddress(x)
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
+                                tx["contractInputsValues"][input["name"]] = [web3.toChecksumAddress(x) for x in
+                                                                             tx["contractInputsValues"][
+                                                                                 input["name"]].strip("[]").split(",")]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = web3.toChecksumAddress(
-                                tx["contractInputsValues"][input["name"]]
-                            )
+                            tx["contractInputsValues"][input["name"]] = web3.toChecksumAddress(
+                                tx["contractInputsValues"][input["name"]])
                     # catchall; cast to str
                     else:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    str(x).strip()
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
+                                tx["contractInputsValues"][input["name"]] = [str(x).strip() for x in
+                                                                             tx["contractInputsValues"][
+                                                                                 input["name"]].strip("[]").split(",")]
                         else:
-                            tx["contractInputsValues"][input["name"]] = str(
-                                tx["contractInputsValues"][input["name"]]
-                            )
-                tx["data"] = contract.encodeABI(
-                    fn_name=tx["contractMethod"]["name"],
-                    args=list(tx["contractInputsValues"].values()),
-                )
+                            tx["contractInputsValues"][input["name"]] = str(tx["contractInputsValues"][input["name"]])
+                tx["data"] = contract.encodeABI(fn_name=tx["contractMethod"]["name"],
+                                                args=list(tx["contractInputsValues"].values()), )
             else:
-                tx["data"] = contract.encodeABI(
-                    fn_name=tx["contractMethod"]["name"], args=[]
-                )
+                tx["data"] = contract.encodeABI(fn_name=tx["contractMethod"]["name"], args=[])
 
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
-    txs = [
-        MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
-        for tx in transactions
-    ]
+    txs = [MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"]) for tx in transactions]
     data = MultiSend(EthereumClient(web3.provider.endpoint_uri)).build_tx_data(txs)
-    safe = web3.eth.contract(
-        address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r"))
-    )
+    safe = web3.eth.contract(address=safe_addr, abi=json.load(open("abis/IGnosisSafe.json", "r")))
     owners = list(safe.functions.getOwners().call())
 
     # build execTransaction data
     # execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
-    exec_tx = {
-        "to": multisend_call_only,
-        "value": 0,
-        "data": data,
-        "operation": SafeOperation.DELEGATE_CALL.value,
-        "safeTxGas": 0,
-        "baseGas": 0,
-        "gasPrice": 0,
-        "gasToken": NULL_ADDRESS,
-        "refundReceiver": NULL_ADDRESS,
-        "signatures": b"".join(
-            [
-                encode_abi(["address", "uint"], [str(owner), 0]) + b"\x01"
-                for owner in owners
-            ]
-        ),
-    }
+    exec_tx = {"to": multisend_call_only, "value": 0, "data": data, "operation": SafeOperation.DELEGATE_CALL.value,
+               "safeTxGas": 0, "baseGas": 0, "gasPrice": 0, "gasToken": NULL_ADDRESS, "refundReceiver": NULL_ADDRESS,
+               "signatures": b"".join(
+                   [encode_abi(["address", "uint"], [str(owner), 0]) + b"\x01" for owner in owners]), }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
     # build tenderly data
-    data = {
-        "network_id": network_id,
-        "from": owners[0],
-        "to": safe_addr,
-        "input": input,
-        "save": True,
-        "save_if_fails": True,
-        "simulation_type": "quick",
-        "state_objects": {
-            safe_addr: {
-                "storage": {
-                    "0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"
-                }
-            }
-        },
-    }
+    data = {"network_id": network_id, "from": owners[0], "to": safe_addr, "input": input, "save": True,
+            "save_if_fails": True, "simulation_type": "quick", "state_objects": {safe_addr: {"storage": {
+            "0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"}}}, }
 
     # post to tenderly api
-    r = requests.post(
-        url=f"{api_base_url}/simulate",
-        json=data,
-        headers={
-            "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
-            "Content-Type": "application/json",
-        },
-    )
+    r = requests.post(url=f"{api_base_url}/simulate", json=data,
+                      headers={"X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
+                               "Content-Type": "application/json", }, )
     try:
         r.raise_for_status()
     except:
@@ -332,13 +256,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     result = r.json()
 
     # make the simulation public
-    r = requests.post(
-        url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
-        headers={
-            "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
-            "Content-Type": "application/json",
-        },
-    )
+    r = requests.post(url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
+                      headers={"X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
+                               "Content-Type": "application/json", }, )
     try:
         r.raise_for_status()
     except:
@@ -349,12 +269,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     return url, success
 
 
-def format_into_report(
-    file: dict,
-    transactions: list[dict],
-    msig_addr: str,
-    chain_id: int,
-) -> str:
+def format_into_report(file: dict, transactions: list[dict], msig_addr: str, chain_id: int, ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
     """
@@ -368,18 +283,11 @@ def format_into_report(
     file_report += f"COMMIT: `{os.getenv('COMMIT_SHA', 'N/A')}`\n"
     # Format chains and remove "-main" from suffix of chain name
     chains = set(
-        map(
-            lambda chain: chain.replace("-main", ""),
-            [transaction["chain"] for transaction in transactions],
-        )
-    )
+        map(lambda chain: chain.replace("-main", ""), [transaction["chain"] for transaction in transactions], ))
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
     try:
-        tenderly_url, tenderly_success = run_tenderly_sim(
-            file["chainId"],
-            file["meta"]["createdFromSafeAddress"],
-            file["transactions"],
-        )
+        tenderly_url, tenderly_success = run_tenderly_sim(file["chainId"], file["meta"]["createdFromSafeAddress"],
+                                                          file["transactions"], )
         if tenderly_success:
             file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
         else:
@@ -418,9 +326,7 @@ def get_token_symbol(token_address) -> Optional[str]:
     Try to look up a token symbol on chain and return it if it exists
     """
     try:
-        return Contract.from_abi(
-            "Token", token_address, json.load(open("abis/ERC20.json"))
-        ).symbol()
+        return Contract.from_abi("Token", token_address, json.load(open("abis/ERC20.json"))).symbol()
     except Exception as err:
         print(err)
         return
@@ -437,25 +343,25 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     return results
 
 
+def prettify_int_amount(amount: int, decimals=None) -> list[str]:
+    try:
+        amount = int(amount)
+    except:
+        # Can't make this an int, leave it alone
+        print(f"Can't make {amount} into an int to prettify")
+        return amount
+    if isinstance(decimals, int):
+        # We know decimals so use them
+        return f"{amount}/1e{decimals} = {amount / 10 ** decimals}"
+    else:
+        # We don't know decimals so provide 18 and 6
+        return f"raw:{amount}, 18 decimals:{Decimal(amount) / Decimal(1e18)}, 6 decimals: {Decimal(amount) / Decimal(1e6)}"
+
+
 def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
-        try:
-            amount = int(amount)
-        except:
-            # Can't make this an int, leave it alone
-            print(f"Can't make {amount} into an int to prettify")
-            pretty_amounts.append(amount)
-            continue
-        if isinstance(decimals, int):
-            # We know decimals so use them
-            pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
-        else:
-            # We don't know decimals so provide 18 and 6
-            pretty_amounts.append(
-                f"raw:{amount}, 18 decimals:{Decimal(amount)/Decimal(1e18)}, 6 decimals: {Decimal(amount)/Decimal(1e6)}"
-            )
-
+        pretty_amounts.append(prettify_int_amount(amount, decimals))
     return pretty_amounts
 
 
@@ -477,28 +383,23 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     outputs = defaultdict(list)
     for key, valuedata in contracts_inputs_values.items():
         values = parse_txbuilder_list_string(valuedata)
+        print(values)
         for value in values:
             ## Reverse resolve addresses
             if web3.isAddress(value):
-                outputs[key].append(
-                    f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
-                )
+                outputs[key].append(f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) ")
             ## Reverse resolve authorizor roles
             elif "role" in key.lower():
-                outputs[key].append(
-                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
-                )
-            elif "value" in key.lower() or "amount" in key.lower():
+                outputs[key].append(f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) ")
+            elif "value" in key.lower() or "amount" in key.lower() or "_minouts" in key.lower():
                 # Look for things that look like values and do some decimal math
-                outputs[key].append(prettify_int_amounts(values))
+                outputs[key].append(prettify_int_amount(value))
             else:
-                outputs[key].append([value])
+                outputs[key].append(value)
     return outputs
 
 
-def merge_files(
-    results_outputs_list: list[dict[str, dict[str, dict]]],
-) -> dict[str, str]:
+def merge_files(results_outputs_list: list[dict[str, dict[str, dict]]], ) -> dict[str, str]:
     """
     Function that merges a list of report dicts into a dict of files and report strings.
 
