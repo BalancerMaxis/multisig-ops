@@ -63,7 +63,7 @@ today = datetime.today().strftime("%Y-%m-%d")
 
 
 def _extract_pool(
-    chain: str, gauge: Contract, gauge_selectors: dict
+        chain: str, gauge: Contract, gauge_selectors: dict
 ) -> tuple[str, str, str, str, str, str, str, list[str], list[str]]:
     """
     Generic function used by handlers to extract pool info given chain and gauge.
@@ -95,8 +95,8 @@ def _extract_pool(
             ) = get_pool_info(sidechain_recipient.lp_token())
         except ValueError as e:
             if (
-                str(e)
-                == "Failed to retrieve data from API: {'status': '0', 'message': 'NOTOK', 'result': 'Contract source code not verified'}"
+                    str(e)
+                    == "Failed to retrieve data from API: {'status': '0', 'message': 'NOTOK', 'result': 'Contract source code not verified'}"
             ):
                 pool_name = "CONTRACT_UNVERIFIED"
                 pool_symbol = "CONTRACT_UNVERIFIED"
@@ -177,7 +177,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     chain_name = AddrBook.chain_names_by_id.get(int(chain_id))
     chainbook = AddrBook(chain_name)
     if not transaction.get("contractInputsValues") or not transaction.get(
-        "contractMethod"
+            "contractMethod"
     ):
         return
     if not transaction["contractMethod"].get("name") == "setRecipientList":
@@ -205,7 +205,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         max_periods
     ), f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
-    pretty_amounts = prettify_int_amounts(amounts_per_period, 18)
+    pretty_amounts = prettify_int_amounts(amounts_per_period, decimals)
     total_amount = sum_list(amounts_per_period)
     return {
         "function": "setRecipientList",
@@ -215,7 +215,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         "gaugeList": json.dumps(pretty_gauges, indent=1),
         "amounts_per_period": json.dumps(pretty_amounts, indent=1),
         "periods": json.dumps(max_periods, indent=1),
-        "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount/10**decimals}",
+        "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount / 10 ** decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
 
@@ -231,7 +231,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
 
     if not transaction.get("contractInputsValues") or not transaction.get(
-        "contractMethod"
+            "contractMethod"
     ):
         return
     if not transaction["contractMethod"].get("name") == "depositBribe":
@@ -259,7 +259,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     token_decimals = token.decimals()
     raw_amount = int(transaction["contractInputsValues"]["_amount"])
     proposal_hash = transaction["contractInputsValues"]["_proposal"]
-    whole_amount = raw_amount / 10**token_decimals
+    whole_amount = raw_amount / 10 ** token_decimals
     periods = transaction["contractInputsValues"].get("_periods", "N/A")
     ### Lookup Proposal and return report
     prop_data = prop_map[market].get(proposal_hash)
@@ -296,12 +296,12 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     :return: dict with parsed data
     """
     if not transaction.get("contractInputsValues") or not transaction.get(
-        "contractMethod"
+            "contractMethod"
     ):
         return
     # Parse only gauge add transactions
     if not any(
-        method in transaction["contractInputsValues"] for method in GAUGE_ADD_METHODS
+            method in transaction["contractInputsValues"] for method in GAUGE_ADD_METHODS
     ):
         return
     # Find command and gauge address
@@ -311,8 +311,8 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         print("No gauge type found! Cannot process transaction")
         return
     if (
-        transaction["to"]
-        != ADDR_BOOK.search_unique("20230519-gauge-adder-v4/GaugeAdder").address
+            transaction["to"]
+            != ADDR_BOOK.search_unique("20230519-gauge-adder-v4/GaugeAdder").address
     ):
         return
     # Reset connection to mainnet
@@ -374,7 +374,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     Parse a gauge remover transaction and return a dict with parsed data.
     """
     if not transaction.get("contractInputsValues") or not transaction.get(
-        "contractMethod"
+            "contractMethod"
     ):
         return
     input_values = transaction.get("contractInputsValues")
@@ -468,7 +468,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     Parse Permissions changes made to the authorizer
     """
     if not transaction.get("contractInputsValues") or not transaction.get(
-        "contractMethod"
+            "contractMethod"
     ):
         return
     function = transaction["contractMethod"].get("name")
@@ -524,7 +524,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     Parse an ERC-20 transfer transaction and return a dict with parsed data
     """
     if not transaction.get("contractInputsValues") or not transaction.get(
-        "contractMethod"
+            "contractMethod"
     ):
         return
     # Parse only gauge add transactions
@@ -549,10 +549,10 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     # Get input values
     token = Contract(transaction["to"])
     recipient_address = (
-        transaction["contractInputsValues"].get("to")
-        or transaction["contractInputsValues"].get("dst")
-        or transaction["contractInputsValues"].get("recipient")
-        or transaction["contractInputsValues"].get("_to")
+            transaction["contractInputsValues"].get("to")
+            or transaction["contractInputsValues"].get("dst")
+            or transaction["contractInputsValues"].get("recipient")
+            or transaction["contractInputsValues"].get("_to")
     )
     if web3.isAddress(recipient_address):
         recipient_address = web3.toChecksumAddress(recipient_address)
@@ -560,10 +560,10 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         print("ERROR: can't find recipient address")
         recipient_address = None
     raw_amount = (
-        transaction["contractInputsValues"].get("amount")
-        or transaction["contractInputsValues"].get("value")
-        or transaction["contractInputsValues"].get("wad")
-        or transaction["contractInputsValues"].get("_value")
+            transaction["contractInputsValues"].get("amount")
+            or transaction["contractInputsValues"].get("value")
+            or transaction["contractInputsValues"].get("wad")
+            or transaction["contractInputsValues"].get("_value")
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
@@ -580,7 +580,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
 
 
 def parse_no_reports_report(
-    all_reports: list[dict[str, dict]], files: list[dict]
+        all_reports: list[dict[str, dict]], files: list[dict]
 ) -> dict[str, dict]:
     """
     Accepts a list of report outputs returned from the handler, and the files list.
@@ -645,7 +645,7 @@ def parse_no_reports_report(
                 if value == 0:
                     valuestring = str(value)
                 else:
-                    valuestring = f"{value}/1e18 = {int(value)/1e18}"
+                    valuestring = f"{value}/1e18 = {int(value) / 1e18}"
             else:
                 valuestring = "N/A"
             no_reports.append(
@@ -693,7 +693,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
                 # Try to extract bip number from transaction meta first. If it's missing,
                 # It means merge jsons hasn't been run yet, so we extract it from the file name
                 bip_number=transaction.get("meta", {}).get("bip_number")
-                or extract_bip_number(file),
+                           or extract_bip_number(file),
                 tx_index=i,
             )
             if data:

@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1714026165308,
+  "meta": {
+    "name": "ARB Tx Batch",
+    "description": "Withdraw full position from AuraArbBalGrant contract",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x9d72467150d93ae3bb733a7d0f2c37ac3690d71451f7c6821f6634f2accd9080"
+  },
+  "transactions": [
+    {
+      "to": "0x8D803f7f7e26E586ee90E5A872cf7830e21f7727",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256[]",
+            "name": "_minOuts",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "exit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_minOuts": "[396663000000000000000000, 2299087000000000000000000, 1360655000000000000000000]"
+      }
+    },
+    {
+      "to": "0x8D803f7f7e26E586ee90E5A872cf7830e21f7727",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "withdrawBalances",
+        "payable": false
+      },
+      "contractInputsValues": null
+    }
+  ]
+}
