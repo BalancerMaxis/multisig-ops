@@ -13,7 +13,7 @@
 ## Arbitrum DAO Multisig
 [Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/8a877a58-45da-44d6-9ccc-70a3cedf7f8f)
 
-[Sign Nonce 43](https://app.safe.global/transactions/queue?safe=eth:0x8D803f7f7e26E586ee90E5A872cf7830e21f7727)
+[Sign Nonce 43](Arbitrum: https://app.safe.global/transactions/history?safe=arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0)
 
 ```
 +------------------+-----------------------------------------------------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------+--------------+------------+
