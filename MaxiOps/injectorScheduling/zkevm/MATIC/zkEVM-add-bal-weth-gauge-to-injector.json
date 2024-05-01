@@ -42,11 +42,29 @@
       }
     },
     {
-      "to": "0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02",
-      "value": "1200000000000000000000",
+      "to": "0xa2036f0538221a77A3937F1379699f44945018d0",
+      "value": "0",
       "data": null,
-      "contractMethod": null,
-      "contractInputsValues": null
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02",
+        "amount": "1200000000000000000000"
+      }
     }
   ]
 }
