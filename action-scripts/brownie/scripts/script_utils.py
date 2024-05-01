@@ -235,7 +235,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
-                                    web3.toChecksumAddress(x)
+                                    web3.toChecksumAddress(x.strip())
                                     for x in tx["contractInputsValues"][input["name"]]
                                     .strip("[]")
                                     .split(",")
