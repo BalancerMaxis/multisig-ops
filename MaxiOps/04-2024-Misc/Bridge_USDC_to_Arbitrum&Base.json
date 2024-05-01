@@ -1,91 +1,90 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1714607324020,
-    "meta": {
-      "name": "Transactions Batch",
-      "description": "",
-      "txBuilderVersion": "1.16.5",
-      "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
-      "createdFromOwnerAddress": "",
-      "checksum": "0x301f5a7132d04fe310a2eaaac8a7303393ed01c2ca5fbbca2c2a09b1de2755f4"
-    },
-    "transactions": [
-      {
-        "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-        "value": "0",
-        "data": null,
-        "contractMethod": {
-          "inputs": [
-            { "name": "spender", "type": "address", "internalType": "address" },
-            { "name": "value", "type": "uint256", "internalType": "uint256" }
-          ],
-          "name": "approve",
-          "payable": false
-        },
-        "contractInputsValues": {
-          "spender": "0xBd3fa81B58Ba92a82136038B25aDec7066af3155",
-          "value": "7200000000"
-        }
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1714607324020,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x301f5a7132d04fe310a2eaaac8a7303393ed01c2ca5fbbca2c2a09b1de2755f4"
+  },
+  "transactions": [
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "spender", "type": "address", "internalType": "address" },
+          { "name": "value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
       },
-      {
-        "to": "0xBd3fa81B58Ba92a82136038B25aDec7066af3155",
-        "value": "0",
-        "data": null,
-        "contractMethod": {
-          "inputs": [
-            { "name": "amount", "type": "uint256", "internalType": "uint256" },
-            {
-              "name": "destinationDomain",
-              "type": "uint32",
-              "internalType": "uint32"
-            },
-            {
-              "name": "mintRecipient",
-              "type": "bytes32",
-              "internalType": "bytes32"
-            },
-            { "name": "burnToken", "type": "address", "internalType": "address" }
-          ],
-          "name": "depositForBurn",
-          "payable": false
-        },
-        "contractInputsValues": {
-          "amount": "3200000000",
-          "destinationDomain": "3",
-          "mintRecipient": "0x000000000000000000000000c38c5f97b34e175ffd35407fc91a937300e33860",
-          "burnToken": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
-        }
-      },
-      {
-        "to": "0xBd3fa81B58Ba92a82136038B25aDec7066af3155",
-        "value": "0",
-        "data": null,
-        "contractMethod": {
-          "inputs": [
-            { "name": "amount", "type": "uint256", "internalType": "uint256" },
-            {
-              "name": "destinationDomain",
-              "type": "uint32",
-              "internalType": "uint32"
-            },
-            {
-              "name": "mintRecipient",
-              "type": "bytes32",
-              "internalType": "bytes32"
-            },
-            { "name": "burnToken", "type": "address", "internalType": "address" }
-          ],
-          "name": "depositForBurn",
-          "payable": false
-        },
-        "contractInputsValues": {
-          "amount": "4000000000",
-          "destinationDomain": "6",
-          "mintRecipient": "0x00000000000000000000000065226673F3D202E0f897C862590d7e1A992B2048",
-          "burnToken": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
-        }
+      "contractInputsValues": {
+        "spender": "0xBd3fa81B58Ba92a82136038B25aDec7066af3155",
+        "value": "7200000000"
       }
-    ]
-  }
-  
+    },
+    {
+      "to": "0xBd3fa81B58Ba92a82136038B25aDec7066af3155",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "amount", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "destinationDomain",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "mintRecipient",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          { "name": "burnToken", "type": "address", "internalType": "address" }
+        ],
+        "name": "depositForBurn",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amount": "3200000000",
+        "destinationDomain": "3",
+        "mintRecipient": "0x000000000000000000000000c38c5f97b34e175ffd35407fc91a937300e33860",
+        "burnToken": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+      }
+    },
+    {
+      "to": "0xBd3fa81B58Ba92a82136038B25aDec7066af3155",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "amount", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "destinationDomain",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "mintRecipient",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          { "name": "burnToken", "type": "address", "internalType": "address" }
+        ],
+        "name": "depositForBurn",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amount": "4000000000",
+        "destinationDomain": "6",
+        "mintRecipient": "0x00000000000000000000000065226673F3D202E0f897C862590d7e1A992B2048",
+        "burnToken": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+      }
+    }
+  ]
+}
