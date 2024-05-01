@@ -336,6 +336,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     result = r.json()
 
+    if 'simulation' not in result:
+        raise ValueError(result)
+
     # make the simulation public
     r = requests.post(
         url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
