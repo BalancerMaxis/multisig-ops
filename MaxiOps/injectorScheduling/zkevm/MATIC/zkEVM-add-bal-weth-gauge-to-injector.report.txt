@@ -1,6 +1,18 @@
 FILENAME: `MaxiOps/injectorScheduling/zkevm/MATIC/zkEVM-add-bal-weth-gauge-to-injector.json`
 MULTISIG: `multisigs/feesManager (zkevm:0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09)`
-COMMIT: `75dd58925b9a45b30306e6814dee616149a7b1cf`
+COMMIT: `5dc0654c16c0e9f78b01e3114a6e1083a3afb9bf`
+CHAIN(S): `zkevm`
+TENDERLY: SKIPPED (`ValueError("when sending a str, it must be a hex string. Got: ' 0x11A72ebFc318c977a6A1b9b6e4565e068f9B3c12'")`)
+```
++------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------------------------------------+-------+------------+
+| function   | token_symbol                                     | recipient                                                                                           | amount                               | bip   |   tx_index |
++============+==================================================+=====================================================================================================+======================================+=======+============+
+| transfer   | MATIC:0xa2036f0538221a77A3937F1379699f44945018d0 | maxiKeepers/gaugeRewardsInjectors/matic_rewards_injector:0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02 | 1200.0 (RAW: 1200000000000000000000) | N/A   |          1 |
++------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------------------------------------+-------+------------+
+```
+FILENAME: `MaxiOps/injectorScheduling/zkevm/MATIC/zkEVM-add-bal-weth-gauge-to-injector.json`
+MULTISIG: `multisigs/feesManager (zkevm:0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09)`
+COMMIT: `5dc0654c16c0e9f78b01e3114a6e1083a3afb9bf`
 CHAIN(S): `zkevm`
 TENDERLY: SKIPPED (`ValueError("when sending a str, it must be a hex string. Got: ' 0x11A72ebFc318c977a6A1b9b6e4565e068f9B3c12'")`)
 ```
@@ -13,16 +25,4 @@ TENDERLY: SKIPPED (`ValueError("when sending a str, it must be a hex string. Got
 |                  |                                                                                                      |          |  "0x11A72ebFc318c977a6A1b9b6e4565e068f9B3c12 (gauges/50BAL-50WETH-gauge-11a7)"    |  "100000000000000000000/1e18 = 100.0"    |  "12"     |                                           |            |
 |                  |                                                                                                      |          | ]                                                                                 | ]                                        | ]         |                                           |            |
 +------------------+------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------+------------------------------------------+-----------+-------------------------------------------+------------+
-```
-FILENAME: `MaxiOps/injectorScheduling/zkevm/MATIC/zkEVM-add-bal-weth-gauge-to-injector.json`
-MULTISIG: `multisigs/feesManager (zkevm:0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09)`
-COMMIT: `75dd58925b9a45b30306e6814dee616149a7b1cf`
-CHAIN(S): `zkevm`
-TENDERLY: SKIPPED (`ValueError("when sending a str, it must be a hex string. Got: ' 0x11A72ebFc318c977a6A1b9b6e4565e068f9B3c12'")`)
-```
-+-----------+-------------------------------------------------------------------------------------------------------+--------------------------------------+----------+--------------+------------+
-| fx_name   | to                                                                                                    | value                                | inputs   | bip_number   | tx_index   |
-+===========+=======================================================================================================+======================================+==========+==============+============+
-| !!N/A!!   | 0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02 (maxiKeepers/gaugeRewardsInjectors/matic_rewards_injector) | 1200000000000000000000/1e18 = 1200.0 | "N/A"    | N/A          | N/A        |
-+-----------+-------------------------------------------------------------------------------------------------------+--------------------------------------+----------+--------------+------------+
 ```
