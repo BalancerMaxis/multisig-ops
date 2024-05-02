@@ -482,7 +482,6 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     outputs = defaultdict(list)
     for key, valuedata in contracts_inputs_values.items():
         values = parse_txbuilder_list_string(valuedata)
-        print(values)
         for value in values:
             ## Reverse resolve addresses
             if web3.isAddress(value):
