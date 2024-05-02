@@ -438,7 +438,7 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     """
     results = []
     for token in token_addresses:
-        results.append(f"{get_token_symbol(token)}({token})")
+        results.append(f"{get_token_symbol(token)} ({token})")
     return results
 
 
@@ -486,12 +486,12 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
             ## Reverse resolve addresses
             if web3.isAddress(value):
                 outputs[key].append(
-                    f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
+                    f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')})"
                 )
             ## Reverse resolve authorizor roles
             elif "role" in key.lower():
                 outputs[key].append(
-                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
+                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
                 )
             elif (
                 "value" in key.lower()
