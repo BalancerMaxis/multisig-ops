@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1714671381861,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x65226673F3D202E0f897C862590d7e1A992B2048",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x21a801be9b68e3c0f89e4becca79d37e5b3066d69c652ab2012edae273403527"
+  },
+  "transactions": [
+    {
+      "to": "0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xF7862A614fFEA2BF8Ef2D66a872bE2Df735D22E6",
+        "data": "0xe8de0d4d000000000000000000000000833589fcd6edb6e08f4c7c32d4f71b54bda02913000000000000000000000000a6e7840fc8193cfebddf177fa410038e5dd08f7a"
+      }
+    },
+    {
+      "to": "0xA6E7840Fc8193cFeBDdf177fa410038E5DD08f7A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "ERC20token", "type": "address", "internalType": "address" }
+        ],
+        "name": "setInjectTokenAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "ERC20token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+      }
+    },
+    {
+      "to": "0xA6E7840Fc8193cFeBDdf177fa410038E5DD08f7A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          { "name": "maxPeriods", "type": "uint8[]", "internalType": "uint8[]" }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xF7862A614fFEA2BF8Ef2D66a872bE2Df735D22E6]",
+        "amountsPerPeriod": "[2000000000]",
+        "maxPeriods": "[2]"
+      }
+    }
+  ]
+}

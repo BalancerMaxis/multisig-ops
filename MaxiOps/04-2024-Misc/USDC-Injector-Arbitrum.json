@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1714580520719,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x9fae81939824bac730bae1d055e21b5e18b671dc9336094b9631aefa368d2960"
+  },
+  "transactions": [
+    {
+      "to": "0xAa5A381b23667902ad6EdBd060B3A9bb7Caeb24B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "_distributor": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2"
+      }
+    },
+    {
+      "to": "0xfA7C98b893b26e99EFb53110B1B72FFAaC607b69",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "_distributor": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2"
+      }
+    },
+    {
+      "to": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          { "name": "maxPeriods", "type": "uint8[]", "internalType": "uint8[]" }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xAa5A381b23667902ad6EdBd060B3A9bb7Caeb24B, 0xfA7C98b893b26e99EFb53110B1B72FFAaC607b69]",
+        "amountsPerPeriod": "[2000000000, 1200000000]",
+        "maxPeriods": "[3, 3]"
+      }
+    }
+  ]
+}

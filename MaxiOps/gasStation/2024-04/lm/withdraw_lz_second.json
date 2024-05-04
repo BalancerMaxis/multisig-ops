@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1714212856543,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x3814afed5343b1adbae3155693b1df752a6cc8ab539ace1a47addc90b24bfd06"
+  },
+  "transactions": [
+    {
+      "to": "0xdDd5FF0E581f097573B13f247F6BE736f602F839",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "withdrawGasToken",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amount": "400000000000000000"
+      }
+    },
+    {
+      "to": "0x7fb8f5D04b521B6880158819E69538655AABD5c4",
+      "value": "400000000000000000",
+      "data": null,
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}
