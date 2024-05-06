@@ -1,0 +1,494 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x20cF5bA8aBA68Cd7Ca3d0cAfAc54dA807c772418",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "merkleProof",
+            "type": "bytes32[]",
+            "internalType": "bytes32[]"
+          },
+          {
+            "name": "amountAllocated",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "claim",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "merkleProof": "[0xe3f30724dc7b68f4dc7bef54b812e18454d9b9b278887f4f09de5ee8dd2fbb97,0x403b039b300b5d3f14f5a95011807ad1f279c31b5c6668e9dad1cbd43d5d9271,0x25ddc11367cfc9aeab1086adcc396ffdaeb90e491021ab488fcacd43037cd4e6,0xc2628e8800f0dbbce626dcf83c09a30a5a97d79413dcb79ca32a75d3cc1e66b8,0x933f0c6611414cc50cc739051a4e8140ca04f4ca6113746cedf8e9174aa9a6df]",
+        "amountAllocated": "119196472786989781864064"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-598-claim-extra-SAFE.json",
+        "bip_number": "BIP-598"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-601-paUSD-stataPolUSDCn-setWeightTo2Percent.json",
+        "bip_number": "BIP-601"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x87306F713EaB296f87CA4519295668fb4Bd51F04",
+        "data": "0x10d3eb0400000000000000000000000000000000000000000000000000470de4df820000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-601-paUSD-stataPolUSDCn-setWeightTo2Percent.json",
+        "bip_number": "BIP-601"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-601-paUSD-stataPolUSDCn-setWeightTo2Percent.json",
+        "bip_number": "BIP-601"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-600-paUSD-GYD-setWeightTo2Percent.json",
+        "bip_number": "BIP-600"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x30cEE2F8Cb8e53FC587f6B2578241a118188D530",
+        "data": "0x10d3eb0400000000000000000000000000000000000000000000000000470de4df820000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-600-paUSD-GYD-setWeightTo2Percent.json",
+        "bip_number": "BIP-600"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-600-paUSD-GYD-setWeightTo2Percent.json",
+        "bip_number": "BIP-600"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-599-PAR-EURA-setWeightTo2Percent.json",
+        "bip_number": "BIP-599"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x597AEbfe41dCc042db206Eb888c42560a22c9303",
+        "data": "0x10d3eb0400000000000000000000000000000000000000000000000000470de4df820000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-599-PAR-EURA-setWeightTo2Percent.json",
+        "bip_number": "BIP-599"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-599-PAR-EURA-setWeightTo2Percent.json",
+        "bip_number": "BIP-599"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-603-par-euroa-setWeightTo2Percent.json",
+        "bip_number": "BIP-603"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x7f5A5c80cEeB1C91718a71030F67788F3810be98",
+        "data": "0x10d3eb0400000000000000000000000000000000000000000000000000470de4df820000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-603-par-euroa-setWeightTo2Percent.json",
+        "bip_number": "BIP-603"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-603-par-euroa-setWeightTo2Percent.json",
+        "bip_number": "BIP-603"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-602-par-eure-setWeightTo2Percent.json",
+        "bip_number": "BIP-602"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x9b2defbf22be1ccd63f36dadf69842feb5e7b8df",
+        "data": "0x10d3eb0400000000000000000000000000000000000000000000000000470de4df820000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-602-par-eure-setWeightTo2Percent.json",
+        "bip_number": "BIP-602"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W19/BIP-602-par-eure-setWeightTo2Percent.json",
+        "bip_number": "BIP-602"
+      }
+    }
+  ]
+}
