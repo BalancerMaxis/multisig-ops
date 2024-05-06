@@ -2,7 +2,7 @@ from typing import Callable
 from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
-from bal_addresses.utils import to_checksum_address
+from bal_addresses.utils import to_checksum_address, is_address
 from brownie import Contract
 from brownie import web3
 from collections import defaultdict
@@ -555,7 +555,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("recipient")
         or transaction["contractInputsValues"].get("_to")
     )
-    if web3.isAddress(recipient_address):
+    if is_address(recipient_address):
         recipient_address = to_checksum_address(recipient_address)
     else:
         print("ERROR: can't find recipient address")

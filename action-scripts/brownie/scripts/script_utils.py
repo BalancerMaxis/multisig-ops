@@ -8,7 +8,7 @@ from typing import Optional
 from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
-from bal_addresses.utils import to_checksum_address
+from bal_addresses.utils import to_checksum_address, is_address
 import requests
 from brownie import Contract, chain, network, web3
 from eth_abi import encode
@@ -485,7 +485,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
         values = parse_txbuilder_list_string(valuedata)
         for value in values:
             ## Reverse resolve addresses
-            if web3.isAddress(value):
+            if is_address(value):
                 outputs[key].append(
                     f"{value} ({addr.reversebook.get(to_checksum_address(value), 'N/A')})"
                 )
