@@ -48,7 +48,7 @@ def validate_msig_in_address_book(file: dict) -> Tuple[bool, str]:
     msig = file["meta"].get("createdFromSafeAddress") or file["meta"].get(
         "createFromSafeAddress"
     )
-    if web3.to_checksum_address(msig) not in ADDRESSES:
+    if to_checksum_address(msig) not in ADDRESSES:
         return False, "Multisig address not found in address book"
     return True, ""
 
