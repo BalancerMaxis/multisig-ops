@@ -2,7 +2,7 @@ import os
 from typing import Tuple
 
 from .script_utils import get_changed_files, extract_bip_number
-from bal_addresses import AddrBook
+from bal_addresses import AddrBook, to_checksum_address
 from prettytable import PrettyTable
 import re
 import web3
@@ -47,7 +47,7 @@ def validate_msig_in_address_book(file: dict) -> Tuple[bool, str]:
     msig = file["meta"].get("createdFromSafeAddress") or file["meta"].get(
         "createFromSafeAddress"
     )
-    if web3.Web3.toChecksumAddress(msig) not in ADDRESSES:
+    if web3.to_checksum_address(msig) not in ADDRESSES:
         return False, "Multisig address not found in address book"
     return True, ""
 

@@ -1,5 +1,5 @@
 from brownie import Contract, network
-from bal_addresses import AddrBook
+from bal_addresses import AddrBook, to_checksum_address
 from web3 import Web3
 import json
 from prettytable import PrettyTable
@@ -125,7 +125,7 @@ def gen_report(payload_list):
                     )
                     continue
             if gauge_address == False:
-                authorizer_target_contract = Web3.toChecksumAddress(
+                authorizer_target_contract = to_checksum_address(
                     transaction["contractInputsValues"]["target"]
                 )
                 if authorizer_target_contract == gauge_controller:
