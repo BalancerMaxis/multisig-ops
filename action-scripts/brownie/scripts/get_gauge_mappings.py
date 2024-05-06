@@ -1,5 +1,6 @@
 from brownie import Contract, network
-from bal_addresses import AddrBook, to_checksum_address
+from bal_addresses import AddrBook
+from bal_addresses.utils import to_checksum_address
 from web3 import Web3
 import json
 from prettytable import PrettyTable

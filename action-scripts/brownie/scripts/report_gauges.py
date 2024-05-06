@@ -1,7 +1,8 @@
 from typing import Callable
 from typing import Optional
 
-from bal_addresses import AddrBook, BalPermissions, to_checksum_address
+from bal_addresses import AddrBook, BalPermissions
+from bal_addresses.utils import to_checksum_address
 from brownie import Contract
 from brownie import web3
 from collections import defaultdict
