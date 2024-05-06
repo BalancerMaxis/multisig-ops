@@ -294,10 +294,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "gasToken": NULL_ADDRESS,
         "refundReceiver": NULL_ADDRESS,
         "signatures": b"".join(
-            [
-                encode(["address", "uint"], [str(owner), 0]) + b"\x01"
-                for owner in owners
-            ]
+            [encode(["address", "uint"], [str(owner), 0]) + b"\x01" for owner in owners]
         ),
     }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
