@@ -3,7 +3,7 @@ from typing import Tuple
 
 from .script_utils import get_changed_files, extract_bip_number
 from bal_addresses import AddrBook
-from bal_addresses.utils import to_checksum_address
+from bal_addresses import to_checksum_address
 from prettytable import PrettyTable
 import re
 import web3

@@ -8,7 +8,7 @@ from typing import Optional
 from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
-from bal_addresses.utils import to_checksum_address, is_address
+from bal_addresses import to_checksum_address, is_address
 import requests
 from brownie import Contract, chain, network, web3
 from eth_abi import encode
