@@ -3,7 +3,14 @@ from brownie import network, accounts, Contract
 import os
 
 
-CHAINS_TO_KEEP = ["zkevm-main", "gnosis-main", "mode-main", "linea-main", "fraxtal-main"]
+CHAINS_TO_KEEP = [
+    "zkevm-main",
+    "gnosis-main",
+    "mode-main",
+    "linea-main",
+    "fraxtal-main",
+]
+
 
 def main():
     ## LOAD wallet
@@ -21,9 +28,11 @@ def main():
             print(f"Skipping {chain} because no network can be found")
             continue
         try:
-            book=AddrBook(chain.replace("-main", ""))
+            book = AddrBook(chain.replace("-main", ""))
         except:
-            print(f"Skipping {chain} because no Address Information can be found in bal_addresses")
+            print(
+                f"Skipping {chain} because no Address Information can be found in bal_addresses"
+            )
             continue
         to_poke = []
         try:
@@ -40,7 +49,9 @@ def main():
             if ready:
                 c.performUpkeep(performdata, {"from": account})
             else:
-                print(f"{chain}: {c.address}({book.reversebook.get(c.address)}) not ready")
+                print(
+                    f"{chain}: {c.address}({book.reversebook.get(c.address)}) not ready"
+                )
 
 
 if __name__ == "__main__":
