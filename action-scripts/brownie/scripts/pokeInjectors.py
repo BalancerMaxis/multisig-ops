@@ -25,8 +25,15 @@ def main():
         except:
             print(f"Skipping {chain} because no Address Information can be found in bal_addresses")
             continue
-        to_poke = book.extras.maxiKeepers.gaugeRewardsInjectors.values()
-        to_poke += book.extras.maxiKeepers.gasStation
+        to_poke = []
+        try:
+            to_poke = book.extras.maxiKeepers.gaugeRewardsInjectors.values()
+        except:
+            print(f"no gaugeRewardsInjectors found in {chain}")
+        try:
+            to_poke += book.extras.maxiKeepers.gasStation
+        except:
+            print(f"no gasStation found in {chain}")
         for address in to_poke:
             c = Contract(address)
             (ready, performdata) = c.checkUpkeep(b"")
