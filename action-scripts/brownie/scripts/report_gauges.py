@@ -2,6 +2,7 @@ from typing import Callable
 from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
+from bal_addresses import to_checksum_address, is_address
 from brownie import Contract
 from brownie import web3
 from collections import defaultdict
@@ -182,7 +183,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         return
     if not transaction["contractMethod"].get("name") == "setRecipientList":
         return
-    to_address = web3.toChecksumAddress(transaction["to"])
+    to_address = to_checksum_address(transaction["to"])
     switch_chain_if_needed(chain_id)
     injector = Contract(to_address)
     tokenAddress = injector.getInjectTokenAddress()
@@ -242,7 +243,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     bal_briber = ADDR_BOOK.extras.hidden_hand2.balancer_briber
     ##  Parse TX
     ### Determine market
-    to_address = web3.toChecksumAddress(transaction["to"])
+    to_address = to_checksum_address(transaction["to"])
     if to_address == aura_briber:
         market = "aura"
     elif to_address == bal_briber:
@@ -387,7 +388,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     switch_chain_if_needed(network_id=1)
     try:
         (command, inputs) = Contract(
-            web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+            to_checksum_address(transaction["contractInputsValues"]["target"])
         ).decode_input(transaction["contractInputsValues"]["data"])
     except:
         ## Doesn't look like a gauge add, maybe contract isn't on mainnet
@@ -554,8 +555,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("recipient")
         or transaction["contractInputsValues"].get("_to")
     )
-    if web3.isAddress(recipient_address):
-        recipient_address = web3.toChecksumAddress(recipient_address)
+    if is_address(recipient_address):
+        recipient_address = to_checksum_address(recipient_address)
     else:
         print("ERROR: can't find recipient address")
         recipient_address = None
