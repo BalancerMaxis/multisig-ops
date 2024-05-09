@@ -1,12 +1,12 @@
-FILENAME: `MaxiOps/brib_rebate_handling/04-2024/Send_6400_USDC_Arbitrum_Injector_JitoSOL.json`
+FILENAME: `MaxiOps/brib_rebate_handling/04-2024/Send_3200_USDC_Arbitrum_Injector_JitoSOL.json`
 MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
 COMMIT: `0f4102f85bcddcaa2e84b5ed0507fe39eee85d05`
 CHAIN(S): `arbitrum`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/cfb5c94d-685d-45fe-9736-91ed17b50efe)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/61c60755-d93d-4908-bf8a-69b80a4643b2)
 ```
 +------------+-------------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------+-------+------------+
 | function   | token_symbol                                    | recipient                                                                                          | amount                   | bip   |   tx_index |
 +============+=================================================+====================================================================================================+==========================+=======+============+
-| transfer   | USDC:0xaf88d065e77c8cC2239327C5EDb3A432268e5831 | maxiKeepers/gaugeRewardsInjectors/usdc_rewards_injector:0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2 | 6400.0 (RAW: 6400000000) | N/A   |          0 |
+| transfer   | USDC:0xaf88d065e77c8cC2239327C5EDb3A432268e5831 | maxiKeepers/gaugeRewardsInjectors/usdc_rewards_injector:0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2 | 3200.0 (RAW: 3200000000) | N/A   |          0 |
 +------------+-------------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------+-------+------------+
 ```
