@@ -27,8 +27,6 @@ PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
-VOTE_RELAYER_URL = "https://relayer.snapshot.org/"
-VOTE_RELAYER_LOOKUP_URL = "https://relayer.snapshot.org/api/messages/{}"
 
 flatbook = AddrBook("mainnet").flatbook
 vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
@@ -135,6 +133,14 @@ def hash_eip712_message(structured_data):
     message_hash = hash_message(structured_data)
     return keccak(b"\x19\x01" + domain_hash + message_hash)
 
+def format_choices(choices):
+    # custom formatting so it can be properly parsed by the snapshot
+    formatted_string = '{'
+    for key, value in choices.items():
+        formatted_string += f'\"{key}\":{value}'
+    formatted_string += '}'
+    return formatted_string
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vote processing script")
@@ -220,7 +226,7 @@ if __name__ == "__main__":
     data["message"]["timestamp"] = int(time.time())
     data["message"]["from"] = vlaura_safe_addr
     data["message"]["proposal"] = bytes.fromhex(prop["id"][2:])
-    data["message"]["choice"] = str(vote_choices)
+    data["message"]["choice"] = format_choices(vote_choices)
 
     hash = hash_eip712_message(data)
 
@@ -233,34 +239,8 @@ if __name__ == "__main__":
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
     )
-
-    # prep payload for relayer
-    data["types"].pop("EIP712Domain")
-    data.pop("primaryType")
-    data["message"]["proposal"] = prop["id"]
-
-    response = requests.post(
-        VOTE_RELAYER_URL,
-        headers={
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Referer": "https://snapshot.org/",
-        },
-        data=json.dumps(
-            {
-                "address": vlaura_safe_addr,
-                "data": data,
-                "sig": "0x",
-            }
-        ),
-    )
-
-    if response.ok:
-        print("Successfully posted to the vote relayer API.")
-        print(response.json())
-    else:
-        print("Failed to post to the vote relayer API.")
-        print(response.text)
+    
+    data["message"]["proposal"] = "0x" + prop["id"][2:]
 
     report_dir = f"../../../MaxiOps/vlaura_voting"
 
@@ -270,5 +250,6 @@ if __name__ == "__main__":
     with open(f"{report_dir}/{args.vote_day}-vote-report.txt", "w") as f:
         f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
-        f.write(f"relayer: {VOTE_RELAYER_LOOKUP_URL.format(hash.hex())}\n\n")
-        f.write(f"payload: \n{json.dumps(data, indent=4)}\n\n")
+        
+    with open(f"{report_dir}/{args.vote_day}-payload.json", "w") as f:
+        json.dump(data, f, indent=4)
