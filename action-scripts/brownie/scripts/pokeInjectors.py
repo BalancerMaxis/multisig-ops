@@ -14,7 +14,7 @@ CHAINS_TO_KEEP = [
 
 def main():
     ## LOAD wallet
-    errors=False
+    errors = False
     mnemonic = os.environ["KEYWORDS"]
     account = accounts.from_mnemonic(mnemonic)
     print(f"Keeper Address: {account.address}")
@@ -51,7 +51,9 @@ def main():
                 try:
                     c.performUpkeep(performdata, {"from": account})
                 except Exception as e:
-                    print(f"WARNING: {chain}: {c.address}({book.reversebook.get(c.address)}) failed: {e}")
+                    print(
+                        f"WARNING: {chain}: {c.address}({book.reversebook.get(c.address)}) failed: {e}"
+                    )
                     errors = True
             else:
                 print(
