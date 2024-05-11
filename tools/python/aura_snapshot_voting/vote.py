@@ -133,12 +133,13 @@ def hash_eip712_message(structured_data):
     message_hash = hash_message(structured_data)
     return keccak(b"\x19\x01" + domain_hash + message_hash)
 
+
 def format_choices(choices):
     # custom formatting so it can be properly parsed by the snapshot
-    formatted_string = '{'
+    formatted_string = "{"
     for key, value in choices.items():
-        formatted_string += f'\"{key}\":{value}'
-    formatted_string += '}'
+        formatted_string += f'"{key}":{value}'
+    formatted_string += "}"
     return formatted_string
 
 
@@ -250,6 +251,6 @@ if __name__ == "__main__":
     with open(f"{report_dir}/{args.vote_day}-vote-report.txt", "w") as f:
         f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
-        
+
     with open(f"{report_dir}/{args.vote_day}-payload.json", "w") as f:
         json.dump(data, f, indent=4)
