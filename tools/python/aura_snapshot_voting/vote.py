@@ -133,13 +133,12 @@ def hash_eip712_message(structured_data):
     message_hash = hash_message(structured_data)
     return keccak(b"\x19\x01" + domain_hash + message_hash)
 
-
 def format_choices(choices):
     # custom formatting so it can be properly parsed by the snapshot
-    formatted_string = "{"
+    formatted_string = '{'
     for key, value in choices.items():
-        formatted_string += f'"{key}":{value}'
-    formatted_string += "}"
+        formatted_string += f'\"{key}\":{value}'
+    formatted_string += '}'
     return formatted_string
 
 
@@ -170,12 +169,12 @@ if __name__ == "__main__":
     remaining_alloc = 1
 
     if args.manual:
-        with open("manual_voting/manual_votes.json", "r") as f:
+        with open(f"manual_voting/{args.vote_day}/manual_votes.json", "r") as f:
             manual_voting = json.load(f)
 
         gauges = {}
 
-        base_dir = "manual_voting"
+        base_dir = f"manual_voting/{args.vote_day}"
         for pool_type, pool_data in manual_voting.items():
             gauges[pool_type] = {}
             df = pd.read_csv(f"{base_dir}/{pool_data['csv_file']}")
@@ -217,7 +216,7 @@ if __name__ == "__main__":
     ), f"Sum of shares is not 1: {df['share'].sum()}"
 
     vote_choices = {
-        str(choices.index(row["snapshot_label"]) - 1): row["share"]
+        str(choices.index(row["snapshot_label"]) - 1): row["share"] * 100
         for _, row in df.iterrows()
     }
 
@@ -251,6 +250,6 @@ if __name__ == "__main__":
     with open(f"{report_dir}/{args.vote_day}-vote-report.txt", "w") as f:
         f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
-
+        
     with open(f"{report_dir}/{args.vote_day}-payload.json", "w") as f:
         json.dump(data, f, indent=4)
