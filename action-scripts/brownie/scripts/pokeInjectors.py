@@ -37,7 +37,7 @@ def main():
             continue
         to_poke = []
         try:
-            to_poke = book.extras.maxiKeepers.gaugeRewardsInjectors.values()
+            to_poke += book.extras.maxiKeepers.gaugeRewardsInjectors.values()
         except:
             print(f"no gaugeRewardsInjectors found in {chain}")
         try:
