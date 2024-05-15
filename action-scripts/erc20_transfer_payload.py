@@ -30,7 +30,7 @@ W3_BY_CHAIN = {
     "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")),
 }
 
-ERC20_ABI = json.load(open("action-scripts/abis/ERC20.json"))
+ERC20_ABI = json.load(open("abis/ERC20.json"))
 
 
 def main():
@@ -56,7 +56,7 @@ def main():
         wei_amount = int(float(amount) * 10**decimals)
 
     ## open the erc_20_transfer.json file in the tx_builder_templates folder
-    with open("action-scripts/tx_builder_templates/erc20_transfer.json", "r") as f:
+    with open("tx_builder_templates/erc20_transfer.json", "r") as f:
         tx = json.load(f)
         ## modify the tx object with the inputs
         tx["meta"]["createdFromSafeAddress"] = multlsig
