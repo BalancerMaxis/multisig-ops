@@ -40,7 +40,9 @@ jobs:
         pip install web3
 
     - name: Run script
-      run: python action-scripts/erc20_transfer_payload.py
+      run: |
+        cd action-scripts
+        python erc20_transfer_payload.py
       env:
         TOKEN: ${{ github.event.inputs.token }}
         DESTINATION: ${{ github.event.inputs.destination }}
