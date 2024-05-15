@@ -72,5 +72,6 @@ def main():
     ) as f:
         json.dump(tx, f, indent=2)
 
+
 if __name__ == "__main__":
     main()
