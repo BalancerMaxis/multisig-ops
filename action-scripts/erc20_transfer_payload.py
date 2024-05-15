@@ -71,3 +71,6 @@ def main():
         f"MaxiOps/transfers/{chain}/{multlsig}_{destination}_{timestamp}.json", "w"
     ) as f:
         json.dump(tx, f, indent=2)
+
+if __name__ == "__main__":
+    main()
