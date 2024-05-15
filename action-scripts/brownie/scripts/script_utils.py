@@ -8,14 +8,14 @@ from typing import Optional
 from tabulate import tabulate
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions
+from bal_addresses import to_checksum_address, is_address
 import requests
 from brownie import Contract, chain, network, web3
-from eth_abi import encode_abi
+from eth_abi import encode
 from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
-
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -40,6 +40,12 @@ def return_hh_brib_maps() -> dict:
         results["balancer"][prop["proposalHash"]] = prop
     for prop in hh_aura_props.json()["data"]:
         results["aura"][prop["proposalHash"]] = prop
+        try:
+            results["aura"][prop["proposalHash"]]["poolId"] = results["balancer"][
+                prop["proposalHash"]
+            ]["poolId"]
+        except KeyError:
+            pass
     return results
 
 
@@ -191,7 +197,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         if tx["contractMethod"]:
             tx["contractMethod"]["type"] = "function"
             contract = web3.eth.contract(
-                address=web3.toChecksumAddress(tx["to"]), abi=[tx["contractMethod"]]
+                address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
             )
             if len(tx["contractMethod"]["inputs"]) > 0:
                 for input in tx["contractMethod"]["inputs"]:
@@ -230,7 +236,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
-                                    web3.toChecksumAddress(x)
+                                    to_checksum_address(x.strip())
                                     for x in tx["contractInputsValues"][input["name"]]
                                     .strip("[]")
                                     .split(",")
@@ -238,7 +244,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         else:
                             tx["contractInputsValues"][
                                 input["name"]
-                            ] = web3.toChecksumAddress(
+                            ] = to_checksum_address(
                                 tx["contractInputsValues"][input["name"]]
                             )
                     # catchall; cast to str
@@ -289,10 +295,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "gasToken": NULL_ADDRESS,
         "refundReceiver": NULL_ADDRESS,
         "signatures": b"".join(
-            [
-                encode_abi(["address", "uint"], [str(owner), 0]) + b"\x01"
-                for owner in owners
-            ]
+            [encode(["address", "uint"], [str(owner), 0]) + b"\x01" for owner in owners]
         ),
     }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
@@ -331,6 +334,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     result = r.json()
 
+    if "simulation" not in result:
+        raise ValueError(result)
+
     # make the simulation public
     r = requests.post(
         url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
@@ -360,7 +366,7 @@ def format_into_report(
     """
     chain_name = AddrBook.chain_names_by_id[chain_id]
     book = AddrBook(chain_name)
-    msig_label = book.reversebook.get(web3.toChecksumAddress(msig_addr), "!NOT FOUND")
+    msig_label = book.reversebook.get(to_checksum_address(msig_addr), "!NOT FOUND")
     file_name = file["file_name"]
     print(f"Writing report for {file_name}...")
     file_report = f"FILENAME: `{file_name}`\n"
@@ -433,29 +439,29 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     """
     results = []
     for token in token_addresses:
-        results.append(f"{get_token_symbol(token)}({token})")
+        results.append(f"{get_token_symbol(token)} ({token})")
     return results
+
+
+def prettify_int_amount(amount: int, decimals=None) -> list[str]:
+    try:
+        amount = int(amount)
+    except:
+        # Can't make this an int, leave it alone
+        print(f"Can't make {amount} into an int to prettify")
+        return amount
+    if isinstance(decimals, int):
+        # We know decimals so use them
+        return f"{amount}/1e{decimals} = {amount / 10 ** decimals}"
+    else:
+        # We don't know decimals so provide 18 and 6
+        return f"raw:{amount}, 18 decimals:{Decimal(amount) / Decimal(1e18)}, 6 decimals: {Decimal(amount) / Decimal(1e6)}"
 
 
 def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
-        try:
-            amount = int(amount)
-        except:
-            # Can't make this an int, leave it alone
-            print(f"Can't make {amount} into an int to prettify")
-            pretty_amounts.append(amount)
-            continue
-        if isinstance(decimals, int):
-            # We know decimals so use them
-            pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
-        else:
-            # We don't know decimals so provide 18 and 6
-            pretty_amounts.append(
-                f"raw:{amount}, 18 decimals:{Decimal(amount)/Decimal(1e18)}, 6 decimals: {Decimal(amount)/Decimal(1e6)}"
-            )
-
+        pretty_amounts.append(prettify_int_amount(amount, decimals))
     return pretty_amounts
 
 
@@ -479,20 +485,24 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
         values = parse_txbuilder_list_string(valuedata)
         for value in values:
             ## Reverse resolve addresses
-            if web3.isAddress(value):
+            if is_address(value):
                 outputs[key].append(
-                    f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
+                    f"{value} ({addr.reversebook.get(to_checksum_address(value), 'N/A')})"
                 )
             ## Reverse resolve authorizor roles
             elif "role" in key.lower():
                 outputs[key].append(
-                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
+                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
                 )
-            elif "value" in key.lower() or "amount" in key.lower():
+            elif (
+                "value" in key.lower()
+                or "amount" in key.lower()
+                or "_minouts" in key.lower()
+            ):
                 # Look for things that look like values and do some decimal math
-                outputs[key].append(prettify_int_amounts(values))
+                outputs[key].append(prettify_int_amount(value))
             else:
-                outputs[key].append([value])
+                outputs[key].append(value)
     return outputs
 
 

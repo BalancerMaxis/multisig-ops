@@ -3,6 +3,7 @@ from typing import Tuple
 
 from .script_utils import get_changed_files, extract_bip_number
 from bal_addresses import AddrBook
+from bal_addresses import to_checksum_address
 from prettytable import PrettyTable
 import re
 import web3
@@ -49,7 +50,7 @@ def validate_msig_in_address_book(file: dict) -> Tuple[bool, str]:
     msig = file["meta"].get("createdFromSafeAddress") or file["meta"].get(
         "createFromSafeAddress"
     )
-    if web3.Web3.toChecksumAddress(msig) not in ADDRESSES:
+    if to_checksum_address(msig) not in ADDRESSES:
         return False, "Multisig address not found in address book"
     return True, ""
 
@@ -118,7 +119,7 @@ def main() -> None:
     # Generate report for each file and save it in a list
     reports = []
     for file_path, file_results in results.items():
-        report = f"BIP validation results for file {file_path}:\n"
+        report = f"BIP validation results for file `{file_path}`:\n"
         # Commit:
         report += f"Commit: `{os.getenv('COMMIT_SHA')}`\n"
         # Convert output for each file into table format
