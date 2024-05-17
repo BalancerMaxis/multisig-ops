@@ -479,11 +479,11 @@ def prettify_rate_providers(rate_providers: list[str], chain: str) -> list[str]:
     r = RateProviders(chain)
     pretty_rate_providers = []
     for rate_provider in rate_providers:
-        rpinfo = r.rate_providers_by_token.get(rate_provider)
+        rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
         if not rpinfo:
             review_link = "!!NO REVIEW!!"
         else:
-            review_link = f"[{rpinfo.summary}]({rpinfo.review_link})"
+            review_link = f"[{rpinfo.summary}]({r.get_review_for_safe_rate_provder(rpinfo.asset)})"
         pretty_rate_providers.append(f"{rate_provider} ({review_link})")
     return pretty_rate_providers
 
