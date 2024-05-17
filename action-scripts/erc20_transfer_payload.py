@@ -18,9 +18,7 @@ W3_BY_CHAIN = {
     "avalanche": Web3(Web3.HTTPProvider(f"https://api.avax.network/ext/bc/C/rpc")),
     #    "fantom": Web3(Web3.HTTPProvider("https://rpc.fantom.network")),
     ### Less reliable RPCs first to fail fast :)
-    "mainnet": Web3(
-        Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
+    "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
     "arbitrum": Web3(
         Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")
     ),
@@ -58,7 +56,9 @@ def main():
     ## get the current timestamp
     timestamp = int(time.time())
     ## assert that only one of wei_amount or whole_amount is set
-    assert wei_amount != amount and (wei_amount or amount), f"amount is {amount} and wei_amount is {wei_amount}, one and only one must bet set."
+    assert wei_amount != amount and (
+        wei_amount or amount
+    ), f"amount is {amount} and wei_amount is {wei_amount}, one and only one must bet set."
     if amount:
         # bind web3 to the token contract and get decimals()
         w3 = W3_BY_CHAIN[chain]
