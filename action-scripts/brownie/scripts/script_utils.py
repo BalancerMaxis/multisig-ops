@@ -471,6 +471,7 @@ def sum_list(amounts: list) -> int:
         total += int(amount)
     return total
 
+
 def prettify_rate_providers(rate_providers: list[str], chain: str) -> list[str]:
     """
     Accepts a list of rate provider addresses and returns a list of human readable strings
@@ -485,6 +486,7 @@ def prettify_rate_providers(rate_providers: list[str], chain: str) -> list[str]:
             review_link = f"[{rpinfo.summary}]({rpinfo.review_link})"
         pretty_rate_providers.append(f"{rate_provider} ({review_link})")
     return pretty_rate_providers
+
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
     """
