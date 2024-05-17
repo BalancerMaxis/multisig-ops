@@ -39,5 +39,5 @@ jobs:
           cd action-scripts/brownie
           pip3 install -r requirements-actions.txt
           touch .env
-          brownie networks import networks.yaml True
+          brownie networks modify zkevm-main host=https://polygonzkevm-mainnet.g.alchemy.com/v2/$ALCHEMYAPI_TOKEN
           brownie run scripts/pokeInjectors.py
