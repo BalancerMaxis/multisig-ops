@@ -7,7 +7,7 @@ from typing import Optional
 
 from tabulate import tabulate
 from collections import defaultdict
-from bal_addresses import AddrBook, BalPermissions
+from bal_addresses import AddrBook, BalPermissions, RateProviders
 from bal_addresses import to_checksum_address, is_address
 import requests
 from brownie import Contract, chain, network, web3
@@ -471,6 +471,20 @@ def sum_list(amounts: list) -> int:
         total += int(amount)
     return total
 
+def prettify_rate_providers(rate_providers: list[str], chain: str) -> list[str]:
+    """
+    Accepts a list of rate provider addresses and returns a list of human readable strings
+    """
+    r = RateProviders(chain)
+    pretty_rate_providers = []
+    for rate_provider in rate_providers:
+        rpinfo = r.rate_providers_by_token.get(rate_provider)
+        if not rpinfo:
+            review_link = "!!NO REVIEW!!"
+        else:
+            review_link = f"[{rpinfo.summary}]({rpinfo.review_link})"
+        pretty_rate_providers.append(f"{rate_provider} ({review_link})")
+    return pretty_rate_providers
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
     """

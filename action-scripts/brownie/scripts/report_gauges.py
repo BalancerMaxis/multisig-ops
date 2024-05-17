@@ -18,6 +18,7 @@ from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import prettify_gauge_list
 from .script_utils import prettify_int_amounts
+from .script_utils import prettify_rate_providers
 from .script_utils import sum_list
 from .script_utils import return_hh_brib_maps
 from .script_utils import switch_chain_if_needed
@@ -364,7 +365,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "symbol_and_info": f"{pool_symbol} \nfee: {fee}, a-factor: {a_factor}",
         "gauge_address_and_info": f"{gauge_address}\nStyle: {style}, cap: {gauge_cap}",
         "tokens": json.dumps(tokens, indent=2).strip("[\n]"),
-        "rate_providers": json.dumps(rate_providers, indent=2).strip("[\n ]"),
+        "rate_providers": json.dumps(prettify_rate_providers(rate_providers), indent=2).strip("[\n ]"),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
