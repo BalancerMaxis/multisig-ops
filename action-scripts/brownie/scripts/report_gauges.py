@@ -365,7 +365,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "symbol_and_info": f"{pool_symbol} \nfee: {fee}, a-factor: {a_factor}",
         "gauge_address_and_info": f"{gauge_address}\nStyle: {style}, cap: {gauge_cap}",
         "tokens": json.dumps(tokens, indent=2).strip("[\n]"),
-        "rate_providers": json.dumps(prettify_rate_providers(rate_providers, chaub), indent=2).strip("[\n ]"),
+        "rate_providers": json.dumps(prettify_rate_providers(rate_providers, chain), indent=2).strip("[\n ]"),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
