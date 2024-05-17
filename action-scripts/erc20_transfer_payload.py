@@ -3,6 +3,7 @@ import os
 from web3 import Web3
 import time
 from bal_addresses import AddrBook
+
 ## Todo move this to bal_addresses
 is_address = Web3.is_address
 
@@ -46,13 +47,21 @@ def main():
     chain = os.environ.get("CHAIN_NAME")
     ## Resolve inputs
     addr_book = AddrBook(chain)
-    multisig = multisig if is_address(multisig) else addr_book.search_unique(multisig).address
-    destination = destination if is_address(destination) else addr_book.search_unique(destination).address
+    multisig = (
+        multisig if is_address(multisig) else addr_book.search_unique(multisig).address
+    )
+    destination = (
+        destination
+        if is_address(destination)
+        else addr_book.search_unique(destination).address
+    )
 
     ## get the current timestamp
     timestamp = int(time.time())
     ## assert that only one of wei_amount or whole_amount is set
-    assert (not wei_amount) != (not amount), "Exactly one of wei_amount or whole_amount must be set"
+    assert (not wei_amount) != (
+        not amount
+    ), "Exactly one of wei_amount or whole_amount must be set"
     if amount:
         # bind web3 to the token contract and get decimals()
         w3 = W3_BY_CHAIN[chain]
