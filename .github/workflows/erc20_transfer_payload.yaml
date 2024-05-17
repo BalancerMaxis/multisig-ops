@@ -6,7 +6,7 @@ on:
         description: 'Token'
         required: true
       destination:
-        description: 'Destination Address'
+        description: 'Destination Address(or unqiue addrbook string)'
         required: true
       whole_amount:
         description: 'Whole Amount (provide either whole_amount or wei_amount)'
@@ -15,10 +15,10 @@ on:
         description: 'Wei Amount'
         required: false
       multisig:
-        description: 'Source Multisig Address'
+        description: 'Source Multisig Address (or unique addrbook string)'
         required: true
       chain_name:
-        description: 'Chain Name.  One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia]'
+        description: 'Chain Name.  Exists in bal_addresses: One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia]'
         required: true
 
 jobs:
@@ -38,6 +38,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install web3
+        pip install bal_addresses
 
     - name: Run script
       run: |
