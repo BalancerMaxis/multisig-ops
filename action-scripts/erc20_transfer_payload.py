@@ -9,7 +9,6 @@ is_address = Web3.is_address
 
 INFURA_KEY = os.getenv("INFURA_KEY")
 ALCHEMY_KEY = os.getenv("ALCHEMY_KEY")
-
 W3_BY_CHAIN = {
     "base": Web3(
         Web3.HTTPProvider(f"https://base-mainnet.g.alchemy.com/v2/{ALCHEMY_KEY}")
@@ -20,7 +19,7 @@ W3_BY_CHAIN = {
     #    "fantom": Web3(Web3.HTTPProvider("https://rpc.fantom.network")),
     ### Less reliable RPCs first to fail fast :)
     "mainnet": Web3(
-        Web3.HTTPProvider(f"https://eth-mainnet.g.alchemy.com/v2{INFURA_KEY}")
+        Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")
     ),
     "arbitrum": Web3(
         Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")
@@ -59,9 +58,7 @@ def main():
     ## get the current timestamp
     timestamp = int(time.time())
     ## assert that only one of wei_amount or whole_amount is set
-    assert (not wei_amount) != (
-        not amount
-    ), "Exactly one of wei_amount or whole_amount must be set"
+    assert wei_amount != amount and (wei_amount or amount), f"amount is {amount} and wei_amount is {wei_amount}, one and only one must bet set."
     if amount:
         # bind web3 to the token contract and get decimals()
         w3 = W3_BY_CHAIN[chain]
