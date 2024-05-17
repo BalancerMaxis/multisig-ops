@@ -2,6 +2,9 @@ import json
 import os
 from web3 import Web3
 import time
+from bal_addresses import AddrBook
+## Todo move this to bal_addresses
+is_address = Web3.is_address
 
 INFURA_KEY = os.getenv("INFURA_KEY")
 ALCHEMY_KEY = os.getenv("ALCHEMY_KEY")
@@ -39,14 +42,17 @@ def main():
     destination = os.environ["DESTINATION"]
     amount = os.environ.get("WHOLE_AMOUNT")
     wei_amount = os.environ.get("WEI_AMOUNT")
-    multlsig = os.environ.get("MULTISIG")
+    multisig = os.environ.get("MULTISIG")
     chain = os.environ.get("CHAIN_NAME")
+    ## Resolve inputs
+    addr_book = AddrBook(chain)
+    multisig = multisig if is_address(multisig) else addr_book.search_unique(multisig).address
+    destination = destination if is_address(destination) else addr_book.search_unique(destination).address
+
     ## get the current timestamp
     timestamp = int(time.time())
     ## assert that only one of wei_amount or whole_amount is set
-    assert (wei_amount is None) != (
-        amount is None
-    ), "Exactly one of wei_amount or whole_amount must be set"
+    assert (not wei_amount) != (not amount), "Exactly one of wei_amount or whole_amount must be set"
     if amount:
         # bind web3 to the token contract and get decimals()
         w3 = W3_BY_CHAIN[chain]
@@ -59,7 +65,7 @@ def main():
     with open("tx_builder_templates/erc20_transfer.json", "r") as f:
         tx = json.load(f)
         ## modify the tx object with the inputs
-        tx["meta"]["createdFromSafeAddress"] = multlsig
+        tx["meta"]["createdFromSafeAddress"] = multisig
         tx["transactions"][0]["to"] = token
         tx["transactions"][0]["value"] = wei_amount
         tx["chainId"] = chain
@@ -68,7 +74,7 @@ def main():
         os.makedirs(f"MaxiOps/transfers/{chain}")
     ## write a file named chain_multisig_destination_timestamp.json in the directory with the transaction json
     with open(
-        f"MaxiOps/transfers/{chain}/{multlsig}_{destination}_{timestamp}.json", "w"
+        f"MaxiOps/transfers/{chain}/{multisig}_{destination}_{timestamp}.json", "w"
     ) as f:
         json.dump(tx, f, indent=2)
 
