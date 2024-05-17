@@ -39,4 +39,5 @@ jobs:
           cd action-scripts/brownie
           pip3 install -r requirements-actions.txt
           touch .env
+          brownie networks import networks.yaml True
           brownie run scripts/pokeInjectors.py

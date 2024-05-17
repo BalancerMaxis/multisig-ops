@@ -14,3 +14,11 @@ live:
         host: https://avalanche-c-chain.publicnode.com
         id: avax-main
         name: C-Chain
+
+  - name: Polygon zkEVM (Alchemy)
+    networks:
+      - chainid: 1101
+        explorer: https://api-zkevm.polygonscan.com/api
+        host: https://polygonzkevm-mainnet.g.alchemy.com/v2/$ALCHEMYAPI_TOKEN
+        id: zkevm-main
+        name: Polygon zkEVM mainnet
