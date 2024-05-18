@@ -156,7 +156,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     """
     # Headers without "chain"
     header = [k for k in outputs[0].keys() if k != "chain"]
-    table = PrettyTable()
+    table = PrettyTable(align="l", max_width=100)
     table.set_style(MARKDOWN)
     table.field_names = header
     for dict_ in outputs:
@@ -245,10 +245,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = to_checksum_address(
-                                tx["contractInputsValues"][input["name"]]
+                            tx["contractInputsValues"][input["name"]] = (
+                                to_checksum_address(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
                             )
                     # catchall; cast to str
                     else:

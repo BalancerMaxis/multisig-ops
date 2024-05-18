@@ -14,8 +14,9 @@ debug = False
 
 
 def dicts_to_table_string(dict_list, header=None):
-    table = PrettyTable(header)
+    table = PrettyTable(header, align="l", max_width=100)
     table.set_style(MARKDOWN)
+    table.align = "l"
     for dict_ in dict_list:
         table.add_row(list(dict_.values()))
     table.align["pool_name"] = "l"

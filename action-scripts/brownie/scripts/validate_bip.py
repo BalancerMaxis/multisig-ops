@@ -121,7 +121,7 @@ def main() -> None:
         # Commit:
         report += f"Commit: `{os.getenv('COMMIT_SHA')}`\n"
         # Convert output for each file into table format
-        table = PrettyTable()
+        table = PrettyTable(align="l", max_width=100)
         table.set_style(MARKDOWN)
         table.field_names = ["Validator", "Result"]
         for validator_name, result in file_results.items():
