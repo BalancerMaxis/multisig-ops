@@ -156,7 +156,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     """
     # Headers without "chain"
     header = [k for k in outputs[0].keys() if k != "chain"]
-    table = PrettyTable(align="l", max_width=1000)
+    table = PrettyTable(align="l", max_width=1000, max_table_width=100_000)
     table.set_style(MARKDOWN)
     table.field_names = header
     for dict_ in outputs:
