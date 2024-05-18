@@ -361,13 +361,11 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     return {
         "function": f"{to_string}/{command}",
         "chain": chain.replace("-main", "") if chain else "mainnet",
-        "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
-        "symbol_and_info": f"{pool_symbol} \nfee: {fee}, a-factor: {a_factor}",
-        "gauge_address_and_info": f"{gauge_address}\nStyle: {style}, cap: {gauge_cap}",
-        "tokens": json.dumps(tokens, indent=2).strip("[\n]"),
-        "rate_providers": json.dumps(
-            prettify_rate_providers(rate_providers, chain), indent=2
-        ).strip("[\n ]"),
+        "pool_id_and_address": f"{pool_id} <br />pool_address: {pool_address}",
+        "symbol_and_info": f"{pool_symbol} <br />fee: {fee}, a-factor: {a_factor}",
+        "gauge_address_and_info": f"{gauge_address}<br />Style: {style}, cap: {gauge_cap}",
+        "tokens": "<br />".join(tokens),
+        "rate_providers": "<br />".join(prettify_rate_providers(rate_providers, chain)),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
