@@ -164,7 +164,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
         table.add_row(list(dict_filtered.values()))
-    return table.get_string()
+    return table.get_html_string()
 
 
 def switch_chain_if_needed(network_id: int) -> None:
