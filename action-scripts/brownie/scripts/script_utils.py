@@ -479,6 +479,9 @@ def prettify_rate_providers(rate_providers: list[str], chain: str) -> list[str]:
     r = RateProviders(chain)
     pretty_rate_providers = []
     for rate_provider in rate_providers:
+        if rate_provider == NULL_ADDRESS:
+            pretty_rate_providers.append(rate_provider)
+            continue
         rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
         if not rpinfo:
             review_link = "!!NO REVIEW!!"
