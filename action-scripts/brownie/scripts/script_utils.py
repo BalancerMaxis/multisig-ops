@@ -242,10 +242,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = to_checksum_address(
-                                tx["contractInputsValues"][input["name"]]
+                            tx["contractInputsValues"][input["name"]] = (
+                                to_checksum_address(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
                             )
                     # catchall; cast to str
                     else:
@@ -483,7 +483,7 @@ def prettify_rate_providers(rate_providers: list[str], chain: str) -> list[str]:
         if not rpinfo:
             review_link = "!!NO REVIEW!!"
         else:
-            review_link = f"[{rpinfo.summary}]({r.get_review_for_safe_rate_provder(rpinfo.asset)})"
+            review_link = f"[{rpinfo['summary']}]({r.get_review_for_safe_rate_provder(rpinfo['asset'])})"
         pretty_rate_providers.append(f"{rate_provider} ({review_link})")
     return pretty_rate_providers
 
