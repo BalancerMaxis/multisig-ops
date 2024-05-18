@@ -126,7 +126,7 @@ def main() -> None:
         table.field_names = ["Validator", "Result"]
         for validator_name, result in file_results.items():
             table.add_row([validator_name, result])
-        report += f"{table}"
+        report += table.get_string()
         reports.append(report)
 
     # Save temporary file with results so that it can be used in github action later

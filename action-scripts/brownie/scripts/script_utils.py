@@ -16,6 +16,7 @@ from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
+from prettytable import MARKDOWN, PrettyTable
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -155,13 +156,15 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     """
     # Headers without "chain"
     header = [k for k in outputs[0].keys() if k != "chain"]
-    table = []
+    table = PrettyTable()
+    table.set_style(MARKDOWN)
+    table.field_names = header
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
-        table.append(list(dict_filtered.values()))
-    return str(tabulate(table, headers=header, tablefmt="grid"))
+        table.add_row(list(dict_filtered.values()))
+    return table.get_string()
 
 
 def switch_chain_if_needed(network_id: int) -> None:
@@ -242,10 +245,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = to_checksum_address(
-                                tx["contractInputsValues"][input["name"]]
+                            tx["contractInputsValues"][input["name"]] = (
+                                to_checksum_address(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
                             )
                     # catchall; cast to str
                     else:
@@ -392,10 +395,8 @@ def format_into_report(
             file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     except Exception as e:
         file_report += f"TENDERLY: SKIPPED (`{repr(e)}`)\n"
-
-    # file_report += "```\n"
     file_report += convert_output_into_table(transactions)
-    # file_report += "\n```\n"
+
     return file_report
 
 
