@@ -273,9 +273,9 @@ def gen_report(payload_list):
         if outputs == []:
             print(f"No gauge changes found in {file}, skipping.")
             continue
-        report += f"{file}\nCOMMIT: {os.environ['COMMIT_SHA']}\n```\n"
+        report += f"{file}\nCOMMIT: {os.environ['COMMIT_SHA']}"  # \n```\n"
         report += dicts_to_table_string(outputs, outputs[0].keys())
-        report += "\n```\n"
+        # report += "\n```\n"
         reports.append(report)
         report = ""
     return reports
