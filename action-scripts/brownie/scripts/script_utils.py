@@ -242,10 +242,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = to_checksum_address(
-                                tx["contractInputsValues"][input["name"]]
+                            tx["contractInputsValues"][input["name"]] = (
+                                to_checksum_address(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
                             )
                     # catchall; cast to str
                     else:
@@ -393,9 +393,9 @@ def format_into_report(
     except Exception as e:
         file_report += f"TENDERLY: SKIPPED (`{repr(e)}`)\n"
 
-    file_report += "```\n"
+    # file_report += "```\n"
     file_report += convert_output_into_table(transactions)
-    file_report += "\n```\n"
+    # file_report += "\n```\n"
     return file_report
 
 
