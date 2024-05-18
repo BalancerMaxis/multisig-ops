@@ -3,7 +3,7 @@ from bal_addresses import AddrBook
 from bal_addresses import to_checksum_address
 from web3 import Web3
 import json
-from prettytable import PrettyTable
+from prettytable import MARKDOWN, PrettyTable
 import os
 from urllib.request import urlopen
 from pathlib import Path
@@ -15,6 +15,7 @@ debug = False
 
 def dicts_to_table_string(dict_list, header=None):
     table = PrettyTable(header)
+    table.set_style(MARKDOWN)
     for dict_ in dict_list:
         table.add_row(list(dict_.values()))
     table.align["pool_name"] = "l"
