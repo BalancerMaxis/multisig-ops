@@ -14,7 +14,7 @@ debug = False
 
 
 def dicts_to_table_string(dict_list, header=None):
-    table = PrettyTable(header, align="l", max_width=100)
+    table = PrettyTable(header, align="l", max_width=1000)
     table.set_style(MARKDOWN)
     table.align = "l"
     for dict_ in dict_list:
