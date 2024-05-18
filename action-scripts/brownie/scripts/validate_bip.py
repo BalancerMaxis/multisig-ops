@@ -16,6 +16,7 @@ ADDRESSES_OPTIMISM = AddrBook("optimism").reversebook
 ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
 ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
 ADDRESSES_BASE = AddrBook("base").reversebook
+ADDRESSES_FANTOM = AddrBook("fantom").reversebook
 # Merge all addresses into one dictionary
 ADDRESSES = {
     **ADDRESSES_MAINNET,
@@ -26,6 +27,7 @@ ADDRESSES = {
     **ADDRESSES_GNOSIS,
     **ADDRESSES_ZKEVM,
     **ADDRESSES_BASE,
+    **ADDRESSES_FANTOM,
 }
 
 
