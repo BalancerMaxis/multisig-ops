@@ -245,10 +245,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                to_checksum_address(
-                                    tx["contractInputsValues"][input["name"]]
-                                )
+                            tx["contractInputsValues"][
+                                input["name"]
+                            ] = to_checksum_address(
+                                tx["contractInputsValues"][input["name"]]
                             )
                     # catchall; cast to str
                     else:
