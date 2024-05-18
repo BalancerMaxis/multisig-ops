@@ -156,7 +156,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     """
     # Headers without "chain"
     header = [k for k in outputs[0].keys() if k != "chain"]
-    table = PrettyTable(align="l", max_width=1000, max_table_width=100_000)
+    table = PrettyTable(align="l")
     table.set_style(MARKDOWN)
     table.field_names = header
     for dict_ in outputs:
@@ -164,7 +164,7 @@ def convert_output_into_table(outputs: list[dict]) -> str:
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
         table.add_row(list(dict_filtered.values()))
-    return table.get_html_string()
+    return table.get_string()
 
 
 def switch_chain_if_needed(network_id: int) -> None:
@@ -440,7 +440,7 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     """
     results = []
     for token in token_addresses:
-        results.append(f"{get_token_symbol(token)} ({token})")
+        results.append(f"{get_token_symbol(token)}({token})")
     return results
 
 
@@ -488,7 +488,7 @@ def prettify_rate_providers(rate_providers: list[str], chain: str) -> list[str]:
             review_link = "!!NO REVIEW!!"
         else:
             review_link = f"[{rpinfo['summary']}]({r.get_review_for_safe_rate_provder(rpinfo['asset'])})"
-        pretty_rate_providers.append(f"{rate_provider} ({review_link})")
+        pretty_rate_providers.append(f"{rate_provider}({review_link})")
     return pretty_rate_providers
 
 
