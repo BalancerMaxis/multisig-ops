@@ -1,12 +1,12 @@
-FILENAME: `BIPs/2024-W21/BIP-519-6.json`
+FILENAME: `BIPs/2024-W22/BIP-518-6.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `96b51dc1f8b7cd2782637d84bb6988b3f48932db`
+COMMIT: `b517cd9e66d4f2c0f7ae7677923fe5ac9197af7b`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/0eb618d1-a2c4-4ee5-9506-c066b4632496)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/03e3407f-43e0-45b7-9e3c-99fb080904e4)
 ```
 +------------+-------------------------------------------------+-----------------------------------------------------------------------------+----------------------------+---------+------------+
 | function   | token_symbol                                    | recipient                                                                   | amount                     | bip     |   tx_index |
 +============+=================================================+=============================================================================+============================+=========+============+
-| transfer   | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/beets_service_provider:0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86 | 30000.0 (RAW: 30000000000) | BIP-519 |          0 |
+| transfer   | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/beets_service_provider:0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86 | 29000.0 (RAW: 29000000000) | BIP-518 |          0 |
 +------------+-------------------------------------------------+-----------------------------------------------------------------------------+----------------------------+---------+------------+
 ```
