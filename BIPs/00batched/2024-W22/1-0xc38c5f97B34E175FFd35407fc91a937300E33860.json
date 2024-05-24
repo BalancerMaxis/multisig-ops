@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x058059cb764a98c18B937222eD06C1ad2f174Dce",
+        "gaugeType": "Arbitrum"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W22/BIP-610-ETHx-wstETH-Abritrum-Gauge.json",
+        "bip_number": "BIP-610"
+      }
+    }
+  ]
+}
