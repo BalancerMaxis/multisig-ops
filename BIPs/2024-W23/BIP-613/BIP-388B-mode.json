@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1686068663750,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x01048d1c790c6db6c7895fdf16f9fcc502ee906857b307aed2247177f9948769"
+  },
+  "transactions": [
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "to_meta": "20210418-authorizer/Authorizer",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    },
+    {
+      "to": "0x5cF4928a3205728bd12830E1840F7DB85c62a4B9",
+      "to_meta": "20230316-l2-balancer-pseudo-minter/L2BalancerPseudoMinter",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          }
+        ],
+        "name": "addGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0x2498A2B0d6462d2260EAC50aE1C3e03F4829BA95"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "to_meta": "20210418-authorizer/Authorizer",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    }
+  ]
+}
