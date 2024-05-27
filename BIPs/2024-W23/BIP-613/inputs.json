@@ -15,28 +15,16 @@
       "20230411-managed-pool-v2"
     ],
     "function_caller_map": {
-      "setSwapFeePercentage(uint256)": [
-        "multisigs/lm"
-      ],
-      "startAmplificationParameterUpdate(uint256,uint256)": [
-        "multisigs/lm"
-      ],
-      "stopAmplificationParameterUpdate()": [
-        "multisigs/lm"
-      ],
-      "/pause()": [
-        "multisigs/emergency"
-      ],
-      "disable()": [
-        "multisigs/emergency"
-      ],
+      "setSwapFeePercentage(uint256)": ["multisigs/lm"],
+      "startAmplificationParameterUpdate(uint256,uint256)": ["multisigs/lm"],
+      "stopAmplificationParameterUpdate()": ["multisigs/lm"],
+      "/pause()": ["multisigs/emergency"],
+      "disable()": ["multisigs/emergency"],
       "enableRecoveryMode()": [
         "multisigs/emergency",
         "20221123-pool-recovery-helper/PoolRecoveryHelper"
       ],
-      "setTargets(uint256,uint256)": [
-        "multisigs/lm"
-      ]
+      "setTargets(uint256,uint256)": ["multisigs/lm"]
     }
   },
   {
@@ -130,6 +118,6 @@
     "function_caller_map": {
       "registerProtocolId(uint256,string)": ["multisigs/lm"],
       "renameProtocolId(uint256,string)": ["multisigs/lm"]
-    },
+    }
   }
 ]
