@@ -1,6 +1,5 @@
 
 ## Mainnet DAO Multisig
-[Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/ce6e1e5a-43fb-4b6d-93cf-b6ba18151033)
 
 [Sign Nonce 245](https://app.safe.global/transactions/queue?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)
 ```
