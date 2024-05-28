@@ -35,26 +35,21 @@
     "deployments": ["20210418-vault"],
     "function_caller_map": {
       "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
-        "20230314-batch-relayer-v5/BalancerRelayer"
+        "batch-relayer-v6/BalancerRelayer"
       ],
       "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": [
-        "batch-relayer-v5/BalancerRelayer",
         "batch-relayer-v6/BalancerRelayer"
       ],
       "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": [
-        "batch-relayer-v5/BalancerRelayer",
         "batch-relayer-v6/BalancerRelayer"
       ],
       "manageUserBalance((uint8,address,uint256,address,address)[])": [
-        "batch-relayer-v5/BalancerRelayer",
         "batch-relayer-v6/BalancerRelayer"
       ],
       "setRelayerApproval(address,address,bool)": [
-        "batch-relayer-v5/BalancerRelayer",
         "batch-relayer-v6/BalancerRelayer"
       ],
       "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": [
-        "batch-relayer-v5/BalancerRelayer",
         "batch-relayer-v6/BalancerRelayer"
       ],
       "withdrawCollectedFees(address[],uint256[],address)": [
