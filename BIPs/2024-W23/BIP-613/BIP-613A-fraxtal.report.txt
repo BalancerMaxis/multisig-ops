@@ -1,13 +1,13 @@
-FILENAME: `BIPs/2024-W23/BIP-613/BIP-613A-mode.json`
-MULTISIG: `multisigs/dao (mode:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
+FILENAME: `BIPs/2024-W23/BIP-613/BIP-613A-fraxtal.json`
+MULTISIG: `multisigs/dao (fraxtal:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
 COMMIT: `058c859c0679fa34d95193ad4e055347c82fbdc6`
-CHAIN(S): `mode`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/d9a66307-c84f-41d8-9a44-59728ea764b0)
+CHAIN(S): `fraxtal`
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/13236e93-d8af-4f50-8837-16bd2afa67ea)
 ```
 +----------------------+------------------------------------------------------------------------------------------------------------------------+---------+-------------------------------------------------------------------------+--------------+------------+
 | fx_name              | to                                                                                                                     |   value | inputs                                                                  | bip_number   | tx_index   |
 +======================+========================================================================================================================+=========+=========================================================================+==============+============+
-| setFeeTypePercentage | 0x85a80afee867aDf27B50BdB7b76DA70f1E853062 (20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider) |       0 | {                                                                       | BIP-613      | N/A        |
+| setFeeTypePercentage | 0xf23b4DB826DbA14c0e857029dfF076b1c0264843 (20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider) |       0 | {                                                                       | BIP-613      | N/A        |
 |                      |                                                                                                                        |         |   "feeType": [                                                          |              |            |
 |                      |                                                                                                                        |         |     "0"                                                                 |              |            |
 |                      |                                                                                                                        |         |   ],                                                                    |              |            |
@@ -16,7 +16,7 @@ TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/d9a66307-c84f-41d8-9a4
 |                      |                                                                                                                        |         |   ]                                                                     |              |            |
 |                      |                                                                                                                        |         | }                                                                       |              |            |
 +----------------------+------------------------------------------------------------------------------------------------------------------------+---------+-------------------------------------------------------------------------+--------------+------------+
-| setFeeTypePercentage | 0x85a80afee867aDf27B50BdB7b76DA70f1E853062 (20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider) |       0 | {                                                                       | BIP-613      | N/A        |
+| setFeeTypePercentage | 0xf23b4DB826DbA14c0e857029dfF076b1c0264843 (20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider) |       0 | {                                                                       | BIP-613      | N/A        |
 |                      |                                                                                                                        |         |   "feeType": [                                                          |              |            |
 |                      |                                                                                                                        |         |     "2"                                                                 |              |            |
 |                      |                                                                                                                        |         |   ],                                                                    |              |            |
