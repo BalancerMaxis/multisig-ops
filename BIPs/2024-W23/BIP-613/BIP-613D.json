@@ -63,22 +63,27 @@
       }
     },
     {
-      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [
-          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
-          { "internalType": "address", "name": "account", "type": "address" }
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          },
+          { "internalType": "string", "name": "gaugeType", "type": "string" }
         ],
-        "name": "renounceRole",
+        "name": "setGaugeFactory",
         "payable": false
       },
       "contractInputsValues": {
-        "role": "0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151",
-        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+        "factory": "0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68",
+        "gaugeType": "Fraxtal"
       }
     },
+
     {
       "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
       "value": "0",

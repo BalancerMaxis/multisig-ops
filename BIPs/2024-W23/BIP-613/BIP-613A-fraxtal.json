@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1686067971268,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set Protocol Fees",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xf23b4DB826DbA14c0e857029dfF076b1c0264843",
+      "to_meta": "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "feeType", "type": "uint256" },
+          { "internalType": "uint256", "name": "newValue", "type": "uint256" }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "0",
+        "newValue": "500000000000000000"
+      }
+    },
+    {
+      "to": "0xf23b4DB826DbA14c0e857029dfF076b1c0264843",
+      "to_meta": "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "feeType", "type": "uint256" },
+          { "internalType": "uint256", "name": "newValue", "type": "uint256" }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "2",
+        "newValue": "500000000000000000"
+      }
+    }
+  ]
+}
