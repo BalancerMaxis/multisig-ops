@@ -185,6 +185,42 @@
         "roles": "[0x1c81700c4527c26bb9aa170d0053c053b25de1492f19267ac6be7f8c62ef5569]",
         "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
       }
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "to_meta": "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "feeType", "type": "uint256" },
+          { "internalType": "uint256", "name": "newValue", "type": "uint256" }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "0",
+        "newValue": "500000000000000000"
+      }
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "to_meta": "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "feeType", "type": "uint256" },
+          { "internalType": "uint256", "name": "newValue", "type": "uint256" }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "2",
+        "newValue": "500000000000000000"
+      }
     }
   ]
 }
