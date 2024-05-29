@@ -39,19 +39,6 @@
         "name": "addGaugeType",
         "payable": false
       },
-      "contractInputsValues": { "gaugeType": "Mode" }
-    },
-    {
-      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          { "internalType": "string", "name": "gaugeType", "type": "string" }
-        ],
-        "name": "addGaugeType",
-        "payable": false
-      },
       "contractInputsValues": { "gaugeType": "Fraxtal" }
     },
     {
@@ -71,28 +58,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "factory": "0x4fb47126Fa83A8734991E41B942Ac29A3266C968",
-        "gaugeType": "Mode"
-      }
-    },
-    {
-      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "contract ILiquidityGaugeFactory",
-            "name": "factory",
-            "type": "address"
-          },
-          { "internalType": "string", "name": "gaugeType", "type": "string" }
-        ],
-        "name": "setGaugeFactory",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "factory": "0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68",
+        "factory": "0x0000000000000000000000000000000000000000",
         "gaugeType": "Fraxtal"
       }
     },
