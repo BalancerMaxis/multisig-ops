@@ -1,0 +1,286 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xf23b4DB826DbA14c0e857029dfF076b1c0264843",
+      "to_meta": "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "feeType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newValue",
+            "type": "uint256"
+          }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "0",
+        "newValue": "500000000000000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613A-fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xf23b4DB826DbA14c0e857029dfF076b1c0264843",
+      "to_meta": "20220725-protocol-fee-percentages-provider/ProtocolFeePercentagesProvider",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "feeType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newValue",
+            "type": "uint256"
+          }
+        ],
+        "name": "setFeeTypePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "feeType": "2",
+        "newValue": "500000000000000000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613A-fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0c055dc6cd1d6558914ef49c536f751680f8c413a3563007992801443bcca7a5, 0x0e9dc9cb7f6c04b4bd6a3a1454fea541139560e67c2305a90fa5021b5a9654a6, 0x22627da2e7670aed1292420d5f0a2a49a7bd5992e0aef001702aa3285b5979b3, 0x2ae3adc781b5bd1b6741f6a0d64c69c177a309fa771c818a298f437b11e338a9, 0x3ebf880359d778f39e7be152c0f9e08ca720deb5fec5c8d1f452538638a298db, 0x5136d1203b14ba22a937b7e444c8af4b759cc078fda17daabcc62cb16d44f770, 0x86f2cd537c832d7823d7b51e7f52288e383427c8c41180561f0f8054bc216f56, 0x8bd6c78035cf14d9a9eee5f76434919f54549515ffeb33ef262637ace4623751, 0xafaf4ce764706ff75bea937f87b0d04970292af6c75a3e1bc4045bb9777dfa65, 0xe59f99daac75c9e44d591c49a65423101c290813a1ebd1ef8833a4dab984fa9a]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/00fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x04221c483f49fe794f5ce394e0ffc086722e106b9fef863610ccfbe1a019b997, 0x1d087bf5277f83a51abd0bb650d0f671ec1075c10fc740f941334329621bb89d, 0x3d2eef14850cbbadfbbe943f0365f71562f347a7f22272c6fde14bc3b2e8890b, 0x3dd110fd101a1be6115ceb811a85535de6c9c019360c7d67c022c48a3dd685d9, 0x55183eaafc9e607c22ca713ce26b115fe0e7e47216af41fcec2f0fff0d6f622a, 0x73c3332de64a6f7b137bea3255a221d779cc0f170ea4892ff0581faf799230ff, 0x9fca6ce6b2733f09e22be866cbbfc8b9b4b6822e7ff1e1c9b5c10895e2bbb6b0, 0xb5593fe09464f360ecf835d5b9319ce69900ae1b29d13844b73c250b1f5f92fb, 0xbd92af6a2dfb24acf76fcff3ee827e4d13aceb26a57d95e47b90581760c41049, 0xda3af9541f52be1def53d54294a906c129ad5721f0b79b6a7efa9d0b6ed49de5, 0xf27a3cfffd6082308886cb5ef66425202d4b3180e84c6852d7d8109b4228a5ec]",
+        "account": "0xC66d0Ba27b8309D27cCa70064dfb40b73DB6de9E"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/00fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x1d087bf5277f83a51abd0bb650d0f671ec1075c10fc740f941334329621bb89d, 0x55183eaafc9e607c22ca713ce26b115fe0e7e47216af41fcec2f0fff0d6f622a, 0x73c3332de64a6f7b137bea3255a221d779cc0f170ea4892ff0581faf799230ff]",
+        "account": "0x76578ecf9a141296Ec657847fb45B0585bCDa3a6"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/00fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0014a06d322ff07fcc02b12f93eb77bb76e28cdee4fc0670b9dec98d24bbfec8, 0x1282ab709b2b70070f829c46bc36f76b32ad4989fecb2fcb09a1b3ce00bbfc30, 0x78ad1b68d148c070372f8643c4648efbb63c6a8a338f3c24714868e791367653, 0x7b8a1d293670124924a0f532213753b89db10bde737249d4540e9a03657d1aff, 0xc149e88b59429ded7f601ab52ecd62331cac006ae07c16543439ed138dcb8d34, 0xeba777d811cd36c06d540d7ff2ed18ed042fd67bbf7c9afcf88c818c7ee6b498]",
+        "account": "0xb541765F540447646A9545E0A4800A0Bacf9E13D"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/00fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xb2b6e48fa160a7c887d9d7a68b6a9bb9d47d4953d33e07f3a39e175d75e97796]",
+        "account": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/00fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xb28b769768735d011b267f781c3be90bce51d5059ba015bc7a28b3e882fb2083, 0xbe2a180d5cc5d803a8eec4cea569989fc1c593d7eeadd1f262f360a68b0e842e]",
+        "account": "0xf23b4DB826DbA14c0e857029dfF076b1c0264843"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/00fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6a0dbf850b77efe39084cc09b1e400307ad6949c5b87efdec8381b88592862fa]",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      },
+      "meta": {
+        "tx_index": 6,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/00fraxtal.json",
+        "bip_number": "BIP-613"
+      }
+    }
+  ]
+}

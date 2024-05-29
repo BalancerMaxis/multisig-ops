@@ -1,0 +1,182 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151,0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166]",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613D.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGaugeType",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Mode"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613D.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGaugeType",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Fraxtal"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613D.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "setGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0x4fb47126Fa83A8734991E41B942Ac29A3266C968",
+        "gaugeType": "Mode"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613D.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "setGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68",
+        "gaugeType": "Fraxtal"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613D.json",
+        "bip_number": "BIP-613"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "renounceRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151,0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166]",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W23/BIP-613/BIP-613D.json",
+        "bip_number": "BIP-613"
+      }
+    }
+  ]
+}
