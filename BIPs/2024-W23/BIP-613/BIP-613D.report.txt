@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2024-W23/BIP-613/BIP-613D.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `058c859c0679fa34d95193ad4e055347c82fbdc6`
+COMMIT: `ae7d507b76fabc8dd02b20c57b08905c2d3cbeb6`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/aca34941-e18a-4b7a-ab01-d4e23c80602e)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/0c792813-75c9-4281-82a4-9bd428cde22d)
 ```
 +--------------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 | function                 | caller_name   | caller_address                             | fx_paths                                                           | action_ids                                                         | bip     |   tx_index |
@@ -10,15 +10,15 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/aca34941-e18a-4b7a-ab0
 | Authorizer/grantRoles    | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230519-gauge-adder-v4/GaugeAdder/addGaugeType(string)            | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 | BIP-613 |          0 |
 |                          |               |                                            | 20230519-gauge-adder-v4/GaugeAdder/setGaugeFactory(address,string) | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 |         |            |
 +--------------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
-| Authorizer/renounceRoles | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230519-gauge-adder-v4/GaugeAdder/addGaugeType(string)            | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 | BIP-613 |          4 |
+| Authorizer/renounceRoles | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230519-gauge-adder-v4/GaugeAdder/addGaugeType(string)            | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 | BIP-613 |          5 |
 |                          |               |                                            | 20230519-gauge-adder-v4/GaugeAdder/setGaugeFactory(address,string) | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 |         |            |
 +--------------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
 ```
 FILENAME: `BIPs/2024-W23/BIP-613/BIP-613D.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `058c859c0679fa34d95193ad4e055347c82fbdc6`
+COMMIT: `ae7d507b76fabc8dd02b20c57b08905c2d3cbeb6`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/45875736-f990-4058-8eed-18c44c8fa997)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/c50fdae1-e61d-475c-aafa-9b4a7156fd90)
 ```
 +-----------------+---------------------------------------------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------------+--------------+------------+
 | fx_name         | to                                                                              |   value | inputs                                                                                                                    | bip_number   | tx_index   |
@@ -26,6 +26,12 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/45875736-f990-4058-8ee
 | addGaugeType    | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20230519-gauge-adder-v4/GaugeAdder) |       0 | {                                                                                                                         | BIP-613      | N/A        |
 |                 |                                                                                 |         |   "gaugeType": [                                                                                                          |              |            |
 |                 |                                                                                 |         |     "Mode"                                                                                                                |              |            |
+|                 |                                                                                 |         |   ]                                                                                                                       |              |            |
+|                 |                                                                                 |         | }                                                                                                                         |              |            |
++-----------------+---------------------------------------------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------------+--------------+------------+
+| addGaugeType    | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20230519-gauge-adder-v4/GaugeAdder) |       0 | {                                                                                                                         | BIP-613      | N/A        |
+|                 |                                                                                 |         |   "gaugeType": [                                                                                                          |              |            |
+|                 |                                                                                 |         |     "Fraxtal"                                                                                                             |              |            |
 |                 |                                                                                 |         |   ]                                                                                                                       |              |            |
 |                 |                                                                                 |         | }                                                                                                                         |              |            |
 +-----------------+---------------------------------------------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------------+--------------+------------+
