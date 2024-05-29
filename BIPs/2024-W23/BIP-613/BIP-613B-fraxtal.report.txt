@@ -1,22 +1,22 @@
 FILENAME: `BIPs/2024-W23/BIP-613/BIP-613B-fraxtal.json`
 MULTISIG: `multisigs/dao (mode:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
-COMMIT: `058c859c0679fa34d95193ad4e055347c82fbdc6`
+COMMIT: `ae7d507b76fabc8dd02b20c57b08905c2d3cbeb6`
 CHAIN(S): `mode`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/c8d2ebbd-90d6-4723-a37c-809895de5059)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/315c0837-fd45-4c13-8285-7e5d5677ae19)
 ```
 +-------------------------+---------------+--------------------------------------------+------------+--------------------------------------------------------------------+---------+------------+
 | function                | caller_name   | caller_address                             | fx_paths   | action_ids                                                         | bip     |   tx_index |
 +=========================+===============+============================================+============+====================================================================+=========+============+
-| Authorizer/grantRole    | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e |            | 0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8 | BIP-613 |          0 |
+| Authorizer/grantRole    | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e |            | 0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e | BIP-613 |          0 |
 +-------------------------+---------------+--------------------------------------------+------------+--------------------------------------------------------------------+---------+------------+
-| Authorizer/renounceRole | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e |            | 0x0ef8ea2b42045389168267f5aa92f66dc8baf6891085bddd27d3e7ebd53402b8 | BIP-613 |          2 |
+| Authorizer/renounceRole | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e |            | 0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e | BIP-613 |          2 |
 +-------------------------+---------------+--------------------------------------------+------------+--------------------------------------------------------------------+---------+------------+
 ```
 FILENAME: `BIPs/2024-W23/BIP-613/BIP-613B-fraxtal.json`
 MULTISIG: `multisigs/dao (mode:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
-COMMIT: `058c859c0679fa34d95193ad4e055347c82fbdc6`
+COMMIT: `ae7d507b76fabc8dd02b20c57b08905c2d3cbeb6`
 CHAIN(S): `mode`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/33dd83c9-6f21-47c2-bc95-c3238d8b2587)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/e9f01a41-2462-4ab1-8a32-b1d765679072)
 ```
 +-----------------+--------------------------------------------------------------------------------------------------------+---------+--------------------------------------------------------------------------------------------------+--------------+------------+
 | fx_name         | to                                                                                                     |   value | inputs                                                                                           | bip_number   | tx_index   |
