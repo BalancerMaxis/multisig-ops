@@ -124,8 +124,9 @@ def main() -> None:
         table = PrettyTable(align="l")
         table.set_style(MARKDOWN)
         table.field_names = ["Validator", "Result"]
+        table.align['Result'] = 'c'
         for validator_name, result in file_results.items():
-            table.add_row([validator_name, result])
+            table.add_row([f'`{validator_name}`', result])
         report += table.get_string()
         reports.append(report)
 
