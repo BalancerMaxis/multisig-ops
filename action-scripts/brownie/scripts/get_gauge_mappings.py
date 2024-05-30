@@ -1,9 +1,8 @@
 from brownie import Contract, network
 from bal_addresses import AddrBook
 from bal_addresses import to_checksum_address
-from web3 import Web3
 import json
-from prettytable import MARKDOWN, PrettyTable
+from prettytable import PrettyTable
 import os
 from urllib.request import urlopen
 from pathlib import Path
@@ -14,9 +13,7 @@ debug = False
 
 
 def dicts_to_table_string(dict_list, header=None):
-    table = PrettyTable(header, align="l")
-    table.set_style(MARKDOWN)
-    table.align = "l"
+    table = PrettyTable(header)
     for dict_ in dict_list:
         table.add_row(list(dict_.values()))
     table.align["pool_name"] = "l"
@@ -275,8 +272,9 @@ def gen_report(payload_list):
         if outputs == []:
             print(f"No gauge changes found in {file}, skipping.")
             continue
-        report += f"{file}\nCOMMIT: {os.environ['COMMIT_SHA']}"
+        report += f"{file}\nCOMMIT: {os.environ['COMMIT_SHA']}\n```\n"
         report += dicts_to_table_string(outputs, outputs[0].keys())
+        report += "\n```\n"
         reports.append(report)
         report = ""
     return reports
