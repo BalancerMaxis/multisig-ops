@@ -14,11 +14,11 @@ from .script_utils import get_pool_info
 from .script_utils import merge_files
 from .script_utils import extract_bip_number
 from .script_utils import extract_bip_number_from_file_name
+from .script_utils import get_rate_provider_review_summaries
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import prettify_gauge_list
 from .script_utils import prettify_int_amounts
-from .script_utils import prettify_rate_providers
 from .script_utils import sum_list
 from .script_utils import return_hh_brib_maps
 from .script_utils import switch_chain_if_needed
@@ -361,11 +361,12 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     return {
         "function": f"{to_string}/{command}",
         "chain": chain.replace("-main", "") if chain else "mainnet",
-        "pool_id_and_address": f"{pool_id} <br />pool_address: {pool_address}",
-        "symbol_and_info": f"{pool_symbol} <br />fee: {fee}, a-factor: {a_factor}",
-        "gauge_address_and_info": f"{gauge_address}<br />Style: {style}, cap: {gauge_cap}",
-        "tokens": "<br />".join(tokens),
-        "rate_providers": "<br />".join(prettify_rate_providers(rate_providers, chain)),
+        "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
+        "symbol_and_info": f"{pool_symbol} \nfee: {fee}\na-factor: {a_factor}",
+        "gauge_address_and_info": f"{gauge_address}\nStyle: {style}\ncap: {gauge_cap}",
+        "tokens": "\n".join(tokens),
+        "rate_providers": "\n".join(rate_providers),
+        "review_summary": "\n".join(get_rate_provider_review_summaries(rate_providers, chain)),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
