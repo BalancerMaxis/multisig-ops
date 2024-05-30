@@ -4,7 +4,7 @@ from typing import Tuple
 from .script_utils import get_changed_files, extract_bip_number
 from bal_addresses import AddrBook
 from bal_addresses import to_checksum_address
-from prettytable import PrettyTable
+from prettytable import MARKDOWN, PrettyTable
 import re
 import web3
 
@@ -123,11 +123,13 @@ def main() -> None:
         # Commit:
         report += f"Commit: `{os.getenv('COMMIT_SHA')}`\n"
         # Convert output for each file into table format
-        table = PrettyTable()
+        table = PrettyTable(align="l")
+        table.set_style(MARKDOWN)
         table.field_names = ["Validator", "Result"]
+        table.align["Result"] = "c"
         for validator_name, result in file_results.items():
-            table.add_row([validator_name, result])
-        report += f"```\n{table}\n```"
+            table.add_row([f"`{validator_name}`", result])
+        report += table.get_string()
         reports.append(report)
 
     # Save temporary file with results so that it can be used in github action later
