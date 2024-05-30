@@ -1,14 +1,9 @@
 ##eth-brownie==1.19.3
-git+https://github.com/BalancerMaxis/bal_addresses@0.9.4
+git+https://github.com/BalancerMaxis/bal_addresses@0.9.5
 git+https://github.com/BalancerMaxis/brownie@v1.20.x
 prettytable
 dotmap
 pathlib
 pandas==1.5.3
-tabulate
 safe-eth-py
 eth-abi
-
-#regex==2021.09.30 ## Fixes some issue with mac M1 and brownie 1.17
-
-# dev; testing, linting and committing
