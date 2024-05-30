@@ -395,10 +395,10 @@ def format_into_report(
             file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
     except Exception as e:
         file_report += f"TENDERLY: SKIPPED (`{repr(e)}`)\n"
+
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
-
     return file_report
 
 
