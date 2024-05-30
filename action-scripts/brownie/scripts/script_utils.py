@@ -161,9 +161,9 @@ def convert_output_into_table(outputs: list[dict]) -> str:
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
         table.add_row(list(dict_filtered.values()))
-    table.align['review_summary'] = 'c'
-    table.align['bip'] = 'c'
-    table.align['tx_index'] = 'c'
+    table.align["review_summary"] = "c"
+    table.align["bip"] = "c"
+    table.align["tx_index"] = "c"
     return table.get_string()
 
 
@@ -475,7 +475,9 @@ def sum_list(amounts: list) -> int:
     return total
 
 
-def get_rate_provider_review_summaries(rate_providers: list[str], chain: str) -> list[str]:
+def get_rate_provider_review_summaries(
+    rate_providers: list[str], chain: str
+) -> list[str]:
     """
     Accepts a list of rate provider addresses and returns a list of review summaries
     """

@@ -366,7 +366,9 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "gauge_address_and_info": f"{gauge_address}\nStyle: {style}\ncap: {gauge_cap}",
         "tokens": "\n".join(tokens),
         "rate_providers": "\n".join(rate_providers),
-        "review_summary": "\n".join(get_rate_provider_review_summaries(rate_providers, chain)),
+        "review_summary": "\n".join(
+            get_rate_provider_review_summaries(rate_providers, chain)
+        ),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
