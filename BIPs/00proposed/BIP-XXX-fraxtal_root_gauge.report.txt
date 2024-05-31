@@ -1,0 +1,39 @@
+FILENAME: `BIPs/00proposed/BIP-XXX-fraxtal_root_gauge.json`
+MULTISIG: `!NOT FOUND (fraxtal:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `e59c26a66fafe4a864d7e6db5e35141476a88856`
+CHAIN(S): `fraxtal`
+TENDERLY: SKIPPED (`BadFunctionCallOutput('Could not transact with/call contract function, is contract deployed correctly and chain synced?')`)
+```
++-------------------------------+---------------+--------------------------------------------+----------+--------------------------------------------------------------------+-----+----------+
+| function                      | caller_name   | caller_address                             | fx_paths | action_ids                                                         | bip | tx_index |
++-------------------------------+---------------+--------------------------------------------+----------+--------------------------------------------------------------------+-----+----------+
+| !!!!NOT-FOUND??/grantRoles    | !!NOT FOUND!! | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f |          | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 | N/A |    0     |
+|                               |               |                                            |          | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 |     |          |
+| !!!!NOT-FOUND??/renounceRoles | !!NOT FOUND!! | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f |          | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 | N/A |    3     |
+|                               |               |                                            |          | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 |     |          |
++-------------------------------+---------------+--------------------------------------------+----------+--------------------------------------------------------------------+-----+----------+
+```
+FILENAME: `BIPs/00proposed/BIP-XXX-fraxtal_root_gauge.json`
+MULTISIG: `!NOT FOUND (fraxtal:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `e59c26a66fafe4a864d7e6db5e35141476a88856`
+CHAIN(S): `fraxtal`
+TENDERLY: SKIPPED (`BadFunctionCallOutput('Could not transact with/call contract function, is contract deployed correctly and chain synced?')`)
+```
++-----------------+----------------------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------+------------+----------+
+| fx_name         | to                                                                                                       | value | inputs                                                       | bip_number | tx_index |
++-----------------+----------------------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------+------------+----------+
+| addGaugeType    | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20230613-balancer-pool-data-queries/BalancerPoolDataQueries) | 0     | {                                                            | N/A        |   N/A    |
+|                 |                                                                                                          |       |   "gaugeType": [                                             |            |          |
+|                 |                                                                                                          |       |     "Fraxtal"                                                |            |          |
+|                 |                                                                                                          |       |   ]                                                          |            |          |
+|                 |                                                                                                          |       | }                                                            |            |          |
+| setGaugeFactory | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20230613-balancer-pool-data-queries/BalancerPoolDataQueries) | 0     | {                                                            | N/A        |   N/A    |
+|                 |                                                                                                          |       |   "factory": [                                               |            |          |
+|                 |                                                                                                          |       |     "0x0000000000000000000000000000000000000000 (zero/zero)" |            |          |
+|                 |                                                                                                          |       |   ],                                                         |            |          |
+|                 |                                                                                                          |       |   "gaugeType": [                                             |            |          |
+|                 |                                                                                                          |       |     "Fraxtal"                                                |            |          |
+|                 |                                                                                                          |       |   ]                                                          |            |          |
+|                 |                                                                                                          |       | }                                                            |            |          |
++-----------------+----------------------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------+------------+----------+
+```
