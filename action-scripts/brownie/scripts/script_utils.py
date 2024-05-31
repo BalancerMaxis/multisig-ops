@@ -5,9 +5,8 @@ from decimal import Decimal
 from json import JSONDecodeError
 from typing import Optional
 
-from tabulate import tabulate
 from collections import defaultdict
-from bal_addresses import AddrBook, BalPermissions
+from bal_addresses import AddrBook, BalPermissions, RateProviders
 from bal_addresses import to_checksum_address, is_address
 import requests
 from brownie import Contract, chain, network, web3
@@ -16,6 +15,7 @@ from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
+from prettytable import PrettyTable
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -155,13 +155,16 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     """
     # Headers without "chain"
     header = [k for k in outputs[0].keys() if k != "chain"]
-    table = []
+    table = PrettyTable(header, align="l")
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
-        table.append(list(dict_filtered.values()))
-    return str(tabulate(table, headers=header, tablefmt="grid"))
+        table.add_row(list(dict_filtered.values()))
+    table.align["review_summary"] = "c"
+    table.align["bip"] = "c"
+    table.align["tx_index"] = "c"
+    return table.get_string()
 
 
 def switch_chain_if_needed(network_id: int) -> None:
@@ -439,7 +442,7 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     """
     results = []
     for token in token_addresses:
-        results.append(f"{get_token_symbol(token)} ({token})")
+        results.append(f"{token}: {get_token_symbol(token)}")
     return results
 
 
@@ -470,6 +473,26 @@ def sum_list(amounts: list) -> int:
     for amount in amounts:
         total += int(amount)
     return total
+
+
+def get_rate_provider_review_summaries(
+    rate_providers: list[str], chain: str
+) -> list[str]:
+    """
+    Accepts a list of rate provider addresses and returns a list of review summaries
+    """
+    r = RateProviders(chain)
+    summaries = []
+    for rate_provider in rate_providers:
+        if rate_provider == NULL_ADDRESS:
+            summaries.append("--")
+            continue
+        rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
+        if not rpinfo:
+            summaries.append("!!NO REVIEW!!")
+        else:
+            summaries.append(rpinfo["summary"])
+    return summaries
 
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
