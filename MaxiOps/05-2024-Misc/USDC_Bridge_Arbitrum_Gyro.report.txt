@@ -1,0 +1,33 @@
+FILENAME: `MaxiOps/05-2024-Misc/USDC_Bridge_Arbitrum_Gyro.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `8945694b6b752d09f080a7ba7646c375f20bfbee`
+CHAIN(S): `mainnet`
+TENDERLY: SKIPPED (`Web3ValidationError("\nCould not identify the intended function with name `depositForBurn`, positional arguments with type(s) `int,int,address,address` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `depositForBurn`: ['depositForBurn(uint256,uint32,bytes32,address)']\nFunction invocation failed due to no matching argument types.")`)
+```
++----------------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
+| fx_name        | to                                                                 | value | inputs                                                                   | bip_number | tx_index |
++----------------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
+| approve        | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)           | 0     | {                                                                        | N/A        |   N/A    |
+|                |                                                                    |       |   "spender": [                                                           |            |          |
+|                |                                                                    |       |     "0xBd3fa81B58Ba92a82136038B25aDec7066af3155 (circle/cctp_messenger)" |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "value": [                                                             |            |          |
+|                |                                                                    |       |     "raw:2000000000, 18 decimals:2E-9, 6 decimals: 2000"                 |            |          |
+|                |                                                                    |       |   ]                                                                      |            |          |
+|                |                                                                    |       | }                                                                        |            |          |
+| depositForBurn | 0xBd3fa81B58Ba92a82136038B25aDec7066af3155 (circle/cctp_messenger) | 0     | {                                                                        | N/A        |   N/A    |
+|                |                                                                    |       |   "amount": [                                                            |            |          |
+|                |                                                                    |       |     "raw:2000000000, 18 decimals:2E-9, 6 decimals: 2000"                 |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "destinationDomain": [                                                 |            |          |
+|                |                                                                    |       |     "3"                                                                  |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "mintRecipient": [                                                     |            |          |
+|                |                                                                    |       |     "0xc38c5f97B34E175FFd35407fc91a937300E33860 (multisigs/lm)"          |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "burnToken": [                                                         |            |          |
+|                |                                                                    |       |     "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)"           |            |          |
+|                |                                                                    |       |   ]                                                                      |            |          |
+|                |                                                                    |       | }                                                                        |            |          |
++----------------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
+```
