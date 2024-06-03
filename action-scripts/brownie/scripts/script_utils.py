@@ -481,6 +481,7 @@ def get_rate_provider_review_summaries(
     """
     Accepts a list of rate provider addresses and returns a list of review summaries
     """
+    chain = chain.strip("-main")
     r = RateProviders(chain)
     summaries = []
     for rate_provider in rate_providers:
