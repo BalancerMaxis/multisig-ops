@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1686068663750,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Add GaugeFactory to PsuedoMinter",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "to_meta": "20210418-authorizer/Authorizer",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    },
+    {
+      "to": "0x9805dcfD25e6De36bad8fe9D3Fe2c9b44B764102",
+      "to_meta": "20230316-l2-balancer-pseudo-minter/L2BalancerPseudoMinter",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract ILiquidityGaugeFactory",
+            "name": "factory",
+            "type": "address"
+          }
+        ],
+        "name": "addGaugeFactory",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "factory": "0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "to_meta": "20210418-authorizer/Authorizer",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    }
+  ]
+}

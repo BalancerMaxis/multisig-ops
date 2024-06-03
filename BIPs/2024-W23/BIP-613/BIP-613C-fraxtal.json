@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1686068946662,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable Authorizer Adapter",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xeab75e48deff14b80dee97f3e36117ad773a19fea0bfcee5b957428e6a610603"
+  },
+  "transactions": [
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "to_meta": "20210418-authorizer/Authorizer",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    },
+    {
+      "to": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+      "to_meta": "20210418-vault/Vault'",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IAuthorizer",
+            "name": "newAuthorizer",
+            "type": "address"
+          }
+        ],
+        "name": "setAuthorizer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newAuthorizer": "0x6817149cb753BF529565B4D023d7507eD2ff4Bc0"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x1cbb503dcc0f4acaedf71a098211ff8b15a220fc26a6974a8d9deaab040fa6e0",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    }
+  ]
+}
