@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1717669715829,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x2cf1b9c47867a8a741d24a0988ce0d1c8bb570f2651afb0a9a0644971ba28a99"
+  },
+  "transactions": [
+    {
+      "to": "0x7fb8f5D04b521B6880158819E69538655AABD5c4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "minBalanceWei",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "topUpToAmountWei",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x4BC8121278056BFCaC2BD14D455659224d6dDf48]",
+        "minBalanceWei": "15000000000000000000",
+        "topUpToAmountWei": "20000000000000000000"
+      }
+    }
+  ]
+}
