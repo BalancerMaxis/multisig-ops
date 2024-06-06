@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1717673949347,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x8a8ae976d3ab15c13c3522686607899fed67798c7e2fd345d34eee2b67e2aa3e"
+  },
+  "transactions": [
+    {
+      "to": "0xD692B454255d072B1ACe1b624e6Ee2bFd939D80F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "keeperAddress",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "setKeeperAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "keeperAddress": "0xA8c886e17f44c4b710d139E24F260A123E583D1C"
+      }
+    },
+    {
+      "to": "0xD692B454255d072B1ACe1b624e6Ee2bFd939D80F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" }
+        ],
+        "name": "transferOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
