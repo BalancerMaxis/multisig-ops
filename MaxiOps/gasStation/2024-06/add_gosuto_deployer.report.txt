@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/gasStation/2024-06/add_gosuto_deployer.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `d406360a799bf9c6ad9e997f62463f6a971c3e01`
+COMMIT: `2ae9504b09fdab4a40db827762f3a426559a7654`
 CHAIN(S): `mainnet`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/625bb931-f5a2-4028-adcf-b2fb25b8193b)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/f8540cad-cd2a-4c3e-abd4-03bc9b087261)
 ```
 +---------------+---------------------------------------------------------------------+-------+------------------------------------------------------------------------------+------------+----------+
 | fx_name       | to                                                                  | value | inputs                                                                       | bip_number | tx_index |
@@ -12,10 +12,10 @@ TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/625bb931-f5a2-4028-adc
 |               |                                                                     |       |     "0x4BC8121278056BFCaC2BD14D455659224d6dDf48 (EOA/maxi_deployers/gosuto)" |            |          |
 |               |                                                                     |       |   ],                                                                         |            |          |
 |               |                                                                     |       |   "minBalanceWei": [                                                         |            |          |
-|               |                                                                     |       |     "15000000000000000000"                                                   |            |          |
+|               |                                                                     |       |     "250000000000000000"                                                     |            |          |
 |               |                                                                     |       |   ],                                                                         |            |          |
 |               |                                                                     |       |   "topUpToAmountWei": [                                                      |            |          |
-|               |                                                                     |       |     "raw:20000000000000000000, 18 decimals:20, 6 decimals: 20000000000000"   |            |          |
+|               |                                                                     |       |     "raw:1000000000000000000, 18 decimals:1, 6 decimals: 1000000000000"      |            |          |
 |               |                                                                     |       |   ]                                                                          |            |          |
 |               |                                                                     |       | }                                                                            |            |          |
 +---------------+---------------------------------------------------------------------+-------+------------------------------------------------------------------------------+------------+----------+
