@@ -139,12 +139,12 @@ def hash_eip712_message(structured_data):
 
 def format_choices(choices):
     # custom formatting so it can be properly parsed by the snapshot
-    formatted_string = '{'
+    formatted_string = "{"
     for key, value in choices.items():
-        formatted_string += f'\"{key}\":{value},'
+        formatted_string += f'"{key}":{value},'
         if key == list(choices.keys())[-1]:
             formatted_string = formatted_string[:-1]
-    formatted_string += '}'
+    formatted_string += "}"
     return formatted_string
 
 
@@ -241,11 +241,11 @@ if __name__ == "__main__":
     print(f"hash: {hash.hex()}")
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
- 
+
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
     )
-    
+
     data["message"]["proposal"] = prop["id"]
     data["types"].pop("EIP712Domain")
     data.pop("primaryType")
@@ -256,10 +256,9 @@ if __name__ == "__main__":
         os.mkdir(report_dir)
 
     with open(f"{report_dir}/{args.vote_day}-vote-report.txt", "w") as f:
-        vote_data = dict(zip(df['snapshot_label'], df['share']))
+        vote_data = dict(zip(df["snapshot_label"], df["share"]))
         f.write(f"Voting for: {json.dumps(vote_data, indent=4)}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
 
     with open(f"{report_dir}/{args.vote_day}-payload.json", "w") as f:
         json.dump(data, f, indent=4)
-
