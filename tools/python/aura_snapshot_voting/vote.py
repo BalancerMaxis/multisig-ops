@@ -5,6 +5,7 @@ import argparse
 from functools import lru_cache
 from enum import IntEnum
 from pytest import approx
+from dotenv import load_dotenv
 
 import requests
 from bal_addresses import AddrBook
@@ -21,7 +22,9 @@ from eth_abi import encode
 from gen_vlaura_votes_for_epoch import gen_rev_data
 
 
-INFURA_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
+load_dotenv()
+
+ETHNODEURL = os.getenv("WEB3_INFURA_PROJECT_ID")
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
@@ -42,7 +45,7 @@ class Operation(IntEnum):
 
 
 def post_safe_tx(safe_address, to_address, value, data, operation):
-    ethereum_client = EthereumClient(INFURA_KEY)
+    ethereum_client = EthereumClient(ETHNODEURL)
     safe = Safe(safe_address, ethereum_client)
     safe_service = TransactionServiceApi(1, ethereum_client, SAFE_API_URL)
 
@@ -136,10 +139,12 @@ def hash_eip712_message(structured_data):
 
 def format_choices(choices):
     # custom formatting so it can be properly parsed by the snapshot
-    formatted_string = "{"
+    formatted_string = '{'
     for key, value in choices.items():
-        formatted_string += f'"{key}":{value}'
-    formatted_string += "}"
+        formatted_string += f'\"{key}\":{value},'
+        if key == list(choices.keys())[-1]:
+            formatted_string = formatted_string[:-1]
+    formatted_string += '}'
     return formatted_string
 
 
@@ -236,12 +241,14 @@ if __name__ == "__main__":
     print(f"hash: {hash.hex()}")
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
-
+ 
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
     )
-
-    data["message"]["proposal"] = "0x" + prop["id"][2:]
+    
+    data["message"]["proposal"] = prop["id"]
+    data["types"].pop("EIP712Domain")
+    data.pop("primaryType")
 
     report_dir = f"../../../MaxiOps/vlaura_voting"
 
@@ -249,8 +256,10 @@ if __name__ == "__main__":
         os.mkdir(report_dir)
 
     with open(f"{report_dir}/{args.vote_day}-vote-report.txt", "w") as f:
-        f.write(f"Voting for: {dict(zip(df['snapshot_label'], df['share']))}\n\n")
+        vote_data = dict(zip(df['snapshot_label'], df['share']))
+        f.write(f"Voting for: {json.dumps(vote_data, indent=4)}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
 
     with open(f"{report_dir}/{args.vote_day}-payload.json", "w") as f:
         json.dump(data, f, indent=4)
+
