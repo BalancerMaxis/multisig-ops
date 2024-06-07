@@ -221,8 +221,10 @@ if __name__ == "__main__":
         1, abs=0.001
     ), f"Sum of shares is not 1: {df['share'].sum()}"
 
+    choice_index_map = {c: x+1 for x, c in enumerate(choices)}
+
     vote_choices = {
-        str(choices.index(row["snapshot_label"]) - 1): row["share"] * 100
+        str(choice_index_map[row["snapshot_label"]]): row["share"] * 100
         for _, row in df.iterrows()
     }
 
@@ -245,7 +247,7 @@ if __name__ == "__main__":
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
     )
-    
+
     data["message"]["proposal"] = prop["id"]
     data["types"].pop("EIP712Domain")
     data.pop("primaryType")
