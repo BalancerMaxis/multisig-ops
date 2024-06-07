@@ -3,11 +3,8 @@ name: Post vlAURA snapshot votes to voter multisig and send to the vote relayer
 on:
   workflow_dispatch:
     inputs:
-      manual:
-        description: 'Use manual mode (true/false). Manual votes are placed in `tools/python/aura_snapshot_voting/manual_voting/{pool_type}.csv`'
-        required: true
-      vote-day:
-        description: 'Date that votes are are being posted. should be YYYY-MM-DD'
+      week-string:
+        description: 'Week string that votes are are being posted. should be YYYY-W##'
         required: true
 
 
@@ -31,10 +28,9 @@ jobs:
         DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
       run: |
         pwd
-        cd tools/python
-        pip3 install -r requirements.txt
-        cd aura_snapshot_voting
-        python3 vote.py --manual ${{ github.event.inputs.manual }} --vote-day "${{ github.event.inputs.vote-day }}"
+        RUN_DIR=tools/python/aura_snapshot_voting
+        pip3 install -r $RUN_DIR/requirements.txt
+        python3 -r $RUN_DIR/vote.py --manual true --week-string "${{ github.event.inputs.week-string }}"
     - name: Create PR
       id: cpr
       uses: peter-evans/create-pull-request@v5
@@ -45,3 +41,4 @@ jobs:
         branch-suffix: timestamp
         delete-branch: true
         labels: "vlAURA-Vote-Report"
+  # See example in run_reports_reussable for how to take the contents of a text file and drop it as a comment - could use this for the relayer link - fancy/not required.

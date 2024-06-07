@@ -174,8 +174,12 @@ if __name__ == "__main__":
 
     remaining_alloc = 1
 
+    ## TODO move to accepting 1 CSV file: f"MaxiOps/vlaura_voting/{args.week_string}/input.csv"
+    ## TODO outputs should go in the same folder
     if args.manual:
-        with open(f"manual_voting/{args.vote_day}/manual_votes.json", "r") as f:
+        with open(
+            f"MaxiOps/vlaura_voting/{args.week_string}/manual_votes.json", "r"
+        ) as f:
             manual_voting = json.load(f)
 
         gauges = {}
@@ -250,6 +254,9 @@ if __name__ == "__main__":
     data["types"].pop("EIP712Domain")
     data.pop("primaryType")
 
+    ## TODO change path
+    ## TODO add link to poke relayer in report
+    ## TODO drop file called relayer_link.txt in the weekly directory
     report_dir = f"../../../MaxiOps/vlaura_voting"
 
     if not os.path.exists(report_dir):
