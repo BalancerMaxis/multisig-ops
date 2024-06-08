@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     with open(f"{REPORT_DIR}/{args.vote_day}-payload.json", "r") as f:
         payload = json.load(f)
-    
+
     response = requests.post(
             "https://seq.snapshot.org/",
             headers={

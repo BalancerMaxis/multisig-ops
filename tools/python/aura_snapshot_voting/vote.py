@@ -24,7 +24,7 @@ from gen_vlaura_votes_for_epoch import gen_rev_data
 
 load_dotenv()
 
-ETHNODEURL = os.getenv("WEB3_INFURA_PROJECT_ID")
+ETHNODEURL = os.getenv("ETHNODEURL")
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
