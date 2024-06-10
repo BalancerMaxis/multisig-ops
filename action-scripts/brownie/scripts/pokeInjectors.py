@@ -45,7 +45,14 @@ def main():
         except:
             print(f"no gasStation found in {chain}")
         for address in to_poke:
-            c = Contract(address)
+            try:
+                c = Contract(address)
+            except Exception as e:
+                print(
+                    f"WARNING: {chain}:{address}: failed to import contract (maybe scanner issues)?  {e}"
+                )
+                errors = True
+                continue
             (ready, performdata) = c.checkUpkeep(b"")
             if ready:
                 try:
