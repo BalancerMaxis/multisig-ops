@@ -24,7 +24,7 @@ from gen_vlaura_votes_for_epoch import gen_rev_data
 
 load_dotenv()
 
-ETHNODEURL = os.getenv("WEB3_INFURA_PROJECT_ID")
+ETHNODEURL = os.getenv("ETHNODEURL")
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
@@ -221,8 +221,10 @@ if __name__ == "__main__":
         1, abs=0.001
     ), f"Sum of shares is not 1: {df['share'].sum()}"
 
+    choice_index_map = {c: x+1 for x, c in enumerate(choices)}
+
     vote_choices = {
-        str(choices.index(row["snapshot_label"]) - 1): row["share"] * 100
+        str(choice_index_map[row["snapshot_label"]]): row["share"] * 100
         for _, row in df.iterrows()
     }
 
