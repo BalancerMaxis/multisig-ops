@@ -221,7 +221,7 @@ if __name__ == "__main__":
         1, abs=0.001
     ), f"Sum of shares is not 1: {df['share'].sum()}"
 
-    choice_index_map = {c: x+1 for x, c in enumerate(choices)}
+    choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
     vote_choices = {
         str(choice_index_map[row["snapshot_label"]]): row["share"] * 100
