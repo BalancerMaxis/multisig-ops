@@ -41,7 +41,7 @@ def main():
         except:
             print(f"no gaugeRewardsInjectors found in {chain}")
         try:
-            to_poke += book.extras.maxiKeepers.gasStation
+            to_poke += str(book.extras.maxiKeepers.gasStation)
         except:
             print(f"no gasStation found in {chain}")
         for address in to_poke:
