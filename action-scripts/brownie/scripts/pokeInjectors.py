@@ -20,7 +20,7 @@ def main():
         account = accounts.from_mnemonic(mnemonic)
     except:
         # allows to run in fork
-        account = accounts.at('0x737760C760FfEc370F84861E4Be4AFF7093Ffa3f', force=True)
+        account = accounts.at("0x737760C760FfEc370F84861E4Be4AFF7093Ffa3f", force=True)
     print(f"Keeper Address: {account.address}")
     for chain in CHAINS_TO_KEEP:
         try:
