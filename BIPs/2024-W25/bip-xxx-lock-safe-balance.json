@@ -1,0 +1,59 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1717533167181,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.16.5",
+        "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "createdFromOwnerAddress": "",
+        "checksum": "0x48916ffe5bf66ca70a8653d12bd984289d546a20b4a46580911f78c890daa5f2"
+    },
+    "transactions": [
+        {
+            "to": "0x5aFE3855358E112B5647B952709E6165e1c1eEEe",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "spender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "approve",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "spender": "0x0a7CB434f96f65972D46A5c1A64a9654dC9959b2",
+                "amount": "124374160017847396583275"
+            }
+        },
+        {
+            "to": "0x0a7CB434f96f65972D46A5c1A64a9654dC9959b2",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "name": "amount",
+                        "type": "uint96",
+                        "internalType": "uint96"
+                    }
+                ],
+                "name": "lock",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "amount": "124374160017847396583275"
+            }
+        }
+    ]
+}
