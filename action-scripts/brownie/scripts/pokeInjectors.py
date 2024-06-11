@@ -1,4 +1,4 @@
-from bal_addresses import AddrBook, BalPermissions, MultipleMatchesError, NoResultError
+from bal_addresses import AddrBook
 from brownie import network, accounts, Contract
 import os
 
@@ -15,8 +15,12 @@ CHAINS_TO_KEEP = [
 def main():
     ## LOAD wallet
     errors = False
-    mnemonic = os.environ["KEYWORDS"]
-    account = accounts.from_mnemonic(mnemonic)
+    try:
+        mnemonic = os.environ["KEYWORDS"]
+        account = accounts.from_mnemonic(mnemonic)
+    except:
+        # allows to run in fork
+        account = accounts.at("0x737760C760FfEc370F84861E4Be4AFF7093Ffa3f", force=True)
     print(f"Keeper Address: {account.address}")
     for chain in CHAINS_TO_KEEP:
         try:
@@ -41,11 +45,18 @@ def main():
         except:
             print(f"no gaugeRewardsInjectors found in {chain}")
         try:
-            to_poke += book.extras.maxiKeepers.gasStation
+            to_poke.append(book.extras.maxiKeepers.gasStation)
         except:
             print(f"no gasStation found in {chain}")
         for address in to_poke:
-            c = Contract(address)
+            try:
+                c = Contract(address)
+            except Exception as e:
+                print(
+                    f"WARNING: {chain}:{address}: failed to import contract (maybe scanner issues)?  {e}"
+                )
+                errors = True
+                continue
             (ready, performdata) = c.checkUpkeep(b"")
             if ready:
                 try:
