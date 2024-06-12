@@ -1,0 +1,21 @@
+FILENAME: `MaxiOps/chainlinkAutomation/migrate_injector_arb1_part1.json`
+MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
+COMMIT: `9b1b5c5c740858e7ce28474faf4117908e86c2a4`
+CHAIN(S): `arbitrum`
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/559302e9-3c2a-44ec-a1ed-e0c2632124a9)
+```
++--------------------------+--------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------+------------+----------+
+| fx_name                  | to                                                                                               | value | inputs                                                                                | bip_number | tx_index |
++--------------------------+--------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------+------------+----------+
+| setKeeperRegistryAddress | 0xF23d8342881eDECcED51EA694AC21C2B68440929 (maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector) | 0     | {                                                                                     | N/A        |   N/A    |
+|                          |                                                                                                  |       |   "keeperRegistryAddress": [                                                          |            |          |
+|                          |                                                                                                  |       |     "0x9465eD2edD1428CF7d1151f6376ba2C7dfcda466 (N/A)"                                |            |          |
+|                          |                                                                                                  |       |   ]                                                                                   |            |          |
+|                          |                                                                                                  |       | }                                                                                     |            |          |
+| transferOwnership        | 0xF23d8342881eDECcED51EA694AC21C2B68440929 (maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector) | 0     | {                                                                                     | N/A        |   N/A    |
+|                          |                                                                                                  |       |   "to": [                                                                             |            |          |
+|                          |                                                                                                  |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/vote_incentive_recycling)" |            |          |
+|                          |                                                                                                  |       |   ]                                                                                   |            |          |
+|                          |                                                                                                  |       | }                                                                                     |            |          |
++--------------------------+--------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------+------------+----------+
+```
