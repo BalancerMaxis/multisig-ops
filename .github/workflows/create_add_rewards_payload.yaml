@@ -74,4 +74,4 @@ jobs:
     uses: ./.github/workflows/run_reports_reusable.yaml
     with:
       pr_number: ${{ needs.run-script-and-create-pr.outputs.pull-request-number }}
-      checkout_ref: "add-rewards"
+      checkout_ref: ${{ needs.run-script-and-create-pr.outputs.pull-request-branch }}
