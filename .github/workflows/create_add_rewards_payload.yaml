@@ -1,9 +1,5 @@
 name: Create Add Reewards Payload
 on:
-  token = os.environ["TOKEN"]
-  distributor = os.environ["DISTRIBUTOR"]
-  gauge = os.environ.get("GAUGE")
-  chain = os.environ.get("CHAIN_NAME")
   workflow_dispatch:
     inputs:
       token:
