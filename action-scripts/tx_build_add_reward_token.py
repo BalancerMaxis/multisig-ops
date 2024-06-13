@@ -31,7 +31,7 @@ def main():
     gauge_interface = w3.eth.contract(address=to_checksum_address(gauge), abi=GAUGE_ABI)
     data = gauge_interface.encodeABI(fn_name="add_reward", args=[token, distributor])
     # open the add_reward_token_to_gauge.json file and modify it with the object inputs
-    with open("tx_builder_templates/add_reward_token.json", "r") as f:
+    with open("action-scripts/tx_builder_templates/add_reward_token.json", "r") as f:
         tx = json.load(f)
         tx["chainId"] = chain
         tx["meta"]["createdFromSafeAddress"] = addr_book.multisigs.lm
