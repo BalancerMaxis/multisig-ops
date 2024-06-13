@@ -41,7 +41,7 @@ jobs:
     - name: Run script
       run: |
         cd action-scripts
-        python erc20_transfer_payload.py
+        python tx_build_erc20_transfer.py
       env:
         TOKEN: ${{ github.event.inputs.token }}
         DESTINATION: ${{ github.event.inputs.destination }}
