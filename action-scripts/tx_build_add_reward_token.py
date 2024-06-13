@@ -18,6 +18,7 @@ def main():
     distributor = os.environ["DISTRIBUTOR"]
     gauge = os.environ.get("GAUGE")
     chain = os.environ.get("CHAIN_NAME")
+    chain_id = AddrBook.chain_ids_by_name[chain.lower()]
     ## Resolve inputs
     addr_book = AddrBook(chain)
     distributor = (
@@ -33,7 +34,7 @@ def main():
     # open the add_reward_token_to_gauge.json file and modify it with the object inputs
     with open("action-scripts/tx_builder_templates/add_reward_token.json", "r") as f:
         tx = json.load(f)
-        tx["chainId"] = chain
+        tx["chainId"] = chain_id
         tx["meta"]["createdFromSafeAddress"] = addr_book.multisigs.lm
         tx["transactions"][0]["to"] = addr_book.search_unique(
             "AuthorizerAdaptorEntrypoint"
