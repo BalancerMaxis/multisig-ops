@@ -2,10 +2,8 @@ import json
 import os
 from web3 import Web3
 import time
-from bal_addresses import AddrBook
+from bal_addresses import AddrBook, is_address, to_checksum_address
 
-## Todo move this to bal_addresses
-is_address = Web3.is_address
 
 INFURA_KEY = os.getenv("INFURA_KEY")
 ALCHEMY_KEY = os.getenv("ALCHEMY_KEY")
@@ -28,7 +26,7 @@ def main():
     gauge = gauge if is_address(gauge) else addr_book.search_unique(gauge).address
     # Set data equal to add_rewards(token, distributor) calldata encoded
     w3 = Web3(Web3.HTTPProvider("http://localhost:8545"))
-    gauge_interface = w3.eth.contract(address=gauge, abi=GAUGE_ABI)
+    gauge_interface = w3.eth.contract(address=to_checksum_address(gauge), abi=GAUGE_ABI)
     data = gauge_interface.encodeABI(fn_name="add_reward", args=[token, distributor])
     # open the add_reward_token_to_gauge.json file and modify it with the object inputs
     with open("tx_builder_templates/add_reward_token.json", "r") as f:
