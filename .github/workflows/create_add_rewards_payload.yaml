@@ -66,7 +66,14 @@ jobs:
         body: ${{ env.PR_BODY }}
         branch: add-rewards
         branch-suffix: timestamp
+        labels: "Gauge Add Reward"
         delete-branch: true
+
+    - name: Set outputs
+      id: outputs
+      run: |
+        echo "::set-output name=pull-request-number::${{ steps.cpr.outputs.pull-request-number }}"
+        echo "::set-output name=pull-request-branch::${{ steps.cpr.outputs.pull-request-branch }}"
 
   run_reports:
     needs: run-script-and-create-pr
