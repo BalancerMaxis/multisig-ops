@@ -42,6 +42,7 @@ def main():
     wei_amount = os.environ.get("WEI_AMOUNT")
     multisig = os.environ.get("MULTISIG")
     chain = os.environ.get("CHAIN_NAME")
+    chain_id = AddrBook.chain_ids_by_name[chain.lower()]
     ## Resolve inputs
     addr_book = AddrBook(chain)
     multisig = (
@@ -74,7 +75,7 @@ def main():
         tx["meta"]["createdFromSafeAddress"] = multisig
         tx["transactions"][0]["to"] = token
         tx["transactions"][0]["value"] = wei_amount
-        tx["chainId"] = chain
+        tx["chainId"] = chain_id
     ## create a directory in MaxiOps/transfers for the chain if it does not exist
     if not os.path.exists(f"MaxiOps/transfers/{chain}"):
         os.makedirs(f"MaxiOps/transfers/{chain}")
