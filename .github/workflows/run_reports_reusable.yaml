@@ -62,6 +62,7 @@ jobs:
       - name: Generate Validation Report
         id: validation-report
         run: |
+          env
           export COMMIT_SHA=`git rev-parse HEAD`
           cd action-scripts/brownie
           brownie run --network mainnet scripts/validate_bip.py
