@@ -1,24 +1,25 @@
 name: Create Add Reewards Payload
 on:
+  token = os.environ["TOKEN"]
+  distributor = os.environ["DISTRIBUTOR"]
+  gauge = os.environ.get("GAUGE")
+  chain = os.environ.get("CHAIN_NAME")
   workflow_dispatch:
     inputs:
       token:
-        description: 'Token'
+        description: 'Reward Token'
         required: true
-      destination:
-        description: 'Destination Address(or unqiue addrbook string)'
+      gauge:
+        description: 'Gauge to reward'
         required: true
-      whole_amount:
-        description: 'Whole Amount (provide either whole_amount or wei_amount)'
-        required: false
-      wei_amount:
-        description: 'Wei Amount'
+      distributor:
+        description: 'Address pr unique addrbook string of the distributor'
         required: false
       multisig:
-        description: 'Source Multisig Address (or unique addrbook string)'
+        description: 'Multisig that should execute this transaction(or unique addrbook string)'
         required: true
       chain_name:
-        description: 'Chain Name.  Exists in bal_addresses: One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia]'
+        description: 'Chain Name.  Exists in bal_addresses: One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia, mode, fraxtal]'
         required: true
 
 jobs:
@@ -44,9 +45,8 @@ jobs:
         python erc20_transfer_payload.py
       env:
         TOKEN: ${{ github.event.inputs.token }}
-        DESTINATION: ${{ github.event.inputs.destination }}
-        WHOLE_AMOUNT: ${{ github.event.inputs.whole_amount }}
-        WEI_AMOUNT: ${{ github.event.inputs.wei_amount }}
+        GAUGE: ${{ github.event.inputs.gauge }}
+        DISTRIBUTOR: ${{ github.event.inputs.distributor }}
         MULTISIG: ${{ github.event.inputs.multisig }}
         CHAIN_NAME: ${{ github.event.inputs.chain_name }}
         INFURA_KEY: ${{ secrets.INFURA_KEY }}
