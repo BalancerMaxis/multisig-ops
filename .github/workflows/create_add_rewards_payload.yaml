@@ -69,8 +69,9 @@ jobs:
         branch-suffix: timestamp
         delete-branch: true
 
-    - name: Run report action
-      uses: ./.github/workflows/run_reports_reusable.yaml
-      with:
-        pr_number: ${{ steps.cpr.outputs.pull-request-number }}
-        checkout_ref: "add-rewards"
+  run_reports:
+    needs: run-script-and-create-pr
+    uses: ./.github/workflows/run_reports_reusable.yaml
+    with:
+      pr_number: ${{ needs.run-script-and-create-pr.outputs.pull-request-number }}
+      checkout_ref: "add-rewards"
