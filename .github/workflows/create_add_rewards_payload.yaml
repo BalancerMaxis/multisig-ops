@@ -60,6 +60,7 @@ jobs:
         CHAIN_NAME: ${{ github.event.inputs.chain_name }}
 
     - name: Create Pull Request
+      id: cpr
       uses: peter-evans/create-pull-request@v6
       with:
         title: ${{ env.PR_TITLE }}
@@ -69,4 +70,7 @@ jobs:
         delete-branch: true
 
     - name: Run report action
-      uses: ./.github/actions/report-action
+      uses: ./.github/workflows/run_reports_reusable.yaml
+      with:
+        pr_number: ${{ steps.cpr.outputs.pull-request-number }}
+        checkout_ref: "add-rewards"
