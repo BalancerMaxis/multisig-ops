@@ -61,22 +61,6 @@ jobs:
 
       - name: Generate Validation Report
         id: validation-report
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
-          SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
-          BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
-          TENDERLY_ACCESS_KEY: ${{ secrets.TENDERLY_ACCESS_KEY }}
-          TENDERLY_ACCOUNT_NAME: ${{ secrets.TENDERLY_ACCOUNT_NAME }}
-          TENDERLY_PROJECT_NAME: ${{ secrets.TENDERLY_PROJECT_NAME }}
-          PR_NUMBER: ${{ inputs.pr_number }}
-          COMMIT_SHA: ${{ inputs.checkout_ref }}
         run: |
           env
           export COMMIT_SHA=`git rev-parse HEAD`
@@ -84,22 +68,6 @@ jobs:
           brownie run --network mainnet scripts/validate_bip.py
 
       - name: Generate Payload report
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
-          SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
-          BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
-          TENDERLY_ACCESS_KEY: ${{ secrets.TENDERLY_ACCESS_KEY }}
-          TENDERLY_ACCOUNT_NAME: ${{ secrets.TENDERLY_ACCOUNT_NAME }}
-          TENDERLY_PROJECT_NAME: ${{ secrets.TENDERLY_PROJECT_NAME }}
-          PR_NUMBER: ${{ inputs.pr_number }}
-          COMMIT_SHA: ${{ inputs.checkout_ref }}
         id: gen-report
         continue-on-error: true
         run: |

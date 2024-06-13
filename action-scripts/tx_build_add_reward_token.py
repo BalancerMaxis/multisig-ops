@@ -36,9 +36,10 @@ def main():
         tx = json.load(f)
         tx["chainId"] = chain_id
         tx["meta"]["createdFromSafeAddress"] = addr_book.multisigs.lm
+        ## Template is expected to have an addrbook string in to field
         tx["transactions"][0]["to"] = addr_book.search_unique(
-            "AuthorizerAdaptorEntrypoint"
-        )
+            tx["transactions"][0]["to"]
+        ).address
         tx["transactions"][0]["contractInputsValues"]["data"] = str(data)
         tx["transactions"][0]["contractInputsValues"]["target"] = gauge
     ## create a directory in MaxiOps/transfers for the chain if it does not exist
