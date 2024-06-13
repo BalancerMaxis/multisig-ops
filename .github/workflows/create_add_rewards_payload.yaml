@@ -37,8 +37,7 @@ jobs:
 
     - name: Run script
       run: |
-        cd action-scripts
-        python tx_build_add_reward_token.py
+        python action-scripts/tx_build_add_reward_token.py
       env:
         TOKEN: ${{ github.event.inputs.token }}
         GAUGE: ${{ github.event.inputs.gauge }}
