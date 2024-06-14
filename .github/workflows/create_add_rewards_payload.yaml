@@ -20,11 +20,13 @@ on:
 
 
 jobs:
-  run-script-and-create-pr:
+  add-rewards:
     runs-on: ubuntu-latest
     outputs:
       pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-      pull-request-ref: ${{ steps.cpr.outputs.pull-request-head-sha }}
+      pull-request-branch: ${{ steps.generate-branch-name.outputs.branch }}
+
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -61,14 +63,19 @@ jobs:
           MULTISIG: ${{ github.event.inputs.multisig }}
           CHAIN_NAME: ${{ github.event.inputs.chain_name }}
 
+
+      - name: Generate branch name
+        id: generate-branch-name
+        run: |
+          echo "::set-output name=branch::${{ github.job }}-$(date +'%Y%m%d%H%M%S')"
+
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           title: ${{ env.PR_TITLE }}
           body: ${{ env.PR_BODY }}
-          branch: add-rewards
-          branch-suffix: timestamp
+          branch: ${{ steps.generate-branch-name.outputs.branch }}
           labels: "Gauge Add Reward"
           delete-branch: true
 
@@ -77,4 +84,4 @@ jobs:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     with:
       pr_number: ${{ needs.run-script-and-create-pr.outputs.pull-request-number }}
-      checkout_ref: ${{ needs.run-script-and-create-pr.outputs.pull-request-ref }}
+      checkout_ref: ${{ needs.run-script-and-create-pr.outputs.pull-request-branch }}
