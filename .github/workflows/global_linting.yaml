@@ -8,6 +8,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.checkout_ref }}
+          fetch-depth: 0
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
