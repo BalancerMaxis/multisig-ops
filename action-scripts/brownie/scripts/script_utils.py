@@ -63,7 +63,6 @@ def get_changed_files() -> list[dict]:
     print(f"Using {api_url} to get changed files")
     response = requests.get(api_url)
     pr_file_data = json.loads(response.text)
-    print(f"pr_file_data: \n {json.dumps(pr_file_data, indent=2)}")
     changed_files = []
     for file_json in pr_file_data:
         filename = file_json["filename"]
