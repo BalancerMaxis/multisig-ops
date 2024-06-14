@@ -29,6 +29,8 @@ from datetime import datetime
 
 import json
 
+GAUGE_ABI = json.load(open("abis/IRewardsOnlyGauge.json"))
+
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
 GAUGE_ADD_METHODS = ["gauge", "rootGauge"]
@@ -555,7 +557,22 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
     entrypoint = Contract(transaction["to"])
     entrypoint = prettify_address(entrypoint.address, chainbook)
     # try:
-    target_interface = Contract(transaction["contractInputsValues"].get("target"))
+    target_address = transaction["contractInputsValues"].get("target")
+    print(target_address)
+    try:
+        target_interface = Contract.from_explorer(target_address)
+    except Exception as e:
+        try:
+            print(
+                f"WARNING: Attempting to use Gauge Interface for {target_address} instead of explorer due to failure:{e}"
+            )
+            target_interface = Contract.from_abi("gauge", target_address, GAUGE_ABI)
+            # check and make sure this looks like a gauge
+            target_interface.authorizer_adaptor()
+        except Exception as e:
+            print(f"Can't find target interface for {target_address}: {e}")
+            return
+
     data = transaction["contractInputsValues"].get("data")
     (selector, inputs) = target_interface.decode_input(data)
     # todo put this back
