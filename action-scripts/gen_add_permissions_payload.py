@@ -32,7 +32,8 @@ W3_BY_CHAIN = {
     ),
     "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
     "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
-    "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")),
+    "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")
+                    ),
 }
 
 book_by_chain = {}
