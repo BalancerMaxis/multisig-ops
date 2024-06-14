@@ -9,7 +9,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.checkout_ref }}
+          ref: ${{ inputs.head_ref }}
           fetch-depth: 0
 
       - name: Prettify code
