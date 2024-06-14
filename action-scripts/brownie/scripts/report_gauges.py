@@ -572,7 +572,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
         "chain": chain_name,
         "entrypoint": entrypoint,
         "selector": selector,
-        "inputs": inputs,
+        "parsed_inputs": data,
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
