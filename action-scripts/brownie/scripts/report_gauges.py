@@ -568,7 +568,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
             )
             target_interface = Contract.from_abi("gauge", target_address, GAUGE_ABI)
             # check and make sure this looks like a gauge
-            target_interface.authorizer_adaptor()
+            target_interface.lp_token()
         except Exception as e:
             print(f"Can't find target interface for {target_address}: {e}")
             return
