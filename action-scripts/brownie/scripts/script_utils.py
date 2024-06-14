@@ -437,46 +437,6 @@ def get_token_symbol(token_address) -> Optional[str]:
         return
 
 
-def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
-    """
-    Return a list of token addresses and names in string format.
-    Uses onchain lookups with brownie, requires you are on the network of the token when run
-    """
-    results = []
-    for token in token_addresses:
-        results.append(f"{token}: {get_token_symbol(token)}")
-    return results
-
-
-def prettify_int_amount(amount: int, decimals=None) -> list[str]:
-    try:
-        amount = int(amount)
-    except:
-        # Can't make this an int, leave it alone
-        print(f"Can't make {amount} into an int to prettify")
-        return amount
-    if isinstance(decimals, int):
-        # We know decimals so use them
-        return f"{amount}/1e{decimals} = {amount / 10 ** decimals}"
-    else:
-        # We don't know decimals so provide 18 and 6
-        return f"raw:{amount}, 18 decimals:{Decimal(amount) / Decimal(1e18)}, 6 decimals: {Decimal(amount) / Decimal(1e6)}"
-
-
-def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
-    pretty_amounts = []
-    for amount in amounts:
-        pretty_amounts.append(prettify_int_amount(amount, decimals))
-    return pretty_amounts
-
-
-def sum_list(amounts: list) -> int:
-    total = 0
-    for amount in amounts:
-        total += int(amount)
-    return total
-
-
 def get_rate_provider_review_summaries(
     rate_providers: list[str], chain: str
 ) -> list[str]:
@@ -496,40 +456,6 @@ def get_rate_provider_review_summaries(
         else:
             summaries.append(rpinfo["summary"])
     return summaries
-
-
-def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
-    """
-    Accepts contractInputsValues dict with key of input_name and value of input_value
-    Tries to look for values to add human readability to and does so when possible
-    Returns a non-executable but more human readable version of the inputs in the same format
-    """
-    addr = AddrBook(chain)
-    perm = BalPermissions(chain)
-    outputs = defaultdict(list)
-    for key, valuedata in contracts_inputs_values.items():
-        values = parse_txbuilder_list_string(valuedata)
-        for value in values:
-            ## Reverse resolve addresses
-            if is_address(value):
-                outputs[key].append(
-                    f"{value} ({addr.reversebook.get(to_checksum_address(value), 'N/A')})"
-                )
-            ## Reverse resolve authorizor roles
-            elif "role" in key.lower():
-                outputs[key].append(
-                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
-                )
-            elif (
-                "value" in key.lower()
-                or "amount" in key.lower()
-                or "_minouts" in key.lower()
-            ):
-                # Look for things that look like values and do some decimal math
-                outputs[key].append(prettify_int_amount(value))
-            else:
-                outputs[key].append(value)
-    return outputs
 
 
 def merge_files(
@@ -608,6 +534,106 @@ def parse_txbuilder_list_string(list_string) -> list:
     return [list_string]
 
 
+def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
+    """
+    Return a list of token addresses and names in string format.
+    Uses onchain lookups with brownie, requires you are on the network of the token when run
+    """
+    results = []
+    for token in token_addresses:
+        results.append(f"{token}: {get_token_symbol(token)}")
+    return results
+
+
+def prettify_int_amount(amount: int, decimals=None) -> str:
+    try:
+        amount = int(amount)
+    except:
+        # Can't make this an int, leave it alone
+        print(f"Can't make {amount} into an int to prettify")
+        return amount
+    if isinstance(decimals, int):
+        # We know decimals so use them
+        return f"{amount}/1e{decimals} = {amount / 10 ** decimals}"
+    else:
+        # We don't know decimals so provide 18 and 6
+        return f"raw:{amount}, 18 decimals:{Decimal(amount) / Decimal(1e18)}, 6 decimals: {Decimal(amount) / Decimal(1e6)}"
+
+
+## Prettification helpers
+def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
+    pretty_amounts = []
+    for amount in amounts:
+        pretty_amounts.append(prettify_int_amount(amount, decimals))
+    return pretty_amounts
+
+
+def prettify_address(address, chainbook) -> str:
+    return f"{address} ({chainbook.reversebook.get(address)})"
+
+
+def sum_list(amounts: list) -> int:
+    total = 0
+    for amount in amounts:
+        total += int(amount)
+    return total
+
+
+## Prettification logic for various complex data types
+def prettify_flat_list(inputs: list[str], chain: str) -> list[str]:
+    """
+    Accepts a list of and returns it with any address items prettified including names in string format
+    Requires you are on the network of the addresses when run
+    """
+    chain = chain.strip("-main")
+    book = AddrBook(chain)
+    results = []
+    for input in inputs:
+        if is_address(input):
+            results.append(
+                f"{input}: {book.reversebook.get(to_checksum_address(input), get_token_symbol(input))}"
+            )
+        else:
+            results.append(prettify_int_amount(input))
+    return results
+
+
+def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
+    """
+    Accepts contractInputsValues dict with key of input_name and value of input_value
+    Tries to look for values to add human readability to and does so when possible
+    Returns a non-executable but more human readable version of the inputs in the same format
+    """
+    addr = AddrBook(chain)
+    perm = BalPermissions(chain)
+    outputs = defaultdict(list)
+    ## TODO, can we use prettify flat list and the other helpers here?
+    for key, valuedata in contracts_inputs_values.items():
+        values = parse_txbuilder_list_string(valuedata)
+        for value in values:
+            ## Reverse resolve addresses
+            if is_address(value):
+                outputs[key].append(
+                    f"{value} ({addr.reversebook.get(to_checksum_address(value), 'N/A')})"
+                )
+            ## Reverse resolve authorizor roles
+            elif "role" in key.lower():
+                outputs[key].append(
+                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
+                )
+            elif (
+                "value" in key.lower()
+                or "amount" in key.lower()
+                or "_minouts" in key.lower()
+            ):
+                # Look for things that look like values and do some decimal math
+                outputs[key].append(prettify_int_amount(value))
+            else:
+                outputs[key].append(value)
+    return outputs
+
+
+## TODO do we need this or can we just do a more general reverse lookup with prettify_flat_list?
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
     for gauge in gauge_addresses:

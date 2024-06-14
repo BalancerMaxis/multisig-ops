@@ -18,7 +18,9 @@ from .script_utils import get_rate_provider_review_summaries
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import prettify_gauge_list
+from .script_utils import prettify_flat_list
 from .script_utils import prettify_int_amounts
+from .script_utils import prettify_address
 from .script_utils import sum_list
 from .script_utils import return_hh_brib_maps
 from .script_utils import switch_chain_if_needed
@@ -524,6 +526,58 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
+def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse calls made throught the AuthorizerAdapterEntrypoint
+    """
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
+        return
+    # Parse only gauge add transactions
+    if transaction["contractMethod"]["name"] != "performAction":
+        return
+    chain_id = kwargs["chain_id"]
+    chain_alias = "{}-main"
+    chain_name = "main"
+    # Get chain name using address book and chain id
+    for c_name, c_id in AddrBook.chain_ids_by_name.items():
+        if int(chain_id) == int(c_id):
+            chain_name = (
+                chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
+            )
+            chainbook = AddrBook(c_name)
+            break
+    if not chain_name:
+        print("Chain name not found! Cannot transfer transaction")
+        return
+    switch_chain_if_needed(chain_id)
+    entrypoint = Contract(transaction["to"])
+    entrypoint = prettify_address(entrypoint.address, chainbook)
+    try:
+        target_interface = Contract(transaction["contractInputsValues"].get("target"))
+        data = Contract(transaction["contractInputsValues"].get("data"))
+        (selector, inputs) = target_interface.decode_input(data)
+    except Exception as e:
+        print(f"Error processing performAction call: {e}")
+        return
+    try:
+        inputs = prettify_flat_list(inputs, chain_name)
+    except Exception as e:
+        print(
+            f"INFO: Was unable to prettify inputs during performAction decoding, perhaps the input data is too complex: {e}"
+        )
+    return {
+        "function": "performAction",
+        "chain": chain_name,
+        "entrypoint": entrypoint,
+        "selector": selector,
+        "inputs": inputs,
+        "bip": kwargs.get("bip_number", "N/A"),
+        "tx_index": kwargs.get("tx_index", "N/A"),
+    }
+
+
 def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse an ERC-20 transfer transaction and return a dict with parsed data
@@ -727,6 +781,7 @@ def main() -> None:
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
+    all_reports.append(handler(files, _parse_AuthorizerAdapterEntrypoint))
     all_reports.append(handler(files, _parse_set_recipient_list))
 
     ## Catch All should run after all other handlers.
