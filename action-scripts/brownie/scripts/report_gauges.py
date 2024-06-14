@@ -29,7 +29,7 @@ from datetime import datetime
 
 import json
 
-GAUGE_ABI = json.load(open("abis/IRewardsOnlyGauge.json"))
+GAUGE_ABI = json.load(open("abis/IChildChainGauge.json"))
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
