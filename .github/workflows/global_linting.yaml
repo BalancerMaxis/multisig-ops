@@ -16,7 +16,7 @@ jobs:
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: --write **/*.{yaml,yml}
-          commit_message: Automatic Prettify repo
+          commit_message: "style: ci lint with `prettier`"
 
       - name: Black
         uses: psf/black@stable
