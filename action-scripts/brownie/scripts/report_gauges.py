@@ -555,12 +555,17 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
     entrypoint = Contract(transaction["to"])
     entrypoint = prettify_address(entrypoint.address, chainbook)
     try:
-        target_interface = Contract(transaction["contractInputsValues"].get("target"))
+        target_interface = Contract.from_source(
+            transaction["contractInputsValues"].get("target")
+        )
         data = Contract(transaction["contractInputsValues"].get("data"))
         (selector, inputs) = target_interface.decode_input(data)
     except Exception as e:
-        print(f"Error processing performAction call: {e}")
-        return
+        print(chain.id)
+        pass
+    ## todo put this back
+    #    print(f"Error processing performAction call: {e}")
+    #    return
     try:
         inputs = prettify_flat_list(inputs, chain_name)
     except Exception as e:
@@ -572,7 +577,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
         "chain": chain_name,
         "entrypoint": entrypoint,
         "selector": selector,
-        "parsed_inputs": data,
+        "parsed_inputs": inputs,
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
