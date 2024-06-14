@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       token:
-        description: 'Token'
-        required: true
+         description: 'Token'
+         required: true
       destination:
         description: 'Destination Address(or unqiue addrbook string)'
         required: true
