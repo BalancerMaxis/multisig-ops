@@ -2,7 +2,7 @@ name: Generate new Authorizer Payloads
 
 on:
   pull_request:
-    types: [labeled, synchronize]
+    types: [ labeled, synchronize ]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
