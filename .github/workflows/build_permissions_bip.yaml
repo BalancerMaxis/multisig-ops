@@ -5,16 +5,16 @@ on:
     inputs:
       PR_NUMBER:
         description: "The number of the PR with the a successful Generate Authorizor run"
-        require: true
+        required: true
       BIP_NUMBER:
         description: "The number of the BIP to label everything as"
-        require: true
+        required: true
       JSON_DATE:
         description: "The Date used on the generated JSON files (yyyy-mm-dd)"
-        require: true
+        required: true
       WEEKLY_DIR:
         description: "The weekly DIR for the bip like `YYYY-W##"
-        require: true
+        required: true
 
 jobs:
   transform_to_BIP:
