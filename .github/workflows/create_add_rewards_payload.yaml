@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-      pull-request-branch: ${{ steps.cpr.outputs.pull-request-branch }}
+      pull-request-ref: ${{ steps.cpr.outputs.pull-request-head-sha }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -77,4 +77,4 @@ jobs:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     with:
       pr_number: ${{ needs.run-script-and-create-pr.outputs.pull-request-number }}
-      checkout_ref: ${{ needs.run-script-and-create-pr.outputs.pull-request-branch }}
+      checkout_ref: ${{ needs.run-script-and-create-pr.outputs.pull-request-ref }}
