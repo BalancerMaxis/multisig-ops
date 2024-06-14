@@ -555,10 +555,8 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
     entrypoint = Contract(transaction["to"])
     entrypoint = prettify_address(entrypoint.address, chainbook)
     # try:
-    target_interface = Contract.from_source(
-        transaction["contractInputsValues"].get("target")
-    )
-    data = Contract(transaction["contractInputsValues"].get("data"))
+    target_interface = Contract(transaction["contractInputsValues"].get("target"))
+    data = transaction["contractInputsValues"].get("data")
     (selector, inputs) = target_interface.decode_input(data)
     # todo put this back
     # except Exception as e:
