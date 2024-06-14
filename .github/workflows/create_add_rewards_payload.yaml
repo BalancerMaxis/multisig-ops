@@ -18,6 +18,7 @@ on:
         description: "Chain Name.  Exists in bal_addresses: One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia, mode, fraxtal]"
         required: true
 
+
 jobs:
   run-script-and-create-pr:
     runs-on: ubuntu-latest
