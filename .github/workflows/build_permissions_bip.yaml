@@ -4,37 +4,34 @@ on:
   workflow_dispatch:
     inputs:
       PR_NUMBER:
-        description: 'The number of the PR with the a successful Generate Authorizor run'
+        description: "The number of the PR with the a successful Generate Authorizor run"
         require: true
       BIP_NUMBER:
-        description: 'The number of the BIP to label everything as'
+        description: "The number of the BIP to label everything as"
         require: true
       JSON_DATE:
-        description: 'The Date used on the generated JSON files (yyyy-mm-dd)'
+        description: "The Date used on the generated JSON files (yyyy-mm-dd)"
         require: true
       WEEKLY_DIR:
-        description: 'The weekly DIR for the bip like `YYYY-W##'
+        description: "The weekly DIR for the bip like `YYYY-W##"
         require: true
-
 
 jobs:
   transform_to_BIP:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Generate Permissions BIP
+        id: doit
+        env:
+          PR_NUMBER: ${{github.event.inputs.PR_NUMBER}}
+          BIP_NUMBER: ${{github.event.inputs.BIP_NUMBER}}
+          DATE: ${{github.event.inputs.JSON_DATE}}
+          WEEKLY_DIR: ${{github.event.inputs.WEEKLY_DIR}}
 
-    - name: Generate Permissions BIP
-      id: doit
-      env:
-        PR_NUMBER: ${{github.event.inputs.PR_NUMBER}}
-        BIP_NUMBER: ${{github.event.inputs.BIP_NUMBER}}
-        DATE: ${{github.event.inputs.JSON_DATE}}
-        WEEKLY_DIR: ${{github.event.inputs.WEEKLY_DIR}}
-
-      run: |
+        run: |
           cd BIPs/00batched/authorizer
           bash gen_gov_md.sh
-

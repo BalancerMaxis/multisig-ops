@@ -12,5 +12,5 @@ jobs:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     secrets: inherit
     with:
-      pr_number:  ${{ github.event.number }}
+      pr_number: ${{ github.event.number }}
       checkout_ref: ${{ github.head_ref }}

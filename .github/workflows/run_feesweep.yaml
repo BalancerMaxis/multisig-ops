@@ -2,7 +2,7 @@ name: Generate feeSweep payloads
 
 on:
   pull_request:
-    types: [ labeled, synchronize ]
+    types: [labeled, synchronize]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -15,25 +15,24 @@ jobs:
       run:
         working-directory: tools/python
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
 
-    - name: Setup Python 3.9
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.9
+      - name: Run Sweep
+        if: github.event.label.name == 'Sweep Fees'
+        run: |
+          pip install -r requirements.txt
+          python3 sweepFees.py
 
-    - name: Run Sweep
-      if: github.event.label.name == 'Sweep Fees'
-      run: |
-        pip install -r requirements.txt
-        python3 sweepFees.py
-
-    - name: Commit and push changes
-      uses:  stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: Generate Fee Sweep transaction builder jsons
-        commit_user_name:  GitHub Actions
-        commit_user_email: github-actions[bot]@users.noreply.github.com
-        commit_author: Github Actions <noreply@users.noreply.github.com>
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Generate Fee Sweep transaction builder jsons
+          commit_user_name: GitHub Actions
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: Github Actions <noreply@users.noreply.github.com>
