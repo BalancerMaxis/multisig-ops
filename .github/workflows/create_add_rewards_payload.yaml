@@ -80,7 +80,8 @@ jobs:
           delete-branch: true
 
   run_reports:
-    needs: add_rewards
+    needs: add-rewards
+    secrets: inherit
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     with:
       pr_number: ${{ needs.add-rewards.outputs.pull-request-number }}
