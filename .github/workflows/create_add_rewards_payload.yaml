@@ -22,8 +22,8 @@ jobs:
   run-script-and-create-pr:
     runs-on: ubuntu-latest
     outputs:
-      pull-request-number: ${{ steps.cpr.outputs.pull-request-number}}
-      pull-request-branch: "gha-payload-merge"
+      pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+      pull-request-branch: ${{ steps.cpr.outputs.pull-request-branch }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
