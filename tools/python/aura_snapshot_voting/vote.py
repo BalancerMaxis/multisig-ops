@@ -72,12 +72,12 @@ def hash_eip712_message(structured_data):
 
 def format_choices(choices):
     # custom formatting so it can be properly parsed by the snapshot
-    formatted_string = '{'
+    formatted_string = "{"
     for key, value in choices.items():
-        formatted_string += f'\"{key}\":{value},'
+        formatted_string += f'"{key}":{value},'
         if key == list(choices.keys())[-1]:
             formatted_string = formatted_string[:-1]
-    formatted_string += '}'
+    formatted_string += "}"
     return formatted_string
 
 
@@ -89,22 +89,24 @@ if __name__ == "__main__":
         help="Date that votes are are being posted. should be YYYY-W##",
     )
     year, week = parser.parse_args().week_string.split("-")
-    
+
     project_root = Path.cwd()
     voting_dir = project_root / "MaxiOps/vlaura_voting" / str(year) / str(week)
     input_dir = voting_dir / "input"
     output_dir = voting_dir / "output"
-    
+
     os.makedirs(input_dir, exist_ok=True)
     os.makedirs(output_dir, exist_ok=True)
-    
+
     vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
 
     prop, _, _ = _get_prop_and_determine_date_range()
     choices = prop["choices"]
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
-    gauge_labels = {Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
-    choice_index_map = {c: x+1 for x, c in enumerate(choices)}
+    gauge_labels = {
+        Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels
+    }
+    choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
         lambda x: gauge_labels.get(Web3.to_checksum_address(x))
@@ -113,13 +115,11 @@ if __name__ == "__main__":
         lambda label: str(choice_index_map[label])
     )
     vote_df["share"] = vote_df["Allocation %"] * 100
-    
-    assert vote_df["share"].sum() == approx(
-        100, abs=0.0001
-    )
-    
+
+    assert vote_df["share"].sum() == approx(100, abs=0.0001)
+
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
-    
+
     with open("eip712_template.json", "r") as f:
         data = json.load(f)
 
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     print(f"hash: {hash.hex()}")
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
- 
+
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
     )
@@ -145,7 +145,7 @@ if __name__ == "__main__":
     data.pop("primaryType")
 
     with open(f"{output_dir}/report.txt", "w") as f:
-        vote_data = dict(zip(vote_df['snapshot_label'], vote_df['share']))
+        vote_data = dict(zip(vote_df["snapshot_label"], vote_df["share"]))
         f.write(f"Voting for: {json.dumps(vote_data, indent=4)}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: https://relayer.snapshot.org/api/messages/0x{hash.hex()}")
@@ -161,13 +161,13 @@ if __name__ == "__main__":
             "Referer": "https://snapshot.org/",
         },
         data=json.dumps(
-                {
-                    "address": vlaura_safe_addr,
-                    "data": data,
-                    "sig": "0x",
-                }
-            ),
-        )
-    
+            {
+                "address": vlaura_safe_addr,
+                "data": data,
+                "sig": "0x",
+            }
+        ),
+    )
+
     response.raise_for_status()
     print(response.text)
