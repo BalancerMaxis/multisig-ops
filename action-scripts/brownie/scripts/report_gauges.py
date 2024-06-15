@@ -575,7 +575,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
     try:
         data = transaction["contractInputsValues"].get("data")
         (selector, inputs) = target_interface.decode_input(data)
-     except Exception as e:
+    except Exception as e:
         print(f"Error processing performAction call: {e}")
         return
     try:
