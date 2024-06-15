@@ -20,10 +20,10 @@ jobs:
       with:
         python-version: 3.9
 
-    # - name: Install dependencies
-    #   run: |
-    #     pip3 install -r tools/python/requirements.txt
-    #   working-directory: ${{ github.workspace }}
+    - name: Install dependencies
+      run: |
+        pip3 install -r tools/python/requirements.txt
+      working-directory: ${{ github.workspace }}
 
     - name: vlAURA Voting
       env:
