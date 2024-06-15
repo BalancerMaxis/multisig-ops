@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       week-string:
-        description: 'Week string that votes are being posted. should be YYYY-W##'
+        description: 'Week string that votes are are being posted. should be YYYY-W##'
         required: true
 
 jobs:
@@ -20,35 +20,15 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Install dependencies
-      run: |
-        pip3 install -r tools/python/requirements.txt
-      working-directory: ${{ github.workspace }}
-
-    - name: Verify input directory
-      run: |
-        week_string="${{ github.event.inputs.week-string }}"
-        year=$(echo $week_string | cut -d'-' -f1)
-        week=$(echo $week_string | cut -d'-' -f2)
-        input_dir="${{ github.workspace }}/MaxiOps/vlaura_voting/${year}/${week}/input"
-        echo "Expected input directory: $input_dir"
-        if [ -d "$input_dir" ]; then
-          echo "Input directory exists."
-          ls -la "$input_dir"
-        else
-          echo "Input directory does not exist."
-        fi
-
     - name: vlAURA Voting
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
         pwd
-        ls -la tools/python/aura_snapshot_voting
-        python3 tools/python/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
-      working-directory: ${{ github.workspace }}
-
+        RUN_DIR=tools/python
+        pip3 install -r $RUN_DIR/requirements.txt
+        python3 $RUN_DIR/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
     - name: Create PR
       id: cpr
       uses: peter-evans/create-pull-request@v5
