@@ -20,15 +20,19 @@ jobs:
       with:
         python-version: 3.9
 
+    - name: Install dependencies
+      run: |
+        pip3 install -r tools/python/requirements.txt
+      working-directory: ${{ github.workspace }}
+
     - name: vlAURA Voting
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
         pwd
-        RUN_DIR=tools/python
-        pip3 install -r $RUN_DIR/requirements.txt
-        python3 $RUN_DIR/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
+        ls -la tools/python/aura_snapshot_voting
+        python3 tools/python/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
       working-directory: ${{ github.workspace }}
 
     - name: Create PR
