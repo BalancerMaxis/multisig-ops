@@ -94,14 +94,13 @@ if __name__ == "__main__":
 
     year, week = parser.parse_args().week_string.split("-")
 
-    voting_dir = Path(f"../../../MaxiOps/vlaura_voting/{year}/{week}")
+    project_root = Path.cwd()
+    voting_dir = project_root / "MaxiOps/vlaura_voting" / str(year) / str(week)
     input_dir = voting_dir / "input"
     output_dir = voting_dir / "output"
-    
-    voting_dir.mkdir(exist_ok=True)
-    input_dir.mkdir(exist_ok=True)
-    output_dir.mkdir(exist_ok=True)
-    
+
+    os.makedirs(input_dir, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
 
     prop, start, end = _get_prop_and_determine_date_range()
     choices = prop["choices"]
@@ -125,8 +124,9 @@ if __name__ == "__main__":
     )
     
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
-    
-    with open("eip712_template.json", "r") as f:
+
+    template_path = project_root / "tools/python/aura_snapshot_voting"
+    with open(f"{template_path}/eip712_template.json", "r") as f:
         data = json.load(f)
 
     data["message"]["space"] = "balancerquadraticvoting.eth"
@@ -159,7 +159,6 @@ if __name__ == "__main__":
 
     with open(f"{output_dir}/payload.json", "w") as f:
         json.dump(data, f, indent=4)
-        
         
     response = requests.post(
         "https://relayer.snapshot.org/",
