@@ -572,13 +572,12 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
         except Exception as e:
             print(f"Can't find target interface for {target_address}: {e}")
             return
-
-    data = transaction["contractInputsValues"].get("data")
-    (selector, inputs) = target_interface.decode_input(data)
-    # todo put this back
-    # except Exception as e:
-    #    print(f"Error processing performAction call: {e}")
-    #    return
+    try:
+        data = transaction["contractInputsValues"].get("data")
+        (selector, inputs) = target_interface.decode_input(data)
+     except Exception as e:
+        print(f"Error processing performAction call: {e}")
+        return
     try:
         inputs = prettify_flat_list(inputs, chain_name)
     except Exception as e:
@@ -590,7 +589,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
         "chain": chain_name,
         "entrypoint": entrypoint,
         "selector": selector,
-        "parsed_inputs": inputs,
+        "parsed_inputs": "\n".join(inputs),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
