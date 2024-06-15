@@ -98,6 +98,9 @@ if __name__ == "__main__":
     voting_dir = project_root / "MaxiOps/vlaura_voting" / str(year) / str(week)
     input_dir = voting_dir / "input"
     output_dir = voting_dir / "output"
+    
+    print(input_dir)
+    print(output_dir)
 
     os.makedirs(input_dir, exist_ok=True)
     os.makedirs(output_dir, exist_ok=True)
@@ -105,7 +108,11 @@ if __name__ == "__main__":
     prop, start, end = _get_prop_and_determine_date_range()
     choices = prop["choices"]
 
-    vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
+    try:
+        vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
+    except:
+        raise Exception(f"No input file found in {input_dir}")
+    exit()
 
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
     gauge_labels = {Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
