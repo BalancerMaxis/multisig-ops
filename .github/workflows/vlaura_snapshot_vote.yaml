@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       week-string:
-        description: 'Week string that votes are are being posted. should be YYYY-W##'
+        description: 'Week string that votes are being posted. should be YYYY-W##'
         required: true
 
 jobs:
@@ -32,7 +32,8 @@ jobs:
         RUN_DIR=tools/python
         pip3 install -r $RUN_DIR/requirements.txt
         python3 $RUN_DIR/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
-        working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
+      working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
+      
     - name: Create PR
       id: cpr
       uses: peter-evans/create-pull-request@v5
