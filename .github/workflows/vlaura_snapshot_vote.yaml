@@ -20,8 +20,19 @@ jobs:
       with:
         python-version: 3.9
 
+    - name: Print environment variables
+      run: printenv
+
+    - name: Print current working directory
+      run: pwd
+
+    - name: List files in current directory
+      run: ls -la
+
     - name: Install dependencies
       run: |
+        pwd
+        ls -la
         pip3 install -r tools/python/requirements.txt
       working-directory: ${{ github.workspace }}
 
