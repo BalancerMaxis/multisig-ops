@@ -3,13 +3,9 @@ name: Post vlAURA snapshot votes to voter multisig and send to the vote relayer
 on:
   workflow_dispatch:
     inputs:
-      manual:
-        description: 'Use manual mode (true/false). Manual votes are placed in `tools/python/aura_snapshot_voting/manual_voting/{pool_type}.csv`'
+      week-string:
+        description: 'Week string that votes are are being posted. should be YYYY-W##'
         required: true
-      vote-day:
-        description: 'Date that votes are are being posted. should be YYYY-MM-DD'
-        required: true
-
 
 jobs:
   generate_fees_report:
@@ -28,20 +24,19 @@ jobs:
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
       run: |
         pwd
-        cd tools/python
+        RUN_DIR=tools/python
+        cd $RUN_DIR
         pip3 install -r requirements.txt
-        cd aura_snapshot_voting
-        python3 vote.py --manual ${{ github.event.inputs.manual }} --vote-day "${{ github.event.inputs.vote-day }}"
+        python3 $RUN_DIR/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
     - name: Create PR
       id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
         commit-message: "task: vlaura vote report"
-        title: "vlaura vote report for ${{ github.event.inputs.vote-day }}"
-        branch: "gha-biweekly-vlaura-votes-${{ github.event.inputs.vote-day }}"
+        title: "vlaura vote report for ${{ github.event.inputs.week-string }}"
+        branch: "gha-biweekly-vlaura-votes-${{ github.event.inputs.week-string }}"
         branch-suffix: timestamp
         delete-branch: true
         labels: "vlAURA-Vote-Report"
