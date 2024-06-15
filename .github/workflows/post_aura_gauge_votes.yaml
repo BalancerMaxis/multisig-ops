@@ -3,16 +3,12 @@ name: Post vlAURA snapshot votes to voter multisig and send to the vote relayer
 on:
   workflow_dispatch:
     inputs:
-      manual:
-        description: 'Use manual mode (true/false). Manual votes are placed in `tools/python/aura_snapshot_voting/manual_voting/{pool_type}.csv`'
+      week-string:
+        description: 'Week string that votes are are being posted. should be YYYY-W##'
         required: true
-      vote-day:
-        description: 'Date that votes are are being posted. should be YYYY-MM-DD'
-        required: true
-
 
 jobs:
-  generate_fees_report:
+  post_aura_guage_votes:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,13 +24,11 @@ jobs:
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
       run: |
         pwd
-        cd tools/python
-        pip3 install -r requirements.txt
-        cd aura_snapshot_voting
-        python3 vote.py --manual ${{ github.event.inputs.manual }} --vote-day "${{ github.event.inputs.vote-day }}"
+        RUN_DIR=tools/python
+        pip3 install -r $RUN_DIR/requirements.txt
+        python3 $RUN_DIR/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
     - name: Create PR
       id: cpr
       uses: peter-evans/create-pull-request@v5

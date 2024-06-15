@@ -10,9 +10,6 @@ from dune_client.query import QueryBase
 from bal_addresses.subgraph import Subgraph
 
 
-dune = DuneClient.from_env()
-
-
 def _get_prop_and_determine_date_range():
     # https://docs.aura.finance/aura/governance/gauge-voting#gauge-voting-rules-and-information
     query = """{
@@ -59,6 +56,7 @@ def _get_prop_and_determine_date_range():
 
 
 def get_df_revenue(start="2023-12-07 02:00:00", end="2023-12-21 02:00:00"):
+    dune = DuneClient.from_env()
     query = QueryBase(
         name="@balancer / Protocol Fee Collected",
         query_id=3293596,
