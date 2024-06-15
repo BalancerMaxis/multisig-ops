@@ -11,9 +11,6 @@ jobs:
   generate_fees_report:
     runs-on: ubuntu-latest
 
-    env:
-      PROJECT_PATH: ./
-
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -32,7 +29,7 @@ jobs:
         RUN_DIR=tools/python
         pip3 install -r $RUN_DIR/requirements.txt
         python3 $RUN_DIR/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
-      working-directory: ${{ github.workspace }}/${{ env.PROJECT_PATH }}
+      working-directory: ${{ github.workspace }}
 
     - name: Create PR
       id: cpr
