@@ -80,6 +80,23 @@ def format_choices(choices):
     formatted_string += "}"
     return formatted_string
 
+def create_voting_dirs_for_year(base_path, year, week):
+    start_week = int(week[1:])
+    if all([os.path.exists(base_path / str(year) / f"W{i}") for i in range(start_week, 53, 2)]):
+        return
+
+    for i in range(start_week, 53, 2):
+        voting_dir = base_path / str(year) / f"W{i}"
+        input_dir = voting_dir / "input"
+        output_dir = voting_dir / "output"
+        os.makedirs(voting_dir, exist_ok=True)
+        os.makedirs(input_dir, exist_ok=True)
+        os.makedirs(output_dir, exist_ok=True)
+        with open(input_dir / ".gitkeep", "w") as f:
+            f.write("")
+        with open(output_dir / ".gitkeep", "w") as f:
+            f.write("")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vote processing script")
@@ -91,22 +108,20 @@ if __name__ == "__main__":
     year, week = parser.parse_args().week_string.split("-")
 
     project_root = Path.cwd()
-    voting_dir = project_root / "MaxiOps/vlaura_voting" / str(year) / str(week)
+    base_path = project_root/ "MaxiOps/vlaura_voting"
+    voting_dir = base_path / str(year) / str(week)
     input_dir = voting_dir / "input"
     output_dir = voting_dir / "output"
 
-    os.makedirs(input_dir, exist_ok=True)
-    os.makedirs(output_dir, exist_ok=True)
+    create_voting_dirs_for_year(base_path, year, week)
 
     vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
 
     prop, _, _ = _get_prop_and_determine_date_range()
     choices = prop["choices"]
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
-    gauge_labels = {
-        Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels
-    }
-    choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
+    gauge_labels = {Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
+    choice_index_map = {c: x+1 for x, c in enumerate(choices)}
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
         lambda x: gauge_labels.get(Web3.to_checksum_address(x))
@@ -116,11 +131,14 @@ if __name__ == "__main__":
     )
     vote_df["share"] = vote_df["Allocation %"] * 100
 
-    assert vote_df["share"].sum() == approx(100, abs=0.0001)
+    assert vote_df["share"].sum() == approx(
+        100, abs=0.0001
+    )
 
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
 
-    with open("eip712_template.json", "r") as f:
+    template_path = project_root / "tools/python/aura_snapshot_voting"
+    with open(f"{template_path}/eip712_template.json", "r") as f:
         data = json.load(f)
 
     data["message"]["timestamp"] = int(time.time())
@@ -145,7 +163,7 @@ if __name__ == "__main__":
     data.pop("primaryType")
 
     with open(f"{output_dir}/report.txt", "w") as f:
-        vote_data = dict(zip(vote_df["snapshot_label"], vote_df["share"]))
+        vote_data = dict(zip(vote_df['snapshot_label'], vote_df['share']))
         f.write(f"Voting for: {json.dumps(vote_data, indent=4)}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: https://relayer.snapshot.org/api/messages/0x{hash.hex()}")
@@ -161,13 +179,14 @@ if __name__ == "__main__":
             "Referer": "https://snapshot.org/",
         },
         data=json.dumps(
-            {
-                "address": vlaura_safe_addr,
-                "data": data,
-                "sig": "0x",
-            }
-        ),
-    )
-
+                {
+                    "address": vlaura_safe_addr,
+                    "data": data,
+                    "sig": "0x",
+                }
+            ),
+        )
+    
     response.raise_for_status()
     print(response.text)
+
