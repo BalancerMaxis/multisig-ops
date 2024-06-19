@@ -598,7 +598,11 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         return
     switch_chain_if_needed(chain_id)
     # Get input values
-    token = Contract(transaction["to"])
+    try:
+        token = Contract(transaction["to"])
+    except Exception as e:
+        print(f"Failed to get token contract: {e}")
+        return
     recipient_address = (
         transaction["contractInputsValues"].get("to")
         or transaction["contractInputsValues"].get("dst")
