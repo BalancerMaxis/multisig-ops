@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1716653799813,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x166f54F44F271407f24AA1BE415a730035637325",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x509d1f3ca0544a5ef904001307b02a75366b1ddf4c5163b52f8cf29a76a62f5c"
+  },
+  "transactions": [
+    {
+      "to": "0x5c6Ee304399DBdB9C8Ef030aB642B10820DB8F56",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "recipient", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0xE4F920335d1e93382Ad99EcA12bB3F8aFD4A450F",
+        "amount": "277322906700000000000"
+      }
+    },
+    {
+      "to": "0x5c6Ee304399DBdB9C8Ef030aB642B10820DB8F56",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "recipient", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0xE1c3E247d8643d196D27BCd3e1505cA37da2BF1e",
+        "amount": "554645813300000000000"
+      }
+    },
+    {
+      "to": "0x5c6Ee304399DBdB9C8Ef030aB642B10820DB8F56",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "recipient", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x3f993093c3917Fe7A117f37cFD008775249f59c8",
+        "amount": "554645813300000000000"
+      }
+    }
+  ]
+}

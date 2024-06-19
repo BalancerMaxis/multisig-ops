@@ -1,0 +1,93 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1717182479941,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xd35bcfc36b20fc7dd79e158aaab8a944f85d6190311f0f2c5eddac01a6964244"
+  },
+  "transactions": [
+    {
+      "to": "0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xe39fEEB09C4dDE420eAAADd066F949ab84c94bb8",
+        "data": "0xe8de0d4d000000000000000000000000af88d065e77c8cc2239327c5edb3a432268e5831000000000000000000000000abc414cee2f6e8ee262d6dc106c86a3f627f84d2"
+      }
+    },
+    {
+      "to": "0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x1C8D981BBc56B7C65289FE34d7FF692ABDe9c8D5",
+        "data": "0xe8de0d4d000000000000000000000000af88d065e77c8cc2239327c5edb3a432268e5831000000000000000000000000abc414cee2f6e8ee262d6dc106c86a3f627f84d2"
+      }
+    },
+    {
+      "to": "0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x2b52a321Fc2ab77e9fC8488D792BB3CaEA966c0b",
+        "data": "0xe8de0d4d000000000000000000000000af88d065e77c8cc2239327c5edb3a432268e5831000000000000000000000000abc414cee2f6e8ee262d6dc106c86a3f627f84d2"
+      }
+    },
+    {
+      "to": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          { "name": "maxPeriods", "type": "uint8[]", "internalType": "uint8[]" }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xe39fEEB09C4dDE420eAAADd066F949ab84c94bb8, 0x1C8D981BBc56B7C65289FE34d7FF692ABDe9c8D5, 0x2b52a321Fc2ab77e9fC8488D792BB3CaEA966c0b]",
+        "amountsPerPeriod": "[280000000, 280000000, 1440000000]",
+        "maxPeriods": "[1, 1, 1]"
+      }
+    }
+  ]
+}

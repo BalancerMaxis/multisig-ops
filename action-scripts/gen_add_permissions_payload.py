@@ -200,9 +200,7 @@ def main(
 ):
     input_data = load_input_data(input_file)
     (action_ids_map, warnings) = build_action_ids_map(input_data=input_data)
-    (change_list, w) = generate_change_list(
-        actions_id_map=action_ids_map, ignore_already_set=True
-    )
+    (change_list, w) = generate_change_list(actions_id_map=action_ids_map)
     warnings += "\n" + w
     if change_list:
         print_change_list(change_list=change_list, output_dir=output_dir)

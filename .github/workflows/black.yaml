@@ -1,0 +1,21 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Black
+        uses: psf/black@stable
+        with:
+          options: "--verbose"
+          version: "~= 22.10"
+
+      - name: Auto commit
+        uses: stefanzweifel/git-auto-commit-action@v5.0.1
+        with:
+          commit_message: "style: ci lint with `black`"

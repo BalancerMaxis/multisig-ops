@@ -1,20 +1,21 @@
 import json
 import os
 import re
+from decimal import Decimal
 from json import JSONDecodeError
 from typing import Optional
 
-from tabulate import tabulate
 from collections import defaultdict
-from bal_addresses import AddrBook, BalPermissions
+from bal_addresses import AddrBook, BalPermissions, RateProviders
+from bal_addresses import to_checksum_address, is_address
 import requests
 from brownie import Contract, chain, network, web3
-from eth_abi import encode_abi
+from eth_abi import encode
 from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
-
+from prettytable import PrettyTable
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -39,6 +40,12 @@ def return_hh_brib_maps() -> dict:
         results["balancer"][prop["proposalHash"]] = prop
     for prop in hh_aura_props.json()["data"]:
         results["aura"][prop["proposalHash"]] = prop
+        try:
+            results["aura"][prop["proposalHash"]]["poolId"] = results["balancer"][
+                prop["proposalHash"]
+            ]["poolId"]
+        except KeyError:
+            pass
     return results
 
 
@@ -58,7 +65,7 @@ def get_changed_files() -> list[dict]:
     changed_files = []
     for file_json in pr_file_data:
         filename = file_json["filename"]
-        if "BIPs/" or "MaxiOps/" in filename and filename.endswith(".json"):
+        if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
             if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
                 print(f"{filename} does not exist")
@@ -74,7 +81,7 @@ def get_changed_files() -> list[dict]:
                     print(f"{filename} json is not a dict")
                     continue
                 if "transactions" not in payload.keys():
-                    print(f"{filename} json deos not contain a list of transactions")
+                    print(f"{filename} json does not contain a list of transactions")
                     continue
             payload["file_name"] = filename
             changed_files.append(payload)
@@ -129,6 +136,13 @@ def get_pool_info(
         rate_providers = pool.getRateProviders()
     except Exception:
         rate_providers = []
+    if len(rate_providers) == 0:
+        try:
+            rehype_pool = Contract.from_explorer(pool_address)
+            rate_providers.append(rehype_pool.rateProvider0())
+            rate_providers.append(rehype_pool.rateProvider1())
+        except Exception:
+            pass
     if pool.totalSupply == 0:
         symbol = f"WARN: {symbol} no initjoin"
 
@@ -141,13 +155,16 @@ def convert_output_into_table(outputs: list[dict]) -> str:
     """
     # Headers without "chain"
     header = [k for k in outputs[0].keys() if k != "chain"]
-    table = []
+    table = PrettyTable(header, align="l")
     for dict_ in outputs:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
-        table.append(list(dict_filtered.values()))
-    return str(tabulate(table, headers=header, tablefmt="grid"))
+        table.add_row(list(dict_filtered.values()))
+    table.align["review_summary"] = "c"
+    table.align["bip"] = "c"
+    table.align["tx_index"] = "c"
+    return table.get_string()
 
 
 def switch_chain_if_needed(network_id: int) -> None:
@@ -172,8 +189,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
     if not user or not project:
-        return "N/A", "NOT RUN/NO CREDENTIALS"
-    sim_base_url = f"https://dashboard.tenderly.co/{user}/{project}/simulator/"
+        raise ValueError("TENDERLY_ACCOUNT_NAME and TENDERLY_PROJECT_NAME must be set")
     api_base_url = f"https://api.tenderly.co/api/v1/account/{user}/project/{project}"
 
     # reset connection to network on which the safe is deployed
@@ -184,10 +200,11 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         if tx["contractMethod"]:
             tx["contractMethod"]["type"] = "function"
             contract = web3.eth.contract(
-                address=web3.toChecksumAddress(tx["to"]), abi=[tx["contractMethod"]]
+                address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
             )
             if len(tx["contractMethod"]["inputs"]) > 0:
                 for input in tx["contractMethod"]["inputs"]:
+                    # bool
                     if "bool" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
@@ -203,7 +220,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 if tx["contractInputsValues"][input["name"]] == "true"
                                 else False
                             )
-                    if re.search(r"int[0-9]+", input["type"]):
+                    # int
+                    elif re.search(r"int[0-9]+", input["type"]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
@@ -216,20 +234,35 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             tx["contractInputsValues"][input["name"]] = int(
                                 tx["contractInputsValues"][input["name"]]
                             )
-                    if "address" in input["type"]:
+                    # address
+                    elif "address" in input["type"]:
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
-                                    web3.toChecksumAddress(x)
+                                    to_checksum_address(x.strip())
                                     for x in tx["contractInputsValues"][input["name"]]
                                     .strip("[]")
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                web3.toChecksumAddress(
-                                    tx["contractInputsValues"][input["name"]]
-                                )
+                            tx["contractInputsValues"][
+                                input["name"]
+                            ] = to_checksum_address(
+                                tx["contractInputsValues"][input["name"]]
+                            )
+                    # catchall; cast to str
+                    else:
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    str(x).strip()
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
+                        else:
+                            tx["contractInputsValues"][input["name"]] = str(
+                                tx["contractInputsValues"][input["name"]]
                             )
                 tx["data"] = contract.encodeABI(
                     fn_name=tx["contractMethod"]["name"],
@@ -265,10 +298,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "gasToken": NULL_ADDRESS,
         "refundReceiver": NULL_ADDRESS,
         "signatures": b"".join(
-            [
-                encode_abi(["address", "uint"], [str(owner), 0]) + b"\x01"
-                for owner in owners
-            ]
+            [encode(["address", "uint"], [str(owner), 0]) + b"\x01" for owner in owners]
         ),
     }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
@@ -307,6 +337,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     result = r.json()
 
+    if "simulation" not in result:
+        raise ValueError(result)
+
     # make the simulation public
     r = requests.post(
         url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
@@ -336,7 +369,7 @@ def format_into_report(
     """
     chain_name = AddrBook.chain_names_by_id[chain_id]
     book = AddrBook(chain_name)
-    msig_label = book.reversebook.get(web3.toChecksumAddress(msig_addr), "!NOT FOUND")
+    msig_label = book.reversebook.get(to_checksum_address(msig_addr), "!NOT FOUND")
     file_name = file["file_name"]
     print(f"Writing report for {file_name}...")
     file_report = f"FILENAME: `{file_name}`\n"
@@ -350,13 +383,19 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    tenderly_url, tenderly_success = run_tenderly_sim(
-        file["chainId"], file["meta"]["createdFromSafeAddress"], file["transactions"]
-    )
-    if tenderly_success:
-        file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
-    else:
-        file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+    try:
+        tenderly_url, tenderly_success = run_tenderly_sim(
+            file["chainId"],
+            file["meta"]["createdFromSafeAddress"],
+            file["transactions"],
+        )
+        if tenderly_success:
+            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
+        else:
+            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+    except Exception as e:
+        file_report += f"TENDERLY: SKIPPED (`{repr(e)}`)\n"
+
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
     file_report += "\n```\n"
@@ -403,15 +442,31 @@ def prettify_tokens_list(token_addresses: list[str]) -> list[str]:
     """
     results = []
     for token in token_addresses:
-        results.append(f"{get_token_symbol(token)}({token})")
+        results.append(f"{token}: {get_token_symbol(token)}")
     return results
 
-def prettify_int_amounts(amounts: list, decimals: int) -> list[str]:
+
+def prettify_int_amount(amount: int, decimals=None) -> list[str]:
+    try:
+        amount = int(amount)
+    except:
+        # Can't make this an int, leave it alone
+        print(f"Can't make {amount} into an int to prettify")
+        return amount
+    if isinstance(decimals, int):
+        # We know decimals so use them
+        return f"{amount}/1e{decimals} = {amount / 10 ** decimals}"
+    else:
+        # We don't know decimals so provide 18 and 6
+        return f"raw:{amount}, 18 decimals:{Decimal(amount) / Decimal(1e18)}, 6 decimals: {Decimal(amount) / Decimal(1e6)}"
+
+
+def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
     pretty_amounts = []
     for amount in amounts:
-        amount=int(amount)
-        pretty_amounts.append(f"{amount}/1e{decimals} = {amount/10**decimals}")
+        pretty_amounts.append(prettify_int_amount(amount, decimals))
     return pretty_amounts
+
 
 def sum_list(amounts: list) -> int:
     total = 0
@@ -419,6 +474,26 @@ def sum_list(amounts: list) -> int:
         total += int(amount)
     return total
 
+
+def get_rate_provider_review_summaries(
+    rate_providers: list[str], chain: str
+) -> list[str]:
+    """
+    Accepts a list of rate provider addresses and returns a list of review summaries
+    """
+    chain = chain.strip("-main")
+    r = RateProviders(chain)
+    summaries = []
+    for rate_provider in rate_providers:
+        if rate_provider == NULL_ADDRESS:
+            summaries.append("--")
+            continue
+        rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
+        if not rpinfo:
+            summaries.append("!!NO REVIEW!!")
+        else:
+            summaries.append(rpinfo["summary"])
+    return summaries
 
 
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
@@ -430,27 +505,28 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = defaultdict(list)
-    values = None
     for key, valuedata in contracts_inputs_values.items():
-        print(valuedata)
-        if isinstance(valuedata, list):
-            values = valuedata
-        elif isinstance(valuedata, str):
-            values = valuedata.strip("[ ]f").replace(" ", "").split(",")
-        if not isinstance(valuedata, list):
-            print(f"Warning f{values} is still not a list of values, putting what we have in single member list")
-            values = [valuedata]
+        values = parse_txbuilder_list_string(valuedata)
         for value in values:
-            if web3.isAddress(value):
+            ## Reverse resolve addresses
+            if is_address(value):
                 outputs[key].append(
-                    f"{value} ({addr.reversebook.get(web3.toChecksumAddress(value), 'N/A')}) "
+                    f"{value} ({addr.reversebook.get(to_checksum_address(value), 'N/A')})"
                 )
-            elif "role" in key or "Role" in key:
+            ## Reverse resolve authorizor roles
+            elif "role" in key.lower():
                 outputs[key].append(
-                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')}) "
+                    f"{value} ({perm.paths_by_action_id.get(value, 'N/A')})"
                 )
+            elif (
+                "value" in key.lower()
+                or "amount" in key.lower()
+                or "_minouts" in key.lower()
+            ):
+                # Look for things that look like values and do some decimal math
+                outputs[key].append(prettify_int_amount(value))
             else:
-                outputs[key] = valuedata
+                outputs[key].append(value)
     return outputs
 
 
@@ -511,15 +587,24 @@ def extract_bip_number(bip_file: dict) -> Optional[str]:
                 break
     return bip or "N/A"
 
-def parse_txbuilder_list_string(list_string):
+
+def parse_txbuilder_list_string(list_string) -> list:
+    """
+    Take an input from transaction builder and format it is as a list.
+    If it is already a list return it
+    If it is a string list from tx-builder then listify it and return that
+    If it is anything else, return a single item list with whatever it is.
+    """
     # Change from a txbuilder json format list of addresses to a python one
+    if isinstance(list_string, str):
+        list_string = list_string.strip("[ ]")
+        list_string = list_string.replace(" ", "")
+        list_string = list_string.split(",")
     if isinstance(list_string, list):
         return list_string
-    list_string = list_string.strip("[ ]")
-    list_string = list_string.replace(" ", "")
-    list_string = list_string.split(",")
-    if isinstance(list_string, list):
-        return list_string
+    # If we still don't have a list, create a single item list with what we do have.
+    return [list_string]
+
 
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
@@ -534,5 +619,3 @@ def prettify_gauge_list(gauge_addresses, chainbook) -> list:
                 gauge_name = "(N/A)"
         pretty_gauges.append(f"{gauge} ({gauge_name})")
     return pretty_gauges
-
-

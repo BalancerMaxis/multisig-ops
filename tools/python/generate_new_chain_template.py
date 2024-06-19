@@ -1,7 +1,7 @@
 from bal_addresses import AddrBook
 import json
 
-a = AddrBook("mainnet") # we don't care about addresses
+a = AddrBook("mainnet")  # we don't care about addresses
 
 
 def lookup_caller(caller):
@@ -15,7 +15,6 @@ def lookup_caller(caller):
         return a.reversebook[a.latest_contract(caller)]
     ## If we haven't returned yet no match was found
     raise AddrBook.NoResultsError(f"no match for {caller} found")
-
 
 
 with open("../../BIPs/00batched/authorizer/new-chain-pretemplate.json", "r") as f:
@@ -34,4 +33,3 @@ for block in pretemplate:
 
 with open("../../BIPs/00batched/authorizer/new-chain-template.json", "w") as f:
     json.dump(template, f, indent=2)
-

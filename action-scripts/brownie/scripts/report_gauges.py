@@ -2,8 +2,8 @@ from typing import Callable
 from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
+from bal_addresses import to_checksum_address, is_address
 from brownie import Contract
-from brownie import network
 from brownie import web3
 from collections import defaultdict
 
@@ -14,6 +14,7 @@ from .script_utils import get_pool_info
 from .script_utils import merge_files
 from .script_utils import extract_bip_number
 from .script_utils import extract_bip_number_from_file_name
+from .script_utils import get_rate_provider_review_summaries
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import prettify_gauge_list
@@ -75,23 +76,11 @@ def _extract_pool(
         recipient = gauge.getRecipient()
         print(f"Recipient: {recipient}")
         style = None
-        if chain == "avalanche":
-            chain = "avax-main"
-        if chain == "avax-main":
-            # this is a temp fix due to snowtrace.io explorer being offline,
-            # and no other explorer with verified contract source code being
-            # available
-            pool_name = "AVAX_UNKNOWN"
-            pool_symbol = "AVAX_UNKNOWN"
-            pool_id = "AVAX_UNKNOWN"
-            pool_address = "AVAX_UNKNOWN"
-            a_factor = "AVAX_UNKNOWN"
-            fee = "AVAX_UNKNOWN"
-            tokens = []
-            rate_providers = []
-        else:
-            network_id = ADDR_BOOK.chain_ids_by_name[chain.replace("-main", "")]
-            switch_chain_if_needed(network_id=network_id)
+        network_id = ADDR_BOOK.chain_ids_by_name[
+            chain.replace("-main", "").replace("avax", "avalanche")
+        ]
+        switch_chain_if_needed(network_id=network_id)
+        try:
             sidechain_recipient = Contract(recipient)
             if "reward_receiver" in sidechain_recipient.selectors.values():
                 sidechain_recipient = Contract(sidechain_recipient.reward_receiver())
@@ -106,20 +95,50 @@ def _extract_pool(
                 tokens,
                 rate_providers,
             ) = get_pool_info(sidechain_recipient.lp_token())
+        except ValueError as e:
+            if (
+                str(e)
+                == "Failed to retrieve data from API: {'status': '0', 'message': 'NOTOK', 'result': 'Contract source code not verified'}"
+            ):
+                pool_name = "CONTRACT_UNVERIFIED"
+                pool_symbol = "CONTRACT_UNVERIFIED"
+                pool_id = "CONTRACT_UNVERIFIED"
+                pool_address = "CONTRACT_UNVERIFIED"
+                a_factor = "CONTRACT_UNVERIFIED"
+                fee = "CONTRACT_UNVERIFIED"
+                tokens = []
+                rate_providers = []
+            else:
+                raise e
         style = style if style else STYLE_L0
     elif "name" not in gauge_selectors:  # Process single recipient gauges
         recipient = Contract(gauge.getRecipient())
-        escrow = Contract(recipient.getVotingEscrow())
-        (
-            pool_name,
-            pool_symbol,
-            pool_id,
-            pool_address,
-            a_factor,
-            fee,
-            tokens,
-            rate_providers,
-        ) = get_pool_info(escrow.token())
+        try:
+            escrow = Contract(recipient.getVotingEscrow())
+            (
+                pool_name,
+                pool_symbol,
+                pool_id,
+                pool_address,
+                a_factor,
+                fee,
+                tokens,
+                rate_providers,
+            ) = get_pool_info(escrow.token())
+        except AttributeError:
+            # Exception Handling for single recipient gauges that are setup without using an escrow contract
+            # The escrow contract is normally the thing that holds all the data about the pool.
+            print(
+                f"WARNING!!  Single recipient gauge found with no escrow/clear attement to a pool at {gauge.address} points to {gauge.getRecipient()}"
+            )
+            pool_name = "UNKNOWN - No escrow"
+            pool_symbol = "N/A"
+            pool_id = "N/A - No Escrow"
+            pool_address = "N/A"
+            a_factor = "N/A"
+            fee = "N/A"
+            tokens = ["UNKNOWN"]
+            rate_providers = ["UNKNOWN"]
         style = STYLE_SINGLE_RECIPIENT
     else:  # Process mainnet gauges
         (
@@ -147,11 +166,11 @@ def _extract_pool(
     )
 
 
-def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
+def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse injector changes
 
-    Look up the proposals and return a human readable pool + amount.
+    Look up injector addresses and parse amounts.
 
     :param transaction: transaction to parse
     :return: dict with parsed data
@@ -165,25 +184,44 @@ def _parse_set_receipient_list(transaction: dict, **kwargs) -> Optional [dict]:
         return
     if not transaction["contractMethod"].get("name") == "setRecipientList":
         return
-    to_address = web3.toChecksumAddress(transaction["to"])
-    gauge_addresses = parse_txbuilder_list_string(transaction["contractInputsValues"]["gaugeAddresses"])
-    amounts_per_period = parse_txbuilder_list_string(transaction["contractInputsValues"]["amountsPerPeriod"])
-    max_periods = parse_txbuilder_list_string(transaction["contractInputsValues"]["maxPeriods"])
-    total_amount = 0
-    assert len(gauge_addresses) == len(amounts_per_period) and len(gauge_addresses) == len(max_periods), \
-        f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
+    to_address = to_checksum_address(transaction["to"])
+    switch_chain_if_needed(chain_id)
+    injector = Contract(to_address)
+    tokenAddress = injector.getInjectTokenAddress()
+    with open("abis/ERC20.json", "r") as f:
+        token = Contract.from_abi("Token", tokenAddress, json.load(f))
+    decimals = token.decimals()
+    symbol = token.symbol()
+    gauge_addresses = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["gaugeAddresses"]
+    )
+    amounts_per_period = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["amountsPerPeriod"]
+    )
+    max_periods = parse_txbuilder_list_string(
+        transaction["contractInputsValues"]["maxPeriods"]
+    )
+    assert len(gauge_addresses) == len(amounts_per_period) and len(
+        gauge_addresses
+    ) == len(
+        max_periods
+    ), f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
-    pretty_amounts = prettify_int_amounts(amounts_per_period, 18)
+    pretty_amounts = prettify_int_amounts(amounts_per_period, decimals)
     total_amount = sum_list(amounts_per_period)
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
-        "gaugeList":  json.dumps(pretty_gauges, indent=1),
-        "amounts_per_period":json.dumps(pretty_amounts, indent=1),
-        "periods": json.dumps(max_periods,indent=1),
-        "total_amount": f"{total_amount}/1e18 = {total_amount / 1e18}",
+        "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
+        "symbol": symbol,
+        "gaugeList": json.dumps(pretty_gauges, indent=1),
+        "amounts_per_period": json.dumps(pretty_amounts, indent=1),
+        "periods": json.dumps(max_periods, indent=1),
+        "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount / 10 ** decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
+
+
 def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Hidden Hand Bribe transactions
@@ -206,7 +244,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     bal_briber = ADDR_BOOK.extras.hidden_hand2.balancer_briber
     ##  Parse TX
     ### Determine market
-    to_address = web3.toChecksumAddress(transaction["to"])
+    to_address = to_checksum_address(transaction["to"])
     if to_address == aura_briber:
         market = "aura"
     elif to_address == bal_briber:
@@ -324,10 +362,13 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "function": f"{to_string}/{command}",
         "chain": chain.replace("-main", "") if chain else "mainnet",
         "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
-        "symbol_and_info": f"{pool_symbol} \nfee: {fee}, a-factor: {a_factor}",
-        "gauge_address_and_info": f"{gauge_address}\n Style: {style}, cap: {gauge_cap}",
-        "tokens": json.dumps(tokens, indent=2).strip("[\n]"),
-        "rate_providers": json.dumps(rate_providers, indent=2).strip("[\n ]"),
+        "symbol_and_info": f"{pool_symbol} \nfee: {fee}\na-factor: {a_factor}",
+        "gauge_address_and_info": f"{gauge_address}\nStyle: {style}\ncap: {gauge_cap}",
+        "tokens": "\n".join(tokens),
+        "rate_providers": "\n".join(rate_providers),
+        "review_summary": "\n".join(
+            get_rate_provider_review_summaries(rate_providers, chain)
+        ),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
@@ -351,7 +392,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     switch_chain_if_needed(network_id=1)
     try:
         (command, inputs) = Contract(
-            web3.toChecksumAddress(transaction["contractInputsValues"]["target"])
+            to_checksum_address(transaction["contractInputsValues"]["target"])
         ).decode_input(transaction["contractInputsValues"]["data"])
     except:
         ## Doesn't look like a gauge add, maybe contract isn't on mainnet
@@ -518,8 +559,8 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("recipient")
         or transaction["contractInputsValues"].get("_to")
     )
-    if web3.isAddress(recipient_address):
-        recipient_address = web3.toChecksumAddress(recipient_address)
+    if is_address(recipient_address):
+        recipient_address = to_checksum_address(recipient_address)
     else:
         print("ERROR: can't find recipient address")
         recipient_address = None
@@ -602,6 +643,16 @@ def parse_no_reports_report(
             else:
                 civ_parsed = "N/A"
             contractMethod = transaction.get("contractMethod", {})
+            value = transaction.get("value")
+            if value:
+                # value is always gas token, which in our cases is always 1e18, don't need math for 0
+                value = int(value)
+                if value == 0:
+                    valuestring = str(value)
+                else:
+                    valuestring = f"{value}/1e18 = {int(value) / 1e18}"
+            else:
+                valuestring = "N/A"
             no_reports.append(
                 {
                     "fx_name": (
@@ -611,7 +662,7 @@ def parse_no_reports_report(
                     ),
                     "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
                     "chain": chain_name,
-                    "value": transaction.get("value", "!!N/A!!"),
+                    "value": valuestring,
                     "inputs": json.dumps(civ_parsed, indent=2),
                     "bip_number": bip_number,
                     "tx_index": transaction.get("tx_index", "N/A"),
@@ -676,8 +727,7 @@ def main() -> None:
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
-    all_reports.append(handler(files, _parse_set_receipient_list))
-
+    all_reports.append(handler(files, _parse_set_recipient_list))
 
     ## Catch All should run after all other handlers.
     no_reports_report = parse_no_reports_report(all_reports, files)

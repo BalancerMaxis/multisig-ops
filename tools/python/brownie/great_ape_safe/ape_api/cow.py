@@ -10,6 +10,8 @@ from rich.prompt import Confirm
 from bal_addresses import AddrBook
 
 r = AddrBook("mainnet").dotmap
+
+
 class Cow:
     """
     docs: https://docs.cow.fi/
@@ -56,9 +58,6 @@ class Cow:
         if not r.ok:
             print(r.json())
             r.raise_for_status()
-
-
-
 
         print("FEE AND QUOTE RESPONSE:")
         pprint(r.json())
@@ -212,17 +211,19 @@ class Cow:
         mantissa_sell = int(Decimal(mantissa_sell) / chunks)
         order_ids = []
         for n in range(chunks):
-            order_ids.append(self._sell(
-                             asset_sell,
-                             mantissa_sell,
-                             asset_buy,
-                             mantissa_buy=None,
-                             # without + n api will raise DuplicateOrder when chunks > 1
-                             deadline=deadline + n,
-                             coef=coef,
-                             destination=destination,
-                             origin=self.safe.address,
-            ))
+            order_ids.append(
+                self._sell(
+                    asset_sell,
+                    mantissa_sell,
+                    asset_buy,
+                    mantissa_buy=None,
+                    # without + n api will raise DuplicateOrder when chunks > 1
+                    deadline=deadline + n,
+                    coef=coef,
+                    destination=destination,
+                    origin=self.safe.address,
+                )
+            )
         return order_ids
 
     def limit_sell(

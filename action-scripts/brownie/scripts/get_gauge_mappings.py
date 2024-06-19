@@ -1,6 +1,6 @@
 from brownie import Contract, network
 from bal_addresses import AddrBook
-from web3 import Web3
+from bal_addresses import to_checksum_address
 import json
 from prettytable import PrettyTable
 import os
@@ -73,6 +73,8 @@ def gen_report(payload_list):
     reports = []
     for file in payload_list:
         print(f"Processing: {file}")
+        if not file.endswith(".json"):
+            continue
         with open(f"../../{file}", "r") as json_data:
             try:
                 payload = json.load(json_data)
@@ -123,7 +125,7 @@ def gen_report(payload_list):
                     )
                     continue
             if gauge_address == False:
-                authorizer_target_contract = Web3.toChecksumAddress(
+                authorizer_target_contract = to_checksum_address(
                     transaction["contractInputsValues"]["target"]
                 )
                 if authorizer_target_contract == gauge_controller:
