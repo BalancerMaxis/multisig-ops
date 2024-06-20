@@ -130,7 +130,7 @@ if __name__ == "__main__":
         Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels
     }
     choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
-    
+
     vote_df = vote_df.dropna(subset=["Gauge Address"])
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
@@ -139,9 +139,9 @@ if __name__ == "__main__":
     vote_df["snapshot_index"] = vote_df["snapshot_label"].apply(
         lambda label: str(choice_index_map[label])
     )
-    
-    vote_df['share'] = vote_df['Allocation %'].str.rstrip('%').astype(float)
-    
+
+    vote_df["share"] = vote_df["Allocation %"].str.rstrip("%").astype(float)
+
     assert vote_df["share"].sum() == approx(100, abs=0.0001)
 
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
