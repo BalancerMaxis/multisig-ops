@@ -173,10 +173,10 @@ if __name__ == "__main__":
     data.pop("primaryType")
 
     with open(f"{output_dir}/report.txt", "w") as f:
-        vote_data = dict(zip(vote_df["snapshot_label"], vote_df["share"]))
-        f.write(f"Voting for: {json.dumps(vote_data, indent=4)}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: https://relayer.snapshot.org/api/messages/0x{hash.hex()}")
+
+    vote_df.to_csv(f"{output_dir}/vote_df.csv", index=False)
 
     with open(f"{output_dir}/payload.json", "w") as f:
         json.dump(data, f, indent=4)
