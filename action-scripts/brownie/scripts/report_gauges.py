@@ -2,6 +2,7 @@ from typing import Callable
 from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
+from bal_tools import Aura
 from bal_addresses import to_checksum_address, is_address
 from brownie import Contract
 from brownie import web3
@@ -18,7 +19,8 @@ from .script_utils import get_rate_provider_review_summaries
 from .script_utils import prettify_contract_inputs_values
 from .script_utils import prettify_tokens_list
 from .script_utils import prettify_gauge_list
-from .script_utils import prettify_int_amounts
+from .script_utils import prettify_int_amounts, prettify_int_amount
+from .script_utils import prettify_aura_pid
 from .script_utils import sum_list
 from .script_utils import return_hh_brib_maps
 from .script_utils import switch_chain_if_needed
@@ -164,6 +166,50 @@ def _extract_pool(
         tokens,
         rate_providers,
     )
+
+
+def _parse_aura_direct_incentive(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse injector changes
+
+    Look up injector addresses and parse amounts.
+
+    :param transaction: transaction to parse
+    :return: dict with parsed data
+    """
+    chain_id = kwargs["chain_id"]
+    chain_name = AddrBook.chain_names_by_id.get(int(chain_id))
+    chainbook = AddrBook(chain_name)
+    aura = Aura(chain_name)
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
+        return
+    if not transaction["contractMethod"].get("name") == "fundPool":
+        return
+    to_address = to_checksum_address(transaction["to"])
+    switch_chain_if_needed(chain_id)
+    injector = Contract(to_address)
+    tokenAddress = to_checksum_address(transaction["contractInputsValues"]["_token"])
+    with open("abis/ERC20.json", "r") as f:
+        token = Contract.from_abi("Token", tokenAddress, json.load(f))
+    decimals = token.decimals()
+    symbol = token.symbol()
+    aura_pid = transaction["contractInputsValues"]["_pid"]
+    amount = transaction["contractInputsValues"]["_amount"]
+    periods = transaction["contractInputsValues"]["_periods"]
+    pretty_pid = prettify_aura_pid(aura_pid, aura)
+    pretty_amount = prettify_int_amount(amount, decimals)
+    return {
+        "function": "fundPool",
+        "chain": chainbook.chain,
+        "injector": f"{to_address}({chainbook.reversebook.get(to_address, 'Not Found')})",
+        "symbol": symbol,
+        "gauge_info": pretty_pid,
+        "amount_per_period": pretty_amount,
+        "periods": periods,
+        "tx_index": kwargs.get("tx_index", "N/A"),
+    }
 
 
 def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
@@ -552,7 +598,11 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         return
     switch_chain_if_needed(chain_id)
     # Get input values
-    token = Contract(transaction["to"])
+    try:
+        token = Contract(transaction["to"])
+    except Exception as e:
+        print(f"Failed to get token contract: {e}")
+        return
     recipient_address = (
         transaction["contractInputsValues"].get("to")
         or transaction["contractInputsValues"].get("dst")
@@ -727,6 +777,7 @@ def main() -> None:
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
+    all_reports.append(handler(files, _parse_aura_direct_incentive))
     all_reports.append(handler(files, _parse_set_recipient_list))
 
     ## Catch All should run after all other handlers.
