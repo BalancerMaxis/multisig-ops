@@ -212,7 +212,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     ), f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
     pretty_amounts = prettify_int_amounts(amounts_per_period, decimals)
-    total_amount = sum_list(amounts_per_period)
+    total_amount = sum(amounts_per_period)
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
@@ -550,12 +550,8 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
             )
             chainbook = AddrBook(c_name)
             break
-    if not chain_name:
-        print("Chain name not found! Cannot transfer transaction")
-        return
     switch_chain_if_needed(chain_id)
     entrypoint = Contract(transaction["to"])
-    entrypoint = prettify_address(entrypoint.address, chainbook)
     # try:
     target_address = transaction["contractInputsValues"].get("target")
     print(target_address)
@@ -587,7 +583,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
     return {
         "function": "performAction",
         "chain": chain_name,
-        "entrypoint": entrypoint,
+        "entrypoint": prettify_address(entrypoint.address, chainbook),
         "selector": selector,
         "parsed_inputs": "\n".join(inputs),
         "bip": kwargs.get("bip_number", "N/A"),

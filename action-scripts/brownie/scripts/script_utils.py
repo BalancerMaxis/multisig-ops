@@ -571,13 +571,6 @@ def prettify_address(address, chainbook) -> str:
     return f"{address} ({chainbook.reversebook.get(address)})"
 
 
-def sum_list(amounts: list) -> int:
-    total = 0
-    for amount in amounts:
-        total += int(amount)
-    return total
-
-
 ## Prettification logic for various complex data types
 def prettify_flat_list(inputs: list[str], chain: str) -> list[str]:
     """
