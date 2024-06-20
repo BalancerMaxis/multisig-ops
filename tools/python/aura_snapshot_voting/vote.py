@@ -51,8 +51,9 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
 
     safe_tx = safe.build_multisig_tx(to_address, value, data, operation)
     safe_tx.sign(PRIVATE_KEY)
-
+ 
     safe_service.post_transaction(safe_tx)
+    print(f"posted signMessage tx to {safe_address}")
 
 
 @lru_cache(maxsize=None)
@@ -163,9 +164,9 @@ if __name__ == "__main__":
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
 
-    # post_safe_tx(
-    #     vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
-    # )
+    post_safe_tx(
+        vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
+    )
 
     data["message"]["proposal"] = prop["id"]
     data["types"].pop("EIP712Domain")
