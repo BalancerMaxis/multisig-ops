@@ -130,15 +130,18 @@ if __name__ == "__main__":
         Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels
     }
     choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
+    
+    vote_df = vote_df.dropna(subset=["Gauge Address"])
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
-        lambda x: gauge_labels.get(Web3.to_checksum_address(x))
+        lambda x: gauge_labels.get(Web3.to_checksum_address(x.strip()))
     )
     vote_df["snapshot_index"] = vote_df["snapshot_label"].apply(
         lambda label: str(choice_index_map[label])
     )
-    vote_df["share"] = vote_df["Allocation %"] * 100
-
+    
+    vote_df['share'] = vote_df['Allocation %'].str.rstrip('%').astype(float)
+    
     assert vote_df["share"].sum() == approx(100, abs=0.0001)
 
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
@@ -160,9 +163,9 @@ if __name__ == "__main__":
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
 
-    post_safe_tx(
-        vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
-    )
+    # post_safe_tx(
+    #     vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
+    # )
 
     data["message"]["proposal"] = prop["id"]
     data["types"].pop("EIP712Domain")
