@@ -7,9 +7,9 @@ on:
         description: 'Week string that votes are are being posted. should be YYYY-W##'
         required: true
 
-  pull_request_target:
-    branches:
-      - main
+  push:
+    branches-ignore:
+      - '**'
 
 jobs:
   post_aura_guage_votes:
