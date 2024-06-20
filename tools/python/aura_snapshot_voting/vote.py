@@ -51,7 +51,7 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
 
     safe_tx = safe.build_multisig_tx(to_address, value, data, operation)
     safe_tx.sign(PRIVATE_KEY)
- 
+
     safe_service.post_transaction(safe_tx)
     print(f"posted signMessage tx to {safe_address}")
 
