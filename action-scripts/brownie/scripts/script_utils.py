@@ -8,6 +8,7 @@ from typing import Optional
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions, RateProviders
 from bal_addresses import to_checksum_address, is_address
+from bal_tools import Aura
 import requests
 from brownie import Contract, chain, network, web3
 from eth_abi import encode
@@ -639,3 +640,28 @@ def prettify_gauge_list(gauge_addresses, chainbook) -> list:
                 gauge_name = "(N/A)"
         pretty_gauges.append(f"{gauge} ({gauge_name})")
     return pretty_gauges
+
+
+def prettify_aura_pid(pid: int, aura: Aura) -> str:
+    """
+    Returns a pretty string for an aura pid
+    """
+    try:
+        pid = int(pid)
+    except Exception as e:
+        print(f"Failed to convert AURA pid to int: {e}")
+        return f"{pid} (!!NOT AN INT!!)"
+    if not pid:
+        return "N/A"
+    switch_chain_if_needed(AddrBook.chain_ids_by_name[aura.chain])
+    ## reverse dict aura.aura_pids_by_address such that address is key and pid is value.  Key should be a real int.
+    addresses_by_pid = {int(v): k for k, v in aura.aura_pids_by_address.items()}
+    gauge_address = addresses_by_pid.get(pid)
+    if not gauge_address:
+        return f"{pid} (!!GAUGE NOT FOUND!!)"
+    gauge_interface = Contract(gauge_address)
+    try:
+        gauge_name = gauge_interface.name()
+    except:
+        gauge_name = "(N/A)"
+    return f"{pid}({gauge_address})\n{gauge_name}"
