@@ -6,6 +6,8 @@ from functools import lru_cache
 from enum import IntEnum
 from pytest import approx
 from dotenv import load_dotenv
+from pathlib import Path
+import glob
 
 import requests
 from bal_addresses import AddrBook
@@ -18,8 +20,6 @@ from gnosis.safe import Safe
 from gnosis.eth import EthereumClient
 from gnosis.safe.api import TransactionServiceApi
 from eth_abi import encode
-from pathlib import Path
-import glob
 
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
 
@@ -34,10 +34,8 @@ GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contract
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 
 flatbook = AddrBook("mainnet").flatbook
-vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
+vlaura_safe_addr = "0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b"
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
-
-pool_types = ["core", "sustainable", "bd"]
 
 
 class Operation(IntEnum):
@@ -53,7 +51,7 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
 
     safe_tx = safe.build_multisig_tx(to_address, value, data, operation)
     safe_tx.sign(PRIVATE_KEY)
-
+    
     safe_service.post_transaction(safe_tx)
 
 
@@ -74,13 +72,36 @@ def hash_eip712_message(structured_data):
 
 def format_choices(choices):
     # custom formatting so it can be properly parsed by the snapshot
-    formatted_string = '{'
+    formatted_string = "{"
     for key, value in choices.items():
-        formatted_string += f'\"{key}\":{value},'
+        formatted_string += f'"{key}":{value},'
         if key == list(choices.keys())[-1]:
             formatted_string = formatted_string[:-1]
-    formatted_string += '}'
+    formatted_string += "}"
     return formatted_string
+
+
+def create_voting_dirs_for_year(base_path, year, week):
+    start_week = int(week[1:])
+    if all(
+        [
+            os.path.exists(base_path / str(year) / f"W{i}")
+            for i in range(start_week, 53, 2)
+        ]
+    ):
+        return
+
+    for i in range(start_week, 53, 2):
+        voting_dir = base_path / str(year) / f"W{i}"
+        input_dir = voting_dir / "input"
+        output_dir = voting_dir / "output"
+        os.makedirs(voting_dir, exist_ok=True)
+        os.makedirs(input_dir, exist_ok=True)
+        os.makedirs(output_dir, exist_ok=True)
+        with open(input_dir / ".gitkeep", "w") as f:
+            f.write("")
+        with open(output_dir / ".gitkeep", "w") as f:
+            f.write("")
 
 
 if __name__ == "__main__":
@@ -88,56 +109,52 @@ if __name__ == "__main__":
     parser.add_argument(
         "--week-string",
         type=str,
-        help="Date that votes are are being posted. should be YYYY-MM-DD",
-        required=True,
+        help="Date that votes are are being posted. should be YYYY-W##",
     )
-
     year, week = parser.parse_args().week_string.split("-")
 
     project_root = Path.cwd()
-    voting_dir = project_root / "MaxiOps/vlaura_voting" / str(year) / str(week)
+    base_path = project_root / "MaxiOps/vlaura_voting"
+    voting_dir = base_path / str(year) / str(week)
     input_dir = voting_dir / "input"
     output_dir = voting_dir / "output"
 
-    os.makedirs(input_dir, exist_ok=True)
-    os.makedirs(output_dir, exist_ok=True)
+    create_voting_dirs_for_year(base_path, year, week)
 
-    prop, start, end = _get_prop_and_determine_date_range()
+    vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
+
+    prop, _, _ = _get_prop_and_determine_date_range()
     choices = prop["choices"]
-
-    try:
-        vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
-    except:
-        raise Exception(f"No input file found in {input_dir}")
-
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
-    gauge_labels = {Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
-    choice_index_map = {c: x+1 for x, c in enumerate(choices)}
+    gauge_labels = {
+        Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels
+    }
+    choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
+
+    vote_df = vote_df.dropna(subset=["Gauge Address"])
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
-        lambda x: gauge_labels.get(Web3.to_checksum_address(x))
+        lambda x: gauge_labels.get(Web3.to_checksum_address(x.strip()))
     )
     vote_df["snapshot_index"] = vote_df["snapshot_label"].apply(
         lambda label: str(choice_index_map[label])
     )
-    vote_df["share"] = vote_df["Allocation %"] * 100
-    
-    assert vote_df["share"].sum() == approx(
-        100, abs=0.0001
-    )
-    
+
+    vote_df["share"] = vote_df["Allocation %"].str.rstrip("%").astype(float)
+
+    assert vote_df["share"].sum() == approx(100, abs=0.0001)
+
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
 
     template_path = project_root / "tools/python/aura_snapshot_voting"
     with open(f"{template_path}/eip712_template.json", "r") as f:
         data = json.load(f)
 
-    data["message"]["space"] = "balancerquadraticvoting.eth"
     data["message"]["timestamp"] = int(time.time())
-    data["message"]["from"] = "0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b"
+    data["message"]["from"] = vlaura_safe_addr
     data["message"]["proposal"] = bytes.fromhex("91aa92518fadf2b17106d08a7f5d4963fba0cb63034279cb2bc3f13ad4e07471")
-    data["message"]["choice"] = format_choices({"1": 50, "3": 50})
-
+    data["message"]["choice"] = format_choices({"1": 3.51, "2": 8.73, "3": 87.76})
+    
     hash = hash_eip712_message(data)
 
     print(f"voting for: \n{vote_df[['Chain', 'snapshot_label', 'share']]}")
@@ -145,24 +162,23 @@ if __name__ == "__main__":
     print(f"hash: {hash.hex()}")
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
- 
     post_safe_tx(
-        "0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b", sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
+        vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
     )
 
-    data["message"]["proposal"] = "0x91aa92518fadf2b17106d08a7f5d4963fba0cb63034279cb2bc3f13ad4e07471"
+    data["message"]["proposal"] ="0x91aa92518fadf2b17106d08a7f5d4963fba0cb63034279cb2bc3f13ad4e07471"
     data["types"].pop("EIP712Domain")
     data.pop("primaryType")
 
     with open(f"{output_dir}/report.txt", "w") as f:
-        vote_data = dict(zip(vote_df['snapshot_label'], vote_df['share']))
+        vote_data = dict(zip(vote_df["snapshot_label"], vote_df["share"]))
         f.write(f"Voting for: {json.dumps(vote_data, indent=4)}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: https://relayer.snapshot.org/api/messages/0x{hash.hex()}")
 
     with open(f"{output_dir}/payload.json", "w") as f:
         json.dump(data, f, indent=4)
-        
+
     response = requests.post(
         "https://relayer.snapshot.org/",
         headers={
@@ -171,11 +187,13 @@ if __name__ == "__main__":
             "Referer": "https://snapshot.org/",
         },
         data=json.dumps(
-                {
-                    "address": "0xdc9e3Ab081B71B1a94b79c0b0ff2271135f1c12b",
-                    "data": data,
-                    "sig": "0x",
-                }
-            ),
-        )
-    
+            {
+                "address": vlaura_safe_addr,
+                "data": data,
+                "sig": "0x",
+            }
+        ),
+    )
+
+    response.raise_for_status()
+    print(response.text)

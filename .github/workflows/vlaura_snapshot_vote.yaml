@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  generate_fees_report:
+  post_aura_guage_votes:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,8 +34,8 @@ jobs:
       uses: peter-evans/create-pull-request@v5
       with:
         commit-message: "task: vlaura vote report"
-        title: "vlaura vote report for ${{ github.event.inputs.week-string }}"
-        branch: "gha-biweekly-vlaura-votes-${{ github.event.inputs.week-string }}"
+        title: "vlaura vote report for ${{ github.event.inputs.vote-day }}"
+        branch: "gha-biweekly-vlaura-votes-${{ github.event.inputs.vote-day }}"
         branch-suffix: timestamp
         delete-branch: true
         labels: "vlAURA-Vote-Report"
