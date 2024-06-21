@@ -629,6 +629,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
         "function": "performAction",
         "chain": chain_name,
         "entrypoint": prettify_address(entrypoint.address, chainbook),
+        "target": prettify_address(target_address, chainbook),
         "selector": selector,
         "parsed_inputs": "\n".join(inputs),
         "bip": kwargs.get("bip_number", "N/A"),
