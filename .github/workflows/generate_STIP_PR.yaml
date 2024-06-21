@@ -3,9 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       epoch_end_date:
-        description: 'The date like YYYY-MM-DD that was used to run the report in BalancerMaxis/STIP_Automation.  Use the action there to create a PR and merge it to main first.'
-        require: true
-
+        description: "The date like YYYY-MM-DD that was used to run the report in BalancerMaxis/STIP_Automation.  Use the action there to create a PR and merge it to main first."
+        required: true
 
 jobs:
   STIP_PR:

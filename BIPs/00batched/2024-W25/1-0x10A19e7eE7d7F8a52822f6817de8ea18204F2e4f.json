@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5aFE3855358E112B5647B952709E6165e1c1eEEe",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x0a7CB434f96f65972D46A5c1A64a9654dC9959b2",
+        "amount": "124374160017847396583275"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W25/BIP-621-lock-safe-balance.json",
+        "bip_number": "BIP-621"
+      }
+    },
+    {
+      "to": "0x0a7CB434f96f65972D46A5c1A64a9654dC9959b2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "amount",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ],
+        "name": "lock",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amount": "124374160017847396583275"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W25/BIP-621-lock-safe-balance.json",
+        "bip_number": "BIP-621"
+      }
+    }
+  ]
+}
