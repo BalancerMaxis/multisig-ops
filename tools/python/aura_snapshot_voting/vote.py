@@ -53,6 +53,7 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
     safe_tx.sign(PRIVATE_KEY)
     
     safe_service.post_transaction(safe_tx)
+    print("Transaction sent")
 
 
 @lru_cache(maxsize=None)
@@ -153,7 +154,7 @@ if __name__ == "__main__":
     data["message"]["timestamp"] = int(time.time())
     data["message"]["from"] = vlaura_safe_addr
     data["message"]["proposal"] = bytes.fromhex("91aa92518fadf2b17106d08a7f5d4963fba0cb63034279cb2bc3f13ad4e07471")
-    data["message"]["choice"] = format_choices({"1": 3.51, "2": 8.73, "3": 87.76})
+    data["message"]["choice"] = format_choices({"1": 2.51, "2": 9.73, "3": 87.76})
     
     hash = hash_eip712_message(data)
 
@@ -171,10 +172,10 @@ if __name__ == "__main__":
     data.pop("primaryType")
 
     with open(f"{output_dir}/report.txt", "w") as f:
-        vote_data = dict(zip(vote_df["snapshot_label"], vote_df["share"]))
-        f.write(f"Voting for: {json.dumps(vote_data, indent=4)}\n\n")
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: https://relayer.snapshot.org/api/messages/0x{hash.hex()}")
+
+    vote_df.to_csv(f"{output_dir}/vote_df.csv", index=False)
 
     with open(f"{output_dir}/payload.json", "w") as f:
         json.dump(data, f, indent=4)

@@ -33,9 +33,8 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
-        commit-message: "task: vlaura vote report"
+        commit-message: "task: vlaura vote report for ${{ github.event.inputs.week-string }}"
         title: "vlaura vote report for ${{ github.event.inputs.week-string }}"
         branch: "gha-biweekly-vlaura-votes-${{ github.event.inputs.week-string }}"
-        branch-suffix: timestamp
         delete-branch: true
-        labels: "vlAURA-Vote-Report"
+        labels: "vlAURA-Voting-Round"
