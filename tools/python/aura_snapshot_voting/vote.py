@@ -154,7 +154,7 @@ if __name__ == "__main__":
     data["message"]["timestamp"] = int(time.time())
     data["message"]["from"] = vlaura_safe_addr
     data["message"]["proposal"] = bytes.fromhex("91aa92518fadf2b17106d08a7f5d4963fba0cb63034279cb2bc3f13ad4e07471")
-    data["message"]["choice"] = format_choices({"1": 2.51, "2": 9.73, "3": 87.76})
+    data["message"]["choice"] = format_choices({"1": 5.51, "2": 6.73, "3": 87.76})
     
     hash = hash_eip712_message(data)
 
