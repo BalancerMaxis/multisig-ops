@@ -1,36 +1,29 @@
 FILENAME: `BIPs/2024-W27/BIP-637B Fraxtal Gauges and Cross Chain Wire Up.json`
 MULTISIG: `multisigs/dao (fraxtal:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
-COMMIT: `b15edccf89f22cb6c4986937a88473778252dab6`
+COMMIT: `57e2a9837c2a55e2097dcc6cb9e86b3a5590c4bb`
 CHAIN(S): `fraxtal`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/f2792f9e-ee68-4df6-98d9-d40e2914be35)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/a9802d9a-bb6c-40de-b88a-838468024126)
 ```
 +------------------------+---------------+--------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function               | caller_name   | caller_address                             | fx_paths                                                                           | action_ids                                                         |   bip   | tx_index |
 +------------------------+---------------+--------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRoles  | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20230316-l2-balancer-pseudo-minter/L2BalancerPseudoMinter/addGaugeFactory(address) | 0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e | BIP-637 |    0     |
-|                        |               |                                            | 20230316-l2-ve-delegation-proxy/VotingEscrowDelegationProxy/setDelegation(address) | 0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f |         |          |
-| Authorizer/revokeRoles | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20230316-l2-ve-delegation-proxy/VotingEscrowDelegationProxy/setDelegation(address) | 0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f | BIP-637 |    3     |
-|                        |               |                                            | 20230316-l2-balancer-pseudo-minter/L2BalancerPseudoMinter/addGaugeFactory(address) | 0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e |         |          |
+| Authorizer/grantRoles  | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20230316-l2-ve-delegation-proxy/VotingEscrowDelegationProxy/setDelegation(address) | 0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f | BIP-637 |    0     |
+| Authorizer/revokeRoles | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20230316-l2-balancer-pseudo-minter/L2BalancerPseudoMinter/addGaugeFactory(address) | 0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e | BIP-637 |    2     |
 +------------------------+---------------+--------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2024-W27/BIP-637B Fraxtal Gauges and Cross Chain Wire Up.json`
 MULTISIG: `multisigs/dao (fraxtal:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
-COMMIT: `b15edccf89f22cb6c4986937a88473778252dab6`
+COMMIT: `57e2a9837c2a55e2097dcc6cb9e86b3a5590c4bb`
 CHAIN(S): `fraxtal`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/0af0ffcd-a4a0-4fa5-9254-6a07d9d3079a)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/85f8288c-2f18-4fc6-afc2-29cbcf730b62)
 ```
-+-----------------+----------------------------------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------------------------------+------------+----------+
-| fx_name         | to                                                                                                       | value | inputs                                                                                                          | bip_number | tx_index |
-+-----------------+----------------------------------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------------------------------+------------+----------+
-| addGaugeFactory | 0x9805dcfD25e6De36bad8fe9D3Fe2c9b44B764102 (20230316-l2-balancer-pseudo-minter/L2BalancerPseudoMinter)   | 0     | {                                                                                                               | BIP-637    |   N/A    |
-|                 |                                                                                                          |       |   "factory": [                                                                                                  |            |          |
-|                 |                                                                                                          |       |     "0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68 (20230316-child-chain-gauge-factory-v2/ChildChainGaugeFactory)" |            |          |
-|                 |                                                                                                          |       |   ]                                                                                                             |            |          |
-|                 |                                                                                                          |       | }                                                                                                               |            |          |
-| setDelegation   | 0xE3881627B8DeeBCCF9c23B291430a549Fc0bE5F7 (20230316-l2-ve-delegation-proxy/VotingEscrowDelegationProxy) | 0     | {                                                                                                               | BIP-637    |   N/A    |
-|                 |                                                                                                          |       |   "delegation": [                                                                                               |            |          |
-|                 |                                                                                                          |       |     "0x1702067424096F07A60e62cceE3dE9420068492D (20230525-l2-veboost-v2/VeBoostV2)"                             |            |          |
-|                 |                                                                                                          |       |   ]                                                                                                             |            |          |
-|                 |                                                                                                          |       | }                                                                                                               |            |          |
-+-----------------+----------------------------------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------------------------------+------------+----------+
++---------------+----------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                                                                       | value | inputs                                                                              | bip_number | tx_index |
++---------------+----------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| setDelegation | 0xE3881627B8DeeBCCF9c23B291430a549Fc0bE5F7 (20230316-l2-ve-delegation-proxy/VotingEscrowDelegationProxy) | 0     | {                                                                                   | BIP-637    |   N/A    |
+|               |                                                                                                          |       |   "delegation": [                                                                   |            |          |
+|               |                                                                                                          |       |     "0x1702067424096F07A60e62cceE3dE9420068492D (20230525-l2-veboost-v2/VeBoostV2)" |            |          |
+|               |                                                                                                          |       |   ]                                                                                 |            |          |
+|               |                                                                                                          |       | }                                                                                   |            |          |
++---------------+----------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
 ```
