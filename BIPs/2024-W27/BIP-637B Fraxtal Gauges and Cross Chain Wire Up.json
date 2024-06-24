@@ -24,27 +24,8 @@
         "payable": false
       },
       "contractInputsValues": {
-        "roles": "[0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e, 0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f]",
+        "roles": "[0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f]",
         "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
-      }
-    },
-    {
-      "to": "0x9805dcfD25e6De36bad8fe9D3Fe2c9b44B764102",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "contract ILiquidityGaugeFactory",
-            "name": "factory",
-            "type": "address"
-          }
-        ],
-        "name": "addGaugeFactory",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "factory": "0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68"
       }
     },
     {
@@ -79,7 +60,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "roles": "[0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f, 0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e]",
+        "roles": "[0x9982b96c2fe5e96298fb726a0961f96e3b1b747460c05c75c71244df64b5248e]",
         "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
       }
     }
