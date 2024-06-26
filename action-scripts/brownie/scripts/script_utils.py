@@ -443,15 +443,20 @@ def get_rate_provider_review_summaries(
     """
     Accepts a list of rate provider addresses and returns a list of review summaries
     """
-    chain = chain.strip("-main")
-    r = RateProviders(chain)
     summaries = []
+    chain = chain.removesuffix("-main")
+    r = RateProviders(chain)
+    if chain not in AddrBook.chain_ids_by_name.keys():
+        print(f"WARNING:  Trying to look up rate-providers on unknown chain {chain}")
     for rate_provider in rate_providers:
         if rate_provider == NULL_ADDRESS:
             summaries.append("--")
             continue
         rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
         if not rpinfo:
+            print(
+                f"WARNING: looked up {to_checksum_address(rate_provider)}  on chain {chain} and got {rpinfo}"
+            )
             summaries.append("!!NO REVIEW!!")
         else:
             summaries.append(rpinfo["summary"])
