@@ -486,8 +486,7 @@ def get_rate_provider_review_summaries(
     Accepts a list of rate provider addresses and returns a list of review summaries
     """
     summaries = []
-    if chain != "mainnet":
-        chain = chain.strip("-main")
+    chain = chain.removesuffix("-main")
     r = RateProviders(chain)
     if chain not in AddrBook.chain_ids_by_name.keys():
         print(f"WARNING:  Trying to look up rate-providers on unknown chain {chain}")
