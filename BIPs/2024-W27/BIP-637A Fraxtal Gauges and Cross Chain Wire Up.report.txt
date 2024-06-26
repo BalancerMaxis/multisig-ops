@@ -1,23 +1,23 @@
 FILENAME: `BIPs/2024-W27/BIP-637A Fraxtal Gauges and Cross Chain Wire Up.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `fd256a920c284bbc0ce9e6c49b4cb175c71ebaf4`
+COMMIT: `4522a581b5e3fc0af5c6fd209465368cf5b0241f`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/327a35f8-03b3-4c37-a811-28270ac22580)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/bf697534-ef18-48e4-af4c-281926be43bf)
 ```
-+-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name   | caller_address                             | fx_paths                                                           | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRoles | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230519-gauge-adder-v4/GaugeAdder/setGaugeFactory(address,string) | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 | BIP-637 |    0     |
-|                       |               |                                            | 20230519-gauge-adder-v4/GaugeAdder/addGaugeType(string)            | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 |         |          |
-| Authorizer/grantRoles | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230519-gauge-adder-v4/GaugeAdder/setGaugeFactory(address,string) | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 | BIP-637 |    3     |
-|                       |               |                                            | 20230519-gauge-adder-v4/GaugeAdder/addGaugeType(string)            | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 |         |          |
-+-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
++------------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function               | caller_name   | caller_address                             | fx_paths                                                           | action_ids                                                         |   bip   | tx_index |
++------------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230519-gauge-adder-v4/GaugeAdder/setGaugeFactory(address,string) | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 | BIP-637 |    0     |
+|                        |               |                                            | 20230519-gauge-adder-v4/GaugeAdder/addGaugeType(string)            | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 |         |          |
+| Authorizer/revokeRoles | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230519-gauge-adder-v4/GaugeAdder/setGaugeFactory(address,string) | 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166 | BIP-637 |    3     |
+|                        |               |                                            | 20230519-gauge-adder-v4/GaugeAdder/addGaugeType(string)            | 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151 |         |          |
++------------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2024-W27/BIP-637A Fraxtal Gauges and Cross Chain Wire Up.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `fd256a920c284bbc0ce9e6c49b4cb175c71ebaf4`
+COMMIT: `4522a581b5e3fc0af5c6fd209465368cf5b0241f`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/5e89052c-c5fe-4b4e-a32f-672d04209b67)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/79df4eb5-af46-47c5-8dbb-fcc4790caa9d)
 ```
 +-----------------+---------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------------------------------+------------+----------+
 | fx_name         | to                                                                              | value | inputs                                                                                                            | bip_number | tx_index |
