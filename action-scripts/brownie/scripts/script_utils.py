@@ -4,6 +4,7 @@ import re
 from decimal import Decimal
 from json import JSONDecodeError
 from typing import Optional
+from urllib.request import urlopen
 
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions, RateProviders
@@ -68,11 +69,13 @@ def get_changed_files() -> list[dict]:
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
-            if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
-                print(f"{filename} does not exist")
+            try:
+                r = requests.get(file_json["contents_url"])
+            except:
+                print(f"{file_json['contents_url']} does not exist")
                 continue
             # Validate that file is a valid json
-            with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
+            with urlopen(r.json()["download_url"]) as json_data:
                 try:
                     payload = json.load(json_data)
                 except JSONDecodeError:
