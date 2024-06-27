@@ -1,14 +1,14 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1719453923974,
+  "createdAt": 1719466929871,
   "meta": {
     "name": "Transactions Batch",
-    "description": "",
-    "txBuilderVersion": "1.16.5",
+    "description": "Add new gauges",
+    "txBuilderVersion": "1.16.3",
     "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
     "createdFromOwnerAddress": "",
-    "checksum": "0x11aae5105644ae95e3e171406a7f74d2af11f85db97f3cc0119e8a1f94d2ab77"
+    "checksum": ""
   },
   "transactions": [
     {
@@ -17,8 +17,16 @@
       "data": null,
       "contractMethod": {
         "inputs": [
-          { "internalType": "address", "name": "gauge", "type": "address" },
-          { "internalType": "string", "name": "gaugeType", "type": "string" }
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
         ],
         "name": "addGauge",
         "payable": false
