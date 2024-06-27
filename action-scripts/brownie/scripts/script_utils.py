@@ -70,12 +70,12 @@ def get_changed_files() -> list[dict]:
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
             try:
-                r = requests.get(file_json['contents_url'])
+                r = requests.get(file_json["contents_url"])
             except:
                 print(f"{file_json['contents_url']} does not exist")
                 continue
             # Validate that file is a valid json
-            with urlopen(r.json()['download_url']) as json_data:
+            with urlopen(r.json()["download_url"]) as json_data:
                 try:
                     payload = json.load(json_data)
                 except JSONDecodeError:
