@@ -1,25 +1,25 @@
 FILENAME: `MaxiOps/00grants/Arbitrum/LTIPP/arbitrum_stip_bridge_start_q2_2024_2024-06-13_2024-06-27_bal_injector_stream.json`
 MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
-COMMIT: `2dabc21e26c5344eb27f46b706af0f9ee60d6fac`
+COMMIT: `2418aa778f5648b81021212808bca8f0bdcfe156`
 CHAIN(S): `arbitrum`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/a8e18a2f-f1ce-4cfd-b73f-faaa0dcabde8)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/a9503ffa-6d5c-49b3-aa11-5db108baeb1e)
 ```
-+----------+------------------------------------------------+------------------------------------------------------------------------------------------------+-------------------------------------------------+-----+----------+
-| function | token_symbol                                   | recipient                                                                                      | amount                                          | bip | tx_index |
-+----------+------------------------------------------------+------------------------------------------------------------------------------------------------+-------------------------------------------------+-----+----------+
-| transfer | ARB:0x912CE59144191C1204E64559FE8253a0e49E6548 | maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector:0xF23d8342881eDECcED51EA694AC21C2B68440929 | 87999.9999999994 (RAW: 87999999999999400000000) | N/A |    2     |
-+----------+------------------------------------------------+------------------------------------------------------------------------------------------------+-------------------------------------------------+-----+----------+
++----------+------------------------------------------------+------------------------------------------------------------------------------------------------+------------------------------------------+-----+----------+
+| function | token_symbol                                   | recipient                                                                                      | amount                                   | bip | tx_index |
++----------+------------------------------------------------+------------------------------------------------------------------------------------------------+------------------------------------------+-----+----------+
+| transfer | ARB:0x912CE59144191C1204E64559FE8253a0e49E6548 | maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector:0xF23d8342881eDECcED51EA694AC21C2B68440929 | 100000.0 (RAW: 100000000000000000000000) | N/A |    2     |
++----------+------------------------------------------------+------------------------------------------------------------------------------------------------+------------------------------------------+-----+----------+
 ```
 FILENAME: `MaxiOps/00grants/Arbitrum/LTIPP/arbitrum_stip_bridge_start_q2_2024_2024-06-13_2024-06-27_bal_injector_stream.json`
 MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
-COMMIT: `2dabc21e26c5344eb27f46b706af0f9ee60d6fac`
+COMMIT: `2418aa778f5648b81021212808bca8f0bdcfe156`
 CHAIN(S): `arbitrum`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/1b4f4035-f779-4b7e-9fcd-61de90553596)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/83e95c98-88c5-4ae1-b882-8b1a0f5d9a37)
 ```
 +------------------+-------------------------------------------------------------------------------------------------+--------+---------------------------------------------------------------------------------------+----------------------------------------------------+---------+------------------------------------------------------+----------+
-| function         | injector                                                                                        | symbol | gaugeList                                                                             | amounts_per_period                                 | periods | total_amount                                         | tx_index |
+| function         | injector                                                                                        | symbol | gaugeList                                                                             | amounts_per_period                                 | periods | total_amount_first_period                            | tx_index |
 +------------------+-------------------------------------------------------------------------------------------------+--------+---------------------------------------------------------------------------------------+----------------------------------------------------+---------+------------------------------------------------------+----------+
-| setRecipientList | 0xF23d8342881eDECcED51EA694AC21C2B68440929(maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector) | ARB    | [                                                                                     | [                                                  | [       | raw: 55999999999999700000000/1e18 = 55999.9999999997 |    1     |
+| setRecipientList | 0xF23d8342881eDECcED51EA694AC21C2B68440929(maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector) | ARB    | [                                                                                     | [                                                  | [       | raw: 49999999999999700000000/1e18 = 49999.9999999997 |    1     |
 |                  |                                                                                                 |        |  "0x59907f88C360D576Aa38dba84F26578367F96b6C (gauges/rsETH/wETH-gauge-5990)",         |  "3424082616194000000000/1e18 = 3424.082616194",   |  2,     |                                                      |          |
 |                  |                                                                                                 |        |  "0x5a0e92a55800BB5bFd5ec6C7340BfdE7f0947c3E (gauges/cbETH/rETH/wstETH-gauge-5a0e)",  |  "5485323822675100000000/1e18 = 5485.3238226751",  |  2,     |                                                      |          |
 |                  |                                                                                                 |        |  "0xdB66fFFf713B1FA758E348e69E2f2e24595111cF (gauges/ECLP-weETH-wstETH-gauge-db66)",  |  "5138732164866150000000/1e18 = 5138.73216486615", |  2,     |                                                      |          |
@@ -31,17 +31,17 @@ TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/1b4f4035-f779-4b7e-9fc
 |                  |                                                                                                 |        |  "0x06eaf7bAabEac962301eE21296e711B3052F2c0d (gauges/wstETH/sfrxETH-gauge-06ea)",     |  "4738361624613850000000/1e18 = 4738.36162461385", |  2,     |                                                      |          |
 |                  |                                                                                                 |        |  "0x40e86216712cB9871B9C698EA3AFB22f88c00E6e (gauges/ECLP-WOETH-WETH-gauge-40e8)",    |  "1899376907279350000000/1e18 = 1899.37690727935", |  2,     |                                                      |          |
 |                  |                                                                                                 |        |  "0x260cbb867359a1084eC97de4157d06ca74e89415 (gauges/wstETH-WETH-BPT-gauge-260c)",    |  "5395554591315400000000/1e18 = 5395.5545913154",  |  2,     |                                                      |          |
-|                  |                                                                                                 |        |  "0x96d7C70c80518Ee189CB6ba672FbD22E4fDD9c19 (gauges/ECLP-wstETH-WETH-gauge-96d7)",   |  "10000000000000000000000/1e18 = 10000.0",         |  2,     |                                                      |          |
-|                  |                                                                                                 |        |  "0xb072496eEf1F88a2Bd1BA93F880c7ed685264EB1 (gauges/instETH/wstETH-gauge-b072)",     |  "1000000000000000000000/1e18 = 1000.0",           |  2,     |                                                      |          |
-|                  |                                                                                                 |        |  "0x2dEafe52b0bCb9801d3aaDc0D75c7879cB2E5825 (gauges/inETH/wstETH-gauge-2dea)"        |  "1000000000000000000000/1e18 = 1000.0"            |  2      |                                                      |          |
+|                  |                                                                                                 |        |  "0x96d7C70c80518Ee189CB6ba672FbD22E4fDD9c19 (gauges/ECLP-wstETH-WETH-gauge-96d7)",   |  "5000000000000000000000/1e18 = 5000.0",           |  2,     |                                                      |          |
+|                  |                                                                                                 |        |  "0xb072496eEf1F88a2Bd1BA93F880c7ed685264EB1 (gauges/instETH/wstETH-gauge-b072)",     |  "500000000000000000000/1e18 = 500.0",             |  2,     |                                                      |          |
+|                  |                                                                                                 |        |  "0x2dEafe52b0bCb9801d3aaDc0D75c7879cB2E5825 (gauges/inETH/wstETH-gauge-2dea)"        |  "500000000000000000000/1e18 = 500.0"              |  2      |                                                      |          |
 |                  |                                                                                                 |        | ]                                                                                     | ]                                                  | ]       |                                                      |          |
 +------------------+-------------------------------------------------------------------------------------------------+--------+---------------------------------------------------------------------------------------+----------------------------------------------------+---------+------------------------------------------------------+----------+
 ```
 FILENAME: `MaxiOps/00grants/Arbitrum/LTIPP/arbitrum_stip_bridge_start_q2_2024_2024-06-13_2024-06-27_bal_injector_stream.json`
 MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
-COMMIT: `2dabc21e26c5344eb27f46b706af0f9ee60d6fac`
+COMMIT: `2418aa778f5648b81021212808bca8f0bdcfe156`
 CHAIN(S): `arbitrum`
-TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/a25ca031-ec83-4d2c-94c4-8ebfc85e6cc0)
+TENDERLY: [FAILURE](https://www.tdly.co/shared/simulation/15d4a32f-a9b0-4d3b-93ad-0702fb2a8498)
 ```
 +-------------+--------------------------------------------------------+-------+----------------+------------+----------+
 | fx_name     | to                                                     | value | inputs         | bip_number | tx_index |
