@@ -162,7 +162,9 @@ if __name__ == "__main__":
     print(f"payload: {data}")
     print(f"hash: {hash.hex()}")
 
-    calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode_abi(["bytes"], [hash])
+    calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode_abi(
+        ["bytes"], [hash]
+    )
 
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
