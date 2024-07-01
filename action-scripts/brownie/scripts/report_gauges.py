@@ -534,11 +534,10 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     perms = BalPermissions(chain_name)
     addr = AddrBook(chain_name)
     action_ids = transaction["contractInputsValues"].get("roles")
-    print(action_ids)
     # Change from a txbuilder json format list of addresses to a python one
     if not action_ids:
         action_ids = [transaction["contractInputsValues"].get("role")]
-    else:
+    elif isinstance(action_ids, str):
         action_ids = action_ids.strip("[ ]")
         action_ids = action_ids.replace(" ", "")
         action_ids = action_ids.split(",")
