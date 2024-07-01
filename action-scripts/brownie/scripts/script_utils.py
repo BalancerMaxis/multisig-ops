@@ -12,7 +12,7 @@ from bal_addresses import to_checksum_address, is_address
 from bal_tools import Aura
 import requests
 from brownie import Contract, chain, network, web3
-from eth_abi import encode
+from eth_abi import encode_abi
 from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
@@ -302,7 +302,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "gasToken": NULL_ADDRESS,
         "refundReceiver": NULL_ADDRESS,
         "signatures": b"".join(
-            [encode(["address", "uint"], [str(owner), 0]) + b"\x01" for owner in owners]
+            [encode_abi(["address", "uint"], [str(owner), 0]) + b"\x01" for owner in owners]
         ),
     }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
