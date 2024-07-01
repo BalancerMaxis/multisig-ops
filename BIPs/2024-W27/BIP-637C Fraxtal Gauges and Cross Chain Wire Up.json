@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1719269294017,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x7d25d4fd16badedb36161c5fcd49a9f31ea3ce0f8d31d4263452f70bbf0c9a63"
+  },
+  "transactions": [
+    {
+      "to": "0xE241C6e48CA045C7f631600a0f1403b2bFea05ad",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint16",
+            "name": "_remoteChainId",
+            "type": "uint16"
+          },
+          { "internalType": "bytes", "name": "_remoteAddress", "type": "bytes" }
+        ],
+        "name": "setTrustedRemoteAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_remoteChainId": "255",
+        "_remoteAddress": "0xE241C6e48CA045C7f631600a0f1403b2bFea05ad"
+      }
+    }
+  ]
+}
