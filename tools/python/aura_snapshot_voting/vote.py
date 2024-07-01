@@ -19,7 +19,7 @@ from web3 import Web3
 from gnosis.safe import Safe
 from gnosis.eth import EthereumClient
 from gnosis.safe.api import TransactionServiceApi
-from eth_abi import encode
+from eth_abi import encode_abi
 
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
 
@@ -128,14 +128,14 @@ if __name__ == "__main__":
     choices = prop["choices"]
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
     gauge_labels = {
-        Web3.to_checksum_address(x["address"]): x["label"] for x in gauge_labels
+        Web3.toChecksumAddress(x["address"]): x["label"] for x in gauge_labels
     }
     choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
     vote_df = vote_df.dropna(subset=["Gauge Address"])
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
-        lambda x: gauge_labels.get(Web3.to_checksum_address(x.strip()))
+        lambda x: gauge_labels.get(Web3.toChecksumAddress(x.strip()))
     )
     vote_df["snapshot_index"] = vote_df["snapshot_label"].apply(
         lambda label: str(choice_index_map[label])
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     print(f"payload: {data}")
     print(f"hash: {hash.hex()}")
 
-    calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
+    calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode_abi(["bytes"], [hash])
 
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
