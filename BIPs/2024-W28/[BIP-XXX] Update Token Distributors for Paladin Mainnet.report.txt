@@ -1,36 +1,28 @@
 FILENAME: `BIPs/2024-W28/[BIP-XXX] Update Token Distributors for Paladin Mainnet.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `433cf288423a40bc85681e2b70f4490501c8e591`
+COMMIT: `41825993556d2fea177a912133f92ed53a92b215`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/212fad45-c00a-42e2-a24a-7f9d7ac2061e)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/a73284ac-26a4-46a3-b76c-3c0546af6276)
 ```
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 | function              | caller_name   | caller_address                             | fx_paths                                                                                   | action_ids                                                         | bip | tx_index |
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 | Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | N/A |    0     |
 |                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |     |          |
-| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | N/A |    6     |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | N/A |    5     |
 |                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |     |          |
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 ```
 FILENAME: `BIPs/2024-W28/[BIP-XXX] Update Token Distributors for Paladin Mainnet.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `433cf288423a40bc85681e2b70f4490501c8e591`
+COMMIT: `41825993556d2fea177a912133f92ed53a92b215`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/37516f1a-4aec-49dc-bc41-80a667b36500)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/bfc0e7a0-b3b1-43ff-81b0-7485b799c9a4)
 ```
 +------------------------+-------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
 | fx_name                | to                                                                            | value | inputs                                                 | bip_number | tx_index |
 +------------------------+-------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
 | set_reward_distributor | 0xBC02eF87f4E15EF78A571f3B2aDcC726Fee70d8b (gauges/DOLA-USDC BSP-gauge-bc02)  | 0     | {                                                      | N/A        |   N/A    |
-|                        |                                                                               |       |   "_reward_token": [                                   |            |          |
-|                        |                                                                               |       |     "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68 (N/A)" |            |          |
-|                        |                                                                               |       |   ],                                                   |            |          |
-|                        |                                                                               |       |   "_distributor": [                                    |            |          |
-|                        |                                                                               |       |     "0xF13e938d7a1214ae438761941BC0C651405e68A4 (N/A)" |            |          |
-|                        |                                                                               |       |   ]                                                    |            |          |
-|                        |                                                                               |       | }                                                      |            |          |
-| set_reward_distributor | 0xbc02ef87f4e15ef78a571f3b2adcc726fee70d8b (Not Found)                        | 0     | {                                                      | N/A        |   N/A    |
 |                        |                                                                               |       |   "_reward_token": [                                   |            |          |
 |                        |                                                                               |       |     "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68 (N/A)" |            |          |
 |                        |                                                                               |       |   ],                                                   |            |          |
