@@ -254,7 +254,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     ), f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
     pretty_amounts = prettify_int_amounts(amounts_per_period, decimals)
-    total_amount = sum_list(amounts_per_period)
+    total_amount_first_period = sum(amounts_per_period)
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
@@ -263,7 +263,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         "gaugeList": json.dumps(pretty_gauges, indent=1),
         "amounts_per_period": json.dumps(pretty_amounts, indent=1),
         "periods": json.dumps(max_periods, indent=1),
-        "total_amount": f"raw: {total_amount}/1e{decimals} = {total_amount / 10 ** decimals}",
+        "total_amount_first_period": f"raw: {total_amount_first_period}/1e{decimals} = {total_amount_first_period / 10 ** decimals}",
         "tx_index": kwargs.get("tx_index", "N/A"),
     }
 
@@ -537,7 +537,7 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     # Change from a txbuilder json format list of addresses to a python one
     if not action_ids:
         action_ids = [transaction["contractInputsValues"].get("role")]
-    else:
+    elif isinstance(action_ids, str):
         action_ids = action_ids.strip("[ ]")
         action_ids = action_ids.replace(" ", "")
         action_ids = action_ids.split(",")
