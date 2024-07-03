@@ -26,9 +26,9 @@ jobs:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
         pwd
-        RUN_DIR=tools/python
+        RUN_DIR=tools/python/aura_snapshot_voting
         pip3 install -r $RUN_DIR/requirements.txt
-        python3 $RUN_DIR/aura_snapshot_voting/vote.py --week-string "${{ github.event.inputs.week-string }}"
+        python3 $RUN_DIR/vote.py --week-string "${{ github.event.inputs.week-string }}"
     - name: Create PR
       id: cpr
       uses: peter-evans/create-pull-request@v6

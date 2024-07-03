@@ -11,6 +11,7 @@ import glob
 
 import requests
 from bal_addresses import AddrBook
+from bal_addresses.utils import to_checksum_address
 from web3 import Web3
 from eth_account._utils.structured_data.hashing import hash_message, hash_domain
 from eth_utils import keccak
@@ -128,14 +129,14 @@ if __name__ == "__main__":
     choices = prop["choices"]
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
     gauge_labels = {
-        Web3.toChecksumAddress(x["address"]): x["label"] for x in gauge_labels
+        to_checksum_address(x["address"]): x["label"] for x in gauge_labels
     }
     choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
     vote_df = vote_df.dropna(subset=["Gauge Address"])
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
-        lambda x: gauge_labels.get(Web3.toChecksumAddress(x.strip()))
+        lambda x: gauge_labels.get(to_checksum_address(x.strip()))
     )
     vote_df["snapshot_index"] = vote_df["snapshot_label"].apply(
         lambda label: str(choice_index_map[label])
