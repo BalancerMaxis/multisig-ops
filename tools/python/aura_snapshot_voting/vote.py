@@ -128,9 +128,7 @@ if __name__ == "__main__":
     prop, _, _ = _get_prop_and_determine_date_range()
     choices = prop["choices"]
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
-    gauge_labels = {
-        to_checksum_address(x["address"]): x["label"] for x in gauge_labels
-    }
+    gauge_labels = {to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
     choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
     vote_df = vote_df.dropna(subset=["Gauge Address"])
