@@ -1,58 +1,50 @@
 FILENAME: `BIPs/2024-W28/BIP-653.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `6ab9f4d33fd178f9c77a459927eec73c6ed282e8`
+COMMIT: `75c03f0343be49319ac4f6442641a15588e56209`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/cfdbd4aa-03b5-46fa-bc05-e5b9dea66e6e)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/453c0bd3-6eea-442e-b137-9f812e3e93cb)
 ```
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function              | caller_name   | caller_address                             | fx_paths                                                                                   | action_ids                                                         |   bip   | tx_index |
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    0     |
-|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    |                                                                    |         |          |
-| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    5     |
-|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    |                                                                    |         |          |
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    0     |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |         |          |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    4     |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |         |          |
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2024-W28/BIP-653.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `6ab9f4d33fd178f9c77a459927eec73c6ed282e8`
+COMMIT: `75c03f0343be49319ac4f6442641a15588e56209`
 CHAIN(S): `mainnet`
-TENDERLY: SKIPPED (`JSONDecodeError('Expecting value: line 2 column 1 (char 1)')`)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/5f06eaad-b0e0-4a53-b265-17ca7ffe98d2)
 ```
-+------------------------+-------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
-| fx_name                | to                                                                            | value | inputs                                                 | bip_number | tx_index |
-+------------------------+-------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
-| set_reward_distributor | 0xBC02eF87f4E15EF78A571f3B2aDcC726Fee70d8b (gauges/DOLA-USDC BSP-gauge-bc02)  | 0     | {                                                      | BIP-653    |   N/A    |
-|                        |                                                                               |       |   "_reward_token": [                                   |            |          |
-|                        |                                                                               |       |     "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68 (N/A)" |            |          |
-|                        |                                                                               |       |   ],                                                   |            |          |
-|                        |                                                                               |       |   "_distributor": [                                    |            |          |
-|                        |                                                                               |       |     "0xF13e938d7a1214ae438761941BC0C651405e68A4 (N/A)" |            |          |
-|                        |                                                                               |       |   ]                                                    |            |          |
-|                        |                                                                               |       | }                                                      |            |          |
-| set_reward_distributor | 0xCD19892916929F013930ed628547Cc1F439b230e (gauges/sDOLA-DOLA BSP-gauge-cd19) | 0     | {                                                      | BIP-653    |   N/A    |
-|                        |                                                                               |       |   "_reward_token": [                                   |            |          |
-|                        |                                                                               |       |     "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68 (N/A)" |            |          |
-|                        |                                                                               |       |   ],                                                   |            |          |
-|                        |                                                                               |       |   "_distributor": [                                    |            |          |
-|                        |                                                                               |       |     "0xF13e938d7a1214ae438761941BC0C651405e68A4 (N/A)" |            |          |
-|                        |                                                                               |       |   ]                                                    |            |          |
-|                        |                                                                               |       | }                                                      |            |          |
-| set_reward_distributor | 0xCc6A23446f6388D78F3037BD55f2eB820352d982 (gauges/80T-20TBTC-gauge-cc6a)     | 0     | {                                                      | BIP-653    |   N/A    |
-|                        |                                                                               |       |   "_reward_token": [                                   |            |          |
-|                        |                                                                               |       |     "0xCdF7028ceAB81fA0C6971208e83fa7872994beE5 (N/A)" |            |          |
-|                        |                                                                               |       |   ],                                                   |            |          |
-|                        |                                                                               |       |   "_distributor": [                                    |            |          |
-|                        |                                                                               |       |     "0xF13e938d7a1214ae438761941BC0C651405e68A4 (N/A)" |            |          |
-|                        |                                                                               |       |   ]                                                    |            |          |
-|                        |                                                                               |       | }                                                      |            |          |
-| set_reward_distributor | 0x21c377cBB2bEdDd8534308E5CdfeBE35fDF817E8 (gauges/2BTC-gauge-21c3)           | 0     | {                                                      | BIP-653    |   N/A    |
-|                        |                                                                               |       |   "_reward_token": [                                   |            |          |
-|                        |                                                                               |       |     "0xCdF7028ceAB81fA0C6971208e83fa7872994beE5 (N/A)" |            |          |
-|                        |                                                                               |       |   ],                                                   |            |          |
-|                        |                                                                               |       |   "_distributor": [                                    |            |          |
-|                        |                                                                               |       |     "0xF13e938d7a1214ae438761941BC0C651405e68A4 (N/A)" |            |          |
-|                        |                                                                               |       |   ]                                                    |            |          |
-|                        |                                                                               |       | }                                                      |            |          |
-+------------------------+-------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
++------------------------+-------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------+------------+----------+
+| fx_name                | to                                                                            | value | inputs                                                                    | bip_number | tx_index |
++------------------------+-------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------+------------+----------+
+| set_reward_distributor | 0xBC02eF87f4E15EF78A571f3B2aDcC726Fee70d8b (gauges/DOLA-USDC BSP-gauge-bc02)  | 0     | {                                                                         | BIP-653    |   N/A    |
+|                        |                                                                               |       |   "_reward_token": [                                                      |            |          |
+|                        |                                                                               |       |     "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68 (N/A)"                    |            |          |
+|                        |                                                                               |       |   ],                                                                      |            |          |
+|                        |                                                                               |       |   "_distributor": [                                                       |            |          |
+|                        |                                                                               |       |     "0xfEb352930cA196a80B708CDD5dcb4eCA94805daB (paladin/QuestBoardV2_1)" |            |          |
+|                        |                                                                               |       |   ]                                                                       |            |          |
+|                        |                                                                               |       | }                                                                         |            |          |
+| set_reward_distributor | 0xCD19892916929F013930ed628547Cc1F439b230e (gauges/sDOLA-DOLA BSP-gauge-cd19) | 0     | {                                                                         | BIP-653    |   N/A    |
+|                        |                                                                               |       |   "_reward_token": [                                                      |            |          |
+|                        |                                                                               |       |     "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68 (N/A)"                    |            |          |
+|                        |                                                                               |       |   ],                                                                      |            |          |
+|                        |                                                                               |       |   "_distributor": [                                                       |            |          |
+|                        |                                                                               |       |     "0xfEb352930cA196a80B708CDD5dcb4eCA94805daB (paladin/QuestBoardV2_1)" |            |          |
+|                        |                                                                               |       |   ]                                                                       |            |          |
+|                        |                                                                               |       | }                                                                         |            |          |
+| set_reward_distributor | 0x21c377cBB2bEdDd8534308E5CdfeBE35fDF817E8 (gauges/2BTC-gauge-21c3)           | 0     | {                                                                         | BIP-653    |   N/A    |
+|                        |                                                                               |       |   "_reward_token": [                                                      |            |          |
+|                        |                                                                               |       |     "0xCdF7028ceAB81fA0C6971208e83fa7872994beE5 (N/A)"                    |            |          |
+|                        |                                                                               |       |   ],                                                                      |            |          |
+|                        |                                                                               |       |   "_distributor": [                                                       |            |          |
+|                        |                                                                               |       |     "0xfEb352930cA196a80B708CDD5dcb4eCA94805daB (paladin/QuestBoardV2_1)" |            |          |
+|                        |                                                                               |       |   ]                                                                       |            |          |
+|                        |                                                                               |       | }                                                                         |            |          |
++------------------------+-------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------+------------+----------+
 ```
