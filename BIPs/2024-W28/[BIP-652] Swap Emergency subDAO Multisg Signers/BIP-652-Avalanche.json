@@ -1,18 +1,18 @@
 {
   "version": "1.0",
-  "chainId": "10",
-  "createdAt": 1719968259389,
+  "chainId": "43114",
+  "createdAt": 1719969166524,
   "meta": {
-    "name": "Transactions Batch",
+    "name": "Replace Emergency DAO Signer Set",
     "description": "",
     "txBuilderVersion": "1.16.5",
-    "createdFromSafeAddress": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+    "createdFromSafeAddress": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0",
     "createdFromOwnerAddress": "",
-    "checksum": "0x25cfa17725531628b14116e0fe2371ff517a2625114045929268cd4afc92a068"
+    "checksum": "0x008b818ba823dfafdb6d8f494b2ca99a9655b8ea75aacd170f4b618eb042f216"
   },
   "transactions": [
     {
-      "to": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+      "to": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0",
       "value": "0",
       "data": null,
       "contractMethod": {
@@ -31,26 +31,7 @@
       }
     },
     {
-      "to": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          { "internalType": "address", "name": "prevOwner", "type": "address" },
-          { "internalType": "address", "name": "oldOwner", "type": "address" },
-          { "internalType": "address", "name": "newOwner", "type": "address" }
-        ],
-        "name": "swapOwner",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "prevOwner": "0x202B1AA0d702898CA474aB6ED31d53BA309308D9",
-        "oldOwner": "0xCae6f77a6cf4C952BF36793D91519fb4Ae86C264",
-        "newOwner": "0x89c7D6ABA9Cd18D8A93571E583EEAc58Da75acE6"
-      }
-    },
-    {
-      "to": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+      "to": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0",
       "value": "0",
       "data": null,
       "contractMethod": {
@@ -65,11 +46,30 @@
       "contractInputsValues": {
         "prevOwner": "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8",
         "oldOwner": "0xafFC70b81D54F229A5F50ec07e2c76D2AAAD07Ae",
+        "newOwner": "0x89c7D6ABA9Cd18D8A93571E583EEAc58Da75acE6"
+      }
+    },
+    {
+      "to": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "prevOwner", "type": "address" },
+          { "internalType": "address", "name": "oldOwner", "type": "address" },
+          { "internalType": "address", "name": "newOwner", "type": "address" }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x7c2eA10D3e5922ba3bBBafa39Dc0677353D2AF17",
+        "oldOwner": "0xCae6f77a6cf4C952BF36793D91519fb4Ae86C264",
         "newOwner": "0x606681E47afC7869482660eCD61bd45B53523D83"
       }
     },
     {
-      "to": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+      "to": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0",
       "value": "0",
       "data": null,
       "contractMethod": {
