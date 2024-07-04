@@ -1,0 +1,93 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1698450039804,
+  "meta": {
+    "name": "",
+    "description": "July OP Bribs from Lido",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xeD2Bc4e72Ed7D61FA4812a6B0E3d16F8Ad8369a1",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+      "description": "wstETH/ETH ECLP ExtraRewardsStash - Arbitrum AURA PID 68",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xfb293d5ce33cc37df1fe6b255d2ca4a7c32a1262",
+        "amount": "1875000000000000000000"
+      }
+    },
+    {
+      "to": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+      "description": "wstETH/ETH ECLP ExtraRewardsStash - Arbitrum AURA PID 67",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x034b005153523b3dc1a6657db8e1f7f656c86e0f",
+        "amount": "937500000000000000000"
+      }
+    },
+    {
+      "to": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+      "description": "ezETH/wstETH ECLP ExtraRewardsStash - Arbitrum AURA PID 54",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x9758414c8c9e6378c37eb7d2d27c9dc94615db60",
+        "amount": "937500000000000000000"
+      }
+    }
+  ]
+}
