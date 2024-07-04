@@ -22,3 +22,27 @@ live:
         host: https://rpcapi.fantom.network
         id: fantom-main
         name: Mainnet
+
+  - name: Mode
+    networks:
+      - chainid: 34443
+        explorer: https://api.routescan.io/v2/network/mainnet/evm/34443/etherscan/api
+        host: https://mode.drpc.org
+        id: mode-main
+        name: Mainnet
+
+  - name: Fraxtal
+    networks:
+      - chainid: 252
+        explorer: https://api.fraxscan.com/api
+        host: https://rpc.frax.com
+        id: fraxtal-main
+        name: Mainnet
+
+  - name: Linea
+    networks:
+      - chainid: 59144
+        explorer: https://api.lineascan.build/api
+        host: https://linea.drpc.org
+        id: linea-main
+        name: Mainnet

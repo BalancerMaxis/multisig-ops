@@ -50,6 +50,9 @@ TYPE_TO_CHAIN_MAP = {
     "PolygonZkEvm": "zkevm-main",
     "Avalanche": "avax-main",
     "Base": "base-main",
+    "Mode": "mode-main",
+    "Fraxtal": "fraxtal-main",
+    "Linea": "linea-main",
     "EthereumSingleRecipientGauge": CHAIN_MAINNET,
 }
 
