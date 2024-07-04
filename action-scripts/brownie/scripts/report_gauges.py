@@ -296,6 +296,9 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     ##  Parse TX
     ### Determine market
     to_address = to_checksum_address(transaction["to"])
+    print(
+        f"Selecting markets based on: aura briber: {aura_briber}, bal_briber: {bal_briber}"
+    )
     if to_address == aura_briber:
         market = "aura"
     elif to_address == bal_briber:
