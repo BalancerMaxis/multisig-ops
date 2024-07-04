@@ -66,6 +66,8 @@ SELECTORS_MAPPING = {
     "getBaseBridge": "base-main",
 }
 
+ERC20_ABI = json.load(open("abis/ERC20.json", "r"))
+
 today = datetime.today().strftime("%Y-%m-%d")
 
 
@@ -283,6 +285,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     chain_id = kwargs["chain_id"]
     chain_name = AddrBook.chain_names_by_id.get(int(chain_id))
     book = AddrBook(chain_name)
+    switch_chain_if_needed(chain_id)
     if not transaction.get("contractInputsValues") or not transaction.get(
         "contractMethod"
     ):
@@ -291,13 +294,13 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
         return
     ## Grab Proposal data and briber addresses
     prop_map = return_hh_brib_maps()
-    aura_briber = book.extras.hidden_hand2.aura_briber
-    bal_briber = book.extras.hidden_hand2.balancer_briber
+    aura_briber = book.extras.hidden_hand2.get("aura_briber")
+    bal_briber = book.extras.hidden_hand2.get("bal_briber")
     ##  Parse TX
     ### Determine market
     to_address = to_checksum_address(transaction["to"])
     print(
-        f"Selecting markets based on: aura briber: {aura_briber}, bal_briber: {bal_briber}"
+        f"Selecting markets on {chain_name} based on: aura briber: {aura_briber}, bal_briber: {bal_briber}"
     )
     if to_address == aura_briber:
         market = "aura"
@@ -316,7 +319,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
 
     ## Try to connect to the token interface to get more details
     try:
-        token = Contract(token_address)
+        token = Contract.from_abi("Token", token_address, ERC20_ABI)
         token_symbol = token.symbol()
         whole_amount = raw_amount / 10 ** token.decimals()
 
@@ -340,7 +343,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
         "function": "depositBribe",
         "chain": "mainnet",
         "title_and_poolId": f"{prop_data.get('title', 'Not Found')} \n{prop_data.get('poolId', 'Not Found')}",
-        "incentive_paid": f"{token_symbol} {whole_amount}({raw_amount})",
+        "incentive_paid": f"{token_symbol}({token_address}) \n {whole_amount}({raw_amount})",
         "market_and_prophash": f"{market} \n{proposal_hash}",
         "periods": periods,
         "tx_index": kwargs.get("tx_index", "N/A"),
