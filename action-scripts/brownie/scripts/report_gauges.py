@@ -280,7 +280,9 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     :param transaction: transaction to parse
     :return: dict with parsed data
     """
-
+    chain_id = kwargs["chain_id"]
+    chain_name = AddrBook.chain_names_by_id.get(int(chain_id))
+    book = AddrBook(chain_name)
     if not transaction.get("contractInputsValues") or not transaction.get(
         "contractMethod"
     ):
@@ -289,8 +291,8 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
         return
     ## Grab Proposal data and briber addresses
     prop_map = return_hh_brib_maps()
-    aura_briber = ADDR_BOOK.extras.hidden_hand2.aura_briber
-    bal_briber = ADDR_BOOK.extras.hidden_hand2.balancer_briber
+    aura_briber = book.extras.hidden_hand2.aura_briber
+    bal_briber = book.extras.hidden_hand2.balancer_briber
     ##  Parse TX
     ### Determine market
     to_address = to_checksum_address(transaction["to"])
@@ -303,15 +305,23 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
             f"Couldn't determine bribe market for {json.dumps(transaction, indent=2)}"
         )
         return
-    ### Grab info about token and amounts
+    ### Grab info
     token_address = transaction["contractInputsValues"].get("_token")
-    token = Contract(token_address)
-    token_symbol = token.symbol()
-    token_decimals = token.decimals()
     raw_amount = int(transaction["contractInputsValues"]["_amount"])
     proposal_hash = transaction["contractInputsValues"]["_proposal"]
-    whole_amount = raw_amount / 10**token_decimals
     periods = transaction["contractInputsValues"].get("_periods", "N/A")
+
+    ## Try to connect to the token interface to get more details
+    try:
+        token = Contract(token_address)
+        token_symbol = token.symbol()
+        whole_amount = raw_amount / 10 ** token.decimals()
+
+    except Exception as e:
+        print(f"Warning.  Can't interface with token contract {token_address}: {e}")
+        token_symbol = "N/A"
+        whole_amount = "N/A"
+
     ### Lookup Proposal and return report
     prop_data = prop_map[market].get(proposal_hash)
     if not isinstance(prop_data, dict):
