@@ -4,6 +4,7 @@ import re
 from decimal import Decimal
 from json import JSONDecodeError
 from typing import Optional
+from urllib.request import urlopen
 
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions, RateProviders
@@ -11,7 +12,7 @@ from bal_addresses import to_checksum_address, is_address
 from bal_tools import Aura
 import requests
 from brownie import Contract, chain, network, web3
-from eth_abi import encode
+from eth_abi import encode_abi
 from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
@@ -69,11 +70,13 @@ def get_changed_files() -> list[dict]:
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
-            if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
-                print(f"{filename} does not exist")
+            try:
+                r = requests.get(file_json["contents_url"])
+            except:
+                print(f"{file_json['contents_url']} does not exist")
                 continue
             # Validate that file is a valid json
-            with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
+            with urlopen(r.json()["download_url"]) as json_data:
                 try:
                     payload = json.load(json_data)
                 except JSONDecodeError:
@@ -300,7 +303,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "gasToken": NULL_ADDRESS,
         "refundReceiver": NULL_ADDRESS,
         "signatures": b"".join(
-            [encode(["address", "uint"], [str(owner), 0]) + b"\x01" for owner in owners]
+            [
+                encode_abi(["address", "uint"], [str(owner), 0]) + b"\x01"
+                for owner in owners
+            ]
         ),
     }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
