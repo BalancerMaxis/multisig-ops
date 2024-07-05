@@ -50,6 +50,9 @@ TYPE_TO_CHAIN_MAP = {
     "PolygonZkEvm": "zkevm-main",
     "Avalanche": "avax-main",
     "Base": "base-main",
+    "Mode": "mode-main",
+    "Fraxtal": "fraxtal-main",
+    "Linea": "linea-main",
     "EthereumSingleRecipientGauge": CHAIN_MAINNET,
 }
 
@@ -62,6 +65,8 @@ SELECTORS_MAPPING = {
     "getAvalancheBridge": "avax-main",
     "getBaseBridge": "base-main",
 }
+
+ERC20_ABI = json.load(open("abis/ERC20.json", "r"))
 
 today = datetime.today().strftime("%Y-%m-%d")
 
@@ -277,7 +282,10 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     :param transaction: transaction to parse
     :return: dict with parsed data
     """
-
+    chain_id = kwargs["chain_id"]
+    chain_name = AddrBook.chain_names_by_id.get(int(chain_id))
+    chainbook = AddrBook(chain_name)
+    switch_chain_if_needed(chain_id)
     if not transaction.get("contractInputsValues") or not transaction.get(
         "contractMethod"
     ):
@@ -286,11 +294,14 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
         return
     ## Grab Proposal data and briber addresses
     prop_map = return_hh_brib_maps()
-    aura_briber = ADDR_BOOK.extras.hidden_hand2.aura_briber
-    bal_briber = ADDR_BOOK.extras.hidden_hand2.balancer_briber
+    aura_briber = chainbook.extras.hidden_hand2.get("aura_briber")
+    bal_briber = chainbook.extras.hidden_hand2.get("bal_briber")
     ##  Parse TX
     ### Determine market
     to_address = to_checksum_address(transaction["to"])
+    print(
+        f"Selecting markets on {chain_name} based on: aura briber: {aura_briber}, bal_briber: {bal_briber}"
+    )
     if to_address == aura_briber:
         market = "aura"
     elif to_address == bal_briber:
@@ -300,21 +311,29 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
             f"Couldn't determine bribe market for {json.dumps(transaction, indent=2)}"
         )
         return
-    ### Grab info about token and amounts
+    ### Grab info
     token_address = transaction["contractInputsValues"].get("_token")
-    token = Contract(token_address)
-    token_symbol = token.symbol()
-    token_decimals = token.decimals()
     raw_amount = int(transaction["contractInputsValues"]["_amount"])
     proposal_hash = transaction["contractInputsValues"]["_proposal"]
-    whole_amount = raw_amount / 10**token_decimals
     periods = transaction["contractInputsValues"].get("_periods", "N/A")
+
+    ## Try to connect to the token interface to get more details
+    try:
+        token = Contract.from_abi("Token", token_address, ERC20_ABI)
+        token_symbol = token.symbol()
+        whole_amount = raw_amount / 10 ** token.decimals()
+
+    except Exception as e:
+        print(f"Warning.  Can't interface with token contract {token_address}: {e}")
+        token_symbol = "N/A"
+        whole_amount = "N/A"
+
     ### Lookup Proposal and return report
     prop_data = prop_map[market].get(proposal_hash)
     if not isinstance(prop_data, dict):
         return {
             "function": "depositBribe",
-            "chain": "mainnet",
+            "chain": chainbook.chain,
             "error": f"Can not find proposal {proposal_hash} on the {market} incentive market.",
             "bip": kwargs.get("bip_number", "N/A"),
             "tx_index": kwargs.get("tx_index", "N/A"),
@@ -322,9 +341,9 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
 
     return {
         "function": "depositBribe",
-        "chain": "mainnet",
+        "chain": chainbook.chain,
         "title_and_poolId": f"{prop_data.get('title', 'Not Found')} \n{prop_data.get('poolId', 'Not Found')}",
-        "incentive_paid": f"{token_symbol} {whole_amount}({raw_amount})",
+        "incentive_paid": f"{token_symbol}({token_address}) \n {whole_amount}({raw_amount})",
         "market_and_prophash": f"{market} \n{proposal_hash}",
         "periods": periods,
         "tx_index": kwargs.get("tx_index", "N/A"),
