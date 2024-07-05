@@ -284,7 +284,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     """
     chain_id = kwargs["chain_id"]
     chain_name = AddrBook.chain_names_by_id.get(int(chain_id))
-    book = AddrBook(chain_name)
+    chainbook = AddrBook(chain_name)
     switch_chain_if_needed(chain_id)
     if not transaction.get("contractInputsValues") or not transaction.get(
         "contractMethod"
@@ -294,8 +294,8 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
         return
     ## Grab Proposal data and briber addresses
     prop_map = return_hh_brib_maps()
-    aura_briber = book.extras.hidden_hand2.get("aura_briber")
-    bal_briber = book.extras.hidden_hand2.get("bal_briber")
+    aura_briber = chainbook.extras.hidden_hand2.get("aura_briber")
+    bal_briber = chainbook.extras.hidden_hand2.get("bal_briber")
     ##  Parse TX
     ### Determine market
     to_address = to_checksum_address(transaction["to"])
@@ -333,7 +333,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     if not isinstance(prop_data, dict):
         return {
             "function": "depositBribe",
-            "chain": "mainnet",
+            "chain": chainbook.chain,
             "error": f"Can not find proposal {proposal_hash} on the {market} incentive market.",
             "bip": kwargs.get("bip_number", "N/A"),
             "tx_index": kwargs.get("tx_index", "N/A"),
@@ -341,7 +341,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
 
     return {
         "function": "depositBribe",
-        "chain": "mainnet",
+        "chain": chainbook.chain,
         "title_and_poolId": f"{prop_data.get('title', 'Not Found')} \n{prop_data.get('poolId', 'Not Found')}",
         "incentive_paid": f"{token_symbol}({token_address}) \n {whole_amount}({raw_amount})",
         "market_and_prophash": f"{market} \n{proposal_hash}",
