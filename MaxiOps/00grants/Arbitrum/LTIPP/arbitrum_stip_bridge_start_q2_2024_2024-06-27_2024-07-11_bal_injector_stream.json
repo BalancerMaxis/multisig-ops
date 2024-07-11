@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1691667397141,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.1",
+    "createdFromSafeAddress": "0xb6BfF54589f269E248f99D5956f1fDD5b014D50e",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0xF23d8342881eDECcED51EA694AC21C2B68440929",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8[]",
+            "internalType": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0x5a0e92a55800BB5bFd5ec6C7340BfdE7f0947c3E,0xfC745035F31BCbaEb2D1a89aA9171495c671F6cE,0x7C4A6B0c16cA99e65822Cc531403cE2f8A20A912,0x050fBe33699E56B577c3D6f090eCE9870A0966bd,0x8ba2D53F34159C5C5e7add60B56C7dE3BBc1DA68,0x0CE9489bBD4bfA0Da7b5bb06E4dFa7a5947F76e8,0x2b52a321Fc2ab77e9fC8488D792BB3CaEA966c0b,0x06eaf7bAabEac962301eE21296e711B3052F2c0d,0x40e86216712cB9871B9C698EA3AFB22f88c00E6e,0x8f57378CaD866a46eA702B7ACAEBF21dd93B4804,0x59907f88C360D576Aa38dba84F26578367F96b6C,0x260cbb867359a1084eC97de4157d06ca74e89415,0x96d7C70c80518Ee189CB6ba672FbD22E4fDD9c19,0xdB66fFFf713B1FA758E348e69E2f2e24595111cF]",
+        "amountsPerPeriod": "[5690600319883050000000,2998682884709650000000,710753311463900000000,3485682899570200000000,8301421232936150000000,1000000000000000000000,2560770143947350000000,5116255938431650000000,2059455353862400000000,865500928972800000000,4610738446688350000000,6510564663739000000000,3000000000000000000000,3089573875795150000000]",
+        "maxPeriods": "[2,2,2,2,2,2,2,2,2,2,2,2,2,2]"
+      }
+    },
+    {
+      "to": "0x912ce59144191c1204e64559fe8253a0e49e6548",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xF23d8342881eDECcED51EA694AC21C2B68440929",
+        "amount": "49999999999999995805696"
+      }
+    }
+  ]
+}
