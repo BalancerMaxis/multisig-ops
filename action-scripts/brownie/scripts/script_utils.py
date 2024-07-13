@@ -577,7 +577,7 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
 
 
 def prettify_address(address, chainbook) -> str:
-    return f"{address} ({chainbook.reversebook.get(address)})"
+    return f"{address} ({chainbook.reversebook.get(to_checksum_address(address))})"
 
 
 ## Prettification logic for various complex data types
