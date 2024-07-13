@@ -262,7 +262,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
     ), f"List lentgh mismatch gauges:{len(gauge_addresses)}, amounts:{len(amounts_per_period)}, max_periods:{len(max_periods)}"
     pretty_gauges = prettify_gauge_list(gauge_addresses, chainbook)
     pretty_amounts = prettify_int_amounts(amounts_per_period, decimals)
-    total_amount_first_period = sum(amounts_per_period)
+    total_amount_first_period = sum([int(x) for x in amounts_per_period])
     return {
         "function": "setRecipientList",
         "chain": chainbook.chain,
