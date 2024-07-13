@@ -21,13 +21,16 @@ from .script_utils import prettify_tokens_list
 from .script_utils import prettify_gauge_list
 from .script_utils import prettify_int_amounts, prettify_int_amount
 from .script_utils import prettify_aura_pid
-from .script_utils import sum_list
+from .script_utils import prettify_flat_list
+from .script_utils import prettify_address
 from .script_utils import return_hh_brib_maps
 from .script_utils import switch_chain_if_needed
 
 from datetime import datetime
 
 import json
+
+GAUGE_ABI = json.load(open("abis/IChildChainGauge.json"))
 
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
@@ -589,6 +592,70 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
+def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse calls made throught the AuthorizerAdapterEntrypoint
+    """
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
+        return
+    # Parse only gauge add transactions
+    if transaction["contractMethod"]["name"] != "performAction":
+        return
+    chain_id = kwargs["chain_id"]
+    chain_alias = "{}-main"
+    chain_name = "main"
+    # Get chain name using address book and chain id
+    for c_name, c_id in AddrBook.chain_ids_by_name.items():
+        if int(chain_id) == int(c_id):
+            chain_name = (
+                chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
+            )
+            chainbook = AddrBook(c_name)
+            break
+    switch_chain_if_needed(chain_id)
+    entrypoint = Contract(transaction["to"])
+    # try:
+    target_address = transaction["contractInputsValues"].get("target")
+    print(target_address)
+    try:
+        target_interface = Contract.from_explorer(target_address)
+    except Exception as e:
+        try:
+            print(
+                f"WARNING: Attempting to use Gauge Interface for {target_address} instead of explorer due to failure:{e}"
+            )
+            target_interface = Contract.from_abi("gauge", target_address, GAUGE_ABI)
+            # check and make sure this looks like a gauge
+            target_interface.lp_token()
+        except Exception as e:
+            print(f"Can't find target interface for {target_address}: {e}")
+            return
+    try:
+        data = transaction["contractInputsValues"].get("data")
+        (selector, inputs) = target_interface.decode_input(data)
+    except Exception as e:
+        print(f"Error processing performAction call: {e}")
+        return
+    try:
+        inputs = prettify_flat_list(inputs, chain_name)
+    except Exception as e:
+        print(
+            f"INFO: Was unable to prettify inputs during performAction decoding, perhaps the input data is too complex: {e}"
+        )
+    return {
+        "function": "performAction",
+        "chain": chain_name,
+        "entrypoint": prettify_address(entrypoint.address, chainbook),
+        "target": prettify_address(target_address, chainbook),
+        "selector": selector,
+        "parsed_inputs": "\n".join(inputs),
+        "bip": kwargs.get("bip_number", "N/A"),
+        "tx_index": kwargs.get("tx_index", "N/A"),
+    }
+
+
 def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse an ERC-20 transfer transaction and return a dict with parsed data
@@ -797,6 +864,7 @@ def main() -> None:
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
     all_reports.append(handler(files, _parse_aura_direct_incentive))
+    all_reports.append(handler(files, _parse_AuthorizerAdapterEntrypoint))
     all_reports.append(handler(files, _parse_set_recipient_list))
 
     ## Catch All should run after all other handlers.
