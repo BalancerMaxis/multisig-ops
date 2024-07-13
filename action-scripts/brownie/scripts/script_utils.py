@@ -586,7 +586,7 @@ def prettify_flat_list(inputs: list[str], chain: str) -> list[str]:
     Accepts a list of and returns it with any address items prettified including names in string format
     Requires you are on the network of the addresses when run
     """
-    chain = chain.strip("-main")
+    chain = chain.removesuffix("-main")
     book = AddrBook(chain)
     results = []
     for input in inputs:
