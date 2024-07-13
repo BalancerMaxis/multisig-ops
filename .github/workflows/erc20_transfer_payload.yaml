@@ -3,24 +3,23 @@ on:
   workflow_dispatch:
     inputs:
       token:
-        description: 'Token'
+        description: "Token"
         required: true
       destination:
-        description: 'Destination Address(or unqiue addrbook string)'
+        description: "Destination Address(or unqiue addrbook string)"
         required: true
       whole_amount:
-        description: 'Whole Amount (provide either whole_amount or wei_amount)'
+        description: "Whole Amount (provide either whole_amount or wei_amount)"
         required: false
       wei_amount:
-        description: 'Wei Amount'
+        description: "Wei Amount"
         required: false
       multisig:
-        description: 'Source Multisig Address (or unique addrbook string)'
+        description: "Source Multisig Address (or unique addrbook string)"
         required: true
       chain_name:
-        description: 'Chain Name.  Exists in bal_addresses: One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia]'
+        description: "Chain Name.  Exists in bal_addresses: One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia]"
         required: true
-
 
 jobs:
   erc20-transfer:
@@ -28,7 +27,6 @@ jobs:
     outputs:
       pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
       pull-request-branch: ${{ steps.generate-branch-name.outputs.branch }}
-
 
     steps:
       - name: Checkout repository
