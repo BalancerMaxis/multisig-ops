@@ -17,6 +17,10 @@ ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
 ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
 ADDRESSES_BASE = AddrBook("base").reversebook
 ADDRESSES_FANTOM = AddrBook("fantom").reversebook
+ADDRESSES_MODE = AddrBook("mode").reversebook
+ADDRESSES_FRAXTAL = AddrBook("fraxtal").reversebook
+ADDRESSES_LINEA = AddrBook("linea").reversebook
+
 # Merge all addresses into one dictionary
 ADDRESSES = {
     **ADDRESSES_MAINNET,
@@ -28,6 +32,9 @@ ADDRESSES = {
     **ADDRESSES_ZKEVM,
     **ADDRESSES_BASE,
     **ADDRESSES_FANTOM,
+    **ADDRESSES_MODE,
+    **ADDRESSES_FRAXTAL,
+    **ADDRESSES_LINEA,
 }
 
 

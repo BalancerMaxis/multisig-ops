@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1719269218619,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xeb6bdcbaedfaa28fd0543d910dd4a333a9a082b17ef270e395334d76bcb59ef6"
+  },
+  "transactions": [
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f]",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    },
+    {
+      "to": "0xE3881627B8DeeBCCF9c23B291430a549Fc0bE5F7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IVeDelegation",
+            "name": "delegation",
+            "type": "address"
+          }
+        ],
+        "name": "setDelegation",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegation": "0x1702067424096F07A60e62cceE3dE9420068492D"
+      }
+    },
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xd6a470b7515ff20313e51cfcb0941cc9bc6de272c8ef76595ca93c330a626a2f]",
+        "account": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e"
+      }
+    }
+  ]
+}

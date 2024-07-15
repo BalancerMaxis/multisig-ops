@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1719974260489,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x5891b90CE909d4c3540d640d2BdAAF3fD5157EAD",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x1b2eb4f2fc39d45eddbc61ebbfa25b11dc2b7d878f6cb988a0c92830d9f016b5"
+  },
+  "transactions": [
+    {
+      "to": "0x223738a747383d6F9f827d95964e4d8E8AC754cE",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "spender", "type": "address", "internalType": "address" },
+          { "name": "amount", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x4EA9317D90b61fc28C418C247ad0CA8939Bbb0e9",
+        "amount": "7559295300000000000000"
+      }
+    },
+    {
+      "to": "0x4EA9317D90b61fc28C418C247ad0CA8939Bbb0e9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_amount", "type": "uint256", "internalType": "uint256" },
+          { "name": "_receiver", "type": "address", "internalType": "address" }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7559295300000000000000",
+        "_receiver": "0x5891b90CE909d4c3540d640d2BdAAF3fD5157EAD"
+      }
+    }
+  ]
+}

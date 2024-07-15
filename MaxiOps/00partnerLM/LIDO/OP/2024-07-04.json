@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1698450039804,
+  "meta": {
+    "name": "",
+    "description": "July OP Bribs from Lido",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xeD2Bc4e72Ed7D61FA4812a6B0E3d16F8Ad8369a1",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+
+  "transactions": [
+    {
+      "to": "0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xa9b08B4CeEC1EF29EdEC7F9C94583270337D6416",
+        "rawAmount": "2470000000000000000"
+      }
+    },
+    {
+      "to": "0x679c5C5828367db9005FdEa80faA45AE7B881791",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_proposal",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "_token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_maxTokensPerVote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_periods",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "depositBribe",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_proposal": "0xfc150eb9ea72bc5bf3a9590a0aeeb1c4b48e468817d9ddb867b47f68652a30a2",
+        "_token": "0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb",
+        "_amount": "2470000000000000000",
+        "_maxTokensPerVote": "0",
+        "_periods": "2"
+      }
+    }
+  ]
+}

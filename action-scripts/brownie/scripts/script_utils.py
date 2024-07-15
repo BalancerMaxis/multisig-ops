@@ -4,6 +4,7 @@ import re
 from decimal import Decimal
 from json import JSONDecodeError
 from typing import Optional
+from urllib.request import urlopen
 
 from collections import defaultdict
 from bal_addresses import AddrBook, BalPermissions, RateProviders
@@ -69,11 +70,13 @@ def get_changed_files() -> list[dict]:
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
-            if os.path.isfile(f"{ROOT_DIR}/{filename}") is False:
-                print(f"{filename} does not exist")
+            try:
+                r = requests.get(file_json["contents_url"])
+            except:
+                print(f"{file_json['contents_url']} does not exist")
                 continue
             # Validate that file is a valid json
-            with open(f"{ROOT_DIR}/{filename}", "r") as json_data:
+            with urlopen(r.json()["download_url"]) as json_data:
                 try:
                     payload = json.load(json_data)
                 except JSONDecodeError:
@@ -443,15 +446,20 @@ def get_rate_provider_review_summaries(
     """
     Accepts a list of rate provider addresses and returns a list of review summaries
     """
-    chain = chain.strip("-main")
-    r = RateProviders(chain)
     summaries = []
+    chain = chain.removesuffix("-main")
+    r = RateProviders(chain)
+    if chain not in AddrBook.chain_ids_by_name.keys():
+        print(f"WARNING:  Trying to look up rate-providers on unknown chain {chain}")
     for rate_provider in rate_providers:
         if rate_provider == NULL_ADDRESS:
             summaries.append("--")
             continue
         rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
         if not rpinfo:
+            print(
+                f"WARNING: looked up {to_checksum_address(rate_provider)}  on chain {chain} and got {rpinfo}"
+            )
             summaries.append("!!NO REVIEW!!")
         else:
             summaries.append(rpinfo["summary"])
@@ -569,7 +577,7 @@ def prettify_int_amounts(amounts: list, decimals=None) -> list[str]:
 
 
 def prettify_address(address, chainbook) -> str:
-    return f"{address} ({chainbook.reversebook.get(address)})"
+    return f"{address} ({chainbook.reversebook.get(to_checksum_address(address))})"
 
 
 ## Prettification logic for various complex data types
@@ -578,7 +586,7 @@ def prettify_flat_list(inputs: list[str], chain: str) -> list[str]:
     Accepts a list of and returns it with any address items prettified including names in string format
     Requires you are on the network of the addresses when run
     """
-    chain = chain.strip("-main")
+    chain = chain.removesuffix("-main")
     book = AddrBook(chain)
     results = []
     for input in inputs:

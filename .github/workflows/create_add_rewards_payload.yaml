@@ -18,14 +18,12 @@ on:
         description: "Chain Name.  Exists in bal_addresses: One of [base, gnosis, zkevm, avalanche, mainnet, arbitrum, optimism, polygon, sepolia, mode, fraxtal]"
         required: true
 
-
 jobs:
   add-rewards:
     runs-on: ubuntu-latest
     outputs:
       pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
       pull-request-branch: ${{ steps.generate-branch-name.outputs.branch }}
-
 
     steps:
       - name: Checkout repository
@@ -62,7 +60,6 @@ jobs:
           DISTRIBUTOR: ${{ github.event.inputs.distributor }}
           MULTISIG: ${{ github.event.inputs.multisig }}
           CHAIN_NAME: ${{ github.event.inputs.chain_name }}
-
 
       - name: Generate branch name
         id: generate-branch-name
