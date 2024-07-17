@@ -25,11 +25,9 @@ jobs:
         env:
           DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
         run: |
-          pwd
-          RUN_DIR=tools/python
-          pip install -r $RUN_DIR/requirements.txt
-          python $RUN_DIR/query_upkeeps.py
-          git status
+          cd tools/python
+          pip install -r requirements.txt
+          python query_upkeeps.py
 
       - name: Commit CSV file
         uses: stefanzweifel/git-auto-commit-action@v5
