@@ -27,7 +27,8 @@ jobs:
           RUN_DIR=tools/python
           pip install -r $RUN_DIR/requirements.txt
           python $RUN_DIR/query_upkeeps.py
-      - name: Commit and push reports
+
+      - name: Commit CSV file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: dump csv file with all queried upkeeps"
