@@ -12,22 +12,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: "3.10"
           cache: "pip"
 
       - name: Query Dune
         env:
           DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
         run: |
-          pwd
-          RUN_DIR=tools/python
-          pip install -r $RUN_DIR/requirements.txt
-          python $RUN_DIR/query_upkeeps.py
-      - name: Commit and push reports
+          cd tools/python
+          pip install -r requirements.txt
+          python query_upkeeps.py
+
+      - name: Commit CSV file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
+          branch: "upkeeps"
+          file_pattern: "upkeeps.csv"
           commit_message: "ci: dump csv file with all queried upkeeps"

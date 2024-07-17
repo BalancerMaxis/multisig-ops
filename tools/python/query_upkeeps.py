@@ -1,11 +1,15 @@
+import os
+
 import pandas as pd
 from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
 from dune_client.query import QueryBase
 
 
+dune = DuneClient.from_env()
+
+
 def get_upkeeps(chain="ethereum"):
-    dune = DuneClient.from_env()
     query = QueryBase(
         name="@gosuto/cla_chain_upkeeps",
         query_id=3889683,
@@ -23,9 +27,10 @@ if __name__ == "__main__":
         "arbitrum",
         "polygon",
         "optimism",
-        "avalanche",
+        "avalanche_c",
         "base",
         "gnosis",
     ]:
         dfs.append(get_upkeeps(chain))
-    pd.concat(dfs).to_csv("../../out/upkeeps.csv", index=False)
+    dfs = pd.concat(dfs)
+    dfs.to_csv("../../upkeeps.csv", index=False)
