@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
@@ -31,4 +33,5 @@ if __name__ == "__main__":
         "gnosis",
     ]:
         dfs.append(get_upkeeps(chain))
+    os.makedirs("../../out", exist_ok=True)
     pd.concat(dfs).to_csv("../../out/upkeeps.csv", index=False)
