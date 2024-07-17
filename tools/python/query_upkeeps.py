@@ -23,13 +23,13 @@ def get_upkeeps(chain="ethereum"):
 if __name__ == "__main__":
     dfs = []
     for chain in [
-        # "ethereum",
-        # "arbitrum",
-        # "polygon",
-        # "optimism",
+        "ethereum",
+        "arbitrum",
+        "polygon",
+        "optimism",
         "avalanche_c",
-        # "base",
-        # "gnosis",
+        "base",
+        "gnosis",
     ]:
         dfs.append(get_upkeeps(chain))
     dfs = pd.concat(dfs)
