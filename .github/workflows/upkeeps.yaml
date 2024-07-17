@@ -34,6 +34,6 @@ jobs:
       - name: Commit CSV file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          branch: upkeeps
+          branch: "upkeeps"
           file_pattern: "upkeeps.csv"
           commit_message: "ci: dump csv file with all queried upkeeps"

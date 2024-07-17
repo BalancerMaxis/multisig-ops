@@ -33,4 +33,6 @@ if __name__ == "__main__":
     ]:
         dfs.append(get_upkeeps(chain))
     os.makedirs("../../out", exist_ok=True)
-    pd.concat(dfs).to_csv("../../out/upkeeps.csv", index=False)
+    dfs = pd.concat(dfs)
+    print(dfs)
+    dfs.to_csv("upkeeps.csv", index=False)
