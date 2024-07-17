@@ -23,7 +23,7 @@ if __name__ == "__main__":
         "arbitrum",
         "polygon",
         "optimism",
-        "avalanche",
+        "avalanche_c",
         "base",
         "gnosis",
     ]:
