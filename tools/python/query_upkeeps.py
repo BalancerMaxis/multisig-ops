@@ -23,16 +23,15 @@ def get_upkeeps(chain="ethereum"):
 if __name__ == "__main__":
     dfs = []
     for chain in [
-        "ethereum",
-        "arbitrum",
-        "polygon",
-        "optimism",
-        "avalanche_c",
-        "base",
-        "gnosis",
-    ]:
+        "ethereum"]:#,
+    #     "arbitrum",
+    #     "polygon",
+    #     "optimism",
+    #     "avalanche_c",
+    #     "base",
+    #     "gnosis",
+    # ]:
         dfs.append(get_upkeeps(chain))
     os.makedirs("../../out", exist_ok=True)
     dfs = pd.concat(dfs)
-    print(dfs)
-    dfs.to_csv("upkeeps.csv", index=False)
+    dfs.to_csv("../../upkeeps.csv", index=False)
