@@ -33,4 +33,4 @@ if __name__ == "__main__":
     ]:
         dfs.append(get_upkeeps(chain))
     dfs = pd.concat(dfs)
-    dfs.to_csv("upkeeps.csv", index=False)
+    dfs.to_csv("../../upkeeps.csv", index=False)
