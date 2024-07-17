@@ -4,8 +4,10 @@ from dune_client.types import QueryParameter
 from dune_client.query import QueryBase
 
 
+dune = DuneClient.from_env()
+
+
 def get_upkeeps(chain="ethereum"):
-    dune = DuneClient.from_env()
     query = QueryBase(
         name="@gosuto/cla_chain_upkeeps",
         query_id=3889683,
@@ -13,6 +15,7 @@ def get_upkeeps(chain="ethereum"):
             QueryParameter.enum_type(name="chain", value=chain),
         ],
     )
+    print(f"Querying upkeeps for {chain}")
     return dune.run_query_dataframe(query)
 
 
