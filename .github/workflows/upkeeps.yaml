@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
@@ -27,8 +29,11 @@ jobs:
           RUN_DIR=tools/python
           pip install -r $RUN_DIR/requirements.txt
           python $RUN_DIR/query_upkeeps.py
+          git status
 
       - name: Commit CSV file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
+          branch: upkeeps
+          file_pattern: "upkeeps.csv"
           commit_message: "ci: dump csv file with all queried upkeeps"
