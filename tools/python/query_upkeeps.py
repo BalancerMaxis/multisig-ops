@@ -17,7 +17,6 @@ def get_upkeeps(chain="ethereum"):
             QueryParameter.enum_type(name="chain", value=chain),
         ],
     )
-    print(f"Querying upkeeps for {chain}")
     return dune.run_query_dataframe(query)
 
 
