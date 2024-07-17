@@ -32,6 +32,6 @@ if __name__ == "__main__":
         "gnosis",
     ]:
         dfs.append(get_upkeeps(chain))
-    os.makedirs("../../out", exist_ok=True)
+    os.makedirs("out", exist_ok=True)
     dfs = pd.concat(dfs)
-    dfs.to_csv("../../out/upkeeps.csv", index=False)
+    dfs.to_csv("out/upkeeps.csv", index=False)
