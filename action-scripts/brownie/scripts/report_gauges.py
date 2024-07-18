@@ -298,7 +298,7 @@ def _parse_hh_brib(transaction: dict, **kwargs) -> Optional[dict]:
     ## Grab Proposal data and briber addresses
     prop_map = return_hh_brib_maps()
     aura_briber = chainbook.extras.hidden_hand2.get("aura_briber")
-    bal_briber = chainbook.extras.hidden_hand2.get("bal_briber")
+    bal_briber = chainbook.extras.hidden_hand2.get("balancer_briber")
     ##  Parse TX
     ### Determine market
     to_address = to_checksum_address(transaction["to"])
