@@ -23,7 +23,7 @@ jobs:
     - name: vlAURA Voting
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        KEEPER_PRIVATE_WORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
       run: |
         pwd
         RUN_DIR=tools/python/aura_snapshot_voting
