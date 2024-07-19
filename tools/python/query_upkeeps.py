@@ -1,5 +1,3 @@
-import os
-
 import pandas as pd
 from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
@@ -17,7 +15,15 @@ def get_upkeeps(chain="ethereum"):
             QueryParameter.enum_type(name="chain", value=chain),
         ],
     )
-    return dune.run_query_dataframe(query)
+    raw = dune.run_query_csv(query).data
+    with open('dirty.tmp', 'wb') as f:
+        f.write(raw.getbuffer())
+    with open('clean.tmp', 'w') as f:
+        buffer = open('dirty.tmp').read()
+        for sanitise in ['\x00', '\x10', '\x1a', '\x1b', '\x1c', '\x1d', '\x1e', '\x1f']:
+            buffer = buffer.replace(sanitise, '')
+        f.write(buffer)
+    return pd.read_csv('clean.tmp')
 
 
 if __name__ == "__main__":
@@ -33,4 +39,5 @@ if __name__ == "__main__":
     ]:
         dfs.append(get_upkeeps(chain))
     dfs = pd.concat(dfs)
+    dfs['upkeep_name'] = dfs['upkeep_name'].str.strip()
     dfs.to_csv("../../upkeeps.csv", index=False)
