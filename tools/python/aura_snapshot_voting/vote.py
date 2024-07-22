@@ -21,7 +21,7 @@ from gnosis.safe import Safe
 from gnosis.eth import EthereumClient
 from gnosis.safe.api import TransactionServiceApi
 from eth_abi import encode_abi
-from mnemonic import Mnemonic
+from eth_account import Account
 
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
 
@@ -39,6 +39,8 @@ flatbook = AddrBook("mainnet").flatbook
 vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
 
+Account.enable_unaudited_hdwallet_features()
+
 
 class Operation(IntEnum):
     CALL = 0
@@ -53,8 +55,8 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
 
     safe_tx = safe.build_multisig_tx(to_address, value, data, operation)
 
-    private_key = Mnemonic.to_seed(PRIVATE_WORDS).hex()
-    safe_tx.sign(private_key)
+    private_key = Account.from_mnemonic(PRIVATE_WORDS).privateKey
+    safe_tx.sign(private_key.hex()[2:])
 
     safe_service.post_transaction(safe_tx)
     print(f"posted signMessage tx to {safe_address}")
