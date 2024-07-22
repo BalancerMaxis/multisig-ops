@@ -1,23 +1,23 @@
 FILENAME: `BIPs/00batched/2024-W30/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `6ec412d5be03285a7ab5a089bae2eba2f9e66032`
+COMMIT: `6e04a43ee3ef7fefe40a2f1a83e564ad30992414`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/d9621492-f83c-4043-bc68-56872f8fa458)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/b2f371b3-bcd7-4f57-afd1-7f8058040314)
 ```
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function              | caller_name   | caller_address                             | fx_paths                                                                                   | action_ids                                                         |   bip   | tx_index |
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    0     |
-|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    |                                                                    |         |          |
-| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    4     |
-|                       |               |                                            | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    |                                                                    |         |          |
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    0     |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |         |          |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    4     |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |         |          |
 +-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/00batched/2024-W30/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `6ec412d5be03285a7ab5a089bae2eba2f9e66032`
+COMMIT: `6e04a43ee3ef7fefe40a2f1a83e564ad30992414`
 CHAIN(S): `mainnet`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/df333842-7905-42e7-aa4e-fb247c59b486)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/f6f12ad7-a256-4579-b917-07010deb45ef)
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function      | entrypoint                                                                                                      | target                                                                        | selector                                | parsed_inputs                                                      |   bip   | tx_index |
