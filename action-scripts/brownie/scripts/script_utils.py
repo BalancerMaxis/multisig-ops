@@ -359,8 +359,25 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         print(r.json())
 
     url = f"https://www.tdly.co/shared/simulation/{result['simulation']['id']}"
-    success = result["simulation"]["status"]
+    if result["simulation"]["status"]:
+        success = '🟩 SUCCESS'
+        revert_found = check_tenderly_calls_for_revert(result['transaction']['transaction_info']['call_trace']['calls'])
+        if revert_found:
+            success = '🟨 PARTIAL'
+    else:
+        success = '🟥 FAILURE'
     return url, success
+
+
+def check_tenderly_calls_for_revert(calls):
+    for call in calls:
+        if 'error_op' in call:
+            if call['error_op'] == 'REVERT':
+                return True
+        if 'calls' in call:
+            if isinstance(call['calls'], list):
+                if check_tenderly_calls_for_revert(call['calls']):
+                    return True
 
 
 def format_into_report(
@@ -394,12 +411,9 @@ def format_into_report(
             file["meta"]["createdFromSafeAddress"],
             file["transactions"],
         )
-        if tenderly_success:
-            file_report += f"TENDERLY: [SUCCESS]({tenderly_url})\n"
-        else:
-            file_report += f"TENDERLY: [FAILURE]({tenderly_url})\n"
+        file_report += f"TENDERLY: `[{tenderly_success}]({tenderly_url})`\n"
     except Exception as e:
-        file_report += f"TENDERLY: SKIPPED (`{repr(e)}`)\n"
+        file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n"
 
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
