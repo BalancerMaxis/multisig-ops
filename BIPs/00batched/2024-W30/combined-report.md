@@ -73,7 +73,7 @@ TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/259bad4d-ddf1-4ea5-b25
 
 
 ## Fraxtal DAO multisig
-[Sign Nonce 4](https://safe.optimism.io/transactions/queue?safe=mode:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)
+[Sign Nonce 4](https://safe.optimism.io/transactions/queue?safe=fraxtal:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)
 
 FILENAME: `BIPs/00batched/2024-W29/252-0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e.json`
 MULTISIG: `multisigs/lm (fraxtal:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
