@@ -413,7 +413,7 @@ def format_into_report(
             file["meta"]["createdFromSafeAddress"],
             file["transactions"],
         )
-        file_report += f"TENDERLY: `[{tenderly_success}]({tenderly_url})`\n"
+        file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n"
     except Exception as e:
         file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n"
 
