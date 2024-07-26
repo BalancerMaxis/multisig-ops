@@ -1,13 +1,13 @@
 FILENAME: `MaxiOps/00partnerLM/TokenLogic/ARB/GHO_2024-07-26.json`
-MULTISIG: `multisigs/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
-COMMIT: `c29a450f815780592fb816dfe586a1ba7c8d3701`
+MULTISIG: `multisigs/vote_incentive_recycling (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `0987747b3d6943bbb00e89de5865af942885e55c`
 CHAIN(S): `arbitrum`
-TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/16805e8c-d2c8-418d-9611-85eb9728a0e0)
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/e4e26922-13ee-4370-85fb-ec9f35b1652e)
 ```
 +------------------+-------------------------------------------------------------------------------------------------+--------+----------------------------------------------------------------------------------------+--------------------------------------------+---------+---------------------------------------------+----------+
 | function         | injector                                                                                        | symbol | gaugeList                                                                              | amounts_per_period                         | periods | total_amount_first_period                   | tx_index |
 +------------------+-------------------------------------------------------------------------------------------------+--------+----------------------------------------------------------------------------------------+--------------------------------------------+---------+---------------------------------------------+----------+
-| setRecipientList | 0xF23d8342881eDECcED51EA694AC21C2B68440929(maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector) | ARB    | [                                                                                      | [                                          | [       | raw: 24190500000000000000000/1e18 = 24190.5 |    0     |
+| setRecipientList | 0xE23eb92f0C76bF47f77F80D144e30F31b98450A9(maxiKeepers/gaugeRewardsInjectors/arb_aave_injector) | ARB    | [                                                                                      | [                                          | [       | raw: 24190500000000000000000/1e18 = 24190.5 |    0     |
 |                  |                                                                                                 |        |  "0x6e654787251ae77fe1873f93a5f220e00afa90e8 (Balancer ECLP-GHO-AUSDC Gauge Deposit)", |  "18450000000000000000000/1e18 = 18450.0", |  "1",   |                                             |          |
 |                  |                                                                                                 |        |  "0x7d907d8d66b6cad285d4349f507ecdfd11fd23d2 (Balancer GHO/USDC/USDT Gauge Deposit)"   |  "5740500000000000000000/1e18 = 5740.5"    |  "2"    |                                             |          |
 |                  |                                                                                                 |        | ]                                                                                      | ]                                          | ]       |                                             |          |
