@@ -33,15 +33,26 @@ jobs:
           exit 1
         fi
         
+        echo "CSV Path: $CSV_PATH"
+        
         # Extract year and week from the path
-        YEAR=$(echo $CSV_PATH | cut -d'/' -f4)
-        WEEK=$(echo $CSV_PATH | cut -d'/' -f5)
+        IFS='/' read -ra PARTS <<< "$CSV_PATH"
+        YEAR=${PARTS[3]}
+        WEEK=${PARTS[4]}
+        
+        echo "Extracted Year: $YEAR"
+        echo "Extracted Week: $WEEK"
+        
+        # Ensure WEEK starts with 'W'
+        if [[ $WEEK != W* ]]; then
+          echo "Week format is incorrect. Expected to start with 'W'."
+          exit 1
+        fi
         
         # Construct the week-string
         WEEK_STRING="${YEAR}-${WEEK}"
         
-        echo "CSV Path: $CSV_PATH"
-        echo "Week string: $WEEK_STRING"
+        echo "Constructed Week string: $WEEK_STRING"
         echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
 
     - name: vlAURA Voting
@@ -52,6 +63,7 @@ jobs:
         pwd
         RUN_DIR=tools/python/aura_snapshot_voting
         pip3 install -r $RUN_DIR/requirements.txt
+        echo "Running Python script with week-string: ${{ steps.week-string.outputs.week-string }}"
         python3 $RUN_DIR/vote.py --week-string "${{ steps.week-string.outputs.week-string }}"
 
     - name: Create PR
