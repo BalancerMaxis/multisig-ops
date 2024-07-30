@@ -15,7 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # Fetch all history for all branches and tags
+        fetch-depth: 0
 
     - name: Setup Python 3.9
       uses: actions/setup-python@v5
@@ -36,8 +36,8 @@ jobs:
         echo "CSV Path: $CSV_PATH"
         
         # Extract year and week from the path
-        YEAR=$(echo $CSV_PATH | cut -d'/' -f4)
-        WEEK=$(echo $CSV_PATH | cut -d'/' -f5)
+        YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
+        WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
         
         echo "Extracted Year: $YEAR"
         echo "Extracted Week: $WEEK"
