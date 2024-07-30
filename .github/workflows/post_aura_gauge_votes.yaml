@@ -43,9 +43,9 @@ jobs:
         echo "Extracted Year: $YEAR"
         echo "Extracted Week: $WEEK"
         
-        # Ensure WEEK starts with 'W'
-        if [[ $WEEK != W* ]]; then
-          echo "Week format is incorrect. Expected to start with 'W'."
+        # Ensure YEAR is a 4-digit number and WEEK starts with 'W'
+        if ! [[ $YEAR =~ ^[0-9]{4}$ ]] || [[ $WEEK != W* ]]; then
+          echo "Year or Week format is incorrect. Expected YYYY and W##."
           exit 1
         fi
         
@@ -58,7 +58,7 @@ jobs:
     - name: vlAURA Voting
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
-        KEEPER_PRIVATE_WORDS: ${{ secrets.PRIVATE_KEY }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
         pwd
         RUN_DIR=tools/python/aura_snapshot_voting
