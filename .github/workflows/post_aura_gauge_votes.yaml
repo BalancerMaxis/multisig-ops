@@ -25,35 +25,17 @@ jobs:
     - name: Determine week-string
       id: week-string
       run: |
-        # Get the path of the changed CSV file
         CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.csv$' | head -n 1)
         
         if [ -z "$CSV_PATH" ]; then
           echo "No CSV file found in recent changes."
           exit 1
         fi
-        
-        echo "CSV Path: $CSV_PATH"
-        
-        # Extract year and week from the path
+
         YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
         WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
-        
-        echo "Extracted Year: $YEAR"
-        echo "Extracted Week: $WEEK"
-        
-        # Ensure YEAR is a 4-digit number and WEEK starts with 'W'
-        if ! [[ $YEAR =~ ^[0-9]{4}$ ]] || [[ $WEEK != W* ]]; then
-          echo "Year or Week format is incorrect. Expected YYYY and W##."
-          exit 1
-        fi
-        
-        # Construct the week-string
         WEEK_STRING="${YEAR}-${WEEK}"
         
-        echo "Constructed Week string: $WEEK_STRING"
-        echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
-
     - name: vlAURA Voting
       env:
         ETHNODEURL: ${{ secrets.ETHNODEURL }}
@@ -62,7 +44,7 @@ jobs:
         pwd
         RUN_DIR=tools/python/aura_snapshot_voting
         pip3 install -r $RUN_DIR/requirements.txt
-        echo "Running Python script with week-string: ${{ steps.week-string.outputs.week-string }}"
+        echo "Grabbing votes for: ${{ steps.week-string.outputs.week-string }}"
         python3 $RUN_DIR/vote.py --week-string "${{ steps.week-string.outputs.week-string }}"
 
     - name: Create PR
