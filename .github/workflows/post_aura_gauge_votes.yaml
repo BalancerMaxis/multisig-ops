@@ -36,9 +36,8 @@ jobs:
         echo "CSV Path: $CSV_PATH"
         
         # Extract year and week from the path
-        IFS='/' read -ra PARTS <<< "$CSV_PATH"
-        YEAR=${PARTS[3]}
-        WEEK=${PARTS[4]}
+        YEAR=$(echo $CSV_PATH | awk -F'/' '{print $4}')
+        WEEK=$(echo $CSV_PATH | awk -F'/' '{print $5}')
         
         echo "Extracted Year: $YEAR"
         echo "Extracted Week: $WEEK"
