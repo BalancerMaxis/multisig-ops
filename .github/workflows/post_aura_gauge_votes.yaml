@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'MaxiOps/vlaura_voting/**/*.csv'
+      - 'MaxiOps/vlaura_voting/**/input/*.csv'
 
 jobs:
   post_aura_gauge_votes:
@@ -26,7 +26,7 @@ jobs:
       id: week-string
       run: |
         # Get the path of the changed CSV file
-        CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.csv$' | head -n 1)
+        CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '/input/.*\.csv$' | head -n 1)
         
         if [ -z "$CSV_PATH" ]; then
           echo "No CSV file found in recent changes."
