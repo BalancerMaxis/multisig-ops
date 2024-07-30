@@ -126,6 +126,8 @@ if __name__ == "__main__":
 
     vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
     print(vote_df.head())
+    
+    vote_df.to_csv(f"{output_dir}/vote_df.csv", index=False)
     exit()
 
     prop, _, _ = _get_prop_and_determine_date_range()
@@ -178,7 +180,7 @@ if __name__ == "__main__":
     with open(f"{output_dir}/report.txt", "w") as f:
         f.write(f"hash: 0x{hash.hex()}\n")
         f.write(f"relayer: https://relayer.snapshot.org/api/messages/0x{hash.hex()}")
-
+        
     vote_df.to_csv(f"{output_dir}/vote_df.csv", index=False)
 
     with open(f"{output_dir}/payload.json", "w") as f:
