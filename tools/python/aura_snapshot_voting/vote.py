@@ -123,6 +123,8 @@ if __name__ == "__main__":
     create_voting_dirs_for_year(base_path, year, week)
 
     vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
+    print(vote_df.head())
+    exit()
 
     prop, _, _ = _get_prop_and_determine_date_range()
     choices = prop["choices"]
