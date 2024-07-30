@@ -7,7 +7,6 @@ CHAINS_TO_KEEP = [
     #    "zkevm-main", # currently running in defender due to rpc issues
     "gnosis-main",
     "mode-main",
-    "linea-main",
     "fraxtal-main",
 ]
 
