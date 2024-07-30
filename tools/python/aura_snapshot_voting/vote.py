@@ -112,7 +112,9 @@ if __name__ == "__main__":
         type=str,
         help="Date that votes are are being posted. should be YYYY-W##",
     )
-    year, week = parser.parse_args().week_string.split("-")
+    week_string = parser.parse_args().week_string
+    print(f"week_string: {week_string}")
+    year, week = week_string.split("-")
 
     project_root = Path.cwd()
     base_path = project_root / "MaxiOps/vlaura_voting"
