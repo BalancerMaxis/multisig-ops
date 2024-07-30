@@ -14,6 +14,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for all branches and tags
 
     - name: Setup Python 3.9
       uses: actions/setup-python@v5
@@ -24,7 +26,12 @@ jobs:
       id: week-string
       run: |
         # Get the path of the changed CSV file
-        CSV_PATH=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep '\.csv$')
+        CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.csv$' | head -n 1)
+        
+        if [ -z "$CSV_PATH" ]; then
+          echo "No CSV file found in recent changes."
+          exit 1
+        fi
         
         # Extract year and week from the path
         YEAR=$(echo $CSV_PATH | cut -d'/' -f4)
@@ -33,6 +40,7 @@ jobs:
         # Construct the week-string
         WEEK_STRING="${YEAR}-${WEEK}"
         
+        echo "CSV Path: $CSV_PATH"
         echo "Week string: $WEEK_STRING"
         echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
 
