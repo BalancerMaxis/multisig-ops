@@ -17,10 +17,12 @@ def to_wei(amount):
 
 airdrop = pd.read_csv("ZenBetaAirdrop.csv").dropna(subset=["Address"])
 mainnet_recipients = airdrop[
-    (airdrop["Pay on mainnet"] == "Yes") & (airdrop["Total"] > 0)
+    (airdrop["Pay on mainnet"] == "Yes")
+    & (airdrop["BAL award if program ended today"] > 0)
 ]
 gnosis_recipients = airdrop[
-    (airdrop["Pay on mainnet"] != "Yes") & (airdrop["Total"] > 0)
+    (airdrop["Pay on mainnet"] != "Yes")
+    & (airdrop["BAL award if program ended today"] > 0)
 ]
 bridge_to_gnosis = to_wei(gnosis_recipients["Total"].sum())
 
