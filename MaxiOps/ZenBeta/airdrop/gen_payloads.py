@@ -10,7 +10,9 @@ GNOSIS_BAL_ADDRESS = "0x7eF541E2a22058048904fE5744f9c7E4C57AF717"
 
 
 def to_wei(amount):
-    return int((Decimal(amount) * Decimal('1e18')).to_integral_value(rounding=ROUND_DOWN))
+    return int(
+        (Decimal(amount) * Decimal("1e18")).to_integral_value(rounding=ROUND_DOWN)
+    )
 
 
 airdrop = pd.read_csv("ZenBetaAirdrop.csv").dropna(subset=["Address"])
