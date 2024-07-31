@@ -24,7 +24,7 @@ gnosis_recipients = airdrop[
     (airdrop["Pay on mainnet"] != "Yes")
     & (airdrop["BAL award if program ended today"] > 0)
 ]
-bridge_to_gnosis = to_wei(gnosis_recipients["Total"].sum())
+bridge_to_gnosis = to_wei(gnosis_recipients["BAL award if program ended today"].sum())
 
 
 ### mainnet transactions
@@ -33,7 +33,7 @@ bal = SafeContract("tokens/BAL", abi_file_path="abi/ERC20.json")
 omnibridge = SafeContract(GNOSIS_OMNIBRIDGE, abi_file_path="abi/omnibridge.json")
 
 for _, row in mainnet_recipients.iterrows():
-    bal.transfer(row["Address"], to_wei(row["Total"]))
+    bal.transfer(row["Address"], to_wei(row["BAL award if program ended today"]))
 
 bal.approve(GNOSIS_OMNIBRIDGE, bridge_to_gnosis)
 omnibridge.relayTokens(bal.address, AddrBook("gnosis").multisigs.lm, bridge_to_gnosis)
@@ -46,6 +46,6 @@ gnosis_builder = SafeTxBuilder("multisigs/lm", chain_name="gnosis")
 bal = SafeContract(GNOSIS_BAL_ADDRESS, get_abi("ERC20"))
 
 for _, row in gnosis_recipients.iterrows():
-    bal.transfer(row["Address"], to_wei(row["Total"]))
+    bal.transfer(row["Address"], to_wei(row["BAL award if program ended today"]))
 
 gnosis_builder.output_payload("transactions/ZenAirdropGnosis.json")
