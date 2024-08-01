@@ -1,1 +1,102 @@
-{"version":"1.0","chainId":"1","createdAt":1722517836,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.16.3","createdFromSafeAddress":"0xc38c5f97B34E175FFd35407fc91a937300E33860","createdFromOwnerAddress":"","checksum":"0x0000000000000000000000000000000000000000000000000000000000000000"},"transactions":[{"to":"0xba100000625a3754423978a60c9317c58a424e3D","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_to","type":"address","internalType":"address"},{"name":"_value","type":"uint256","internalType":"uint256"}],"name":"transfer","payable":false},"contractInputsValues":{"_to":"0x1a1e852f970a231d32271c88162e222a09c1650a","_value":"170347372699999993983"}},{"to":"0xba100000625a3754423978a60c9317c58a424e3D","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_to","type":"address","internalType":"address"},{"name":"_value","type":"uint256","internalType":"uint256"}],"name":"transfer","payable":false},"contractInputsValues":{"_to":"0x9b139f8d81c34667764e9db1d21f5472d9be1d4e","_value":"82127584790000000225"}},{"to":"0xba100000625a3754423978a60c9317c58a424e3D","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_to","type":"address","internalType":"address"},{"name":"_value","type":"uint256","internalType":"uint256"}],"name":"transfer","payable":false},"contractInputsValues":{"_to":"0x2cf70d98851ff4681d3cde774191452ccc00029e","_value":"66677406129999994277"}},{"to":"0xba100000625a3754423978a60c9317c58a424e3D","value":"0","data":null,"contractMethod":{"inputs":[{"name":"_spender","type":"address","internalType":"address"},{"name":"_value","type":"uint256","internalType":"uint256"}],"name":"approve","payable":false},"contractInputsValues":{"_spender":"0x88ad09518695c6c3712AC10a214bE5109a655671","_value":"680847636285399971711"}},{"to":"0x88ad09518695c6c3712AC10a214bE5109a655671","value":"0","data":null,"contractMethod":{"inputs":[{"name":"token","type":"address","internalType":"address"},{"name":"_receiver","type":"address","internalType":"address"},{"name":"_value","type":"uint256","internalType":"uint256"}],"name":"relayTokens","payable":false},"contractInputsValues":{"token":"0xba100000625a3754423978a60c9317c58a424e3D","_receiver":"0x14969B55a675d13a1700F71A37511bc22D90155a","_value":"680847636285399971711"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1722517836,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "transactions": [
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_to", "type": "address", "internalType": "address" },
+          { "name": "_value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x1a1e852f970a231d32271c88162e222a09c1650a",
+        "_value": "170347372699999993983"
+      }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_to", "type": "address", "internalType": "address" },
+          { "name": "_value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x9b139f8d81c34667764e9db1d21f5472d9be1d4e",
+        "_value": "82127584790000000225"
+      }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_to", "type": "address", "internalType": "address" },
+          { "name": "_value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x2cf70d98851ff4681d3cde774191452ccc00029e",
+        "_value": "66677406129999994277"
+      }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_spender", "type": "address", "internalType": "address" },
+          { "name": "_value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0x88ad09518695c6c3712AC10a214bE5109a655671",
+        "_value": "680847636285399971711"
+      }
+    },
+    {
+      "to": "0x88ad09518695c6c3712AC10a214bE5109a655671",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "token", "type": "address", "internalType": "address" },
+          { "name": "_receiver", "type": "address", "internalType": "address" },
+          { "name": "_value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "relayTokens",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xba100000625a3754423978a60c9317c58a424e3D",
+        "_receiver": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+        "_value": "680847636285399971711"
+      }
+    }
+  ]
+}
