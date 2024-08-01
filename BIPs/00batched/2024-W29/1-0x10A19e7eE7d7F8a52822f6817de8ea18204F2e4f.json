@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W29/BIP-653.json",
+        "bip_number": "BIP-653"
+      }
+    },
+    {
+      "to": "0xBC02eF87f4E15EF78A571f3B2aDcC726Fee70d8b",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_reward_token",
+            "type": "address"
+          },
+          {
+            "name": "_distributor",
+            "type": "address"
+          }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68",
+        "_distributor": "0xfEb352930cA196a80B708CDD5dcb4eCA94805daB"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W29/BIP-653.json",
+        "bip_number": "BIP-653"
+      }
+    },
+    {
+      "to": "0xCD19892916929F013930ed628547Cc1F439b230e",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_reward_token",
+            "type": "address"
+          },
+          {
+            "name": "_distributor",
+            "type": "address"
+          }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68",
+        "_distributor": "0xfEb352930cA196a80B708CDD5dcb4eCA94805daB"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W29/BIP-653.json",
+        "bip_number": "BIP-653"
+      }
+    },
+    {
+      "to": "0x21c377cBB2bEdDd8534308E5CdfeBE35fDF817E8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_reward_token",
+            "type": "address"
+          },
+          {
+            "name": "_distributor",
+            "type": "address"
+          }
+        ],
+        "name": "set_reward_distributor",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_reward_token": "0xCdF7028ceAB81fA0C6971208e83fa7872994beE5",
+        "_distributor": "0xfEb352930cA196a80B708CDD5dcb4eCA94805daB"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W29/BIP-653.json",
+        "bip_number": "BIP-653"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W29/BIP-653.json",
+        "bip_number": "BIP-653"
+      }
+    }
+  ]
+}

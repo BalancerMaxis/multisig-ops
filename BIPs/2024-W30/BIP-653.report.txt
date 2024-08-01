@@ -1,0 +1,32 @@
+FILENAME: `BIPs/2024-W30/BIP-653.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `0a256d8620d87ba86f0965756cd311af9167b313`
+CHAIN(S): `mainnet`
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/e9525a8d-ebee-46b2-ad18-42d622c02e36)
+```
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                                   | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    0     |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |         |          |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220325-mainnet-gauge-factory/LiquidityGaugeV5/set_reward_distributor(address,address)    | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-653 |    4     |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/set_reward_distributor(address,address) |                                                                    |         |          |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2024-W30/BIP-653.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `0a256d8620d87ba86f0965756cd311af9167b313`
+CHAIN(S): `mainnet`
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/7dede337-91eb-4156-b419-042d30dcd28c)
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                        | selector                                | parsed_inputs                                                      |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------------------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xBC02eF87f4E15EF78A571f3B2aDcC726Fee70d8b (gauges/DOLA-USDC BSP-gauge-bc02)  | set_reward_distributor(address,address) | 0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68: tokens/INV             | BIP-653 |    1     |
+|               |                                                                                                                 |                                                                               |                                         | 0xfEb352930cA196a80B708CDD5dcb4eCA94805daB: paladin/QuestBoardV2_1 |         |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xCD19892916929F013930ed628547Cc1F439b230e (gauges/sDOLA-DOLA BSP-gauge-cd19) | set_reward_distributor(address,address) | 0x41D5D79431A913C4aE7d69a668ecdfE5fF9DFB68: tokens/INV             | BIP-653 |    2     |
+|               |                                                                                                                 |                                                                               |                                         | 0xfEb352930cA196a80B708CDD5dcb4eCA94805daB: paladin/QuestBoardV2_1 |         |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x21c377cBB2bEdDd8534308E5CdfeBE35fDF817E8 (gauges/2BTC-gauge-21c3)           | set_reward_distributor(address,address) | 0xCdF7028ceAB81fA0C6971208e83fa7872994beE5: tokens/T               | BIP-653 |    3     |
+|               |                                                                                                                 |                                                                               |                                         | 0xfEb352930cA196a80B708CDD5dcb4eCA94805daB: paladin/QuestBoardV2_1 |         |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------------------------+---------+----------+
+```

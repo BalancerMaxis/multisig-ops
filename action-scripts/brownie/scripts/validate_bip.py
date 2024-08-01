@@ -19,7 +19,6 @@ ADDRESSES_BASE = AddrBook("base").reversebook
 ADDRESSES_FANTOM = AddrBook("fantom").reversebook
 ADDRESSES_MODE = AddrBook("mode").reversebook
 ADDRESSES_FRAXTAL = AddrBook("fraxtal").reversebook
-ADDRESSES_LINEA = AddrBook("linea").reversebook
 
 # Merge all addresses into one dictionary
 ADDRESSES = {
@@ -34,7 +33,6 @@ ADDRESSES = {
     **ADDRESSES_FANTOM,
     **ADDRESSES_MODE,
     **ADDRESSES_FRAXTAL,
-    **ADDRESSES_LINEA,
 }
 
 

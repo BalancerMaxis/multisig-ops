@@ -21,6 +21,7 @@ from gnosis.safe import Safe
 from gnosis.eth import EthereumClient
 from gnosis.safe.api import TransactionServiceApi
 from eth_abi import encode_abi
+from eth_account import Account
 
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
 
@@ -28,7 +29,7 @@ from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
 load_dotenv()
 
 ETHNODEURL = os.getenv("ETHNODEURL")
-PRIVATE_KEY = os.getenv("PRIVATE_KEY")
+PRIVATE_WORDS = os.getenv("KEEPER_PRIVATE_WORDS")
 
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
@@ -37,6 +38,8 @@ GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contrac
 flatbook = AddrBook("mainnet").flatbook
 vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
+
+Account.enable_unaudited_hdwallet_features()
 
 
 class Operation(IntEnum):
@@ -51,7 +54,9 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
     safe_service = TransactionServiceApi(1, ethereum_client, SAFE_API_URL)
 
     safe_tx = safe.build_multisig_tx(to_address, value, data, operation)
-    safe_tx.sign(PRIVATE_KEY)
+
+    private_key = Account.from_mnemonic(PRIVATE_WORDS).privateKey
+    safe_tx.sign(private_key.hex()[2:])
 
     safe_service.post_transaction(safe_tx)
     print(f"posted signMessage tx to {safe_address}")
