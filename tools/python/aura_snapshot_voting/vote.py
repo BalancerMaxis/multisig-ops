@@ -87,6 +87,16 @@ def format_choices(choices):
     formatted_string += "}"
     return formatted_string
 
+def find_project_root(current_path=None):
+    anchor_file = "multisigs.md"
+    if current_path is None:
+        current_path = Path(__file__).resolve().parent
+    if (current_path / anchor_file).exists():
+        return current_path
+    parent = current_path.parent
+    if parent == current_path:
+        raise FileNotFoundError("Project root not found")
+    return find_project_root(parent)
 
 def create_voting_dirs_for_year(base_path, year, week):
     start_week = int(week[1:])
@@ -120,7 +130,7 @@ if __name__ == "__main__":
     )
     year, week = parser.parse_args().week_string.split("-")
 
-    project_root = Path.cwd()
+    project_root = find_project_root()
     base_path = project_root / "MaxiOps/vlaura_voting"
     voting_dir = base_path / str(year) / str(week)
     input_dir = voting_dir / "input"
