@@ -87,6 +87,7 @@ def format_choices(choices):
     formatted_string += "}"
     return formatted_string
 
+
 def find_project_root(current_path=None):
     anchor_file = "multisigs.md"
     if current_path is None:
@@ -97,6 +98,7 @@ def find_project_root(current_path=None):
     if parent == current_path:
         raise FileNotFoundError("Project root not found")
     return find_project_root(parent)
+
 
 def create_voting_dirs_for_year(base_path, year, week):
     start_week = int(week[1:])
