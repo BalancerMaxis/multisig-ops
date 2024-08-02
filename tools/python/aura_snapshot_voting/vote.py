@@ -8,6 +8,7 @@ from pytest import approx
 from dotenv import load_dotenv
 from pathlib import Path
 import glob
+import sys
 
 import requests
 from bal_addresses import AddrBook
@@ -82,6 +83,18 @@ def format_choices(choices):
     return formatted_string
 
 
+def find_project_root(current_path=None):
+    anchor_file = "multisigs.md"
+    if current_path is None:
+        current_path = Path(__file__).resolve().parent
+    if (current_path / anchor_file).exists():
+        return current_path
+    parent = current_path.parent
+    if parent == current_path:
+        raise FileNotFoundError("Project root not found")
+    return find_project_root(parent)
+
+
 def create_voting_dirs_for_year(base_path, year, week):
     start_week = int(week[1:])
     if all(
@@ -116,7 +129,7 @@ if __name__ == "__main__":
     print(f"week_string: {week_string}")
     year, week = week_string.split("-")
 
-    project_root = Path.cwd()
+    project_root = find_project_root()
     base_path = project_root / "MaxiOps/vlaura_voting"
     voting_dir = base_path / str(year) / str(week)
     input_dir = voting_dir / "input"
@@ -126,6 +139,7 @@ if __name__ == "__main__":
 
     vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
     print(vote_df.head())
+    exit()
     
     vote_df.to_csv(f"{output_dir}/vote_df.csv", index=False)
     exit()
