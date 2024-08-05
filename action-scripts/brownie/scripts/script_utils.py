@@ -67,6 +67,8 @@ def get_changed_files() -> list[dict]:
     pr_file_data = json.loads(response.text)
     changed_files = []
     for file_json in pr_file_data:
+        if file_json["status"] == "removed":
+            continue
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
