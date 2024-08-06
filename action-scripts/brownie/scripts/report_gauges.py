@@ -31,7 +31,7 @@ from datetime import datetime
 import json
 
 GAUGE_ABI = json.load(open("abis/IChildChainGauge.json"))
-
+CHAINLINK_REGISTRY_2_1_ABI = json.load(open("abis/ChainlinkRegistry_2_1.json"))
 ADDR_BOOK = AddrBook("mainnet")
 FLATBOOK = ADDR_BOOK.flatbook
 GAUGE_ADD_METHODS = ["gauge", "rootGauge"]
@@ -591,6 +591,86 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
+def _parse_transferAndCall(transaction: dict, **kwargs) -> Optional[dict]:
+    """
+    Parse calls made throught transferAndCall (LINK)
+    """
+    if not transaction.get("contractInputsValues") or not transaction.get(
+        "contractMethod"
+    ):
+        return
+    # Parse only gauge add transactions
+    if transaction["contractMethod"]["name"] != "transferAndCall":
+        return
+    chain_id = kwargs["chain_id"]
+    chain_alias = "{}-main"
+    chain_name = "main"
+    # Get chain name using address book and chain id
+    for c_name, c_id in AddrBook.chain_ids_by_name.items():
+        if int(chain_id) == int(c_id):
+            chain_name = (
+                chain_alias.format(c_name) if c_name != "mainnet" else "mainnet"
+            )
+            chainbook = AddrBook(c_name)
+            break
+    switch_chain_if_needed(chain_id)
+    tx_token_address = transaction["to"]
+    # try:
+    target_address = transaction["contractInputsValues"].get("_to")
+    try:
+        target_interface = Contract.from_explorer(target_address)
+    except Exception as e:
+        print(f"Can't find target interface for {target_address}: {e}")
+        return
+    try:
+        token_interface = Contract.from_explorer(tx_token_address)
+    except Exception as e:
+        print(
+            f"Warning: Can't create interface to transferAndCall token {tx_token_address}: {e}, trying chainlink registry ABI"
+        )
+        token_interface = None
+    if token_interface:
+        token_symbol = token_interface.symbol()
+        token_decimals = token_interface.decimals()
+    else:
+        token_symbol = "N/A"
+        token_decimals = "N/A"
+
+    try:
+        data = transaction["contractInputsValues"].get("_data")
+        (selector, inputs) = target_interface.decode_input(data)
+    except Exception as e:
+        print(
+            f"Error decoding transferAndCall calldata to {target_address}: {e}, trying chainlink registry ABI"
+        )
+        try:
+            (selector, inputs) = Contract.from_abi(
+                "chainlink_registry", target_address, CHAINLINK_REGISTRY_2_1_ABI
+            ).decode_input(data)
+        except Exception as e:
+            print(f"Failed as well: {e}")
+            return
+    try:
+        inputs = prettify_flat_list(inputs, chain_name)
+    except Exception as e:
+        print(
+            f"INFO: Was unable to prettify inputs during performAction decoding, perhaps the input data is too complex: {e}"
+        )
+    return {
+        "function": "transferAndCall",
+        "chain": chain_name,
+        "entrypoint": f"{tx_token_address}({token_symbol})",
+        "target": prettify_address(target_address, chainbook),
+        "value": prettify_int_amount(
+            transaction["contractInputsValues"].get("_value"), token_decimals
+        ),
+        "selector": selector,
+        "parsed_inputs": "\n".join(inputs),
+        "bip": kwargs.get("bip_number", "N/A"),
+        "tx_index": kwargs.get("tx_index", "N/A"),
+    }
+
+
 def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse calls made throught the AuthorizerAdapterEntrypoint
@@ -865,6 +945,7 @@ def main() -> None:
     all_reports.append(handler(files, _parse_aura_direct_incentive))
     all_reports.append(handler(files, _parse_AuthorizerAdapterEntrypoint))
     all_reports.append(handler(files, _parse_set_recipient_list))
+    all_reports.append(handler(files, _parse_transferAndCall))
 
     ## Catch All should run after all other handlers.
     no_reports_report = parse_no_reports_report(all_reports, files)
