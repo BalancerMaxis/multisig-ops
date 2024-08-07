@@ -1,0 +1,102 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "value": "125000000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W32/BIP-666-COWAMM-POL.json",
+        "bip_number": "BIP-666"
+      }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "amount": "213675210000000000000000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W32/BIP-666-COWAMM-POL.json",
+        "bip_number": "BIP-666"
+      }
+    },
+    {
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "dst",
+            "type": "address"
+          },
+          {
+            "name": "wad",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "dst": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "wad": "118260000000000000000"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W32/BIP-666-COWAMM-POL.json",
+        "bip_number": "BIP-666"
+      }
+    }
+  ]
+}
