@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2024-W33/[BIP-675] Enable Several E-CLPs [Arbitrum].json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `6edd07884a61407a49e913e0156c50c1fe9ff3b8`
+COMMIT: `dc52fbbf1e7774ed69727430f7e347b34b4eed90`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/da851f1d-2c8e-4091-a134-68106f1cd569)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1613ecc9-21d2-4827-9e56-fd968c833fa8)
 ```
 +-----------------------+---------------------------------------------------------------------+---------------------+--------------------------------------------+-----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | function              | pool_id_and_address                                                 | symbol_and_info     | gauge_address_and_info                     | tokens                                                    | rate_providers                             | review_summary |   bip   | tx_index |
@@ -11,7 +11,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/da851f1d-2c8e-4
 |                       | pool_address: 0xdeEaF8B0A8Cf26217261b813e085418C7dD8F1eE            | fee: 0.15           | Style: L0 sidechain                        | 0xCA5d8F8a8d49439357d3CF46Ca2e720702F132b8: GYD           | 0x0000000000000000000000000000000000000000 |       --       |         |          |
 |                       |                                                                     | a-factor: N/A       | cap: 100.0%                                |                                                           |                                            |                |         |          |
 | GaugeAdderV4/addGauge | 0xa899c63ba9ff275d6bfc83e43ee8e58ff6987584000200000000000000000594  | ECLP-rETH-wstETH    | 0xcb785286C9bEBeFF7654a8238Eb563666fD75338 | 0x5979D7b546E38E414F7E9822514be443A4800529: wstETH        | 0xf7c5c26B574063e7b098ed74fAd6779e65E3F836 |      safe      | BIP-675 |    1     |
-|                       | pool_address: 0xa899c63BA9ff275d6bfc83E43ee8E58fF6987584            | fee: 0.02           | Style: L0 sidechain                        | 0xEC70Dcb4A1EFa46b8F2D97C310C9c4790ba5ffA8: rETH          | 0xd4E96eF8eee8678dBFf4d535E033Ed1a4F7605b7 | !!NO REVIEW!!  |         |          |
+|                       | pool_address: 0xa899c63BA9ff275d6bfc83E43ee8E58fF6987584            | fee: 0.02           | Style: L0 sidechain                        | 0xEC70Dcb4A1EFa46b8F2D97C310C9c4790ba5ffA8: rETH          | 0xd4E96eF8eee8678dBFf4d535E033Ed1a4F7605b7 |      safe      |         |          |
 |                       |                                                                     | a-factor: N/A       | cap: 100.0%                                |                                                           |                                            |                |         |          |
 | GaugeAdderV4/addGauge | 0xff38cc0ce0de4476c5a3e78675b48420a851035b000200000000000000000593  | ECLP-GHO-GYD-rh     | 0xB599e35f760c47888aD3fF684FF4cd01ff4Dc45B | 0xCA5d8F8a8d49439357d3CF46Ca2e720702F132b8: GYD           | 0x0000000000000000000000000000000000000000 |       --       | BIP-675 |    2     |
 |                       | pool_address: 0xff38cC0cE0DE4476C5a3e78675b48420A851035B            | fee: 0.01           | Style: L0 sidechain                        | 0xD9FBA68D89178e3538e708939332c79efC540179: stataArbGHO   | 0x177862A0242acD8b5F9cc757a963c1C8883da45E | !!NO REVIEW!!  |         |          |
