@@ -20,7 +20,7 @@ def get_upkeeps(chain="ethereum"):
         f.write(raw.getbuffer())
     with open('clean.tmp', 'w') as f:
         buffer = open('dirty.tmp').read()
-        for sanitise in ['\x00', '\x10', '\x1a', '\x1b', '\x1c', '\x1d', '\x1e', '\x1f']:
+        for sanitise in ['\x00', '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1a', '\x1b', '\x1c', '\x1d', '\x1e', '\x1f']:
             buffer = buffer.replace(sanitise, '')
         f.write(buffer)
     return pd.read_csv('clean.tmp')
