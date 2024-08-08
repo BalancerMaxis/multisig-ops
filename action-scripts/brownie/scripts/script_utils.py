@@ -473,10 +473,12 @@ def get_rate_provider_review_summaries(
             continue
         rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
         if not rpinfo:
-            print(
-                f"WARNING: looked up {to_checksum_address(rate_provider)}  on chain {chain} and got {rpinfo}"
-            )
-            summaries.append("!!NO REVIEW!!")
+            rpinfo = r.info_by_rate_provider.get(rate_provider.lower())
+            if not rpinfo:
+                print(
+                    f"WARNING: looked up {to_checksum_address(rate_provider)} on chain {chain} and got {rpinfo}"
+                )
+                summaries.append("!!NO REVIEW!!")
         else:
             summaries.append(rpinfo["summary"])
     return summaries
