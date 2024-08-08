@@ -479,6 +479,8 @@ def get_rate_provider_review_summaries(
                     f"WARNING: looked up {to_checksum_address(rate_provider)} on chain {chain} and got {rpinfo}"
                 )
                 summaries.append("!!NO REVIEW!!")
+            else:
+                summaries.append(rpinfo["summary"])
         else:
             summaries.append(rpinfo["summary"])
     return summaries
