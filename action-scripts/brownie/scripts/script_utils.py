@@ -67,6 +67,8 @@ def get_changed_files() -> list[dict]:
     pr_file_data = json.loads(response.text)
     changed_files = []
     for file_json in pr_file_data:
+        if file_json["status"] == "removed":
+            continue
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
@@ -202,7 +204,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     # build individual tx data
     for tx in transactions:
-        if tx["contractMethod"]:
+        if "contractMethod" in tx:
             tx["contractMethod"]["type"] = "function"
             contract = web3.eth.contract(
                 address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
