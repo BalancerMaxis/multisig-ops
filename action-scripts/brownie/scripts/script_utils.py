@@ -67,7 +67,7 @@ def get_changed_files() -> list[dict]:
     pr_file_data = json.loads(response.text)
     changed_files = []
     for file_json in pr_file_data:
-        if file_json["status"] == "removed":
+        if file_json["status"] in ["removed", "renamed"]:
             continue
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
@@ -204,7 +204,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     # build individual tx data
     for tx in transactions:
-        if tx["contractMethod"]:
+        if "contractMethod" in tx:
             tx["contractMethod"]["type"] = "function"
             contract = web3.eth.contract(
                 address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
@@ -475,10 +475,14 @@ def get_rate_provider_review_summaries(
             continue
         rpinfo = r.info_by_rate_provider.get(to_checksum_address(rate_provider))
         if not rpinfo:
-            print(
-                f"WARNING: looked up {to_checksum_address(rate_provider)}  on chain {chain} and got {rpinfo}"
-            )
-            summaries.append("!!NO REVIEW!!")
+            rpinfo = r.info_by_rate_provider.get(rate_provider.lower())
+            if not rpinfo:
+                print(
+                    f"WARNING: looked up {to_checksum_address(rate_provider)} on chain {chain} and got {rpinfo}"
+                )
+                summaries.append("!!NO REVIEW!!")
+            else:
+                summaries.append(rpinfo["summary"])
         else:
             summaries.append(rpinfo["summary"])
     return summaries
