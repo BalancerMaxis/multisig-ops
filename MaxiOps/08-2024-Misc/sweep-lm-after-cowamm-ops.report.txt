@@ -1,13 +1,13 @@
 FILENAME: `MaxiOps/08-2024-Misc/sweep-lm-after-cowamm-ops.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `5d86422a5bcabac7e3585c83b4a864b0556893d3`
+COMMIT: `7a54316a4543f0d23f733a63d0e203b4decc40bd`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/10a7c911-5560-41cc-8079-25263d75e515)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fbd40b1a-eb42-416d-bd93-9630494a1298)
 ```
 +----------+---------------------------------------------------------------+----------------------------------------------------------+-----------------------------------------------------+-----+----------+
 | function | token_symbol                                                  | recipient                                                | amount                                              | bip | tx_index |
 +----------+---------------------------------------------------------------+----------------------------------------------------------+-----------------------------------------------------+-----+----------+
-| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48               | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 63949.925046 (RAW: 63949925046)                     | N/A |    0     |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48               | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 23222.445589 (RAW: 23222445589)                     | N/A |    0     |
 | transfer | D2D:0x43D4A3cd90ddD2F8f4f693170C9c8098163502ad                | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 1302797.7883296623 (RAW: 1302797788329662371414852) | N/A |    1     |
 | transfer | WETH:0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2               | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 3.7449998984922157 (RAW: 3744999898492215570)       | N/A |    2     |
 | transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D                | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 1978.0 (RAW: 1978000000000000000000)                | N/A |    3     |
