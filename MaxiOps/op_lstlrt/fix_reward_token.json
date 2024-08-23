@@ -12,28 +12,20 @@
   },
   "transactions": [
     {
-      "to": "0xed86ff0c507D3AF5F35d3523B77C17415FCfFaCb",
+      "to": "0x48b0a702139cad717f760eBf55C817D545A415ca",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [
-          {
-            "internalType": "address",
-            "name": "target",
-            "type": "address"
-          },
-          {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
-          }
+          { "name": "_reward_token", "type": "address" },
+          { "name": "_distributor", "type": "address" }
         ],
-        "name": "performAction",
-        "payable": true
+        "name": "set_reward_distributor",
+        "payable": false
       },
       "contractInputsValues": {
-        "target": "0x48b0a702139cad717f760eBf55C817D545A415ca",
-        "data": "0x058a3a24000000000000000000000000420000000000000000000000000000000000004200000000000000000000000034a265e1ebcb31586293eb2d2f94c6ff2f920340"
+        "_reward_token": "0x4200000000000000000000000000000000000042",
+        "_distributor": "0x34a265e1EBCb31586293eb2D2f94c6ff2f920340"
       }
     }
   ]
