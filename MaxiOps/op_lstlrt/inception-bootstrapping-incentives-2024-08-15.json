@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1698450039804,
+  "meta": {
+    "name": "",
+    "description": "Inception pools bootstrapping incentives",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x09Df1626110803C7b3b07085Ef1E053494155089",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+
+  "transactions": [
+    {
+      "to": "0x4200000000000000000000000000000000000042",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xa9b08B4CeEC1EF29EdEC7F9C94583270337D6416",
+        "rawAmount": "6000000000000000000000"
+      }
+    },
+    {
+      "to": "0x679c5C5828367db9005FdEa80faA45AE7B881791",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_proposal",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "_token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_maxTokensPerVote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_periods",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "depositBribe",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_proposal": "0x37c91824db1639ff3d9b54e7d96156a4aa4b1c3f7ea31926a77eef6d12c69fda",
+        "_token": "0x4200000000000000000000000000000000000042",
+        "_amount": "3000000000000000000000",
+        "_maxTokensPerVote": "0",
+        "_periods": "2"
+      }
+    },
+    {
+      "to": "0x679c5C5828367db9005FdEa80faA45AE7B881791",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_proposal",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "_token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_maxTokensPerVote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_periods",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "depositBribe",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_proposal": "0x248d01fb35eada971276e509780419ec017bb357b6ebbed7d267d9e18387fe12",
+        "_token": "0x4200000000000000000000000000000000000042",
+        "_amount": "3000000000000000000000",
+        "_maxTokensPerVote": "0",
+        "_periods": "2"
+      }
+    }
+  ]
+}
