@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1722981767470,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x5dea3322ed1d89c2127ec2a5d8db2d060d2e29fff20370b28807071d39416890"
+  },
+  "transactions": [
+    {
+      "to": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "prevOwner", "type": "address" },
+          { "internalType": "address", "name": "oldOwner", "type": "address" },
+          { "internalType": "address", "name": "newOwner", "type": "address" }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0951FF0835302929d6c0162b3d2495A85e38ec3A",
+        "oldOwner": "0x478eC43c6867c2884f87B21c164f1fD1308bD9a3",
+        "newOwner": "0x11761c7b08287d9489CD84C04DF6852F5C07107b"
+      }
+    }
+  ]
+}
