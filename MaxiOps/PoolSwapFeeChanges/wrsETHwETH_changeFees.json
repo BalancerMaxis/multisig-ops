@@ -12,28 +12,22 @@
   },
   "transactions": [
     {
-      "to": "0xed86ff0c507D3AF5F35d3523B77C17415FCfFaCb",
+      "to": "0x73a7fe27fe9545d53924e529acf11f3073841b9e",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "target",
-            "type": "address"
-          },
-          {
-            "internalType": "bytes",
-            "name": "data",
-            "type": "bytes"
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
           }
         ],
-        "name": "performAction",
-        "payable": true
+        "name": "setSwapFeePercentage",
+        "payable": false
       },
       "contractInputsValues": {
-        "target": "0x73a7fe27fe9545d53924e529acf11f3073841b9e",
-        "data": "0x38e9922e0000000000000000000000000000000000000000000000000000b5e620f48000"
+        "swapFeePercentage": "200000000000000"
       }
     }
   ]
