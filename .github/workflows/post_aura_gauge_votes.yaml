@@ -5,59 +5,60 @@ on:
     branches:
       - main
     paths:
-      - 'MaxiOps/vlaura_voting/**/input/*.csv'
+      - "MaxiOps/vlaura_voting/**/input/*.csv"
 
 jobs:
   post_aura_gauge_votes:
     runs-on: ubuntu-latest
+    environment: sensitive
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Setup Python 3.9
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.9
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
 
-    - name: Determine week-string
-      id: week-string
-      run: |
-        # Get the path of the changed CSV file
-        CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '/input/.*\.csv$' | head -n 1)
-        
-        if [ -z "$CSV_PATH" ]; then
-          echo "No CSV file found in recent changes."
-          exit 1
-        fi
+      - name: Determine week-string
+        id: week-string
+        run: |
+          # Get the path of the changed CSV file
+          CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '/input/.*\.csv$' | head -n 1)
 
-        echo "CSV Path: $CSV_PATH"
-        
-        YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
-        WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
-        WEEK_STRING="${YEAR}-${WEEK}"
+          if [ -z "$CSV_PATH" ]; then
+            echo "No CSV file found in recent changes."
+            exit 1
+          fi
 
-        echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
+          echo "CSV Path: $CSV_PATH"
 
-    - name: vlAURA Voting
-      env:
-        ETHNODEURL: ${{ secrets.ETHNODEURL }}
-        KEEPER_PRIVATE_WORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
-      run: |
-        pwd
-        RUN_DIR=tools/python/aura_snapshot_voting
-        pip3 install -r $RUN_DIR/requirements.txt
-        echo "grabbing votes for: ${{ steps.week-string.outputs.week-string }}"
-        python3 $RUN_DIR/vote.py --week-string "${{ steps.week-string.outputs.week-string }}"
+          YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
+          WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
+          WEEK_STRING="${YEAR}-${WEEK}"
 
-    - name: Create PR
-      id: cpr
-      uses: peter-evans/create-pull-request@v6
-      with:
-        commit-message: "task: vlaura vote report for ${{ steps.week-string.outputs.week-string }}"
-        title: "vlaura vote report for ${{ steps.week-string.outputs.week-string }}"
-        branch: "gha-biweekly-vlaura-votes-${{ steps.week-string.outputs.week-string }}"
-        delete-branch: true
-        labels: "vlAURA-Voting-Round"
+          echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
+
+      - name: vlAURA Voting
+        env:
+          ETHNODEURL: ${{ secrets.ETHNODEURL }}
+          KEEPER_PRIVATE_WORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
+        run: |
+          pwd
+          RUN_DIR=tools/python/aura_snapshot_voting
+          pip3 install -r $RUN_DIR/requirements.txt
+          echo "grabbing votes for: ${{ steps.week-string.outputs.week-string }}"
+          python3 $RUN_DIR/vote.py --week-string "${{ steps.week-string.outputs.week-string }}"
+
+      - name: Create PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "task: vlaura vote report for ${{ steps.week-string.outputs.week-string }}"
+          title: "vlaura vote report for ${{ steps.week-string.outputs.week-string }}"
+          branch: "gha-biweekly-vlaura-votes-${{ steps.week-string.outputs.week-string }}"
+          delete-branch: true
+          labels: "vlAURA-Voting-Round"

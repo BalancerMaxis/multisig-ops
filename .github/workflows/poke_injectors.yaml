@@ -4,20 +4,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0/5 * * * *"
-env:
-  KEYWORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
-  WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
-  ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
-  ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
-  GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
-  POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
-  OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
-  ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
-  SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
-  BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
 jobs:
   poke_injectors:
     runs-on: ubuntu-latest
+    environment: sensitive
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,6 +25,17 @@ jobs:
         with:
           python-version: "3.10"
       - name: Poke'em
+        env:
+          KEYWORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
+          WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+          ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+          ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+          GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+          POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+          OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+          ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+          SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
+          BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
         run: |
           cd action-scripts/brownie
           pip3 install -r requirements-actions.txt
