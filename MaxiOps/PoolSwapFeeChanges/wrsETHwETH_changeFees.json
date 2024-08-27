@@ -4,7 +4,7 @@
   "createdAt": 1724400515066,
   "meta": {
     "name": "Transactions Batch",
-    "description": "Set swap fee to 0.2% from 0.4% for wrsETH/wETH stable pool on OP",
+    "description": "Set swap fee to 0.2% from 0.04% for wrsETH/wETH stable pool on OP",
     "txBuilderVersion": "1.17.0",
     "createdFromSafeAddress": "0x09Df1626110803C7b3b07085Ef1E053494155089",
     "createdFromOwnerAddress": "",
@@ -27,7 +27,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "swapFeePercentage": "200000000000000"
+        "swapFeePercentage": "2000000000000000"
       }
     }
   ]
