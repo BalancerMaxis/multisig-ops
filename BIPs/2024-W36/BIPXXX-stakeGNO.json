@@ -1,66 +1,66 @@
 {
-    "version": "1.0",
-    "chainId": "1",
-    "createdAt": 1722972002277,
-    "meta": {
-      "name": "Transactions Batch",
-      "description": "",
-      "txBuilderVersion": "1.16.5",
-      "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
-      "createdFromOwnerAddress": "",
-      "checksum": "0x7d80dbdae194804ea6540579399db06a68118c885cfccaa9d8cbf588208d6033"
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1722972002277,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x7d80dbdae194804ea6540579399db06a68118c885cfccaa9d8cbf588208d6033"
+  },
+  "transactions": [
+    {
+      "to": "0x4f8AD938eBA0CD19155a835f617317a6E788c868",
+      "value": "0",
+      "data": "0x2e1a7d4d0000000000000000000000000000000000000000000001eaa7db81bf2c8c0000",
+      "contractMethod": {
+        "inputs": [],
+        "name": "fallback",
+        "payable": true
+      },
+      "contractInputsValues": null
     },
-    "transactions": [
-      {
-        "to": "0x4f8AD938eBA0CD19155a835f617317a6E788c868",
-        "value": "0",
-        "data": "0x2e1a7d4d0000000000000000000000000000000000000000000001eaa7db81bf2c8c0000",
-        "contractMethod": {
-          "inputs": [],
-          "name": "fallback",
-          "payable": true
-        },
-        "contractInputsValues": null
+    {
+      "to": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
+      "value": "0",
+      "data": "0x095ea7b300000000000000000000000088ad09518695c6c3712ac10a214be5109a6556710000000000000000000000000000000000000000000001eaa7db81bf2c8c0000",
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_spender",
+            "type": "address"
+          },
+          {
+            "name": "_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
       },
-      {
-        "to": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
-        "value": "0",
-        "data": "0x095ea7b300000000000000000000000088ad09518695c6c3712ac10a214be5109a6556710000000000000000000000000000000000000000000001eaa7db81bf2c8c0000",
-        "contractMethod": {
-          "inputs": [
-            {
-              "name": "_spender",
-              "type": "address"
-            },
-            {
-              "name": "_value",
-              "type": "uint256"
-            }
-          ],
-          "name": "approve",
-          "payable": false
-        },
-        "contractInputsValues": null
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x88ad09518695c6c3712AC10a214bE5109a655671",
+      "value": "0",
+      "data": "0xad58bdd10000000000000000000000006810e776880c02933d47db1b9fc05908e5386b960000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc890000000000000000000000000000000000000000000001eaa7db81bf2c8c0000",
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "version",
+            "type": "uint256"
+          },
+          {
+            "name": "implementation",
+            "type": "address"
+          }
+        ],
+        "name": "upgradeTo",
+        "payable": false
       },
-      {
-        "to": "0x88ad09518695c6c3712AC10a214bE5109a655671",
-        "value": "0",
-        "data": "0xad58bdd10000000000000000000000006810e776880c02933d47db1b9fc05908e5386b960000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc890000000000000000000000000000000000000000000001eaa7db81bf2c8c0000",
-        "contractMethod": {
-          "inputs": [
-            {
-              "name": "version",
-              "type": "uint256"
-            },
-            {
-              "name": "implementation",
-              "type": "address"
-            }
-          ],
-          "name": "upgradeTo",
-          "payable": false
-        },
-        "contractInputsValues": null
-      }
-    ]
-  }
+      "contractInputsValues": null
+    }
+  ]
+}
