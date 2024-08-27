@@ -139,8 +139,7 @@ if __name__ == "__main__":
 
     vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
     print(vote_df.head())
-    exit()
-    
+
     vote_df.to_csv(f"{output_dir}/vote_df.csv", index=False)
     exit()
 
