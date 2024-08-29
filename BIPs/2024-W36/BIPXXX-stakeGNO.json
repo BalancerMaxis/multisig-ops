@@ -3,86 +3,86 @@
   "chainId": "1",
   "createdAt": 1724960331553,
   "meta": {
-      "name": "Transactions Batch",
-      "description": "",
-      "txBuilderVersion": "1.17.0",
-      "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
-      "createdFromOwnerAddress": "",
-      "checksum": "0x28e6614f37a5c671cb7c5ba638b0f5afc789b5b614d2fbeaeaa676dfa8b51cd2"
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x28e6614f37a5c671cb7c5ba638b0f5afc789b5b614d2fbeaeaa676dfa8b51cd2"
   },
   "transactions": [
-      {
-          "to": "0x4f8AD938eBA0CD19155a835f617317a6E788c868",
-          "value": "0",
-          "data": null,
-          "contractMethod": {
-              "inputs": [
-                  {
-                      "internalType": "uint256",
-                      "name": "amount",
-                      "type": "uint256"
-                  }
-              ],
-              "name": "withdraw",
-              "payable": false
-          },
-          "contractInputsValues": {
-              "amount": "9051000000000000000000"
+    {
+      "to": "0x4f8AD938eBA0CD19155a835f617317a6E788c868",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
           }
+        ],
+        "name": "withdraw",
+        "payable": false
       },
-      {
-          "to": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
-          "value": "0",
-          "data": null,
-          "contractMethod": {
-              "inputs": [
-                  {
-                      "name": "_spender",
-                      "type": "address"
-                  },
-                  {
-                      "name": "_value",
-                      "type": "uint256"
-                  }
-              ],
-              "name": "approve",
-              "payable": false
-          },
-          "contractInputsValues": {
-              "_spender": "0x88ad09518695c6c3712AC10a214bE5109a655671",
-              "_value": "9051000000000000000000"
-          }
-      },
-      {
-          "to": "0x88ad09518695c6c3712AC10a214bE5109a655671",
-          "value": "0",
-          "data": null,
-          "contractMethod": {
-              "inputs": [
-                  {
-                      "name": "token",
-                      "type": "address",
-                      "internalType": "contract IERC677"
-                  },
-                  {
-                      "name": "_receiver",
-                      "type": "address",
-                      "internalType": "address"
-                  },
-                  {
-                      "name": "_value",
-                      "type": "uint256",
-                      "internalType": "uint256"
-                  }
-              ],
-              "name": "relayTokens",
-              "payable": false
-          },
-          "contractInputsValues": {
-              "token": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
-              "_receiver": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
-              "_value": "9051000000000000000000"
-          }
+      "contractInputsValues": {
+        "amount": "9051000000000000000000"
       }
+    },
+    {
+      "to": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_spender",
+            "type": "address"
+          },
+          {
+            "name": "_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0x88ad09518695c6c3712AC10a214bE5109a655671",
+        "_value": "9051000000000000000000"
+      }
+    },
+    {
+      "to": "0x88ad09518695c6c3712AC10a214bE5109a655671",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "contract IERC677"
+          },
+          {
+            "name": "_receiver",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "_value",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "relayTokens",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
+        "_receiver": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "_value": "9051000000000000000000"
+      }
+    }
   ]
 }
