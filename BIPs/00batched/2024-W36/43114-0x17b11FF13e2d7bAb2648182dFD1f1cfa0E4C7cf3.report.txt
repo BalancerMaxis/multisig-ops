@@ -1,22 +1,22 @@
 FILENAME: `BIPs/00batched/2024-W36/43114-0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3.json`
 MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
-COMMIT: `35ca544d926b562d5555f6eb0e7accc3b3a421ad`
+COMMIT: `fd57328885ba4e61945f8da8bfd8440c24177b36`
 CHAIN(S): `avalanche`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d4ceeecc-f9c0-49ce-ba62-2d46d7447bd3)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/0e7ebfaf-1c59-4ef1-8e72-7b68749c3d92)
 ```
 +----------------------+----------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function             | caller_name    | caller_address                             | fx_paths                                                                                           | action_ids                                                         |   bip   | tx_index |
 +----------------------+----------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole | multisigs/fees | 0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6 | 20220413-child-chain-gauge-factory/ChildChainStreamer/set_reward_distributor(address,address)      | 0xce713085e9498c958964f4c64979785027e7a93323b68bca8e87296c696fa643 | BIP-685 |    0     |
+| Authorizer/grantRole | multisigs/fees | 0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6 | 20230316-avax-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address) | 0xce713085e9498c958964f4c64979785027e7a93323b68bca8e87296c696fa643 | BIP-685 |    0     |
+|                      |                |                                            | 20220413-child-chain-gauge-factory/ChildChainStreamer/set_reward_distributor(address,address)      |                                                                    |         |          |
 |                      |                |                                            | 20230316-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address)      |                                                                    |         |          |
-|                      |                |                                            | 20230316-avax-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address) |                                                                    |         |          |
 +----------------------+----------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/00batched/2024-W36/43114-0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3.json`
 MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
-COMMIT: `35ca544d926b562d5555f6eb0e7accc3b3a421ad`
+COMMIT: `fd57328885ba4e61945f8da8bfd8440c24177b36`
 CHAIN(S): `avalanche`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/0e78d8c2-c35b-42e3-bb2f-6212990520a7)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/043ac6a0-96b5-4f97-99c8-d31cb736c314)
 ```
 +-----------+------------------------------------------------------------+-------+---------------------------------------------------------------------+------------+----------+
 | fx_name   | to                                                         | value | inputs                                                              | bip_number | tx_index |
