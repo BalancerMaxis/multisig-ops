@@ -1,21 +1,21 @@
 FILENAME: `BIPs/00batched/2024-W36/137-0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85.json`
 MULTISIG: `multisigs/dao (polygon:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)`
-COMMIT: `efa03f8c15e9da771e35720c36aa127e607fd60c`
+COMMIT: `35ca544d926b562d5555f6eb0e7accc3b3a421ad`
 CHAIN(S): `polygon`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/08a67a39-4367-4dad-a1c9-95a5298e69fd)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/cddff733-eb74-4a1f-9217-38d9b7fbfaa7)
 ```
 +----------------------+--------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function             | caller_name  | caller_address                             | fx_paths                                                                                      | action_ids                                                         |   bip   | tx_index |
 +----------------------+--------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole | multisigs/lm | 0xc38c5f97B34E175FFd35407fc91a937300E33860 | 20230316-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address) | 0x363cf2bd771efe16bd206d33a549d4698c4ad202ea6b5bf693722fbe151140a6 | BIP-685 |    0     |
-|                      |              |                                            | 20220413-child-chain-gauge-factory/ChildChainStreamer/set_reward_distributor(address,address) |                                                                    |         |          |
+| Authorizer/grantRole | multisigs/lm | 0xc38c5f97B34E175FFd35407fc91a937300E33860 | 20220413-child-chain-gauge-factory/ChildChainStreamer/set_reward_distributor(address,address) | 0x363cf2bd771efe16bd206d33a549d4698c4ad202ea6b5bf693722fbe151140a6 | BIP-685 |    0     |
+|                      |              |                                            | 20230316-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address) |                                                                    |         |          |
 +----------------------+--------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/00batched/2024-W36/137-0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85.json`
 MULTISIG: `multisigs/dao (polygon:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)`
-COMMIT: `efa03f8c15e9da771e35720c36aa127e607fd60c`
+COMMIT: `35ca544d926b562d5555f6eb0e7accc3b3a421ad`
 CHAIN(S): `polygon`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/eb18b43b-d9c1-45a0-91fb-f06a5a976746)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d3a69d46-39a2-4e4e-8487-c4ad9210aea3)
 ```
 +-----------+------------------------------------------------------------+-------+---------------------------------------------------------------------+------------+----------+
 | fx_name   | to                                                         | value | inputs                                                              | bip_number | tx_index |
