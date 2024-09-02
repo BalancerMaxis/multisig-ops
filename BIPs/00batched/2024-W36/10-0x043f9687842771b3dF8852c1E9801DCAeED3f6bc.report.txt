@@ -1,21 +1,21 @@
 FILENAME: `BIPs/00batched/2024-W36/10-0x043f9687842771b3dF8852c1E9801DCAeED3f6bc.json`
 MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
-COMMIT: `efa03f8c15e9da771e35720c36aa127e607fd60c`
+COMMIT: `35ca544d926b562d5555f6eb0e7accc3b3a421ad`
 CHAIN(S): `optimism`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/cc21ff77-7f73-49f7-98bc-2f01cd97102e)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fe809bba-9199-4da8-a788-977c5ec6b770)
 ```
 +----------------------+--------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function             | caller_name  | caller_address                             | fx_paths                                                                                      | action_ids                                                         |   bip   | tx_index |
 +----------------------+--------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole | multisigs/lm | 0x09Df1626110803C7b3b07085Ef1E053494155089 | 20230316-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address) | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-685 |    0     |
-|                      |              |                                            | 20220413-child-chain-gauge-factory/ChildChainStreamer/set_reward_distributor(address,address) |                                                                    |         |          |
+| Authorizer/grantRole | multisigs/lm | 0x09Df1626110803C7b3b07085Ef1E053494155089 | 20220413-child-chain-gauge-factory/ChildChainStreamer/set_reward_distributor(address,address) | 0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6 | BIP-685 |    0     |
+|                      |              |                                            | 20230316-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address) |                                                                    |         |          |
 +----------------------+--------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/00batched/2024-W36/10-0x043f9687842771b3dF8852c1E9801DCAeED3f6bc.json`
 MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
-COMMIT: `efa03f8c15e9da771e35720c36aa127e607fd60c`
+COMMIT: `35ca544d926b562d5555f6eb0e7accc3b3a421ad`
 CHAIN(S): `optimism`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/589c3c24-e03b-47dd-9bee-51c24a693b20)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7e3acdb5-fc2f-4916-b714-0ebb29896265)
 ```
 +-----------+------------------------------------------------------------+-------+---------------------------------------------------------------------+------------+----------+
 | fx_name   | to                                                         | value | inputs                                                              | bip_number | tx_index |
