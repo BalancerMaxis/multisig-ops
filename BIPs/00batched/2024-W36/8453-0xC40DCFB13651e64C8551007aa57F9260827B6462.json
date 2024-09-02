@@ -1,0 +1,80 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x82f054fdfa86620d25b289d7f068681a5224bcfc083243cdb49512fe1574a36f",
+        "account": "0x65226673F3D202E0f897C862590d7e1A992B2048"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W36/BIP-685 set_reward_distributor Permissions/Base.json",
+        "bip_number": "BIP-685"
+      }
+    },
+    {
+      "to": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0951FF0835302929d6c0162b3d2495A85e38ec3A",
+        "oldOwner": "0x478eC43c6867c2884f87B21c164f1fD1308bD9a3",
+        "newOwner": "0x11761c7b08287d9489CD84C04DF6852F5C07107b"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W36/BIP-681-Update-DAO-Multisig-Signers/Base.json",
+        "bip_number": "BIP-681"
+      }
+    }
+  ]
+}

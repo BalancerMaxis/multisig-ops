@@ -1,0 +1,80 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x47c8a529e3b2e456350bd1fb2b5bdd61d0740858cd3fc3a95757ed080665b1b7",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W36/BIP-685 set_reward_distributor Permissions/Fraxtal.json",
+        "bip_number": "BIP-685"
+      }
+    },
+    {
+      "to": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0951FF0835302929d6c0162b3d2495A85e38ec3A",
+        "oldOwner": "0x478eC43c6867c2884f87B21c164f1fD1308bD9a3",
+        "newOwner": "0x11761c7b08287d9489CD84C04DF6852F5C07107b"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W36/BIP-681-Update-DAO-Multisig-Signers/Fraxtal.json",
+        "bip_number": "BIP-681"
+      }
+    }
+  ]
+}
