@@ -47,7 +47,7 @@ jobs:
         python3 $RUN_DIR/review_votes.py --week-string "${{ steps.week-string.outputs.week-string }}"
 
     - name: Comment PR
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
