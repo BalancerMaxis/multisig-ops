@@ -795,7 +795,7 @@ def parse_no_reports_report(
                         if contractMethod
                         else "!!N/A!!"
                     ),
-                    "to": f"{to} ({addr.reversebook.get(to, 'Not Found')})",
+                    "to": f"{to} ({addr.reversebook.get(to_checksum_address(to), 'Not Found')})",
                     "chain": chain_name,
                     "value": valuestring,
                     "inputs": json.dumps(civ_parsed, indent=2),
