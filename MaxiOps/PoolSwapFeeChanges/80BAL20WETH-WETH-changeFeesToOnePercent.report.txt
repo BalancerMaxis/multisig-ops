@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/PoolSwapFeeChanges/80BAL20WETH-WETH-changeFeesToOnePercent.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `42eab1508bcf34279986c27d4a86762c86a6583a`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/efb8cd8e-2662-418e-9c44-203ac6ce46b2)
+```
++----------------------+--------------------------------------------------------+-------+--------------------------+------------+----------+
+| fx_name              | to                                                     | value | inputs                   | bip_number | tx_index |
++----------------------+--------------------------------------------------------+-------+--------------------------+------------+----------+
+| setSwapFeePercentage | 0xc5c91aea7551095c3e1ff0f94f682c45b347ad73 (Not Found) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                        |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                        |       |     "10000000000000000"  |            |          |
+|                      |                                                        |       |   ]                      |            |          |
+|                      |                                                        |       | }                        |            |          |
++----------------------+--------------------------------------------------------+-------+--------------------------+------------+----------+
+```
