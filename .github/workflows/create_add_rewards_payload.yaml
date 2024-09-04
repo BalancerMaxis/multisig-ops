@@ -68,7 +68,7 @@ jobs:
 
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           title: ${{ env.PR_TITLE }}
           body: ${{ env.PR_BODY }}
