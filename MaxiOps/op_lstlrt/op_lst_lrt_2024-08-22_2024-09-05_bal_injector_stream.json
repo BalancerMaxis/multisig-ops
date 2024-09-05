@@ -10,24 +10,24 @@
     "createdFromOwnerAddress": "",
     "checksum": "0x60b02488a85be3a01e98bf20b0a502aa807f462e6f59a740ec3d602a56a716ae"
   },
-  "transactions": [      
+  "transactions": [
     {
       "to": "0x34a265e1EBCb31586293eb2D2f94c6ff2f920340",
       "value": "0",
       "data": null,
       "contractMethod": {
-          "inputs": [
-              {
-                  "name": "token",
-                  "type": "address",
-                  "internalType": "address"
-              }
-          ],
-          "name": "sweep",
-          "payable": false
+        "inputs": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "sweep",
+        "payable": false
       },
       "contractInputsValues": {
-          "token": "0x4200000000000000000000000000000000000042"
+        "token": "0x4200000000000000000000000000000000000042"
       }
     },
     {
