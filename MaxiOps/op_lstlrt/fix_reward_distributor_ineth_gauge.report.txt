@@ -1,13 +1,13 @@
 FILENAME: `MaxiOps/op_lstlrt/fix_reward_distributor_ineth_gauge.json`
 MULTISIG: `multisigs/lm (optimism:0x09Df1626110803C7b3b07085Ef1E053494155089)`
-COMMIT: `d0d85f385908b59f4cbc1b4d0f4675469bce9693`
+COMMIT: `aefe9216153ce9e79791c1a4ccb8845b228fce0c`
 CHAIN(S): `optimism`
-TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/3f0ff81b-fbcc-4c7a-8c27-7353d57ec38e)
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/bc4ea554-8279-42ec-96f8-772036b6d29d)
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------------------+----------------------------------------------------------------------------------+-----+----------+
 | function      | entrypoint                                                                                                      | target                                            | selector                                | parsed_inputs                                                                    | bip | tx_index |
 +---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------------------+----------------------------------------------------------------------------------+-----+----------+
-| performAction | 0xed86ff0c507D3AF5F35d3523B77C17415FCfFaCb (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x48b0a702139cad717f760eBf55C817D545A415ca (None) | set_reward_distributor(address,address) | 0x4200000000000000000000000000000000000042: tokens/OP                            | N/A |    0     |
+| performAction | 0xed86ff0c507D3AF5F35d3523B77C17415FCfFaCb (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x476f2dedf358eb87c4c22dfaf5e511f68e0272e0 (None) | set_reward_distributor(address,address) | 0x4200000000000000000000000000000000000042: tokens/OP                            | N/A |    0     |
 |               |                                                                                                                 |                                                   |                                         | 0x34a265e1EBCb31586293eb2D2f94c6ff2f920340: maxiKeepers/gaugeRewardsInjectors/op |     |          |
 +---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------------------+----------------------------------------------------------------------------------+-----+----------+
 ```
