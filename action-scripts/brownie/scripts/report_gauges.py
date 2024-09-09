@@ -2,7 +2,7 @@ from typing import Callable
 from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
-from bal_tools import Aura
+from bal_tools import Aura, BalPoolsGauges
 from bal_addresses import to_checksum_address, is_address
 from brownie import Contract
 from brownie import web3
@@ -390,7 +390,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     chain = TYPE_TO_CHAIN_MAP.get(gauge_type)
     gauge_address = None
     for method in GAUGE_ADD_METHODS:
-        gauge_address = transaction["contractInputsValues"].get(method)
+        gauge_address = to_checksum_address(transaction["contractInputsValues"].get(method))
         if gauge_address:
             break
     if not gauge_address:
@@ -425,12 +425,15 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     elif isinstance(to_name, str):
         to_string = f"!!f{to_name}??"
 
+    chain = chain.replace("-main", "") if chain else "mainnet"
+    is_preferential = BalPoolsGauges(chain).get_preferential_gauge(pool_id) == gauge_address
+
     return {
         "function": f"{to_string}/{command}",
-        "chain": chain.replace("-main", "") if chain else "mainnet",
+        "chain": chain,
         "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
         "symbol_and_info": f"{pool_symbol} \nfee: {fee}\na-factor: {a_factor}",
-        "gauge_address_and_info": f"{gauge_address}\nStyle: {style}\ncap: {gauge_cap}",
+        "gauge_address_and_info": f"{gauge_address}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}",
         "tokens": "\n".join(tokens),
         "rate_providers": "\n".join(rate_providers),
         "review_summary": "\n".join(
