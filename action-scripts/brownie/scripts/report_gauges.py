@@ -390,7 +390,9 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     chain = TYPE_TO_CHAIN_MAP.get(gauge_type)
     gauge_address = None
     for method in GAUGE_ADD_METHODS:
-        gauge_address = to_checksum_address(transaction["contractInputsValues"].get(method))
+        gauge_address = to_checksum_address(
+            transaction["contractInputsValues"].get(method)
+        )
         if gauge_address:
             break
     if not gauge_address:
@@ -426,7 +428,9 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         to_string = f"!!f{to_name}??"
 
     chain = chain.replace("-main", "") if chain else "mainnet"
-    is_preferential = BalPoolsGauges(chain).get_preferential_gauge(pool_id) == gauge_address
+    is_preferential = (
+        BalPoolsGauges(chain).get_preferential_gauge(pool_id) == gauge_address
+    )
 
     return {
         "function": f"{to_string}/{command}",
