@@ -39,8 +39,8 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "Combined JSON Payloads ${{ github.event.inputs.directory }}"
-          title: "Combined JSON payloads ${{ github.event.inputs.directory }}"
+          commit-message: "Combined JSON Payloads ${{ github.event.inputs.runWeek }}"
+          title: "Combined JSON payloads ${{ github.event.inputs.runWeek }}"
           assignees: tritium-vlk
           branch: gha-payload-merge
           delete-branch: true
