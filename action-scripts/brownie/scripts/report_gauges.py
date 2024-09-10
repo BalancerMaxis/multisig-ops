@@ -444,7 +444,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "review_summary": "\n".join(rate_providers_reviews),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
-        "add_gauge_summary": (is_preferential, rate_providers_reviews)
+        "add_gauge_summary": (is_preferential, rate_providers_reviews),
     }
 
 
@@ -857,7 +857,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
                     outputs,
                     file["meta"]["createdFromSafeAddress"],
                     int(file["chainId"]),
-                    add_gauge_summary
+                    add_gauge_summary,
                 ),
                 "report_data": {"file": file, "outputs": outputs},
             }

@@ -385,11 +385,7 @@ def check_tenderly_calls_for_revert(calls):
 
 
 def format_into_report(
-    file: dict,
-    transactions: list[dict],
-    msig_addr: str,
-    chain_id: int,
-    gauge_checklist
+    file: dict, transactions: list[dict], msig_addr: str, chain_id: int, gauge_checklist
 ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
@@ -428,15 +424,11 @@ def format_into_report(
         is_preferential = "✅" if gauge_checklist[0] else "❌"
         rate_providers_safety = []
         for rate_provider in gauge_checklist[1]:
-            rate_providers_safety.append(
-                "✅" if rate_provider == "safe" else "❌"
-            )
-        table.add_row([
-            f"`validate_preferential_gauge`", is_preferential
-        ])
-        table.add_row([
-            f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)
-        ])
+            rate_providers_safety.append("✅" if rate_provider == "safe" else "❌")
+        table.add_row([f"`validate_preferential_gauge`", is_preferential])
+        table.add_row(
+            [f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)]
+        )
         file_report += table.get_string()
         file_report += "\n\n"
 
