@@ -17,7 +17,7 @@ from gnosis.eth import EthereumClient
 from gnosis.eth.constants import NULL_ADDRESS
 from gnosis.safe import SafeOperation
 from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
-from prettytable import PrettyTable
+from prettytable import MARKDOWN, PrettyTable
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -389,6 +389,7 @@ def format_into_report(
     transactions: list[dict],
     msig_addr: str,
     chain_id: int,
+    gauge_checklist,
 ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
@@ -415,9 +416,29 @@ def format_into_report(
             file["meta"]["createdFromSafeAddress"],
             file["transactions"],
         )
-        file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n"
+        file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
     except Exception as e:
-        file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n"
+        file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n\n"
+
+    if gauge_checklist:
+        table = PrettyTable(align="l")
+        table.set_style(MARKDOWN)
+        table.field_names = ["Gauge Validator", "Result"]
+        table.align["Result"] = "c"
+        is_preferential = "✅" if gauge_checklist[0] else "❌"
+        rate_providers_safety = []
+        for rate_provider in gauge_checklist[1]:
+            if rate_provider == "--":
+                continue
+            rate_providers_safety.append("✅" if rate_provider == "safe" else "❌")
+        table.add_row([f"`validate_preferential_gauge`", is_preferential])
+        if len(rate_providers_safety) == 0:
+            rate_providers_safety = ["--"]
+        table.add_row(
+            [f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)]
+        )
+        file_report += table.get_string()
+        file_report += "\n\n"
 
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
