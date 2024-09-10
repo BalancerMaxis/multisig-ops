@@ -428,6 +428,8 @@ def format_into_report(
         is_preferential = "✅" if gauge_checklist[0] else "❌"
         rate_providers_safety = []
         for rate_provider in gauge_checklist[1]:
+            if rate_provider == "--":
+                continue
             rate_providers_safety.append("✅" if rate_provider == "safe" else "❌")
         table.add_row([f"`validate_preferential_gauge`", is_preferential])
         table.add_row(
