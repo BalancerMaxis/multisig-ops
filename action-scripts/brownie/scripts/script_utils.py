@@ -385,7 +385,11 @@ def check_tenderly_calls_for_revert(calls):
 
 
 def format_into_report(
-    file: dict, transactions: list[dict], msig_addr: str, chain_id: int, gauge_checklist
+    file: dict,
+    transactions: list[dict],
+    msig_addr: str,
+    chain_id: int,
+    gauge_checklist,
 ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
