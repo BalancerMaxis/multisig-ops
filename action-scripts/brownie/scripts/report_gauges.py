@@ -431,6 +431,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     is_preferential = (
         BalPoolsGauges(chain).get_preferential_gauge(pool_id) == gauge_address
     )
+    rate_providers_reviews = get_rate_provider_review_summaries(rate_providers, chain)
 
     return {
         "function": f"{to_string}/{command}",
@@ -440,11 +441,10 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "gauge_address_and_info": f"{gauge_address}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}",
         "tokens": "\n".join(tokens),
         "rate_providers": "\n".join(rate_providers),
-        "review_summary": "\n".join(
-            get_rate_provider_review_summaries(rate_providers, chain)
-        ),
+        "review_summary": "\n".join(rate_providers_reviews),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
+        "add_gauge_summary": (is_preferential, rate_providers_reviews)
     }
 
 
@@ -844,6 +844,10 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
                 tx_index=i,
             )
             if data:
+                if "add_gauge_summary" in data:
+                    add_gauge_summary = data.pop("add_gauge_summary")
+                else:
+                    add_gauge_summary = None
                 outputs.append(data)
             i += 1
         if outputs:
@@ -853,6 +857,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
                     outputs,
                     file["meta"]["createdFromSafeAddress"],
                     int(file["chainId"]),
+                    add_gauge_summary
                 ),
                 "report_data": {"file": file, "outputs": outputs},
             }
