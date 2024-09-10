@@ -4,7 +4,7 @@ import os
 
 
 CHAINS_TO_KEEP = [
-    #    "zkevm-main", # currently running in defender due to rpc issues
+    "zkevm-main",
     "mode-main",
     "fraxtal-main",
 ]
