@@ -432,6 +432,8 @@ def format_into_report(
                 continue
             rate_providers_safety.append("✅" if rate_provider == "safe" else "❌")
         table.add_row([f"`validate_preferential_gauge`", is_preferential])
+        if len(rate_providers_safety) == 0:
+            rate_providers_safety = ["--"]
         table.add_row(
             [f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)]
         )
