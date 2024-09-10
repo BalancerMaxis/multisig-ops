@@ -117,16 +117,15 @@ def main() -> None:
         for validator in VALIDATORS:
             is_valid, output_msg = validator(file)
             if not is_valid:
-                results[file_path][validator.__name__] = output_msg
+                results[file_path][validator.__name__] = f"❌ ({output_msg})"
             else:
-                results[file_path][validator.__name__] = "OK"
+                results[file_path][validator.__name__] = "✅"
 
     # Generate report for each file and save it in a list
     reports = []
     for file_path, file_results in results.items():
-        report = f"BIP validation results for file `{file_path}`:\n"
-        # Commit:
-        report += f"Commit: `{os.getenv('COMMIT_SHA')}`\n"
+        report = f"FILENAME: `{file_path}`\n"
+        report += f"COMMIT: `{os.getenv('COMMIT_SHA')}`\n"
         # Convert output for each file into table format
         table = PrettyTable(align="l")
         table.set_style(MARKDOWN)
