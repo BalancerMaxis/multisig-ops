@@ -55,10 +55,6 @@ base_json = json.loads(
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
-TEMPLATE_PATH = (
-    os.path.dirname(os.path.abspath(__file__))
-    + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
-)
 
 
 class NoMsigAddress(Exception):
@@ -136,13 +132,6 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
 
     if int(data["chainId"]) == int(chain):
         return data
-
-
-def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
-    for chain, gauges in gauges_by_chain.items():
-        gauges_by_chain[chain] = str(gauges).replace("'", "")
-    with open(output_file_path, "w") as l2_payload_file:
-        json.dump(gauges_by_chain, l2_payload_file, indent=2)
 
 
 # Example how to run: `python action-scripts/merge_pr_jsons.py --target 2023-W23`
@@ -244,11 +233,6 @@ def main():
             file_path = os.path.join(dir_name_batched_full, file_name)
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
-    if gauge_lists_by_chain:
-        _write_checkpointer_json(
-            f"{dir_name_batched_full}/checkpointer_gauges_by_chain.json",
-            gauge_lists_by_chain,
-        )
 
 
 if __name__ == "__main__":

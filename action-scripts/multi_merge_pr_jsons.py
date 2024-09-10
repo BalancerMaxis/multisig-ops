@@ -29,10 +29,6 @@ base_json = json.loads(
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>
 TARGET_DIR_WITH_BIPS = "00merging"
-TEMPLATE_PATH = (
-    os.path.dirname(os.path.abspath(__file__))
-    + "/tx_builder_templates/l2_checkpointer_gauge_add.json"
-)
 
 
 def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
@@ -56,22 +52,6 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
                 return data
     except JSONDecodeError:
         return None
-
-
-def _write_checkpointer_json(output_file_path: str, gauges_by_chain: dict):
-    with open(TEMPLATE_PATH, "r") as template:
-        payload = json.load(template)
-    #  Grab the example transaction and clear the transaction list.
-    tx_template = payload["transactions"][0]
-    payload["transactions"] = []
-
-    for chainname, gaugelist in gauges_by_chain.items():
-        tx = tx_template
-        tx["contractInputsValues"]["gaugeType"] = chainname
-        tx["contractInputsValues"]["gauges"] = gaugelist
-        payload["transactions"].append(tx)
-    with open(output_file_path, "w") as l2_payload_file:
-        json.dump(payload, l2_payload_file, indent=2)
 
 
 # Example how to run: python action-scripts/merge_pr_jsons.py BIPs/BIP-289,BIPs/BIP-285
@@ -165,10 +145,6 @@ def main():
             file_path = os.path.join(dir_name_batched_full, file_name)
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
-    if not gauge_lists_by_chain:
-        _write_checkpointer_json(
-            f"{dir_name_batched_full}/1-anySafeWillDo.json", gauge_lists_by_chain
-        )
 
 
 if __name__ == "__main__":
