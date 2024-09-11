@@ -389,7 +389,7 @@ def format_into_report(
     transactions: list[dict],
     msig_addr: str,
     chain_id: int,
-    gauge_checklist,
+    gauge_checklist=None,
 ) -> str:
     """
     Formats a list of transactions into a report that can be posted as a comment on GH PR
