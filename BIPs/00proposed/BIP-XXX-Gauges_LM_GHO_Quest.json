@@ -1,0 +1,65 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1726150233651,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.17.0",
+        "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+        "createdFromOwnerAddress": "",
+        "checksum": "0x4a6f40b5360dc8deaafddd667ae684583df22fa8badbe7a35d03cf691493d009"
+    },
+    "transactions": [
+        {
+            "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "target",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "data",
+                        "type": "bytes"
+                    }
+                ],
+                "name": "performAction",
+                "payable": true
+            },
+            "contractInputsValues": {
+                "target": "0xf720e9137baa9C7612e6CA59149a5057ab320cFa",
+                "data": "0xe8de0d4d00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f000000000000000000000000feb352930ca196a80b708cdd5dcb4eca94805dab"
+            }
+        },
+        {
+            "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "target",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "data",
+                        "type": "bytes"
+                    }
+                ],
+                "name": "performAction",
+                "payable": true
+            },
+            "contractInputsValues": {
+                "target": "0x6EE63656BbF5BE3fdF9Be4982BF9466F6a921b83",
+                "data": "0xe8de0d4d00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f000000000000000000000000feb352930ca196a80b708cdd5dcb4eca94805dab"
+            }
+        }
+    ]
+}
