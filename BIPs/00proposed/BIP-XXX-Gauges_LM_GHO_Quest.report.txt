@@ -1,0 +1,16 @@
+FILENAME: `BIPs/00proposed/BIP-XXX-Gauges_LM_GHO_Quest.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `b56ecdbb6a13b3746ee20ce37c6ed98647211848`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/3caca078-5f6e-44dd-843d-ed1ada22678f)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                        | selector                    | parsed_inputs                                                      | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf720e9137baa9C7612e6CA59149a5057ab320cFa (gauges/GHO/USDT/USDC-gauge-f720)  | add_reward(address,address) | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f: GHO                    | N/A |    0     |
+|               |                                                                                                                 |                                                                               |                             | 0xfEb352930cA196a80B708CDD5dcb4eCA94805daB: paladin/QuestBoardV2_1 |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6EE63656BbF5BE3fdF9Be4982BF9466F6a921b83 (gauges/80wstETH/20GHO-gauge-6ee6) | add_reward(address,address) | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f: GHO                    | N/A |    1     |
+|               |                                                                                                                 |                                                                               |                             | 0xfEb352930cA196a80B708CDD5dcb4eCA94805daB: paladin/QuestBoardV2_1 |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------+-----+----------+
+```
