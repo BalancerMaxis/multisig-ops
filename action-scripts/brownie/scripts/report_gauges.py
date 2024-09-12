@@ -444,7 +444,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "chain": chain,
         "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
         "symbol_and_info": f"{pool_symbol} \nfee: {fee}\na-factor: {a_factor}",
-        "gauge_address_and_info": f"root gauge: {gauge_address}\nchild gauge: {sidechain_recipient}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}",
+        "gauge_address_and_info": f"root: {gauge_address}\nside: {sidechain_recipient}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}",
         "tokens": "\n".join(tokens),
         "rate_providers": "\n".join(rate_providers),
         "review_summary": "\n".join(rate_providers_reviews),
