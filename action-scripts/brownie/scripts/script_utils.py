@@ -68,7 +68,8 @@ def get_changed_files() -> list[dict]:
     changed_files = []
     for file_json in pr_file_data:
         if file_json["status"] in ["removed", "renamed"]:
-            continue
+            if "4269-W69" not in file_json["filename"]:
+                continue
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first

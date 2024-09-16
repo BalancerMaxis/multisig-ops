@@ -117,6 +117,7 @@ def _extract_pool(
                 fee = "CONTRACT_UNVERIFIED"
                 tokens = []
                 rate_providers = []
+                sidechain_recipient = None
             else:
                 raise e
         style = style if style else STYLE_L0
@@ -149,6 +150,7 @@ def _extract_pool(
             tokens = ["UNKNOWN"]
             rate_providers = ["UNKNOWN"]
         style = STYLE_SINGLE_RECIPIENT
+        sidechain_recipient = None
     else:  # Process mainnet gauges
         (
             pool_name,
@@ -161,6 +163,7 @@ def _extract_pool(
             rate_providers,
         ) = get_pool_info(gauge.lp_token())
         style = STYLE_MAINNET
+        sidechain_recipient = None
     tokens = prettify_tokens_list(tokens)
     return (
         pool_name,
@@ -172,6 +175,7 @@ def _extract_pool(
         style,
         tokens,
         rate_providers,
+        sidechain_recipient,
     )
 
 
@@ -418,6 +422,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         style,
         tokens,
         rate_providers,
+        sidechain_recipient,
     ) = _extract_pool(chain, gauge, gauge_selectors)
     addr = AddrBook("mainnet")
     to = transaction["to"]
@@ -428,8 +433,9 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         to_string = f"!!f{to_name}??"
 
     chain = chain.replace("-main", "") if chain else "mainnet"
+    preferential_target = sidechain_recipient if sidechain_recipient else gauge_address
     is_preferential = (
-        BalPoolsGauges(chain).get_preferential_gauge(pool_id) == gauge_address
+        BalPoolsGauges(chain).get_preferential_gauge(pool_id) == preferential_target
     )
     rate_providers_reviews = get_rate_provider_review_summaries(rate_providers, chain)
 
@@ -438,7 +444,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "chain": chain,
         "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
         "symbol_and_info": f"{pool_symbol} \nfee: {fee}\na-factor: {a_factor}",
-        "gauge_address_and_info": f"{gauge_address}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}",
+        "gauge_address_and_info": f"root: {gauge_address}\nside: {sidechain_recipient}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}",
         "tokens": "\n".join(tokens),
         "rate_providers": "\n".join(rate_providers),
         "review_summary": "\n".join(rate_providers_reviews),
@@ -516,6 +522,7 @@ def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         style,
         tokens,
         rate_providers,
+        sidechain_recipient,
     ) = _extract_pool(chain, gauge, gauge_selectors)
 
     addr = AddrBook("mainnet")
