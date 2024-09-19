@@ -1,20 +1,20 @@
 FILENAME: `BIPs/2024-W39/[BIP-700] Enable a wstETH-GYD Gauge [Ethereum].json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `ad4d611d9f79dfa3d61146a9844c7f89b82644dd`
+COMMIT: `5e68605c29f5c93e1e4b7054feaf12f12e54116d`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/49b6f4a9-28aa-4497-99a1-1134d3c650bf)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/17f353ab-175c-447a-a89e-18bc72028b7e)
 
 | Gauge Validator                  | Result |
 | :--------------------------------| :----: |
 | `validate_preferential_gauge`    |   ✅   |
-| `validate_rate_providers_safety` | ✅ ❌  |
+| `validate_rate_providers_safety` | ✅ ✅  |
 
 ```
 +-----------------------+---------------------------------------------------------------------+------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | function              | pool_id_and_address                                                 | symbol_and_info  | gauge_address_and_info                           | tokens                                             | rate_providers                             | review_summary |   bip   | tx_index |
 +-----------------------+---------------------------------------------------------------------+------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | GaugeAdderV4/addGauge | 0xc8cf54b0b70899ea846b70361e62f3f5b22b1f4b0002000000000000000006c7  | ECLP-wstETH-GYD  | root: 0xCda69C40176B98bB1773109d1fEa91e12F478451 | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0: wstETH | 0x72D07D7DcA67b8A406aD1Ec34ce969c90bFEE768 |      safe      | BIP-700 |    0     |
-|                       | pool_address: 0xC8cF54b0b70899Ea846B70361e62F3F5B22b1f4B            | fee: 0.3         | side: None                                       | 0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A: GYD    | 0xD43F5a722e8e7355D790adda4642f392Dfb820a1 | !!NO REVIEW!!  |         |          |
+|                       | pool_address: 0xC8cF54b0b70899Ea846B70361e62F3F5B22b1f4B            | fee: 0.3         | side: None                                       | 0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A: GYD    | 0xD43F5a722e8e7355D790adda4642f392Dfb820a1 |      safe      |         |          |
 |                       |                                                                     | a-factor: N/A    | style: mainnet                                   |                                                    |                                            |                |         |          |
 |                       |                                                                     |                  | cap: 100.0%                                      |                                                    |                                            |                |         |          |
 |                       |                                                                     |                  | preferential: True                               |                                                    |                                            |                |         |          |
