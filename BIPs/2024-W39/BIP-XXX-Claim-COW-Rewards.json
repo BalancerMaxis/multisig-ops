@@ -1,0 +1,46 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1726858340422,
+    "meta": {
+        "name": "Transactions Batch",
+        "description": "",
+        "txBuilderVersion": "1.17.0",
+        "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "createdFromOwnerAddress": "",
+        "checksum": "0xaf31fbd6795e792a4816cd00c450084ec1e542e6f475b080f1e564824f951c55"
+    },
+    "transactions": [
+        {
+            "to": "0x64646f112FfD6F1B7533359CFaAF7998F23C8c40",
+            "value": "0",
+            "data": null,
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "index",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "bytes32[]",
+                        "name": "merkleProof",
+                        "type": "bytes32[]"
+                    }
+                ],
+                "name": "claim",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "index": "76",
+                "amount": "644468387507556000000000",
+                "merkleProof": "[0x094ad36ae546eed2259ef0fece65a547da0f0637fd0f4f2eada3f1d0683f38ec,0xd384949604f27f23a72c2f4a8b9685fbd5c7c73dff91a090dfe1b9f97d400901,0x08bbea027cafe80e4980174a6c737ea14a1f2112fc729dab0edbfc5c5f1db49a,0xad831294f8fdafb520d6d5bd541cf4dcda1a70296984bc3724ff6b4ced47031e,0x089e0540e28339fdc77e4fe34924a44c9118c931d327d6c93b50a855fcc0728b,0xec1729dc9432b2d6cf47739e615ea9047b354edd301f3ccdf9f99a4a76fc036e,0x39931438cd8162fd4c05032bbd0e02ea5b30be104554d8739d6af78e792935e5,0xe9067ae76891425e5e33c2a12d6a9cd062d5e2ab763ddd1283fba657d32bc623,0x9bf5615249d7ef7fe82e7039d7dc3c2a8c105cc491dca112246b549b24ad28d9,0xd84e4549adcf49890f091546b3f873d102368cb115fac46655102eff21a1291b]"
+            }
+        }
+    ]
+}
