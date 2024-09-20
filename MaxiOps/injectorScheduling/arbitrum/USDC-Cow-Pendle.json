@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1726826465347,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Child Chain Injector Program Load",
+    "txBuilderVersion": "1.16.3"
+  },
+  "transactions": [
+    {
+      "to": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8[]",
+            "internalType": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xbDBc27A1C245ed52EAcb0dc6ebA922992328F303]",
+        "amountsPerPeriod": "[5000000000]",
+        "maxPeriods": "[3]"
+      }
+    }
+  ]
+}
