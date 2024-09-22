@@ -576,10 +576,17 @@ def parse_txbuilder_list_string(list_string) -> list:
     If it is anything else, return a single item list with whatever it is.
     """
     # Change from a txbuilder json format list of addresses to a python one
+    print(list_string)
     if isinstance(list_string, str):
+        ## if empty list, return an empty list.
+        if list_string == "[]":
+            return []
         list_string = list_string.strip("[ ]")
         list_string = list_string.replace(" ", "")
         list_string = list_string.split(",")
+        # if nothing left return an empty list
+        if not list_string:
+            return []
     if isinstance(list_string, list):
         return list_string
     # If we still don't have a list, create a single item list with what we do have.
@@ -681,6 +688,8 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
 ## TODO do we need this or can we just do a more general reverse lookup with prettify_flat_list?
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
+
+    print(gauge_addresses)
     for gauge in gauge_addresses:
         gauge_name = chainbook.reversebook.get(gauge)
         if not gauge_name:
