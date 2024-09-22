@@ -1,0 +1,88 @@
+FILENAME: `BIPs/00batched/2024-W39/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `8faa9d854ebd5c8b3c0ed5274aa5378951976ac4`
+CHAIN(S): `arbitrum, base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ab9d676c-49d1-4296-99f3-a6022b8fc975)
+
+```
++--------------------------+--------------------------------------------------------------------+------------------------+-----+--------------------------------------------+------+------+--------------+---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| function                 | pool_id                                                            | symbol                 | a   | gauge_address                              | fee  | cap  | style        |   bip   | tx_index | tokens                                                                                                                                                                                                            |
++--------------------------+--------------------------------------------------------------------+------------------------+-----+--------------------------------------------+------+------+--------------+---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| AAEntrypoint/killGauge() | 0x433f09ca08623e48bac7128b7105de678e37d988000100000000000000000047 | 50GOLD/25WETH/25USDC   | N/A | 0xed0bb13496ce24efff8f9734a9707d092d4be10c | 0.5% | 5.0% | L0 sidechain | BIP-686 |    8     | ['0x4200000000000000000000000000000000000006: WETH', '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913: USDC', '0xbeFD5C25A59ef2C1316c5A4944931171F30Cd3E4: GOLD']                                                      |
+| AAEntrypoint/killGauge() | 0xb328b50f1f7d97ee8ea391ab5096dd7657555f49000100000000000000000048 | GOLD/BAL/USDC          | N/A | 0xbf8f01ebcf0a21c46d23ada2c86eb31c9965b2f0 | 0.5% | 2.0% | L0 sidechain | BIP-686 |    9     | ['0x4158734D47Fc9692176B5085E0F52ee0Da5d47F1: BAL', '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913: USDC', '0xbeFD5C25A59ef2C1316c5A4944931171F30Cd3E4: GOLD']                                                       |
+| AAEntrypoint/killGauge() | 0x2e8ea681fd59c9dc5f32b29de31f782724ef4dcb0001000000000000000004bc | 50GOLD-25USDC-25WSTETH | N/A | 0xa8d4b31225bd6faf1363db5a0ab6c016894985d1 | 0.5% | 6.0% | L0 sidechain | BIP-686 |    10    | ['0x5979D7b546E38E414F7E9822514be443A4800529: wstETH', '0x8b5e4C9a188b1A187f2D1E80b1c2fB17fA2922e1: GOLD', '0xaf88d065e77c8cC2239327C5EDb3A432268e5831: USDC']                                                    |
+| AAEntrypoint/killGauge() | 0x49b2de7d214070893c038299a57bac5acb8b8a340001000000000000000004be | GOLD-BAL-AURA-wstETH   | N/A | 0x86cf58bd7a64f2304227d1a490660d2954db4a91 | 0.5% | 2.0% | L0 sidechain | BIP-686 |    11    | ['0x040d1EdC9569d4Bab2D15287Dc5A4F10F56a56B8: BAL', '0x1509706a6c66CA549ff0cB464de88231DDBe213B: AURA', '0x5979D7b546E38E414F7E9822514be443A4800529: wstETH', '0x8b5e4C9a188b1A187f2D1E80b1c2fB17fA2922e1: GOLD'] |
++--------------------------+--------------------------------------------------------------------+------------------------+-----+--------------------------------------------+------+------+--------------+---------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```
+FILENAME: `BIPs/00batched/2024-W39/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `8faa9d854ebd5c8b3c0ed5274aa5378951976ac4`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6b769271-ea04-4f05-a951-20e99a808bc3)
+
+```
++----------+-------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------+---------+----------+
+| function | token_symbol                                    | recipient                                                                   | amount                                 |   bip   | tx_index |
++----------+-------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------+---------+----------+
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/beets_service_provider:0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86 | 90000.0 (RAW: 90000000000)             | BIP-632 |    0     |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/beets_service_provider:0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86 | 87000.0 (RAW: 87000000000)             | BIP-631 |    1     |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/maxi_ops:0x166f54F44F271407f24AA1BE415a730035637325               | 398135.0 (RAW: 398135000000)           | BIP-694 |    2     |
+| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D  | multisigs/maxi_ops:0x166f54F44F271407f24AA1BE415a730035637325               | 32738.0 (RAW: 32738000000000000000000) | BIP-694 |    3     |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/foundation_opco:0x3B8910F378034FD6E103Df958863e5c684072693        | 333325.0 (RAW: 333325000000)           | BIP-695 |    5     |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/bizdev:0xC7E84373FC63A17B5B22EBaF86219141B630cD7a                 | 72000.0 (RAW: 72000000000)             | BIP-697 |    6     |
+| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D  | multisigs/bizdev:0xC7E84373FC63A17B5B22EBaF86219141B630cD7a                 | 6780.0 (RAW: 6780000000000000000000)   | BIP-697 |    7     |
++----------+-------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2024-W39/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `8faa9d854ebd5c8b3c0ed5274aa5378951976ac4`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/eb5e6a27-0531-4e22-82f7-fbf5c017cc09)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                                             | selector    | parsed_inputs |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xed0bb13496ce24EFFF8f9734A9707D092d4Be10c (root_gauges/50GOLD/25WETH/25USDC-base-root-ed0b)       | killGauge() |               | BIP-686 |    8     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xbf8F01EbCf0A21C46D23ADa2C86EB31c9965B2F0 (root_gauges/GOLD/BAL/USDC-base-root-bf8f)              | killGauge() |               | BIP-686 |    9     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xA8d4b31225BD6FAF1363DB5A0AB6c016894985d1 (root_gauges/50GOLD-25USDC-25WSTETH-arbitrum-root-a8d4) | killGauge() |               | BIP-686 |    10    |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x86Cf58bD7A64f2304227d1a490660D2954dB4a91 (root_gauges/GOLD-BAL-AURA-wstETH-arbitrum-root-86cf)   | killGauge() |               | BIP-686 |    11    |
++---------------+-----------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2024-W39/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `8faa9d854ebd5c8b3c0ed5274aa5378951976ac4`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ce28da6d-9a58-4bf8-b851-28dc28db8f07)
+
+```
++-------------+-------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------+------------+----------+
+| fx_name     | to                                                                            | value | inputs                                                                           | bip_number | tx_index |
++-------------+-------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------+------------+----------+
+| retrieve    | 0x0e2d46fe246eb926d939A10efA96fB7d4EB14bB3 (aave/balancer_stk_aave_retrieval) | 0     | {}                                                                               | BIP-689    |   N/A    |
+| withdraw    | 0x4f8AD938eBA0CD19155a835f617317a6E788c868 (tokens/Locked GNO)                | 0     | {                                                                                | BIP-696    |   N/A    |
+|             |                                                                               |       |   "amount": [                                                                    |            |          |
+|             |                                                                               |       |     "raw:9051000000000000000000, 18 decimals:9051, 6 decimals: 9051000000000000" |            |          |
+|             |                                                                               |       |   ]                                                                              |            |          |
+|             |                                                                               |       | }                                                                                |            |          |
+| approve     | 0x6810e776880C02933D47DB1b9fc05908e5386b96 (tokens/GNO)                       | 0     | {                                                                                | BIP-696    |   N/A    |
+|             |                                                                               |       |   "_spender": [                                                                  |            |          |
+|             |                                                                               |       |     "0x88ad09518695c6c3712AC10a214bE5109a655671 (gnosis/omnibridge)"             |            |          |
+|             |                                                                               |       |   ],                                                                             |            |          |
+|             |                                                                               |       |   "_value": [                                                                    |            |          |
+|             |                                                                               |       |     "raw:9051000000000000000000, 18 decimals:9051, 6 decimals: 9051000000000000" |            |          |
+|             |                                                                               |       |   ]                                                                              |            |          |
+|             |                                                                               |       | }                                                                                |            |          |
+| relayTokens | 0x88ad09518695c6c3712AC10a214bE5109a655671 (gnosis/omnibridge)                | 0     | {                                                                                | BIP-696    |   N/A    |
+|             |                                                                               |       |   "token": [                                                                     |            |          |
+|             |                                                                               |       |     "0x6810e776880C02933D47DB1b9fc05908e5386b96 (tokens/GNO)"                    |            |          |
+|             |                                                                               |       |   ],                                                                             |            |          |
+|             |                                                                               |       |   "_receiver": [                                                                 |            |          |
+|             |                                                                               |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/karpatkey)"           |            |          |
+|             |                                                                               |       |   ],                                                                             |            |          |
+|             |                                                                               |       |   "_value": [                                                                    |            |          |
+|             |                                                                               |       |     "raw:9051000000000000000000, 18 decimals:9051, 6 decimals: 9051000000000000" |            |          |
+|             |                                                                               |       |   ]                                                                              |            |          |
+|             |                                                                               |       | }                                                                                |            |          |
++-------------+-------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------+------------+----------+
+```
