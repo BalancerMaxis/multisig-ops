@@ -1,0 +1,27 @@
+FILENAME: `BIPs/4269-W69/unit_test/Chainlink_automation/migrate_mainnet_part1.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `e663122642ed1ba0413e5e149f09c8ac9cc30d59`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/b0e29dee-318d-4f62-ab6a-09f6294a9764)
+
+```
++-------------------+------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------+------------+----------+
+| fx_name           | to                                                                           | value | inputs                                                                                | bip_number | tx_index |
++-------------------+------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------+------------+----------+
+| transferOwnership | 0xdDd5FF0E581f097573B13f247F6BE736f602F839 (maxiKeepers/LZRateProviderPoker) | 0     | {                                                                                     | N/A        |   N/A    |
+|                   |                                                                              |       |   "to": [                                                                             |            |          |
+|                   |                                                                              |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/vote_incentive_recycling)" |            |          |
+|                   |                                                                              |       |   ]                                                                                   |            |          |
+|                   |                                                                              |       | }                                                                                     |            |          |
+| setKeeperRegistry | 0x8AD2512819A7eae1dd398973EFfaE48dafBe8255 (maxiKeepers/veBalFeeInjector)    | 0     | {                                                                                     | N/A        |   N/A    |
+|                   |                                                                              |       |   "_keeperRegistry": [                                                                |            |          |
+|                   |                                                                              |       |     "0x4249093e75b2eECA9f3ba3171eA1f3fA186ABE9D (N/A)"                                |            |          |
+|                   |                                                                              |       |   ]                                                                                   |            |          |
+|                   |                                                                              |       | }                                                                                     |            |          |
+| transferOwnership | 0x8AD2512819A7eae1dd398973EFfaE48dafBe8255 (maxiKeepers/veBalFeeInjector)    | 0     | {                                                                                     | N/A        |   N/A    |
+|                   |                                                                              |       |   "to": [                                                                             |            |          |
+|                   |                                                                              |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/vote_incentive_recycling)" |            |          |
+|                   |                                                                              |       |   ]                                                                                   |            |          |
+|                   |                                                                              |       | }                                                                                     |            |          |
++-------------------+------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------+------------+----------+
+```
