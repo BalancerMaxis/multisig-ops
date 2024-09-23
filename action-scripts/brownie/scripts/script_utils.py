@@ -576,7 +576,6 @@ def parse_txbuilder_list_string(list_string) -> list:
     If it is anything else, return a single item list with whatever it is.
     """
     # Change from a txbuilder json format list of addresses to a python one
-    print(list_string)
     if isinstance(list_string, str):
         ## if empty list, return an empty list.
         if list_string == "[]":
@@ -689,7 +688,6 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
 
-    print(gauge_addresses)
     for gauge in gauge_addresses:
         gauge_name = chainbook.reversebook.get(gauge)
         if not gauge_name:
