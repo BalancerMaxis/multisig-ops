@@ -453,101 +453,6 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     }
 
 
-def _parse_removed_transaction(transaction: dict, **kwargs) -> Optional[dict]:
-    """
-    Parse a gauge remover transaction and return a dict with parsed data.
-    """
-    if not transaction.get("contractInputsValues") or not transaction.get(
-        "contractMethod"
-    ):
-        return
-    input_values = transaction.get("contractInputsValues")
-    if not input_values or not isinstance(input_values, dict):
-        return
-    encoded_data = input_values.get("data")
-    if not encoded_data:
-        return
-
-    switch_chain_if_needed(network_id=1)
-    try:
-        (command, inputs) = Contract(
-            to_checksum_address(transaction["contractInputsValues"]["target"])
-        ).decode_input(transaction["contractInputsValues"]["data"])
-    except:
-        ## Doesn't look like a gauge add, maybe contract isn't on mainnet
-        return
-
-    if len(inputs) == 0 and command == CMD_GAUGE_KILL:
-        gauge_address = transaction["contractInputsValues"]["target"]
-    else:
-        print("Parse KillGauge: Not a gauge kill transaction")
-        return
-    gauge = Contract(gauge_address)
-    gauge_selectors = gauge.selectors.values()
-    gauge_cap = (
-        f"{gauge.getRelativeWeightCap() / 10 ** 16}%"
-        if "getRelativeWeightCap" in gauge_selectors
-        else "N/A"
-    )
-    if gauge._name == "AvalancheRootGauge":
-        chain = "avax-main"
-    elif gauge._name == "PolygonZkEVMRootGauge":
-        chain = "zkevm-main"
-    elif gauge._name == "PolygonRootGauge":
-        chain = "polygon-main"
-    elif gauge._name == "ArbitrumRootGauge":
-        chain = "arbitrum-main"
-    elif gauge._name == "OptimismRootGauge":
-        chain = "optimism-main"
-    elif gauge._name == "GnosisRootGauge":
-        chain = "gnosis-main"
-    elif gauge._name == "BaseRootGauge":
-        chain = "base-main"
-    else:
-        # Find intersection between gauge selectors and SELECTORS_MAPPING
-        chain = CHAIN_MAINNET
-        for selector in gauge_selectors:
-            if selector in SELECTORS_MAPPING.keys():
-                chain = SELECTORS_MAPPING[selector]
-                break
-
-    (
-        pool_name,
-        pool_symbol,
-        pool_id,
-        pool_address,
-        a_factor,
-        fee,
-        style,
-        tokens,
-        rate_providers,
-        sidechain_recipient,
-    ) = _extract_pool(chain, gauge, gauge_selectors)
-
-    addr = AddrBook("mainnet")
-    to = transaction["to"]
-    to_name = addr.reversebook.get(to, "!!NOT-FOUND")
-    if to_name == "20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint":
-        to_string = "AAEntrypoint"
-    elif isinstance(to_name, str):
-        to_string = f"!!f{to_name}??"
-
-    return {
-        "function": f"{to_string}/{command}",
-        "chain": chain.replace("-main", "") if chain else "mainnet",
-        "pool_id": pool_id,
-        "symbol": pool_symbol,
-        "a": a_factor,
-        "gauge_address": gauge_address,
-        "fee": f"{fee}%",
-        "cap": gauge_cap,
-        "style": style,
-        "bip": kwargs.get("bip_number", "N/A"),
-        "tx_index": kwargs.get("tx_index", "N/A"),
-        "tokens": tokens,
-    }
-
-
 def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     """
     Parse Permissions changes made to the authorizer
@@ -876,7 +781,6 @@ def main() -> None:
     # TODO: Add here more handlers for other types of transactions
     all_reports = []
     all_reports.append(handler(files, _parse_added_transaction))
-    all_reports.append(handler(files, _parse_removed_transaction))
     all_reports.append(handler(files, _parse_transfer))
     all_reports.append(handler(files, _parse_permissions))
     all_reports.append(handler(files, _parse_hh_brib))
