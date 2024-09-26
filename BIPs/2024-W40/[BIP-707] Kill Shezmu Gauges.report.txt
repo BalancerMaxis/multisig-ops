@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2024-W40/[BIP-707] Kill Shezmu Gauges.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `eb2f79f7ad412f6bfa7d55044fa7f9cfae92dc61`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5782ed16-286b-43b2-b0c7-427844730d8b)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                        | selector    | parsed_inputs |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xA71Adac76A2e34f8F988Fa6992E3bDAd08D92C01 (gauges/ShezUSD/sDAI-gauge-a71a)   | killGauge() |               | BIP-707 |    0     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xB002073210698B0852E34DA6A5e432a04D299205 (gauges/shezETH/wstETH-gauge-b002) | killGauge() |               | BIP-707 |    1     |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+```
