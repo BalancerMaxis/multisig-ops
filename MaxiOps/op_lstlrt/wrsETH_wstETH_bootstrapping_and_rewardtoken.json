@@ -1,0 +1,109 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1698450039804,
+  "meta": {
+    "name": "",
+    "description": "wrsETH/wstETH pool bootstrapping incentives and reward token config",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x09Df1626110803C7b3b07085Ef1E053494155089",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+
+  "transactions": [
+    {
+      "to": "0x4200000000000000000000000000000000000042",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rawAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xa9b08B4CeEC1EF29EdEC7F9C94583270337D6416",
+        "rawAmount": "3000000000000000000000"
+      }
+    },
+    {
+      "to": "0x679c5C5828367db9005FdEa80faA45AE7B881791",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_proposal",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "_token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_maxTokensPerVote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "_periods",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "depositBribe",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_proposal": "0x3a870bcddc13fd509ac089bbf8c8ab5d25a37565190c6d423ecbb2fa21ea73b1",
+        "_token": "0x4200000000000000000000000000000000000042",
+        "_amount": "3000000000000000000000",
+        "_maxTokensPerVote": "0",
+        "_periods": "2"
+      }
+    },
+    {
+      "to": "0xed86ff0c507D3AF5F35d3523B77C17415FCfFaCb",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x028591C6e8DFeb2E315Ddc2647ADBfC5A62b4f77",
+        "data": "0xe8de0d4d000000000000000000000000420000000000000000000000000000000000004200000000000000000000000034a265e1ebcb31586293eb2d2f94c6ff2f920340"
+      }
+    }
+  ]
+}
