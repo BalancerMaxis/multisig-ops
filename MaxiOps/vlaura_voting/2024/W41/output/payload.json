@@ -1,52 +1,52 @@
 {
-    "domain": {
-        "name": "snapshot",
-        "version": "0.1.4"
-    },
-    "types": {
-        "Vote": [
-            {
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "name": "space",
-                "type": "string"
-            },
-            {
-                "name": "timestamp",
-                "type": "uint64"
-            },
-            {
-                "name": "proposal",
-                "type": "bytes32"
-            },
-            {
-                "name": "choice",
-                "type": "string"
-            },
-            {
-                "name": "reason",
-                "type": "string"
-            },
-            {
-                "name": "app",
-                "type": "string"
-            },
-            {
-                "name": "metadata",
-                "type": "string"
-            }
-        ]
-    },
-    "message": {
-        "space": "gauges.aurafinance.eth",
-        "proposal": "0x7f604b07b26848a99f07c9a4ddfd1c0599176cb31615542ce87800010195b7fc",
-        "choice": "{\"95\":10.0,\"98\":12.5,\"179\":7.0,\"200\":2.0,\"201\":2.0,\"202\":5.5,\"30\":3.16,\"116\":7.67,\"138\":5.53,\"84\":2.78,\"105\":5.8,\"91\":2.56,\"65\":10.0,\"209\":5.0,\"213\":5.0,\"216\":3.0,\"218\":4.0,\"120\":3.5,\"190\":3.0}",
-        "app": "snapshot",
-        "reason": "",
-        "metadata": "{}",
-        "from": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
-        "timestamp": 1727476421
-    }
+  "domain": {
+    "name": "snapshot",
+    "version": "0.1.4"
+  },
+  "types": {
+    "Vote": [
+      {
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "name": "space",
+        "type": "string"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint64"
+      },
+      {
+        "name": "proposal",
+        "type": "bytes32"
+      },
+      {
+        "name": "choice",
+        "type": "string"
+      },
+      {
+        "name": "reason",
+        "type": "string"
+      },
+      {
+        "name": "app",
+        "type": "string"
+      },
+      {
+        "name": "metadata",
+        "type": "string"
+      }
+    ]
+  },
+  "message": {
+    "space": "gauges.aurafinance.eth",
+    "proposal": "0x7f604b07b26848a99f07c9a4ddfd1c0599176cb31615542ce87800010195b7fc",
+    "choice": "{\"95\":10.0,\"98\":12.5,\"179\":7.0,\"200\":2.0,\"201\":2.0,\"202\":5.5,\"30\":3.16,\"116\":7.67,\"138\":5.53,\"84\":2.78,\"105\":5.8,\"91\":2.56,\"65\":10.0,\"209\":5.0,\"213\":5.0,\"216\":3.0,\"218\":4.0,\"120\":3.5,\"190\":3.0}",
+    "app": "snapshot",
+    "reason": "",
+    "metadata": "{}",
+    "from": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "timestamp": 1727476421
+  }
 }
