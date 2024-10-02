@@ -205,7 +205,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     # build individual tx data
     for tx in transactions:
-        if "contractMethod" in tx:
+        if "contractMethod" in tx and tx["contractMethod"] is not None:
             tx["contractMethod"]["type"] = "function"
             contract = web3.eth.contract(
                 address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
