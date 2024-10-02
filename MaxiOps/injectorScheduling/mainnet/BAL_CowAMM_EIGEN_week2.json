@@ -41,6 +41,31 @@
         "amountsPerPeriod": "[1429000000000000000000]",
         "maxPeriods": "[1]"
       }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x5a18FE4D7a2bd5A39CCa4F9D05D073F21FAE28EE",
+        "value": "1429000000000000000000"
+      }
     }
   ]
 }
