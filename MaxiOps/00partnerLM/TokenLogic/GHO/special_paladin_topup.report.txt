@@ -1,24 +1,24 @@
 FILENAME: `MaxiOps/00partnerLM/TokenLogic/GHO/special_paladin_topup.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `80cd84186eee60f65b5c8979def38d1ea98509d8`
+COMMIT: `fd3efbc9d02d75b73eb03177c5bc04b809665060`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/5727cd73-ffed-4270-afdb-8362e692863c)
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/f9e3e962-b929-4bc9-a47c-ded888f8617a)
 
 ```
-+---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------+-----+----------+
-| function      | entrypoint                                                                                                      | target                                                                       | selector                    | parsed_inputs                                                      | bip | tx_index |
-+---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------+-----+----------+
-| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf720e9137baa9C7612e6CA59149a5057ab320cFa (gauges/GHO/USDT/USDC-gauge-f720) | add_reward(address,address) | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f: GHO                    | N/A |    0     |
-|               |                                                                                                                 |                                                                              |                             | 0xc38c5f97B34E175FFd35407fc91a937300E33860: multisigs/lm           |     |          |
-| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf720e9137baa9C7612e6CA59149a5057ab320cFa (gauges/GHO/USDT/USDC-gauge-f720) | add_reward(address,address) | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f: GHO                    | N/A |    3     |
-|               |                                                                                                                 |                                                                              |                             | 0xfEb352930cA196a80B708CDD5dcb4eCA94805daB: paladin/QuestBoardV2_1 |     |          |
-+---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------+-----+----------+
++---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                       | selector                                | parsed_inputs                                                      | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf720e9137baa9C7612e6CA59149a5057ab320cFa (gauges/GHO/USDT/USDC-gauge-f720) | set_reward_distributor(address,address) | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f: GHO                    | N/A |    0     |
+|               |                                                                                                                 |                                                                              |                                         | 0xc38c5f97B34E175FFd35407fc91a937300E33860: multisigs/lm           |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf720e9137baa9C7612e6CA59149a5057ab320cFa (gauges/GHO/USDT/USDC-gauge-f720) | set_reward_distributor(address,address) | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f: GHO                    | N/A |    3     |
+|               |                                                                                                                 |                                                                              |                                         | 0xfEb352930cA196a80B708CDD5dcb4eCA94805daB: paladin/QuestBoardV2_1 |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------------------------+-----+----------+
 ```
 FILENAME: `MaxiOps/00partnerLM/TokenLogic/GHO/special_paladin_topup.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `80cd84186eee60f65b5c8979def38d1ea98509d8`
+COMMIT: `fd3efbc9d02d75b73eb03177c5bc04b809665060`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/52cad974-1fa5-41df-8932-e2b61c903ba8)
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/c466b0db-84dc-4e99-bbcc-cd4bb2eabe24)
 
 ```
 +----------------------+------------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
