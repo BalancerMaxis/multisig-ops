@@ -1,14 +1,14 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1727979841738,
+  "createdAt": 1727980854879,
   "meta": {
     "name": "Transactions Batch",
     "description": "",
     "txBuilderVersion": "1.17.0",
     "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
     "createdFromOwnerAddress": "",
-    "checksum": "0xe1d75c9dbab086d8f21cb8253008fda743d1a559932948de9953249e6845cd9d"
+    "checksum": "0x59202e74f1324cd75e1399d4d1d984d98d259e15cca75d04623412db99a7c9d9"
   },
   "transactions": [
     {
@@ -37,6 +37,31 @@
       }
     },
     {
+      "to": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xf720e9137baa9C7612e6CA59149a5057ab320cFa",
+        "amount": "2800000000000000000000"
+      }
+    },
+    {
       "to": "0xf720e9137baa9C7612e6CA59149a5057ab320cFa",
       "value": "0",
       "data": null,
@@ -56,7 +81,7 @@
       },
       "contractInputsValues": {
         "_reward_token": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
-        "_amount": "2700000000000000000000"
+        "_amount": "2800000000000000000000"
       }
     },
     {
