@@ -98,7 +98,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: action-scripts/brownie/validate_bip_results.txt
-          reactions: eyes
+          comment_tag: validation_report
           pr_number: ${{ inputs.pr_number }}
 
       - name: Post Payload Report as Comment
@@ -107,7 +107,7 @@ jobs:
         if: steps.check_files.outputs.payload_reports == 'true'
         with:
           filePath: action-scripts/brownie/payload_reports.txt
-          reactions: eyes
+          comment_tag: payload_report
           pr_number: ${{ inputs.pr_number }}
 
       - name: Prettify code
