@@ -97,18 +97,18 @@ jobs:
         if: steps.check_files.outputs.validation_exists == 'true'
         uses: thollander/actions-comment-pull-request@v3
         with:
-          filePath: action-scripts/brownie/validate_bip_results.txt
-          comment_tag: validation_report
-          pr_number: ${{ inputs.pr_number }}
+          file-path: action-scripts/brownie/validate_bip_results.txt
+          comment-tag: validation_report
+          pr-number: ${{ inputs.pr_number }}
 
       - name: Post Payload Report as Comment
         continue-on-error: false
         uses: thollander/actions-comment-pull-request@v3
         if: steps.check_files.outputs.payload_reports == 'true'
         with:
-          filePath: action-scripts/brownie/payload_reports.txt
-          comment_tag: payload_report
-          pr_number: ${{ inputs.pr_number }}
+          file-path: action-scripts/brownie/payload_reports.txt
+          comment-tag: payload_report
+          pr-number: ${{ inputs.pr_number }}
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
