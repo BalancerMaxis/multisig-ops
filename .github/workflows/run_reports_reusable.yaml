@@ -95,7 +95,7 @@ jobs:
       - name: Post Validation Report as Comment
         continue-on-error: false
         if: steps.check_files.outputs.validation_exists == 'true'
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         with:
           filePath: action-scripts/brownie/validate_bip_results.txt
           comment_tag: validation_report
@@ -103,7 +103,7 @@ jobs:
 
       - name: Post Payload Report as Comment
         continue-on-error: false
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         if: steps.check_files.outputs.payload_reports == 'true'
         with:
           filePath: action-scripts/brownie/payload_reports.txt
