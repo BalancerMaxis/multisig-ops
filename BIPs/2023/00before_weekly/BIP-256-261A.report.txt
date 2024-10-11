@@ -1,0 +1,17 @@
+BIPs/BIP-256-261A.json
+COMMIT: custom
+```
++---------------------------+--------------------------------------------------------------------+-------------------------+--------------------------------------------+---------+--------------------------------------------+------+--------+--------------+
+| function                  |                              pool_id                               |          symbol         |                pool_address                | aFactor |               gauge_address                | type |  cap   | style        |
++---------------------------+--------------------------------------------------------------------+-------------------------+--------------------------------------------+---------+--------------------------------------------+------+--------+--------------+
+| add_gauge(address,int128) | 0x02d928e68d8f10c0358566152677db51e1e2dc8c00000000000000000000051e |   swETH-bb-a-WETH-BPT   | 0x02D928E68D8F10C0358566152677Db51E1e2Dc8C |   100   | 0x11Ff498C7c2A29fc4638BF45D9fF995C3297fcA5 |  2   | 100.0% | mainnet      |
+| add_gauge(address,int128) |                               Custom                               |       USDC/WETH/L       | 0x0018C32D85D8AebEA2eFbE0b0F4a4Eb9e4F1C8C9 |   N/A   | 0xC4E72abE8A32Fd7D7BA787e1Ec860ecb8C0B333c |  2   |  2.0%  | mainnet      |
+| add_gauge(address,int128) | 0xd3d5d45f4edf82ba0dfaf061d230766032a10e07000200000000000000000413 |      50STG-50bbaUSD     | 0xD3D5d45f4Edf82ba0dFaf061d230766032a10e07 |   N/A   | 0x8204b749B808818DEb7957DbD030ceEA44D1FE18 |  4   | 100.0% | L0 sidechain |
+| add_gauge(address,int128) | 0x7f4f4942f2a14b6ab7b08b10ada1aacede4ee8d4000200000000000000000b44 | 50stMATIC-BPT-50bbamUSD | 0x7F4f4942F2a14B6AB7B08b10ada1AAcede4EE8D4 |   N/A   | 0x02DFcC6ca6611cCBDCe51049a332afDB91465584 |  3   | 100.0% | L0 sidechain |
+| add_gauge(address,int128) | 0x8fd39252d683fdb60bddd4df4b53c9380b496d59000200000000000000000b45 |  50wstETH-BPT-50bbamUSD | 0x8fd39252d683fDB60BDDD4DF4B53C9380B496D59 |   N/A   | 0xCDb532170f8B524D047287bFEfAcd0cC02441b4A |  3   | 100.0% | L0 sidechain |
+| add_gauge(address,int128) | 0x9fb7d6dcac7b6aa20108bad226c35b85a9e31b63000200000000000000000412 |  50wstETH-BPT-50bbaUSD  | 0x9fB7D6dCAC7b6aa20108BaD226c35B85A9e31B63 |   N/A   | 0xd40a3C414Bb6f82fC5625e32895F49E53220f73b |  4   | 100.0% | L0 sidechain |
+| add_gauge(address,int128) | 0xe19ed40a47f9b0cea4ca6d372df66107758913ec000000000000000000000b41 |        2BRL (BRZ)       | 0xe19ed40A47F9B0CEA4ca6D372dF66107758913Ec |   200   | 0x455f20c54b5712a84454468c7831f7c431aeEB1C |  3   |  2.0%  | L0 sidechain |
+| add_gauge(address,int128) | 0x3efb91c4f9b103ee45885695c67794591916f34e000200000000000000000b43 |       2BRL-bbamUSD      | 0x3Efb91C4F9B103Ee45885695C67794591916F34E |   N/A   | 0xBAdF0c8702B7Cb06bBEC351d18071804759e312c |  3   |  2.0%  | L0 sidechain |
+| add_gauge(address,int128) | 0xd00f9ca46ce0e4a63067c4657986f0167b0de1e5000000000000000000000b42 |     frxETH-bb-a-WETH    | 0xD00f9Ca46ce0E4A63067c4657986f0167b0De1E5 |   120   | 0x416d15C36c6DaAd2b9410B79aE557e6F07DcB642 |  3   | 100.0% | L0 sidechain |
++---------------------------+--------------------------------------------------------------------+-------------------------+--------------------------------------------+---------+--------------------------------------------+------+--------+--------------+
+```

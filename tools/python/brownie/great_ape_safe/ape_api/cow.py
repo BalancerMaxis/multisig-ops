@@ -7,7 +7,9 @@ from pprint import pprint
 from brownie import Contract, chain, interface, web3
 from rich.prompt import Confirm
 
-from helpers.addresses import registry
+from bal_addresses import AddrBook
+
+r = AddrBook("mainnet").dotmap
 
 
 class Cow:
@@ -22,12 +24,13 @@ class Cow:
         self.prod = prod
 
         # contracts
-        self.vault_relayer = self.safe.contract(registry.eth.cow.vault_relayer)
+        self.vault_relayer = self.safe.contract(r.cow.vault_relayer)
+        self.vault_relayer = self.safe.contract(r.cow.vault_relayer)
         # self.vault_relayer = interface.IGPv2VaultRelayer(
         #     registry.eth.cow.vault_relayer, owner=self.safe.account
         # )
         self.settlement = interface.IGPv2Settlement(
-            registry.eth.cow.settlement, owner=self.safe.account
+            r.cow.settlement, owner=self.safe.account
         )
 
         # determine api url based on current chain id and `prod` parameter
@@ -55,9 +58,6 @@ class Cow:
         if not r.ok:
             print(r.json())
             r.raise_for_status()
-
-
-
 
         print("FEE AND QUOTE RESPONSE:")
         pprint(r.json())
@@ -121,7 +121,6 @@ class Cow:
 
         assert fee_amount > 0
         assert buy_amount_after_fee > 0
-
         # add deadline to current block timestamp
         deadline = chain.time() + deadline
 
@@ -212,17 +211,19 @@ class Cow:
         mantissa_sell = int(Decimal(mantissa_sell) / chunks)
         order_ids = []
         for n in range(chunks):
-            order_ids.append(self._sell(
-                             asset_sell,
-                             mantissa_sell,
-                             asset_buy,
-                             mantissa_buy=None,
-                             # without + n api will raise DuplicateOrder when chunks > 1
-                             deadline=deadline + n,
-                             coef=coef,
-                             destination=destination,
-                             origin=self.safe.address,
-            ))
+            order_ids.append(
+                self._sell(
+                    asset_sell,
+                    mantissa_sell,
+                    asset_buy,
+                    mantissa_buy=None,
+                    # without + n api will raise DuplicateOrder when chunks > 1
+                    deadline=deadline + n,
+                    coef=coef,
+                    destination=destination,
+                    origin=self.safe.address,
+                )
+            )
         return order_ids
 
     def limit_sell(

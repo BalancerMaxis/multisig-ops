@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1685726983450,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IStakelessGauge[]",
+            "name": "gauges",
+            "type": "address[]"
+          }
+        ],
+        "name": "addGauges",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "Gnosis",
+        "gauges": [
+          "0xf8C85bd74FeE26831336B51A90587145391a27Ba",
+          "0x7F75ecd3cFd8cE8bf45f9639A226121ca8bBe4ff",
+          "0xc61e7E858b5a60122607f5C7DF223a53b01a1389"
+        ]
+      }
+    },
+    {
+      "to": "0x343688C5cB92115a52cA485af7f62B4B7A2e9CcC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          },
+          {
+            "internalType": "contract IStakelessGauge[]",
+            "name": "gauges",
+            "type": "address[]"
+          }
+        ],
+        "name": "addGauges",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeType": "EthereumSingleRecipientGauge",
+        "gauges": ["0xb78543e00712C3ABBA10D0852f6E38FDE2AaBA4d"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+FILENAME: `BIPs/4269-W69/BIP-343/mainnet.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `ac20d205d9ad4471d927528e74cd795bd447819e`
+CHAIN(S): `mainnet`
+TENDERLY: [SUCCESS](https://www.tdly.co/shared/simulation/818d7a96-f465-4443-806d-c69d3610a50e)
+```
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                      | action_ids                                                         | bip     |   tx_index |
++=======================+=====================+============================================+===============================================================================+====================================================================+=========+============+
+| Authorizer/grantRoles | multisigs/emergency | 0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888 | 20230320-weighted-pool-v4/WeightedPool/disableRecoveryMode()                  | 0x883ac0fb54f0b07161f4c1d1132c7179cf4fd457dec4d2cf15af62bfe93d6402 | BIP-343 |          0 |
+|                       |                     |                                            | 20230206-weighted-pool-v3/WeightedPool/disableRecoveryMode()                  | 0xd1cab845861601849b43df194d75e16c676ee31cf20296f392e9d44dd3793ef3 |         |            |
+|                       |                     |                                            | 20220906-composable-stable-pool/ComposableStablePool/disableRecoveryMode()    | 0xdcae01a1d3143e115458cda9b816ea278dd5daf08d9b6d3ec668632aa7b82dad |         |            |
+|                       |                     |                                            | 20221122-composable-stable-pool-v2/ComposableStablePool/disableRecoveryMode() | 0x85896342da44e8444ef54be6c4643b51c1e23270bb9ec1f0257cd03d72a80cb6 |         |            |
+|                       |                     |                                            | 20230206-composable-stable-pool-v3/ComposableStablePool/disableRecoveryMode() | 0xa35b682012cf580f34e9cd41e4bf1c0210b6ebfc1a952fb582842c0e23b8c069 |         |            |
+|                       |                     |                                            | 20230320-composable-stable-pool-v4/ComposableStablePool/disableRecoveryMode() | 0xb6f4ab951143da625c0c25d6eca1ce9e007e3139abfd9cfec3a301bad7238e15 |         |            |
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+------------+
+```

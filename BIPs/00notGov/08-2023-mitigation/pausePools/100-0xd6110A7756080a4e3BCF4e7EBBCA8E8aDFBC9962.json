@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "pause affected pools where applicable",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
+  "transactions": [
+    {
+      "to": "0xB95829AdbaCd8Af89E291DeE78Bc09E24De51d6b",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "pause",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xe15CaC1DF3621e001f76210Ab12A7f1A1691481f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "pause",
+        "payable": false
+      },
+      "contractInputsValues": null
+    }
+  ]
+}

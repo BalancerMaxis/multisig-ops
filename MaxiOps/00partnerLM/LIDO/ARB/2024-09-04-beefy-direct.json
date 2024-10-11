@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1722873476153,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Payment",
+    "txBuilderVersion": "1.13.3",
+    "createdFromSafeAddress": "0xeD2Bc4e72Ed7D61FA4812a6B0E3d16F8Ad8369a1",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x6B970F0D1F0255b8E0B1c4515Ae827931b32312C",
+        "value": "3000000000000000000000"
+      }
+    },
+    {
+      "to": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xfcF293AFa58fa277935eddAa44E0f782EC41B09B",
+        "value": "3000000000000000000000"
+      }
+    }
+  ]
+}

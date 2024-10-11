@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1724400515066,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set swap fee to 0.2% from 0.04% for wrsETH/wETH stable pool on OP",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x09Df1626110803C7b3b07085Ef1E053494155089",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xf4fc914a89d4dfb729cab33e9d3fdf749fc3bf57651e07aa1082042d726378d3"
+  },
+  "transactions": [
+    {
+      "to": "0x73a7fe27fe9545d53924e529acf11f3073841b9e",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "swapFeePercentage": "2000000000000000"
+      }
+    }
+  ]
+}

@@ -38,7 +38,7 @@ class Chainlink:
                 link_mantissa,  # uint96 amount,
                 self.safe.address,  # address sender,
             )
-        else: # tested on mainnet
+        else:  # tested on mainnet
             data = self.keeper_registrar.register.encode_input(
                 name,  # string memory name,
                 b"",  # bytes calldata encryptedEmail,
@@ -50,6 +50,5 @@ class Chainlink:
                 42,  # source (uint8)
                 self.safe.address,  # address sender,
             )
-
 
         self.link.transferAndCall(self.keeper_registrar, link_mantissa, data)

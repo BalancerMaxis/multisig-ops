@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1725344898847,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set swap fee to 1% for Balancer 80BAL20wETH/wETH",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x"
+  },
+  "transactions": [
+    {
+      "to": "0xc5c91aea7551095c3e1ff0f94f682c45b347ad73",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "swapFeePercentage": "10000000000000000"
+      }
+    }
+  ]
+}

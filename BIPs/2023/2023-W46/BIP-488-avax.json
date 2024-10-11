@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1700075489945,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xe5ba6e41ec62eac397f1fbc379577792dc7b4a6d6af34412284dd6522188be76"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x9b7cac7a6e50200d3ceb1372c25ac2f697fa4ba4495fb37091ffc35e5b4f8a42",
+        "account": "0x9e5D6427D2cdaDC68870197b099C2Df535Ec3c97"
+      }
+    }
+  ]
+}

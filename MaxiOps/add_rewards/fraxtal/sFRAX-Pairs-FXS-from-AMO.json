@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1725321606400,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x0a62da566b31a69f5ef969f58058bc1916003ce57b6b89ce0cb12fb39c68e534"
+  },
+  "transactions": [
+    {
+      "to": "0xb9F8AB3ED3F3aCBa64Bc6cd2DcA74B7F38fD7B88",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x34E040bC0342EbBfBC7a6306EB1B8E6579185c94",
+        "data": "0xe8de0d4d000000000000000000000000fc00000000000000000000000000000000000002000000000000000000000000e9b3f9cd8851216fbb828da590cca8ce7f03e863"
+      }
+    },
+    {
+      "to": "0xb9F8AB3ED3F3aCBa64Bc6cd2DcA74B7F38fD7B88",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x275e8514b83479f526673327B279753aBC666a05",
+        "data": "0xe8de0d4d000000000000000000000000fc00000000000000000000000000000000000002000000000000000000000000e9b3f9cd8851216fbb828da590cca8ce7f03e863"
+      }
+    },
+    {
+      "to": "0xb9F8AB3ED3F3aCBa64Bc6cd2DcA74B7F38fD7B88",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x71c365fB739faFdba44B1564558849216de69958",
+        "data": "0xe8de0d4d000000000000000000000000fc00000000000000000000000000000000000002000000000000000000000000e9b3f9cd8851216fbb828da590cca8ce7f03e863"
+      }
+    }
+  ]
+}
