@@ -1,0 +1,1185 @@
+{
+    "version": "1.0",
+    "chainId": "1",
+    "createdAt": 1727449990584,
+    "meta": {
+        "name": "Update permissions of \"MANAGER\" role",
+        "description": "",
+        "txBuilderVersion": "1.16.2",
+        "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+    },
+    "transactions": [
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+                "selector": "0x095ea7b3",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A",
+                "selector": "0x095ea7b3",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x83F20F44975D03b1b09e64809B757c47f942BEeA"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x83F20F44975D03b1b09e64809B757c47f942BEeA",
+                "selector": "0x095ea7b3",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x83F20F44975D03b1b09e64809B757c47f942BEeA",
+                "selector": "0x6e553f65",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x83F20F44975D03b1b09e64809B757c47f942BEeA",
+                "selector": "0xba087652",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x83F20F44975D03b1b09e64809B757c47f942BEeA",
+                "selector": "0xb460af94",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xeA50f402653c41cAdbaFD1f788341dB7B7F37816"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xeA50f402653c41cAdbaFD1f788341dB7B7F37816",
+                "selector": "0x6e553f65",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xeA50f402653c41cAdbaFD1f788341dB7B7F37816",
+                "selector": "0xba087652",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+                "selector": "0x095ea7b3",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000373238337bfe1146fb49989fc222523f83081ddb\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc45\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                "selector": "0x095ea7b3",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc45\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c3d688b66703497daa19211eedff47f25384cdc3\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "allowFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+                "selector": "0x12210e8a",
+                "options": "1"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                "selector": "0x095ea7b3",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc45\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"]]",
+                "options": "0"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x23dA9AdE38E4477b23770DeD512fD37b12381FAB"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x23dA9AdE38E4477b23770DeD512fD37b12381FAB",
+                "selector": "0x569d3489",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"18\",\"0x00000000000000000000000000000000000000000000000000000000000000c9\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"4\",\"0\",\"2\",\"0x\"],[\"4\",\"0\",\"2\",\"0x\"],[\"4\",\"1\",\"15\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"5\",\"0\",\"2\",\"0x\"],[\"5\",\"0\",\"2\",\"0x\"],[\"5\",\"1\",\"15\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"6\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"6\",\"1\",\"16\",\"0x0000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5\"],[\"6\",\"1\",\"16\",\"0x0000000000000000000000007fc66500c84a76ad7e9c93437bfc5ac33e2ddae9\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000c00e94cb662c3520282e6f5717214004a7f26888\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"6\",\"1\",\"16\",\"0x00000000000000000000000048c3399719b582dd63eb5aadf12a40b4c3f52fa2\"],[\"6\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84\"],[\"7\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"7\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"7\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84\"],[\"18\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"18\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"18\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"18\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"18\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"18\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"19\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"19\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"19\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"19\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"19\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"19\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"]]",
+                "options": "2"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0x23dA9AdE38E4477b23770DeD512fD37b12381FAB",
+                "selector": "0x5a66c223",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"2\",\"0\",\"2\",\"0x\"],[\"2\",\"0\",\"2\",\"0x\"],[\"2\",\"1\",\"15\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"3\",\"0\",\"2\",\"0x\"],[\"3\",\"0\",\"2\",\"0x\"],[\"3\",\"1\",\"15\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"4\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"4\",\"1\",\"16\",\"0x0000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5\"],[\"4\",\"1\",\"16\",\"0x0000000000000000000000007fc66500c84a76ad7e9c93437bfc5ac33e2ddae9\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000c00e94cb662c3520282e6f5717214004a7f26888\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"4\",\"1\",\"16\",\"0x00000000000000000000000048c3399719b582dd63eb5aadf12a40b4c3f52fa2\"],[\"4\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84\"],[\"5\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"5\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"5\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84\"],[\"16\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"16\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"16\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"16\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"16\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"16\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"17\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"17\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"17\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"17\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"17\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"17\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"]]",
+                "options": "2"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "scopeTarget",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+            }
+        },
+        {
+            "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+            "value": "0",
+            "contractMethod": {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "roleKey",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "targetAddress",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes4",
+                        "name": "selector",
+                        "type": "bytes4"
+                    },
+                    {
+                        "internalType": "struct ConditionFlat[]",
+                        "name": "conditions",
+                        "type": "tuple[]",
+                        "components": [
+                            {
+                                "internalType": "uint8",
+                                "name": "parent",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum ParameterType",
+                                "name": "paramType",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "enum Operator",
+                                "name": "operator",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "compValue",
+                                "type": "bytes"
+                            }
+                        ]
+                    },
+                    {
+                        "internalType": "enum ExecutionOptions",
+                        "name": "options",
+                        "type": "uint8"
+                    }
+                ],
+                "name": "scopeFunction",
+                "payable": false
+            },
+            "contractInputsValues": {
+                "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+                "targetAddress": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+                "selector": "0x52bbbe29",
+                "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"0\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"2\",\"1\",\"15\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"15\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"16\",\"0xc2aa60465bffa1a88f5ba471a59ca0435c3ec5c100020000000000000000062c\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"3\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"2\",\"0\",\"0x\"],[\"4\",\"1\",\"16\",\"0x2191df821c198600499aa1f0031b1a7514d7a7d9000200000000000000000639\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"2\",\"0\",\"0x\"],[\"5\",\"1\",\"16\",\"0xc2aa60465bffa1a88f5ba471a59ca0435c3ec5c100020000000000000000062c\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"2\",\"0\",\"0x\"],[\"6\",\"1\",\"16\",\"0x0b09dea16768f0799065c475be02919503cb2a3500020000000000000000001a\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"6\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"2\",\"0\",\"0x\"],[\"7\",\"1\",\"16\",\"0xfbfad5fa9e99081da6461f36f229b5cc88a64c6300020000000000000000062d\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"2\",\"0\",\"0x\"],[\"8\",\"1\",\"16\",\"0xf01b0684c98cd7ada480bfdf6e43876422fa1fc10002000000000000000005de\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"8\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"2\",\"0\",\"0x\"],[\"9\",\"1\",\"16\",\"0xaa7a70070e7495fe86c67225329dbd39baa2f63b000200000000000000000663\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"9\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"2\",\"0\",\"0x\"],[\"10\",\"1\",\"16\",\"0x1cce5169bde03f3d5ad0206f6bd057953539dae600020000000000000000062b\"],[\"10\",\"1\",\"0\",\"0x\"],[\"10\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"10\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"10\",\"1\",\"0\",\"0x\"],[\"10\",\"2\",\"0\",\"0x\"],[\"11\",\"1\",\"16\",\"0x96646936b91d6b9d7d0c47c496afbf3d6ec7b6f8000200000000000000000019\"],[\"11\",\"1\",\"0\",\"0x\"],[\"11\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"11\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"11\",\"1\",\"0\",\"0x\"],[\"11\",\"2\",\"0\",\"0x\"],[\"12\",\"1\",\"16\",\"0x1e19cf2d73a72ef1332c882f20534b6519be0276000200000000000000000112\"],[\"12\",\"1\",\"0\",\"0x\"],[\"12\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"12\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"12\",\"1\",\"0\",\"0x\"],[\"12\",\"2\",\"0\",\"0x\"],[\"13\",\"1\",\"16\",\"0xefaa1604e82e1b3af8430b90192c1b9e8197e377000200000000000000000021\"],[\"13\",\"1\",\"0\",\"0x\"],[\"13\",\"1\",\"16\",\"0x000000000000000000000000c00e94cb662c3520282e6f5717214004a7f26888\"],[\"13\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"13\",\"1\",\"0\",\"0x\"],[\"13\",\"2\",\"0\",\"0x\"],[\"14\",\"1\",\"16\",\"0x2191df821c198600499aa1f0031b1a7514d7a7d9000200000000000000000639\"],[\"14\",\"1\",\"0\",\"0x\"],[\"14\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"14\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"14\",\"1\",\"0\",\"0x\"],[\"14\",\"2\",\"0\",\"0x\"],[\"15\",\"1\",\"16\",\"0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2\"],[\"15\",\"1\",\"0\",\"0x\"],[\"15\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"15\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"15\",\"1\",\"0\",\"0x\"],[\"15\",\"2\",\"0\",\"0x\"],[\"16\",\"1\",\"16\",\"0xf01b0684c98cd7ada480bfdf6e43876422fa1fc10002000000000000000005de\"],[\"16\",\"1\",\"0\",\"0x\"],[\"16\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"16\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"16\",\"1\",\"0\",\"0x\"],[\"16\",\"2\",\"0\",\"0x\"],[\"17\",\"1\",\"16\",\"0xfbfad5fa9e99081da6461f36f229b5cc88a64c6300020000000000000000062d\"],[\"17\",\"1\",\"0\",\"0x\"],[\"17\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"17\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"17\",\"1\",\"0\",\"0x\"],[\"17\",\"2\",\"0\",\"0x\"],[\"18\",\"1\",\"16\",\"0x1cce5169bde03f3d5ad0206f6bd057953539dae600020000000000000000062b\"],[\"18\",\"1\",\"0\",\"0x\"],[\"18\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"18\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"18\",\"1\",\"0\",\"0x\"],[\"18\",\"2\",\"0\",\"0x\"],[\"19\",\"1\",\"16\",\"0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2\"],[\"19\",\"1\",\"0\",\"0x\"],[\"19\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"19\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"19\",\"1\",\"0\",\"0x\"],[\"19\",\"2\",\"0\",\"0x\"],[\"20\",\"1\",\"16\",\"0x1e19cf2d73a72ef1332c882f20534b6519be0276000200000000000000000112\"],[\"20\",\"1\",\"0\",\"0x\"],[\"20\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"20\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"20\",\"1\",\"0\",\"0x\"],[\"20\",\"2\",\"0\",\"0x\"],[\"21\",\"1\",\"16\",\"0xaa7a70070e7495fe86c67225329dbd39baa2f63b000200000000000000000663\"],[\"21\",\"1\",\"0\",\"0x\"],[\"21\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"21\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"21\",\"1\",\"0\",\"0x\"],[\"21\",\"2\",\"0\",\"0x\"]]",
+                "options": "0"
+            }
+        }
+    ]
+}
