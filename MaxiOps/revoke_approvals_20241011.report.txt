@@ -1,0 +1,84 @@
+FILENAME: `MaxiOps/revoke_approvals_20241011.json`
+MULTISIG: `multisigs/maxi_ops (mainnet:0x166f54F44F271407f24AA1BE415a730035637325)`
+COMMIT: `e61dd51c75ef4a144525fa4aded95a003cf0866c`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7244d961-ff02-4783-991c-6844c323e627)
+
+```
++---------+------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| fx_name | to                                                               | value | inputs                                                                                     | bip_number | tx_index |
++---------+------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| approve | 0x616e8BfA43F920657B3497DBf40D6b1A02D4608d (tokens/AURABAL)      | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0xdF9080B6BfE4630a97A0655C0016E0e9B43a7C68 (N/A)"                                     |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "amount": [                                                                              |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0x5c6Ee304399DBdB9C8Ef030aB642B10820DB8F56 (tokens/BalWeth8020)  | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0xC92E8bdf79f0507f65a392b0ab4667716BFE0110 (cow/vault_relayer)"                       |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "amount": [                                                                              |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0xba100000625a3754423978a60c9317c58a424e3D (tokens/BAL)          | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0xC92E8bdf79f0507f65a392b0ab4667716BFE0110 (cow/vault_relayer)"                       |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "amount": [                                                                              |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0xba100000625a3754423978a60c9317c58a424e3D (tokens/BAL)          | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0xBA12222222228d8Ba445958a75a0704d566BF2C8 (20210418-vault/Vault)"                    |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "amount": [                                                                              |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0xba100000625a3754423978a60c9317c58a424e3D (tokens/BAL)          | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9 (20220420-fee-distributor/FeeDistributor)" |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "amount": [                                                                              |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0x7B50775383d3D6f0215A8F290f2C9e2eEBBEceb2 (pools/bb-a-USD-7b50) | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0x26743984e3357eFC59f2fd6C1aFDC310335a61c9 (20220420-fee-distributor/FeeDistributor)" |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "amount": [                                                                              |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD (Not Found)           | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0xB5Ec9706C3Be9d22326D208f491E5DEef7C8d9f0 (N/A)"                                     |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "value": [                                                                               |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)         | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0xC92E8bdf79f0507f65a392b0ab4667716BFE0110 (cow/vault_relayer)"                       |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "value": [                                                                               |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
+| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)         | 0     | {                                                                                          | N/A        |   N/A    |
+|         |                                                                  |       |   "spender": [                                                                             |            |          |
+|         |                                                                  |       |     "0xBA12222222228d8Ba445958a75a0704d566BF2C8 (20210418-vault/Vault)"                    |            |          |
+|         |                                                                  |       |   ],                                                                                       |            |          |
+|         |                                                                  |       |   "value": [                                                                               |            |          |
+|         |                                                                  |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                                  |            |          |
+|         |                                                                  |       |   ]                                                                                        |            |          |
+|         |                                                                  |       | }                                                                                          |            |          |
++---------+------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+```
