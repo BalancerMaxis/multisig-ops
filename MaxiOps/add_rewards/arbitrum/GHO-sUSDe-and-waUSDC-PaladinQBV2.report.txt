@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/arbitrum/GHO-sUSDe-and-waUSDC-PaladinQBV2.json`
+MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `e1889603c74b93c7054c763a4f2e13ce973fa58b`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/95f05d1c-f82e-4a65-b025-66747941c17d)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                          | selector                    | parsed_inputs                                                             | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------------+-----+----------+
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6e654787251ae77fe1873f93a5f220e00afa90e8 (gauges/ECLP-GHO-AUSDC-gauge-6e65)   | add_reward(address,address) | 0x7dfF72693f6A4149b17e7C6314655f6A9F7c8B33: GHO                           | N/A |    0     |
+|               |                                                                                                                 |                                                                                 |                             | 0x8EdcFE9Bc7d2a735117B94C16456D8303777abbb: paladin/QuestBoardV2Sidechain |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xcfab2efef3affdd158568dc896115eac26b3c498 (gauges/ECLP-GHO-USDe-rh-gauge-cfab) | add_reward(address,address) | 0x7dfF72693f6A4149b17e7C6314655f6A9F7c8B33: GHO                           | N/A |    1     |
+|               |                                                                                                                 |                                                                                 |                             | 0x8EdcFE9Bc7d2a735117B94C16456D8303777abbb: paladin/QuestBoardV2Sidechain |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------------+-----+----------+
+```
