@@ -693,14 +693,17 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = defaultdict(list)
-    ## TODO, can we use prettify flat list and the other helpers here?
+    ## Try just parsing it as json
     for key, valuedata in contracts_inputs_values.items():
-        print(f"Attempting to parse JSON: {valuedata}")
-        outputs[key].append(prettify_json(json.loads(valuedata), chain))
-        print(f"result:\n{json.dumps(outputs[key], indent=2)}")
-        continue
-
-        ### If the above code never bre
+        if valuedata.startswith("[") or valuedata.startswith("{"):
+            try:
+                print(f"Attempting to parse JSON: {valuedata}")
+                outputs[key].append(prettify_json(json.loads(valuedata), chain))
+                print(f"result:\n{json.dumps(outputs[key], indent=2)}")
+                continue
+            except:
+                pass
+        ### Otherwise test various known cases
         values = parse_txbuilder_list_string(valuedata)
         for value in values:
             # Reverse resolve addresses
