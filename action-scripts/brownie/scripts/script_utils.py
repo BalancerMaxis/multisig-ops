@@ -652,13 +652,24 @@ def prettify_flat_list(inputs: list[str], chain: str) -> list[str]:
 def prettify_json(json_data: dict, chain: str) -> dict:
     addr_book = AddrBook(chain)
     perm = BalPermissions(chain)
+
     def lookup_and_replace(input, last_key=None):
-        if is_address(input):
-            return prettify_address(input, addr_book)
-        elif "role" in last_key.lower():
-            return  f"{input} ({perm.paths_by_action_id.get(input, 'N/A')})"
-        elif isinstance(input, int):
-            return prettify_int_amount(input)
+        if isinstance(input, str):
+            if is_address(input):
+                return prettify_address(input, addr_book)
+            elif last_key and "role" in last_key.lower():
+                return f"{input} ({perm.paths_by_action_id.get(input, 'N/A')})"
+
+        if isinstance(input, int):
+            if last_key and (
+                "value" in last_key.lower()
+                or "amount" in last_key.lower()
+                or "_minouts" in last_key.lower()
+            ):
+                return prettify_int_amount(input)
+            elif last_key and "chain" in last_key.lower():
+                return f"{input} (chain_name: {AddrBook.chain_names_by_id.get(input)})"
+
         else:
             return input
 
@@ -667,15 +678,6 @@ def prettify_json(json_data: dict, chain: str) -> dict:
             return {k: process_value(v, k) for k, v in value.items()}
         elif isinstance(value, list):
             return [process_value(v, last_key) for v in value]
-        elif (
-                "value" in last_key.lower()
-                or "amount" in last_key.lower()
-                or "_minouts" in last_key.lower()
-        ):
-            return prettify_int_amount(value)
-        elif "chain" in last_key.lower():
-            return f"{value} (chain_name: {AddrBook.chain_names_by_id.get(value)})"
-
         else:
             return lookup_and_replace(value, last_key)
 
@@ -693,16 +695,14 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     outputs = defaultdict(list)
     ## TODO, can we use prettify flat list and the other helpers here?
     for key, valuedata in contracts_inputs_values.items():
-        for key, valuedata in contracts_inputs_values.items():
-            print(f"Attempting to parse JSON: {valuedata}")
-            outputs[key].append(
-                replace_eth_addresses_in_json(json.loads(valuedata), chain)
-            )
-            continue
+        print(f"Attempting to parse JSON: {valuedata}")
+        outputs[key].append(prettify_json(json.loads(valuedata), chain))
+        print(f"result:\n{json.dumps(outputs[key], indent=2)}")
+        continue
 
-            ### If the above code never bre
-            values = parse_txbuilder_list_string(valuedata)
-            for value in values:
+        ### If the above code never bre
+        values = parse_txbuilder_list_string(valuedata)
+        for value in values:
             # Reverse resolve addresses
             if is_address(value):
                 outputs[key].append(
@@ -722,6 +722,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
                 outputs[key].append(prettify_int_amount(value))
             else:
                 outputs[key].append(value)
+
     return outputs
 
 
