@@ -649,6 +649,28 @@ def prettify_flat_list(inputs: list[str], chain: str) -> list[str]:
     return results
 
 
+def replace_eth_addresses_in_json(json_data: dict, chain: str) -> dict:
+    addr_book = AddrBook(chain)
+    eth_address_pattern = r"0x[a-fA-F0-9]{40}"
+
+    def lookup_and_replace(address):
+        checksum_address = to_checksum_address(address)
+        lookup = addr_book.reversebook.get(checksum_address, "N/A")
+        return f"{address} ({lookup})"
+
+    def process_value(value):
+        if isinstance(value, str) and re.fullmatch(eth_address_pattern, value):
+            return lookup_and_replace(value)
+        elif isinstance(value, dict):
+            return {k: process_value(v) for k, v in value.items()}
+        elif isinstance(value, list):
+            return [process_value(v) for v in value]
+        else:
+            return value
+
+    return process_value(json_data)
+
+
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
     """
     Accepts contractInputsValues dict with key of input_name and value of input_value
@@ -662,6 +684,14 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     for key, valuedata in contracts_inputs_values.items():
         values = parse_txbuilder_list_string(valuedata)
         for value in values:
+            ## Try parsing json
+            try:
+                outputs[key].append(
+                    replace_eth_addresses_in_json(json.loads(value), chain)
+                )
+                continue
+            except:
+                pass
             ## Reverse resolve addresses
             if is_address(value):
                 outputs[key].append(
