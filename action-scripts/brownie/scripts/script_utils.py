@@ -649,6 +649,41 @@ def prettify_flat_list(inputs: list[str], chain: str) -> list[str]:
     return results
 
 
+def prettify_json(json_data: dict, chain: str) -> dict:
+    addr_book = AddrBook(chain)
+    perm = BalPermissions(chain)
+
+    def lookup_and_replace(input, last_key=None):
+        if isinstance(input, str):
+            if is_address(input):
+                return prettify_address(input, addr_book)
+            elif last_key and "role" in last_key.lower():
+                return f"{input} ({perm.paths_by_action_id.get(input, 'N/A')})"
+
+        if isinstance(input, int):
+            if last_key and (
+                "value" in last_key.lower()
+                or "amount" in last_key.lower()
+                or "_minouts" in last_key.lower()
+            ):
+                return prettify_int_amount(input)
+            elif last_key and "chain" in last_key.lower():
+                return f"{input} (chain_name: {AddrBook.chain_names_by_id.get(input)})"
+
+        else:
+            return input
+
+    def process_value(value, last_key=None):
+        if isinstance(value, dict):
+            return {k: process_value(v, k) for k, v in value.items()}
+        elif isinstance(value, list):
+            return [process_value(v, last_key) for v in value]
+        else:
+            return lookup_and_replace(value, last_key)
+
+    return process_value(json_data)
+
+
 def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -> dict:
     """
     Accepts contractInputsValues dict with key of input_name and value of input_value
@@ -658,11 +693,20 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
     addr = AddrBook(chain)
     perm = BalPermissions(chain)
     outputs = defaultdict(list)
-    ## TODO, can we use prettify flat list and the other helpers here?
+    ## Try just parsing it as json
     for key, valuedata in contracts_inputs_values.items():
+        if valuedata.startswith("[") or valuedata.startswith("{"):
+            try:
+                print(f"Attempting to parse JSON: {valuedata}")
+                outputs[key].append(prettify_json(json.loads(valuedata), chain))
+                print(f"result:\n{json.dumps(outputs[key], indent=2)}")
+                continue
+            except:
+                pass
+        ### Otherwise test various known cases
         values = parse_txbuilder_list_string(valuedata)
         for value in values:
-            ## Reverse resolve addresses
+            # Reverse resolve addresses
             if is_address(value):
                 outputs[key].append(
                     f"{value} ({addr.reversebook.get(to_checksum_address(value), 'N/A')})"
@@ -681,6 +725,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
                 outputs[key].append(prettify_int_amount(value))
             else:
                 outputs[key].append(value)
+
     return outputs
 
 

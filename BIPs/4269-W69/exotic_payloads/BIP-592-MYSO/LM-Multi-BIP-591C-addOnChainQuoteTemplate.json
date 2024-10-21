@@ -1,0 +1,136 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1713444950634,
+  "meta": {
+    "name": "Template for on-chain quote. Adjust to market conditions at execution time!",
+    "description": "",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x96f46915400642e686202014de0b6814bff18c37ae23050f5c1c2e9898e56e31"
+  },
+  "transactions": [
+    {
+      "to": "0x71E1cc2F7574C798ED893Ef04D55D1E573bE95B1",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "lenderVault",
+            "type": "address"
+          },
+          {
+            "components": [
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "collToken",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "loanToken",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "oracleAddr",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "minLoan",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "maxLoan",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "validUntil",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "earliestRepayTenor",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "borrowerCompartmentImplementation",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isSingleUse",
+                    "type": "bool"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "whitelistAddr",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "isWhitelistAddrSingleBorrower",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct DataTypesPeerToPeer.GeneralQuoteInfo",
+                "name": "generalQuoteInfo",
+                "type": "tuple"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint256",
+                    "name": "loanPerCollUnitOrLtv",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "int256",
+                    "name": "interestRatePctInBase",
+                    "type": "int256"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "upfrontFeePctInBase",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "tenor",
+                    "type": "uint256"
+                  }
+                ],
+                "internalType": "struct DataTypesPeerToPeer.QuoteTuple[]",
+                "name": "quoteTuples",
+                "type": "tuple[]"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "salt",
+                "type": "bytes32"
+              }
+            ],
+            "internalType": "struct DataTypesPeerToPeer.OnChainQuote",
+            "name": "onChainQuote",
+            "type": "tuple"
+          }
+        ],
+        "name": "addOnChainQuote",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "lenderVault": "0xdC84A5e6Bf288af75CC821226634644Ed6a7aB54",
+        "onChainQuote": "[[\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"0xba100000625a3754423978a60c9317c58a424e3D\",\"0x90B9eA01b1c0E2A1b95B03DFBb8E2A4b3F903bfC\",\"20000000000000000000000\",\"100000000000000000000000\",\"1735779846\",\"0\",\"0x0000000000000000000000000000000000000000\",\"true\",\"0x0000000000000000000000000000000000000000\",\"false\"], [[\"800000000000000000\",\"0\",\"40000000000000000\",\"2592000\"]],\"0x0000000000000000000000000000000000000000000000000000000000000000\"]"
+      }
+    }
+  ]
+}
