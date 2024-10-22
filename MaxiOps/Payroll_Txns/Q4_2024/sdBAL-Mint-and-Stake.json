@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1729622692940,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x166f54F44F271407f24AA1BE415a730035637325",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x8e921edcc6b2dbbeebbcabc71f6e896c4e2e4db148df880094a415c3a40ffde8"
+  },
+  "transactions": [
+    {
+      "to": "0x5c6Ee304399DBdB9C8Ef030aB642B10820DB8F56",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "spender", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x3e0d44542972859de3CAdaF856B1a4FD351B4D2E",
+        "amount": "8033000000000000000000"
+      }
+    },
+    {
+      "to": "0x3e0d44542972859de3CAdaF856B1a4FD351B4D2E",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bool", "name": "_lock", "type": "bool" },
+          { "internalType": "bool", "name": "_stake", "type": "bool" },
+          { "internalType": "address", "name": "_user", "type": "address" }
+        ],
+        "name": "depositAll",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_lock": "true",
+        "_stake": "true",
+        "_user": "0x166f54F44F271407f24AA1BE415a730035637325"
+      }
+    }
+  ]
+}
