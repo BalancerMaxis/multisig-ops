@@ -1,0 +1,32 @@
+FILENAME: `BIPs/00batched/2024-W42/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `91a42a323437c1ddf6c67cdef34e8e7cdd42a060`
+CHAIN(S): `mainnet, arbitrum`
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/10551d95-5437-497e-ad09-0f36b2106d4c)
+
+| Gauge Validator                  | Result |
+| :--------------------------------| :----: |
+| `validate_preferential_gauge`    |   ✅   |
+| `validate_rate_providers_safety` |   --   |
+
+```
++-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                                 | symbol_and_info | gauge_address_and_info                           | tokens                                                     | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0xab297f94235de777b85024ed1208ff43852385d90000000000000000000005bb  | wUSDL/GHO       | root: 0x2e8A05f0216c6cC43BC123EE7dEf58901d3844D2 | 0x7751E2F4b8ae93EF6B79d86419d42FE3295A4559: wUSDL          | 0x4d494eF5CB1143991F7F767567aD7f55bCfDc279 |      safe      | BIP-717 |    0     |
+|                       | pool_address: 0xab297f94235De777B85024eD1208Ff43852385D9            | fee: 0.01       | side: 0xcC014e60585259dA1C8501b00789521659e7a4fC | 0x7dfF72693f6A4149b17e7C6314655f6A9F7c8B33: GHO            | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     | a-factor: 500   | style: L0 sidechain                              | 0xab297f94235De777B85024eD1208Ff43852385D9: wUSDL/GHO      | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     |                 | cap: 100.0%                                      |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | preferential: True                               |                                                            |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x632aafc2d3d2ca1764e702aa25c065c273cd08ed0000000000000000000006d6  | DVstETH/wstETH  | root: 0xbDBC5A69CC499F9286a55c48C9939cE1554d7A23 | 0x5E362eb2c0706Bd1d134689eC75176018385430B: DVstETH        | 0x1a9DBa2dC3E82F53d040701F97DC0438d26A4320 |      safe      | BIP-718 |    1     |
+|                       | pool_address: 0x632aafC2D3D2cA1764E702aa25c065c273Cd08eD            | fee: 0.01       | side: None                                       | 0x632aafC2D3D2cA1764E702aa25c065c273Cd08eD: DVstETH/wstETH | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     | a-factor: 500   | style: mainnet                                   | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0: wstETH         | 0x72D07D7DcA67b8A406aD1Ec34ce969c90bFEE768 |      safe      |         |          |
+|                       |                                                                     |                 | cap: 100.0%                                      |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | preferential: True                               |                                                            |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x2875f3effe9ec897d7e4c32680d77ca3e628f33a0002000000000000000006d1  | ECLP-GYD-USDC   | root: 0x9C1A157cf8B242F67b3c950EDA9A30b320bDe9cd | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48: USDC           | 0x0000000000000000000000000000000000000000 |       --       | BIP-716 |    2     |
+|                       | pool_address: 0x2875f3eFfE9Ec897D7e4C32680D77cA3E628f33a            | fee: 0.01       | side: None                                       | 0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A: GYD            | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     | a-factor: N/A   | style: mainnet                                   |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | cap: 100.0%                                      |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | preferential: True                               |                                                            |                                            |                |         |          |
++-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
