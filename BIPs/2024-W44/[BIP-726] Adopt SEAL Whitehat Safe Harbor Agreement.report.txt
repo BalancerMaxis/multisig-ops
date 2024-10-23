@@ -1,6 +1,6 @@
-FILENAME: `BIPs/2024-W44/[BIP-XXX] Adopt SEAL Whitehat Safe Harbor Agreement.json`
+FILENAME: `BIPs/2024-W44/[BIP-726] Adopt SEAL Whitehat Safe Harbor Agreement.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `a91e98806b58e59413f084b5a702d3e8bee2b4db`
+COMMIT: `522fd1cde962ece50390e3fcd243c1759dab9f9f`
 CHAIN(S): `mainnet`
 TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `adoptSafeHarbor`, positional arguments with type(s) `str` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `adoptSafeHarbor`: ['adoptSafeHarbor((string,(string,string)[],(address,(address,uint8,bytes)[],uint256)[],(uint256,uint256,bool,uint8,string),string))']\nFunction invocation failed due to no matching argument types."))`
 
@@ -8,7 +8,7 @@ TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended 
 +-----------------+-------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------+
 | fx_name         | to                                                                | value | inputs                                                                                                                                                         | bip_number | tx_index |
 +-----------------+-------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+----------+
-| adoptSafeHarbor | 0x8f72fcf695523A6FC7DD97EafDd7A083c386b7b6 (safe_harbor/registry) | 0     | {                                                                                                                                                              | N/A        |   N/A    |
+| adoptSafeHarbor | 0x8f72fcf695523A6FC7DD97EafDd7A083c386b7b6 (safe_harbor/registry) | 0     | {                                                                                                                                                              | BIP-726    |   N/A    |
 |                 |                                                                   |       |   "details": [                                                                                                                                                 |            |          |
 |                 |                                                                   |       |     "\"Balancer\"",                                                                                                                                            |            |          |
 |                 |                                                                   |       |     "[[\"Telegram:Mikeisballin\"",                                                                                                                             |            |          |
