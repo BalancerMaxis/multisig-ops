@@ -84,7 +84,7 @@ def claim_merkl(chain_id, user):
 
 if __name__ == "__main__":
     chain = 1
-    user = "0xfdA462548Ce04282f4B6D6619823a7C64Fdc0185"
+    user = "0x529619a10129396a2F642cae32099C1eA7FA2834"
     payload = claim_merkl(chain, user)
     with open(
         f"../../MaxiOps/merkl/{payload['createdAt']}-{chain}-{user}.json",
