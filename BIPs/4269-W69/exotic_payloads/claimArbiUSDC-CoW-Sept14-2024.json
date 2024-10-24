@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1726337798292,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xb87150a72864a3bbe0710ee147d70c28b54ad61db38313272369ea8870152e56"
+  },
+  "transactions": [
+    {
+      "to": "0xC30362313FBBA5cf9163F0bb16a0e01f01A896ca",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "message", "type": "bytes", "internalType": "bytes" },
+          { "name": "attestation", "type": "bytes", "internalType": "bytes" }
+        ],
+        "name": "receiveMessage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "message": "0x000000000000000000000003000000000001A411000000000000000000000000BD3FA81B58BA92A82136038B25ADEC7066AF315500000000000000000000000019330D10D9CC8751218EAF51E8885D058642E08A000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000A0B86991C6218B36C1D19D4A2E9EB0CE3606EB48000000000000000000000000C38C5F97B34E175FFD35407FC91A937300E33860000000000000000000000000000000000000000000000000000000037E11D600000000000000000000000000C38C5F97B34E175FFD35407FC91A937300E33860",
+        "attestation": "0x6a2610e793948e40b74e4459aff0e745fbe9d32621ba02fecb91647d633a830332a8227ed1aa30ea2d558a8f273050ecc574ce4629fc5c9417d72efd7a9c7ad61cf838da5120bf297e0ba3421d521abdb3a4a51734be90e9b3cd494b16f93c084f6204db316e74f5a34fe0d5480cb09092417c9063905b199407f3dae7dd367cc01b"
+      }
+    },
+    {
+      "to": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" },
+          { "name": "value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2",
+        "value": "15000000000"
+      }
+    }
+  ]
+}
