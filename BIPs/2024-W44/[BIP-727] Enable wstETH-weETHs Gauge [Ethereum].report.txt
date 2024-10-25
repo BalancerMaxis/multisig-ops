@@ -1,13 +1,13 @@
 FILENAME: `BIPs/2024-W44/[BIP-727] Enable wstETH-weETHs Gauge [Ethereum].json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `32e728a17c6d0d42c2f1183deac3c93c1d26c81e`
+COMMIT: `9dd7309a3ebbe40413e34d892b5c74dc599e6025`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/0c3ef569-5f8d-4b29-b293-874a6f0dd767)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/bab7c143-5f9a-49e3-aa5d-5288bfd97413)
 
 | Gauge Validator                  | Result |
 | :--------------------------------| :----: |
 | `validate_preferential_gauge`    |   ✅   |
-| `validate_rate_providers_safety` | ✅ ❌  |
+| `validate_rate_providers_safety` | ✅ ✅  |
 
 ```
 +-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+-----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
@@ -15,7 +15,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/0c3ef569-5f8d-4
 +-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+-----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | GaugeAdderV4/addGauge | 0x2ab8df7429f4fce60eb2c1233f0326767765e2f30000000000000000000006da  | weETHs/wstETH   | root: 0x0Bb8B971AaF99eddfddE2e71736eBEBe8CC7769b | 0x2AB8Df7429f4fCe60eb2C1233f0326767765e2F3: weETHs/wstETH | 0x0000000000000000000000000000000000000000 |       --       | BIP-727 |    0     |
 |                       | pool_address: 0x2AB8Df7429f4fCe60eb2C1233f0326767765e2F3            | fee: 0.04       | side: None                                       | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0: wstETH        | 0x72D07D7DcA67b8A406aD1Ec34ce969c90bFEE768 |      safe      |         |          |
-|                       |                                                                     | a-factor: 500   | style: mainnet                                   | 0x917ceE801a67f933F2e6b33fC0cD1ED2d5909D88: weETHs        | 0x64C04442C4Bc85C49782525AbE92c8a6fB714b50 | !!NO REVIEW!!  |         |          |
+|                       |                                                                     | a-factor: 500   | style: mainnet                                   | 0x917ceE801a67f933F2e6b33fC0cD1ED2d5909D88: weETHs        | 0x64C04442C4Bc85C49782525AbE92c8a6fB714b50 |      safe      |         |          |
 |                       |                                                                     |                 | cap: 100.0%                                      |                                                           |                                            |                |         |          |
 |                       |                                                                     |                 | preferential: True                               |                                                           |                                            |                |         |          |
 +-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+-----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
