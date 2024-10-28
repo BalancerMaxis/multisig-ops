@@ -102,7 +102,7 @@ jobs:
           pr-number: ${{ inputs.pr_number }}
 
       - name: Post Payload Report as Comment
-        continue-on-error: false
+        continue-on-error: true
         uses: thollander/actions-comment-pull-request@v3
         if: steps.check_files.outputs.payload_reports == 'true'
         with:
