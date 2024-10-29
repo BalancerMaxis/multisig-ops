@@ -280,7 +280,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 )
                             else:
                                 casted_tuple.append(str(tuple_item.strip('"')))
-                        tx["contractInputsValues"][input["name"]] = casted_tuple
+                        tx["contractInputsValues"][input["name"]] = tuple(casted_tuple)
                     # catchall; cast to str
                     else:
                         if "[]" in input["type"]:
