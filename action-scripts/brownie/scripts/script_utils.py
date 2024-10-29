@@ -68,7 +68,8 @@ def get_changed_files() -> list[dict]:
     changed_files = []
     for file_json in pr_file_data:
         if file_json["status"] in ["removed", "renamed"]:
-            continue
+            if "4269-W69" not in file_json["filename"]:
+                continue
         filename = file_json["filename"]
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
@@ -204,7 +205,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
 
     # build individual tx data
     for tx in transactions:
-        if "contractMethod" in tx:
+        if "contractMethod" in tx and tx["contractMethod"] is not None:
             tx["contractMethod"]["type"] = "function"
             contract = web3.eth.contract(
                 address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
@@ -576,9 +577,15 @@ def parse_txbuilder_list_string(list_string) -> list:
     """
     # Change from a txbuilder json format list of addresses to a python one
     if isinstance(list_string, str):
+        ## if empty list, return an empty list.
+        if list_string == "[]":
+            return []
         list_string = list_string.strip("[ ]")
         list_string = list_string.replace(" ", "")
         list_string = list_string.split(",")
+        # if nothing left return an empty list
+        if not list_string:
+            return []
     if isinstance(list_string, list):
         return list_string
     # If we still don't have a list, create a single item list with what we do have.
@@ -680,6 +687,7 @@ def prettify_contract_inputs_values(chain: str, contracts_inputs_values: dict) -
 ## TODO do we need this or can we just do a more general reverse lookup with prettify_flat_list?
 def prettify_gauge_list(gauge_addresses, chainbook) -> list:
     pretty_gauges = []
+
     for gauge in gauge_addresses:
         gauge_name = chainbook.reversebook.get(gauge)
         if not gauge_name:

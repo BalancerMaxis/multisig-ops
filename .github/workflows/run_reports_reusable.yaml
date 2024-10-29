@@ -75,7 +75,7 @@ jobs:
           export COMMIT_SHA=`git rev-parse HEAD`
           cd action-scripts/brownie
           brownie networks import networks.yaml True
-          brownie run --network mainnet scripts/report_gauges.py
+          brownie run --network mainnet scripts/reports.py
 
       - name: Check for comment files
         id: check_files
@@ -95,20 +95,20 @@ jobs:
       - name: Post Validation Report as Comment
         continue-on-error: false
         if: steps.check_files.outputs.validation_exists == 'true'
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         with:
-          filePath: action-scripts/brownie/validate_bip_results.txt
-          reactions: eyes
-          pr_number: ${{ inputs.pr_number }}
+          file-path: action-scripts/brownie/validate_bip_results.txt
+          comment-tag: validation_report
+          pr-number: ${{ inputs.pr_number }}
 
       - name: Post Payload Report as Comment
-        continue-on-error: false
-        uses: thollander/actions-comment-pull-request@v2
+        continue-on-error: true
+        uses: thollander/actions-comment-pull-request@v3
         if: steps.check_files.outputs.payload_reports == 'true'
         with:
-          filePath: action-scripts/brownie/payload_reports.txt
-          reactions: eyes
-          pr_number: ${{ inputs.pr_number }}
+          file-path: action-scripts/brownie/payload_reports.txt
+          comment-tag: payload_report
+          pr-number: ${{ inputs.pr_number }}
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3

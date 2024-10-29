@@ -1,0 +1,17 @@
+FILENAME: `BIPs/2024-W44/[BIP-722] Kill Stale Gyroscope ECLP Gauges.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `8b2fb471e3d8123279143462dbe965b02517bd5e`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/969e8e75-5f7f-4be0-bbe5-df109949719f)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                                      | selector    | parsed_inputs |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xE03b4CB39C54EedFe4E46677511989866A88dbE3 (root_gauges/ECLP-GHO-USDe-arbitrum-root-e03b)   | killGauge() |               | BIP-722 |    0     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xc028EFDa059e040b42998c96FF7fe0b126FA87fA (root_gauges/ECLP-sFRAX-FRAX-arbitrum-root-c028) | killGauge() |               | BIP-722 |    1     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x9434c3955920A1FeD5e28ebCCEF80dCd54DEA180 (root_gauges/ECLP-GHO-GYD-arbitrum-root-9434)    | killGauge() |               | BIP-722 |    2     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x9dE7f79Ef7f28447E90051b60aBC5c2b1AdFE1cf (root_gauges/GDSRH-optimism-root-9de7)           | killGauge() |               | BIP-722 |    3     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x39a6D33557d31151F88D0b12Ab2D2Fb659c238A1 (root_gauges/ECLP-sDAI-USDC-rh-base-root-39a6)   | killGauge() |               | BIP-722 |    4     |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+```
