@@ -286,7 +286,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 tx["contractInputsValues"][input["name"]] = [
                                     tuple(casted_tuple)
                                 ]
-                            except KeyError:
+                            except IndexError:
                                 # payload contains nested tuples; no support yet
                                 continue
                     # catchall; cast to str
