@@ -266,23 +266,29 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             .strip("[]")
                             .split(",")
                         ):
-                            if "bool" in input["components"][idx]["type"]:
-                                casted_tuple.append(
-                                    True if tuple_item.strip('"') == "true" else False
-                                )
-                            elif re.search(
-                                r"int[0-9]+", input["components"][idx]["type"]
-                            ):
-                                casted_tuple.append(int(tuple_item.strip('"')))
-                            elif "address" in input["components"][idx]["type"]:
-                                casted_tuple.append(
-                                    to_checksum_address(tuple_item.strip('"'))
-                                )
-                            else:
-                                casted_tuple.append(str(tuple_item.strip('"')))
-                        tx["contractInputsValues"][input["name"]] = [
-                            tuple(casted_tuple)
-                        ]
+                            try:
+                                if "bool" in input["components"][idx]["type"]:
+                                    casted_tuple.append(
+                                        True
+                                        if tuple_item.strip('"') == "true"
+                                        else False
+                                    )
+                                elif re.search(
+                                    r"int[0-9]+", input["components"][idx]["type"]
+                                ):
+                                    casted_tuple.append(int(tuple_item.strip('"')))
+                                elif "address" in input["components"][idx]["type"]:
+                                    casted_tuple.append(
+                                        to_checksum_address(tuple_item.strip('"'))
+                                    )
+                                else:
+                                    casted_tuple.append(str(tuple_item.strip('"')))
+                                tx["contractInputsValues"][input["name"]] = [
+                                    tuple(casted_tuple)
+                                ]
+                            except KeyError:
+                                # payload contains nested tuples; no support yet
+                                continue
                     # catchall; cast to str
                     else:
                         if "[]" in input["type"]:
