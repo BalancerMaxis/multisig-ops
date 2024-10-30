@@ -1,0 +1,18 @@
+FILENAME: `MaxiOps/injectorScheduling/op/OpUSDCInjector.json`
+MULTISIG: `multisigs/vote_incentive_recycling (optimism:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `a770ddcf881be8809ef0fb9d3909bc2e882e7d6d`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c84b7d4e-eb52-4a4b-b9fc-1e96e2c69773)
+
+```
++--------------------------+--------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name                  | to                                                     | value | inputs                                                 | bip_number | tx_index |
++--------------------------+--------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| acceptOwnership          | 0x79D0F97D4D8c1Dd30b1Ea09746dB8847036AD92d (Not Found) | 0     | "N/A"                                                  | N/A        |   N/A    |
+| setKeeperRegistryAddress | 0x79D0F97D4D8c1Dd30b1Ea09746dB8847036AD92d (Not Found) | 0     | {                                                      | N/A        |   N/A    |
+|                          |                                                        |       |   "keeperRegistryAddress": [                           |            |          |
+|                          |                                                        |       |     "0x25c059EE800de5B33764E2eEa01858A4015b4fD8 (N/A)" |            |          |
+|                          |                                                        |       |   ]                                                    |            |          |
+|                          |                                                        |       | }                                                      |            |          |
++--------------------------+--------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
