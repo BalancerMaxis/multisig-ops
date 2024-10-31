@@ -1,14 +1,14 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1730299555563,
+  "createdAt": 1730377931090,
   "meta": {
     "name": "Transactions Batch",
-    "description": "Add new gauges",
-    "txBuilderVersion": "1.16.3",
+    "description": "",
+    "txBuilderVersion": "1.17.1",
     "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
     "createdFromOwnerAddress": "",
-    "checksum": ""
+    "checksum": "0x2e50e8c818db3ddbe7957826cdba4ae1a151965d257ef2b2af806f7cc06b744e"
   },
   "transactions": [
     {
@@ -17,15 +17,15 @@
       "data": null,
       "contractMethod": {
         "inputs": [
-          { "name": "gauge", "type": "address", "internalType": "address" },
-          { "name": "gaugeType", "type": "string", "internalType": "string" }
+          { "internalType": "address", "name": "gauge", "type": "address" },
+          { "internalType": "string", "name": "gaugeType", "type": "string" }
         ],
         "name": "addGauge",
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0xabD1bA45Cb751D259F66fED1FF5f0E205F5eA907",
-        "gaugeType": "Base"
+        "gauge": "0xDFaD195F91e1591ae8Eb4c1c7183185CeF58864D",
+        "gaugeType": "Ethereum"
       }
     }
   ]
