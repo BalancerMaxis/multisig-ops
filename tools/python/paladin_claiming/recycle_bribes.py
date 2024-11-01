@@ -4,6 +4,7 @@ from typing import List
 import sys
 from pathlib import Path
 import os
+
 sys.path.append(str(Path(__file__).parent.parent))
 
 import requests
@@ -41,7 +42,7 @@ CHAIN_ADDRS = {
         "bribe_vault": flatbook_arb["hidden_hand2/bribe_vault"],
         "bal_briber": None,  # No bal briber on arbitrum
         "aura_briber": flatbook_arb["hidden_hand2/aura_briber"],
-    }
+    },
 }
 
 paladin_distributor_abi = json.load(
@@ -79,7 +80,7 @@ def claim_bribes(claims: List[dict], chain_name: str) -> str:
     )
     w3 = w3_by_chain[chain_name]
     csv_path = CLAIM_OUTPUT_DIR / f"paladin_claims_{chain_name}.csv"
-    
+
     with open(csv_path, "w") as f:
         f.write("chain,source,token_address,gauge_address,amount\n")
 
@@ -96,15 +97,17 @@ def claim_bribes(claims: List[dict], chain_name: str) -> str:
             )
 
             token_contract = w3.eth.contract(
-                address=Web3.to_checksum_address(claim["token"]),
-                abi=erc20_abi
+                address=Web3.to_checksum_address(claim["token"]), abi=erc20_abi
             )
             decimals = token_contract.functions.decimals().call()
-            human_amount = int(claim["amount"]) / (10 ** decimals)
+            human_amount = int(claim["amount"]) / (10**decimals)
 
-            f.write(f"{chain_name},{claim['path']},{claim['token']},{claim['gauge']},{human_amount}\n")
+            f.write(
+                f"{chain_name},{claim['path']},{claim['token']},{claim['gauge']},{human_amount}\n"
+            )
 
     return csv_path
+
 
 def deposit_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
     """
@@ -144,9 +147,11 @@ def deposit_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
     # Process aggregated bribes
     for (source, token, gauge), amount in aggregated_bribes.items():
         print(f"Processing bribe - token: {token}, gauge: {gauge}, amount: {amount}")
-        
+
         if source not in bribe_data:
-            print(f"source {source} not supported on {chain_name} for {token}, skipping deposit")
+            print(
+                f"source {source} not supported on {chain_name} for {token}, skipping deposit"
+            )
             continue
 
         briber, prop_type = bribe_data[source]
@@ -154,33 +159,38 @@ def deposit_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
 
         prop_hash = get_prop_hash(source, gauge)
         assert prop_hash, f"no prop hash for {gauge}"
-        
+
         token_contract = w3_by_chain[chain_name].eth.contract(
-            address=Web3.to_checksum_address(token),
-            abi=erc20_abi
+            address=Web3.to_checksum_address(token), abi=erc20_abi
         )
         decimals = token_contract.functions.decimals().call()
-        
+
         # deposit 70%
-        total_amount_wei = int(amount * (10 ** decimals))
+        total_amount_wei = int(amount * (10**decimals))
         bribe_amount_wei = int(total_amount_wei * 0.7)
         sell_amount_wei = total_amount_wei - bribe_amount_wei
-    
+
         with open(sell_csv_path, "a") as f:
-            human_amount = sell_amount_wei / (10 ** decimals)
-            f.write(f"{chain_name},{token},{sell_amount_wei},{human_amount},{decimals}\n")
+            human_amount = sell_amount_wei / (10**decimals)
+            f.write(
+                f"{chain_name},{token},{sell_amount_wei},{human_amount},{decimals}\n"
+            )
 
         brib_token.approve(chain_addrs["bribe_vault"], bribe_amount_wei)
         briber.depositBribe(prop_hash, token, bribe_amount_wei, 0, prop_type)
 
     builder.output_payload(PAYLOAD_DIR / f"paladin_bribe_recycling_{chain_name}.json")
 
+
 if __name__ == "__main__":
     claims = fetch_claimable_paladin_bribes(omni_safe)
     mainnet_claims = [claim for claim in claims if claim["chainId"] == 1]
     arb_claims = [claim for claim in claims if claim["chainId"] == 42161]
 
-    for chain_name, chain_claims in [("mainnet", mainnet_claims), ("arbitrum", arb_claims)]:
+    for chain_name, chain_claims in [
+        ("mainnet", mainnet_claims),
+        ("arbitrum", arb_claims),
+    ]:
         builder = SafeTxBuilder(safe_address=omni_safe, chain_name=chain_name)
         csv_path = claim_bribes(chain_claims, chain_name)
         deposit_bribes(csv_path, chain_name, builder)
