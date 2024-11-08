@@ -106,7 +106,7 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str) -> str:
                 address=Web3.to_checksum_address(claim["token"]), abi=erc20_abi
             )
             decimals = token_contract.functions.decimals().call()
-            amount = Decimal(claim["amount"]) / Decimal(10 ** decimals)
+            amount = Decimal(claim["amount"]) / Decimal(10**decimals)
 
             f.write(
                 f"{chain_name},{claim['token']},{claim['gauge']},{amount},{claim['amount']}\n"
@@ -137,7 +137,9 @@ def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
         for line in f:
             _, token, gauge, _, amount_mantissa = line.strip().split(",")
             key = (token, gauge)
-            aggregated_bribes[key] = aggregated_bribes.get(key, Decimal(0)) + Decimal(amount_mantissa)
+            aggregated_bribes[key] = aggregated_bribes.get(key, Decimal(0)) + Decimal(
+                amount_mantissa
+            )
 
     token_sell_amounts = {}
 
@@ -154,11 +156,15 @@ def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
         assert prop_hash, f"no prop hash for {gauge}"
 
         # deposit 70%
-        bribe_amount_decimal = amount_mantissa * Decimal('0.7')
+        bribe_amount_decimal = amount_mantissa * Decimal("0.7")
         bribe_amount_mantissa = int(bribe_amount_decimal)
 
         # sell rest for later
-        token_sell_amounts[token] = token_sell_amounts.get(token, Decimal(0)) + amount_mantissa - Decimal(bribe_amount_mantissa)
+        token_sell_amounts[token] = (
+            token_sell_amounts.get(token, Decimal(0))
+            + amount_mantissa
+            - Decimal(bribe_amount_mantissa)
+        )
 
         brib_token.approve(chain_addrs["bribe_vault"], bribe_amount_mantissa)
         briber.depositBribe(prop_hash, token, bribe_amount_mantissa, 0, 2)
@@ -170,7 +176,7 @@ def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
                 address=Web3.to_checksum_address(token), abi=erc20_abi
             )
             decimals = token_contract.functions.decimals().call()
-            amount = sell_amount_mantissa / Decimal(10 ** decimals)
+            amount = sell_amount_mantissa / Decimal(10**decimals)
             sell_amount_mantissa_int = int(sell_amount_mantissa)
             f.write(f"{chain_name},{token},{amount},{sell_amount_mantissa_int}\n")
 
