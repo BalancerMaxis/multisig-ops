@@ -26,7 +26,7 @@ PAYLOAD_DIR = SCRIPT_DIR / "payload"
 CLAIM_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 PAYLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-CURRENT_DATE = datetime.utcnow().strftime("%Y-%m-%d")
+CURRENT_DATE = datetime.now().strftime("%Y-%m-%d")
 
 w3_by_chain = Web3RpcByChain(os.getenv("DRPC_KEY"))
 flatbook_mainnet = AddrBook("mainnet").flatbook
