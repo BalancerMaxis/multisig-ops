@@ -154,11 +154,6 @@ def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
         prop_hash = get_prop_hash(gauge)
         assert prop_hash, f"no prop hash for {gauge}"
 
-        token_contract = w3_by_chain[chain_name].eth.contract(
-            address=Web3.to_checksum_address(token), abi=erc20_abi
-        )
-        decimals = token_contract.functions.decimals().call()
-
         # deposit 70%
         bribe_amount_mantissa = int(amount_mantissa * 0.7)
 
