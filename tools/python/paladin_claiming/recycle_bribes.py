@@ -36,16 +36,18 @@ omni_safe = flatbook_mainnet["multisigs/vote_incentive_recycling"]
 
 CHAIN_ADDRS = {
     "mainnet": {
-        "paladin_distributor": "0x1F7b4Bf0CD21c1FBC4F1d995BA0608fDfC992aF4",
+        "paladin_distributor": flatbook_mainnet["paladin/DistributorV2"],
         "bribe_vault": flatbook_mainnet["hidden_hand2/bribe_vault"],
         "bal_briber": flatbook_mainnet["hidden_hand2/balancer_briber"],
     },
+    # 0x089154A7E4C562d5998AB3D7Ca57B504A8912482
     "arbitrum": {
-        "paladin_distributor": "0xB5757D5D93a26EaA3Bc6b0b25cb2364bE8d5b90E",
+        "paladin_distributor": flatbook_arb["paladin/DistributorV1"],
         "bribe_vault": flatbook_arb["hidden_hand2/bribe_vault"],
-        "bal_briber": "0xA8214b4Fb98936Ed45463956aFD24a862cC86Dc1",
+        "bal_briber": flatbook_arb["hidden_hand2/bal_briber"],
     },
 }
+
 
 paladin_distributor_abi = json.load(
     open("tools/python/abis/MultiMerkleDistributorV2.json")
