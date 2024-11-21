@@ -50,9 +50,7 @@ CHAIN_ADDRS = {
 }
 
 ABI_DIR = PROJECT_ROOT / "tools/python/abis"
-paladin_distributor_abi = json.load(
-    open(ABI_DIR / "MultiMerkleDistributorV2.json")
-)
+paladin_distributor_abi = json.load(open(ABI_DIR / "MultiMerkleDistributorV2.json"))
 erc20_abi = json.load(open(ABI_DIR / "ERC20.json"))
 bribe_market_abi = json.load(open(ABI_DIR / "BribeMarket.json"))
 
