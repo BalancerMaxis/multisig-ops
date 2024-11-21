@@ -7,25 +7,27 @@ import os
 from datetime import datetime
 from decimal import Decimal
 
+# make parent dirs available to import from
 sys.path.append(str(Path(__file__).parent.parent))
 
 import requests
 from web3 import Web3
-from helpers.hh_bribs import get_hh_aura_target
 from bal_addresses import AddrBook
 from bal_tools.safe_tx_builder import SafeTxBuilder, SafeContract
 from bal_tools import Web3RpcByChain
+from helpers.path_utils import find_project_root
 
 
 load_dotenv()
 
+
+PROJECT_ROOT = find_project_root()
 SCRIPT_DIR = Path(__file__).parent
 CLAIM_OUTPUT_DIR = SCRIPT_DIR / "claim_output"
 PAYLOAD_DIR = SCRIPT_DIR / "payload"
 
 CLAIM_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 PAYLOAD_DIR.mkdir(parents=True, exist_ok=True)
-
 CURRENT_DATE = datetime.now().strftime("%Y-%m-%d")
 
 w3_by_chain = Web3RpcByChain(os.getenv("DRPC_KEY"))
@@ -40,7 +42,6 @@ CHAIN_ADDRS = {
         "bribe_vault": flatbook_mainnet["hidden_hand2/bribe_vault"],
         "bal_briber": flatbook_mainnet["hidden_hand2/balancer_briber"],
     },
-    # 0x089154A7E4C562d5998AB3D7Ca57B504A8912482
     "arbitrum": {
         "paladin_distributor": flatbook_arb["paladin/DistributorV1"],
         "bribe_vault": flatbook_arb["hidden_hand2/bribe_vault"],
@@ -48,12 +49,12 @@ CHAIN_ADDRS = {
     },
 }
 
-
+ABI_DIR = PROJECT_ROOT / "tools/python/abis"
 paladin_distributor_abi = json.load(
-    open("tools/python/abis/MultiMerkleDistributorV2.json")
+    open(ABI_DIR / "MultiMerkleDistributorV2.json")
 )
-erc20_abi = json.load(open("tools/python/abis/ERC20.json"))
-bribe_market_abi = json.load(open("tools/python/abis/BribeMarket.json"))
+erc20_abi = json.load(open(ABI_DIR / "ERC20.json"))
+bribe_market_abi = json.load(open(ABI_DIR / "BribeMarket.json"))
 
 
 def fetch_claimable_paladin_bribes(address: str) -> List[dict]:
