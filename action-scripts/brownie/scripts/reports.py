@@ -449,7 +449,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         "review_summary": "\n".join(rate_providers_reviews),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
-        "add_gauge_summary": (is_preferential, rate_providers_reviews),
+        "add_gauge_summary": (is_preferential, rate_providers_reviews, gauge_address),
     }
 
 
@@ -744,6 +744,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
         outputs = []
         tx_list = file["transactions"]
         i = 0
+        add_gauge_summary = []
         for transaction in tx_list:
             data = handler_func(
                 transaction,
@@ -756,9 +757,7 @@ def handler(files: list[dict], handler_func: Callable) -> dict[str, dict]:
             )
             if data:
                 if "add_gauge_summary" in data:
-                    add_gauge_summary = data.pop("add_gauge_summary")
-                else:
-                    add_gauge_summary = None
+                    add_gauge_summary.append(data.pop("add_gauge_summary"))
                 outputs.append(data)
             i += 1
         if outputs:
