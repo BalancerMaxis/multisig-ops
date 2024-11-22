@@ -471,7 +471,7 @@ def format_into_report(
                 [f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)]
             )
             file_report += table.get_string()
-        file_report += "\n\n"
+            file_report += "\n\n"
 
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)
