@@ -1,0 +1,22 @@
+FILENAME: `MaxiOps/injectorScheduling/zkevm/set_poker_as_keeper.json`
+MULTISIG: `multisigs/feesManager (zkevm:0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09)`
+COMMIT: `3e187956a0db2ef14eccfed137c66f4f3a132ab2`
+CHAIN(S): `zkevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'c6f9bf3e-4e93-433b-8888-fec81f57bc0a', 'slug': 'invalid_transaction_simulation', 'message': 'Unsupported network'}}))`
+
+```
++--------------------------+-------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| fx_name                  | to                                                                                                    | value | inputs                                                                              | bip_number | tx_index |
++--------------------------+-------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| setKeeperRegistryAddress | 0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02 (maxiKeepers/gaugeRewardsInjectors/matic_rewards_injector) | 0     | {                                                                                   | N/A        |   N/A    |
+|                          |                                                                                                       |       |   "keeperRegistryAddress": [                                                        |            |          |
+|                          |                                                                                                       |       |     "0x737760C760FfEc370F84861E4Be4AFF7093Ffa3f (EOA/keepers/github_actions_poker)" |            |          |
+|                          |                                                                                                       |       |   ]                                                                                 |            |          |
+|                          |                                                                                                       |       | }                                                                                   |            |          |
+| setKeeperRegistryAddress | 0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A (maxiKeepers/gaugeRewardsInjectors/usdc_rewards_injector)  | 0     | {                                                                                   | N/A        |   N/A    |
+|                          |                                                                                                       |       |   "keeperRegistryAddress": [                                                        |            |          |
+|                          |                                                                                                       |       |     "0x737760C760FfEc370F84861E4Be4AFF7093Ffa3f (EOA/keepers/github_actions_poker)" |            |          |
+|                          |                                                                                                       |       |   ]                                                                                 |            |          |
+|                          |                                                                                                       |       | }                                                                                   |            |          |
++--------------------------+-------------------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+```
