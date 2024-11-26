@@ -117,7 +117,10 @@ def main() -> None:
         for validator in VALIDATORS:
             if "BIPs/" not in file_path:
                 # skip bip specific checks for payloads outside of the bips directory
-                if validator.__name__ in ["validate_file_has_bip", "validate_path_has_weekly_dir"]:
+                if validator.__name__ in [
+                    "validate_file_has_bip",
+                    "validate_path_has_weekly_dir",
+                ]:
                     continue
             is_valid, output_msg = validator(file)
             if not is_valid:
