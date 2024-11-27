@@ -1,31 +1,39 @@
 {
   "version": "1.0",
   "chainId": "8453",
-  "createdAt": 1732701856105,
+  "createdAt": 1732703664859,
   "meta": {
     "name": "Transactions Batch",
     "description": "",
-    "txBuilderVersion": "1.17.1",
+    "txBuilderVersion": "1.16.5",
     "createdFromSafeAddress": "0x65226673F3D202E0f897C862590d7e1A992B2048",
     "createdFromOwnerAddress": "",
-    "checksum": "0x9f640c4a357190f178cef5804b0b748ca81aa0ee922f869983291a8e6129a510"
+    "checksum": "0x90f4c82078ec24e1c5389807a2084a2e7a3c9904d86f418ef33e7b6a67722ee5"
   },
   "transactions": [
     {
-      "to": "0xC97fa65107AE7b94FB749cF05abb01005c14351E",
+      "to": "0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [
-          { "name": "_reward_token", "type": "address" },
-          { "name": "_distributor", "type": "address" }
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
         ],
-        "name": "add_reward",
-        "payable": false
+        "name": "performAction",
+        "payable": true
       },
       "contractInputsValues": {
-        "_reward_token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-        "_distributor": "0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4"
+        "target": "0xC97fa65107AE7b94FB749cF05abb01005c14351E",
+        "data": "0xe8de0d4d000000000000000000000000833589fCD6eDb6E08f4c7C32D4f71b54bdA02913000000000000000000000000fa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4"
       }
     }
   ]
