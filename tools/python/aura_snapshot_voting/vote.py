@@ -137,7 +137,7 @@ def prepare_vote_data(vote_df, prop):
     assert vote_df["share"].sum() == approx(100, abs=0.0001)
 
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
-    
+
     return vote_df, vote_choices
 
 
