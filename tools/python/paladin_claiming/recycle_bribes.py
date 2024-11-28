@@ -120,7 +120,9 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path) ->
     return csv_path
 
 
-def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder, date_dir: Path):
+def deposit_hh_bribes(
+    csv_path: str, chain_name: str, builder: SafeTxBuilder, date_dir: Path
+):
     """
     - generate tx to deposit 70% of claimed bribe amounts on HH
     - save remaining 30% (DAO fee) to separate csv
@@ -128,9 +130,11 @@ def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder, da
     """
     chain_addrs = CHAIN_ADDRS[chain_name]
     chain_dir = get_chain_dirs(date_dir, chain_name)
-    
-    sell_csv_path = chain_dir / f"paladin_tokens_to_sell_{chain_name}_{CURRENT_DATE}.csv"
-    
+
+    sell_csv_path = (
+        chain_dir / f"paladin_tokens_to_sell_{chain_name}_{CURRENT_DATE}.csv"
+    )
+
     with open(sell_csv_path, "w") as f:
         f.write("chain,token_address,amount,amount_mantissa\n")
 
