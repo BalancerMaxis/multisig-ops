@@ -23,11 +23,7 @@ load_dotenv()
 
 PROJECT_ROOT = find_project_root()
 SCRIPT_DIR = Path(__file__).parent
-CLAIM_OUTPUT_DIR = SCRIPT_DIR / "claim_output"
-PAYLOAD_DIR = SCRIPT_DIR / "payload"
-
-CLAIM_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-PAYLOAD_DIR.mkdir(parents=True, exist_ok=True)
+BASE_PATH = PROJECT_ROOT / "MaxiOps/paladin_bribes"
 CURRENT_DATE = datetime.now().strftime("%Y-%m-%d")
 
 w3_by_chain = Web3RpcByChain(os.getenv("DRPC_KEY"))
@@ -68,13 +64,21 @@ def get_prop_hash(target: str) -> str:
     return f"0x{prop.hex().lstrip('0x')}"
 
 
+def create_dirs_for_date(base_path: Path, date: str):
+    date_dir = base_path / date
+    for chain in ["mainnet", "arbitrum"]:
+        chain_dir = date_dir / chain
+        os.makedirs(chain_dir, exist_ok=True)
+        with open(chain_dir / ".gitkeep", "w") as f:
+            f.write("")
+    return date_dir
+
+
 def get_chain_dirs(base_dir: Path, chain_name: str) -> Path:
-    chain_dir = base_dir / chain_name
-    chain_dir.mkdir(parents=True, exist_ok=True)
-    return chain_dir
+    return base_dir / chain_name
 
 
-def claim_paladin_bribes(claims: List[dict], chain_name: str) -> str:
+def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path) -> str:
     """
     - generate tx to claim all bribes from paladin
     - save claim results to csv
@@ -85,7 +89,7 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str) -> str:
     )
     w3 = w3_by_chain[chain_name]
 
-    chain_dir = get_chain_dirs(CLAIM_OUTPUT_DIR, chain_name)
+    chain_dir = get_chain_dirs(date_dir, chain_name)
     csv_path = chain_dir / f"paladin_claims_{chain_name}_{CURRENT_DATE}.csv"
 
     with open(csv_path, "w") as f:
@@ -116,18 +120,17 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str) -> str:
     return csv_path
 
 
-def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
+def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder, date_dir: Path):
     """
     - generate tx to deposit 70% of claimed bribe amounts on HH
     - save remaining 30% (DAO fee) to separate csv
     - output final transaction payload for claims and deposits
     """
     chain_addrs = CHAIN_ADDRS[chain_name]
-
-    chain_dir = get_chain_dirs(CLAIM_OUTPUT_DIR, chain_name)
-    sell_csv_path = (
-        chain_dir / f"paladin_tokens_to_sell_{chain_name}_{CURRENT_DATE}.csv"
-    )
+    chain_dir = get_chain_dirs(date_dir, chain_name)
+    
+    sell_csv_path = chain_dir / f"paladin_tokens_to_sell_{chain_name}_{CURRENT_DATE}.csv"
+    
     with open(sell_csv_path, "w") as f:
         f.write("chain,token_address,amount,amount_mantissa\n")
 
@@ -181,13 +184,14 @@ def deposit_hh_bribes(csv_path: str, chain_name: str, builder: SafeTxBuilder):
             sell_amount_mantissa_int = int(sell_amount_mantissa)
             f.write(f"{chain_name},{token},{amount},{sell_amount_mantissa_int}\n")
 
-    payload_chain_dir = get_chain_dirs(PAYLOAD_DIR, chain_name)
     builder.output_payload(
-        payload_chain_dir / f"paladin_bribe_recycling_{chain_name}_{CURRENT_DATE}.json"
+        chain_dir / f"paladin_bribe_recycling_{chain_name}_{CURRENT_DATE}.json"
     )
 
 
 if __name__ == "__main__":
+    date_dir = create_dirs_for_date(BASE_PATH, CURRENT_DATE)
+
     claims = fetch_claimable_paladin_bribes(omni_safe)
     mainnet_claims = [claim for claim in claims if claim["chainId"] == 1]
     arb_claims = [claim for claim in claims if claim["chainId"] == 42161]
@@ -197,5 +201,5 @@ if __name__ == "__main__":
         ("arbitrum", arb_claims),
     ]:
         builder = SafeTxBuilder(safe_address=omni_safe, chain_name=chain_name)
-        csv_path = claim_paladin_bribes(chain_claims, chain_name)
-        deposit_hh_bribes(csv_path, chain_name, builder)
+        csv_path = claim_paladin_bribes(chain_claims, chain_name, date_dir)
+        deposit_hh_bribes(csv_path, chain_name, builder, date_dir)
