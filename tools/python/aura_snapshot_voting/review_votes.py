@@ -61,7 +61,7 @@ def review_votes(week_string):
         vote_df, vote_choices = prepare_vote_data(vote_df, prop)
         data = create_vote_payload(vote_choices, prop)
         hash = hash_eip712_message(data)
-        vote_prep = f"\n### Vote Preparation\n✅ Successfully simulated vote preparation.\nMessage hash: `0x{hash.hex()}`"
+        vote_prep = f"\n### Vote Preparation\nSuccessfully simulated vote preparation ✅\nMessage hash: `0x{hash.hex()}`"
         vote_check = True
     except Exception as e:
         vote_prep = f"\n### Vote Preparation\n❌ Error simulating vote preparation: {str(e)}"
