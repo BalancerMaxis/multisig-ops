@@ -1,0 +1,14 @@
+FILENAME: `BIPs/00proposed/bip-xxx-perms_v3_ethereum.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `e31d4633f7c8e8db34f459815e498329fc15d2f3`
+CHAIN(S): `mainnet`
+TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `grantRoles`, positional arguments with type(s) `(str),address` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `grantRoles`: ['grantRoles(bytes32[],address)']\nFunction invocation failed due to no matching argument types."))`
+
+```
++-----------------------+------------------------------------+--------------------------------------------+----------+------------+-----+----------+
+| function              | caller_name                        | caller_address                             | fx_paths | action_ids | bip | tx_index |
++-----------------------+------------------------------------+--------------------------------------------+----------+------------+-----+----------+
+| Authorizer/grantRoles | multisigs/vote_incentive_recycling | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e |          |            | N/A |    0     |
+| Authorizer/grantRoles | multisigs/emergency                | 0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888 |          |            | N/A |    1     |
++-----------------------+------------------------------------+--------------------------------------------+----------+------------+-----+----------+
+```
