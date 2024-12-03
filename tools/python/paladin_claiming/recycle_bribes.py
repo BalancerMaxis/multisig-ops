@@ -30,7 +30,7 @@ w3_by_chain = Web3RpcByChain(os.getenv("DRPC_KEY"))
 flatbook_mainnet = AddrBook("mainnet").flatbook
 flatbook_arb = AddrBook("arbitrum").flatbook
 
-omni_safe = flatbook_mainnet["multisigs/vote_incentive_recycling"]
+omni_safe = flatbook_mainnet["multisigs/maxi_omni"]
 
 CHAIN_ADDRS = {
     "mainnet": {
