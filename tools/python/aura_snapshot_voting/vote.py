@@ -8,6 +8,10 @@ from pytest import approx
 from dotenv import load_dotenv
 from pathlib import Path
 import glob
+import sys
+
+# make parent dirs available to import from
+sys.path.append(str(Path(__file__).parent.parent))
 
 import requests
 from bal_addresses import AddrBook
@@ -24,6 +28,7 @@ from eth_abi import encode_abi
 from eth_account import Account
 
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
+from helpers.path_utils import find_project_root
 
 
 load_dotenv()
@@ -86,18 +91,6 @@ def format_choices(choices):
             formatted_string = formatted_string[:-1]
     formatted_string += "}"
     return formatted_string
-
-
-def find_project_root(current_path=None):
-    anchor_file = "multisigs.md"
-    if current_path is None:
-        current_path = Path(__file__).resolve().parent
-    if (current_path / anchor_file).exists():
-        return current_path
-    parent = current_path.parent
-    if parent == current_path:
-        raise FileNotFoundError("Project root not found")
-    return find_project_root(parent)
 
 
 def create_voting_dirs_for_year(base_path, year, week):
