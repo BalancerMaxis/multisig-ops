@@ -1,8 +1,8 @@
 FILENAME: `BIPs/00proposed/bip-xxx-perms_v3_ethereum.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `2c4f7f81e386f3b0d7f9d289cfd9eb9faf6caa47`
+COMMIT: `290c48bb6bd854fb03bc831f5e9adc3f04430a30`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b7d74e35-b1f7-41b2-9515-e1ceeeaec2fb)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/0b22bc46-0a05-4424-8b69-d2a357bb0fdd)
 
 ```
 +-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
@@ -28,6 +28,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b7d74e35-b1f7-4
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableQuery()                                                    | 0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2 |     |          |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQuery()                                                   | 0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d |     |          |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQueryPermanently()                                        | 0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16 |     |          |
+|                       |                     |                                            | 20241205-v3-stable-pool/StablePoolFactory/disable()                                           | 0x2f54088e4f997de92b7bea3779089047980bab824c65d526fc075413ff373000 |     |          |
 |                       |                     |                                            | 20241205-v3-weighted-pool/WeightedPoolFactory/disable()                                       | 0xed6f8a5f0602534601834cae86e16a9424b7bf30c562d15bd781fbcd5026d9a1 |     |          |
 +-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 ```
