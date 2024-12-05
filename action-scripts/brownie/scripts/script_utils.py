@@ -111,7 +111,7 @@ def get_pool_info(
     book = AddrBook(chain_name)
     vault = Contract.from_abi(
         name="Vault",
-        address=book.search_unique("vault/Vault").address,
+        address=book.search_unique("20210418-vault/Vault").address,
         abi=json.load(open("abis/IVault.json")),
     )
     try:
