@@ -1,14 +1,30 @@
 FILENAME: `BIPs/00proposed/bip-xxx-perms_v3_gnosis.json`
 MULTISIG: `multisigs/dao (gnosis:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)`
-COMMIT: `b26db013f7fb5c5d67dce6a7dc1a6045c59822d9`
+COMMIT: `3fb63e2dd7da2a5791778be2390a554395f5bce4`
 CHAIN(S): `gnosis`
-TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `grantRoles`, positional arguments with type(s) `(str),address` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `grantRoles`: ['grantRoles(bytes32[],address)']\nFunction invocation failed due to no matching argument types."))`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ac4b0c50-7daf-4fc1-9d56-7c2fb1702fe0)
 
 ```
-+-----------------------+---------------------+--------------------------------------------+----------+------------+-----+----------+
-| function              | caller_name         | caller_address                             | fx_paths | action_ids | bip | tx_index |
-+-----------------------+---------------------+--------------------------------------------+----------+------------+-----+----------+
-| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e |          |            | N/A |    0     |
-| Authorizer/grantRoles | multisigs/emergency | 0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962 |          |            | N/A |    1     |
-+-----------------------+---------------------+--------------------------------------------+----------+------------+-----+----------+
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                      | action_ids                                                         | bip | tx_index |
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20241204-v3-vault/VaultAdmin/setStaticSwapFeePercentage(address,uint256)                      | 0x535f82655cb6a856d1452d97dc8e7b3393044c974f85cfcdd2c1d304c08ce34c | N/A |    0     |
+|                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/setGlobalProtocolSwapFeePercentage(uint256)           | 0x31893078b6590802f57d29fae81f10113c336375df90db2aed0392af0c75d8d4 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/setGlobalProtocolYieldFeePercentage(uint256)          | 0x3bc669a22fd5eb10a81a9ab00e0cab660e6f703d7ae9185597386bbd2e849e3f |     |          |
+|                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/setProtocolSwapFeePercentage(address,uint256)         | 0x93100e2a70c799f7ba831633b6a5078fc649ca0c812caa633106f1948a819155 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/setProtocolYieldFeePercentage(address,uint256)        | 0x131f9541f99a187d0a0db49756fb64345dec624e21579355e25b8b5a1b40b45c |     |          |
+|                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFees(address,address)                 | 0x4071255a8a5c23dae545fa9427571cfd2cbc2f7e623e863ec2c917ed09074e43 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address) | 0xf830de585800a430465649def91ee4e68e52ef19d8734b6836b9a2237853fc07 |     |          |
+| Authorizer/grantRoles | multisigs/emergency | 0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962 | 20241204-v3-vault/VaultAdmin/pauseVault()                                                     | 0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886 | N/A |    1     |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVault()                                                   | 0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pausePool(address)                                               | 0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpausePool(address)                                             | 0xa4443105bdb833cb364c9f76caa2adf3c6e62427cb693ffd6f1d8d7f44ad1bb5 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pauseVaultBuffers()                                              | 0xe80d721d89f2236e9428bfba076cbbbb355faeb9d9b97b49890ebcf930d05bc9 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVaultBuffers()                                            | 0xf923c4af23349707476c28766c280b0178ab3c4ebfa546da8c25a546a066a2dc |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableRecoveryMode(address)                                      | 0xb1539e3ebdcf854dedf819f6232d1e447cfb129f7bf572e70295fb998bd8c85e |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableRecoveryMode(address)                                     | 0x03aef606b4b82495d96af41cf1ed84b739a1de2bfb37bc1c0cfde2c53cf096aa |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableQuery()                                                    | 0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQuery()                                                   | 0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQueryPermanently()                                        | 0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16 |     |          |
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 ```
