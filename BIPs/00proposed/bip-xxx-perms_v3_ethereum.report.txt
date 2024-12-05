@@ -1,24 +1,24 @@
 FILENAME: `BIPs/00proposed/bip-xxx-perms_v3_ethereum.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `b770b0a682d61383edd7160927a00659d645f797`
+COMMIT: `b26db013f7fb5c5d67dce6a7dc1a6045c59822d9`
 CHAIN(S): `mainnet`
 TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `grantRoles`, positional arguments with type(s) `(str),address` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `grantRoles`: ['grantRoles(bytes32[],address)']\nFunction invocation failed due to no matching argument types."))`
 
 ```
-+-----------------------+---------------------+--------------------------------------------+----------+----------------------------------------------------------------------+-----+----------+
-| function              | caller_name         | caller_address                             | fx_paths | action_ids                                                           | bip | tx_index |
-+-----------------------+---------------------+--------------------------------------------+----------+----------------------------------------------------------------------+-----+----------+
-| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e |          |                                                                      | N/A |    0     |
-| Authorizer/grantRoles | multisigs/emergency | 0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888 |          | "0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886" | N/A |    1     |
-|                       |                     |                                            |          | "0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e" |     |          |
-|                       |                     |                                            |          | "0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272" |     |          |
-|                       |                     |                                            |          | "0xa4443105bdb833cb364c9f76caa2adf3c6e62427cb693ffd6f1d8d7f44ad1bb5" |     |          |
-|                       |                     |                                            |          | "0xe80d721d89f2236e9428bfba076cbbbb355faeb9d9b97b49890ebcf930d05bc9" |     |          |
-|                       |                     |                                            |          | "0xf923c4af23349707476c28766c280b0178ab3c4ebfa546da8c25a546a066a2dc" |     |          |
-|                       |                     |                                            |          | "0xb1539e3ebdcf854dedf819f6232d1e447cfb129f7bf572e70295fb998bd8c85e" |     |          |
-|                       |                     |                                            |          | "0x03aef606b4b82495d96af41cf1ed84b739a1de2bfb37bc1c0cfde2c53cf096aa" |     |          |
-|                       |                     |                                            |          | "0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2" |     |          |
-|                       |                     |                                            |          | "0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d" |     |          |
-|                       |                     |                                            |          | "0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16" |     |          |
-+-----------------------+---------------------+--------------------------------------------+----------+----------------------------------------------------------------------+-----+----------+
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                  | action_ids                                                         | bip | tx_index |
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e |                                                           |                                                                    | N/A |    0     |
+| Authorizer/grantRoles | multisigs/emergency | 0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888 | 20241204-v3-vault/VaultAdmin/pauseVault()                 | 0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886 | N/A |    1     |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVault()               | 0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pausePool(address)           | 0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpausePool(address)         | 0xa4443105bdb833cb364c9f76caa2adf3c6e62427cb693ffd6f1d8d7f44ad1bb5 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pauseVaultBuffers()          | 0xe80d721d89f2236e9428bfba076cbbbb355faeb9d9b97b49890ebcf930d05bc9 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVaultBuffers()        | 0xf923c4af23349707476c28766c280b0178ab3c4ebfa546da8c25a546a066a2dc |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableRecoveryMode(address)  | 0xb1539e3ebdcf854dedf819f6232d1e447cfb129f7bf572e70295fb998bd8c85e |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableRecoveryMode(address) | 0x03aef606b4b82495d96af41cf1ed84b739a1de2bfb37bc1c0cfde2c53cf096aa |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableQuery()                | 0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2 |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQuery()               | 0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d |     |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQueryPermanently()    | 0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16 |     |          |
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 ```
