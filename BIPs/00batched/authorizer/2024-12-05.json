@@ -1,6 +1,6 @@
 [
   {
-    "deployments": ["v3-vault-11", "v3-stable-pool-11"],
+    "deployments": ["20241204-v3-vault", "v3-stable-pool-11"],
     "chain_map": {
       "mainnet": 1
     },
@@ -28,9 +28,37 @@
     }
   },
   {
-    "deployments": ["v3-vault-11", "v3-stable-pool-11"],
+    "deployments": ["20241204-v3-vault", "v3-stable-pool-11"],
     "chain_map": {
       "gnosis": 100
+    },
+    "function_caller_map": {
+      "pauseVault()": "emergency",
+      "unpauseVault()": "emergency",
+      "pausePool(address)": "emergency",
+      "unpausePool(address)": "emergency",
+      "pauseVaultBuffers()": "emergency",
+      "unpauseVaultBuffers()": "emergency",
+      "enableRecoveryMode(address)": "emergency",
+      "disableRecoveryMode(address)": "emergency",
+      "enableQuery()": "emergency",
+      "disableQuery()": "emergency",
+      "disableQueryPermanently()": "emergency",
+      "setStaticSwapFeePercentage(address,uint256)": "feeManager",
+      "setGlobalProtocolSwapFeePercentage(uint256)": "feeManager",
+      "setGlobalProtocolYieldFeePercentage(uint256)": "feeManager",
+      "setProtocolSwapFeePercentage(address,uint256)": "feeManager",
+      "setProtocolYieldFeePercentage(address,uint256)": "feeManager",
+      "withdrawProtocolFees(address,address)": "feeManager",
+      "withdrawProtocolFeesForToken(address,address,address)": "feeManager",
+      "startAmplificationParameterUpdate(uint256,uint256)": "feeManager",
+      "stopAmplificationParameterUpdate()": "feeManager"
+    }
+  },
+  {
+    "deployments": ["20241204-v3-vault", "v3-stable-pool-11"],
+    "chain_map": {
+      "sepolia": 11155111
     },
     "function_caller_map": {
       "pauseVault()": "emergency",
