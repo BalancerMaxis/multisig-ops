@@ -258,6 +258,37 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             ] = to_checksum_address(
                                 tx["contractInputsValues"][input["name"]]
                             )
+                    # tuple
+                    elif "tuple" in input["type"]:
+                        casted_tuple = []
+                        for idx, tuple_item in enumerate(
+                            tx["contractInputsValues"][input["name"]]
+                            .strip("[]")
+                            .split(",")
+                        ):
+                            try:
+                                if "bool" in input["components"][idx]["type"]:
+                                    casted_tuple.append(
+                                        True
+                                        if tuple_item.strip('"') == "true"
+                                        else False
+                                    )
+                                elif re.search(
+                                    r"int[0-9]+", input["components"][idx]["type"]
+                                ):
+                                    casted_tuple.append(int(tuple_item.strip('"')))
+                                elif "address" in input["components"][idx]["type"]:
+                                    casted_tuple.append(
+                                        to_checksum_address(tuple_item.strip('"'))
+                                    )
+                                else:
+                                    casted_tuple.append(str(tuple_item.strip('"')))
+                                tx["contractInputsValues"][input["name"]] = [
+                                    tuple(casted_tuple)
+                                ]
+                            except IndexError:
+                                # payload contains nested tuples; no support yet
+                                continue
                     # catchall; cast to str
                     else:
                         if "[]" in input["type"]:
@@ -422,24 +453,25 @@ def format_into_report(
         file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n\n"
 
     if gauge_checklist:
-        table = PrettyTable(align="l")
-        table.set_style(MARKDOWN)
-        table.field_names = ["Gauge Validator", "Result"]
-        table.align["Result"] = "c"
-        is_preferential = "✅" if gauge_checklist[0] else "❌"
-        rate_providers_safety = []
-        for rate_provider in gauge_checklist[1]:
-            if rate_provider == "--":
-                continue
-            rate_providers_safety.append("✅" if rate_provider == "safe" else "❌")
-        table.add_row([f"`validate_preferential_gauge`", is_preferential])
-        if len(rate_providers_safety) == 0:
-            rate_providers_safety = ["--"]
-        table.add_row(
-            [f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)]
-        )
-        file_report += table.get_string()
-        file_report += "\n\n"
+        for gauge_check in gauge_checklist:
+            table = PrettyTable(align="l")
+            table.set_style(MARKDOWN)
+            table.field_names = [f"Gauge Validator ({gauge_check[2]})", "Result"]
+            table.align["Result"] = "c"
+            is_preferential = "✅" if gauge_check[0] else "❌"
+            rate_providers_safety = []
+            for rate_provider in gauge_check[1]:
+                if rate_provider == "--":
+                    continue
+                rate_providers_safety.append("✅" if rate_provider == "safe" else "❌")
+            table.add_row([f"`validate_preferential_gauge`", is_preferential])
+            if len(rate_providers_safety) == 0:
+                rate_providers_safety = ["--"]
+            table.add_row(
+                [f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)]
+            )
+            file_report += table.get_string()
+            file_report += "\n\n"
 
     file_report += "```\n"
     file_report += convert_output_into_table(transactions)

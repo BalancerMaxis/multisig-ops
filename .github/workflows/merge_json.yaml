@@ -42,7 +42,7 @@ jobs:
           commit-message: "Combined JSON Payloads ${{ github.event.inputs.runWeek }}"
           title: "Combined JSON payloads ${{ github.event.inputs.runWeek }}"
           assignees: tritium-vlk
-          branch: gha-payload-merge
+          branch: gha-payload-merge-${{ github.event.inputs.runWeek }}
           delete-branch: true
           labels: "Merged Payloads"
 
@@ -52,4 +52,4 @@ jobs:
     secrets: inherit
     with:
       pr_number: ${{ needs.merge_jsons.outputs.pull-request-number }}
-      checkout_ref: "gha-payload-merge"
+      checkout_ref: "gha-payload-merge-${{ github.event.inputs.runWeek }}"
