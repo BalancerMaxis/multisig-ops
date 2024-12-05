@@ -41,7 +41,7 @@ GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contract
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 
 flatbook = AddrBook("mainnet").flatbook
-vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
+vlaura_safe_addr = flatbook["multisigs/maxi_omni"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
 
 Account.enable_unaudited_hdwallet_features()
@@ -116,26 +116,8 @@ def create_voting_dirs_for_year(base_path, year, week):
             f.write("")
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Vote processing script")
-    parser.add_argument(
-        "--week-string",
-        type=str,
-        help="Date that votes are are being posted. should be YYYY-W##",
-    )
-    year, week = parser.parse_args().week_string.split("-")
-
-    project_root = find_project_root()
-    base_path = project_root / "MaxiOps/vlaura_voting"
-    voting_dir = base_path / str(year) / str(week)
-    input_dir = voting_dir / "input"
-    output_dir = voting_dir / "output"
-
-    create_voting_dirs_for_year(base_path, year, week)
-
-    vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
-
-    prop, _, _ = _get_prop_and_determine_date_range()
+def prepare_vote_data(vote_df, prop):
+    """Prepares and validates vote data, returning the structured payload"""
     choices = prop["choices"]
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
     gauge_labels = {to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
@@ -156,6 +138,12 @@ if __name__ == "__main__":
 
     vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
 
+    return vote_df, vote_choices
+
+
+def create_vote_payload(vote_choices, prop):
+    """Creates the EIP712 structured data payload"""
+    project_root = find_project_root()
     template_path = project_root / "tools/python/aura_snapshot_voting"
     with open(f"{template_path}/eip712_template.json", "r") as f:
         data = json.load(f)
@@ -165,6 +153,32 @@ if __name__ == "__main__":
     data["message"]["proposal"] = bytes.fromhex(prop["id"][2:])
     data["message"]["choice"] = format_choices(vote_choices)
 
+    return data
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Vote processing script")
+    parser.add_argument(
+        "--week-string",
+        type=str,
+        help="Date that votes are are being posted. should be YYYY-W##",
+    )
+    year, week = parser.parse_args().week_string.split("-")
+
+    project_root = find_project_root()
+    base_path = project_root / "MaxiOps/vlaura_voting"
+    voting_dir = base_path / str(year) / str(week)
+    input_dir = voting_dir / "input"
+    output_dir = voting_dir / "output"
+
+    create_voting_dirs_for_year(base_path, year, week)
+
+    vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
+
+    prop, _, _ = _get_prop_and_determine_date_range()
+
+    vote_df, vote_choices = prepare_vote_data(vote_df, prop)
+    data = create_vote_payload(vote_choices, prop)
     hash = hash_eip712_message(data)
 
     print(f"voting for: \n{vote_df[['Chain', 'snapshot_label', 'share']]}")
