@@ -83,7 +83,7 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path) ->
     """
     w3 = w3_by_chain[chain_name]
 
-    unique_distributors = set(claim['distributor'] for claim in claims)
+    unique_distributors = set(claim["distributor"] for claim in claims)
     distributor_contracts = {
         addr: SafeContract(addr, paladin_distributor_abi)
         for addr in unique_distributors
@@ -98,7 +98,7 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path) ->
         for claim in claims:
             print(f"Claiming - token: {claim['token']}, gauge: {claim['gauge']}")
 
-            distributor = distributor_contracts[claim['distributor']]
+            distributor = distributor_contracts[claim["distributor"]]
 
             distributor.claim(
                 claim["questId"],
