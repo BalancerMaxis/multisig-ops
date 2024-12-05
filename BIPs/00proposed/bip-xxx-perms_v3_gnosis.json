@@ -47,39 +47,3 @@
     }
   ]
 }
-
-
-
-"addLiquidityToBuffer(address,uint256,uint256,uint256,address)": "0x159db75892a01a6ea494eba1f320aa9fafc3a6d538bfbd1267c16106b44fd2f8",
-"collectAggregateFees(address)": "0xf6e8c86ccfb2b0b41ded0bbab5047b05134d523eccada9a4a3f5ef48ba7e2648",
-"disableQuery()": "0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d",
-"disableQueryPermanently()": "0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16",
-"disableRecoveryMode(address)": "0x03aef606b4b82495d96af41cf1ed84b739a1de2bfb37bc1c0cfde2c53cf096aa",
-"enableQuery()": "0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2",
-"enableRecoveryMode(address)": "0xb1539e3ebdcf854dedf819f6232d1e447cfb129f7bf572e70295fb998bd8c85e",
-"initializeBuffer(address,uint256,uint256,uint256,address)": "0x217e71e98b20fee55e5d71f3760f8131db2acc7b4e9bea081677dc023059b0bb",
-"pausePool(address)": "0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272",
-"pauseVault()": "0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886",
-"pauseVaultBuffers()": "0xe80d721d89f2236e9428bfba076cbbbb355faeb9d9b97b49890ebcf930d05bc9",
-"removeLiquidityFromBuffer(address,uint256,uint256,uint256)": "0x32bb9035d258f9dbda7de4645c41991aee679fbb5e02348725387148f3635cf1",
-"removeLiquidityFromBufferHook(address,uint256,uint256,uint256,address)": "0x6e83a0d23866ba4d936ca5442cace6499f945ce19c22cb2a3c44db16763aa756",
-"setAuthorizer(address)": "0x64e993ea552c3a1358e0c671e22276b9941a3828c157bc3cbf847f07b4fb68ab",
-"setProtocolFeeController(address)": "0x2832f8d19df98187a279b09b8ed9735908c46640d892c836999ea12b31be0be3",
-"unpausePool(address)": "0xa4443105bdb833cb364c9f76caa2adf3c6e62427cb693ffd6f1d8d7f44ad1bb5",
-"unpauseVault()": "0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e",
-"unpauseVaultBuffers()": "0xf923c4af23349707476c28766c280b0178ab3c4ebfa546da8c25a546a066a2dc",
-"updateAggregateSwapFeePercentage(address,uint256)": "0x81a758d918cc71e749149181139e5c82a9457ebe8b07e1118500d2f10278863a",
-"updateAggregateYieldFeePercentage(address,uint256)": "0xadad8cf8848377f713bcad6d890e6bc7c52a1c27687cc734adcf4ac6563db121"
-}
-"setStaticSwapFeePercentage(address,uint256)": "",
-
-
-"setStaticSwapFeePercentage(address,uint256)": "feeManager",
-"setGlobalProtocolSwapFeePercentage(uint256)": "feeManager",
-"setGlobalProtocolYieldFeePercentage(uint256)": "feeManager",
-"setProtocolSwapFeePercentage(address,uint256)": "feeManager",
-"setProtocolYieldFeePercentage(address,uint256)": "feeManager",
-"withdrawProtocolFees(address,address)": "feeManager",
-"withdrawProtocolFeesForToken(address,address,address)": "feeManager",
-"startAmplificationParameterUpdate(uint256,uint256)": "feeManager",
-"stopAmplificationParameterUpdate()": "feeManager"
