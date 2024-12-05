@@ -1,8 +1,8 @@
 FILENAME: `BIPs/00proposed/bip-xxx-perms_v3_ethereum.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `3fb63e2dd7da2a5791778be2390a554395f5bce4`
+COMMIT: `ddd1805bbdec99aee475c2a61a5feb1ec402024b`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6ac2d2d1-6893-4ea8-ad2a-d8a992091a6d)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/20620c26-4c8f-4203-b708-e2572471c8c9)
 
 ```
 +-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
@@ -15,6 +15,8 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6ac2d2d1-6893-4
 |                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/setProtocolYieldFeePercentage(address,uint256)        | 0x131f9541f99a187d0a0db49756fb64345dec624e21579355e25b8b5a1b40b45c |     |          |
 |                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFees(address,address)                 | 0x4071255a8a5c23dae545fa9427571cfd2cbc2f7e623e863ec2c917ed09074e43 |     |          |
 |                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address) | 0xf830de585800a430465649def91ee4e68e52ef19d8734b6836b9a2237853fc07 |     |          |
+|                       |                     |                                            | 20241205-v3-stable-pool/StablePool/startAmplificationParameterUpdate(uint256,uint256)         | 0xc1d77fef06a5acef26a30536474b98eb44840e5f17e86114c8aaa4274e206b3c |     |          |
+|                       |                     |                                            | 20241205-v3-stable-pool/StablePool/stopAmplificationParameterUpdate()                         | 0xeeed27c13054947e3283c26fca5c34c2e514ef8caa98f1c6a6778c06f1d247da |     |          |
 | Authorizer/grantRoles | multisigs/emergency | 0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888 | 20241204-v3-vault/VaultAdmin/pauseVault()                                                     | 0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886 | N/A |    1     |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVault()                                                   | 0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e |     |          |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pausePool(address)                                               | 0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272 |     |          |
@@ -26,5 +28,6 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6ac2d2d1-6893-4
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableQuery()                                                    | 0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2 |     |          |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQuery()                                                   | 0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d |     |          |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQueryPermanently()                                        | 0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16 |     |          |
+|                       |                     |                                            | 20241205-v3-weighted-pool/WeightedPoolFactory/disable()                                       | 0xed6f8a5f0602534601834cae86e16a9424b7bf30c562d15bd781fbcd5026d9a1 |     |          |
 +-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 ```
