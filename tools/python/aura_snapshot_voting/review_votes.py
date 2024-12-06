@@ -61,7 +61,6 @@ def review_votes(week_string):
         )
         vote_check = False
 
-
     vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
 
     gauge_labels = fetch_gauge_labels()
