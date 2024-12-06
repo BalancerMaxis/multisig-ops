@@ -1,1 +1,32 @@
-{"version":"1.0","chainId":"1","createdAt":1733497384882,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.17.1","createdFromSafeAddress":"0xc38c5f97B34E175FFd35407fc91a937300E33860","createdFromOwnerAddress":"","checksum":"0xf4d17dbf1bdb8c6168befbb4ab141bd612d0fdfedd7e4cbcbd04a5038c47b370"},"transactions":[{"to":"0x05ff47AFADa98a98982113758878F9A8B9FddA0a","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"uint256","name":"swapFeePercentage","type":"uint256"}],"name":"setSwapFeePercentage","payable":false},"contractInputsValues":{"swapFeePercentage":"100000000000000"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1733497384882,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xf4d17dbf1bdb8c6168befbb4ab141bd612d0fdfedd7e4cbcbd04a5038c47b370"
+  },
+  "transactions": [
+    {
+      "to": "0x05ff47AFADa98a98982113758878F9A8B9FddA0a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "swapFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": { "swapFeePercentage": "100000000000000" }
+    }
+  ]
+}
