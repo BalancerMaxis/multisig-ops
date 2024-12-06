@@ -123,7 +123,7 @@ def prepare_vote_data(vote_df, prop):
     gauge_labels = {to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
     choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
-    vote_df = vote_df.dropna(subset=["Gauge Address"])
+    vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
 
     vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
         lambda x: gauge_labels.get(to_checksum_address(x.strip()))
