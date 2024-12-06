@@ -47,6 +47,20 @@ def review_votes(week_string):
     csv_file = csv_files[0]
     vote_df = pd.read_csv(csv_file)
 
+    try:
+        test_df = vote_df.copy()
+        prop, _, _ = _get_prop_and_determine_date_range()
+        test_df, vote_choices = prepare_vote_data(test_df, prop)
+        data = create_vote_payload(vote_choices, prop)
+        hash = hash_eip712_message(data)
+        vote_prep = f"\n### Vote Preparation\nSuccessfully simulated vote preparation ✅\nMessage hash: `0x{hash.hex()}`"
+        vote_check = True
+    except Exception as e:
+        vote_prep = (
+            f"\n### Vote Preparation\n❌ Error simulating vote preparation: {str(e)}"
+        )
+        vote_check = False
+
     vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
 
     gauge_labels = fetch_gauge_labels()
@@ -60,19 +74,6 @@ def review_votes(week_string):
 
     total_allocation = vote_df["Allocation %"].str.rstrip("%").astype(float).sum()
     allocation_check = abs(total_allocation - 100) < 0.0001
-
-    try:
-        prop, _, _ = _get_prop_and_determine_date_range()
-        vote_df, vote_choices = prepare_vote_data(vote_df, prop)
-        data = create_vote_payload(vote_choices, prop)
-        hash = hash_eip712_message(data)
-        vote_prep = f"\n### Vote Preparation\nSuccessfully simulated vote preparation ✅\nMessage hash: `0x{hash.hex()}`"
-        vote_check = True
-    except Exception as e:
-        vote_prep = (
-            f"\n### Vote Preparation\n❌ Error simulating vote preparation: {str(e)}"
-        )
-        vote_check = False
 
     report = f"""## vLAURA Votes Review
 
