@@ -232,5 +232,6 @@ def main(
     payload["transactions"] = tx_list
     with open(f"../../../BIPs/00rebateRecycling/{today}.json", "w") as f:
         json.dump(payload, f)
+        f.write("\n")
     print(f"USDC to Bribs: {total_mantissa}")
     print(f"USDC payments: {payments}")

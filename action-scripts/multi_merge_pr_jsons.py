@@ -145,6 +145,7 @@ def main():
             file_path = os.path.join(dir_name_batched_full, file_name)
             with open(file_path, "w") as new_file:
                 json.dump(result, new_file, indent=2)
+                new_file.write("\n")
 
 
 if __name__ == "__main__":

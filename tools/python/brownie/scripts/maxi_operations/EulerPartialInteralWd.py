@@ -105,3 +105,4 @@ endjson["transactions"] = txlist
 
 with open("eulerBreakoutOutput.json", "w") as f:
     json.dump(endjson, f)
+    f.write("\n")

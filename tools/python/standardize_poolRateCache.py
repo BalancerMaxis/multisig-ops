@@ -125,6 +125,7 @@ def main(chain="mainnet"):
 
     with open(f"./rateChangeTxList.json", "w") as f:
         json.dump(tx_list, f)
+        f.write("\n")
 
 
 if __name__ == "__main__":

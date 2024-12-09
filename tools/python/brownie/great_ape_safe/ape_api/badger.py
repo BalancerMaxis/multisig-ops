@@ -264,6 +264,7 @@ class Badger:
                 "eta": eta,
             }
             json.dump(tx_data, f, indent=4, sort_keys=True)
+            f.write("\n")
 
     def execute_timelock(self, queueTx_dir):
         """

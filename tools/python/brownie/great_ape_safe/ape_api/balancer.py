@@ -102,6 +102,7 @@ class Balancer:
             ]
             with open("great_ape_safe/ape_api/helpers/balancer/pools.json", "w") as f:
                 json.dump(pool_data_filtered, f)
+                f.write("\n")
             return pool_data_filtered
 
         with open("great_ape_safe/ape_api/helpers/balancer/pools.json") as f:
