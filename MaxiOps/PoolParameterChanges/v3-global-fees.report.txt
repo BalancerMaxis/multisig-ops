@@ -1,0 +1,22 @@
+FILENAME: `MaxiOps/PoolParameterChanges/v3-global-fees.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `2e269c796b955320e8deb9f9165adde56842b595`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/166385ed-8e86-41ab-a3e8-c8b8bdd1205b)
+
+```
++-------------------------------------+--------------------------------------------------------------------------------------+-------+--------------------------------------+------------+----------+
+| fx_name                             | to                                                                                   | value | inputs                               | bip_number | tx_index |
++-------------------------------------+--------------------------------------------------------------------------------------+-------+--------------------------------------+------------+----------+
+| setGlobalProtocolSwapFeePercentage  | 0xa731C23D7c95436Baaae9D52782f966E1ed07cc8 (20241204-v3-vault/ProtocolFeeController) | 0     | {                                    | N/A        |   N/A    |
+|                                     |                                                                                      |       |   "newProtocolSwapFeePercentage": [  |            |          |
+|                                     |                                                                                      |       |     "500000000000000000"             |            |          |
+|                                     |                                                                                      |       |   ]                                  |            |          |
+|                                     |                                                                                      |       | }                                    |            |          |
+| setGlobalProtocolYieldFeePercentage | 0xa731C23D7c95436Baaae9D52782f966E1ed07cc8 (20241204-v3-vault/ProtocolFeeController) | 0     | {                                    | N/A        |   N/A    |
+|                                     |                                                                                      |       |   "newProtocolYieldFeePercentage": [ |            |          |
+|                                     |                                                                                      |       |     "100000000000000000"             |            |          |
+|                                     |                                                                                      |       |   ]                                  |            |          |
+|                                     |                                                                                      |       | }                                    |            |          |
++-------------------------------------+--------------------------------------------------------------------------------------+-------+--------------------------------------+------------+----------+
+```
