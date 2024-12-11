@@ -205,6 +205,7 @@ if __name__ == "__main__":
 
     with open(f"{output_dir}/payload.json", "w") as f:
         json.dump(data, f, indent=4)
+        f.write("\n")
 
     response = requests.post(
         "https://relayer.snapshot.org/",

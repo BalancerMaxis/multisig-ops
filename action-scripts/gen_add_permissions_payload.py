@@ -192,6 +192,7 @@ def save_txbuilder_json(change_list, output_dir, filename_root=today):
         # Save tx builder json
         with open(f"{output_dir}/{filename_root}_{chain_name}.json", "w") as f:
             json.dump(dict(data), f, indent=2)
+            f.write("\n")
 
 
 def main(
