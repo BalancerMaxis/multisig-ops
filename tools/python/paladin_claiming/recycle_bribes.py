@@ -34,12 +34,10 @@ omni_safe = flatbook_mainnet["multisigs/maxi_omni"]
 
 CHAIN_ADDRS = {
     "mainnet": {
-        "paladin_distributor": flatbook_mainnet["paladin/DistributorV2"],
         "bribe_vault": flatbook_mainnet["hidden_hand2/bribe_vault"],
         "bal_briber": flatbook_mainnet["hidden_hand2/balancer_briber"],
     },
     "arbitrum": {
-        "paladin_distributor": flatbook_arb["paladin/DistributorV1"],
         "bribe_vault": flatbook_arb["hidden_hand2/bribe_vault"],
         "bal_briber": flatbook_arb["hidden_hand2/bal_briber"],
     },
@@ -83,11 +81,13 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path) ->
     - generate tx to claim all bribes from paladin
     - save claim results to csv
     """
-    chain_addrs = CHAIN_ADDRS[chain_name]
-    paladin_distributor = SafeContract(
-        chain_addrs["paladin_distributor"], paladin_distributor_abi
-    )
     w3 = w3_by_chain[chain_name]
+
+    unique_distributors = set(claim["distributor"] for claim in claims)
+    distributor_contracts = {
+        addr: SafeContract(addr, paladin_distributor_abi)
+        for addr in unique_distributors
+    }
 
     chain_dir = get_chain_dirs(date_dir, chain_name)
     csv_path = chain_dir / f"paladin_claims_{chain_name}_{CURRENT_DATE}.csv"
@@ -98,7 +98,9 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path) ->
         for claim in claims:
             print(f"Claiming - token: {claim['token']}, gauge: {claim['gauge']}")
 
-            paladin_distributor.claim(
+            distributor = distributor_contracts[claim["distributor"]]
+
+            distributor.claim(
                 claim["questId"],
                 claim["period"],
                 claim["index"],

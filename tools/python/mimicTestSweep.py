@@ -59,6 +59,7 @@ def generateSweepFile(sourcefile):
     )
     with open(f"{target_dir}/out/{today}-{chain}.json", "w") as f:
         json.dump(dict(tx_out_map), f)
+        f.write("\n")
     with open(f"{target_dir}/out/{today}-{chain}.report.txt", "w") as f:
         f.write(report)
 
