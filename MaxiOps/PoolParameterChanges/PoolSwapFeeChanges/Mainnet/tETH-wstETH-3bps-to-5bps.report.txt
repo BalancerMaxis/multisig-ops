@@ -1,0 +1,17 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolSwapFeeChanges/Mainnet/tETH-wstETH-3bps-to-5bps.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `7eca9d9f432ea5c86f70f01d1e0a57e6e981748c`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/85aa7e1f-ce7e-4f2f-9bda-2b6b49147d06)
+
+```
++----------------------+---------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| fx_name              | to                                                                  | value | inputs                   | bip_number | tx_index |
++----------------------+---------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| setSwapFeePercentage | 0x1D13531bf6344c102280CE4c458781FBF14Dad14 (pools/tETH/wstETH-1d13) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                     |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                     |       |     "500000000000000"    |            |          |
+|                      |                                                                     |       |   ]                      |            |          |
+|                      |                                                                     |       | }                        |            |          |
++----------------------+---------------------------------------------------------------------+-------+--------------------------+------------+----------+
+```

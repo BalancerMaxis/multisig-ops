@@ -33,3 +33,4 @@ for block in pretemplate:
 
 with open("../../BIPs/00batched/authorizer/new-chain-template.json", "w") as f:
     json.dump(template, f, indent=2)
+    f.write("\n")
