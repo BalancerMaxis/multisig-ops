@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/injectorScheduling/mainnet/ADD_REWARD_v3_gauges_gnosis.json`
+MULTISIG: `multisigs/lm (gnosis:0x14969B55a675d13a1700F71A37511bc22D90155a)`
+COMMIT: `626d519c19960050ba03b8ac4c3c9491fa6a8ac0`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/341de192-dbf6-4f9e-a0fc-5561ded2bafd)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                                             | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------------------------+-----+----------+
+| performAction | 0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75 (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xcBD87e4Dad6a99506484E9adEEC8FF84Ce7BD399 (None) | add_reward(address,address) | 0x2a22f9c3b484c3629090FeED35F17Ff8F88f76F0: USDC.e                        | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838: maxiKeepers/injectorV2/USDC.e |     |          |
+| performAction | 0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75 (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xA76ED5da09209D6f2198d8D793005393327b736E (None) | add_reward(address,address) | 0x2a22f9c3b484c3629090FeED35F17Ff8F88f76F0: USDC.e                        | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838: maxiKeepers/injectorV2/USDC.e |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------------------------+-----+----------+
+```
