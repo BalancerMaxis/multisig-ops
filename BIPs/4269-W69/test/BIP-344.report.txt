@@ -1,13 +1,52 @@
-File name: BIPs/4269-W69/test/BIP-344.json
-COMMIT: `3431077c38f3e7ef92ff6908baf9c26a6a38ae09`
+FILENAME: `BIPs/4269-W69/test/BIP-344.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `8cd9c88618fffe4cb78d05eb379e2f3cfa133a66`
 CHAIN(S): `optimism`
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/506442ed-e8cb-4002-b84a-ac5e5005c83d)
+
+| Gauge Validator (0x1Ce5bf7e6C16C567DeFd625e0911Bfd0FC7f2d7d) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0xd0b6787589d33B4F7aA5a27f36497e091e78a2ad) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0x0BFcF593C149Ddbeedb190667d24D30D2E38AF73) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0xdc08146530DD9910F8ab4D0aD2C184f87e903540) |  Result  |
+| :------------------------------------------------------------| :------: |
+| `validate_preferential_gauge`                                |    ✅    |
+| `validate_rate_providers_safety`                             | ❌ ❌ ❌ |
+
 ```
-+----------+----------+--------------------------------------------------------------------+-------------+---------+--------------------------------------------+-------+--------+--------------+---------+----------+
-| function |  chain   |                              pool_id                               |    symbol   | aFactor |               gauge_address                |  fee  |  cap   | style        |   bip   | tx_index |
-+----------+----------+--------------------------------------------------------------------+-------------+---------+--------------------------------------------+-------+--------+--------------+---------+----------+
-| addGauge | optimism | 0x39965c9dab5448482cf7e002f583c812ceb53046000100000000000000000003 |   BPT-ROAD  |   N/A   | 0x1Ce5bf7e6C16C567DeFd625e0911Bfd0FC7f2d7d |  0.5% | 100.0% | L0 sidechain | BIP-344 |   N/A    |
-| addGauge | optimism | 0x1d95129c18a8c91c464111fdf7d0eb241b37a9850002000000000000000000c1 | BPT-RESERVE |   N/A   | 0xd0b6787589d33B4F7aA5a27f36497e091e78a2ad | 0.05% |  2.0%  | L0 sidechain | BIP-344 |   N/A    |
-| addGauge | optimism | 0xd20f6f1d8a675cdca155cb07b5dc9042c467153f0002000000000000000000bc |  BPT-BOATH  |   N/A   | 0x0BFcF593C149Ddbeedb190667d24D30D2E38AF73 |  0.5% |  2.0%  | L0 sidechain | BIP-344 |   N/A    |
-| addGauge | optimism | 0x098f32d98d0d64dba199fc1923d3bf4192e787190001000000000000000000d2 | bb-rf-SOTRI |   N/A   | 0xdc08146530DD9910F8ab4D0aD2C184f87e903540 |  0.4% | 100.0% | L0 sidechain | BIP-344 |   N/A    |
-+----------+----------+--------------------------------------------------------------------+-------------+---------+--------------------------------------------+-------+--------+--------------+---------+----------+
++-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                                 | symbol_and_info | gauge_address_and_info                           | tokens                                                     | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x39965c9dab5448482cf7e002f583c812ceb53046000100000000000000000003  | BPT-ROAD        | root: 0x1Ce5bf7e6C16C567DeFd625e0911Bfd0FC7f2d7d | 0x4200000000000000000000000000000000000006: WETH           |                                            |                | BIP-344 |    0     |
+|                       | pool_address: 0x39965c9dAb5448482Cf7e002F583c812Ceb53046            | fee: 0.5        | side: 0x92F714Ae8C2150b7a7a75c6C97656BD4B348ca9E | 0x4200000000000000000000000000000000000042: OP             |                                            |                |         |          |
+|                       |                                                                     | a-factor: N/A   | style: L0 sidechain                              | 0x7F5c764cBc14f9669B88837ca1490cCa17c31607: USDC           |                                            |                |         |          |
+|                       |                                                                     |                 | cap: 100.0%                                      |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | preferential: True                               |                                                            |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x1d95129c18a8c91c464111fdf7d0eb241b37a9850002000000000000000000c1  | BPT-RESERVE     | root: 0xd0b6787589d33B4F7aA5a27f36497e091e78a2ad | 0x7F5c764cBc14f9669B88837ca1490cCa17c31607: USDC           |                                            |                | BIP-344 |    1     |
+|                       | pool_address: 0x1D95129c18a8c91C464111FDf7d0Eb241B37a985            | fee: 0.05       | side: 0x02ab6fE6B3aF13B4F859001486dC75F2dAC79026 | 0xc5b001DC33727F8F26880B184090D3E252470D45: ERN            |                                            |                |         |          |
+|                       |                                                                     | a-factor: N/A   | style: L0 sidechain                              |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | cap: 2.0%                                        |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | preferential: True                               |                                                            |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xd20f6f1d8a675cdca155cb07b5dc9042c467153f0002000000000000000000bc  | BPT-BOATH       | root: 0x0BFcF593C149Ddbeedb190667d24D30D2E38AF73 | 0x39FdE572a18448F8139b7788099F0a0740f51205: OATH           |                                            |                | BIP-344 |    2     |
+|                       | pool_address: 0xd20f6F1D8a675cDCa155Cb07b5dC9042c467153f            | fee: 0.5        | side: 0x5E0ead6739baA486039a3B0f0133aF0f70182140 | 0x4200000000000000000000000000000000000006: WETH           |                                            |                |         |          |
+|                       |                                                                     | a-factor: N/A   | style: L0 sidechain                              |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | cap: 2.0%                                        |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | preferential: True                               |                                                            |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x098f32d98d0d64dba199fc1923d3bf4192e787190001000000000000000000d2  | bb-rf-SOTRI     | root: 0xdc08146530DD9910F8ab4D0aD2C184f87e903540 | 0x6af3737F6d58Ae8Bcb9f2B597125D37244596E59: bb-rf-soWBTC   | 0x6af3737F6d58Ae8Bcb9f2B597125D37244596E59 | !!NO REVIEW!!  | BIP-344 |    3     |
+|                       | pool_address: 0x098f32D98d0D64Dba199FC1923D3BF4192E78719            | fee: 0.4        | side: 0x880d9B16398C161098D58F9CE77792eB35a24f88 | 0x7e9250cC13559eB50536859e8C076Ef53e275Fb3: bb-rf-soWSTETH | 0x5B043A12936777Cf18fC7Ba259673C795DE932a6 | !!NO REVIEW!!  |         |          |
+|                       |                                                                     | a-factor: N/A   | style: L0 sidechain                              | 0xEdcfaF390906a8f91fb35B7bAC23f3111dBaEe1C: bb-rf-soUSDC   | 0xEdcfaF390906a8f91fb35B7bAC23f3111dBaEe1C | !!NO REVIEW!!  |         |          |
+|                       |                                                                     |                 | cap: 100.0%                                      |                                                            |                                            |                |         |          |
+|                       |                                                                     |                 | preferential: True                               |                                                            |                                            |                |         |          |
++-----------------------+---------------------------------------------------------------------+-----------------+--------------------------------------------------+------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 ```

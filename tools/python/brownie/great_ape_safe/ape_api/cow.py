@@ -167,6 +167,7 @@ class Cow:
         os.makedirs(path, exist_ok=True)
         with open(f"{path}{order_uid}.json", "w+") as f:
             f.write(json.dumps(order_payload))
+            f.write("\n")
 
         if origin != self.safe.address:
             # can only sign if origin is safe
