@@ -3,11 +3,7 @@ from brownie import network, accounts, Contract
 import os
 
 
-CHAINS_TO_KEEP = [
-    #    "zkevm-main", # currently running in defender due to rpc issues
-    "mode-main",
-    "fraxtal-main",
-]
+CHAINS_TO_KEEP = ["zkevm-main", "mode-main", "fraxtal-main"]
 
 
 def main():

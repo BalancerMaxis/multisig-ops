@@ -95,6 +95,7 @@ def getEvents(contract):
 def write_gauge_outputs(gauges_dict):
     with open("output/gauges.json", "w") as jsonfile:
         json.dump(gauges_dict, jsonfile)
+        jsonfile.write("\n")
     with open("output/gauges.csv", "w") as csvfile:
         csvfile.write("name, address, isActive\n")
         for key, value in gauges_dict["active_gauges"].items():
