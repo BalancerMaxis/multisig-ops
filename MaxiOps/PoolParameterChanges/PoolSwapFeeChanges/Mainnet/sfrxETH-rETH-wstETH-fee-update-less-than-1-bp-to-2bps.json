@@ -1,1 +1,36 @@
-{"version":"1.0","chainId":"1","createdAt":1734125468826,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.17.1","createdFromSafeAddress":"0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6","createdFromOwnerAddress":"","checksum":"0x2ced6c8d0074ae084d09f2cda72de7101499ab4aa4c63ad1c6cf4e4e15ef9150"},"transactions":[{"to":"0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"address[]","name":"addresses","type":"address[]"},{"internalType":"uint256[]","name":"fees","type":"uint256[]"}],"name":"setSwapFees","payable":false},"contractInputsValues":{"addresses":"[0x5aEe1e99fE86960377DE9f88689616916D5DcaBe]","fees":"[200000000000000]"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1734125468826,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x2ced6c8d0074ae084d09f2cda72de7101499ab4aa4c63ad1c6cf4e4e15ef9150"
+  },
+  "transactions": [
+    {
+      "to": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "addresses",
+            "type": "address[]"
+          },
+          { "internalType": "uint256[]", "name": "fees", "type": "uint256[]" }
+        ],
+        "name": "setSwapFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "addresses": "[0x5aEe1e99fE86960377DE9f88689616916D5DcaBe]",
+        "fees": "[200000000000000]"
+      }
+    }
+  ]
+}
