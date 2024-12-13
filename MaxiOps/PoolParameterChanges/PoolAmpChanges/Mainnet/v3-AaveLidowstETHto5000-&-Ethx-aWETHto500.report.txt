@@ -1,0 +1,28 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolAmpChanges/Mainnet/v3-AaveLidowstETHto5000-&-Ethx-aWETHto500.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `d654fb99d33de2d1a313438c98c780654df2aa7c`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/43161f19-0260-480f-a737-c39334719e8c)
+
+```
++-----------------------------------+-------------------------------------------------------------------------------+-------+------------------------------------------------------+------------+----------+
+| fx_name                           | to                                                                            | value | inputs                                               | bip_number | tx_index |
++-----------------------------------+-------------------------------------------------------------------------------+-------+------------------------------------------------------+------------+----------+
+| startAmplificationParameterUpdate | 0xc4Ce391d82D164c166dF9c8336DDF84206b2F812 (pools/Aave Lido wETH-wstETH-c4ce) | 0     | {                                                    | N/A        |   N/A    |
+|                                   |                                                                               |       |   "rawEndValue": [                                   |            |          |
+|                                   |                                                                               |       |     "raw:5000, 18 decimals:5E-15, 6 decimals: 0.005" |            |          |
+|                                   |                                                                               |       |   ],                                                 |            |          |
+|                                   |                                                                               |       |   "endTime": [                                       |            |          |
+|                                   |                                                                               |       |     "1735263157"                                     |            |          |
+|                                   |                                                                               |       |   ]                                                  |            |          |
+|                                   |                                                                               |       | }                                                    |            |          |
+| startAmplificationParameterUpdate | 0x4AB7aB316D43345009B2140e0580B072eEc7DF16 (pools/ETHx waWETH-4ab7)           | 0     | {                                                    | N/A        |   N/A    |
+|                                   |                                                                               |       |   "rawEndValue": [                                   |            |          |
+|                                   |                                                                               |       |     "raw:500, 18 decimals:5E-16, 6 decimals: 0.0005" |            |          |
+|                                   |                                                                               |       |   ],                                                 |            |          |
+|                                   |                                                                               |       |   "endTime": [                                       |            |          |
+|                                   |                                                                               |       |     "1734312757"                                     |            |          |
+|                                   |                                                                               |       |   ]                                                  |            |          |
+|                                   |                                                                               |       | }                                                    |            |          |
++-----------------------------------+-------------------------------------------------------------------------------+-------+------------------------------------------------------+------------+----------+
+```
