@@ -1,0 +1,18 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-DINERO-USDC-BAL-to-pxETH-gtETH.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `d280613bd751f50e1edf135ff172c36d0ca2bae9`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/be2feb72-a802-4c36-8097-aeeab2b282af)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                                                              | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xc87BADE18288E5b292Fc791700b889Fe35165E44 (None) | add_reward(address,address) | 0x6DF0E641FC9847c0c6Fde39bE6253045440c14d3: DINERO                                         | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x7f6494D4fBEA1c06daC2250A3FCa81003bF8D20C: hidden_hand2/ops_msig                          |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xc87BADE18288E5b292Fc791700b889Fe35165E44 (None) | add_reward(address,address) | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48: tokens/USDC                                    | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x80D737BF3973D92a1B5FC4b166F89cb9e7445632: maxiKeepers/gaugeRewardsInjectors/usdc         |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xc87BADE18288E5b292Fc791700b889Fe35165E44 (None) | add_reward(address,address) | 0xba100000625a3754423978a60c9317c58a424e3D: tokens/BAL                                     | N/A |    2     |
+|               |                                                                                                                 |                                                   |                             | 0x5a18FE4D7a2bd5A39CCa4F9D05D073F21FAE28EE: maxiKeepers/gaugeRewardsInjectors/Balancer_BAL |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+```
