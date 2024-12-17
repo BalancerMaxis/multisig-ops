@@ -1,0 +1,17 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolSwapFeeChanges/Mainnet/reth-weeth-fee-update-4bp-1bp_part2.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `4a75db2687f781c582f1a8c6266728018651964d`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1729f236-84de-49dd-9971-1e513f813f15)
+
+```
++----------------------+--------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| fx_name              | to                                                                 | value | inputs                   | bip_number | tx_index |
++----------------------+--------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| setSwapFeePercentage | 0x05ff47AFADa98a98982113758878F9A8B9FddA0a (pools/weETH/rETH-05ff) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                    |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                    |       |     "100000000000000"    |            |          |
+|                      |                                                                    |       |   ]                      |            |          |
+|                      |                                                                    |       | }                        |            |          |
++----------------------+--------------------------------------------------------------------+-------+--------------------------+------------+----------+
+```
