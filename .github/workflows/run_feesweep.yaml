@@ -4,10 +4,6 @@ on:
   pull_request:
     types: [labeled, synchronize]
 
-on:
-  pull_request:
-    types: [ labeled ]
-
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   LABEL: Sweep Fees
