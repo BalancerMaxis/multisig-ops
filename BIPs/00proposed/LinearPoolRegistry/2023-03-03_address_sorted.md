@@ -1,0 +1,14 @@
+| deployment                    | chain    | function                           | role                                                               | target   | target_address                             |
+|:------------------------------|:---------|:-----------------------------------|:-------------------------------------------------------------------|:---------|:-------------------------------------------|
+| 20230223-protocol-id-registry | arbitrum | registerProtocolId(uint256,string) | 0xfed0eb6041728fc141bad70d04446ff0e9c8289a4f53cc060addc832c914b44f | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |
+| 20230223-protocol-id-registry | arbitrum | renameProtocolId(uint256,string)   | 0xdc8681b640b547e98ee6f4d708df559b807526d976644c3aca24bc12c4f839c3 | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |
+| 20230223-protocol-id-registry | gnosis   | registerProtocolId(uint256,string) | 0x0ed00e8835e2d2867dcdf863354062a805ff3fe1dabf44c0b68378c84c52616e | lm       | 0x14969B55a675d13a1700F71A37511bc22D90155a |
+| 20230223-protocol-id-registry | gnosis   | renameProtocolId(uint256,string)   | 0xfb760772d39ec169b9e7cd49bccd8858c635114d103dea72a7a694d094e8930c | lm       | 0x14969B55a675d13a1700F71A37511bc22D90155a |
+| 20230223-protocol-id-registry | goerli   | registerProtocolId(uint256,string) | 0xdfc349d88d311b76af85f0bdc6a81be0e30485d488472e3813359f8e26fc1c95 | lm       | 0x040E995520F92F96142d1a76c16D4af21A2eFDE7 |
+| 20230223-protocol-id-registry | goerli   | renameProtocolId(uint256,string)   | 0x397a10db2c15733cdb7c0fad6226786d83e216ed46c740257186765f4018bec5 | lm       | 0x040E995520F92F96142d1a76c16D4af21A2eFDE7 |
+| 20230223-protocol-id-registry | mainnet  | registerProtocolId(uint256,string) | 0x09a880cf3d54a213316bf4d92d60e72ba0ab61a639fce84378eefb9a63d6abd5 | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |
+| 20230223-protocol-id-registry | mainnet  | renameProtocolId(uint256,string)   | 0x4f3dee5b767f91b4faa9979f01808dd2490fde931a9eb355d5f8e0187826dade | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |
+| 20230223-protocol-id-registry | optimism | registerProtocolId(uint256,string) | 0x176a1b54ac0ba4509b1a508223c85146627bbe203b18b2beaa28b6992b3b021d | lm       | 0x09Df1626110803C7b3b07085Ef1E053494155089 |
+| 20230223-protocol-id-registry | optimism | renameProtocolId(uint256,string)   | 0x8630bf555a7a5baabd493fc2afc07b7baa6ea598eaea016acd0d926a6a6962fa | lm       | 0x09Df1626110803C7b3b07085Ef1E053494155089 |
+| 20230223-protocol-id-registry | polygon  | registerProtocolId(uint256,string) | 0x8f64bed4b4e908316d1d51abae6d2ca2c0f6ac132d219882be578341027b587b | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |
+| 20230223-protocol-id-registry | polygon  | renameProtocolId(uint256,string)   | 0x5dd6754fa5d8d56f6177c0265c35ab00ee57aa8a190975f1fba56a18796f0aeb | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |

@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1717673716137,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0x166f54F44F271407f24AA1BE415a730035637325",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x9756499a867fe0c6e0730e942c582dcdd8be167e8b151c555c27b809e3287deb"
+  },
+  "transactions": [
+    {
+      "to": "0x7fb8f5D04b521B6880158819E69538655AABD5c4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "minBalanceWei",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "topUpToAmountWei",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x4BC8121278056BFCaC2BD14D455659224d6dDf48]",
+        "minBalanceWei": "250000000000000000",
+        "topUpToAmountWei": "1000000000000000000"
+      }
+    },
+    {
+      "to": "0x7fb8f5D04b521B6880158819E69538655AABD5c4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" }
+        ],
+        "name": "transferOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}

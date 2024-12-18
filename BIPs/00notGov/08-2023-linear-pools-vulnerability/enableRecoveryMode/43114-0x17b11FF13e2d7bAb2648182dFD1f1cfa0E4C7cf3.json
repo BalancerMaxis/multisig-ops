@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "enableRecoveryMode for affected Pools",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[\"0x8ceae9d0f076b4b0c529529f6bf11832835b93b533445c655b840015f7025e50\"]",
+        "account": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3"
+      }
+    },
+    {
+      "to": "0x3f1A2C4a3a751f6626bD90eF16e104f0772d4d6B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    }
+  ]
+}

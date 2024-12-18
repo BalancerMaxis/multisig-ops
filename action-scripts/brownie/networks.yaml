@@ -1,0 +1,40 @@
+live:
+  - name: Gnosis Chain
+    networks:
+      - chainid: 100
+        explorer: https://api.gnosisscan.io/api
+        host: https://rpc.gnosischain.com/
+        id: gnosis-main
+        name: Mainnet
+
+  - name: Avalanche
+    networks:
+      - chainid: 43114
+        explorer: https://api.snowscan.xyz/api
+        host: https://avalanche-c-chain.publicnode.com
+        id: avax-main
+        name: C-Chain
+
+  - name: Fantom Opera
+    networks:
+      - chainid: 250
+        explorer: https://api.ftmscan.com/api
+        host: https://rpcapi.fantom.network
+        id: fantom-main
+        name: Mainnet
+
+  - name: Mode
+    networks:
+      - chainid: 34443
+        explorer: https://api.routescan.io/v2/network/mainnet/evm/34443/etherscan/api
+        host: https://mode.drpc.org
+        id: mode-main
+        name: Mainnet
+
+  - name: Fraxtal
+    networks:
+      - chainid: 252
+        explorer: https://api.fraxscan.com/api
+        host: https://rpc.frax.com
+        id: fraxtal-main
+        name: Mainnet

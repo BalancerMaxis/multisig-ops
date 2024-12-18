@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "chainId": "",
+  "createdAt": 1714157066535,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "target", "type": "address", "internalType": "address" },
+          { "name": "data", "type": "bytes", "internalType": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "gauge",
+        "data": "add_reward(token, distributor)"
+      }
+    }
+  ]
+}

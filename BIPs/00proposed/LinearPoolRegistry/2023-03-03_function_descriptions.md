@@ -1,0 +1,4 @@
+| function                           | description                                                                                                                                                                               |
+|:-----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| registerProtocolId(uint256,string) | Register a new DeFi protocol in the [linear pool registry](https://forum.balancer.fi/t/bip-xxx-grant-balancer-maxis-the-authorisation-to-register-protocolids-for-linearpools/4435)       |
+| renameProtocolId(uint256,string)   | Change the name of a DeFi protocol in the [linear pool registry](https://forum.balancer.fi/t/bip-xxx-grant-balancer-maxis-the-authorisation-to-register-protocolids-for-linearpools/4435) |

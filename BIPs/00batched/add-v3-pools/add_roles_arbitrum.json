@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "chainId": 42161,
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": "",
+    "checksum": "",
+    "createFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x3f476d79932a277fc0be18747fc314f1db33802d38a900d529db018c01de81a4, 0x1e3379f440ccd8ad4fbacfa446ce3de718eda1a091b271c9053bdedff90cdf1c, 0xbbb29600025604666f66b68dff00546068c5be9c0a5a0fbe825550f6c3519c27, 0xa23cd4468cbe8403f6163d16350699bab6b407aee02d6a29755b0cffa52dd023, 0xe6321aecff7f0051958627890aa2a16d7221f860dfa3359a1cea6f4a3f87933e, 0xcf96d782d1bc8dd12869fb51374544f9c037fd559b8811972f35756f204c6012]",
+        "account": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x92253d002d63e0211f775527924e2891f18bb060ff2ab3be19c6b242bafa5fec, 0xc383be2c6e87a9b18ae919e677f011279a8d98346dbcd5cb326053f5f873b753, 0x79f0094a409615c52fb7491ca130145e7ec31efb578af4019db59e6636c07ebf, 0xfaede3ef05348eea541571b87b87560ae56292ed04fd5e08fcced4d41916dfb1]",
+        "account": "0x7c68c42De679ffB0f16216154C996C354cF1161B"
+      }
+    }
+  ]
+}

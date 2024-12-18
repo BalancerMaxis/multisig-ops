@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "chainId": "1101",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x577e5993B9Cc480F07F98B5Ebd055604bd9071C4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null,
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W26/BIP-585/disable_zkevm.json",
+        "bip_number": "BIP-585"
+      }
+    },
+    {
+      "to": "0x956CCab09898C0AF2aCa5e6C229c3aD4E93d9288",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null,
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W26/BIP-585/disable_zkevm.json",
+        "bip_number": "BIP-585"
+      }
+    }
+  ]
+}

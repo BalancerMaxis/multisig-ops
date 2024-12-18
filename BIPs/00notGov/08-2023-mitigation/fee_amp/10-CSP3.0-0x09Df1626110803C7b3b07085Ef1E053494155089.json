@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "chainId": 10,
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "increase swap fee and reduce amp for non-linear, non-bricked pools",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0x09Df1626110803C7b3b07085Ef1E053494155089",
+  "transactions": [
+    {
+      "to": "0x23Ca0306B21ea71552B148cf3c4db4Fc85AE1929",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "swapFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "swapFeePercentage": "100000000000000000"
+      }
+    },
+    {
+      "to": "0x23Ca0306B21ea71552B148cf3c4db4Fc85AE1929",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "501",
+        "endTime": "1692921600"
+      }
+    },
+    {
+      "to": "0x43da214fab3315aA6c02e0B8f2BfB7Ef2E3C60A5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "swapFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "swapFeePercentage": "100000000000000000"
+      }
+    },
+    {
+      "to": "0x43da214fab3315aA6c02e0B8f2BfB7Ef2E3C60A5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "286",
+        "endTime": "1692921600"
+      }
+    }
+  ]
+}

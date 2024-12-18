@@ -1,0 +1,12 @@
+| deployment                         | chain    | function             | role                                                               | target             | target_address                             |
+|:-----------------------------------|:---------|:---------------------|:-------------------------------------------------------------------|:-------------------|:-------------------------------------------|
+| 20230206-composable-stable-pool-v3 | arbitrum | enableRecoveryMode() | 0xe6321aecff7f0051958627890aa2a16d7221f860dfa3359a1cea6f4a3f87933e | poolRecoveryHelper | 0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2 |
+| 20230206-weighted-pool-v3          | arbitrum | enableRecoveryMode() | 0x1e3379f440ccd8ad4fbacfa446ce3de718eda1a091b271c9053bdedff90cdf1c | poolRecoveryHelper | 0xb5e56CC3d2e38e53b1166175C59e921A37cDC1E2 |
+| 20230206-composable-stable-pool-v3 | gnosis   | enableRecoveryMode() | 0xd6f4df0a512a29fa4cf2fcfbe4a0b5ea1266a4bbb1ab6fb5761205dbb038441f | poolRecoveryHelper | 0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68 |
+| 20230206-weighted-pool-v3          | gnosis   | enableRecoveryMode() | 0x2e31b466b15801536da90012c6e9916b3e0587c2d0b7c63328971c531b6ccf87 | poolRecoveryHelper | 0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68 |
+| 20230206-composable-stable-pool-v3 | mainnet  | enableRecoveryMode() | 0x8c91ddec262ae544d56464e260d0b840239949d86149c139510d5e399a30099f | poolRecoveryHelper | 0x1b300C86980a5195bCF49bD419A068D98dC133Db |
+| 20230206-weighted-pool-v3          | mainnet  | enableRecoveryMode() | 0xa53ffba9aa2195cd7646f9cbaca0985f432bded3dd5319916afc5ec395f280d7 | poolRecoveryHelper | 0x1b300C86980a5195bCF49bD419A068D98dC133Db |
+| 20230206-composable-stable-pool-v3 | optimism | enableRecoveryMode() | 0xa7508bde3c3d65fa21321ca35b2d1da564bc4a772cff9947de3c3e1a467e9dec | poolRecoveryHelper | 0x26743984e3357eFC59f2fd6C1aFDC310335a61c9 |
+| 20230206-weighted-pool-v3          | optimism | enableRecoveryMode() | 0x076ec7596fb2fd56057ab4b4ab843852ee914ca3095f9cdf46a79085b266a748 | poolRecoveryHelper | 0x26743984e3357eFC59f2fd6C1aFDC310335a61c9 |
+| 20230206-composable-stable-pool-v3 | polygon  | enableRecoveryMode() | 0x4645b2fd612d1e3d4f7cbd5f68df6511f4dedfcba83090853604d4fbf33f467d | poolRecoveryHelper | 0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA |
+| 20230206-weighted-pool-v3          | polygon  | enableRecoveryMode() | 0x8e751c9d2a2e4de88b6c71094d5a2b18be451801333ea94579761179bc9b9ef9 | poolRecoveryHelper | 0x495F696430F4A51F7fcB98FbE68a9Cb7A07fB1bA |

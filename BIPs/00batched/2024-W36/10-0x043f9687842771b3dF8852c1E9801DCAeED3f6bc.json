@@ -1,0 +1,80 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xd0090a09f425bba74e6c801fba7c6d15b44147ab0bd319e40076ce07e95168b6",
+        "account": "0x09Df1626110803C7b3b07085Ef1E053494155089"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W36/BIP-685 set_reward_distributor Permissions/Optimism.json",
+        "bip_number": "BIP-685"
+      }
+    },
+    {
+      "to": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0951FF0835302929d6c0162b3d2495A85e38ec3A",
+        "oldOwner": "0x478eC43c6867c2884f87B21c164f1fD1308bD9a3",
+        "newOwner": "0x11761c7b08287d9489CD84C04DF6852F5C07107b"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W36/BIP-681-Update-DAO-Multisig-Signers/Optimism.json",
+        "bip_number": "BIP-681"
+      }
+    }
+  ]
+}

@@ -7,7 +7,9 @@ from pprint import pprint
 from brownie import Contract, chain, interface, web3
 from rich.prompt import Confirm
 
-from helpers.addresses import registry
+from bal_addresses import AddrBook
+
+r = AddrBook("mainnet").dotmap
 
 
 class Cow:
@@ -22,12 +24,13 @@ class Cow:
         self.prod = prod
 
         # contracts
-        self.vault_relayer = self.safe.contract(registry.eth.cow.vault_relayer)
+        self.vault_relayer = self.safe.contract(r.cow.vault_relayer)
+        self.vault_relayer = self.safe.contract(r.cow.vault_relayer)
         # self.vault_relayer = interface.IGPv2VaultRelayer(
         #     registry.eth.cow.vault_relayer, owner=self.safe.account
         # )
         self.settlement = interface.IGPv2Settlement(
-            registry.eth.cow.settlement, owner=self.safe.account
+            r.cow.settlement, owner=self.safe.account
         )
 
         # determine api url based on current chain id and `prod` parameter
@@ -53,6 +56,7 @@ class Cow:
 
         r = requests.post(self.api_url + "quote", json=fee_and_quote_payload)
         if not r.ok:
+            print(r.json())
             r.raise_for_status()
 
         print("FEE AND QUOTE RESPONSE:")
@@ -117,7 +121,6 @@ class Cow:
 
         assert fee_amount > 0
         assert buy_amount_after_fee > 0
-
         # add deadline to current block timestamp
         deadline = chain.time() + deadline
 
@@ -164,6 +167,7 @@ class Cow:
         os.makedirs(path, exist_ok=True)
         with open(f"{path}{order_uid}.json", "w+") as f:
             f.write(json.dumps(order_payload))
+            f.write("\n")
 
         if origin != self.safe.address:
             # can only sign if origin is safe
@@ -173,6 +177,7 @@ class Cow:
         # (otherwise signature would go in api order payload)
         # https://docs.cow.fi/smart-contracts/settlement-contract/signature-schemes
         self.settlement.setPreSignature(order_uid, True)
+        return order_uid
 
     def allow_relayer(self, asset, mantissa):
         """
@@ -205,18 +210,22 @@ class Cow:
         assert type(chunks) == int
         self.allow_relayer(asset_sell, mantissa_sell)
         mantissa_sell = int(Decimal(mantissa_sell) / chunks)
+        order_ids = []
         for n in range(chunks):
-            self._sell(
-                asset_sell,
-                mantissa_sell,
-                asset_buy,
-                mantissa_buy=None,
-                # without + n api will raise DuplicateOrder when chunks > 1
-                deadline=deadline + n,
-                coef=coef,
-                destination=destination,
-                origin=self.safe.address,
+            order_ids.append(
+                self._sell(
+                    asset_sell,
+                    mantissa_sell,
+                    asset_buy,
+                    mantissa_buy=None,
+                    # without + n api will raise DuplicateOrder when chunks > 1
+                    deadline=deadline + n,
+                    coef=coef,
+                    destination=destination,
+                    origin=self.safe.address,
+                )
             )
+        return order_ids
 
     def limit_sell(
         self,

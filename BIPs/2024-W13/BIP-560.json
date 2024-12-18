@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1710399319766,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable GEM/WETH Single recipient gauge",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x52980e7825151d42a7a97719d47695b12236f93e44b6ade382c66e5459e8ecd4"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "gauge",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "gaugeType",
+            "type": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x24B7AEEEFDB612D43F018Cbc9c325680f61Ec96d",
+        "gaugeType": "EthereumSingleRecipientGauge"
+      }
+    }
+  ]
+}

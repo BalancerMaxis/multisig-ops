@@ -1,0 +1,55 @@
+name: Merge JSON payloads
+
+on:
+  workflow_dispatch:
+    inputs:
+      runWeek:
+        description: "The week to run on like YYYY-W##, should match a directory in BIPs/"
+        required: true
+
+jobs:
+  merge_jsons:
+    runs-on: ubuntu-latest
+    outputs:
+      pull-request-number: ${{ steps.cpr.outputs.pull-request-number}}
+      pull-request-head-sha: ${{ steps.cpr.outputs.pull-request-head-sha }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Compiler Installations
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: compiler-cache
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+
+      - name: Run script with JSON files
+        run: |
+          pip3 install -r action-scripts/requirements-actions.txt
+          python action-scripts/merge_pr_jsons.py --target BIPs/${{ github.event.inputs.runWeek }}
+
+      - name: Create PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Combined JSON Payloads ${{ github.event.inputs.runWeek }}"
+          title: "Combined JSON payloads ${{ github.event.inputs.runWeek }}"
+          reviewers: gosuto-inzasheru,xeonus
+          branch: gha-payload-merge-${{ github.event.inputs.runWeek }}
+          delete-branch: true
+          labels: "Merged Payloads"
+
+  run_reports:
+    needs: merge_jsons
+    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
+    secrets: inherit
+    with:
+      pr_number: ${{ needs.merge_jsons.outputs.pull-request-number }}
+      checkout_ref: "gha-payload-merge-${{ github.event.inputs.runWeek }}"

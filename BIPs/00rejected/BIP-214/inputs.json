@@ -1,0 +1,20 @@
+[
+  {
+    "deployments": ["20210418-vault"],
+    "chain_map": {
+      "mainnet": 1,
+      "polygon": 137,
+      "arbitrum": 42161,
+      "optimism": 10,
+      "gnosis": 100
+    },
+    "function_caller_map": {
+      "exitPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
+      "joinPool(bytes32,address,address,(address[],uint256[],bytes,bool))": "BalancerRelayer",
+      "batchSwap(uint8,(bytes32,uint256,uint256,uint256,bytes)[],address[],(address,bool,address,bool),int256[],uint256)": "BalancerRelayer",
+      "manageUserBalance((uint8,address,uint256,address,address)[])": "BalancerRelayer",
+      "setRelayerApproval(address,address,bool)": "BalancerRelayer",
+      "swap((bytes32,uint8,address,address,uint256,bytes),(address,bool,address,bool),uint256,uint256)": "BalancerRelayer"
+    }
+  }
+]

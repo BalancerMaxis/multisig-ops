@@ -1,0 +1,216 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1684199677112,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xa221f38d898465fb29de30c50a18ffe8c5f919db38bf506c08a31310221ecd6e"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[\"0xba620d90bf43ed4e28d08953a56a063710cfccbbc468b90ec556433bb1b0b27f\"]",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    },
+    {
+      "to": "0xD4e7C1F3DA1144c9E2CfD1b015eDA7652b4a4399",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "unpause",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xeB486AF868AeB3b6e53066abc9623b1041b42bc0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "unpause",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "enum IVault.UserBalanceOpKind",
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "internalType": "contract IAsset",
+                "name": "asset",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+              },
+              {
+                "internalType": "address payable",
+                "name": "recipient",
+                "type": "address"
+              }
+            ],
+            "internalType": "struct IVault.UserBalanceOp[]",
+            "name": "ops",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "manageUserBalance",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "ops": "[           [             2,             \"0xEb91861f8A4e1C12333F42DCE8fB0Ecdc28dA716\",             \"2804709054674049019658430\",             \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\",             \"0xF23d8342881eDECcED51EA694AC21C2B68440929\"           ]         ]"
+      }
+    },
+    {
+      "to": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "enum IVault.UserBalanceOpKind",
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "internalType": "contract IAsset",
+                "name": "asset",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+              },
+              {
+                "internalType": "address payable",
+                "name": "recipient",
+                "type": "address"
+              }
+            ],
+            "internalType": "struct IVault.UserBalanceOp[]",
+            "name": "ops",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "manageUserBalance",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "ops": "[           [             2,             \"0xe025E3ca2bE02316033184551D4d3Aa22024D9DC\",             \"2332180919384747028677979\",             \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\",             \"0xF23d8342881eDECcED51EA694AC21C2B68440929\"           ]         ]"
+      }
+    },
+    {
+      "to": "0xF23d8342881eDECcED51EA694AC21C2B68440929",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "inputTokens",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "outputTokens",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "dustFactor",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "address payable",
+            "name": "recipient",
+            "type": "address"
+          }
+        ],
+        "name": "do_arb",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "inputTokens": "[           \"0xD4e7C1F3DA1144c9E2CfD1b015eDA7652b4a4399\",           \"0xeB486AF868AeB3b6e53066abc9623b1041b42bc0\"         ]",
+        "outputTokens": "[           \"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",           \"0x6B175474E89094C44Da98b954EedeAC495271d0F\"         ]",
+        "dustFactor": "[           \"350\",           \"300\"         ]",
+        "recipient": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[\"0xba620d90bf43ed4e28d08953a56a063710cfccbbc468b90ec556433bb1b0b27f\"]",
+        "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+      }
+    }
+  ]
+}

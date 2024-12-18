@@ -1,0 +1,128 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "enableRecoveryMode for affected Pools",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[\"0x2b9e0eea2297118ae92c9c5b6b9ca813c821186c7eb196bd9893a4113354ec4e\",\"0x55183eaafc9e607c22ca713ce26b115fe0e7e47216af41fcec2f0fff0d6f622a\"]",
+        "account": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18"
+      }
+    },
+    {
+      "to": "0x225E0047671939A8d78e08EBd692788Abe63f15c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x41211BBa6d37F5a74b22e667533F080C7C7f3F13",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x581Ec1f5e7CeD12B186deaE32256AdB53BDd5B08",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xbb9Cd48d33033F5EfFBeDec9Dd700C7D7E1dCF50",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xd16f72b02dA5f51231fDe542A8B9E2777a478c88",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xd4015683b8153666190e0B2bEC352580EBC4CaCa",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xE7f88d7d4EF2eb18FCF9Dd7216BA7Da1c46f3dD6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xFFFf76A3280e95dC855696111C2562Da09db2Ac0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    }
+  ]
+}

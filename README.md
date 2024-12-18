@@ -1,51 +1,79 @@
 ## Welcome to the Balancer Multisig Operations Repo
+
 This repo is used to store payloads uploaded to the multisig, as well as any tooling used to generate such payloads.
 
 You can find a FAQ about snapshot handling here: [FAQ](FAQ.md)
 
-### Uploading transaction JSONs as part of Balancer Governance
+## The Multisigs
+
+Information about all of the Multisigs that the Maxis may load transactions into are in [multisigs.md](multisigs.md)
+
+## Uploading transaction JSONs as part of Balancer Governance
+
 Balancer Governance requires that a link to a PR request in this repo with a gnosis-safe transaction builder JSON is included.
 
-PR's should be to include a single file named `BIP-XXX.json` in the `BIPs` directory where XXX is the number of the BIP.  The PR should include the BIP title as it's commit/pr text. 
-#### Examples
-Here are some documents of how to do specific, commonly requested things.
+- Set up a branch for your payload, but don't number the BIP yet. E.g. `bip-xxx-some_title`
+- Place the payload in `BIP-XXX-some_title.json` in `BIPS/00proposed/`
+- Open a PR with the title: "BIP-XXX: Some Title"
+- Let the GitHub actions verify the payload file and generate a report of the payload
 
-| Link                                              | Description                                                   | Difficulty/Complexity                |
-|---------------------------------------------------|---------------------------------------------------------------|--------------------------------------|
-| [Add Gauge to veBAL](00xamples/gauge-request)     | Add a gauge to veBAL and upload it                            | Low - Noob                           |
-| [Transfer DAO Funds](00examples/funding)          | Transfer funds from the treasury one or more other addresses  | Low - Noob                           |
-| [Gauge Replacement](00examples/gauge-replacement) | Kill one gauge and add another for pool or gauge replacements | Moderate - Requires basic git skillz |
+A post can now be created on the forum with the title "BIP-XXX: Some Title" linking to this PR.
 
+Here is the minimal viable framework for a Balancer Governance acceptable payload
 
-### Balancer Multisigs
-Here are a list of multisigs that the Maxis can and may load transactions into due to governance snapshots.
+```json
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1685637015445,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "bipNumber": 42069
+  },
+  "transactions": []
+}
+```
 
-| Name                          | Purpose                                                                                                                                 | Chain                                                                                                                                                                                                                                                                           | Address                                     |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| Protocol Fees Multisig        | Collect fees, and set A-Factors and Fees on pools (default pool-owner, except on mainnet where a separate multisig is used to set fees. | [MAINNET](https://gnosis-safe.io/app/eth:0x7c68c42De679ffB0f16216154C996C354cF1161B/home), [ARBI](https://gnosis-safe.io/app/arb1:0x7c68c42De679ffB0f16216154C996C354cF1161B/home), [POLYGON](https://gnosis-safe.io/app/matic:0x7c68c42De679ffB0f16216154C996C354cF1161B/home) | 0x7c68c42De679ffB0f16216154C996C354cF1161B  |
-| Mainnet Fee Setter            | Default pool owner for Mainnet that can set A-Factors and protocol fees.                                                                | [MAINNET](https://gnosis-safe.io/app/eth:0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6/home)                                                                                                                                                                                       | 0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6  |
-| DAO Multlsig                  | Funding BIPs, killing of gauges, veBAL whitelisting                                                                                     | [MAINNET](https://gnosis-safe.io/app/eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f/home)                                                                                                                                                                                       | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f  |
-| Gauge Controller(LM Multisig) | Used to manage gauges and Reward Tokens and manage liquidity supplied to multichain (bridge).  New Gauge requests go here.              | [MAINNET](https://gnosis-safe.io/app/eth:0xc38c5f97B34E175FFd35407fc91a937300E33860/home), [ARBI](https://gnosis-safe.io/app/arb1:0xc38c5f97B34E175FFd35407fc91a937300E33860/home), [POLYGON](https://gnosis-safe.io/app/matic:0xc38c5f97B34E175FFd35407fc91a937300E33860/home) | 0xc38c5f97B34E175FFd35407fc91a937300E33860  |
-| Linear Pool Control           | Manage limits on Mainnet Linear Pools                                                                                                   | [MAINNET](https://gnosis-safe.io/app/eth:0x75a52c0e32397A3FC0c052E2CeB3479802713Cf4/home)                                                                                                                                                                                       | 0x75a52c0e32397A3FC0c052E2CeB3479802713Cf4  |
-| Maxi Operational Payments     | Holds the Maxi Budget and is used to pay people and expenses.                                                                           | [MAINNET](https://gnosis-safe.io/app/eth:0x166f54F44F271407f24AA1BE415a730035637325/home)                                                                                                                                                                                       | 0x166f54F44F271407f24AA1BE415a730035637325  |
- | Arbitrum Treasury             | Holds DAO funds on Arbitrum                                                                                                             | [ARBI](https://app.safe.global/arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0/home)                                                                                                                                                                                            | 0xaF23DC5983230E9eEAf93280e312e57539D098D0  | 
-### Optimism Multisigs
-**PENDING: TODO**
+All payloads MUST include the following in the global section:
 
-### Ecosystem Multisigs
-Here are a list of multisigs that have frequent interactions with BalancerDAO but are not managed in any way by the Maxis and are not triggered by snapshot votes.
+- `createdFromSafeAddress`: That matches a known balancer multisig
+- `chainId`: Must be the numeric chain ID of the chain to run on
 
-| Name             | Purpose                                                                                               | Chain                                                                                     | Address                                    |
-|------------------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|--------------------------------------------|
-| Balancer Grants  | Multisig funded by the Balancer treasury with funds managed by the community elected Grants Committee | [MAINNET](https://gnosis-safe.io/app/eth:0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597/home) | 0xE2c91f3409Ad6d8cE3a2E2eb330790398CB23597 | 
+Note that the `bipNumber` will be added later, once the forum proposal has been assigned a number.
 
-### Commonly used target addresses
+You can provide more details in name and description if you want.
 
-| Name                | Address                                    | Purpose                               |
-|---------------------|--------------------------------------------|---------------------------------------|
-| GaugeAdder          | 0x2fFB7B215Ae7F088eC2530C7aa8E1B24E398f26a | Adding New Gauges                     |
-| AuthorizerAdaptor   | 0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75 | Accessing functions via granted roles |
+The transaction list takes the format of a standard gnosis tx builder list.
 
+### Examples
+
+We are slowly developing a library of detailed examples for how to build BIP payloads based on common actions.
+These examples can be found [HERE](BIPs/00examples)
+
+### Chainlink Upkeeps
+
+The Maxi's have started using Chainlink automation to automate some regular processes that don't need deep review.
+
+Documentation of our various running keepers can be found in [chainlink_keepers](./chainlink_keepers)
+Chainlinks documation around this automation setup can be found [here](https://docs.chain.link/chainlink-automation/introduction).
+
+### Governance Process
+
+Verbose and up-to-date docs about the balancer governance process can be found on [docs.balancer.fi](https://docs.balancer.fi/concepts/governance/)
+
+### Fees and Bribs
+
+- Check out the [Bribs](./Bribs) for artifacts from our Core Pools Fee redirection processes (BIP-19)
+- Check out [FeeSweep](./FeeSweep) for artifacts and info about our protocol fee processing activities
+
+### Assorted Tooling
+
+- [tools](./tools) is a somewhat messy directory with a bunch of reports/automations and scripts we use to deal with the various workloads.
+- [action-scripts](./action-scripts) is where we build more final code and integrate more hashed out automations into github actions.
 
 ### Need Help
-You can contact Tritium, Solarcurve or any of the BAL Maxis on the Balancer Discord for help getting your JSON PR submitted.  We can also just do it for you if that's what you'd prefer.
+
+You can contact Tritium, Solarcurve or any of the BAL Maxis on the Balancer Discord for help getting your JSON PR submitted. We can also just do it for you if that's what you'd prefer.

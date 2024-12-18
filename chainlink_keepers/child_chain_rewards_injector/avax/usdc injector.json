@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1690819065472,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.1",
+    "createdFromSafeAddress": "0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x7674d784016499feeeaaa58b51ee71eac8021da4e12f74d16f05c2eeb2c4546c"
+  },
+  "transactions": [
+    {
+      "to": "0x099D7767eC64Ac33C076f1e3Eb3DC24D08FA86A5",
+      "mataTo": "maxiKeepers/usdc_rewards_injector",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "gaugeAddresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "amountsPerPeriod",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint8[]",
+            "name": "maxPeriods",
+            "type": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xC8aAe478aCdE1d5676c3Fc6614cd25183c207F1a,0x301A121D1d0d72C4005B354854a842A55D23251f,0x11884dA90FB4221b3aa288a7741C51eC4Fc43B2f,0xE98E468074BAa30aaa7747bcD32B77A16Ae3D9d8,0x0c22Ff3f93B5c9f13e41FA9D270680E97AC13B28]",
+        "amountsPerPeriod": "[833325000,2499975000,1666650000,2499975000,833325000]",
+        "maxPeriods": "[12,12,12,12,12]"
+      },
+      "metaCIV": {
+        "gaugeAddresses": [
+          "Balancer yyAVAX-bb-a-WAVAX-BPT Gau... (yyAVAX-bb...)",
+          "Balancer sAVAX-bb-a-WAVAX-BPT Gaug... (sAVAX-bb-...)",
+          "Balancer bb-a-USD Gauge Deposit (bb-a-USD-...)",
+          "Balancer ggAVAX-bb-a-WAVAX-BPT Gau... (ggAVAX-bb...)",
+          "Balancer BPT Gauge Deposit (BPT-gauge)"
+        ],
+        "amounts": [
+          883,
+          2499.975,
+          1666.65,
+          2499.975,
+          833325000
+        ]
+      }
+      }
+    }
+  ]
+}

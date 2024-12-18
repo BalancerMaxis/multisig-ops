@@ -1,0 +1,131 @@
+[
+  {
+    "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+    "value": "0",
+    "data": null,
+    "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "roles",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRoles",
+      "payable": false
+    },
+    "contractInputsValues": {
+      "roles": [
+        "0x2d8a0dc8170e2251ed6ab59cc43a981d1e05511d06a8c65226eb06278e3ae231"
+      ],
+      "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+    }
+  },
+  {
+    "to": "0x50Cf90B954958480b8DF7958A9E965752F627124",
+    "value": "0",
+    "data": null,
+    "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "duration",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTokenRateCacheDuration",
+      "payable": false
+    },
+    "contractInputsValues": {
+      "token": "0xeB486AF868AeB3b6e53066abc9623b1041b42bc0",
+      "duration": 21600
+    }
+  },
+  {
+    "to": "0x50Cf90B954958480b8DF7958A9E965752F627124",
+    "value": "0",
+    "data": null,
+    "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "duration",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTokenRateCacheDuration",
+      "payable": false
+    },
+    "contractInputsValues": {
+      "token": "0xeB486AF868AeB3b6e53066abc9623b1041b42bc0",
+      "duration": 21600
+    }
+  },
+  {
+    "to": "0x50Cf90B954958480b8DF7958A9E965752F627124",
+    "value": "0",
+    "data": null,
+    "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "duration",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTokenRateCacheDuration",
+      "payable": false
+    },
+    "contractInputsValues": {
+      "token": "0xeB486AF868AeB3b6e53066abc9623b1041b42bc0",
+      "duration": 21600
+    }
+  },
+  {
+    "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+    "value": "0",
+    "data": null,
+    "contractMethod": {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "roles",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRoles",
+      "payable": false
+    },
+    "contractInputsValues": {
+      "roles": [
+        "0x2d8a0dc8170e2251ed6ab59cc43a981d1e05511d06a8c65226eb06278e3ae231"
+      ],
+      "account": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+    }
+  }
+]

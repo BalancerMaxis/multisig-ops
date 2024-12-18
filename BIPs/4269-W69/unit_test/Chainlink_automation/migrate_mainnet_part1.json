@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1718374455159,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x90b3a77a95b4dac16871cb3b9fa6452d54cf4535f016b07e6911487884643fb4"
+  },
+  "transactions": [
+    {
+      "to": "0xdDd5FF0E581f097573B13f247F6BE736f602F839",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" }
+        ],
+        "name": "transferOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x8AD2512819A7eae1dd398973EFfaE48dafBe8255",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_keeperRegistry",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "setKeeperRegistry",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_keeperRegistry": "0x4249093e75b2eECA9f3ba3171eA1f3fA186ABE9D"
+      }
+    },
+    {
+      "to": "0x8AD2512819A7eae1dd398973EFfaE48dafBe8255",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" }
+        ],
+        "name": "transferOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}

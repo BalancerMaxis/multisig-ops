@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1685030814142,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.14.1",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x3019c446285c0451b33d3e9585b5f885e4a03d564f8ac4ab06279a5f0f4c5cde"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x17391f0660d4c41d3e09aeb10b8c06f82f48919ea50dbfe36aaed62ad681d8eb",
+        "account": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc"
+      }
+    },
+    {
+      "to": "0x9dA18982a33FD0c7051B19F0d7C76F2d5E7e017c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IVeDelegation",
+            "name": "delegation",
+            "type": "address"
+          }
+        ],
+        "name": "setDelegation",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegation": "0x6817149cb753BF529565B4D023d7507eD2ff4Bc0"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "renounceRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x17391f0660d4c41d3e09aeb10b8c06f82f48919ea50dbfe36aaed62ad681d8eb",
+        "account": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc"
+      }
+    }
+  ]
+}

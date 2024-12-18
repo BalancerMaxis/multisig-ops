@@ -1,0 +1,6 @@
+| deployment                            | chain    | function                    | role                                                               | target   | target_address                             |
+|:--------------------------------------|:---------|:----------------------------|:-------------------------------------------------------------------|:---------|:-------------------------------------------|
+| 20230316-child-chain-gauge-factory-v2 | arbitrum | add_reward(address,address) | 0x56245c361d1ed9e55e6f9889e49f36d9991761b712de544f847b557a84ccd62f | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |
+| 20230316-child-chain-gauge-factory-v2 | gnosis   | add_reward(address,address) | 0xc94195da697c94d4db5c313ab49b9ea64c8d69137624b163ba0e4540edfd0faf | lm       | 0x14969B55a675d13a1700F71A37511bc22D90155a |
+| 20230316-child-chain-gauge-factory-v2 | optimism | add_reward(address,address) | 0x3bf29175652a3f0fac5abb715d0b7fe2e7b597e2e2eff555dac6b21a20a7c83e | lm       | 0x09Df1626110803C7b3b07085Ef1E053494155089 |
+| 20230316-child-chain-gauge-factory-v2 | polygon  | add_reward(address,address) | 0x728b7c90958572ff4fc88088c34b65ed64230c82afe8611d4d44d39d0845c264 | lm       | 0xc38c5f97B34E175FFd35407fc91a937300E33860 |

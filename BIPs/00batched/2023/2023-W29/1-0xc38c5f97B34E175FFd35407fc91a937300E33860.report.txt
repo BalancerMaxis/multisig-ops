@@ -1,0 +1,30 @@
+File name: BIPs/00batched/2023-W29/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json
+COMMIT: `58aca0da88777cb185bdf22c671c397fe8305a4f`
+CHAIN(S): `polygon, mainnet, arbitrum, gnosis`
+```
++----------+----------+--------------------------------------------------------------------+----------------------+---------+--------------------------------------------+--------+--------+--------------+---------+----------+
+| function |  chain   |                              pool_id                               |        symbol        | aFactor |               gauge_address                |  fee   |  cap   | style        |   bip   | tx_index |
++----------+----------+--------------------------------------------------------------------+----------------------+---------+--------------------------------------------+--------+--------+--------------+---------+----------+
+| addGauge | mainnet  | 0x9b692f571b256140a39a34676bffa30634c586e100000000000000000000059d |       bb-i-USD       |   2000  | 0xE35f0152f0d49fE8E386E5c42B656321ffB0d477 | 0.001% | 100.0% | mainnet      | BIP-366 |    0     |
+| addGauge | mainnet  | 0xdd59f89b5b07b7844d72996fc9d83d81acc8219600000000000000000000059e |     uniETH-WETH      |    50   | 0xe77D45b5dE97aC7717E4EdE6bE16E3D805fF02A5 | 0.04%  | 100.0% | mainnet      | BIP-366 |    1     |
+| addGauge | mainnet  | 0xb54e6aadbf1ac1a3ef2a56e358706f0f8e320a0300000000000000000000059f |    vETH/WETH BPT     |    50   | 0x0A4825154bCFD493d15777184d01B93e8115215a | 0.04%  | 100.0% | mainnet      | BIP-366 |    2     |
+| addGauge | mainnet  | 0x4c81255cc9ed7062180ea99962fe05ac0d57350b0000000000000000000005a3 | cbETH-bb-a-WETH-BPT  |   1500  | 0x6d5AF3414a73E498039a3720aFb4A376aE9C5a07 | 0.001% | 100.0% | mainnet      | BIP-366 |    3     |
+| addGauge | mainnet  | 0x1bd2f176a812e312077bca87e37c08432bb09f3e0000000000000000000005a1 |  qETH-bb-a-WETH-BPT  |   100   | 0x06d27c0FE5AbF6020bf56E47c72Ca002dD5d9f54 | 0.04%  | 100.0% | mainnet      | BIP-366 |    4     |
+| addGauge | mainnet  | 0xae8535c23afedda9304b03c68a3563b75fc8f92b0000000000000000000005a0 | swETH-bb-a-WETH-BPT  |   500   | 0x5669736FD1dF3572f9D519FcCf7536A750CFAc62 | 0.001% | 100.0% | mainnet      | BIP-366 |    5     |
+| addGauge | mainnet  | 0xe8c56405bc405840154d9b572927f4197d110de10000000000000000000005a4 |  rETH/bbaWETH BPT    |   1500  | 0xe9E6E9597123034Fa3fc73D482852e18EdF9c282 | 0.001% | 100.0% | mainnet      | BIP-366 |    6     |
+| addGauge |  gnosis  | 0xba1a5b19d09a79dada039b1f974015c5a989d5fd000100000000000000000046 | agUSD-agWETH-agWBTC  |   N/A   | 0x3A7Ed8916Ebb9131966b9b3af3cd8B9adcc53559 |  0.1%  | 100.0% | L0 sidechain | BIP-366 |    7     |
+| addGauge |  gnosis  | 0x4de21b365d6543661d0e105e579a34b963862497000200000000000000000045 | 50bbagGNO-50bbagUSD  |   N/A   | 0x7a4e71a8A33d3b385279079c503ca93905dd553e |  0.1%  | 100.0% | L0 sidechain | BIP-366 |    8     |
+| addGauge |  gnosis  | 0xe15cac1df3621e001f76210ab12a7f1a1691481f000000000000000000000044 |      bb-ag-USD       |   2000  | 0x774D0F67DcFA5568cA435c70fbA272C64352d859 | 0.005% | 100.0% | L0 sidechain | BIP-366 |    9     |
+| addGauge | polygon  | 0x9321e2250767d79bab5aa06daa8606a2b3b7b4c5000000000000000000000bf4 |       bb-t-USD       |   2000  | 0x735B275a567F6c921c82F83D4515beC1F72038D3 | 0.005% | 100.0% | L0 sidechain | BIP-366 |    10    |
+| addGauge | polygon  | 0x03090a9811181a2afe830a3a0b467698ccf3a8b1000000000000000000000bf5 |      bb-am-usd       |   3000  | 0x224989bC31286f0E6Dd6F32C0E475BbD4579A976 | 0.01%  | 100.0% | L0 sidechain | BIP-366 |    11    |
+| addGauge | polygon  | 0xf42ed61450458ee4620f5ef4f29adb25a6ef0fb6000000000000000000000bf8 |   frxETH-bb-a-WETH   |   120   | 0xEE3cc827EF3e7a00a728Fd52199cd5A6e336361D | 0.04%  | 100.0% | L0 sidechain | BIP-366 |    12    |
+| addGauge | polygon  | 0xd2f3b9e67c69762dd1c88f1d3dadd1649a190761000200000000000000000bf7 |   2BRLUSD-boosted    |   N/A   | 0x1EcB261dc3496675c54514e44deA2a5115aEcb38 |  0.1%  |  2.0%  | L0 sidechain | BIP-366 |    13    |
+| addGauge | polygon  | 0xa8bf1c584519be0184311c48adbdc4c15cb2e8c1000000000000000000000bf6 |    FRAX-bb-am-USD    |   2000  | 0xdb218DC1394BbD787bb059dBd9F7E41063e16374 | 0.005% | 100.0% | L0 sidechain | BIP-366 |    14    |
+| addGauge | arbitrum | 0x00fcd3d55085e998e291a0005cedecf58ac14c4000020000000000000000047f |   50STG-50bbaUSD     |   N/A   | 0xCe3a024bAF36C91d315722B093928020a4F56622 |  1.0%  | 100.0% | L0 sidechain | BIP-366 |    15    |
+| addGauge | arbitrum | 0xbbf9d705b75f408cfcaee91da32966124d2c6f7d00000000000000000000047e |   DOLA/bbaUSD-BPT    |   200   | 0xBc771929359B1A6386801705e8D185205d8f1CBF | 0.04%  | 100.0% | L0 sidechain | BIP-366 |    16    |
+| addGauge | polygon  | 0xab269164a10fab22bc87c39946da06c870b172d6000000000000000000000bfc | wstETH-bb-a-WETH-BPT |   1500  | 0x95Ee4c90aC8AaFbAe0DfE18F08a290b59eacbc1b | 0.01%  | 100.0% | L0 sidechain | BIP-366 |    17    |
+| addGauge | mainnet  | 0x158e0fbc2271e1dcebadd365a22e2b4dd173c0db0002000000000000000005a5 |    80IDLE-20USDC     |   N/A   | 0x9aaAf6757BE9e115895429EF6B81e05dCB951646 |  0.5%  |  2.0%  | mainnet      | BIP-373 |    0     |
+| addGauge | mainnet  | 0xe2d16b0a39f3fbb4389a0e8f1efcbecfb3d1e6e10000000000000000000005a7 |   DUSD/bbaUSD-BPT    |   500   | 0x639F4583E505e9E0A16C5D90E1AF61b47415A3A9 | 0.04%  | 100.0% | mainnet      | BIP-374 |    0     |
+| addGauge | mainnet  | 0x759fabc513accd292ada967c4dd7bb94da39232e0002000000000000000005a8 |  80RATE/20WETH-BPT   |   N/A   | 0x44bc38d3aF025C0EA9a4729E79d6E44244d68Ac6 |  1.0%  |  2.0%  | mainnet      | BIP-376 |    0     |
++----------+----------+--------------------------------------------------------------------+----------------------+---------+--------------------------------------------+--------+--------+--------------+---------+----------+
+```

@@ -1,0 +1,3 @@
+| function             | description                                                                                                 |
+|:---------------------|:------------------------------------------------------------------------------------------------------------|
+| enableRecoveryMode() | Puts a pool into [Recovery Mode](https://medium.com/@0xSkly/inside-balancer-code-recoverymode-9af34ce5ab72) |

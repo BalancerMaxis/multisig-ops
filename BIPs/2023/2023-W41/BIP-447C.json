@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1697047641740,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "enable recovery mode on  EURE/USDC pool",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x7f77c68bdac57f812b18ddfda5f7494a1b2e406b9e5aca64309271812fd4f212"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x73c3332de64a6f7b137bea3255a221d779cc0f170ea4892ff0581faf799230ff",
+        "account": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18"
+      }
+    },
+    {
+      "to": "0x0C1B9CE6Bf6C01f587C2ee98b0ef4B20C6648753",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    }
+  ]
+}

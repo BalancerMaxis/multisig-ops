@@ -1,0 +1,12 @@
+FILENAME: `MaxiOps/chainlinkAutomation/migration/migrate_injector_arb1_part2.json`
+MULTISIG: `multisigs/vote_incentive_recycling (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `3de641ac92ce18ed743e92f1cf30312ae5fba46a`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/9cc68b99-44a6-4aaa-9e4e-be98ac4e4c6d)
+```
++-----------------+--------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name         | to                                                                                               | value | inputs | bip_number | tx_index |
++-----------------+--------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| acceptOwnership | 0xF23d8342881eDECcED51EA694AC21C2B68440929 (maxiKeepers/gaugeRewardsInjectors/arb_STIP_injector) | 0     | "N/A"  | N/A        |   N/A    |
++-----------------+--------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

@@ -1,0 +1,126 @@
+name: Process and Report PR
+
+on:
+  workflow_call:
+    inputs:
+      pr_number:
+        required: true
+        type: string
+      checkout_ref:
+        required: true
+        type: string
+
+jobs:
+  generate_reports:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.pull_request.head.repo.fork && 'external' || 'internal' }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+      ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
+      ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
+      GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
+      POLYGONSCAN_TOKEN: ${{ secrets.POLYGONSCAN_TOKEN }}
+      OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
+      ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
+      SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
+      BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
+      TENDERLY_ACCESS_KEY: ${{ secrets.TENDERLY_ACCESS_KEY }}
+      TENDERLY_ACCOUNT_NAME: ${{ secrets.TENDERLY_ACCOUNT_NAME }}
+      TENDERLY_PROJECT_NAME: ${{ secrets.TENDERLY_PROJECT_NAME }}
+      PR_NUMBER: ${{ inputs.pr_number }}
+      COMMIT_SHA: ${{ inputs.checkout_ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.checkout_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+
+      - name: Cache Compiler Installations
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: compiler-cache
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Setup Environment
+        run: |
+          cd action-scripts/brownie
+          : # https://github.com/yaml/pyyaml/issues/724#issuecomment-1848423837
+          pip install "cython<3.0.0" wheel
+          pip install "pyyaml==5.4.1" --no-build-isolation
+          pip install -r requirements-actions.txt
+          touch .env
+          pwd
+
+      - name: Generate Validation Report
+        id: validation-report
+        run: |
+          export COMMIT_SHA=`git rev-parse HEAD`
+          cd action-scripts/brownie
+          brownie run --network mainnet scripts/validate_bip.py
+
+      - name: Generate Payload report
+        id: gen-report
+        continue-on-error: false
+        run: |
+          export COMMIT_SHA=`git rev-parse HEAD`
+          cd action-scripts/brownie
+          brownie networks import networks.yaml True
+          brownie run --network mainnet scripts/reports.py
+
+      - name: Check for comment files
+        id: check_files
+        run: |
+          if [ -f "action-scripts/brownie/validate_bip_results.txt" ]; then
+            echo "validation_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "validation_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [ -f "action-scripts/brownie/payload_reports.txt" ]; then
+            echo "payload_reports=true" >> $GITHUB_OUTPUT
+          else
+            echo "payload_reports=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post Validation Report as Comment
+        continue-on-error: false
+        if: steps.check_files.outputs.validation_exists == 'true'
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          file-path: action-scripts/brownie/validate_bip_results.txt
+          comment-tag: validation_report
+          pr-number: ${{ inputs.pr_number }}
+
+      - name: Post Payload Report as Comment
+        continue-on-error: true
+        uses: thollander/actions-comment-pull-request@v3
+        if: steps.check_files.outputs.payload_reports == 'true'
+        with:
+          file-path: action-scripts/brownie/payload_reports.txt
+          comment-tag: payload_report
+          pr-number: ${{ inputs.pr_number }}
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write BIPs/**/*.json config/*.json MaxiOps/**/*.json
+          commit_message: Automated processing of Payload PR (validations, transformations, and reports) + reformat JSON
+
+      - name: Commit and push reports
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message:
+          commit_user_name: GitHub Actions
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: Github Actions <noreply@users.noreply.github.com>

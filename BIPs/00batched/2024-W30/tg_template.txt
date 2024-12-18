@@ -1,0 +1,24 @@
+GM GM.  Last week we loaded a 2 problematic payloads, and then delayed because nothing critical could be executed.  As a result we will need to Reject transactions on Mainnet, and Mode.  Please carefully read the instructions for each safe.   Details about what happened are in the combined report.
+
+
+@alexanderlan @trentmc0 @garaigram @mouph  @nanexcool @eboado @OxMaki @StefanGeorge @bonustrack @SausageDoge
+
+Mainnet: https://app.safe.global/transactions/queue?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f
+-> Please REJECT Nonce 250
+Rewire direct incentives distributorship for Paladin will fail due to not using the AuthorizerAdapter.  Tenderly made us a little too comfy here.
+-> Plese SIGN Nonce 251
+BIP-653: Rewire direct incentives distributorship for Paladin
+
+Optimism: https://app.safe.global/transactions/queue?safe=oeth:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc
+-> Please Sign Nonce 31
+BIP-651: Enable Mimic Smartvault V3 on Optimism
+
+Fraxtal: https://safe.optimism.io/transactions/queue?safe=fraxtal:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e
+-> Please Sign Nonce 3
+BIP-660: Revise LZ veBAL boost wireup on Fraxtal
+
+Mode: https://safe.optimism.io/transactions/queue?safe=mode:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e
+-> Please REJECT Nonce 4
+I got confused by the Op safe interface and new chain IDs and loaded BIP-660 on Mode instead of Fraxtal... :/
+
+See detailed reports here: https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs/00batched/2024-W30

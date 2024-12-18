@@ -1,0 +1,140 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1688559620808,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "setTokenRateCacheDuration for affected meta stable pools",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "",
+    "createdFromOwnerAddress": ""
+  },
+  "createdFromSafeAddress": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18",
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[\"0x02c2a0f6c6251ab0610c2548b20e0967cc5ae385cd1109cf5f3d9ce72f722ee3\",\"0xa4cf3b6e755d1c52bedde1ca3a92b562e8fec558b3036cd5eeb2c17ce0cc2c6b\"]",
+        "account": "0x2a5AEcE0bb9EfFD7608213AE1745873385515c18"
+      }
+    },
+    {
+      "to": "0xA611A551b95b205ccD9490657aCf7899daee5DB7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          }
+        ],
+        "name": "setTokenRateCacheDuration",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xfedb19ec000d38d92af4b21436870f115db22725",
+        "duration": "0"
+      }
+    },
+    {
+      "to": "0xFEdb19Ec000d38d92Af4B21436870F115db22725",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          }
+        ],
+        "name": "setTokenRateCacheDuration",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x41211bba6d37f5a74b22e667533f080c7c7f3f13",
+        "duration": "0"
+      }
+    },
+    {
+      "to": "0xFEdb19Ec000d38d92Af4B21436870F115db22725",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          }
+        ],
+        "name": "setTokenRateCacheDuration",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xd16f72b02da5f51231fde542a8b9e2777a478c88",
+        "duration": "0"
+      }
+    },
+    {
+      "to": "0xFEdb19Ec000d38d92Af4B21436870F115db22725",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          }
+        ],
+        "name": "setTokenRateCacheDuration",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xe7f88d7d4ef2eb18fcf9dd7216ba7da1c46f3dd6",
+        "duration": "0"
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1690819298200,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.16.1",
+    "createdFromSafeAddress": "0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xcd98f160a2d7e389c6aa31db9f9771c63db4a5d0fa4977026dfd27f1e97f159c"
+  },
+  "transactions": [
+    {
+      "to": "0x47c97d8Eaa5D84aE25df9c92290B40eD252E75eE",
+      "metaTo": "maxiKeepers/qi_rewards_injector",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "gaugeAddresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "amountsPerPeriod",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint8[]",
+            "name": "maxPeriods",
+            "type": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0x301A121D1d0d72C4005B354854a842A55D23251f]",
+        "amountsPerPeriod": "[350000000000000000000000]",
+        "maxPeriods": "[4]"
+      },
+      "metaCIV": {
+        "gaugeAddresses": "Balancer sAVAX-bb-a-WAVAX-BPT Gaug... (sAVAX-bb-...)",
+        "amounts": 350000.0
+      }
+    },
+    {
+      "to": "0x099D7767eC64Ac33C076f1e3Eb3DC24D08FA86A5",
+      "mataTo": "maxiKeepers/usdc_rewards_injector",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "gaugeAddresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "amountsPerPeriod",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint8[]",
+            "name": "maxPeriods",
+            "type": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xC8aAe478aCdE1d5676c3Fc6614cd25183c207F1a,0x301A121D1d0d72C4005B354854a842A55D23251f,0x11884dA90FB4221b3aa288a7741C51eC4Fc43B2f,0xE98E468074BAa30aaa7747bcD32B77A16Ae3D9d8,0x0c22Ff3f93B5c9f13e41FA9D270680E97AC13B28]",
+        "amountsPerPeriod": "[833325000,2499975000,1666650000,2499975000,833325000]",
+        "maxPeriods": "[12,12,12,12,12]"
+      }
+    },
+    {
+      "to": "0xF23d8342881eDECcED51EA694AC21C2B68440929",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8[]",
+            "internalType": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xC8aAe478aCdE1d5676c3Fc6614cd25183c207F1a,0x301A121D1d0d72C4005B354854a842A55D23251f,0x11884dA90FB4221b3aa288a7741C51eC4Fc43B2f,0xE98E468074BAa30aaa7747bcD32B77A16Ae3D9d8,0x0c22Ff3f93B5c9f13e41FA9D270680E97AC13B28]",
+        "amountsPerPeriod": "[66666666666666700000,200000000000000000000,133333333333333000000,200000000000000000000,66666666666666700000]",
+        "maxPeriods": "[12,12,12,12,12]"
+      }
+    },
+    {
+      "to": "0x95008946F2773f24588AEEE44d643016381265FF",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8[]",
+            "internalType": "uint8[]"
+          }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xC8aAe478aCdE1d5676c3Fc6614cd25183c207F1a]",
+        "amountsPerPeriod": "[100000000000000000000]",
+        "maxPeriods": "[2]"
+      }
+    }
+  ]
+}
