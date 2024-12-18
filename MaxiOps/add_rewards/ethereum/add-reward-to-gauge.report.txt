@@ -1,0 +1,20 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-reward-to-gauge.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `6e87d9d073b798d81ab6543440255d2702397b95`
+CHAIN(S): `mainnet`
+TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `performAction`, positional arguments with type(s) `address,str` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `performAction`: ['performAction(address,bytes)']\nFunction invocation failed due to no matching argument types."))`
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                                                                              | value | inputs                                                                                                              | bip_number | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------------------------------+------------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0     | {                                                                                                                   | N/A        |   N/A    |
+|               |                                                                                                                 |       |   "target": [                                                                                                       |            |          |
+|               |                                                                                                                 |       |     "0x5612876e6f6ca370d93873fe28c874e89e741fb9 (gauges/USDC-DAI-USDT-gauge-5612)"                                  |            |          |
+|               |                                                                                                                 |       |   ],                                                                                                                |            |          |
+|               |                                                                                                                 |       |   "data": [                                                                                                         |            |          |
+|               |                                                                                                                 |       |     "0xe8de0d4d0000000000000000000000005612...1fB9000000000000000000000000fa7b21b30325dbbd4a71ee2b2ede74a7d8a2c0e4" |            |          |
+|               |                                                                                                                 |       |   ]                                                                                                                 |            |          |
+|               |                                                                                                                 |       | }                                                                                                                   |            |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------------------------------+------------+----------+
+```
