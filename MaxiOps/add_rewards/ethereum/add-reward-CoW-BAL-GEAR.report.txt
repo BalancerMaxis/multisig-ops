@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-reward-CoW-BAL-GEAR.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `f0dea98437b9e7baaac5e7c8646e0d13a326e71b`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6b28ad78-658a-4928-94d0-e2fc45e7c9ac)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                                                              | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xA7dc263370Ba6AD86a1971EEcf37e581d5F04E11 (None) | add_reward(address,address) | 0xba100000625a3754423978a60c9317c58a424e3D: tokens/BAL                                     | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x5a18FE4D7a2bd5A39CCa4F9D05D073F21FAE28EE: maxiKeepers/gaugeRewardsInjectors/Balancer_BAL |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xA7dc263370Ba6AD86a1971EEcf37e581d5F04E11 (None) | add_reward(address,address) | 0xBa3335588D9403515223F109EdC4eB7269a9Ab5D: tokens/GEAR                                    | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4: maxiKeepers/injectorV2/GEAR                    |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+```
