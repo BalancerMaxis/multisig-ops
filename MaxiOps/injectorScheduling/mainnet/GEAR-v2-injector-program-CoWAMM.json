@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1734594592,
+  "meta": {
+    "name": "Rewards Injector Schedule: New CoWAMM program",
+    "description": "Configure CowAMM GEAR program",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xbb893383c3cc9a1bc27528a7af8ed4c5022a75e9e7492b89dae7a4f4e6088bde"
+  },
+  "transactions": [
+    {
+      "to": "0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          }
+        ],
+        "name": "removeRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x0Bb8B971AaF99eddfddE2e71736eBEBe8CC7769b]"
+      }
+    },
+    {
+      "to": "0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xA7dc263370Ba6AD86a1971EEcf37e581d5F04E11]",
+        "amountPerPeriod": "79487179490000000000000",
+        "maxPeriods": "2",
+        "doNotStartBeforeTimestamp": "0"
+      }
+    }
+  ]
+}
