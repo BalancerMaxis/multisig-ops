@@ -35,7 +35,7 @@ In this example we will utilize Ethena's USDe and their Aave Statav2 ERC4626 wra
 1. In this situation first step is go to the [USDe contract](https://etherscan.io/address/0x4c9EDD5852cd905f086C759E8383e09bff1E68B3#writeContract) and call approve:
 We will pass 50,000 USD as 50000000000000000000000 since USDe has 18 decimals, and Permit2 [0x000000000022D473030F116dDEE9F6B43aC78BA3](https://etherscan.io/address/0x000000000022D473030F116dDEE9F6B43aC78BA3) as the spender:
 
-![Approve Permit2 as Spender of 50,000 USDe](docs/Buffer-Documentation/Buffer-Images/Approve-Permit2.png)
+![Approve Permit2 as Spender of 50,000 USDe](Approve-Permit2.png)
 
 2. Next we will go to the Permit2 contract and write the approve function with the following: 
 token: 0x4c9EDD5852cd905f086C759E8383e09bff1E68B3
@@ -45,7 +45,7 @@ expiration: 1735128000
 
 We can get the time stamp from https://www.epochconverter.com/ , as long as it is far enough in the future of our execution date we will not have any issues. The initialization transaction will work until after that time.
 
-![Approve the Buffer Router to spend USDe via Permit2](docs/Buffer-Documentation/Buffer-Images/Approve-BufferRouter-via-Permit2.png)
+![Approve the Buffer Router to spend USDe via Permit2](Approve-BufferRouter-via-Permit2.png)
 
 3. Finally we will initialize the buffer by going to the buffer router [0x9179C06629ef7f17Cb5759F501D89997FE0E7b45](https://etherscan.io/address/0x9179C06629ef7f17Cb5759F501D89997FE0E7b45) and writing the initializeBuffer function. In this case we will pass the following data
 
@@ -56,6 +56,6 @@ minIssuedShares: 49975000000000000000000
 
 The minIssuedShares allows for miniscule slippage in the transaction but ultimately the whole balance to remove later on if desired, belongs to the depositor only. A 0.9995 multiplier is sufficient but this varies with decimals and deposit amounts. For smaller amounts, or if you receive a revert, consider a 0.995 multiplier. 
 
-![Initialize the USDe Buffer](docs/Buffer-Documentation/Buffer-Images/Initialize-Buffer-via-BufferRouter.png)
+![Initialize the USDe Buffer](Initialize-Buffer-via-BufferRouter.png)
 
 The buffer initialize can then be verified on the VaultExtension contract, [0x774cB66e2B2dB59A9daF175e9b2B7A142E17EB94](https://etherscan.io/address/0x774cB66e2B2dB59A9daF175e9b2B7A142E17EB94#readContract), by reading the function getBufferBalancer and getBufferOwnerShares functions. 
