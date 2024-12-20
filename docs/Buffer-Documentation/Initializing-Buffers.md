@@ -43,7 +43,7 @@ spender: 0x9179C06629ef7f17Cb5759F501D89997FE0E7b45
 amount: 50000000000000000000000
 expiration: 1735128000
 
-We can get the time stamp from https://www.epochconverter.com/ , as long as it is far enough in the future of our execution date we will not have any issues. The initialization transaction will work until after that time.
+We can get the timestamp from https://www.epochconverter.com/ , as long as it is far enough in the future of our execution date we will not have any issues. The initialization transaction will work until after that time.
 
 ![Approve the Buffer Router to spend USDe via Permit2](Approve-BufferRouter-via-Permit2.png)
 
