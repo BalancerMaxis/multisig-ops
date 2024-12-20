@@ -23,7 +23,7 @@ Permit2: [0x000000000022D473030F116dDEE9F6B43aC78BA3](https://etherscan.io/addre
 
 ### How to initialize a buffer
 
-To initialize a buffer there only three transactions to execute assuming you have a sufficient token balance and the ERC4626 wrapper already created. These three transactions are:
+To initialize a buffer there are only three transactions to execute, assuming you have a sufficient token balance and the ERC4626 wrapper already created. These three transactions are:
 1. Approving your underling token to be spent by Permit2
 2. Approving the Buffer-Router using Permit2 to spend your underling tokens.
 3. Calling initializeBuffer on the BuffferRouter.
