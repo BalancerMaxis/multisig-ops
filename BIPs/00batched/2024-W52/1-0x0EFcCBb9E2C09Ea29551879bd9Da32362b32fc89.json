@@ -1,0 +1,5208 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          }
+        ],
+        "name": "revokeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+        "selector": "0x12210e8a"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          }
+        ],
+        "name": "revokeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+        "selector": "0x49404b7c"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          }
+        ],
+        "name": "revokeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+        "selector": "0xdf2ab5bb"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d",
+        "selector": "0xadc9772e",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d",
+        "selector": "0x1e9a6950",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d",
+        "selector": "0x787a08a6",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 6,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d",
+        "selector": "0x9a99b4f0",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 7,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 8,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38"
+      },
+      "meta": {
+        "tx_index": 9,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 10,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xdC035D45d973E3EC169d2276DDab16f1e407384F"
+      },
+      "meta": {
+        "tx_index": 11,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xdC035D45d973E3EC169d2276DDab16f1e407384F",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000a3931d71877c0e7a3148cb7eb4463524fec27fbd\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000f86141a5657cf52aeb3e30ebcca5ad3a8f714b89\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 12,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x94B17476A93b3262d87B9a326965D1E91f9c13E7"
+      },
+      "meta": {
+        "tx_index": 13,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x94B17476A93b3262d87B9a326965D1E91f9c13E7",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000d03be91b1932715709e18021734fcb91bb431715\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000f403c135812408bfbe8713b5a23a04b3d48aae31\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 14,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x94B17476A93b3262d87B9a326965D1E91f9c13E7",
+        "selector": "0x0b4c7e4d",
+        "options": "1"
+      },
+      "meta": {
+        "tx_index": 15,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x94B17476A93b3262d87B9a326965D1E91f9c13E7",
+        "selector": "0x5b36389c",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 16,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x94B17476A93b3262d87B9a326965D1E91f9c13E7",
+        "selector": "0xe3103273",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 17,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x94B17476A93b3262d87B9a326965D1E91f9c13E7",
+        "selector": "0x1a4d01d2",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 18,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x94B17476A93b3262d87B9a326965D1E91f9c13E7",
+        "selector": "0x3df02124",
+        "options": "1"
+      },
+      "meta": {
+        "tx_index": 19,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xc2591073629AcD455f2fEc56A398B677F2Ccb80c"
+      },
+      "meta": {
+        "tx_index": 20,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xc2591073629AcD455f2fEc56A398B677F2Ccb80c",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000024b65dc1cf053a8d96872c323d29e86ec43eb33a\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 21,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xF403C135812408BFbE8713b5A23a04b3D48AAE31"
+      },
+      "meta": {
+        "tx_index": 22,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xF403C135812408BFbE8713b5A23a04b3D48AAE31",
+        "selector": "0x43a0d066",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000000000000000000000000000000000000000000ae\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 23,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xF403C135812408BFbE8713b5A23a04b3D48AAE31",
+        "selector": "0x60759fce",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000000000000000000000000000000000000000000ae\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 24,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xF403C135812408BFbE8713b5A23a04b3D48AAE31",
+        "selector": "0x441a3e70",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000000000000000000000000000000000000000000ae\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 25,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x24b65DC1cf053A8D96872c323d29e86ec43eB33A"
+      },
+      "meta": {
+        "tx_index": 26,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x24b65DC1cf053A8D96872c323d29e86ec43eB33A",
+        "selector": "0xa694fc3a",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 27,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x24b65DC1cf053A8D96872c323d29e86ec43eB33A",
+        "selector": "0x38d07436",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 28,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x24b65DC1cf053A8D96872c323d29e86ec43eB33A",
+        "selector": "0xc32e7202",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 29,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x24b65DC1cf053A8D96872c323d29e86ec43eB33A",
+        "selector": "0x7050ccd9",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 30,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD"
+      },
+      "meta": {
+        "tx_index": 31,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 32,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+        "selector": "0x6e553f65",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 33,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+        "selector": "0xb460af94",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 34,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+        "selector": "0xba087652",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 35,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x856c4Efb76C1D1AE02e20CEB03A2A6a08b0b8dC3"
+      },
+      "meta": {
+        "tx_index": 36,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x856c4Efb76C1D1AE02e20CEB03A2A6a08b0b8dC3",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000056c526b0159a258887e0d79ec3a80dfb940d0cd7\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000006bac785889a4127db0e0cefee88e0a9f1aaf3cc7\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000094b17476a93b3262d87b9a326965d1e91f9c13e7\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 37,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xf86141a5657Cf52AEB3E30eBccA5Ad3a8f714B89"
+      },
+      "meta": {
+        "tx_index": 38,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xf86141a5657Cf52AEB3E30eBccA5Ad3a8f714B89",
+        "selector": "0xb9f8aeb2",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 39,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xf86141a5657Cf52AEB3E30eBccA5Ad3a8f714B89",
+        "selector": "0x68dea913",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 40,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xf86141a5657Cf52AEB3E30eBccA5Ad3a8f714B89",
+        "selector": "0x9b67f733",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 41,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x3Ef3D8bA38EBe18DB133cEc108f4D14CE00Dd9Ae"
+      },
+      "meta": {
+        "tx_index": 42,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x3Ef3D8bA38EBe18DB133cEc108f4D14CE00Dd9Ae",
+        "selector": "0x71ee95c0",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"4\",\"16\",\"0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc89\"],[\"1\",\"1\",\"0\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 43,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xd03BE91b1932715709e18021734fcB91BB431715"
+      },
+      "meta": {
+        "tx_index": 44,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xd03BE91b1932715709e18021734fcB91BB431715",
+        "selector": "0xb6b55f25",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 45,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xd03BE91b1932715709e18021734fcB91BB431715",
+        "selector": "0x2e1a7d4d",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 46,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xd03BE91b1932715709e18021734fcB91BB431715",
+        "selector": "0xe6f1daf2",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 47,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xd061D61a4d941c39E5453435B6345Dc261C2fcE0"
+      },
+      "meta": {
+        "tx_index": 48,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xd061D61a4d941c39E5453435B6345Dc261C2fcE0",
+        "selector": "0x6a627842",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x000000000000000000000000d03be91b1932715709e18021734fcb91bb431715\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 49,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x56C526b0159a258887e0d79ec3a80dfb940d0cD7"
+      },
+      "meta": {
+        "tx_index": 50,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x56C526b0159a258887e0d79ec3a80dfb940d0cD7",
+        "selector": "0x26a38e64",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000094b17476a93b3262d87b9a326965d1e91f9c13e7\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000094b17476a93b3262d87b9a326965d1e91f9c13e7\"],[\"0\",\"1\",\"16\",\"0x000000000000000000000000d03be91b1932715709e18021734fcb91bb431715\"],[\"0\",\"1\",\"16\",\"0x0000000000000000000000000000000000000000000000000000000000000002\"],[\"0\",\"4\",\"16\",\"0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000002000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3\"],[\"0\",\"4\",\"0\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"16\",\"0x0000000000000000000000000000000000000000000000000000000000000000\"],[\"5\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"]]",
+        "options": "1"
+      },
+      "meta": {
+        "tx_index": 51,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x9858e47BCbBe6fBAC040519B02d7cd4B2C470C66"
+      },
+      "meta": {
+        "tx_index": 52,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x9858e47BCbBe6fBAC040519B02d7cd4B2C470C66",
+        "selector": "0xd0e30db0",
+        "options": "1"
+      },
+      "meta": {
+        "tx_index": 53,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x6bac785889A4127dB0e0CeFEE88E0a9F1Aaf3cC7"
+      },
+      "meta": {
+        "tx_index": 54,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x6bac785889A4127dB0e0CeFEE88E0a9F1Aaf3cC7",
+        "selector": "0x6c08c57e",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x000000000000000000000000856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3\"],[\"0\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 55,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab"
+      },
+      "meta": {
+        "tx_index": 56,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab",
+        "selector": "0x9ee679e8",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 57,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab",
+        "selector": "0xf8444436",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 58,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab",
+        "selector": "0x48e30f54",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 59,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885"
+      },
+      "meta": {
+        "tx_index": 60,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885",
+        "selector": "0xf9609f08",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "1"
+      },
+      "meta": {
+        "tx_index": 61,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885",
+        "selector": "0x1a7ff553",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 62,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885",
+        "selector": "0x18f72950",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "1"
+      },
+      "meta": {
+        "tx_index": 63,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885",
+        "selector": "0x201b9eb5",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 64,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885",
+        "selector": "0x066055e0",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 65,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885",
+        "selector": "0x8ceab9aa",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 66,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xAC0F906E433d58FA868F936E8A43230473652885",
+        "selector": "0x8697d2c2",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 67,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x4aa42145Aa6Ebf72e164C9bBC74fbD3788045016"
+      },
+      "meta": {
+        "tx_index": 68,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x4aa42145Aa6Ebf72e164C9bBC74fbD3788045016",
+        "selector": "0x01e4f53a",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 69,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x4aa42145Aa6Ebf72e164C9bBC74fbD3788045016",
+        "selector": "0x3f7658fd",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"1\",\"0x\"],[\"1\",\"2\",\"21\",\"0x0000ffffffffffffffffffff00000000000efccbb9e2c09ea295510000000000\"],[\"1\",\"2\",\"21\",\"0x000affffffffffffffffffff0000000000879bd9da32362b32fc890000000000\"],[\"1\",\"2\",\"21\",\"0x0054ffffffffffffffffffff00000000004aa42145aa6ebf72e1640000000000\"],[\"1\",\"2\",\"21\",\"0x005effffffffffffffffffff0000000000c9bbc74fbd37880450160000000000\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 70,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x6810e776880C02933D47DB1b9fc05908e5386b96"
+      },
+      "meta": {
+        "tx_index": 71,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000088ad09518695c6c3712ac10a214be5109a655671\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 72,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x88ad09518695c6c3712AC10a214bE5109a655671"
+      },
+      "meta": {
+        "tx_index": 73,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x88ad09518695c6c3712AC10a214bE5109a655671",
+        "selector": "0xad58bdd1",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x0000000000000000000000006810e776880c02933d47db1b9fc05908e5386b96\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 74,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x4C36d2919e407f0Cc2Ee3c993ccF8ac26d9CE64e"
+      },
+      "meta": {
+        "tx_index": 75,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x4C36d2919e407f0Cc2Ee3c993ccF8ac26d9CE64e",
+        "selector": "0x23caab49",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"1\",\"0x\"],[\"1\",\"2\",\"21\",\"0x0000ffffffff0000000000000000000000000500000000000000000000000000\"],[\"1\",\"2\",\"21\",\"0x0004ffffffffffffffffffff0000000000a7823d6f1e31569f51860000000000\"],[\"1\",\"2\",\"21\",\"0x000effffffffffffffffffff00000000001e345b30c6bebf70ebe70000000000\"],[\"1\",\"2\",\"21\",\"0x0020ffffffffffffffffffff0000000000f6a78083ca3e2a662d6d0000000000\"],[\"1\",\"2\",\"21\",\"0x002affffffffffffffffffff0000000000d1703c939c8ace2e268d0000000000\"],[\"1\",\"2\",\"21\",\"0x0034ffffffffffffffffffff000000000088ad09518695c6c3712a0000000000\"],[\"1\",\"2\",\"21\",\"0x003effffffffffffffffffff0000000000c10a214be5109a6556710000000000\"],[\"1\",\"2\",\"21\",\"0x0048ffffffff0000000000000000000000000927c00000000000000000000000\"],[\"1\",\"2\",\"21\",\"0x004cffffffffff00000000000000000000010180640100000000000000000000\"],[\"1\",\"2\",\"21\",\"0x0051ffffffff0000000000000000000000272255bb0000000000000000000000\"],[\"1\",\"2\",\"21\",\"0x0061ffffffffffffffffffff00000000006810e776880c02933d470000000000\"],[\"1\",\"2\",\"21\",\"0x006bffffffffffffffffffff0000000000db1b9fc05908e5386b960000000000\"],[\"1\",\"2\",\"21\",\"0x0081ffffffffffffffffffff00000000000efccbb9e2c09ea295510000000000\"],[\"1\",\"2\",\"21\",\"0x008bffffffffffffffffffff0000000000879bd9da32362b32fc890000000000\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 76,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f"
+      },
+      "meta": {
+        "tx_index": 77,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000001a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 78,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+      },
+      "meta": {
+        "tx_index": 79,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000373238337bfe1146fb49989fc222523f83081ddb\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000004aa42145aa6ebf72e164c9bbc74fbd3788045016\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc45\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000f86141a5657cf52aeb3e30ebcca5ad3a8f714b89\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 80,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
+      },
+      "meta": {
+        "tx_index": 81,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        "selector": "0x617ba037",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000dc035d45d973e3ec169d2276ddab16f1e407384f\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000f1c9acdc66974dfb6decb12aa385b9cd01190e38\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 82,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        "selector": "0x69328dec",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000dc035d45d973e3ec169d2276ddab16f1e407384f\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000f1c9acdc66974dfb6decb12aa385b9cd01190e38\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 83,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        "selector": "0x5a3b74b9",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"1\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000dc035d45d973e3ec169d2276ddab16f1e407384f\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000f1c9acdc66974dfb6decb12aa385b9cd01190e38\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 84,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        "selector": "0xa415bcad",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 85,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        "selector": "0x573ade81",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"15\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 86,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x83F20F44975D03b1b09e64809B757c47f942BEeA"
+      },
+      "meta": {
+        "tx_index": 87,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x83F20F44975D03b1b09e64809B757c47f942BEeA",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 88,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+      },
+      "meta": {
+        "tx_index": 89,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc45\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c36442b4a4522e871399cd717abdd847ab11fe88\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 90,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0"
+      },
+      "meta": {
+        "tx_index": 91,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc45\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000889edc2edab5f40e902b864ad4d7ade8e412f9b1\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 92,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x23dA9AdE38E4477b23770DeD512fD37b12381FAB"
+      },
+      "meta": {
+        "tx_index": 93,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x23dA9AdE38E4477b23770DeD512fD37b12381FAB",
+        "selector": "0x569d3489",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"0\",\"1\",\"0\",\"0x\"],[\"0\",\"1\",\"18\",\"0x00000000000000000000000000000000000000000000000000000000000000c9\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"4\",\"0\",\"2\",\"0x\"],[\"4\",\"0\",\"2\",\"0x\"],[\"4\",\"1\",\"15\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000a3931d71877c0e7a3148cb7eb4463524fec27fbd\"],[\"5\",\"0\",\"2\",\"0x\"],[\"5\",\"1\",\"15\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"16\",\"0x000000000000000000000000dc035d45d973e3ec169d2276ddab16f1e407384f\"],[\"6\",\"0\",\"2\",\"0x\"],[\"6\",\"1\",\"15\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"16\",\"0x000000000000000000000000856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3\"],[\"7\",\"0\",\"2\",\"0x\"],[\"7\",\"1\",\"15\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"8\",\"0\",\"2\",\"0x\"],[\"8\",\"0\",\"2\",\"0x\"],[\"8\",\"1\",\"15\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"9\",\"0\",\"2\",\"0x\"],[\"9\",\"0\",\"2\",\"0x\"],[\"9\",\"1\",\"15\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"10\",\"1\",\"16\",\"0x0000000000000000000000001a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d\"],[\"10\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"11\",\"1\",\"16\",\"0x0000000000000000000000001a88df1cfe15af22b3c4c783d4e6f7f9e0c1885d\"],[\"11\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"23\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"23\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"23\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"23\",\"1\",\"16\",\"0x000000000000000000000000dc035d45d973e3ec169d2276ddab16f1e407384f\"],[\"35\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"35\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"35\",\"1\",\"16\",\"0x000000000000000000000000a3931d71877c0e7a3148cb7eb4463524fec27fbd\"],[\"35\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"47\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"47\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"47\",\"1\",\"16\",\"0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84\"],[\"47\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"47\",\"1\",\"16\",\"0x000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\"],[\"58\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"58\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"58\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"58\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"58\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"58\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"59\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"59\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"59\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"59\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"59\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"59\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"70\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"70\",\"1\",\"16\",\"0x00000000000000000000000048c3399719b582dd63eb5aadf12a40b4c3f52fa2\"],[\"70\",\"1\",\"16\",\"0x0000000000000000000000004da27a545c0c5b758a6ba100e3a049001de870f5\"],[\"70\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"70\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"70\",\"1\",\"16\",\"0x0000000000000000000000007fc66500c84a76ad7e9c93437bfc5ac33e2ddae9\"],[\"70\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"70\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"70\",\"1\",\"16\",\"0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84\"],[\"70\",\"1\",\"16\",\"0x000000000000000000000000c00e94cb662c3520282e6f5717214004a7f26888\"],[\"70\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"70\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"71\",\"1\",\"16\",\"0x0000000000000000000000002260fac5e5542a773aa44fbcfedf7c193bc2c599\"],[\"71\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"71\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"71\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"71\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"71\",\"1\",\"16\",\"0x000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84\"],[\"71\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"71\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"]]",
+        "options": "2"
+      },
+      "meta": {
+        "tx_index": 94,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "allowFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0x23dA9AdE38E4477b23770DeD512fD37b12381FAB",
+        "selector": "0x5a66c223",
+        "options": "2"
+      },
+      "meta": {
+        "tx_index": 95,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A"
+      },
+      "meta": {
+        "tx_index": 96,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A",
+        "selector": "0x095ea7b3",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ba12222222228d8ba445958a75a0704d566bf2c8\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe0110\"],[\"1\",\"1\",\"16\",\"0x000000000000000000000000ea50f402653c41cadbafd1f788341db7b7f37816\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 97,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88"
+      },
+      "meta": {
+        "tx_index": 98,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+        "selector": "0x219f5d17",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"3\",\"5\",\"0x\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000000000000000000000000000000000000000690a6\"],[\"1\",\"1\",\"0\",\"0x\"],[\"1\",\"1\",\"0\",\"0x\"],[\"1\",\"1\",\"0\",\"0x\"],[\"1\",\"1\",\"0\",\"0x\"],[\"1\",\"1\",\"0\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 99,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+        "selector": "0xfc6f7865",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"3\",\"5\",\"0x\"],[\"1\",\"1\",\"16\",\"0x00000000000000000000000000000000000000000000000000000000000690a6\"],[\"1\",\"1\",\"15\",\"0x\"],[\"1\",\"1\",\"0\",\"0x\"],[\"1\",\"1\",\"0\",\"0x\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 100,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          }
+        ],
+        "name": "scopeTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+      },
+      "meta": {
+        "tx_index": 101,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x13c61a25db73e7a94a244bd2205adba8b4a60f4a",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "struct ConditionFlat[]",
+            "name": "conditions",
+            "type": "tuple[]",
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "parent",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum ParameterType",
+                "name": "paramType",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum Operator",
+                "name": "operator",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes",
+                "name": "compValue",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "internalType": "enum ExecutionOptions",
+            "name": "options",
+            "type": "uint8"
+          }
+        ],
+        "name": "scopeFunction",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000",
+        "targetAddress": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+        "selector": "0x52bbbe29",
+        "conditions": "[[\"0\",\"5\",\"5\",\"0x\"],[\"0\",\"0\",\"2\",\"0x\"],[\"0\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"1\",\"3\",\"5\",\"0x\"],[\"2\",\"1\",\"15\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"2\",\"1\",\"15\",\"0x\"],[\"2\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"16\",\"0x0b09dea16768f0799065c475be02919503cb2a3500020000000000000000001a\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"3\",\"1\",\"16\",\"0x0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f\"],[\"3\",\"1\",\"0\",\"0x\"],[\"3\",\"2\",\"0\",\"0x\"],[\"4\",\"1\",\"16\",\"0x96646936b91d6b9d7d0c47c496afbf3d6ec7b6f8000200000000000000000019\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"4\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"4\",\"1\",\"0\",\"0x\"],[\"4\",\"2\",\"0\",\"0x\"],[\"5\",\"1\",\"16\",\"0xefaa1604e82e1b3af8430b90192c1b9e8197e377000200000000000000000021\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000c00e94cb662c3520282e6f5717214004a7f26888\"],[\"5\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"5\",\"1\",\"0\",\"0x\"],[\"5\",\"2\",\"0\",\"0x\"],[\"6\",\"1\",\"16\",\"0x8353157092ed8be69a9df8f95af097bbf33cb2af0000000000000000000005d9\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"0\",\"2\",\"0x\"],[\"6\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"6\",\"1\",\"0\",\"0x\"],[\"6\",\"2\",\"0\",\"0x\"],[\"7\",\"1\",\"16\",\"0x8353157092ed8be69a9df8f95af097bbf33cb2af0000000000000000000005d9\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"7\",\"0\",\"2\",\"0x\"],[\"7\",\"1\",\"0\",\"0x\"],[\"7\",\"2\",\"0\",\"0x\"],[\"8\",\"1\",\"16\",\"0x1cce5169bde03f3d5ad0206f6bd057953539dae600020000000000000000062b\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"0\",\"2\",\"0x\"],[\"8\",\"0\",\"2\",\"0x\"],[\"8\",\"1\",\"0\",\"0x\"],[\"8\",\"2\",\"0\",\"0x\"],[\"9\",\"1\",\"16\",\"0x1e19cf2d73a72ef1332c882f20534b6519be0276000200000000000000000112\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"0\",\"2\",\"0x\"],[\"9\",\"0\",\"2\",\"0x\"],[\"9\",\"1\",\"0\",\"0x\"],[\"9\",\"2\",\"0\",\"0x\"],[\"10\",\"1\",\"16\",\"0x2191df821c198600499aa1f0031b1a7514d7a7d9000200000000000000000639\"],[\"10\",\"1\",\"0\",\"0x\"],[\"10\",\"0\",\"2\",\"0x\"],[\"10\",\"0\",\"2\",\"0x\"],[\"10\",\"1\",\"0\",\"0x\"],[\"10\",\"2\",\"0\",\"0x\"],[\"11\",\"1\",\"16\",\"0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2\"],[\"11\",\"1\",\"0\",\"0x\"],[\"11\",\"0\",\"2\",\"0x\"],[\"11\",\"0\",\"2\",\"0x\"],[\"11\",\"1\",\"0\",\"0x\"],[\"11\",\"2\",\"0\",\"0x\"],[\"12\",\"1\",\"16\",\"0xaa7a70070e7495fe86c67225329dbd39baa2f63b000200000000000000000663\"],[\"12\",\"1\",\"0\",\"0x\"],[\"12\",\"0\",\"2\",\"0x\"],[\"12\",\"0\",\"2\",\"0x\"],[\"12\",\"1\",\"0\",\"0x\"],[\"12\",\"2\",\"0\",\"0x\"],[\"13\",\"1\",\"16\",\"0xc2aa60465bffa1a88f5ba471a59ca0435c3ec5c100020000000000000000062c\"],[\"13\",\"1\",\"0\",\"0x\"],[\"13\",\"0\",\"2\",\"0x\"],[\"13\",\"0\",\"2\",\"0x\"],[\"13\",\"1\",\"0\",\"0x\"],[\"13\",\"2\",\"0\",\"0x\"],[\"14\",\"1\",\"16\",\"0xf01b0684c98cd7ada480bfdf6e43876422fa1fc10002000000000000000005de\"],[\"14\",\"1\",\"0\",\"0x\"],[\"14\",\"0\",\"2\",\"0x\"],[\"14\",\"0\",\"2\",\"0x\"],[\"14\",\"1\",\"0\",\"0x\"],[\"14\",\"2\",\"0\",\"0x\"],[\"15\",\"1\",\"16\",\"0xfbfad5fa9e99081da6461f36f229b5cc88a64c6300020000000000000000062d\"],[\"15\",\"1\",\"0\",\"0x\"],[\"15\",\"0\",\"2\",\"0x\"],[\"15\",\"0\",\"2\",\"0x\"],[\"15\",\"1\",\"0\",\"0x\"],[\"15\",\"2\",\"0\",\"0x\"],[\"40\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"40\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"47\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"47\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"52\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"52\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"53\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"53\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"58\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"58\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"59\",\"1\",\"16\",\"0x000000000000000000000000ae78736cd615f374d3085123a210448e74fc6393\"],[\"59\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"64\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"64\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"65\",\"1\",\"16\",\"0x00000000000000000000000083f20f44975d03b1b09e64809b757c47f942beea\"],[\"65\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"70\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"70\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"71\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"71\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"76\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"76\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"77\",\"1\",\"16\",\"0x00000000000000000000000040d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f\"],[\"77\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"82\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"82\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"83\",\"1\",\"16\",\"0x000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],[\"83\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"88\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"88\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"89\",\"1\",\"16\",\"0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"],[\"89\",\"1\",\"16\",\"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\"],[\"94\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"94\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"],[\"95\",\"1\",\"16\",\"0x000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7\"],[\"95\",\"1\",\"16\",\"0x000000000000000000000000e07f9d810a48ab5c3c914ba3ca53af14e4491e8a\"]]",
+        "options": "0"
+      },
+      "meta": {
+        "tx_index": 102,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    },
+    {
+      "to": "0x000000000000cd17345801aa8147b8D3950260FF",
+      "value": "0",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "tag",
+            "type": "string"
+          }
+        ],
+        "name": "post",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "content": "{\"rolesMod\":\"0x13c61a25db73e7a94a244bd2205adba8b4a60f4a\",\"roleKey\":\"0x4d414e4147455200000000000000000000000000000000000000000000000000\",\"removeAnnotations\":[],\"addAnnotations\":[{\"schema\":\"https://kit.karpatkey.com/api/v1/openapi.json\",\"uris\":[\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v2/stake?targets=AAVE%2CGHO\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/deposit?targets=DAI\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/deposit?targets=osETH\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/deposit?targets=sDAI\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/deposit?targets=USDC\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/deposit?targets=USDS\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/deposit?targets=WBTC\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/deposit?targets=wstETH\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/borrow?targets=GHO\",\"https://kit.karpatkey.com/api/v1/permissions/eth/aave_v3/delegate?targets=AAVE%2CstkAAVE&delegatee=0x8787FC2De4De95c53e5E3a4e5459247D9773ea52\",\"https://kit.karpatkey.com/api/v1/permissions/eth/convex/deposit?targets=174\",\"https://kit.karpatkey.com/api/v1/permissions/eth/cowswap/swap?sell=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9%2C0xc00e94Cb662C3520282E6f5717214004A7f26888%2C0x6B175474E89094C44Da98b954EedeAC495271d0F%2C0xae78736Cd615f374D3085123A210448E74Fc6393%2C0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84%2C0x4da27a545c0c5B758a6BA100e3a049001de870f5%2C0x48C3399719B582dD63eB5AADf12A40B4C3f52FA2%2C0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48%2C0xdAC17F958D2ee523a2206206994597C13D831ec7%2C0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599%2C0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2%2C0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0&buy=0x6B175474E89094C44Da98b954EedeAC495271d0F%2C0xae78736Cd615f374D3085123A210448E74Fc6393%2C0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84%2C0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48%2C0xdAC17F958D2ee523a2206206994597C13D831ec7%2C0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599%2C0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2%2C0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0&feeAmountBp=200\",\"https://kit.karpatkey.com/api/v1/permissions/eth/cowswap/swap?sell=0x6B175474E89094C44Da98b954EedeAC495271d0F%2C0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f%2C0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A%2C0x83F20F44975D03b1b09e64809B757c47f942BEeA%2C0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48%2C0xdAC17F958D2ee523a2206206994597C13D831ec7&buy=0x6B175474E89094C44Da98b954EedeAC495271d0F%2C0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f%2C0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A%2C0x83F20F44975D03b1b09e64809B757c47f942BEeA%2C0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48%2C0xdAC17F958D2ee523a2206206994597C13D831ec7&feeAmountBp=200\",\"https://kit.karpatkey.com/api/v1/permissions/eth/cowswap/swap?sell=0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f%2C0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d&buy=0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f%2C0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d&feeAmountBp=200\",\"https://kit.karpatkey.com/api/v1/permissions/eth/cowswap/swap?sell=0xdC035D45d973E3EC169d2276DDab16f1e407384F&buy=0x6B175474E89094C44Da98b954EedeAC495271d0F%2C0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD%2C0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48%2C0xdAC17F958D2ee523a2206206994597C13D831ec7&feeAmountBp=200\",\"https://kit.karpatkey.com/api/v1/permissions/eth/cowswap/swap?sell=0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD&buy=0x6B175474E89094C44Da98b954EedeAC495271d0F%2C0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48%2C0xdC035D45d973E3EC169d2276DDab16f1e407384F%2C0xdAC17F958D2ee523a2206206994597C13D831ec7&feeAmountBp=200\",\"https://kit.karpatkey.com/api/v1/permissions/eth/cowswap/swap?sell=0x856c4Efb76C1D1AE02e20CEB03A2A6a08b0b8dC3&buy=ETH%2C0xae78736Cd615f374D3085123A210448E74Fc6393%2C0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84%2C0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2%2C0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0&feeAmountBp=200\",\"https://kit.karpatkey.com/api/v1/permissions/eth/lido/deposit?\",\"https://kit.karpatkey.com/api/v1/permissions/eth/rocket_pool/deposit?\",\"https://kit.karpatkey.com/api/v1/permissions/eth/spark/deposit?targets=DSR_sDAI\",\"https://kit.karpatkey.com/api/v1/permissions/eth/spark/deposit?targets=SKY_USDS\",\"https://kit.karpatkey.com/api/v1/permissions/eth/uniswap_v3/deposit?targets=430246\"]}]}",
+        "tag": "ROLES_PERMISSION_ANNOTATION"
+      },
+      "meta": {
+        "tx_index": 103,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2024-W52/[BIP-748] Permissions Policy Update Request #5 Revised.json",
+        "bip_number": "BIP-748"
+      }
+    }
+  ]
+}
