@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1735302837334,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x6c5726100d0602fb28892d002fafe02a19724a6bb87f23fac76a090640fb0e5e"
+  },
+  "transactions": [
+    {
+      "to": "0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "period", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "setMinWaitPeriodSeconds",
+        "payable": false
+      },
+      "contractInputsValues": { "period": "518400" }
+    }
+  ]
+}
