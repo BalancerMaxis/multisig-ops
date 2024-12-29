@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-BAL-&-EUL-for-EUL-wETH-CowAMM.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `25c083a727b43f67086f7f9dd42b7ba84587bec7`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/e6bd700a-246d-48ed-80ef-65430901520f)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                                                              | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xe4eA557600600aeC920a4bdf6Ed1E95ae96140E1 (None) | add_reward(address,address) | 0xd9Fcd98c322942075A5C3860693e9f4f03AAE07b: EUL                                            | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: None                                           |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xe4eA557600600aeC920a4bdf6Ed1E95ae96140E1 (None) | add_reward(address,address) | 0xba100000625a3754423978a60c9317c58a424e3D: tokens/BAL                                     | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x5a18FE4D7a2bd5A39CCa4F9D05D073F21FAE28EE: maxiKeepers/gaugeRewardsInjectors/Balancer_BAL |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------------------------+-----+----------+
+```
