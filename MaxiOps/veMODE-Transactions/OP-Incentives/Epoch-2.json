@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1733347913967,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xce7d98da2f2b0d247dd178dd8bd159b31eb3e6861bbfe62429d21b74a426ae46"
+  },
+  "transactions": [
+    {
+      "to": "0x4200000000000000000000000000000000000042",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "spender", "type": "address", "internalType": "address" },
+          { "name": "amount", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+        "amount": "5000000000000000000000"
+      }
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptConditions",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "campaignId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "creator",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "rewardToken",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint32",
+                "name": "campaignType",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "startTimestamp",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "duration",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "campaignData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct CampaignParameters",
+            "name": "newCampaign",
+            "type": "tuple"
+          }
+        ],
+        "name": "createCampaign",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"0x0000000000000000000000000000000000000000\",\"0x4200000000000000000000000000000000000042\",\"5000000000000000000000\",1,1733439600,1209600,\"0x000000000000000000000000000000000000000000000000000000000000868b000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000001a00000000000000000000000001224d4e918e69189760888fd40ec1491c93cd59b00000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000120000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000180000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0c0c0c0\"]"
+      }
+    },
+    {
+      "to": "0x4200000000000000000000000000000000000042",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "spender", "type": "address", "internalType": "address" },
+          { "name": "amount", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+        "amount": "1500000000000000000000"
+      }
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptConditions",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "campaignId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "creator",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "rewardToken",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint32",
+                "name": "campaignType",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "startTimestamp",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "duration",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "campaignData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct CampaignParameters",
+            "name": "newCampaign",
+            "type": "tuple"
+          }
+        ],
+        "name": "createCampaign",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"0x0000000000000000000000000000000000000000\",\"0x4200000000000000000000000000000000000042\",\"1500000000000000000000\",1,1733439600,1209600,\"0x000000000000000000000000000000000000000000000000000000000000868b000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000001a000000000000000000000000016453789fed619c7fa18c068dec1cb2766ba2e3e00000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000120000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000180000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0c0c0c0\"]"
+      }
+    }
+  ]
+}

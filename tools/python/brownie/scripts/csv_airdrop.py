@@ -52,6 +52,7 @@ def main():
     print(txlist)
     with open(JSON, "w") as output:
         json.dump(payload, output, indent=2)
+        output.write("\n")
 
 
 if __name__ == "__main__":

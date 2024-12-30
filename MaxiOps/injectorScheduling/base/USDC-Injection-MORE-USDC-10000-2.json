@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1729182784671,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x3d5ab501a2dc02886a0091d2f47cd8728c3e6c74b81308751ecd6db47d45b8da"
+  },
+  "transactions": [
+    {
+      "to": "0xA6E7840Fc8193cFeBDdf177fa410038E5DD08f7A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          { "name": "maxPeriods", "type": "uint8[]", "internalType": "uint8[]" }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0x04eb463335845e8b8d46d410b344fd2187bbf87c]",
+        "amountsPerPeriod": "[10000000000]",
+        "maxPeriods": "[2]"
+      }
+    }
+  ]
+}

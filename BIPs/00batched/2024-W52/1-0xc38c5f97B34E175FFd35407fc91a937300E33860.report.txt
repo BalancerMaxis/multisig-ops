@@ -1,0 +1,52 @@
+FILENAME: `BIPs/00batched/2024-W52/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `6c1a80e9b96ab02f9e5d81f0ce049e35bdf2ff6c`
+CHAIN(S): `arbitrum, mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f9aff1ec-0926-4907-98b9-51a0973a7b40)
+
+| Gauge Validator (0x5f244e8ac0FF2d2af14368fd8EFd1E508a50CF68) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0x0d1b58fB1fC10F2160178DE1eAE2d520335ee372) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0x5d0AA3B7F4429e999C95D392E6c50c6555cD7816) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0x80CD37A62A8A58C4Cbf64003410c5cCC4d01519f) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+```
++-----------------------+---------------------------------------------------------------------+----------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                                 | symbol_and_info      | gauge_address_and_info                           | tokens                                                 | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+---------------------------------------------------------------------+----------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x85564af67760063b994599b640552614238c9ee60000000000000000000005e3  | USDX/USDT            | root: 0x5f244e8ac0FF2d2af14368fd8EFd1E508a50CF68 | 0x85564aF67760063B994599B640552614238C9Ee6: USDX/USDT  | 0x0000000000000000000000000000000000000000 |       --       | BIP-747 |    0     |
+|                       | pool_address: 0x85564aF67760063B994599B640552614238C9Ee6            | fee: 0.01            | side: 0x7bbD2B8932610dEC2698C63fC28130224A339Df2 | 0xf3527ef8dE265eAa3716FB312c12847bFBA66Cef: USDX       | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     | a-factor: 720        | style: L0 sidechain                              | 0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9: USDT       | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     |                      | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                                     |                      | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xb3047330c1cb5eb1a3670fabfb99bdc106d631eb0000000000000000000005e4  | sUSDX/USDX           | root: 0x0d1b58fB1fC10F2160178DE1eAE2d520335ee372 | 0x7788A3538C5fc7F9c7C8A74EAC4c898fC8d87d92: sUSDX      | 0xDA967592898c584966AAf765C1acfd09F6e1aEAA |      safe      | BIP-747 |    1     |
+|                       | pool_address: 0xb3047330c1CB5eb1a3670FabfB99bDc106D631EB            | fee: 0.04            | side: 0x83bE87529aC31d06fEc49FF5Aedd6290b81D0700 | 0xb3047330c1CB5eb1a3670FabfB99bDc106D631EB: sUSDX/USDX | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     | a-factor: 720        | style: L0 sidechain                              | 0xf3527ef8dE265eAa3716FB312c12847bFBA66Cef: USDX       | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     |                      | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                                     |                      | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xda17f3663c5d04c0b316cfa1a04aa53ebbc8c12c0000000000000000000006e7  | eBTC/wBTC            | root: 0x5d0AA3B7F4429e999C95D392E6c50c6555cD7816 | 0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599: WBTC       | 0x0000000000000000000000000000000000000000 |       --       | BIP-745 |    2     |
+|                       | pool_address: 0xda17f3663C5D04C0B316cfA1A04Aa53eBBC8c12C            | fee: 0.04            | side: None                                       | 0x657e8C867D8B37dCC18fA4Caead9C45EB088C642: eBTC       | 0xdDDF909076B641C51f22ACD4b134C54adad51e68 |      safe      |         |          |
+|                       |                                                                     | a-factor: 200        | style: mainnet                                   | 0xda17f3663C5D04C0B316cfA1A04Aa53eBBC8c12C: eBTC/wBTC  | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     |                      | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                                     |                      | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x0aaba3d6a05a606b7a794877dd0befda47474db00002000000000000000006d2  | B-KAI-WETH-WEIGHTED  | root: 0x80CD37A62A8A58C4Cbf64003410c5cCC4d01519f | 0x63e5dC7C071C1F18d44b69bc86f4c80F24851388: KAI        | 0x0000000000000000000000000000000000000000 |       --       | BIP-746 |    3     |
+|                       | pool_address: 0x0AAba3D6a05a606b7A794877Dd0beFDa47474dB0            | fee: 0.5             | side: None                                       | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2: WETH       | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                                     | a-factor: N/A        | style: mainnet                                   |                                                        |                                            |                |         |          |
+|                       |                                                                     |                      | cap: 2.0%                                        |                                                        |                                            |                |         |          |
+|                       |                                                                     |                      | preferential: True                               |                                                        |                                            |                |         |          |
++-----------------------+---------------------------------------------------------------------+----------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```

@@ -5,6 +5,12 @@ import argparse
 from pathlib import Path
 from bal_addresses.utils import to_checksum_address
 import requests
+from vote import (
+    prepare_vote_data,
+    create_vote_payload,
+    hash_eip712_message,
+    _get_prop_and_determine_date_range,
+)
 
 
 def find_project_root(current_path=None):
@@ -41,6 +47,20 @@ def review_votes(week_string):
     csv_file = csv_files[0]
     vote_df = pd.read_csv(csv_file)
 
+    try:
+        test_df = vote_df.copy()
+        prop, _, _ = _get_prop_and_determine_date_range()
+        test_df, vote_choices = prepare_vote_data(test_df, prop)
+        data = create_vote_payload(vote_choices, prop)
+        hash = hash_eip712_message(data)
+        vote_prep = f"\n### Vote Preparation\nSuccessfully simulated vote preparation ✅\nMessage hash: `0x{hash.hex()}`"
+        vote_check = True
+    except Exception as e:
+        vote_prep = (
+            f"\n### Vote Preparation\n❌ Error simulating vote preparation: {str(e)}"
+        )
+        vote_check = False
+
     vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
 
     gauge_labels = fetch_gauge_labels()
@@ -68,11 +88,13 @@ CSV file: `{os.path.relpath(csv_file, project_root)}`
 {f"- Missing labels for {len(missing_labels)} gauge(s):" if not snapshot_label_check else ""}
 {missing_labels[["Chain", "Label", "Gauge Address"]].to_string(index=False) if not snapshot_label_check else ""}
 
+{vote_prep}
+
 ### Vote Summary
 
 {vote_df[["Chain", "Label", "Gauge Address", "Allocation %"]].to_markdown(index=False)}
 
-{"### ✅ All checks passed" if (allocation_check and snapshot_label_check) else "### ❌ Some checks failed"}
+{"### ✅ All checks passed!" if (allocation_check and snapshot_label_check and vote_check) else "### ❌ Some checks failed - please review the issues above"}
     """
 
     with open("review_output.md", "w") as f:

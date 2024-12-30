@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1730377931090,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable WBTC/pumpBTC Gauge [Ethereum]",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x2e50e8c818db3ddbe7957826cdba4ae1a151965d257ef2b2af806f7cc06b744e"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "gauge", "type": "address" },
+          { "internalType": "string", "name": "gaugeType", "type": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xDFaD195F91e1591ae8Eb4c1c7183185CeF58864D",
+        "gaugeType": "Ethereum"
+      }
+    }
+  ]
+}

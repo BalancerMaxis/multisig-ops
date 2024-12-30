@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "chainId": "1101",
+  "createdAt": 1732256750075,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x0f2f27bc17da2bc14feadb01280cf275b18a46f654ccccb02b42230b1d7dd5be"
+  },
+  "transactions": [
+    {
+      "to": "0x3fb4ee715987eD98EDbeEb144F9b6b034C4c9F02",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "keeperRegistryAddress",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "setKeeperRegistryAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "keeperRegistryAddress": "0x737760C760FfEc370F84861E4Be4AFF7093Ffa3f"
+      }
+    },
+    {
+      "to": "0x2F1901f2A82fcC3Ee9010b809938816B3b06FA6A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "keeperRegistryAddress",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "setKeeperRegistryAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "keeperRegistryAddress": "0x737760C760FfEc370F84861E4Be4AFF7093Ffa3f"
+      }
+    }
+  ]
+}

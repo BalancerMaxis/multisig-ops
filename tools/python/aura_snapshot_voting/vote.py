@@ -8,6 +8,10 @@ from pytest import approx
 from dotenv import load_dotenv
 from pathlib import Path
 import glob
+import sys
+
+# make parent dirs available to import from
+sys.path.append(str(Path(__file__).parent.parent))
 
 import requests
 from bal_addresses import AddrBook
@@ -24,6 +28,7 @@ from eth_abi import encode_abi
 from eth_account import Account
 
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
+from helpers.path_utils import find_project_root
 
 
 load_dotenv()
@@ -36,7 +41,7 @@ GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contract
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 
 flatbook = AddrBook("mainnet").flatbook
-vlaura_safe_addr = flatbook["multisigs/vote_incentive_recycling"]
+vlaura_safe_addr = flatbook["multisigs/maxi_omni"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
 
 Account.enable_unaudited_hdwallet_features()
@@ -88,18 +93,6 @@ def format_choices(choices):
     return formatted_string
 
 
-def find_project_root(current_path=None):
-    anchor_file = "multisigs.md"
-    if current_path is None:
-        current_path = Path(__file__).resolve().parent
-    if (current_path / anchor_file).exists():
-        return current_path
-    parent = current_path.parent
-    if parent == current_path:
-        raise FileNotFoundError("Project root not found")
-    return find_project_root(parent)
-
-
 def create_voting_dirs_for_year(base_path, year, week):
     start_week = int(week[1:])
     if all(
@@ -123,6 +116,46 @@ def create_voting_dirs_for_year(base_path, year, week):
             f.write("")
 
 
+def prepare_vote_data(vote_df, prop):
+    """Prepares and validates vote data, returning the structured payload"""
+    choices = prop["choices"]
+    gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
+    gauge_labels = {to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
+    choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
+
+    vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
+
+    vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
+        lambda x: gauge_labels.get(to_checksum_address(x.strip()))
+    )
+    vote_df["snapshot_index"] = vote_df["snapshot_label"].apply(
+        lambda label: str(choice_index_map[label])
+    )
+
+    vote_df["share"] = vote_df["Allocation %"].str.rstrip("%").astype(float)
+
+    assert vote_df["share"].sum() == approx(100, abs=0.0001)
+
+    vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
+
+    return vote_df, vote_choices
+
+
+def create_vote_payload(vote_choices, prop):
+    """Creates the EIP712 structured data payload"""
+    project_root = find_project_root()
+    template_path = project_root / "tools/python/aura_snapshot_voting"
+    with open(f"{template_path}/eip712_template.json", "r") as f:
+        data = json.load(f)
+
+    data["message"]["timestamp"] = int(time.time())
+    data["message"]["from"] = vlaura_safe_addr
+    data["message"]["proposal"] = bytes.fromhex(prop["id"][2:])
+    data["message"]["choice"] = format_choices(vote_choices)
+
+    return data
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vote processing script")
     parser.add_argument(
@@ -143,35 +176,9 @@ if __name__ == "__main__":
     vote_df = pd.read_csv(glob.glob(f"{input_dir}/*.csv")[0])
 
     prop, _, _ = _get_prop_and_determine_date_range()
-    choices = prop["choices"]
-    gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
-    gauge_labels = {to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
-    choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
-    vote_df = vote_df.dropna(subset=["Gauge Address"])
-
-    vote_df["snapshot_label"] = vote_df["Gauge Address"].apply(
-        lambda x: gauge_labels.get(to_checksum_address(x.strip()))
-    )
-    vote_df["snapshot_index"] = vote_df["snapshot_label"].apply(
-        lambda label: str(choice_index_map[label])
-    )
-
-    vote_df["share"] = vote_df["Allocation %"].str.rstrip("%").astype(float)
-
-    assert vote_df["share"].sum() == approx(100, abs=0.0001)
-
-    vote_choices = dict(zip(vote_df["snapshot_index"], vote_df["share"]))
-
-    template_path = project_root / "tools/python/aura_snapshot_voting"
-    with open(f"{template_path}/eip712_template.json", "r") as f:
-        data = json.load(f)
-
-    data["message"]["timestamp"] = int(time.time())
-    data["message"]["from"] = vlaura_safe_addr
-    data["message"]["proposal"] = bytes.fromhex(prop["id"][2:])
-    data["message"]["choice"] = format_choices(vote_choices)
-
+    vote_df, vote_choices = prepare_vote_data(vote_df, prop)
+    data = create_vote_payload(vote_choices, prop)
     hash = hash_eip712_message(data)
 
     print(f"voting for: \n{vote_df[['Chain', 'snapshot_label', 'share']]}")
@@ -198,6 +205,7 @@ if __name__ == "__main__":
 
     with open(f"{output_dir}/payload.json", "w") as f:
         json.dump(data, f, indent=4)
+        f.write("\n")
 
     response = requests.post(
         "https://relayer.snapshot.org/",
