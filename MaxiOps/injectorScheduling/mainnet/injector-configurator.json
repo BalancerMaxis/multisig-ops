@@ -1,1 +1,42 @@
-{"version":"1.0","chainId":"1","createdAt":1735523311807,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.17.0","createdFromSafeAddress":"0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e","createdFromOwnerAddress":"","checksum":"0x1e603c7a82323"},"transactions":[{"to":"0x80D737BF3973D92a1B5FC4b166F89cb9e7445632","value":"0","data":null,"contractMethod":{"inputs":[{"name":"gaugeAddresses","type":"address[]","internalType":"address[]"},{"name":"amountsPerPeriod","type":"uint256[]","internalType":"uint256[]"},{"name":"maxPeriods","type":"uint8[]","internalType":"uint8[]"}],"name":"setRecipientList","payable":false},"contractInputsValues":{"gaugeAddresses":"[0xeEc405B834c90B59122Bcc2357f27110B2ADB4B7]","amountsPerPeriod":"[1923000000]","maxPeriods":"[2]"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1735523311807,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x1e603c7a82323"
+  },
+  "transactions": [
+    {
+      "to": "0x80D737BF3973D92a1B5FC4b166F89cb9e7445632",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          { "name": "maxPeriods", "type": "uint8[]", "internalType": "uint8[]" }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0xeEc405B834c90B59122Bcc2357f27110B2ADB4B7]",
+        "amountsPerPeriod": "[1923000000]",
+        "maxPeriods": "[2]"
+      }
+    }
+  ]
+}
