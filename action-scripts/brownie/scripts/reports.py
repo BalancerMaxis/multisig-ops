@@ -622,6 +622,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("value")
         or transaction["contractInputsValues"].get("wad")
         or transaction["contractInputsValues"].get("_value")
+        or transaction["contractInputsValues"].get("rawAmount")
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()

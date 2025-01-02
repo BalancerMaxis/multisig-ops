@@ -1,0 +1,33 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolAmpChanges/Arbitrum/sUSDX-USDX-Pools-&-SwapFee.json`
+MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `be472b2e884f9c67a77551e7cfb83eaa85521b95`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5ade99ce-0999-42ba-85f5-90e8c2e8d00a)
+
+```
++-----------------------------------+--------------------------------------------------------------------+-------+------------------------------------------------------+------------+----------+
+| fx_name                           | to                                                                 | value | inputs                                               | bip_number | tx_index |
++-----------------------------------+--------------------------------------------------------------------+-------+------------------------------------------------------+------------+----------+
+| startAmplificationParameterUpdate | 0x85564aF67760063B994599B640552614238C9Ee6 (pools/USDX/USDT-8556)  | 0     | {                                                    | N/A        |   N/A    |
+|                                   |                                                                    |       |   "rawEndValue": [                                   |            |          |
+|                                   |                                                                    |       |     "raw:800, 18 decimals:8E-16, 6 decimals: 0.0008" |            |          |
+|                                   |                                                                    |       |   ],                                                 |            |          |
+|                                   |                                                                    |       |   "endTime": [                                       |            |          |
+|                                   |                                                                    |       |     "1735012298"                                     |            |          |
+|                                   |                                                                    |       |   ]                                                  |            |          |
+|                                   |                                                                    |       | }                                                    |            |          |
+| startAmplificationParameterUpdate | 0xb3047330c1CB5eb1a3670FabfB99bDc106D631EB (pools/sUSDX/USDX-b304) | 0     | {                                                    | N/A        |   N/A    |
+|                                   |                                                                    |       |   "rawEndValue": [                                   |            |          |
+|                                   |                                                                    |       |     "raw:800, 18 decimals:8E-16, 6 decimals: 0.0008" |            |          |
+|                                   |                                                                    |       |   ],                                                 |            |          |
+|                                   |                                                                    |       |   "endTime": [                                       |            |          |
+|                                   |                                                                    |       |     "1735012298"                                     |            |          |
+|                                   |                                                                    |       |   ]                                                  |            |          |
+|                                   |                                                                    |       | }                                                    |            |          |
+| setSwapFeePercentage              | 0xb3047330c1CB5eb1a3670FabfB99bDc106D631EB (pools/sUSDX/USDX-b304) | 0     | {                                                    | N/A        |   N/A    |
+|                                   |                                                                    |       |   "swapFeePercentage": [                             |            |          |
+|                                   |                                                                    |       |     "400000000000000"                                |            |          |
+|                                   |                                                                    |       |   ]                                                  |            |          |
+|                                   |                                                                    |       | }                                                    |            |          |
++-----------------------------------+--------------------------------------------------------------------+-------+------------------------------------------------------+------------+----------+
+```
