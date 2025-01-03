@@ -58,8 +58,10 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
     safe = Safe(safe_address, ethereum_client)
     safe_service = TransactionServiceApi(1, ethereum_client, SAFE_API_URL)
 
-    nonce = safe_service.get_transactions(safe_address)[0]['nonce'] + 1
-    safe_tx = safe.build_multisig_tx(to_address, value, data, operation, safe_nonce=nonce)
+    nonce = safe_service.get_transactions(safe_address)[0]["nonce"] + 1
+    safe_tx = safe.build_multisig_tx(
+        to_address, value, data, operation, safe_nonce=nonce
+    )
 
     private_key = Account.from_mnemonic(PRIVATE_WORDS).privateKey
     safe_tx.sign(private_key.hex()[2:])
