@@ -8,7 +8,7 @@ Partners who are interested in utilizing Balancer v3's Boosted pools will need t
 
 Buffers can be initiated with the underlying token only, or using a combination of the wrapped and unwrapped token. This is up to the depositor. For the purposes in this documentation we will utilize underlying assets only. These assets will be wrapped once the pool is interacted with by large swaps or disproportional join/exit events.
 
-On Mainnet the suggested range of TVL in each byffer is 25-50K USD for stablecoins, and in the range of 50k-150k USD for wETH and BTC derivatives. These values are subjective, utilizing less will only force swappers to pay higher gas fees as they are routed through the wrap and unwrap processes of the respective ERC4626 vaults.
+On Mainnet the suggested range for each buffer is 25-50K USD for stablecoins, and in the range of 50k-150k USD for wETH and BTC derivatives. These values are subjective, utilizing less will only force swappers to pay higher gas fees as they are routed through the wrap and unwrap processes of the respective ERC4626 vaults.
 
 On layer 2s or low gas networks, we suggest several hundred dollars in each asset as gas costs are not a huge impact for pool events.
 
