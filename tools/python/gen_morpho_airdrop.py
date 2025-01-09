@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from decimal import Decimal
 
 import numpy as np
 import pandas as pd
@@ -37,7 +38,7 @@ def get_user_shares_pool(pool, block):
         params,
         url="https://api.studio.thegraph.com/query/75376/balancer-v3/version/latest",
     )
-    return dict([(x["user"]["id"], x["balance"]) for x in raw["poolShares"]])
+    return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["poolShares"]])
 
 
 def get_user_shares_gauge(gauge, block):
@@ -57,7 +58,7 @@ def get_user_shares_gauge(gauge, block):
         "block": {"number": block},
     }
     raw = SUBGRAPH.fetch_graphql_data("gauges", query, params)
-    return dict([(x["user"]["id"], x["balance"]) for x in raw["gaugeShares"]])
+    return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["gaugeShares"]])
 
 
 def get_block_from_timestamp(ts):
@@ -83,12 +84,29 @@ def build_snapshot_df(
     n=7,  # amount of snapshots
     step_size=60 * 60 * 24,  # amount of seconds between snapshots
 ):
-    shares = {}
+    gauge = GAUGE  # TODO: lookup gauge from pool
+    pool_shares = {}
+    gauge_shares = {}
+    total_shares = {}
     for _ in range(n):
         block = get_block_from_timestamp(end)
-        shares[block] = get_user_shares_pool(pool=pool, block=block)
+        pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
+        gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
         end -= step_size
-    return pd.DataFrame(shares, dtype=float).fillna(0)
+    for block in pool_shares:
+        total_shares[block] = {}
+        for user_id in pool_shares[block]:
+            if user_id == gauge:
+                # we do not want to count the gauge as a user
+                continue
+            total_shares[block][user_id] = pool_shares[block][user_id]
+        for user_id in gauge_shares[block]:
+            if user_id not in total_shares[block]:
+                total_shares[block][user_id] = gauge_shares[block][user_id]
+            else:
+                total_shares[block][user_id] += gauge_shares[block][user_id]
+    # TODO: checksum balances
+    return pd.DataFrame(total_shares, dtype=float).fillna(0)
 
 
 def consolidate_shares(df):
@@ -118,8 +136,12 @@ def build_airdrop(reward_token, reward_total_wei, df):
 if __name__ == "__main__":
     # get bpt balances for a pool at different timestamps
     df = build_snapshot_df(pool=POOL, end=LATEST_TS)
+    df.to_csv("tools/python/df_snapshot.csv")
+
     # consolidate user pool shares
     df = consolidate_shares(df)
+    df.to_csv("tools/python/df_consolidated.csv")
+
     # build airdrop object and dump to json file
     airdrop = build_airdrop(reward_token=MORPHO, reward_total_wei=1e18, df=df)
     json.dump(airdrop, open("airdrop.json", "w"), indent=2)
