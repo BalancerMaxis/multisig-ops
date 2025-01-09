@@ -253,10 +253,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = to_checksum_address(
-                                tx["contractInputsValues"][input["name"]]
+                            tx["contractInputsValues"][input["name"]] = (
+                                to_checksum_address(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
                             )
                     # tuple
                     elif "tuple" in input["type"]:
@@ -289,6 +289,20 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             except IndexError:
                                 # payload contains nested tuples; no support yet
                                 continue
+                    # bytes
+                    elif "bytes" in input["type"]:
+                        if "[]" in input["type"]:
+                            if type(tx["contractInputsValues"][input["name"]]) != list:
+                                tx["contractInputsValues"][input["name"]] = [
+                                    bytes(x, "utf-8").strip()
+                                    for x in tx["contractInputsValues"][input["name"]]
+                                    .strip("[]")
+                                    .split(",")
+                                ]
+                        else:
+                            tx["contractInputsValues"][input["name"]] = bytes(
+                                tx["contractInputsValues"][input["name"]], "utf-8"
+                            )
                     # catchall; cast to str
                     else:
                         if "[]" in input["type"]:
