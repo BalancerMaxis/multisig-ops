@@ -253,10 +253,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = to_checksum_address(
-                                tx["contractInputsValues"][input["name"]]
+                            tx["contractInputsValues"][input["name"]] = (
+                                to_checksum_address(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
                             )
                     # tuple
                     elif "tuple" in input["type"]:
@@ -280,6 +280,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 elif "address" in input["components"][idx]["type"]:
                                     casted_tuple.append(
                                         to_checksum_address(tuple_item.strip('"'))
+                                    )
+                                elif "bytes" in input["components"][idx]["type"]:
+                                    casted_tuple.append(
+                                        bytes(tuple_item.strip('"'), "utf-8")
                                     )
                                 else:
                                     casted_tuple.append(str(tuple_item.strip('"')))
