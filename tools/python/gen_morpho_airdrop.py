@@ -1,16 +1,25 @@
 import json
+import os
+import pytest
 from datetime import datetime
 from decimal import Decimal
 
 import numpy as np
 import pandas as pd
+from web3 import Web3, exceptions
 
 from bal_tools import Subgraph
 
 
 SUBGRAPH = Subgraph()
 MORPHO = "0x58D97B57BB95320F9a05dC918Aef65434969c2B2"
+W3 = Web3(
+    Web3.HTTPProvider(
+        f"https://lb.drpc.org/ogrpc?network=ethereum&dkey={os.getenv('DRPC_KEY')}"
+    )
+)
 
+# dev
 POOL = "0x10a04efba5b880e169920fd4348527c64fb29d4d"
 GAUGE = "0x5bbaed1fadc08c5fb3e4ae3c8848777e2da77103"
 LATEST_TS = int(datetime.now().timestamp())
@@ -84,15 +93,21 @@ def build_snapshot_df(
     n=7,  # amount of snapshots
     step_size=60 * 60 * 24,  # amount of seconds between snapshots
 ):
-    gauge = GAUGE  # TODO: lookup gauge from pool
+    # TODO: lookup gauge from pool
+    gauge = GAUGE
+
+    # get user shares for pool and gauge at different timestamps
     pool_shares = {}
     gauge_shares = {}
-    total_shares = {}
     for _ in range(n):
         block = get_block_from_timestamp(end)
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
         end -= step_size
+
+    # calculate total shares per user per block
+    total_shares = {}
+    total_supply = {}
     for block in pool_shares:
         total_shares[block] = {}
         for user_id in pool_shares[block]:
@@ -105,8 +120,27 @@ def build_snapshot_df(
                 total_shares[block][user_id] = gauge_shares[block][user_id]
             else:
                 total_shares[block][user_id] += gauge_shares[block][user_id]
-    # TODO: checksum balances
-    return pd.DataFrame(total_shares, dtype=float).fillna(0)
+        # collect onchain total supply per block
+        contract = W3.eth.contract(
+            address=Web3.to_checksum_address(pool),
+            abi=json.load(open("tools/python/abis/StablePoolV3.json")),
+        )
+        try:
+            total_supply[block] = contract.functions.totalSupply().call(
+                block_identifier=block
+            )
+        except exceptions.BadFunctionCallOutput:
+            total_supply[block] = 0
+
+    # build dataframe
+    df = pd.DataFrame(total_shares, dtype=float).fillna(0)
+
+    # checksum total balances versus total supply
+    assert df.sum().sum() == pytest.approx(sum(total_supply.values()) / 1e18, rel=1e-6)
+    for block in df.columns:
+        assert df[block].sum() == pytest.approx(total_supply[block] / 1e18, rel=1e-6)
+
+    return df
 
 
 def consolidate_shares(df):
