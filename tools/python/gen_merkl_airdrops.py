@@ -11,8 +11,15 @@ from web3 import Web3, exceptions
 from bal_tools import Subgraph
 
 
+WATCHLIST = {
+    "0x58D97B57BB95320F9a05dC918Aef65434969c2B2": [  # morpho
+        "0x10A04efbA5B880e169920Fd4348527C64FB29d4D"  # csUSDC-csUSDT
+    ],
+    "0x030bA81f1c18d280636F32af80b9AAd02Cf0854e": [  # aweth
+        "0xc4Ce391d82D164c166dF9c8336DDF84206b2F812"  # waEthLidoWETH-waEthLidowstETH
+    ],
+}
 SUBGRAPH = Subgraph()
-MORPHO = "0x58D97B57BB95320F9a05dC918Aef65434969c2B2"
 W3 = Web3(
     Web3.HTTPProvider(
         f"https://lb.drpc.org/ogrpc?network=ethereum&dkey={os.getenv('DRPC_KEY')}"
@@ -20,8 +27,10 @@ W3 = Web3(
 )
 
 # dev
-POOL = "0x10a04efba5b880e169920fd4348527c64fb29d4d"
-GAUGE = "0x5bbaed1fadc08c5fb3e4ae3c8848777e2da77103"
+GAUGES = {
+    "0x10A04efbA5B880e169920Fd4348527C64FB29d4D": "0x5bBaeD1fADC08C5fb3e4ae3C8848777E2dA77103",
+    "0xc4Ce391d82D164c166dF9c8336DDF84206b2F812": "0x4B891340b51889f438a03DC0e8aAAFB0Bc89e7A6",
+}
 LATEST_TS = int(datetime.now().timestamp())
 
 
@@ -94,7 +103,7 @@ def build_snapshot_df(
     step_size=60 * 60 * 24,  # amount of seconds between snapshots
 ):
     # TODO: lookup gauge from pool
-    gauge = GAUGE
+    gauge = GAUGES[pool]
 
     # get user shares for pool and gauge at different timestamps
     pool_shares = {}
@@ -168,14 +177,18 @@ def build_airdrop(reward_token, reward_total_wei, df):
 
 
 if __name__ == "__main__":
-    # get bpt balances for a pool at different timestamps
-    df = build_snapshot_df(pool=POOL, end=LATEST_TS)
-    df.to_csv("tools/python/df_snapshot.csv")
+    for reward_token in WATCHLIST:
+        for pool in WATCHLIST[reward_token]:
+            # get bpt balances for a pool at different timestamps
+            df = build_snapshot_df(pool=pool, end=LATEST_TS)
+            df.to_csv("tools/python/df_snapshot.csv")
 
-    # consolidate user pool shares
-    df = consolidate_shares(df)
-    df.to_csv("tools/python/df_consolidated.csv")
+            # consolidate user pool shares
+            df = consolidate_shares(df)
+            df.to_csv("tools/python/df_consolidated.csv")
 
-    # build airdrop object and dump to json file
-    airdrop = build_airdrop(reward_token=MORPHO, reward_total_wei=1e18, df=df)
-    json.dump(airdrop, open("airdrop.json", "w"), indent=2)
+            # build airdrop object and dump to json file
+            airdrop = build_airdrop(
+                reward_token=reward_token, reward_total_wei=1e18, df=df
+            )
+            json.dump(airdrop, open(f"airdrop-{pool}.json", "w"), indent=2)
