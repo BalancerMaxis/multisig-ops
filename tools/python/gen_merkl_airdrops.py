@@ -11,14 +11,7 @@ from web3 import Web3, exceptions
 from bal_tools import Subgraph
 
 
-WATCHLIST = {
-    "0x58D97B57BB95320F9a05dC918Aef65434969c2B2": [  # morpho
-        "0x10A04efbA5B880e169920Fd4348527C64FB29d4D"  # csUSDC-csUSDT
-    ],
-    "0x030bA81f1c18d280636F32af80b9AAd02Cf0854e": [  # aweth
-        "0xc4Ce391d82D164c166dF9c8336DDF84206b2F812"  # waEthLidoWETH-waEthLidowstETH
-    ],
-}
+WATCHLIST = json.load(open("tools/python/watchlist.json"))
 SUBGRAPH = Subgraph()
 W3 = Web3(
     Web3.HTTPProvider(
@@ -46,7 +39,7 @@ def get_user_shares_pool(pool, block):
     params = {
         "where": {
             "balance_gt": 0.001,
-            "pool": pool,
+            "pool": pool.lower(),
         },
         "block": {"number": block},
     }
@@ -71,7 +64,7 @@ def get_user_shares_gauge(gauge, block):
     params = {
         "where": {
             "balance_gt": 0.001,
-            "gauge": gauge,
+            "gauge": gauge.lower(),
         },
         "block": {"number": block},
     }
@@ -120,7 +113,7 @@ def build_snapshot_df(
     for block in pool_shares:
         total_shares[block] = {}
         for user_id in pool_shares[block]:
-            if user_id == gauge:
+            if user_id == gauge.lower():
                 # we do not want to count the gauge as a user
                 continue
             total_shares[block][user_id] = pool_shares[block][user_id]
@@ -173,22 +166,29 @@ def build_airdrop(reward_token, reward_total_wei, df):
     # https://docs.merkl.xyz/merkl-mechanisms/types-of-campaign/airdrop
     df["wei"] = df["total"] * reward_total_wei
     df["wei"] = df["wei"].apply(np.floor).astype(int).astype(str)
+    df = df[df["wei"] != "0"]
     return {"rewardToken": reward_token, "rewards": df[["wei"]].to_dict(orient="index")}
 
 
 if __name__ == "__main__":
-    for reward_token in WATCHLIST:
-        for pool in WATCHLIST[reward_token]:
+    for protocol in WATCHLIST:
+        for pool in WATCHLIST[protocol]["pools"]:
             # get bpt balances for a pool at different timestamps
-            df = build_snapshot_df(pool=pool, end=LATEST_TS)
-            df.to_csv("tools/python/df_snapshot.csv")
+            df = build_snapshot_df(
+                pool=WATCHLIST[protocol]["pools"][pool]["address"], end=LATEST_TS
+            )
 
             # consolidate user pool shares
             df = consolidate_shares(df)
-            df.to_csv("tools/python/df_consolidated.csv")
+
+            # stdout
+            print(protocol, pool)
+            print(df)
 
             # build airdrop object and dump to json file
             airdrop = build_airdrop(
-                reward_token=reward_token, reward_total_wei=1e18, df=df
+                reward_token=WATCHLIST[protocol]["reward_token"],
+                reward_total_wei=int(WATCHLIST[protocol]["pools"][pool]["reward_wei"]),
+                df=df,
             )
             json.dump(airdrop, open(f"airdrop-{pool}.json", "w"), indent=2)
