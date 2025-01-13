@@ -1,0 +1,47 @@
+FILENAME: `BIPs/2025-W5/BIP-750 ACX-wstETH-Cap-Raise.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `efcce7dc93e371accb39c3c1e528e32f42954480`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4bf4a002-5125-4f22-b227-897a68f4b445)
+
+```
++-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                                      | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |    0     |
+|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
+|                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/setRelativeWeightCap(uint256)     |                                                                    |         |          |
+|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
+|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |    2     |
+|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
+|                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/setRelativeWeightCap(uint256)     |                                                                    |         |          |
+|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
+|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
++-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2025-W5/BIP-750 ACX-wstETH-Cap-Raise.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `efcce7dc93e371accb39c3c1e528e32f42954480`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4a1bf695-ec52-4908-87de-5f6c032ed9ee)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------------------------+-------------------------------------------------------------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                        | selector                      | parsed_inputs                                                     |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------------------------+-------------------------------------------------------------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf7B0751Fea697cf1A541A5f57D11058a8fB794ee (gauges/50wstETH-50ACX-gauge-f7b0) | setRelativeWeightCap(uint256) | raw:1000000000000000000, 18 decimals:1, 6 decimals: 1000000000000 | BIP-750 |    1     |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-------------------------------+-------------------------------------------------------------------+---------+----------+
+```
