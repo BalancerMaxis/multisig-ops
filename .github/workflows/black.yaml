@@ -13,7 +13,6 @@ jobs:
         uses: psf/black@stable
         with:
           options: "--verbose"
-          version: "~= 22.10"
 
       - name: Auto commit
         uses: stefanzweifel/git-auto-commit-action@v5.0.1
