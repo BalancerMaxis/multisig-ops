@@ -61,7 +61,7 @@ def get_changed_files() -> list[dict]:
     """
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files"
+    api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files?per_page=100"
     print(f"Using {api_url} to get changed files")
     response = requests.get(api_url)
     pr_file_data = json.loads(response.text)
