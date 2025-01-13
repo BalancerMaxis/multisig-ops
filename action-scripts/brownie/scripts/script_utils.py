@@ -131,7 +131,10 @@ def get_pool_info(
             pool = Contract.from_explorer(pool.address)
             pool_id = str(pool.POOL_ID())
         except Exception:
-            pool_id = POOL_ID_CUSTOM_FALLBACK
+            try:
+                pool_id = pool.address
+            except:
+                pool_id = POOL_ID_CUSTOM_FALLBACK
     try:
         fee = pool.getSwapFeePercentage() / BIPS_PRECISION
     except Exception:
