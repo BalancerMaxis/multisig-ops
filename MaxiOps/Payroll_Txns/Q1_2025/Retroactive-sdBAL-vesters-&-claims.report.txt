@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/Payroll_Txns/Q1_2025/Retroactive-sdBAL-vesters-&-claims.json`
 MULTISIG: `multisigs/maxi_ops (mainnet:0x166f54F44F271407f24AA1BE415a730035637325)`
-COMMIT: `658c3e25ec9f694756e2160def1547a58196eec7`
+COMMIT: `a408d3f7b333de51b7a667db9b9720bb8b0e9ca6`
 CHAIN(S): `mainnet`
-TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `claim`, positional arguments with type(s) `address,int,address,int,(str,str,str,str,str)` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `claim`: ['claim(address,uint256,address,uint256,bytes32[])']\nFunction invocation failed due to no matching argument types."))`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/98785313-c1cc-4338-b695-9ffe5338478e)
 
 ```
 +-----------------------+------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------------+------------+----------+
@@ -42,11 +42,11 @@ TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended 
 |                       |                                                                              |       |     "raw:562742457335909100000, 18 decimals:562.7424573359091, 6 decimals: 562742457335909.1" |            |          |
 |                       |                                                                              |       |   ],                                                                                          |            |          |
 |                       |                                                                              |       |   "merkleProof": [                                                                            |            |          |
-|                       |                                                                              |       |     "\"0xdaf23dbd6961e07632c093d6bc60ab4e9ccc9dc2522a42fbbd31b4f0ff829950\"",                 |            |          |
-|                       |                                                                              |       |     "\"0x698e798bba38e8695eca531414777d0f7f390a6f7d610ed41bb6d372f9a0ee65\"",                 |            |          |
-|                       |                                                                              |       |     "\"0x116c82a9aeedf0f3862a95f0a28bae93326a5a7f6dd712708273a91319cbcb6e\"",                 |            |          |
-|                       |                                                                              |       |     "\"0x296d4993930f9b549b32403fd99e3c1c08f94beaebf6609a8ce940feb1dac8a2\"",                 |            |          |
-|                       |                                                                              |       |     "\"0xb83d8de2de4124612cb9936fa90517f06444d79b3e23e0a052110e2416fb8029\""                  |            |          |
+|                       |                                                                              |       |     "0xdaf23dbd6961e07632c093d6bc60ab4e9ccc9dc2522a42fbbd31b4f0ff829950",                     |            |          |
+|                       |                                                                              |       |     "0x698e798bba38e8695eca531414777d0f7f390a6f7d610ed41bb6d372f9a0ee65",                     |            |          |
+|                       |                                                                              |       |     "0x116c82a9aeedf0f3862a95f0a28bae93326a5a7f6dd712708273a91319cbcb6e",                     |            |          |
+|                       |                                                                              |       |     "0x296d4993930f9b549b32403fd99e3c1c08f94beaebf6609a8ce940feb1dac8a2",                     |            |          |
+|                       |                                                                              |       |     "0xb83d8de2de4124612cb9936fa90517f06444d79b3e23e0a052110e2416fb8029"                      |            |          |
 |                       |                                                                              |       |   ]                                                                                           |            |          |
 |                       |                                                                              |       | }                                                                                             |            |          |
 | approve               | 0x3E8C72655e48591d93e6dfdA16823dB0fF23d859 (stake_dao/sdBAL_gauge_contract)  | 0     | {                                                                                             | N/A        |   N/A    |
