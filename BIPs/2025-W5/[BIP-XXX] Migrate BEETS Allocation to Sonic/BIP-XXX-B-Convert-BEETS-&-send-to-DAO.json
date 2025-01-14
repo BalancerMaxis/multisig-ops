@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "chainId": "146",
+  "createdAt": 1736885013511,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x095470a2c04e816b4f0a1ce402aefbf1733f5348e73695d878f1ebab450b894c"
+  },
+  "transactions": [
+    {
+      "to": "0x1E5fe95fB90ac0530F581C617272cd0864626795",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "spender", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x5f9a5CD0B77155AC1814EF6Cd9D82dA53d05E386",
+        "amount": "10000000000000000000000000"
+      }
+    },
+    {
+      "to": "0x5f9a5CD0B77155AC1814EF6Cd9D82dA53d05E386",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "exchangeOperaToSonic",
+        "payable": false
+      },
+      "contractInputsValues": { "amount": "10000000000000000000000000" }
+    },
+    {
+      "to": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "to", "type": "address" },
+          { "internalType": "uint256", "name": "value", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e",
+        "value": "10000000000000000000000000"
+      }
+    }
+  ]
+}
