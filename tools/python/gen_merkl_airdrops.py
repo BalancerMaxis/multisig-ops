@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from web3 import Web3, exceptions
 
-from bal_tools import Subgraph
+from bal_tools import Subgraph, BalPoolsGauges
 
 
 WATCHLIST = json.load(open("tools/python/watchlist.json"))
@@ -20,10 +20,6 @@ W3 = Web3(
 )
 
 # dev
-GAUGES = {
-    "0x10A04efbA5B880e169920Fd4348527C64FB29d4D": "0x5bBaeD1fADC08C5fb3e4ae3C8848777E2dA77103",
-    "0xc4Ce391d82D164c166dF9c8336DDF84206b2F812": "0x4B891340b51889f438a03DC0e8aAAFB0Bc89e7A6",
-}
 LATEST_TS = int(datetime.now().timestamp())
 
 
@@ -95,8 +91,7 @@ def build_snapshot_df(
     n=7,  # amount of snapshots
     step_size=60 * 60 * 24,  # amount of seconds between snapshots
 ):
-    # TODO: lookup gauge from pool
-    gauge = GAUGES[pool]
+    gauge = BalPoolsGauges().get_preferential_gauge(pool)
 
     # get user shares for pool and gauge at different timestamps
     pool_shares = {}
