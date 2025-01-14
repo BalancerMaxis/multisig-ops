@@ -115,6 +115,27 @@
       }
     },
     {
+      "to": "0x539e65190a371cE73244A98DEc42BA635cCa512c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "_gauges",
+            "type": "address[]"
+          },
+          { "internalType": "bool", "name": "_claimVeSDT", "type": "bool" }
+        ],
+        "name": "claimRewards",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_gauges": "[0x3E8C72655e48591d93e6dfdA16823dB0fF23d859]",
+        "_claimVeSDT": "false"
+      }
+    },
+    {
       "to": "0x3E8C72655e48591d93e6dfdA16823dB0fF23d859",
       "value": "0",
       "data": null,
