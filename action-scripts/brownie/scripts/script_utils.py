@@ -114,6 +114,11 @@ def get_pool_info(
         address=book.search_unique("20210418-vault/Vault").address,
         abi=json.load(open("abis/IVault.json")),
     )
+    vault_v3 = Contract.from_abi(
+        name="Vault",
+        address=book.flatbook["20241204-v3-vault/Vault"],
+        abi=json.load(open("abis/IVaultV3Explorer.json")),
+    )
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
         a_factor = int(a_factor / divisor)
@@ -131,7 +136,10 @@ def get_pool_info(
             pool = Contract.from_explorer(pool.address)
             pool_id = str(pool.POOL_ID())
         except Exception:
-            pool_id = POOL_ID_CUSTOM_FALLBACK
+            try:
+                pool_id = pool.address
+            except:
+                pool_id = POOL_ID_CUSTOM_FALLBACK
     try:
         fee = pool.getSwapFeePercentage() / BIPS_PRECISION
     except Exception:
@@ -139,7 +147,10 @@ def get_pool_info(
     try:
         tokens = vault.getPoolTokens(pool_id)[0]
     except Exception:
-        tokens = []
+        try:
+            tokens = vault_v3.getPoolData(pool_id)[1]
+        except:
+            tokens = []
     try:
         rate_providers = pool.getRateProviders()
     except Exception:
@@ -253,10 +264,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     .split(",")
                                 ]
                         else:
-                            tx["contractInputsValues"][
-                                input["name"]
-                            ] = to_checksum_address(
-                                tx["contractInputsValues"][input["name"]]
+                            tx["contractInputsValues"][input["name"]] = (
+                                to_checksum_address(
+                                    tx["contractInputsValues"][input["name"]]
+                                )
                             )
                     # tuple
                     elif "tuple" in input["type"]:
