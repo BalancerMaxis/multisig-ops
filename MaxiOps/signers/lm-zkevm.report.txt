@@ -1,0 +1,23 @@
+FILENAME: `MaxiOps/signers/lm-zkevm.json`
+MULTISIG: `multisigs/feesManager (zkevm:0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09)`
+COMMIT: `77bfbfbd03c88ba861e8cfd72e38664157f2844c`
+CHAIN(S): `zkevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '51267bd4-561e-486b-a699-19efc7e011fe', 'slug': 'invalid_transaction_simulation', 'message': 'Unsupported network'}}))`
+
+```
++-----------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------------+------------+----------+
+| fx_name   | to                                                                 | value | inputs                                                                         | bip_number | tx_index |
++-----------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------------+------------+----------+
+| swapOwner | 0xB59Ab49CA8d064E645Bf2c546d9FE6d1d4147a09 (multisigs/feesManager) | 0     | {                                                                              | N/A        |   N/A    |
+|           |                                                                    |       |   "prevOwner": [                                                               |            |          |
+|           |                                                                    |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/maxis/gosuto)"            |            |          |
+|           |                                                                    |       |   ],                                                                           |            |          |
+|           |                                                                    |       |   "oldOwner": [                                                                |            |          |
+|           |                                                                    |       |     "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F (EOA/emeritus/tritium_signer)" |            |          |
+|           |                                                                    |       |   ],                                                                           |            |          |
+|           |                                                                    |       |   "newOwner": [                                                                |            |          |
+|           |                                                                    |       |     "0x119de05a00BD4e75C4aD6041b82d7afa984aB1B9 (EOA/maxis/jalbrekt)"          |            |          |
+|           |                                                                    |       |   ]                                                                            |            |          |
+|           |                                                                    |       | }                                                                              |            |          |
++-----------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------------+------------+----------+
+```
