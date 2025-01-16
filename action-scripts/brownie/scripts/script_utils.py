@@ -272,20 +272,6 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     tx["contractInputsValues"][input["name"]]
                                 )
                             )
-                    # bytes
-                    elif "bytes" in input["type"]:
-                        if "[]" in input["type"]:
-                            if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    str(x).strip()
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
-                        else:
-                            tx["contractInputsValues"][input["name"]] = bytes(
-                                tx["contractInputsValues"][input["name"]], "utf-8"
-                            )
                     # tuple
                     elif "tuple" in input["type"]:
                         casted_tuple = []
@@ -309,8 +295,6 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     casted_tuple.append(
                                         to_checksum_address(tuple_item.strip('"'))
                                     )
-                                elif "bytes" in input["components"][idx]["type"]:
-                                    casted_tuple.append(str(tuple_item.strip('"')))
                                 else:
                                     casted_tuple.append(str(tuple_item.strip('"')))
                                 tx["contractInputsValues"][input["name"]] = [
