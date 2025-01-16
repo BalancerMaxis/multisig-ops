@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W5/BIP-759-initLidoWaGHO-Buffer.json`
 MULTISIG: `multisigs/karpatkey (mainnet:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89)`
-COMMIT: `3f2b76e4c17a05e58ddbecaf11511c7098aafd52`
+COMMIT: `cd9e18541cab9852093b98f62f91bb30c4ca30ff`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/c27fb767-770f-44a7-914f-71a659903f51)
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/70068604-4997-4eaa-92c7-dfd4ac565a9e)
 
 ```
 +------------------+-------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------+------------+----------+
@@ -10,13 +10,13 @@ TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/c27fb767-770f-4
 +------------------+-------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------+------------+----------+
 | approve          | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f (tokens/GHO)                             | 0     | {                                                                                         | BIP-759    |   N/A    |
 |                  |                                                                                     |       |   "_spender": [                                                                           |            |          |
-|                  |                                                                                     |       |     "0x000000000022D473030F116dDEE9F6B43aC78BA3 (N/A)"                                    |            |          |
+|                  |                                                                                     |       |     "0x000000000022D473030F116dDEE9F6B43aC78BA3 (uniswap/permit2)"                        |            |          |
 |                  |                                                                                     |       |   ],                                                                                      |            |          |
 |                  |                                                                                     |       |   "_value": [                                                                             |            |          |
 |                  |                                                                                     |       |     "raw:50000000000000000000000, 18 decimals:50000, 6 decimals: 50000000000000000"       |            |          |
 |                  |                                                                                     |       |   ]                                                                                       |            |          |
 |                  |                                                                                     |       | }                                                                                         |            |          |
-| approve          | 0x000000000022D473030F116dDEE9F6B43aC78BA3 (Not Found)                              | 0     | {                                                                                         | BIP-759    |   N/A    |
+| approve          | 0x000000000022D473030F116dDEE9F6B43aC78BA3 (uniswap/permit2)                        | 0     | {                                                                                         | BIP-759    |   N/A    |
 |                  |                                                                                     |       |   "token": [                                                                              |            |          |
 |                  |                                                                                     |       |     "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f (tokens/GHO)"                             |            |          |
 |                  |                                                                                     |       |   ],                                                                                      |            |          |
@@ -32,7 +32,7 @@ TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/c27fb767-770f-4
 |                  |                                                                                     |       | }                                                                                         |            |          |
 | initializeBuffer | 0x9179C06629ef7f17Cb5759F501D89997FE0E7b45 (20241205-v3-buffer-router/BufferRouter) | 0     | {                                                                                         | BIP-759    |   N/A    |
 |                  |                                                                                     |       |   "wrappedToken": [                                                                       |            |          |
-|                  |                                                                                     |       |     "0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C (N/A)"                                    |            |          |
+|                  |                                                                                     |       |     "0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C (tokens/waEthLidoGHO)"                    |            |          |
 |                  |                                                                                     |       |   ],                                                                                      |            |          |
 |                  |                                                                                     |       |   "exactAmountUnderlyingIn": [                                                            |            |          |
 |                  |                                                                                     |       |     "raw:50000000000000000000000, 18 decimals:50000, 6 decimals: 50000000000000000"       |            |          |
