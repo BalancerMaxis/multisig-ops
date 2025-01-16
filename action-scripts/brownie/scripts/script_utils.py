@@ -61,7 +61,7 @@ def get_changed_files() -> list[dict]:
     """
     github_repo = os.environ["GITHUB_REPOSITORY"]
     pr_number = os.environ["PR_NUMBER"]
-    api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files"
+    api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files?per_page=100"
     print(f"Using {api_url} to get changed files")
     response = requests.get(api_url)
     pr_file_data = json.loads(response.text)
@@ -114,11 +114,14 @@ def get_pool_info(
         address=book.search_unique("20210418-vault/Vault").address,
         abi=json.load(open("abis/IVault.json")),
     )
-    vault_v3 = Contract.from_abi(
-        name="Vault",
-        address=book.flatbook["20241204-v3-vault/Vault"],
-        abi=json.load(open("abis/IVaultV3Explorer.json")),
-    )
+    try:
+        vault_v3 = Contract.from_abi(
+            name="Vault",
+            address=book.flatbook["20241204-v3-vault/Vault"],
+            abi=json.load(open("abis/IVaultV3Explorer.json")),
+        )
+    except:
+        vault_v3 = None
     try:
         (a_factor, ramp, divisor) = pool.getAmplificationParameter()
         a_factor = int(a_factor / divisor)
