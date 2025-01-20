@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/arbitrum/add-gyd-to-gyro-arb-pools.json`
+MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `7eefac1f8a075087c85ecc4cbe4c8a51b5f10778`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟥 FAILURE`](https://www.tdly.co/shared/simulation/1ebd3c8d-dc4e-42e9-986a-806e10b6d27b)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                        | selector                                | parsed_inputs                                    | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------+-----+----------+
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x50927cC8E5F6DdC4c5302df0158bCdF16E7E9833 (gauges/ECLP-WETH-USDC-gauge-5092) | set_reward_distributor(address,address) | 0xCA5d8F8a8d49439357d3CF46Ca2e720702F132b8: GYD  | N/A |    0     |
+|               |                                                                                                                 |                                                                               |                                         | 0x4Dfdad359bd4c154dD307350582C4bff636Ba299: None |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6350e7a5CFAaF8b694F8291760015ebB1Fe94bA0 (None)                             | set_reward_distributor(address,address) | 0xCA5d8F8a8d49439357d3CF46Ca2e720702F132b8: GYD  | N/A |    1     |
+|               |                                                                                                                 |                                                                               |                                         | 0x4Dfdad359bd4c154dD307350582C4bff636Ba299: None |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------------------+--------------------------------------------------+-----+----------+
+```
