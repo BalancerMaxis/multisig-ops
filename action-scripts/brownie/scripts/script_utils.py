@@ -415,7 +415,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         if revert_found:
             success = "🟨 PARTIAL"
     else:
-        success = "🟥 FAILURE"
+        success = f"🟥 FAILURE ({result['simulation'].get('error_message')})"
     return url, success
 
 
