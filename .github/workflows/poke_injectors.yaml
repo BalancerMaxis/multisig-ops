@@ -15,6 +15,7 @@ env:
   OPTIMISMSCAN_TOKEN: ${{ secrets.OPTIMISMSCAN_TOKEN }}
   ZKEVMSCAN_TOKEN: ${{ secrets.ZKEVMSCAN_TOKEN }}
   SNOWTRACE_TOKEN: ${{ secrets.SNOWTRACE_TOKEN }}
+  SNOWSCAN_TOKEN: ${{ secrets.SNOWSCAN_TOKEN }}
   BASESCAN_TOKEN: ${{ secrets.BASESCAN_TOKEN }}
 jobs:
   poke_injectors:
