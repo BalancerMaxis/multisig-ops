@@ -157,11 +157,7 @@ def get_pool_info(
     try:
         rate_providers = pool.getRateProviders()
     except Exception:
-        try:
-            # v3 pools
-            rate_providers = [token_info[1] for token_info in pool.getTokenInfo()[1]]
-        except:
-            rate_providers = []
+        rate_providers = []
     if len(rate_providers) == 0:
         try:
             rehype_pool = Contract.from_explorer(pool_address)
