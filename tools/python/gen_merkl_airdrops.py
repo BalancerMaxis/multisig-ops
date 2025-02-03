@@ -11,7 +11,7 @@ from web3 import Web3, exceptions
 from bal_tools import Subgraph, BalPoolsGauges
 
 
-WATCHLIST = json.load(open("tools/python/watchlist.json"))
+WATCHLIST = json.load(open("tools/python/gen_merkl_airdrop_watchlist.json"))
 SUBGRAPH = Subgraph()
 W3 = Web3(
     Web3.HTTPProvider(
@@ -26,7 +26,7 @@ ts = FIRST_EPOCH_END
 while ts < int(datetime.now().timestamp()):
     EPOCHS.append(ts)
     ts += EPOCH_DURATION
-epoch_name = f"epoch {len(EPOCHS)}"
+epoch_name = f"epoch_{len(EPOCHS)}"
 print("epochs:", EPOCHS)
 print(epoch_name)
 
@@ -179,6 +179,9 @@ def build_airdrop(reward_token, reward_total_wei, df):
 
 if __name__ == "__main__":
     for protocol in WATCHLIST:
+        # TODO: aave not implemented yet
+        if protocol == "aave":
+            break
         for pool in WATCHLIST[protocol]["pools"]:
             print(protocol, pool)
 
@@ -217,4 +220,10 @@ if __name__ == "__main__":
                 Decimal(reward_total_wei) - total,
             )
 
-            json.dump(airdrop, open(f"airdrop-{pool}.json", "w"), indent=2)
+            json.dump(
+                airdrop,
+                open(
+                    f"MaxiOps/merkl/airdrops/{protocol}-{pool}-{epoch_name}.json", "w"
+                ),
+                indent=2,
+            )
