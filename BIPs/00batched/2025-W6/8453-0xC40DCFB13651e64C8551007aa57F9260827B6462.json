@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x535f82655cb6a856d1452d97dc8e7b3393044c974f85cfcdd2c1d304c08ce34c,0x31893078b6590802f57d29fae81f10113c336375df90db2aed0392af0c75d8d4,0x3bc669a22fd5eb10a81a9ab00e0cab660e6f703d7ae9185597386bbd2e849e3f,0x93100e2a70c799f7ba831633b6a5078fc649ca0c812caa633106f1948a819155,0x131f9541f99a187d0a0db49756fb64345dec624e21579355e25b8b5a1b40b45c,0x4071255a8a5c23dae545fa9427571cfd2cbc2f7e623e863ec2c917ed09074e43,0xf830de585800a430465649def91ee4e68e52ef19d8734b6836b9a2237853fc07,0x85fd49342760df94da4da1b8ae0954817843ed72ece3540120eb528bc152f903,0x81cdf61d73f9758e4ea06a1c95ee9fa99de9941b89ee79ee97feea474543674f]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-766] perms_v3_base.json",
+        "bip_number": "BIP-766"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886,0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e,0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272,0xa4443105bdb833cb364c9f76caa2adf3c6e62427cb693ffd6f1d8d7f44ad1bb5,0xe80d721d89f2236e9428bfba076cbbbb355faeb9d9b97b49890ebcf930d05bc9,0xf923c4af23349707476c28766c280b0178ab3c4ebfa546da8c25a546a066a2dc,0xb1539e3ebdcf854dedf819f6232d1e447cfb129f7bf572e70295fb998bd8c85e,0x03aef606b4b82495d96af41cf1ed84b739a1de2bfb37bc1c0cfde2c53cf096aa,0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2,0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d,0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16,0x50f3f826f5b6f34e6b9291e41967ce5c8f5cbd998ab8b3f740cf2bb02e2e6ea0,0xe957427a7aa01e61900e955bc1c3e36d4056d828205bd92257f884645f5972a6]",
+        "account": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-766] perms_v3_base.json",
+        "bip_number": "BIP-766"
+      }
+    },
+    {
+      "to": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "prevOwner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "oldOwner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "newOwner",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0000000000000000000000000000000000000001",
+        "oldOwner": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F",
+        "newOwner": "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-762/BIP-762-base-dao.json",
+        "bip_number": "BIP-762"
+      }
+    }
+  ]
+}
