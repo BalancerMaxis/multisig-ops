@@ -195,7 +195,7 @@ if __name__ == "__main__":
             if protocol == "morpho":
                 reward_total_wei = int(
                     Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
-                    / Decimal(1 + 0.005)
+                    * Decimal(1 - 0.005)
                 )
             else:
                 reward_total_wei = int(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
