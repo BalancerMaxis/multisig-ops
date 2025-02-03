@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1738546687119,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xea8c6d98124d22207310863069b33b3076faf03a9c939a2743c366c445e75426"
+  },
+  "transactions": [
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "target", "type": "address" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x6c0a4550c575c917435f228d36939125a437a98b",
+        "data": "0xe8de0d4d00000000000000000000000040D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f000000000000000000000000fEb352930cA196a80B708CDD5dcb4eCA94805daB"
+      }
+    },
+    {
+      "to": "0x64B84023CfE8397dF83C67eACCC2C03ecDA4aeE5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "rawEndValue",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "endTime", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "2000", "endTime": "1739774265" }
+    }
+  ]
+}
