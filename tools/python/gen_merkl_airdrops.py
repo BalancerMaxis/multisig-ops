@@ -18,9 +18,17 @@ W3 = Web3(
         f"https://lb.drpc.org/ogrpc?network=ethereum&dkey={os.getenv('DRPC_KEY')}"
     )
 )
+EPOCH_DURATION = 60 * 60 * 24 * 14
+FIRST_EPOCH_END = 1737936000
 
-# dev
-LATEST_TS = int(datetime.now().timestamp())
+EPOCHS = []
+ts = FIRST_EPOCH_END
+while ts < int(datetime.now().timestamp()):
+    EPOCHS.append(ts)
+    ts += EPOCH_DURATION
+epoch_name = f"epoch {len(EPOCHS)}"
+print("epochs:", EPOCHS)
+print(epoch_name)
 
 
 def get_user_shares_pool(pool, block):
@@ -89,15 +97,14 @@ def get_block_from_timestamp(ts):
 def build_snapshot_df(
     pool,  # pool address
     end,  # timestamp of the last snapshot
-    n=7,  # amount of snapshots
-    step_size=60 * 60 * 24,  # amount of seconds between snapshots
+    step_size=60 * 60 * 8,  # amount of seconds between snapshots
 ):
     gauge = BalPoolsGauges().get_preferential_gauge(pool)
 
     # get user shares for pool and gauge at different timestamps
     pool_shares = {}
     gauge_shares = {}
-    for _ in range(n):
+    while end > end - EPOCH_DURATION:
         block = get_block_from_timestamp(end)
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
@@ -160,42 +167,53 @@ def consolidate_shares(df):
 
 def build_airdrop(reward_token, reward_total_wei, df):
     # https://docs.merkl.xyz/merkl-mechanisms/types-of-campaign/airdrop
-    df["wei"] = df["total"].map(Decimal) * Decimal(reward_total_wei)
-    df["wei"] = df["wei"].apply(np.floor).astype(str)
-    df = df[df["wei"] != "0"]
-    return {"rewardToken": reward_token, "rewards": df[["wei"]].to_dict(orient="index")}
+    df[epoch_name] = df["total"].map(Decimal) * Decimal(reward_total_wei)
+    df[epoch_name] = df[epoch_name].apply(np.floor).astype(str)
+    df = df[df[epoch_name] != "0"]
+    return {
+        "rewardToken": reward_token,
+        "rewards": df[[epoch_name]].to_dict(orient="index"),
+    }
 
 
 if __name__ == "__main__":
     for protocol in WATCHLIST:
         for pool in WATCHLIST[protocol]["pools"]:
+            print(protocol, pool)
+
             # get bpt balances for a pool at different timestamps
             df = build_snapshot_df(
-                pool=WATCHLIST[protocol]["pools"][pool]["address"], end=LATEST_TS
+                pool=WATCHLIST[protocol]["pools"][pool]["address"], end=EPOCHS[-1]
             )
 
             # consolidate user pool shares
             df = consolidate_shares(df)
-
-            # stdout
-            print(protocol, pool)
             print(df)
+
+            # morpho takes a 50bips fee on json airdrops
+            if protocol == "morpho":
+                reward_total_wei = int(
+                    Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
+                    / Decimal(1 + 0.005)
+                )
+            else:
+                reward_total_wei = int(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
 
             # build airdrop object and dump to json file
             airdrop = build_airdrop(
                 reward_token=WATCHLIST[protocol]["reward_token"],
-                reward_total_wei=int(WATCHLIST[protocol]["pools"][pool]["reward_wei"]),
+                reward_total_wei=reward_total_wei,
                 df=df,
             )
 
             # checksum
             total = Decimal(0)
             for user in airdrop["rewards"]:
-                total += Decimal(airdrop["rewards"][user]["wei"])
+                total += Decimal(airdrop["rewards"][user][epoch_name])
             assert total <= Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
             print(
                 "dust:",
-                Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"]) - total,
+                Decimal(reward_total_wei) - total,
             )
 
             json.dump(airdrop, open(f"airdrop-{pool}.json", "w"), indent=2)
