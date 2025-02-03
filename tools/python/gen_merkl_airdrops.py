@@ -44,6 +44,7 @@ def get_user_shares_pool(pool, block):
         query,
         params,
         url="https://api.studio.thegraph.com/query/75376/balancer-v3/version/latest",
+        retries=5,
     )
     return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["poolShares"]])
 
@@ -159,8 +160,8 @@ def consolidate_shares(df):
 
 def build_airdrop(reward_token, reward_total_wei, df):
     # https://docs.merkl.xyz/merkl-mechanisms/types-of-campaign/airdrop
-    df["wei"] = df["total"] * reward_total_wei
-    df["wei"] = df["wei"].apply(np.floor).astype(int).astype(str)
+    df["wei"] = df["total"].map(Decimal) * Decimal(reward_total_wei)
+    df["wei"] = df["wei"].apply(np.floor).astype(str)
     df = df[df["wei"] != "0"]
     return {"rewardToken": reward_token, "rewards": df[["wei"]].to_dict(orient="index")}
 
@@ -186,4 +187,15 @@ if __name__ == "__main__":
                 reward_total_wei=int(WATCHLIST[protocol]["pools"][pool]["reward_wei"]),
                 df=df,
             )
+
+            # checksum
+            total = Decimal(0)
+            for user in airdrop["rewards"]:
+                total += Decimal(airdrop["rewards"][user]["wei"])
+            assert total <= Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
+            print(
+                "dust:",
+                Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"]) - total,
+            )
+
             json.dump(airdrop, open(f"airdrop-{pool}.json", "w"), indent=2)
