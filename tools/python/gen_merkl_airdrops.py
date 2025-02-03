@@ -104,7 +104,8 @@ def build_snapshot_df(
     # get user shares for pool and gauge at different timestamps
     pool_shares = {}
     gauge_shares = {}
-    while end > end - EPOCH_DURATION:
+    start = end - EPOCH_DURATION
+    while end > start:
         block = get_block_from_timestamp(end)
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
