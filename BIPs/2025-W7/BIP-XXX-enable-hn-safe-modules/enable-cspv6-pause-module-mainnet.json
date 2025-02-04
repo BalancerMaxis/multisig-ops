@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1738676199829,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable HN CSPv6 pause module on mainnet",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x49a11e71b5da4dde6018011f3706f2fc6bb7fb55fcf70441d196c77f78cbb53a"
+  },
+  "transactions": [
+    {
+      "to": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x5Afa3071Fa5D3d54EeE878Ee8Bc41e9A768072B6"
+      }
+    }
+  ]
+}

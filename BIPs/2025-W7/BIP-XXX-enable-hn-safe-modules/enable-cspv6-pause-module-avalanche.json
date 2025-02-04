@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1738676723878,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable HN CSPv6 pause module on AVAX",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xd80afa6e27f7d07be3b8cf1837daa30d76c44a8626c243f6a19694fc15be8f16"
+  },
+  "transactions": [
+    {
+      "to": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x5afa3071fa5d3d54eee878ee8bc41e9a768072b6"
+      }
+    }
+  ]
+}
