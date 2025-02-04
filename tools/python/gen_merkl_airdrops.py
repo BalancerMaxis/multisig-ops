@@ -11,7 +11,7 @@ from web3 import Web3, exceptions
 from bal_tools import Subgraph, BalPoolsGauges
 
 
-WATCHLIST = json.load(open("tools/python/gen_merkl_airdrop_watchlist.json"))
+WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 SUBGRAPH = Subgraph()
 W3 = Web3(
     Web3.HTTPProvider(
@@ -85,12 +85,7 @@ def get_block_from_timestamp(ts):
         }
     }"""
     params = {"where": {"timestamp_lte": ts}}
-    raw = SUBGRAPH.fetch_graphql_data(
-        "blocks",
-        query,
-        params,
-        url="https://api.studio.thegraph.com/query/48427/ethereum-blocks/version/latest",
-    )
+    raw = SUBGRAPH.fetch_graphql_data("blocks", query, params)
     return int(raw["blocks"][0]["number"])
 
 
