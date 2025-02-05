@@ -1,0 +1,17 @@
+FILENAME: `BIPs/2025-W7/BIP-773-enable-hn-safe-modules/BIP-773-enable-cspv6-pause-module-zkevm.json`
+MULTISIG: `multisigs/emergency (zkevm:0x79b131498355daa2cC740936fcb9A7dF76A86223)`
+COMMIT: `7be7807381d6f41e93bce32ca7a663cd6f84f25f`
+CHAIN(S): `zkevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '0a62f0c4-b13f-4eee-bcfa-b8283d84328f', 'slug': 'invalid_transaction_simulation', 'message': 'Unsupported network'}}))`
+
+```
++--------------+------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name      | to                                                               | value | inputs                                                 | bip_number | tx_index |
++--------------+------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| enableModule | 0x79b131498355daa2cC740936fcb9A7dF76A86223 (multisigs/emergency) | 0     | {                                                      | BIP-773    |   N/A    |
+|              |                                                                  |       |   "module": [                                          |            |          |
+|              |                                                                  |       |     "0x5afa3071fa5d3d54eee878ee8bc41e9a768072b6 (N/A)" |            |          |
+|              |                                                                  |       |   ]                                                    |            |          |
+|              |                                                                  |       | }                                                      |            |          |
++--------------+------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
