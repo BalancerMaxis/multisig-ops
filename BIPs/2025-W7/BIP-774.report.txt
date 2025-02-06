@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W7/BIP-774.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `1f8d79f9b2c2f7639b3c3d5fa00339d509eeb9be`
-CHAIN(S): `base, arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/adb185b0-b822-4167-a349-ea14b1f1cd2f)
+COMMIT: `22dac02e433514d739224c5b6c4dd4aade42653e`
+CHAIN(S): `arbitrum, base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/97b27bab-0be9-4234-bdce-8b8c469a3590)
 
 | Gauge Validator (0xB2FcAd9fd42Affd0A90a996A1DEde4427435e5F8) | Result |
 | :------------------------------------------------------------| :----: |
@@ -12,12 +12,12 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/adb185b0-b822-4
 | Gauge Validator (0xCA318253Bb460e08ca33fD22574E7F70217130f5) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             | ❌ ✅  |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
 
 | Gauge Validator (0x9172ad6A79cd6a25F60b1312262ec51219e05f6d) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             | ✅ ❌  |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
 
 | Gauge Validator (0x0855e486EE80FF0EC7c913eC0588A7CBf2B8E89c) | Result |
 | :------------------------------------------------------------| :----: |
@@ -43,13 +43,13 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/adb185b0-b822-4
 |                       |                                                          | a-factor: 1000     | style: L0 sidechain                              |                                                         |                                            |                |         |          |
 |                       |                                                          |                    | cap: 100.0%                                      |                                                         |                                            |                |         |          |
 |                       |                                                          |                    | preferential: True                               |                                                         |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x9C5F17d96ca66748B459788148B7357220F2d100               | Aave wstETH/ezETH  | root: 0xCA318253Bb460e08ca33fD22574E7F70217130f5 | 0x4ff50C17df0D1b788d021ACd85039810a1aA68A1: waArbezETH  | 0xfa5D15F15bC1BeBf3B413d9373E27586ac799dB6 | !!NO REVIEW!!  | BIP-774 |    1     |
+| GaugeAdderV4/addGauge | 0x9C5F17d96ca66748B459788148B7357220F2d100               | Aave wstETH/ezETH  | root: 0xCA318253Bb460e08ca33fD22574E7F70217130f5 | 0x4ff50C17df0D1b788d021ACd85039810a1aA68A1: waArbezETH  | 0xfa5D15F15bC1BeBf3B413d9373E27586ac799dB6 |      safe      | BIP-774 |    1     |
 |                       | pool_address: 0x9C5F17d96ca66748B459788148B7357220F2d100 | fee: Not Found     | side: 0x59b889b00E12C52fc0BbfEBe297fE64975273715 | 0xe98fc055c99DECD8Da0c111B090885d5d15C774E: waArbwstETH | 0x9CC54cb63E61c7D5231c506e4206Eb459250D2A7 |      safe      |         |          |
 |                       |                                                          | a-factor: 500      | style: L0 sidechain                              |                                                         |                                            |                |         |          |
 |                       |                                                          |                    | cap: 100.0%                                      |                                                         |                                            |                |         |          |
 |                       |                                                          |                    | preferential: True                               |                                                         |                                            |                |         |          |
 | GaugeAdderV4/addGauge | 0x7aBe8CAA137cDb2490a9Fa9F8be70Cfbb0ff8652               | yUSD-AaveUSDC      | root: 0x9172ad6A79cd6a25F60b1312262ec51219e05f6d | 0x7F6501d3B98eE91f9b9535E4b0ac710Fb0f9e0bc: waArbUSDCn  | 0xDAff80737b23A6E40F77Aa28957a10c9Af5dff45 |      safe      | BIP-774 |    2     |
-|                       | pool_address: 0x7aBe8CAA137cDb2490a9Fa9F8be70Cfbb0ff8652 | fee: Not Found     | side: 0x4945A8deDaee4f70b4D6967691eD6aE365A9446f | 0x895e15020C3f52ddD4D8e9514eB83C39F53B1579: yUSD        | 0xb1D5c23DbfCb36864f32bc704AE4205BB9720C33 | !!NO REVIEW!!  |         |          |
+|                       | pool_address: 0x7aBe8CAA137cDb2490a9Fa9F8be70Cfbb0ff8652 | fee: Not Found     | side: 0x4945A8deDaee4f70b4D6967691eD6aE365A9446f | 0x895e15020C3f52ddD4D8e9514eB83C39F53B1579: yUSD        | 0xb1D5c23DbfCb36864f32bc704AE4205BB9720C33 |      safe      |         |          |
 |                       |                                                          | a-factor: 500      | style: L0 sidechain                              |                                                         |                                            |                |         |          |
 |                       |                                                          |                    | cap: 100.0%                                      |                                                         |                                            |                |         |          |
 |                       |                                                          |                    | preferential: True                               |                                                         |                                            |                |         |          |
