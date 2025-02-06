@@ -1,8 +1,8 @@
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `a8aa3ff1893111e1514d621453e4803779d9d62e`
+COMMIT: `7e368cf541ab360e10af005af7d24ea37d7c0597`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/2f242fd2-e115-4e0c-9389-3cc4f75f6cc8)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a924942a-416b-42e8-861b-fec425324b55)
 
 ```
 +----------+-------------------------------------------------+-----------------------------------------------------------------------------+---------------------------------------+---------+----------+
@@ -22,43 +22,43 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/2f242fd2-e115-4
 ```
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `a8aa3ff1893111e1514d621453e4803779d9d62e`
+COMMIT: `7e368cf541ab360e10af005af7d24ea37d7c0597`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a0af6ceb-2093-49b3-a204-d0c039d348b5)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6433a9fa-ff83-4a4d-b6a4-ac16f5e8cdca)
 
 ```
 +-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function              | caller_name   | caller_address                             | fx_paths                                                                                      | action_ids                                                         |   bip   | tx_index |
 +-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   113    |
-|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
-|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   113    |
 |                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
-|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/setRelativeWeightCap(uint256)     |                                                                    |         |          |
 |                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
-| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   115    |
 |                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
 |                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
 |                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
 |                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
-|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
+|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
 |                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   115    |
+|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/setRelativeWeightCap(uint256)     |                                                                    |         |          |
 |                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
+|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
+|                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              |                                                                    |         |          |
 +-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `a8aa3ff1893111e1514d621453e4803779d9d62e`
+COMMIT: `7e368cf541ab360e10af005af7d24ea37d7c0597`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d486bed4-2bbd-44fb-aedc-7b90fa31bd76)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/67b74df1-5a4b-417b-b487-0c8d349d9344)
 
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+-------------------------------+-------------------------------------------------------------------+---------+----------+
@@ -66,6 +66,8 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d486bed4-2bbd-4
 +---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+-------------------------------+-------------------------------------------------------------------+---------+----------+
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xb71C90F165cf99d4004499fF058E265Aa68fAC85 (gauges/ECLP-GHO-pyUSD-gauge-b71c)                        | killGauge()                   |                                                                   | BIP-763 |    3     |
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xAf1b4bfA0a69B9e669d925888b99741E15e37253 (gauges/ECLP-GHO-pyUSD-gauge-af1b)                        | killGauge()                   |                                                                   | BIP-763 |    4     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6DD48C4858dd84738E2A347881D66761C964CE3F (root_gauges/GHO/USDC/USDT-arbitrum-root-6dd4)            | killGauge()                   |                                                                   | BIP-763 |    5     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xD558C611B69a223767788B638717E868D8947Fd0 (root_gauges/ECLP-GHO-USDe-rh-arbitrum-root-d558)         | killGauge()                   |                                                                   | BIP-763 |    6     |
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xBE0FC6A0cc4eeeB168dfbDA75523c43dFE7D1F9C (root_gauges/50wstETH/50sFRAX-arbitrum-root-be0f)         | killGauge()                   |                                                                   | BIP-750 |    9     |
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x4D82D6d68aBfC6B2C9A9fEd775cF24Dbf8b014bE (root_gauges/sUSDe/sFRAX-arbitrum-root-4d82)              | killGauge()                   |                                                                   | BIP-750 |    10    |
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xCe540832f7c790d25345Aa19FB1Db3cfDEA04611 (None)                                                    | killGauge()                   |                                                                   | BIP-750 |    11    |
@@ -171,9 +173,9 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d486bed4-2bbd-4
 ```
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `a8aa3ff1893111e1514d621453e4803779d9d62e`
+COMMIT: `7e368cf541ab360e10af005af7d24ea37d7c0597`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/97401c85-47b6-47a6-bc59-aa605102edb1)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/9a72e41a-8ee2-4bbf-ab06-f93103871e7f)
 
 ```
 +---------------------+-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------------------------------------------------------------------------------+------------+----------+
@@ -190,22 +192,6 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/97401c85-47b6-4
 |                     |                                                                                                                 |                                  |   ],                                                                                   |            |          |
 |                     |                                                                                                                 |                                  |   "amount": [                                                                          |            |          |
 |                     |                                                                                                                 |                                  |     "raw:200000000000000000000000, 18 decimals:200000, 6 decimals: 200000000000000000" |            |          |
-|                     |                                                                                                                 |                                  |   ]                                                                                    |            |          |
-|                     |                                                                                                                 |                                  | }                                                                                      |            |          |
-| performAction       | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0                                | {                                                                                      | BIP-763    |   N/A    |
-|                     |                                                                                                                 |                                  |   "target": [                                                                          |            |          |
-|                     |                                                                                                                 |                                  |     "0x7d907D8D66B6CAd285D4349F507EcdfD11FD23D2 (N/A)"                                 |            |          |
-|                     |                                                                                                                 |                                  |   ],                                                                                   |            |          |
-|                     |                                                                                                                 |                                  |   "data": [                                                                            |            |          |
-|                     |                                                                                                                 |                                  |     "0xab8f0945"                                                                       |            |          |
-|                     |                                                                                                                 |                                  |   ]                                                                                    |            |          |
-|                     |                                                                                                                 |                                  | }                                                                                      |            |          |
-| performAction       | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0                                | {                                                                                      | BIP-763    |   N/A    |
-|                     |                                                                                                                 |                                  |   "target": [                                                                          |            |          |
-|                     |                                                                                                                 |                                  |     "0xcfab2efeF3aFfdd158568DC896115Eac26B3C498 (N/A)"                                 |            |          |
-|                     |                                                                                                                 |                                  |   ],                                                                                   |            |          |
-|                     |                                                                                                                 |                                  |   "data": [                                                                            |            |          |
-|                     |                                                                                                                 |                                  |     "0xab8f0945"                                                                       |            |          |
 |                     |                                                                                                                 |                                  |   ]                                                                                    |            |          |
 |                     |                                                                                                                 |                                  | }                                                                                      |            |          |
 | withdraw            | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 (tokens/WETH)                                                        | 0                                | {                                                                                      | BIP-751    |   N/A    |
