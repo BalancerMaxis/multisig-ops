@@ -361,7 +361,7 @@
 
 # Fraxtal DAO Multisig
 
-[Tenderly]()
+[Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/e3646233-6c28-40b0-922e-a92606fc9127)
 
 [Sign nonce 4](https://safe.mainnet.frax.com/transactions/queue?safe=fraxtal:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)
 
@@ -460,7 +460,7 @@
 
 # Mode DAO Multisig
 
-[Tenderly]()
+[Tenderly](https://dashboard.tenderly.co/shared/simulation/f685fe64-1355-4d43-a9c5-314744950335)
 
 [Sign nonce 3](https://safe.optimism.io/transactions/queue?safe=mode:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)
 
