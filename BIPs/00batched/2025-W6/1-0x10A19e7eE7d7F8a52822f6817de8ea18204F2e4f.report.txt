@@ -1,8 +1,8 @@
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `ab757c0211a3f262d62f2f3a940fb50ff90d1565`
+COMMIT: `8660c7bc84ca49c1d6f171cd9ddfa6bc13e41fac`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/e84c1c00-4615-48bd-8544-07c13f65e6ba)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7df45224-2759-4039-b874-44e4d4ec601f)
 
 ```
 +----------+-------------------------------------------------+-----------------------------------------------------------------------------+---------------------------------------+---------+----------+
@@ -22,43 +22,43 @@ TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/e84c1c00-4615-4
 ```
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `ab757c0211a3f262d62f2f3a940fb50ff90d1565`
+COMMIT: `8660c7bc84ca49c1d6f171cd9ddfa6bc13e41fac`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/06dd3cbd-c22f-4944-b512-70cffdfeb37e)
+TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/12110b1b-a423-4935-b0f3-bcb91d91d645)
 
 ```
 +-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function              | caller_name   | caller_address                             | fx_paths                                                                                      | action_ids                                                         |   bip   | tx_index |
 +-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   113    |
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   113    |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/setRelativeWeightCap(uint256)     |                                                                    |         |          |
-|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
-|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
-|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
-|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
-|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
-|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
 |                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              |                                                                    |         |          |
-| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   115    |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
+|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         | 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba | BIP-750 |   115    |
 |                       |               |                                            | 20230811-avalanche-root-gauge-factory-v2/AvalancheRootGauge/setRelativeWeightCap(uint256)     |                                                                    |         |          |
-|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
-|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
-|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
-|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
-|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
-|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
-|                       |               |                                            | 20230526-zkevm-root-gauge-factory/PolygonZkEVMRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
 |                       |               |                                            | 20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+|                       |               |                                            | 20230217-gnosis-root-gauge-factory/GnosisRootGauge/setRelativeWeightCap(uint256)              |                                                                    |         |          |
+|                       |               |                                            | 20240522-fraxtal-root-gauge-factory/OptimisticRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20220823-optimism-root-gauge-factory-v2/OptimismRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20230911-base-root-gauge-factory/BaseRootGauge/setRelativeWeightCap(uint256)                  |                                                                    |         |          |
+|                       |               |                                            | 20220823-arbitrum-root-gauge-factory-v2/ArbitrumRootGauge/setRelativeWeightCap(uint256)       |                                                                    |         |          |
+|                       |               |                                            | 20220823-polygon-root-gauge-factory-v2/PolygonRootGauge/setRelativeWeightCap(uint256)         |                                                                    |         |          |
+|                       |               |                                            | 20230215-single-recipient-gauge-factory-v2/SingleRecipientGauge/setRelativeWeightCap(uint256) |                                                                    |         |          |
+|                       |               |                                            | 20230529-avalanche-root-gauge-factory/AvalancheRootGauge/setRelativeWeightCap(uint256)        |                                                                    |         |          |
 +-----------------------+---------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `ab757c0211a3f262d62f2f3a940fb50ff90d1565`
+COMMIT: `8660c7bc84ca49c1d6f171cd9ddfa6bc13e41fac`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/0a3d31a9-7760-46a2-82da-b6f5458dfb4a)
+TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/0dba6cd0-4e18-4f7b-9956-5683e4c1abed)
 
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+-------------------------------+-------------------------------------------------------------------+---------+----------+
@@ -171,9 +171,9 @@ TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/0a3d31a9-7760-4
 ```
 FILENAME: `BIPs/00batched/2025-W6/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `ab757c0211a3f262d62f2f3a940fb50ff90d1565`
+COMMIT: `8660c7bc84ca49c1d6f171cd9ddfa6bc13e41fac`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/6330d2a9-0f3a-4243-bef8-dcea5f03ad45)
+TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/7f111eed-bdf6-4528-86f5-a4369c5e4153)
 
 ```
 +---------------------+-----------------------------------------------------------------------------------------------------------------+----------------------------------+----------------------------------------------------------------------------------------+------------+----------+
