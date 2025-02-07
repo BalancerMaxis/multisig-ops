@@ -235,7 +235,11 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
-                                    (True if x == "true" else False)
+                                    (
+                                        True
+                                        if (x == "true") or (type(x) == bool and x)
+                                        else False
+                                    )
                                     for x in tx["contractInputsValues"][input["name"]]
                                     .strip("[]")
                                     .split(",")
@@ -243,7 +247,12 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         else:
                             tx["contractInputsValues"][input["name"]] = (
                                 True
-                                if tx["contractInputsValues"][input["name"]] == "true"
+                                if (tx["contractInputsValues"][input["name"]] == "true")
+                                or (
+                                    type(tx["contractInputsValues"][input["name"]])
+                                    == bool
+                                    and tx["contractInputsValues"][input["name"]]
+                                )
                                 else False
                             )
                     # int
@@ -288,7 +297,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 if "bool" in input["components"][idx]["type"]:
                                     casted_tuple.append(
                                         True
-                                        if tuple_item.strip('"') == "true"
+                                        if (tuple_item.strip('"') == "true")
+                                        or (type(tuple_item) == bool and tuple_item)
                                         else False
                                     )
                                 elif re.search(
