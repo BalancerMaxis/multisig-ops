@@ -1,0 +1,82 @@
+FILENAME: `BIPs/00batched/2025-W7/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `dc603b7f36319dbf57efd9c7e142f1e559490112`
+CHAIN(S): `mainnet, base, arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1c212bbb-4709-435e-a919-a55a12468c7c)
+
+| Gauge Validator (0xB2FcAd9fd42Affd0A90a996A1DEde4427435e5F8) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xCA318253Bb460e08ca33fD22574E7F70217130f5) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x9172ad6A79cd6a25F60b1312262ec51219e05f6d) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x0855e486EE80FF0EC7c913eC0588A7CBf2B8E89c) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x86C44de72Ec88d205E63c2aF8D577659319C7a7f) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x53D051F583D418DE6512db1Bde281957F043937b) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xd0f4829F6Ccb2df530445519d8d84D1e715F6391) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+```
++-----------------------+----------------------------------------------------------+-----------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info       | gauge_address_and_info                           | tokens                                                      | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+-----------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0xc072880E1BC0bcDdc99Db882c7f3e7A839281CF4               | Aave wstETH-wETH      | root: 0xB2FcAd9fd42Affd0A90a996A1DEde4427435e5F8 | 0x4cE13a79f45C1Be00BdABD38B764aC28C082704E: waArbWETH       | 0xE3dF105DB16282E5ce5cDa2d15391b04A408BcCf |      safe      | BIP-774 |    0     |
+|                       | pool_address: 0xc072880E1BC0bcDdc99Db882c7f3e7A839281CF4 | fee: Not Found        | side: 0x4bE0f45Db66E2E6271B52549F26E69771C7dfc71 | 0xe98fc055c99DECD8Da0c111B090885d5d15C774E: waArbwstETH     | 0x9CC54cb63E61c7D5231c506e4206Eb459250D2A7 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000        | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x9C5F17d96ca66748B459788148B7357220F2d100               | Aave wstETH/ezETH     | root: 0xCA318253Bb460e08ca33fD22574E7F70217130f5 | 0x4ff50C17df0D1b788d021ACd85039810a1aA68A1: waArbezETH      | 0xfa5D15F15bC1BeBf3B413d9373E27586ac799dB6 |      safe      | BIP-774 |    1     |
+|                       | pool_address: 0x9C5F17d96ca66748B459788148B7357220F2d100 | fee: Not Found        | side: 0x59b889b00E12C52fc0BbfEBe297fE64975273715 | 0xe98fc055c99DECD8Da0c111B090885d5d15C774E: waArbwstETH     | 0x9CC54cb63E61c7D5231c506e4206Eb459250D2A7 |      safe      |         |          |
+|                       |                                                          | a-factor: 500         | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x7aBe8CAA137cDb2490a9Fa9F8be70Cfbb0ff8652               | yUSD-AaveUSDC         | root: 0x9172ad6A79cd6a25F60b1312262ec51219e05f6d | 0x7F6501d3B98eE91f9b9535E4b0ac710Fb0f9e0bc: waArbUSDCn      | 0xDAff80737b23A6E40F77Aa28957a10c9Af5dff45 |      safe      | BIP-774 |    2     |
+|                       | pool_address: 0x7aBe8CAA137cDb2490a9Fa9F8be70Cfbb0ff8652 | fee: Not Found        | side: 0x4945A8deDaee4f70b4D6967691eD6aE365A9446f | 0x895e15020C3f52ddD4D8e9514eB83C39F53B1579: yUSD            | 0xb1D5c23DbfCb36864f32bc704AE4205BB9720C33 |      safe      |         |          |
+|                       |                                                          | a-factor: 500         | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xaCBa78d745FaaE7751C09489d5F15A26EB27f1aD               | Aave wstETH-wETH      | root: 0x0855e486EE80FF0EC7c913eC0588A7CBf2B8E89c | 0x0830820D1A9aa1554364752d6D8F55C836871B74: waBaswstETH     | 0xcb1f29103F710A0A562de7f0e9DDE223D0860674 |      safe      | BIP-774 |    3     |
+|                       | pool_address: 0xaCBa78d745FaaE7751C09489d5F15A26EB27f1aD | fee: Not Found        | side: 0x521156EAbDA83198F03a116236Bc679E20c7B8bb | 0xe298b938631f750DD409fB18227C4a23dCdaab9b: waBasWETH       | 0x14BD1e9b30007510c2aFE3a7a8053A6DE5605d35 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000        | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xb5bfB5aDB736Ea852bD58fEc71db3B356C2a3938               | Aave wstETH-ezETH     | root: 0x86C44de72Ec88d205E63c2aF8D577659319C7a7f | 0x0830820D1A9aa1554364752d6D8F55C836871B74: waBaswstETH     | 0xcb1f29103F710A0A562de7f0e9DDE223D0860674 |      safe      | BIP-774 |    4     |
+|                       | pool_address: 0xb5bfB5aDB736Ea852bD58fEc71db3B356C2a3938 | fee: Not Found        | side: 0x5d49fB47aeF338A9F5ca554f59A875c17107457A | 0xF8F10f39116716e89498c1c5E94137ADa11b2BC7: waBasezETH      | 0xFF4B2CE4131E0Fb6b8A40447B4dF96Bdc83f759a |      safe      |         |          |
+|                       |                                                          | a-factor: 1000        | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x4147D8AeECb75bc9f5c973c3B73D2dfC4DCCe131               | smUSDC-sUSDS          | root: 0x53D051F583D418DE6512db1Bde281957F043937b | 0x5875eEE11Cf8398102FdAd704C9E96607675467a: sUSDS           | 0x84394FA6A39bDFF63B255622dA362B113C690267 |      safe      | BIP-774 |    5     |
+|                       | pool_address: 0x4147D8AeECb75bc9f5c973c3B73D2dfC4DCCe131 | fee: Not Found        | side: 0xD6A35d58dE5Fe7669Af76b038b9af528580C95b3 | 0x616a4E1db48e22028f6bbf20444Cd3b8e3273738: smUSDC          | 0xc11082BbDBB8AaB12d0947EEAD2c8bc28E1b3B34 |      safe      |         |          |
+|                       |                                                          | a-factor: 500         | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xeb95d6BD67f613E7918A031d9F4a9a92766659aC               | DVstETH-Prime wstETH  | root: 0xd0f4829F6Ccb2df530445519d8d84D1e715F6391 | 0x5E362eb2c0706Bd1d134689eC75176018385430B: DVstETH         | 0x9CB622FC4757386dc8e79d1cC66FC912dD4bBf57 |      safe      | BIP-773 |    6     |
+|                       | pool_address: 0xeb95d6BD67f613E7918A031d9F4a9a92766659aC | fee: Not Found        | side: None                                       | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH | 0xcdAa68ce322728FE4185a60f103C194F1E2c47BC |      safe      |         |          |
+|                       |                                                          | a-factor: 500         | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                       | preferential: True                               |                                                             |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+-----------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
