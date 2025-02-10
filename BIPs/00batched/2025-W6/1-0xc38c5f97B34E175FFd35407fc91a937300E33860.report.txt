@@ -1,8 +1,13 @@
 FILENAME: `BIPs/00batched/2025-W6/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `2ef777aa3931fd9e05dea61ecc93321e257767eb`
+COMMIT: `c13011c27138e9042c9a515d6782564ce59cc25b`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d4a02fae-ee24-42ae-b971-4c47f3dc1d79)
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/8293a1c9-75fd-4fc3-a673-26e1f7301389)
+
+| Gauge Validator (0x49CFd5AfD2a05a1894a2AE50036a42dd8EBa9A3b) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
 
 | Gauge Validator (0x3612493e894c251D57Bf24F837d2D05493Dd6a24) | Result |
 | :------------------------------------------------------------| :----: |
@@ -14,28 +19,23 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d4a02fae-ee24-4
 | `validate_preferential_gauge`                                |   ✅   |
 | `validate_rate_providers_safety`                             | ✅ ✅  |
 
-| Gauge Validator (0x49CFd5AfD2a05a1894a2AE50036a42dd8EBa9A3b) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   ✅   |
-
 ```
 +-----------------------+----------------------------------------------------------+----------------------+--------------------------------------------------+----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | function              | pool_id_and_address                                      | symbol_and_info      | gauge_address_and_info                           | tokens                                                   | rate_providers                             | review_summary |   bip   | tx_index |
 +-----------------------+----------------------------------------------------------+----------------------+--------------------------------------------------+----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
-| GaugeAdderV4/addGauge | 0xd9005569C381d57506BaefB69f90d1Bb52a023B9               | rETH-xrETH           | root: 0x3612493e894c251D57Bf24F837d2D05493Dd6a24 | 0xae78736Cd615f374D3085123A210448E74Fc6393: rETH         | 0x1a8F81c256aee9C640e14bB0453ce247ea0DFE6F |      safe      | BIP-768 |    0     |
+| GaugeAdderV4/addGauge | 0x90CDc7476F74f124466cAa70a084887F2a41677e               | xRPL-RPL             | root: 0x49CFd5AfD2a05a1894a2AE50036a42dd8EBa9A3b | 0x1DB1Afd9552eeB28e2e36597082440598B7F1320: xRPL         | 0x1DB1Afd9552eeB28e2e36597082440598B7F1320 |      safe      | BIP-769 |    0     |
+|                       | pool_address: 0x90CDc7476F74f124466cAa70a084887F2a41677e | fee: Not Found       | side: None                                       | 0xD33526068D116cE69F19A9ee46F0bd304F21A51f: RPL          | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: 200        | style: mainnet                                   |                                                          |                                            |                |         |          |
+|                       |                                                          |                      | cap: 100.0%                                      |                                                          |                                            |                |         |          |
+|                       |                                                          |                      | preferential: True                               |                                                          |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xd9005569C381d57506BaefB69f90d1Bb52a023B9               | rETH-xrETH           | root: 0x3612493e894c251D57Bf24F837d2D05493Dd6a24 | 0xae78736Cd615f374D3085123A210448E74Fc6393: rETH         | 0x1a8F81c256aee9C640e14bB0453ce247ea0DFE6F |      safe      | BIP-768 |    1     |
 |                       | pool_address: 0xd9005569C381d57506BaefB69f90d1Bb52a023B9 | fee: Not Found       | side: None                                       | 0xBB22d59B73D7a6F3A8a83A214BECc67Eb3b511fE: xrETH        | 0xBB22d59B73D7a6F3A8a83A214BECc67Eb3b511fE |      safe      |         |          |
 |                       |                                                          | a-factor: 200        | style: mainnet                                   |                                                          |                                            |                |         |          |
 |                       |                                                          |                      | cap: 100.0%                                      |                                                          |                                            |                |         |          |
 |                       |                                                          |                      | preferential: True                               |                                                          |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x64B84023CfE8397dF83C67eACCC2C03ecDA4aeE5               | Aave PyUSD-Lido GHO  | root: 0x6C0a4550C575C917435F228D36939125A437a98b | 0xb51EDdDD8c47856D81C8681EA71404Cec93E92c6: waEthPYUSD   | 0xdd8AEBC13B3DFaF85e3B512d26681987aD2c43b2 |      safe      | BIP-772 |    1     |
+| GaugeAdderV4/addGauge | 0x64B84023CfE8397dF83C67eACCC2C03ecDA4aeE5               | Aave PyUSD-Lido GHO  | root: 0x6C0a4550C575C917435F228D36939125A437a98b | 0xb51EDdDD8c47856D81C8681EA71404Cec93E92c6: waEthPYUSD   | 0xdd8AEBC13B3DFaF85e3B512d26681987aD2c43b2 |      safe      | BIP-772 |    2     |
 |                       | pool_address: 0x64B84023CfE8397dF83C67eACCC2C03ecDA4aeE5 | fee: Not Found       | side: None                                       | 0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C: waEthLidoGHO | 0x851b73c4BFd5275D47FFf082F9e8B4997dCCB253 |      safe      |         |          |
-|                       |                                                          | a-factor: 554        | style: mainnet                                   |                                                          |                                            |                |         |          |
-|                       |                                                          |                      | cap: 100.0%                                      |                                                          |                                            |                |         |          |
-|                       |                                                          |                      | preferential: True                               |                                                          |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x90CDc7476F74f124466cAa70a084887F2a41677e               | xRPL-RPL             | root: 0x49CFd5AfD2a05a1894a2AE50036a42dd8EBa9A3b | 0x1DB1Afd9552eeB28e2e36597082440598B7F1320: xRPL         | 0x1DB1Afd9552eeB28e2e36597082440598B7F1320 |      safe      | BIP-769 |    2     |
-|                       | pool_address: 0x90CDc7476F74f124466cAa70a084887F2a41677e | fee: Not Found       | side: None                                       | 0xD33526068D116cE69F19A9ee46F0bd304F21A51f: RPL          | 0x0000000000000000000000000000000000000000 |       --       |         |          |
-|                       |                                                          | a-factor: 200        | style: mainnet                                   |                                                          |                                            |                |         |          |
+|                       |                                                          | a-factor: 1290       | style: mainnet                                   |                                                          |                                            |                |         |          |
 |                       |                                                          |                      | cap: 100.0%                                      |                                                          |                                            |                |         |          |
 |                       |                                                          |                      | preferential: True                               |                                                          |                                            |                |         |          |
 +-----------------------+----------------------------------------------------------+----------------------+--------------------------------------------------+----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
