@@ -1,8 +1,13 @@
 FILENAME: `BIPs/00batched/2025-W4/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `2ad9645a6288dc12c8eef7d58a47efebfc219902`
+COMMIT: `e3d7c0d81d3b4f82cdf2eb7144cd475d96a58ec1`
 CHAIN(S): `mainnet, arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1d02fca4-87fb-4ba5-86ec-b098e4c72715)
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/af4320a8-7daf-4b92-9e93-22ee411dfa4d)
+
+| Gauge Validator (0x870D8Fd230a6261DB8d4C168038E55AE3a7Eb4B2) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
 
 | Gauge Validator (0x5bBaeD1fADC08C5fb3e4ae3C8848777E2dA77103) | Result |
 | :------------------------------------------------------------| :----: |
@@ -14,28 +19,23 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1d02fca4-87fb-4
 | `validate_preferential_gauge`                                |   ✅   |
 | `validate_rate_providers_safety`                             |   --   |
 
-| Gauge Validator (0x870D8Fd230a6261DB8d4C168038E55AE3a7Eb4B2) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   ✅   |
-
 ```
 +-----------------------+---------------------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | function              | pool_id_and_address                                                 | symbol_and_info     | gauge_address_and_info                           | tokens                                                      | rate_providers                             | review_summary |   bip   | tx_index |
 +-----------------------+---------------------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
-| GaugeAdderV4/addGauge | 0x10A04efbA5B880e169920Fd4348527C64FB29d4D                          | B-csUSDC-csUSDL     | root: 0x5bBaeD1fADC08C5fb3e4ae3C8848777E2dA77103 | 0x7204B7Dbf9412567835633B6F00C3Edc3a8D6330: csUSDC          |                                            |                | BIP-756 |    0     |
-|                       | pool_address: 0x10A04efbA5B880e169920Fd4348527C64FB29d4D            | fee: Not Found      | side: None                                       | 0xbEeFc011e94f43b8B7b455eBaB290C7Ab4E216f1: csUSDL          |                                            |                |         |          |
-|                       |                                                                     | a-factor: 211       | style: mainnet                                   |                                                             |                                            |                |         |          |
-|                       |                                                                     |                     | cap: 100.0%                                      |                                                             |                                            |                |         |          |
-|                       |                                                                     |                     | preferential: True                               |                                                             |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x121edB0bADc036F5FC610D015EE14093C142313B                          | rstETH-Lido wstETH  | root: 0x04202B147Eae6f5F50CBf72d0b8e9459C57B15e6 | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH |                                            |                | BIP-754 |    1     |
-|                       | pool_address: 0x121edB0bADc036F5FC610D015EE14093C142313B            | fee: Not Found      | side: None                                       | 0x7a4EffD87C2f3C55CA251080b1343b605f327E3a: rstETH          |                                            |                |         |          |
-|                       |                                                                     | a-factor: 500       | style: mainnet                                   |                                                             |                                            |                |         |          |
-|                       |                                                                     |                     | cap: 100.0%                                      |                                                             |                                            |                |         |          |
-|                       |                                                                     |                     | preferential: True                               |                                                             |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x65c2d90b33f7bf693a7ef54662435f2cf3251c210000000000000000000005e7  | tETH/wstETH         | root: 0x870D8Fd230a6261DB8d4C168038E55AE3a7Eb4B2 | 0x5979D7b546E38E414F7E9822514be443A4800529: wstETH          | 0x0000000000000000000000000000000000000000 |       --       | BIP-755 |    2     |
+| GaugeAdderV4/addGauge | 0x65c2d90b33f7bf693a7ef54662435f2cf3251c210000000000000000000005e7  | tETH/wstETH         | root: 0x870D8Fd230a6261DB8d4C168038E55AE3a7Eb4B2 | 0x5979D7b546E38E414F7E9822514be443A4800529: wstETH          | 0x0000000000000000000000000000000000000000 |       --       | BIP-755 |    0     |
 |                       | pool_address: 0x65c2d90b33F7bf693A7EF54662435f2Cf3251C21            | fee: 0.05           | side: 0xc7995A4bA51574Ecd93e777cded6900ce42ff805 | 0x65c2d90b33F7bf693A7EF54662435f2Cf3251C21: tETH/wstETH     | 0x0000000000000000000000000000000000000000 |       --       |         |          |
 |                       |                                                                     | a-factor: 200       | style: L0 sidechain                              | 0xd09ACb80C1E8f2291862c4978A008791c9167003: tETH            | 0x4FEFC8A9104464671E909c6470f3A08B71130659 |      safe      |         |          |
+|                       |                                                                     |                     | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                     | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x10A04efbA5B880e169920Fd4348527C64FB29d4D                          | B-csUSDC-csUSDL     | root: 0x5bBaeD1fADC08C5fb3e4ae3C8848777E2dA77103 | 0x7204B7Dbf9412567835633B6F00C3Edc3a8D6330: csUSDC          |                                            |                | BIP-756 |    1     |
+|                       | pool_address: 0x10A04efbA5B880e169920Fd4348527C64FB29d4D            | fee: Not Found      | side: None                                       | 0xbEeFc011e94f43b8B7b455eBaB290C7Ab4E216f1: csUSDL          |                                            |                |         |          |
+|                       |                                                                     | a-factor: 1500      | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                     | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                     | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x121edB0bADc036F5FC610D015EE14093C142313B                          | rstETH-Lido wstETH  | root: 0x04202B147Eae6f5F50CBf72d0b8e9459C57B15e6 | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH |                                            |                | BIP-754 |    2     |
+|                       | pool_address: 0x121edB0bADc036F5FC610D015EE14093C142313B            | fee: Not Found      | side: None                                       | 0x7a4EffD87C2f3C55CA251080b1343b605f327E3a: rstETH          |                                            |                |         |          |
+|                       |                                                                     | a-factor: 500       | style: mainnet                                   |                                                             |                                            |                |         |          |
 |                       |                                                                     |                     | cap: 100.0%                                      |                                                             |                                            |                |         |          |
 |                       |                                                                     |                     | preferential: True                               |                                                             |                                            |                |         |          |
 +-----------------------+---------------------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
