@@ -242,7 +242,7 @@ def _parse_set_recipient_list(transaction: dict, **kwargs) -> Optional[dict]:
         return
     to_address = to_checksum_address(transaction["to"])
     switch_chain_if_needed(chain_id)
-    injector = Contract.from_explorer(to_address)
+    injector = Contract(to_address)
     tokenAddress = injector.getInjectTokenAddress()
     with open("abis/ERC20.json", "r") as f:
         token = Contract.from_abi("Token", tokenAddress, json.load(f))
@@ -537,7 +537,7 @@ def _parse_AuthorizerAdapterEntrypoint(transaction: dict, **kwargs) -> Optional[
     target_address = transaction["contractInputsValues"].get("target")
     print(target_address)
     try:
-        target_interface = Contract.from_explorer(target_address)
+        target_interface = Contract(target_address)
     except Exception as e:
         try:
             print(
