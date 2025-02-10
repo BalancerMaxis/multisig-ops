@@ -1,0 +1,56 @@
+FILENAME: `MaxiOps/CCTP_Bridge/send/USDC-Arbitrum-Base-v3-Bootstrapping-1.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `c91bd6fe077ad5a989cc022e7ce31bf05371ca14`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c1f966b6-4a6d-4aa7-a156-6cd9ace0f0ee)
+
+```
++----------------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
+| fx_name        | to                                                                 | value | inputs                                                                   | bip_number | tx_index |
++----------------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
+| approve        | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)           | 0     | {                                                                        | N/A        |   N/A    |
+|                |                                                                    |       |   "spender": [                                                           |            |          |
+|                |                                                                    |       |     "0xBd3fa81B58Ba92a82136038B25aDec7066af3155 (circle/cctp_messenger)" |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "value": [                                                             |            |          |
+|                |                                                                    |       |     "raw:30000000000, 18 decimals:3E-8, 6 decimals: 30000"               |            |          |
+|                |                                                                    |       |   ]                                                                      |            |          |
+|                |                                                                    |       | }                                                                        |            |          |
+| depositForBurn | 0xBd3fa81B58Ba92a82136038B25aDec7066af3155 (circle/cctp_messenger) | 0     | {                                                                        | N/A        |   N/A    |
+|                |                                                                    |       |   "amount": [                                                            |            |          |
+|                |                                                                    |       |     "raw:30000000000, 18 decimals:3E-8, 6 decimals: 30000"               |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "destinationDomain": [                                                 |            |          |
+|                |                                                                    |       |     "3"                                                                  |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "mintRecipient": [                                                     |            |          |
+|                |                                                                    |       |     "0x0000000000000000000000009ff471F9f98F42E5151C7855fD1b5aa906b1AF7e" |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "burnToken": [                                                         |            |          |
+|                |                                                                    |       |     "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)"           |            |          |
+|                |                                                                    |       |   ]                                                                      |            |          |
+|                |                                                                    |       | }                                                                        |            |          |
+| approve        | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)           | 0     | {                                                                        | N/A        |   N/A    |
+|                |                                                                    |       |   "spender": [                                                           |            |          |
+|                |                                                                    |       |     "0xBd3fa81B58Ba92a82136038B25aDec7066af3155 (circle/cctp_messenger)" |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "value": [                                                             |            |          |
+|                |                                                                    |       |     "raw:15000000000, 18 decimals:1.5E-8, 6 decimals: 15000"             |            |          |
+|                |                                                                    |       |   ]                                                                      |            |          |
+|                |                                                                    |       | }                                                                        |            |          |
+| depositForBurn | 0xBd3fa81B58Ba92a82136038B25aDec7066af3155 (circle/cctp_messenger) | 0     | {                                                                        | N/A        |   N/A    |
+|                |                                                                    |       |   "amount": [                                                            |            |          |
+|                |                                                                    |       |     "raw:15000000000, 18 decimals:1.5E-8, 6 decimals: 15000"             |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "destinationDomain": [                                                 |            |          |
+|                |                                                                    |       |     "6"                                                                  |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "mintRecipient": [                                                     |            |          |
+|                |                                                                    |       |     "0x0000000000000000000000009ff471F9f98F42E5151C7855fD1b5aa906b1AF7e" |            |          |
+|                |                                                                    |       |   ],                                                                     |            |          |
+|                |                                                                    |       |   "burnToken": [                                                         |            |          |
+|                |                                                                    |       |     "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC)"           |            |          |
+|                |                                                                    |       |   ]                                                                      |            |          |
+|                |                                                                    |       | }                                                                        |            |          |
++----------------+--------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
+```
