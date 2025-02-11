@@ -1,0 +1,60 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/Arbitrum/StableSurge-LaunchPools-Config.json`
+MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `e8d80eb702582ac9ed567b6bfb44b1a41b82286b`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/69090eaa-1230-4b3a-98f0-7f268aa6f50d)
+
+```
++-----------------------------+---------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name                     | to                                                                                    | value | inputs                                                 | bip_number | tx_index |
++-----------------------------+---------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| setMaxSurgeFeePercentage    | 0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                            |            |          |
+|                             |                                                                                       |       |     "0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E (N/A)" |            |          |
+|                             |                                                                                       |       |   ],                                                   |            |          |
+|                             |                                                                                       |       |   "newMaxSurgeSurgeFeePercentage": [                   |            |          |
+|                             |                                                                                       |       |     "50000000000000000"                                |            |          |
+|                             |                                                                                       |       |   ]                                                    |            |          |
+|                             |                                                                                       |       | }                                                      |            |          |
+| setSurgeThresholdPercentage | 0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                            |            |          |
+|                             |                                                                                       |       |     "0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E (N/A)" |            |          |
+|                             |                                                                                       |       |   ],                                                   |            |          |
+|                             |                                                                                       |       |   "newSurgeThresholdPercentage": [                     |            |          |
+|                             |                                                                                       |       |     "100000000000000000"                               |            |          |
+|                             |                                                                                       |       |   ]                                                    |            |          |
+|                             |                                                                                       |       | }                                                      |            |          |
+| setMaxSurgeFeePercentage    | 0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                            |            |          |
+|                             |                                                                                       |       |     "0xc2B0D1A1B4cdDA10185859B5a5c543024c2df869 (N/A)" |            |          |
+|                             |                                                                                       |       |   ],                                                   |            |          |
+|                             |                                                                                       |       |   "newMaxSurgeSurgeFeePercentage": [                   |            |          |
+|                             |                                                                                       |       |     "50000000000000000"                                |            |          |
+|                             |                                                                                       |       |   ]                                                    |            |          |
+|                             |                                                                                       |       | }                                                      |            |          |
+| setSurgeThresholdPercentage | 0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                            |            |          |
+|                             |                                                                                       |       |     "0xc2B0D1A1B4cdDA10185859B5a5c543024c2df869 (N/A)" |            |          |
+|                             |                                                                                       |       |   ],                                                   |            |          |
+|                             |                                                                                       |       |   "newSurgeThresholdPercentage": [                     |            |          |
+|                             |                                                                                       |       |     "50000000000000000"                                |            |          |
+|                             |                                                                                       |       |   ]                                                    |            |          |
+|                             |                                                                                       |       | }                                                      |            |          |
+| setMaxSurgeFeePercentage    | 0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                            |            |          |
+|                             |                                                                                       |       |     "0x19B001e6Bc2d89154c18e2216eec5C8c6047b6d8 (N/A)" |            |          |
+|                             |                                                                                       |       |   ],                                                   |            |          |
+|                             |                                                                                       |       |   "newMaxSurgeSurgeFeePercentage": [                   |            |          |
+|                             |                                                                                       |       |     "50000000000000000"                                |            |          |
+|                             |                                                                                       |       |   ]                                                    |            |          |
+|                             |                                                                                       |       | }                                                      |            |          |
+| setSurgeThresholdPercentage | 0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                            |            |          |
+|                             |                                                                                       |       |     "0x19B001e6Bc2d89154c18e2216eec5C8c6047b6d8 (N/A)" |            |          |
+|                             |                                                                                       |       |   ],                                                   |            |          |
+|                             |                                                                                       |       |   "newSurgeThresholdPercentage": [                     |            |          |
+|                             |                                                                                       |       |     "50000000000000000"                                |            |          |
+|                             |                                                                                       |       |   ]                                                    |            |          |
+|                             |                                                                                       |       | }                                                      |            |          |
++-----------------------------+---------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
