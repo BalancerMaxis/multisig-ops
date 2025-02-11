@@ -3,7 +3,7 @@ name: Review vLAURA Votes
 on:
   pull_request:
     paths:
-      - 'MaxiOps/vlaura_voting/**/input/*.csv'
+      - "MaxiOps/vlaura_voting/**/input/*.csv"
   workflow_dispatch:
     inputs:
       week-string:
@@ -14,58 +14,59 @@ jobs:
   review_votes:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Setup Python 3.9
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.9
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: "pip"
 
-    - name: Determine week-string
-      id: week-string
-      run: |
-        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-          echo "week-string=${{ github.event.inputs.week-string }}" >> $GITHUB_OUTPUT
-        else
-          # Get the path of the changed CSV file
-          CSV_PATH=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '/input/.*\.csv$' | head -n 1)
-          
-          if [ -z "$CSV_PATH" ]; then
-            echo "No CSV file found in recent changes."
-            exit 1
+      - name: Determine week-string
+        id: week-string
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "week-string=${{ github.event.inputs.week-string }}" >> $GITHUB_OUTPUT
+          else
+            # Get the path of the changed CSV file
+            CSV_PATH=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '/input/.*\.csv$' | head -n 1)
+
+            if [ -z "$CSV_PATH" ]; then
+              echo "No CSV file found in recent changes."
+              exit 1
+            fi
+
+            echo "CSV Path: $CSV_PATH"
+
+            YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
+            WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
+            WEEK_STRING="${YEAR}-${WEEK}"
+
+            echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
           fi
 
-          echo "CSV Path: $CSV_PATH"
-          
-          YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
-          WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
-          WEEK_STRING="${YEAR}-${WEEK}"
+      - name: Review vLAURA Votes
+        run: |
+          pwd
+          RUN_DIR=tools/python/aura_snapshot_voting
+          pip3 install -r $RUN_DIR/requirements.txt
+          echo "Reviewing votes for: ${{ steps.week-string.outputs.week-string }}"
+          python3 $RUN_DIR/review_votes.py --week-string "${{ steps.week-string.outputs.week-string }}"
 
-          echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
-        fi
-
-    - name: Review vLAURA Votes
-      run: |
-        pwd
-        RUN_DIR=tools/python/aura_snapshot_voting
-        pip3 install -r $RUN_DIR/requirements.txt
-        echo "Reviewing votes for: ${{ steps.week-string.outputs.week-string }}"
-        python3 $RUN_DIR/review_votes.py --week-string "${{ steps.week-string.outputs.week-string }}"
-
-    - name: Comment PR
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v7
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          const fs = require('fs');
-          const reviewOutput = fs.readFileSync('review_output.md', 'utf8');
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: reviewOutput
-          });
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const reviewOutput = fs.readFileSync('review_output.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: reviewOutput
+            });
