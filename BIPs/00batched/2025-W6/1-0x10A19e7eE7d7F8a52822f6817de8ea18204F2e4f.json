@@ -11,57 +11,63 @@
   },
   "transactions": [
     {
-      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
+            "name": "recipient",
+            "type": "address",
+            "internalType": "address"
           },
           {
-            "internalType": "uint256",
-            "name": "value",
-            "type": "uint256"
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
           }
         ],
         "name": "transfer",
         "payable": false
       },
       "contractInputsValues": {
-        "to": "0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86",
-        "value": "174000000000"
+        "recipient": "0x58e6c7ab55Aa9012eAccA16d1ED4c15795669E1C",
+        "amount": "2453850000000000000000"
       },
       "meta": {
         "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-753.json",
-        "bip_number": "BIP-753"
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-013-Q4_karpatkey_fees.json",
+        "bip_number": "BIP-013"
       }
     },
     {
-      "to": "0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC",
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       "value": "0",
       "data": null,
       "contractMethod": {
         "inputs": [
           {
-            "name": "_relock",
-            "type": "bool",
-            "internalType": "bool"
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "internalType": "uint256"
           }
         ],
-        "name": "processExpiredLocks",
+        "name": "transfer",
         "payable": false
       },
       "contractInputsValues": {
-        "_relock": "true"
+        "to": "0x58e6c7ab55Aa9012eAccA16d1ED4c15795669E1C",
+        "value": "50727000000"
       },
       "meta": {
-        "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-767-relock-vlAura-q1-2025.json",
-        "bip_number": "BIP-767"
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-013-Q4_karpatkey_fees.json",
+        "bip_number": "BIP-013"
       }
     },
     {
@@ -92,161 +98,6 @@
         "tx_index": 0,
         "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-770-cow-tokenswap.json",
         "bip_number": "BIP-770"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0xb71C90F165cf99d4004499fF058E265Aa68fAC85",
-        "data": "0xab8f0945"
-      },
-      "meta": {
-        "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
-        "bip_number": "BIP-763"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0xAf1b4bfA0a69B9e669d925888b99741E15e37253",
-        "data": "0xab8f0945"
-      },
-      "meta": {
-        "tx_index": 1,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
-        "bip_number": "BIP-763"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0x6DD48C4858dd84738E2A347881D66761C964CE3F",
-        "data": "0xab8f0945"
-      },
-      "meta": {
-        "tx_index": 2,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
-        "bip_number": "BIP-763"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0xD558C611B69a223767788B638717E868D8947Fd0",
-        "data": "0xab8f0945"
-      },
-      "meta": {
-        "tx_index": 3,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
-        "bip_number": "BIP-763"
-      }
-    },
-    {
-      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "wad",
-            "type": "uint256"
-          }
-        ],
-        "name": "withdraw",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "wad": "20000000000000000000"
-      },
-      "meta": {
-        "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-751-refund-gas-station-2025.json",
-        "bip_number": "BIP-751"
-      }
-    },
-    {
-      "to": "0x7fb8f5D04b521B6880158819E69538655AABD5c4",
-      "value": "50000000000000000000",
-      "data": null,
-      "contractMethod": null,
-      "contractInputsValues": null,
-      "meta": {
-        "tx_index": 1,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-751-refund-gas-station-2025.json",
-        "bip_number": "BIP-751"
       }
     },
     {
@@ -840,7 +691,7 @@
         "payable": true
       },
       "contractInputsValues": {
-        "target": "0x3cffb5d5db1da8aa58908e54c03a7f8a7edb233c",
+        "target": "0x1cadbefeb5461a671cfaaf5fac237af00bac0b1c",
         "data": "0xab8f0945"
       },
       "meta": {
@@ -870,7 +721,7 @@
         "payable": true
       },
       "contractInputsValues": {
-        "target": "0xe9b2cb6836be07357bcb8144f398730d5ec268e9",
+        "target": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
         "data": "0xab8f0945"
       },
       "meta": {
@@ -3310,66 +3161,6 @@
       }
     },
     {
-      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "recipient",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "amount",
-            "type": "uint256",
-            "internalType": "uint256"
-          }
-        ],
-        "name": "transfer",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "recipient": "0x58e6c7ab55Aa9012eAccA16d1ED4c15795669E1C",
-        "amount": "2453850000000000000000"
-      },
-      "meta": {
-        "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-013-Q4_karpatkey_fees.json",
-        "bip_number": "BIP-013"
-      }
-    },
-    {
-      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "to",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "value",
-            "type": "uint256",
-            "internalType": "uint256"
-          }
-        ],
-        "name": "transfer",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "to": "0x58e6c7ab55Aa9012eAccA16d1ED4c15795669E1C",
-        "value": "50727000000"
-      },
-      "meta": {
-        "tx_index": 1,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-013-Q4_karpatkey_fees.json",
-        "bip_number": "BIP-013"
-      }
-    },
-    {
       "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
       "value": "0",
       "data": null,
@@ -3457,6 +3248,215 @@
         "tx_index": 2,
         "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-750 ACX-wstETH-Cap-Raise.json",
         "bip_number": "BIP-750"
+      }
+    },
+    {
+      "to": "0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_relock",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ],
+        "name": "processExpiredLocks",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_relock": "true"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-767-relock-vlAura-q1-2025.json",
+        "bip_number": "BIP-767"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xb71C90F165cf99d4004499fF058E265Aa68fAC85",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
+        "bip_number": "BIP-763"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xAf1b4bfA0a69B9e669d925888b99741E15e37253",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
+        "bip_number": "BIP-763"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x7d907D8D66B6CAd285D4349F507EcdfD11FD23D2",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
+        "bip_number": "BIP-763"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xcfab2efef3affdd158568dc896115eac26b3c498",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/[BIP-763] Enable Boosted GHO 3pool on Balancer v3 Kills.json",
+        "bip_number": "BIP-763"
+      }
+    },
+    {
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "wad",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdraw",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "wad": "20000000000000000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-751-refund-gas-station-2025.json",
+        "bip_number": "BIP-751"
+      }
+    },
+    {
+      "to": "0x7fb8f5D04b521B6880158819E69538655AABD5c4",
+      "value": "50000000000000000000",
+      "data": null,
+      "contractMethod": null,
+      "contractInputsValues": null,
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-751-refund-gas-station-2025.json",
+        "bip_number": "BIP-751"
+      }
+    },
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86",
+        "value": "174000000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-753.json",
+        "bip_number": "BIP-753"
       }
     },
     {
