@@ -142,7 +142,10 @@ def get_pool_info(
     try:
         fee = pool.getSwapFeePercentage() / BIPS_PRECISION
     except Exception:
-        fee = NOT_FOUND
+        try:
+            fee = pool.getStaticSwapFeePercentage() / BIPS_PRECISION
+        except:
+            fee = NOT_FOUND
     try:
         tokens = vault.getPoolTokens(pool_id)[0]
     except Exception:
