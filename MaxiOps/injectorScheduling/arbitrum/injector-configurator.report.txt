@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/injectorScheduling/arbitrum/injector-configurator.json`
 MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `6b58f73216b70b3ecc09dacb94307e19b93ffffb`
+COMMIT: `d738c55e5eb810c0fe6c9b60dc1c124ae3ae0c83`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/de2a4296-fb5b-4f77-8947-f7bd7ede7a0a)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b2ed7acc-36eb-4bd6-8d6e-658818c3032f)
 
 ```
 +------------------+-----------------------------------------------------------------------------------------------------+--------+------------------------------------------------------------------------------------------------+-----------------------------+---------+------------------------------+----------+
@@ -11,7 +11,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/de2a4296-fb5b-4
 | setRecipientList | 0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2(maxiKeepers/gaugeRewardsInjectors/usdc_rewards_injector) | USDC   | [                                                                                              | [                           | [       | raw: 4500000000/1e6 = 4500.0 |    0     |
 |                  |                                                                                                     |        |  "0x4bE0f45Db66E2E6271B52549F26E69771C7dfc71 (gauges/Aave wstETH-wETH-gauge-4be0)",            |  "1000000000/1e6 = 1000.0", |  "5",   |                              |          |
 |                  |                                                                                                     |        |  "0x59b889b00E12C52fc0BbfEBe297fE64975273715 (gauges/Aave wstETH/ezETH-gauge-59b8)",           |  "750000000/1e6 = 750.0",   |  "5",   |                              |          |
-|                  |                                                                                                     |        |  "0x4945A8deDaee4f70b4D6967691eD6aE365A9446f (gauges/yUSD-AaveUSDC-gauge-4945)",               |  "500000000/1e6 = 500.0",   |  "5",   |                              |          |
+|                  |                                                                                                     |        |  "0x4945A8deDaee4f70b4D6967691eD6aE365A9446f (gauges/yUSD-AaveUSDC-gauge-4945)",               |  "500000000/1e6 = 500.0",   |  "1",   |                              |          |
 |                  |                                                                                                     |        |  "0x9419C8b7Ff370dB3823164aCea6D9664F4b9c8A9 (Balancer Surge sUSDX USDX aUSDT Gauge Deposit)", |  "1000000000/1e6 = 1000.0", |  "6",   |                              |          |
 |                  |                                                                                                     |        |  "0xFb7A403481C0bFcb7C3848a1F8F848f0f7D61cD4 (gauges/tETH-Aave weETH-gauge-fb7a)",             |  "500000000/1e6 = 500.0",   |  "6",   |                              |          |
 |                  |                                                                                                     |        |  "0x915475b32983b7eb1235c1b6752149b454f81ad8 (Balancer Aave GHO/USDT/USDC Gauge Deposit)"      |  "750000000/1e6 = 750.0"    |  "6"    |                              |          |
