@@ -102,11 +102,7 @@ def get_pool_info(
     """
     Returns a tuple of pool info
     """
-    pool = Contract.from_abi(
-        name="IBalPool",
-        address=pool_address,
-        abi=json.load(open("abis/IBalPool.json", "r")),
-    )
+    pool = Contract(pool_address)
     chain_name = AddrBook.chain_names_by_id[chain.id]
     book = AddrBook(chain_name)
     vault = Contract.from_abi(
@@ -136,10 +132,10 @@ def get_pool_info(
     except Exception:
         try:
             ## TWAMM pools
-            pool = Contract(pool.address)
             pool_id = str(pool.POOL_ID())
         except Exception:
             try:
+                # v3 pools
                 pool_id = pool.address
             except:
                 pool_id = POOL_ID_CUSTOM_FALLBACK
@@ -164,9 +160,9 @@ def get_pool_info(
             rate_providers = []
     if len(rate_providers) == 0:
         try:
-            rehype_pool = Contract(pool_address)
-            rate_providers.append(rehype_pool.rateProvider0())
-            rate_providers.append(rehype_pool.rateProvider1())
+            # rehype pools
+            rate_providers.append(pool.rateProvider0())
+            rate_providers.append(pool.rateProvider1())
         except Exception:
             pass
     if pool.totalSupply == 0:
