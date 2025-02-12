@@ -1,1 +1,49 @@
-{"version":"1.0","chainId":"1","createdAt":1739370710693,"meta":{"name":"Transactions Batch","description":"Add new gauges","txBuilderVersion":"1.16.3","createdFromSafeAddress":"0xc38c5f97B34E175FFd35407fc91a937300E33860","createdFromOwnerAddress":"","checksum":""},"transactions":[{"to":"0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd","value":"0","data":null,"contractMethod":{"inputs":[{"name":"gauge","type":"address","internalType":"address"},{"name":"gaugeType","type":"string","internalType":"string"}],"name":"addGauge","payable":false},"contractInputsValues":{"gauge":"0x9b237fa1958e3022464343137738926d38815801","gaugeType":"Arbitrum"}},{"to":"0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd","value":"0","data":null,"contractMethod":{"inputs":[{"name":"gauge","type":"address","internalType":"address"},{"name":"gaugeType","type":"string","internalType":"string"}],"name":"addGauge","payable":false},"contractInputsValues":{"gauge":"0x1da19f38eb6f2c22199dc0848118b26095c29aed","gaugeType":"Base"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1739370710693,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Add new gauges",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x9b237fa1958e3022464343137738926d38815801",
+        "gaugeType": "Arbitrum"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x1da19f38eb6f2c22199dc0848118b26095c29aed",
+        "gaugeType": "Base"
+      }
+    }
+  ]
+}
