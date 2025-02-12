@@ -1,0 +1,32 @@
+FILENAME: `BIPs/2025-W7/Enable-Gauge-for-tETH-V3-Pools.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `f8ffa0e56dd2d8f406caee91d3edd3598dbe1ad7`
+CHAIN(S): `arbitrum, mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/19fcb180-0cab-4bb0-a354-d0f443ad81b7)
+
+| Gauge Validator (0xd5A0Eb558d62780B10Ecc202D0049B89F6145073) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0xB4Db5E1098B5a40Ce4B36c9EbFEf23A54E50dB65) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+```
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+----------------+----------------+-----+----------+
+| function              | pool_id_and_address                                      | symbol_and_info         | gauge_address_and_info                           | tokens                                                      | rate_providers | review_summary | bip | tx_index |
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+----------------+----------------+-----+----------+
+| GaugeAdderV4/addGauge | 0x9ED5175aeCB6653C1BDaa19793c16fd74fBeEB37               | Surge tETH-Lido wstETH  | root: 0xd5A0Eb558d62780B10Ecc202D0049B89F6145073 | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH |                |                | N/A |    0     |
+|                       | pool_address: 0x9ED5175aeCB6653C1BDaa19793c16fd74fBeEB37 | fee: Not Found          | side: None                                       | 0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8: tETH            |                |                |     |          |
+|                       |                                                          | a-factor: 200           | style: mainnet                                   |                                                             |                |                |     |          |
+|                       |                                                          |                         | cap: 100.0%                                      |                                                             |                |                |     |          |
+|                       |                                                          |                         | preferential: True                               |                                                             |                |                |     |          |
+| GaugeAdderV4/addGauge | 0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E               | tETH-Aave weETH         | root: 0xB4Db5E1098B5a40Ce4B36c9EbFEf23A54E50dB65 | 0xd09ACb80C1E8f2291862c4978A008791c9167003: tETH            |                |                | N/A |    1     |
+|                       | pool_address: 0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E | fee: Not Found          | side: 0xFb7A403481C0bFcb7C3848a1F8F848f0f7D61cD4 | 0xD9E3Ef2c12de90E3b03F7b7E3964956a71920d40: waArbweETH      |                |                |     |          |
+|                       |                                                          | a-factor: 1000          | style: L0 sidechain                              |                                                             |                |                |     |          |
+|                       |                                                          |                         | cap: 100.0%                                      |                                                             |                |                |     |          |
+|                       |                                                          |                         | preferential: True                               |                                                             |                |                |     |          |
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+----------------+----------------+-----+----------+
+```
