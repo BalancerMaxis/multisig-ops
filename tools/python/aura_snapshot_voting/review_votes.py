@@ -79,6 +79,11 @@ def review_votes(week_string):
     total_allocation = vote_df["Allocation %"].str.rstrip("%").astype(float).sum()
     allocation_check = abs(total_allocation - 100) < 0.0001
 
+    duplicate_message = ""
+    if not duplicate_check:
+        duplicate_message = "- Duplicate gauges found:\n"
+        duplicate_message += duplicate_gauges[["Chain", "Label", "Gauge Address", "Allocation %"]].to_markdown(index=False)
+
     report = f"""## vLAURA Votes Review
 
 CSV file: `{os.path.relpath(csv_file, project_root)}`
@@ -87,8 +92,7 @@ CSV file: `{os.path.relpath(csv_file, project_root)}`
 - Total allocation: {total_allocation:.2f}%
 - Passes 100% check: {"✅" if allocation_check else "❌"}
 - No duplicate gauge addresses: {"✅" if duplicate_check else "❌"}
-{("- Duplicate gauges found:\n") if not duplicate_check else ""}
-{duplicate_gauges[["Chain", "Label", "Gauge Address", "Allocation %"]].to_markdown(index=False) if not duplicate_check else ""}
+{duplicate_message}
 
 ### Snapshot Votes Check
 - All gauge addresses have corresponding snapshot choices: {"✅" if snapshot_label_check else "❌"}
