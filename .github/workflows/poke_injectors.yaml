@@ -24,21 +24,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Cache Compiler Installations
-        uses: actions/cache@v4
+      - name: Restore Compiler Caches
+        id: restore-compiler-caches
+        uses: actions/cache/restore@v4
         with:
           path: |
             ~/.solcx
             ~/.vvm
-          key: compiler-cache
+          key: evm-compiler-caches
 
-      - name: Set up Python
+      - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+          cache: "pip"
+
       - name: Poke'em
         run: |
           cd action-scripts/brownie
           pip3 install -r requirements-actions.txt
           touch .env
           brownie run scripts/pokeInjectors.py
+
+      - name: Clear Old Compiler Caches
+        if: ${{ steps.restore-compiler-caches.outputs.cache-hit }}
+        continue-on-error: true
+        run: gh cache delete "evm-compiler-caches"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save EVM Compiler Caches
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: evm-compiler-caches
