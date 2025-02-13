@@ -87,7 +87,7 @@ CSV file: `{os.path.relpath(csv_file, project_root)}`
 - Total allocation: {total_allocation:.2f}%
 - Passes 100% check: {"✅" if allocation_check else "❌"}
 - No duplicate gauge addresses: {"✅" if duplicate_check else "❌"}
-{f"- Duplicate gauges found:\n" if not duplicate_check else ""}
+{("- Duplicate gauges found:\n") if not duplicate_check else ""}
 {duplicate_gauges[["Chain", "Label", "Gauge Address", "Allocation %"]].to_markdown(index=False) if not duplicate_check else ""}
 
 ### Snapshot Votes Check
