@@ -82,7 +82,9 @@ def review_votes(week_string):
     duplicate_message = ""
     if not duplicate_check:
         duplicate_message = "- Duplicate gauges found:\n"
-        duplicate_message += duplicate_gauges[["Chain", "Label", "Gauge Address", "Allocation %"]].to_markdown(index=False)
+        duplicate_message += duplicate_gauges[
+            ["Chain", "Label", "Gauge Address", "Allocation %"]
+        ].to_markdown(index=False)
 
     report = f"""## vLAURA Votes Review
 
