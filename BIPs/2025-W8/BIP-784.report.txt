@@ -1,32 +1,32 @@
 FILENAME: `BIPs/2025-W8/BIP-784.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `f1c5d2e6a39bcbe5f828074400138c6b25815ae7`
-CHAIN(S): `arbitrum, mainnet`
-TENDERLY: `🟪 SKIPPED (AssertionError())`
+COMMIT: `92c8b319fb87f714431754c4a18502189cb25993`
+CHAIN(S): `mainnet, arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/482724db-ee30-44f7-a854-8be652f4ed51)
 
 | Gauge Validator (0xd5A0Eb558d62780B10Ecc202D0049B89F6145073) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
 
 | Gauge Validator (0xB4Db5E1098B5a40Ce4B36c9EbFEf23A54E50dB65) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
 
 ```
-+-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+----------------+----------------+---------+----------+
-| function              | pool_id_and_address                                      | symbol_and_info         | gauge_address_and_info                           | tokens                                                      | rate_providers | review_summary |   bip   | tx_index |
-+-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+----------------+----------------+---------+----------+
-| GaugeAdderV4/addGauge | 0x9ED5175aeCB6653C1BDaa19793c16fd74fBeEB37               | Surge tETH-Lido wstETH  | root: 0xd5A0Eb558d62780B10Ecc202D0049B89F6145073 | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH |                |                | BIP-784 |    0     |
-|                       | pool_address: 0x9ED5175aeCB6653C1BDaa19793c16fd74fBeEB37 | fee: Not Found          | side: None                                       | 0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8: tETH            |                |                |         |          |
-|                       |                                                          | a-factor: 200           | style: mainnet                                   |                                                             |                |                |         |          |
-|                       |                                                          |                         | cap: 100.0%                                      |                                                             |                |                |         |          |
-|                       |                                                          |                         | preferential: True                               |                                                             |                |                |         |          |
-| GaugeAdderV4/addGauge | 0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E               | tETH-Aave weETH         | root: 0xB4Db5E1098B5a40Ce4B36c9EbFEf23A54E50dB65 | 0xd09ACb80C1E8f2291862c4978A008791c9167003: tETH            |                |                | BIP-784 |    1     |
-|                       | pool_address: 0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E | fee: Not Found          | side: 0xFb7A403481C0bFcb7C3848a1F8F848f0f7D61cD4 | 0xD9E3Ef2c12de90E3b03F7b7E3964956a71920d40: waArbweETH      |                |                |         |          |
-|                       |                                                          | a-factor: 1000          | style: L0 sidechain                              |                                                             |                |                |         |          |
-|                       |                                                          |                         | cap: 100.0%                                      |                                                             |                |                |         |          |
-|                       |                                                          |                         | preferential: True                               |                                                             |                |                |         |          |
-+-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+----------------+----------------+---------+----------+
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info         | gauge_address_and_info                           | tokens                                                      | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x9ED5175aeCB6653C1BDaa19793c16fd74fBeEB37               | Surge tETH-Lido wstETH  | root: 0xd5A0Eb558d62780B10Ecc202D0049B89F6145073 | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH | 0xcdAa68ce322728FE4185a60f103C194F1E2c47BC |      safe      | BIP-784 |    0     |
+|                       | pool_address: 0x9ED5175aeCB6653C1BDaa19793c16fd74fBeEB37 | fee (%): 0.05           | side: None                                       | 0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8: tETH            | 0x7Aee5f039da2891BF02414bc6ADA1B53c0C3902a |      safe      |         |          |
+|                       |                                                          | a-factor: 200           | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                          |                         | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                         | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E               | tETH-Aave weETH         | root: 0xB4Db5E1098B5a40Ce4B36c9EbFEf23A54E50dB65 | 0xd09ACb80C1E8f2291862c4978A008791c9167003: tETH            | 0x998DE64cB90EdF3d205CFDB864E199fDA4d55710 |      safe      | BIP-784 |    1     |
+|                       | pool_address: 0x7F98F42F9550F92DEE91344d6B5Ab11A9FEc2b4E | fee (%): 0.1            | side: 0xFb7A403481C0bFcb7C3848a1F8F848f0f7D61cD4 | 0xD9E3Ef2c12de90E3b03F7b7E3964956a71920d40: waArbweETH      | 0xcdAa68ce322728FE4185a60f103C194F1E2c47BC |      safe      |         |          |
+|                       |                                                          | a-factor: 1000          | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                         | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                          |                         | preferential: True                               |                                                             |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 ```
