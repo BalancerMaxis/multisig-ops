@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1739282481682,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "kaiAura-Aura gauge with 2% cap",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x7a59aF3a8650Edc8ebE6d79162A2Aa97f2B98AAC",
+        "gaugeType": "Ethereum"
+      }
+    }
+  ]
+}
