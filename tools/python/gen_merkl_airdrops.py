@@ -20,6 +20,8 @@ W3 = Web3(
 )
 EPOCH_DURATION = 60 * 60 * 24 * 14
 FIRST_EPOCH_END = 1737936000
+AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
+AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 
 EPOCHS = []
 ts = FIRST_EPOCH_END
@@ -77,6 +79,35 @@ def get_user_shares_gauge(gauge, block):
     return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["gaugeShares"]])
 
 
+def get_user_shares_aura(pool, block):
+    query = """query Pools($where: Pool_filter, $block: Block_height, $staked: PoolAccount_filter) {
+        pools(where: $where, block: $block) {
+            accounts(where: $staked) {
+                account {
+                    id
+                }
+                staked
+            }
+        }
+    }"""
+    params = {
+        "where": {"lpToken": pool.lower()},
+        "block": {"number": block},
+        "staked": {"staked_gt": 0},
+    }
+    raw = SUBGRAPH.fetch_graphql_data("aura", query, params)
+    return (
+        dict(
+            [
+                (x["account"]["id"], Decimal(x["staked"]) / Decimal(1e18))
+                for x in raw["pools"][0]["accounts"]
+            ]
+        )
+        if raw.get("pools")
+        else {}
+    )
+
+
 def get_block_from_timestamp(ts):
     query = """query GetBlockFromTimestamp($where: Block_filter) {
         blocks(orderBy: "number", orderDirection: "desc", where: $where) {
@@ -92,18 +123,20 @@ def get_block_from_timestamp(ts):
 def build_snapshot_df(
     pool,  # pool address
     end,  # timestamp of the last snapshot
-    step_size=60 * 60 * 8,  # amount of seconds between snapshots
+    step_size=60 * 60,  # amount of seconds between snapshots
 ):
     gauge = BalPoolsGauges().get_preferential_gauge(pool)
 
     # get user shares for pool and gauge at different timestamps
     pool_shares = {}
     gauge_shares = {}
+    aura_shares = {}
     start = end - EPOCH_DURATION
     while end > start:
         block = get_block_from_timestamp(end)
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
+        aura_shares[block] = get_user_shares_aura(pool=pool, block=block)
         end -= step_size
 
     # calculate total shares per user per block
@@ -112,15 +145,29 @@ def build_snapshot_df(
     for block in pool_shares:
         total_shares[block] = {}
         for user_id in pool_shares[block]:
-            if user_id == gauge.lower():
-                # we do not want to count the gauge as a user
+            if user_id in [
+                gauge.lower(),
+                AURA_VOTER_PROXY.lower(),
+                AURA_VOTER_PROXY_LITE.lower(),
+            ]:
+                # we do not want to count the gauge or the aura voter proxy as a user;
+                # these are accounted for later
                 continue
             total_shares[block][user_id] = pool_shares[block][user_id]
         for user_id in gauge_shares[block]:
+            if user_id in [AURA_VOTER_PROXY.lower(), AURA_VOTER_PROXY_LITE.lower()]:
+                # we do not want to count the aura voter proxy as a user;
+                # it is accounted for later
+                continue
             if user_id not in total_shares[block]:
                 total_shares[block][user_id] = gauge_shares[block][user_id]
             else:
                 total_shares[block][user_id] += gauge_shares[block][user_id]
+        for user_id in aura_shares[block]:
+            if user_id not in total_shares[block]:
+                total_shares[block][user_id] = aura_shares[block][user_id]
+            else:
+                total_shares[block][user_id] += aura_shares[block][user_id]
         # collect onchain total supply per block
         contract = W3.eth.contract(
             address=Web3.to_checksum_address(pool),
