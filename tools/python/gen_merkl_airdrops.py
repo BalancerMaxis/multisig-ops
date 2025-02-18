@@ -60,22 +60,11 @@ def get_user_shares_pool(pool, block):
 
 
 def get_user_shares_gauge(gauge, block):
-    query = """query GaugeShares($where: GaugeShare_filter, $block: Block_height) {
-        gaugeShares(where: $where, block: $block) {
-            user {
-                id
-            }
-            balance
-        }
-    }"""
-    params = {
-        "where": {
-            "balance_gt": 0.001,
-            "gauge": gauge.lower(),
-        },
-        "block": {"number": block},
-    }
-    raw = SUBGRAPH.fetch_graphql_data("gauges", query, params)
+    raw = SUBGRAPH.fetch_graphql_data(
+        "gauges",
+        "fetch_gauge_shares",
+        {"gaugeAddress": gauge, "block": block},
+    )
     return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["gaugeShares"]])
 
 
