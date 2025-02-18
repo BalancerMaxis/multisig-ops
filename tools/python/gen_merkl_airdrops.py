@@ -4,6 +4,7 @@ import pytest
 from datetime import datetime
 from decimal import Decimal
 
+import requests
 import numpy as np
 import pandas as pd
 from web3 import Web3, exceptions
@@ -22,6 +23,9 @@ EPOCH_DURATION = 60 * 60 * 24 * 14
 FIRST_EPOCH_END = 1737936000
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
 AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
+BEEFY_PARTNER_BASE_URL = (
+    "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
+)
 
 EPOCHS = []
 ts = FIRST_EPOCH_END
@@ -97,6 +101,29 @@ def get_user_shares_aura(pool, block):
     )
 
 
+def get_user_shares_beefy(pool, block):
+    r = requests.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
+    r.raise_for_status()
+    raw_beefy = r.json()
+    for vault in raw_beefy:
+        if vault["vault_config"]["undelying_lp_address"].lower() == pool.lower():
+            return dict(
+                [
+                    (x["holder"], Decimal(x["balance"]) / Decimal(1e18))
+                    for x in vault["holders"]
+                ]
+            )
+
+
+def get_beefy_strat(pool, block):
+    r = requests.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
+    r.raise_for_status()
+    raw_beefy = r.json()
+    for vault in raw_beefy:
+        if vault["vault_config"]["undelying_lp_address"].lower() == pool.lower():
+            return vault["vault_config"]["strategy_address"]
+
+
 def get_block_from_timestamp(ts):
     query = """query GetBlockFromTimestamp($where: Block_filter) {
         blocks(orderBy: "number", orderDirection: "desc", where: $where) {
@@ -115,17 +142,20 @@ def build_snapshot_df(
     step_size=60 * 60,  # amount of seconds between snapshots
 ):
     gauge = BalPoolsGauges().get_preferential_gauge(pool)
+    beefy_strat = get_beefy_strat(pool, get_block_from_timestamp(end)).lower()
 
     # get user shares for pool and gauge at different timestamps
     pool_shares = {}
     gauge_shares = {}
     aura_shares = {}
+    beefy_shares = {}
     start = end - EPOCH_DURATION
     while end > start:
         block = get_block_from_timestamp(end)
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
         aura_shares[block] = get_user_shares_aura(pool=pool, block=block)
+        beefy_shares[block] = get_user_shares_beefy(pool=pool, block=block)
         end -= step_size
 
     # calculate total shares per user per block
@@ -138,13 +168,18 @@ def build_snapshot_df(
                 gauge.lower(),
                 AURA_VOTER_PROXY.lower(),
                 AURA_VOTER_PROXY_LITE.lower(),
+                beefy_strat,
             ]:
                 # we do not want to count the gauge or the aura voter proxy as a user;
                 # these are accounted for later
                 continue
             total_shares[block][user_id] = pool_shares[block][user_id]
         for user_id in gauge_shares[block]:
-            if user_id in [AURA_VOTER_PROXY.lower(), AURA_VOTER_PROXY_LITE.lower()]:
+            if user_id in [
+                AURA_VOTER_PROXY.lower(),
+                AURA_VOTER_PROXY_LITE.lower(),
+                beefy_strat,
+            ]:
                 # we do not want to count the aura voter proxy as a user;
                 # it is accounted for later
                 continue
@@ -153,10 +188,19 @@ def build_snapshot_df(
             else:
                 total_shares[block][user_id] += gauge_shares[block][user_id]
         for user_id in aura_shares[block]:
+            if user_id in [beefy_strat]:
+                # we do not want to count the beefy vault as a user;
+                # it is accounted for later
+                continue
             if user_id not in total_shares[block]:
                 total_shares[block][user_id] = aura_shares[block][user_id]
             else:
                 total_shares[block][user_id] += aura_shares[block][user_id]
+        for user_id in beefy_shares[block]:
+            if user_id not in total_shares[block]:
+                total_shares[block][user_id] = beefy_shares[block][user_id]
+            else:
+                total_shares[block][user_id] += beefy_shares[block][user_id]
         # collect onchain total supply per block
         contract = W3.eth.contract(
             address=Web3.to_checksum_address(pool),
