@@ -125,14 +125,11 @@ def get_beefy_strat(pool, block):
 
 
 def get_block_from_timestamp(ts):
-    query = """query GetBlockFromTimestamp($where: Block_filter) {
-        blocks(orderBy: "number", orderDirection: "desc", where: $where) {
-            number
-            timestamp
-        }
-    }"""
-    params = {"where": {"timestamp_lte": ts}}
-    raw = SUBGRAPH.fetch_graphql_data("blocks", query, params)
+    raw = SUBGRAPH.fetch_graphql_data(
+        "blocks",
+        "first_block_after_ts",
+        {"timestamp_lt": "9123456789", "timestamp_gt": ts - 1},
+    )
     return int(raw["blocks"][0]["number"])
 
 
