@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/PoolParameterChanges/v3-gobal-fees-and-pool-updates-base.json`
 MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `fadc8e1498ccd28341d823c9c8442558a0e2c091`
+COMMIT: `0fe83cb60fba38687a2a788ba550a2820f89798a`
 CHAIN(S): `base`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5e629226-ae4e-4502-9404-0699052ec8eb)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f2c884a8-d5d5-4b78-8839-fb920ce5a8e0)
 
 ```
 +-------------------------------------+--------------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------+------------+----------+
@@ -59,6 +59,19 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5e629226-ae4e-4
 |                                     |                                                                                      |       |   ]                                                                                     |            |          |
 |                                     |                                                                                      |       | }                                                                                       |            |          |
 | updateProtocolSwapFeePercentage     | 0xa731C23D7c95436Baaae9D52782f966E1ed07cc8 (20241204-v3-vault/ProtocolFeeController) | 0     | {                                                                                       | N/A        |   N/A    |
+|                                     |                                                                                      |       |   "pool": [                                                                             |            |          |
+|                                     |                                                                                      |       |     "0xCB80b1A9E7B319a4c5EC6B0666967Ca1e309e40f (N/A)"                                  |            |          |
+|                                     |                                                                                      |       |   ]                                                                                     |            |          |
+|                                     |                                                                                      |       | }                                                                                       |            |          |
+| setProtocolYieldFeePercentage       | 0xa731C23D7c95436Baaae9D52782f966E1ed07cc8 (20241204-v3-vault/ProtocolFeeController) | 0     | {                                                                                       | N/A        |   N/A    |
+|                                     |                                                                                      |       |   "pool": [                                                                             |            |          |
+|                                     |                                                                                      |       |     "0xCB80b1A9E7B319a4c5EC6B0666967Ca1e309e40f (N/A)"                                  |            |          |
+|                                     |                                                                                      |       |   ],                                                                                    |            |          |
+|                                     |                                                                                      |       |   "newProtocolYieldFeePercentage": [                                                    |            |          |
+|                                     |                                                                                      |       |     "0"                                                                                 |            |          |
+|                                     |                                                                                      |       |   ]                                                                                     |            |          |
+|                                     |                                                                                      |       | }                                                                                       |            |          |
+| updateProtocolYieldFeePercentage    | 0xa731C23D7c95436Baaae9D52782f966E1ed07cc8 (20241204-v3-vault/ProtocolFeeController) | 0     | {                                                                                       | N/A        |   N/A    |
 |                                     |                                                                                      |       |   "pool": [                                                                             |            |          |
 |                                     |                                                                                      |       |     "0xCB80b1A9E7B319a4c5EC6B0666967Ca1e309e40f (N/A)"                                  |            |          |
 |                                     |                                                                                      |       |   ]                                                                                     |            |          |
