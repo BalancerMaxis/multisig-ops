@@ -192,15 +192,15 @@ def build_snapshot_df(
 
 
 def consolidate_shares(df):
-    consolidated = pd.DataFrame()
+    consolidated = []
     for block in df.columns:
         if df[block].sum() == 0:
-            consolidated[block] = 0
+            consolidated.append(df[block])
         else:
-            # calculate the percentage of the pool each user owns
-            consolidated[block] = df[block] / df[block].sum()
-            # weigh it by the total pool size of that block
-            consolidated[block] *= df.sum()[block]
+            # calculate the percentage of the pool each user owns,
+            # and weigh it by the total pool size of that block
+            consolidated.append(df[block] / df[block].sum() * df.sum()[block])
+    consolidated = pd.concat(consolidated, axis=1)
     # sum the weighted percentages per user
     consolidated["total"] = consolidated.sum(axis=1)
     # divide the weighted percentages by the sum of all weights
