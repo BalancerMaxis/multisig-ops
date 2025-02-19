@@ -38,27 +38,10 @@ print(epoch_name)
 
 
 def get_user_shares_pool(pool, block):
-    query = """query PoolShares($where: PoolShare_filter, $block: Block_height) {
-        poolShares(where: $where, block: $block) {
-            user {
-                id
-            }
-            balance
-        }
-    }"""
-    params = {
-        "where": {
-            "balance_gt": 0.001,
-            "pool": pool.lower(),
-        },
-        "block": {"number": block},
-    }
     raw = SUBGRAPH.fetch_graphql_data(
-        "subgraphs-v3",
-        query,
-        params,
-        url="https://api.studio.thegraph.com/query/75376/balancer-v3/version/latest",
-        retries=5,
+        "vault-v3",
+        "get_user_shares_by_pool",
+        {"pool": pool.lower(), "block": block},
     )
     return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["poolShares"]])
 
@@ -73,22 +56,11 @@ def get_user_shares_gauge(gauge, block):
 
 
 def get_user_shares_aura(pool, block):
-    query = """query Pools($where: Pool_filter, $block: Block_height, $staked: PoolAccount_filter) {
-        pools(where: $where, block: $block) {
-            accounts(where: $staked) {
-                account {
-                    id
-                }
-                staked
-            }
-        }
-    }"""
-    params = {
-        "where": {"lpToken": pool.lower()},
-        "block": {"number": block},
-        "staked": {"staked_gt": 0},
-    }
-    raw = SUBGRAPH.fetch_graphql_data("aura", query, params)
+    raw = SUBGRAPH.fetch_graphql_data(
+        "aura",
+        "get_aura_user_pool_balances_by_lp",
+        {"lpToken": pool.lower(), "block": block},
+    )
     return (
         dict(
             [
