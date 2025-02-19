@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/injectorScheduling/arbitrum/Migrate-USDC-V1-injector-to-V2.json`
 MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `b74ca838b5d4813531610360a0443009739d8a8f`
+COMMIT: `a9d667af637987f60b6bcdb626afd9bb5ddab595`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a4875fe4-d865-4357-a126-e59d40fd060c)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/bd62d20a-fc42-47dc-840c-556daa70f372)
 
 ```
 +----------+-------------------------------------------------+----------------------------------------------------------------------------------+----------------------------+-----+----------+
@@ -13,9 +13,9 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a4875fe4-d865-4
 ```
 FILENAME: `MaxiOps/injectorScheduling/arbitrum/Migrate-USDC-V1-injector-to-V2.json`
 MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `b74ca838b5d4813531610360a0443009739d8a8f`
+COMMIT: `a9d667af637987f60b6bcdb626afd9bb5ddab595`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/362c74ad-6b47-4d17-8e9a-06eb93e02724)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/48b7c188-32d8-4332-8362-6bee79a9e296)
 
 ```
 +-----------------------+------------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------+------------+----------+
@@ -23,7 +23,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/362c74ad-6b47-4
 +-----------------------+------------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------+------------+----------+
 | sweep                 | 0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2 (maxiKeepers/gaugeRewardsInjectors/usdc_rewards_injector) | 0     | {                                                                                           | N/A        |   N/A    |
 |                       |                                                                                                      |       |   "token": [                                                                                |            |          |
-|                       |                                                                                                      |       |     "0xaf88d065e77c8cC2239327C5EDb3A432268e5831 (N/A)"                                      |            |          |
+|                       |                                                                                                      |       |     "0xaf88d065e77c8cC2239327C5EDb3A432268e5831 (tokens/USDC)"                              |            |          |
 |                       |                                                                                                      |       |   ]                                                                                         |            |          |
 |                       |                                                                                                      |       | }                                                                                           |            |          |
 | acceptOwnership       | 0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4 (maxiKeepers/injectorV2/USDC-omnichain)                   | 0     | {}                                                                                          | N/A        |   N/A    |
