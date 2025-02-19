@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1738676498526,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable HN CSPv6 pause module on Fraxtal",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xC66d0Ba27b8309D27cCa70064dfb40b73DB6de9E",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x52cbca0c3e3094341766d2d30fa2a1a8d3000771755d5179967019e25467201d"
+  },
+  "transactions": [
+    {
+      "to": "0xC66d0Ba27b8309D27cCa70064dfb40b73DB6de9E",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x5afa3071fa5d3d54eee878ee8bc41e9a768072b6"
+      }
+    }
+  ]
+}
