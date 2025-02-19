@@ -32,7 +32,7 @@ ts = FIRST_EPOCH_END
 while ts < int(datetime.now().timestamp()):
     EPOCHS.append(ts)
     ts += EPOCH_DURATION
-epoch_name = f"epoch_{len(EPOCHS)}"
+epoch_name = f"epoch_{len(EPOCHS) - 1}"
 print("epochs:", EPOCHS)
 print(epoch_name)
 
