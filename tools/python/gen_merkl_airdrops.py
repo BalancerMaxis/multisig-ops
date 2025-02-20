@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 from web3 import Web3, exceptions
 
+from bal_addresses.addresses import ZERO_ADDRESS
 from bal_tools import Subgraph, BalPoolsGauges
 
 
@@ -119,13 +120,18 @@ def build_snapshot_df(
     aura_shares = {}
     beefy_shares = {}
     start = end - EPOCH_DURATION
+
+    n_snapshots = int(np.floor(EPOCH_DURATION / step_size))
+    n = 1
     while end > start:
         block = get_block_from_timestamp(end)
+        print(f"{n}\t/\t{n_snapshots}\t{block}")
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
         aura_shares[block] = get_user_shares_aura(pool=pool, block=block)
         beefy_shares[block] = get_user_shares_beefy(pool=pool, block=block)
         end -= step_size
+        n += 1
 
     # calculate total shares per user per block
     total_shares = {}
@@ -234,15 +240,20 @@ if __name__ == "__main__":
                 pool=WATCHLIST[protocol]["pools"][pool]["address"], end=EPOCHS[-1]
             )
 
+            # ignore shares sent to zero address
+            df = df.drop(index=ZERO_ADDRESS)
+
             # consolidate user pool shares
             df = consolidate_shares(df)
             print(df)
 
             # morpho takes a 50bips fee on json airdrops
+            # we reduce by an additional 1bip to account for rounding errors
             if protocol == "morpho":
                 reward_total_wei = int(
                     Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
                     * Decimal(1 - 0.005)
+                    * Decimal(1 - 0.0001)
                 )
             else:
                 reward_total_wei = int(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
@@ -258,10 +269,19 @@ if __name__ == "__main__":
             total = Decimal(0)
             for user in airdrop["rewards"]:
                 total += Decimal(airdrop["rewards"][user][epoch_name])
+            if protocol == "morpho":
+                total *= Decimal(1 - 0.005)
             assert total <= Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
             print(
-                "dust:",
-                Decimal(reward_total_wei) - total,
+                "expected dust:",
+                int(Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"]) - total),
+                f"({Decimal(
+                    int(
+                        Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
+                        - total
+                    )
+                    / Decimal(1e18)
+                )})",
             )
 
             json.dump(
