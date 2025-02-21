@@ -3,6 +3,7 @@ import os
 import pytest
 from datetime import datetime
 from decimal import Decimal
+from pathlib import Path
 
 import requests
 import numpy as np
@@ -34,8 +35,7 @@ while ts < int(datetime.now().timestamp()):
     EPOCHS.append(ts)
     ts += EPOCH_DURATION
 epoch_name = f"epoch_{len(EPOCHS) - 1}"
-print("epochs:", EPOCHS)
-print(epoch_name)
+print("epoch endings:", EPOCHS)
 
 
 def get_user_shares_pool(pool, block):
@@ -53,7 +53,11 @@ def get_user_shares_gauge(gauge, block):
         "fetch_gauge_shares",
         {"gaugeAddress": gauge, "block": block},
     )
-    return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["gaugeShares"]])
+    return (
+        dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["gaugeShares"]])
+        if gauge
+        else {}
+    )
 
 
 def get_user_shares_aura(pool, block):
@@ -86,6 +90,7 @@ def get_user_shares_beefy(pool, block):
                     for x in vault["holders"]
                 ]
             )
+    return {}
 
 
 def get_beefy_strat(pool, block):
@@ -95,6 +100,7 @@ def get_beefy_strat(pool, block):
     for vault in raw_beefy:
         if vault["vault_config"]["undelying_lp_address"].lower() == pool.lower():
             return vault["vault_config"]["strategy_address"]
+    return ""
 
 
 def get_block_from_timestamp(ts):
@@ -218,8 +224,13 @@ def consolidate_shares(df):
 
 def build_airdrop(reward_token, reward_total_wei, df):
     # https://docs.merkl.xyz/merkl-mechanisms/types-of-campaign/airdrop
-    df[epoch_name] = df["total"].map(Decimal) * Decimal(reward_total_wei)
-    df[epoch_name] = df[epoch_name].apply(np.floor).astype(str)
+    if reward_total_wei > 0:
+        df[epoch_name] = (df["total"].map(Decimal) * Decimal(reward_total_wei)).apply(
+            np.floor
+        )
+    else:
+        df[epoch_name] = df["total"]
+    df[epoch_name] = df[epoch_name].astype(str)
     df = df[df[epoch_name] != "0"]
     return {
         "rewardToken": reward_token,
@@ -228,23 +239,33 @@ def build_airdrop(reward_token, reward_total_wei, df):
 
 
 if __name__ == "__main__":
+    # placeholder for now
+    chain = 1
     for protocol in WATCHLIST:
         # TODO: aave not implemented yet
         if protocol == "aave":
             break
         for pool in WATCHLIST[protocol]["pools"]:
-            print(protocol, pool)
+            instance = f"{epoch_name}-{protocol}-{chain}-{pool}"
+            print(instance)
 
-            # get bpt balances for a pool at different timestamps
-            df = build_snapshot_df(
-                pool=WATCHLIST[protocol]["pools"][pool]["address"], end=EPOCHS[-1]
-            )
+            cache_file_str = f"MaxiOps/merkl/cache/{instance}.pkl"
+            if Path(cache_file_str).is_file():
+                # use locally stored df
+                # delete local file beforehand to retrieve df from scratch!
+                df = pd.read_pickle(cache_file_str)
+            else:
+                # get bpt balances for a pool at different timestamps
+                df = build_snapshot_df(
+                    pool=WATCHLIST[protocol]["pools"][pool]["address"], end=EPOCHS[-1]
+                )
 
-            # ignore shares sent to zero address
-            df = df.drop(index=ZERO_ADDRESS)
+                # ignore shares sent to zero address
+                df = df.drop(index=ZERO_ADDRESS, errors="ignore")
 
-            # consolidate user pool shares
-            df = consolidate_shares(df)
+                # consolidate user pool shares
+                df = consolidate_shares(df)
+                df.to_pickle(cache_file_str)
             print(df)
 
             # morpho takes a 50bips fee on json airdrops
@@ -265,29 +286,36 @@ if __name__ == "__main__":
                 df=df,
             )
 
-            # checksum
-            total = Decimal(0)
-            for user in airdrop["rewards"]:
-                total += Decimal(airdrop["rewards"][user][epoch_name])
-            if protocol == "morpho":
-                total *= Decimal(1 - 0.005)
-            assert total <= Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
-            print(
-                "expected dust:",
-                int(Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"]) - total),
-                f"({Decimal(
+            if reward_total_wei == 0:
+                # tag the instance as a dry run for the resulting airdrop json
+                instance += "-dry"
+            else:
+                # checksum
+                total = Decimal(0)
+                for user in airdrop["rewards"]:
+                    total += Decimal(airdrop["rewards"][user][epoch_name])
+                if protocol == "morpho":
+                    total *= Decimal(1 - 0.005)
+                assert total <= Decimal(
+                    WATCHLIST[protocol]["pools"][pool]["reward_wei"]
+                )
+                print(
+                    "expected dust:",
                     int(
                         Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
                         - total
-                    )
-                    / Decimal(1e18)
-                )})",
-            )
+                    ),
+                    f"({Decimal(
+                        int(
+                            Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
+                            - total
+                        )
+                        / Decimal(1e18)
+                    )})",
+                )
 
             json.dump(
                 airdrop,
-                open(
-                    f"MaxiOps/merkl/airdrops/{protocol}-{pool}-{epoch_name}.json", "w"
-                ),
+                open(f"MaxiOps/merkl/airdrops/{instance}.json", "w"),
                 indent=2,
             )
