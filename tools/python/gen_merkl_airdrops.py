@@ -314,8 +314,6 @@ if __name__ == "__main__":
                     )})",
                 )
 
-            json.dump(
-                airdrop,
-                open(f"MaxiOps/merkl/airdrops/{instance}.json", "w"),
-                indent=2,
-            )
+            with open(f"MaxiOps/merkl/airdrops/{instance}.json", "w") as f:
+                json.dump(airdrop, f, indent=2)
+                f.write("\n")
