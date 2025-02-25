@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1739801457466,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant MEV Tax Hook Parameter Control on Base",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x17024432bfda7b943932633322c0dcc89b380311f26a3544ccda6eb5cd6bef65,0x2fcebd2fe4f213bb084e9d41e9b8a1ceb8b2d2916ff032c93f556deb984a9ff6,0xbda3401247f7a4661e06d58b77fb710e3531091c0b521d24a744f58933745e18,0xfb223c0dc293c599b2e25e2e5a94f569741ec76e268779a3e2326ab5b41daed0,0x772cd983d0b4a8e717b61ba3beaaff7b352f1c220763e3ac36c91d7850d81edc,0xa8ef455da97a35724b2fb844ad06e34b821bbc8df26a448eec44e9dedd96bfe9,0x89ca43e71ae2fb8e3f4752bca2af32b2423de7071aa88e76302aa11910ecea32,0xe8f2291394946ee5c5f23ca57ef6f232e07bf6c66fe01c5f2adfc012dde326fd,0x235aeae017d90d17ad71f80bcff4fed15fff4c242382e58f8fe01dad43a8d585]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
