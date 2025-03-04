@@ -1,0 +1,20 @@
+FILENAME: `BIPs/00batched/2025-W9/100-0x2a5AEcE0bb9EfFD7608213AE1745873385515c18.json`
+MULTISIG: `multisigs/dao (gnosis:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)`
+COMMIT: `349dc9f8536a0a4dcbded4a17de1461753059a2a`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/adbcad5a-d6cf-49a8-ac32-42a83e2c87a7)
+
+```
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                                | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250121-v3-stable-surge/StablePool/startAmplificationParameterUpdate(uint256,uint256)                  | 0x4acf55e494b685b95a5b14cf8c5507d75bd1aa71a85fc1214c0e8b825a469170 | BIP-787 |    0     |
+|                       |                     |                                            | 20250121-v3-stable-surge/StablePool/stopAmplificationParameterUpdate()                                  | 0x472cb2d86bd228ad5c01dda464760927533d1f2075d5857fb2c01bfee9790125 |         |          |
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250121-v3-stable-surge/StableSurgeHook/setMaxSurgeFeePercentage(address,uint256)                      | 0x7380cab0ed6c5f6a40913d98c4931ae4d29a059fa33ae27635ab1f4f6e4c5077 | BIP-778 |    1     |
+|                       |                     |                                            | 20250121-v3-stable-surge/StableSurgeHook/setSurgeThresholdPercentage(address,uint256)                   | 0x4fdd01a86430670b9ac98e6baa39e03b7df692fb1c7c988b41fa7d510f8ff7e7 |         |          |
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250117-v3-contract-registry/BalancerContractRegistry/addOrUpdateBalancerContractAlias(string,address) | 0x96933475aa135d9d02d175e3f20f420fb65595ebeade476edf970dd5fddda874 | BIP-790 |    2     |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deprecateBalancerContract(address)               | 0xdb3b99d52cd97741d98d8cf58982c82a1c7caee958ed94e5fcf909ba57ef27bc |         |          |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deregisterBalancerContract(string)               | 0xa2ccd901b5d57e951d23051ad0a49e4127722628b5f0318468fae768fd6e4a02 |         |          |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/registerBalancerContract(uint8,string,address)   | 0xd7b567352ab1dc8647c52f123cd411b5b0d47dbd5a4c5a65d799d675cc6604f2 |         |          |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
