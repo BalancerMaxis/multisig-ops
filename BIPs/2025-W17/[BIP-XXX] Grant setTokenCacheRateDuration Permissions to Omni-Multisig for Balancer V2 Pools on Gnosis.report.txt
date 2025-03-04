@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W17/[BIP-XXX] Grant setTokenCacheRateDuration Permissions to Omni-Multisig for Balancer V2 Pools on Gnosis.json`
+MULTISIG: `multisigs/dao (gnosis:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)`
+COMMIT: `76bb3609bd5de815bfc2b99864d0b14db188f1f0`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/2854d099-d969-441b-8dd4-968ecd2d3bfc)
+
+```
++-----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                           | action_ids                                                         | bip | tx_index |
++-----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20240223-composable-stable-pool-v6/ComposableStablePool/setTokenRateCacheDuration(address,uint256) | 0x598f15f7eb2157719252312644e9a7067c6387ba769f0abbf28b5abe3c22cacf | N/A |    0     |
+|                       |                     |                                            | 20230711-composable-stable-pool-v5/ComposableStablePool/setTokenRateCacheDuration(address,uint256) | 0xed896fdd237f2b79e8ae80a5e3432dbc85b53ff7a8ba91ea17ba7b2716aaee0a |     |          |
++-----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```
