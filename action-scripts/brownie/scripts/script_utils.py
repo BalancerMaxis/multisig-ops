@@ -198,7 +198,12 @@ def switch_chain_if_needed(network_id: int) -> None:
         network.disconnect()
         chain_name = AddrBook.chain_names_by_id[int(network_id)]
         chain_name = "avax" if chain_name == "avalanche" else chain_name
-        chain_name = f"{chain_name}-main" if chain_name != "mainnet" else "mainnet"
+        chain_name = (
+            f"{chain_name}-main"
+            if chain_name
+            not in ["mainnet", "ropsten", "rinkeby", "sepolia", "goerli", "kovan"]
+            else chain_name
+        )
         print("reconnecting to", chain_name)
         network.connect(chain_name)
         assert web3.chain_id == network_id, (web3.chain_id, network_id)
