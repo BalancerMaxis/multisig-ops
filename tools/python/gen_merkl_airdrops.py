@@ -363,7 +363,7 @@ if __name__ == "__main__":
                         for pool in WATCHLIST[protocol][chain]["pools"].values()
                     ],
                     end=EPOCHS[-1],
-                    step_size=step_size * 24,
+                    step_size=step_size,
                 )
                 morpho_usd_block_totals = {}
                 morpho_usd_pool_totals = {}
