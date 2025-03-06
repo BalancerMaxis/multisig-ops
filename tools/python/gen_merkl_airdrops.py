@@ -5,9 +5,10 @@ from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
 
-import requests
 import numpy as np
 import pandas as pd
+from requests import Session
+from requests.adapters import HTTPAdapter, Retry
 from web3 import Web3, exceptions
 
 from bal_addresses.addresses import ZERO_ADDRESS, to_checksum_address
@@ -16,11 +17,6 @@ from bal_tools import Subgraph, BalPoolsGauges
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 SUBGRAPH = Subgraph()
-W3 = Web3(
-    Web3.HTTPProvider(
-        f"https://lb.drpc.org/ogrpc?network=ethereum&dkey={os.getenv('DRPC_KEY')}"
-    )
-)
 EPOCH_DURATION = 60 * 60 * 24 * 7
 FIRST_EPOCH_END = 1737936000
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
@@ -29,6 +25,24 @@ BEEFY_PARTNER_BASE_URL = (
     "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
 )
 CHAINS = {"1": "MAINNET"}
+
+adapter = HTTPAdapter(
+    pool_connections=20,
+    pool_maxsize=20,
+    max_retries=Retry(
+        total=10, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504, 520]
+    ),
+)
+session_drpc = Session()
+session_drpc.mount("https://", adapter)
+drpc = Web3(
+    Web3.HTTPProvider(
+        f"https://lb.drpc.org/ogrpc?network=ethereum&dkey={os.getenv('DRPC_KEY')}",
+        session=session_drpc,
+    )
+)
+session_beefy = Session()
+session_beefy.mount("https://", adapter)
 
 EPOCHS = []
 ts = FIRST_EPOCH_END
@@ -80,7 +94,7 @@ def get_user_shares_aura(pool, block):
 
 
 def get_user_shares_beefy(pool, block):
-    r = requests.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
     r.raise_for_status()
     raw_beefy = r.json()
     for vault in raw_beefy:
@@ -95,7 +109,7 @@ def get_user_shares_beefy(pool, block):
 
 
 def get_beefy_strat(pool, block):
-    r = requests.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
     r.raise_for_status()
     raw_beefy = r.json()
     for vault in raw_beefy:
@@ -139,6 +153,10 @@ def build_snapshot_df(
         end -= step_size
         n += 1
 
+    contract = drpc.eth.contract(
+        address=Web3.to_checksum_address(pool),
+        abi=json.load(open("tools/python/abis/StablePoolV3.json")),
+    )
     # calculate total shares per user per block
     total_shares = {}
     total_supply = {}
@@ -183,10 +201,6 @@ def build_snapshot_df(
             else:
                 total_shares[block][user_id] += beefy_shares[block][user_id]
         # collect onchain total supply per block
-        contract = W3.eth.contract(
-            address=Web3.to_checksum_address(pool),
-            abi=json.load(open("tools/python/abis/StablePoolV3.json")),
-        )
         try:
             total_supply[block] = contract.functions.totalSupply().call(
                 block_identifier=block
@@ -249,7 +263,7 @@ def get_morpho_component_value(pool, timestamp):
     for component in raw["poolGetPool"]["poolTokens"]:
         try:
             if (
-                W3.eth.contract(
+                drpc.eth.contract(
                     to_checksum_address(component["address"]),
                     abi=json.load(open("tools/python/abis/MetaMorphoV1_1.json")),
                 )
@@ -260,13 +274,11 @@ def get_morpho_component_value(pool, timestamp):
                 # this is a morpho component
                 for snapshot in raw["poolGetSnapshots"]:
                     if snapshot["timestamp"] > timestamp:
-                        balance = snapshot["amounts"][int(component["index"])]
+                        balance = float(snapshot["amounts"][int(component["index"])])
                         timestamp_eod = snapshot["timestamp"]
                         break
                 else:
-                    raise ValueError(
-                        f"no pool snapshot found for morpho component {component['address']} at timestamp {timestamp}!"
-                    )
+                    balance = 0
                 prices = SUBGRAPH.fetch_graphql_data(
                     "apiv3",
                     "get_historical_token_prices",
@@ -276,21 +288,19 @@ def get_morpho_component_value(pool, timestamp):
                         "range": "THIRTY_DAY",
                     },
                 )
-                for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
-                    if int(entry["timestamp"]) == timestamp_eod:
-                        price = entry["price"]
-                        break
-                else:
-                    raise ValueError(
-                        f"no historical price found for morpho component {component['address']}!"
-                    )
-                value += float(balance) * float(price)
+                if balance > 0:
+                    for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                        if int(entry["timestamp"]) == timestamp_eod:
+                            price = entry["price"]
+                            break
+                    else:
+                        raise ValueError(
+                            f"no historical price found for morpho component {component['address']}!"
+                        )
+                    value += float(balance) * float(price)
         except exceptions.ContractLogicError:
             continue
-    if value > 0:
-        return value
-    else:
-        raise ValueError("no morpho component(s) found!")
+    return value
 
 
 def consolidate_shares(df, usd_weights=None, usd_totals=None):
@@ -335,7 +345,7 @@ def build_airdrop(reward_token, reward_total_wei, df):
 
 
 if __name__ == "__main__":
-    step_size = 60 * 60 * 24
+    step_size = 60 * 60
     for protocol in WATCHLIST:
         # TODO: aave not implemented yet
         if protocol == "aave":
@@ -353,16 +363,28 @@ if __name__ == "__main__":
                         for pool in WATCHLIST[protocol][chain]["pools"].values()
                     ],
                     end=EPOCHS[-1],
-                    step_size=step_size,
+                    step_size=step_size * 24,
                 )
-                morpho_usd_totals = {}
+                morpho_usd_block_totals = {}
+                morpho_usd_pool_totals = {}
                 for pool in morpho_usd_weights:
+                    if pool not in morpho_usd_pool_totals:
+                        morpho_usd_pool_totals[pool] = 0
                     for block in morpho_usd_weights[list(morpho_usd_weights)[0]]:
-                        if block not in morpho_usd_totals:
-                            morpho_usd_totals[block] = 0
-                        morpho_usd_totals[block] += morpho_usd_weights[pool][block]
+                        morpho_usd_pool_totals[pool] += morpho_usd_weights[pool][block]
+                        if block not in morpho_usd_block_totals:
+                            morpho_usd_block_totals[block] = 0
+                        morpho_usd_block_totals[block] += morpho_usd_weights[pool][
+                            block
+                        ]
+                print("morpho usd pool totals:")
+                print(morpho_usd_pool_totals)
+                print("morpho usd block totals:")
+                print(morpho_usd_block_totals)
+                # break  # break here and set wei amounts in watchlist json on first run
 
             for pool in WATCHLIST[protocol][chain]["pools"]:
+                address = WATCHLIST[protocol][chain]["pools"][pool]["address"]
                 instance = f"{epoch_name}-{protocol}-{chain}-{pool}"
                 print(instance)
 
@@ -374,7 +396,7 @@ if __name__ == "__main__":
                 else:
                     # get bpt balances for a pool at different timestamps
                     df = build_snapshot_df(
-                        pool=WATCHLIST[protocol]["pools"][pool]["address"],
+                        pool=address,
                         end=EPOCHS[-1],
                         step_size=step_size,
                     )
@@ -385,8 +407,8 @@ if __name__ == "__main__":
                     # consolidate user pool shares
                     df = consolidate_shares(
                         df,
-                        morpho_usd_weights[pool] if protocol == "morpho" else None,
-                        morpho_usd_totals if protocol == "morpho" else None,
+                        (morpho_usd_weights[address] if protocol == "morpho" else None),
+                        morpho_usd_block_totals if protocol == "morpho" else None,
                     )
                     df.to_pickle(cache_file_str)
                 print(df)
