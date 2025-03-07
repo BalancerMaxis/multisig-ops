@@ -206,7 +206,7 @@ def build_snapshot_df(
                 block_identifier=block
             )
         except exceptions.BadFunctionCallOutput:
-            total_supply[block] = 0
+            total_supply[block] = Decimal(0)
 
     # build dataframe
     df = pd.DataFrame(total_shares, dtype=float).fillna(0)
@@ -223,20 +223,31 @@ def determine_morpho_breakdown(pools, end, step_size):
     end_cached = end
     morpho_values = {}
     for pool in pools:
-        print("retrieving morpho usd values for:", pool)
-        morpho_values[pool] = {}
-        start = end - EPOCH_DURATION
-        n_snapshots = int(np.floor(EPOCH_DURATION / step_size))
-        n = 1
-        while end > start:
-            block = get_block_from_timestamp(end)
-            print(f"{n}\t/\t{n_snapshots}\t{block}")
-            morpho_values[pool][block] = get_morpho_component_value(
-                pool=pool, timestamp=end
-            )
-            end -= step_size
-            n += 1
-        end = end_cached
+        instance = f"{epoch_name}-{protocol}-{chain}-{pool}"
+        cache_file_str = f"MaxiOps/merkl/cache/morpho_usd/{instance}.json"
+        if Path(cache_file_str).is_file():
+            morpho_values[pool] = json.read(open(cache_file_str))
+            with open(cache_file_str, "r") as f:
+                morpho_values[pool] = json.load(f)
+        else:
+            end = end_cached
+            print("retrieving morpho usd values for:", pool)
+            morpho_values[pool] = {}
+            start = end - EPOCH_DURATION
+            n_snapshots = int(np.floor(EPOCH_DURATION / step_size))
+            n = 1
+            while end > start:
+                block = get_block_from_timestamp(end)
+                print(f"{n}\t/\t{n_snapshots}\t{block}")
+                morpho_values[pool][block] = get_morpho_component_value(
+                    pool=pool, timestamp=end
+                )
+                end -= step_size
+                n += 1
+            end = end_cached
+            with open(cache_file_str, "w") as f:
+                json.dump(morpho_values[pool], f, indent=2)
+                f.write("\n")
     return morpho_values
 
 
@@ -259,7 +270,7 @@ def get_morpho_component_value(pool, timestamp):
         }""",
         {"poolId": pool.lower(), "chain": CHAINS[chain], "range": "THIRTY_DAYS"},
     )
-    value = 0
+    value = Decimal(0)
     for component in raw["poolGetPool"]["poolTokens"]:
         try:
             if (
@@ -274,11 +285,11 @@ def get_morpho_component_value(pool, timestamp):
                 # this is a morpho component
                 for snapshot in raw["poolGetSnapshots"]:
                     if snapshot["timestamp"] > timestamp:
-                        balance = float(snapshot["amounts"][int(component["index"])])
+                        balance = Decimal(snapshot["amounts"][int(component["index"])])
                         timestamp_eod = snapshot["timestamp"]
                         break
                 else:
-                    balance = 0
+                    balance = Decimal(0)
                 prices = SUBGRAPH.fetch_graphql_data(
                     "apiv3",
                     "get_historical_token_prices",
@@ -291,13 +302,13 @@ def get_morpho_component_value(pool, timestamp):
                 if balance > 0:
                     for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
                         if int(entry["timestamp"]) == timestamp_eod:
-                            price = entry["price"]
+                            price = Decimal(entry["price"])
                             break
                     else:
                         raise ValueError(
                             f"no historical price found for morpho component {component['address']}!"
                         )
-                    value += float(balance) * float(price)
+                    value += balance * price
         except exceptions.ContractLogicError:
             continue
     return value
@@ -320,6 +331,7 @@ def consolidate_shares(df, usd_weights=None, usd_totals=None):
 
     # sum the weighted percentages per user
     consolidated["total"] = consolidated.sum(axis=1)
+    assert consolidated["total"].sum() <= 1
     # divide the weighted percentages by the sum of all weights
     consolidated["total"] = consolidated["total"] / df.sum().sum()
     if usd_weights and usd_totals:
@@ -369,11 +381,11 @@ if __name__ == "__main__":
                 morpho_usd_pool_totals = {}
                 for pool in morpho_usd_weights:
                     if pool not in morpho_usd_pool_totals:
-                        morpho_usd_pool_totals[pool] = 0
+                        morpho_usd_pool_totals[pool] = Decimal(0)
                     for block in morpho_usd_weights[list(morpho_usd_weights)[0]]:
                         morpho_usd_pool_totals[pool] += morpho_usd_weights[pool][block]
                         if block not in morpho_usd_block_totals:
-                            morpho_usd_block_totals[block] = 0
+                            morpho_usd_block_totals[block] = Decimal(0)
                         morpho_usd_block_totals[block] += morpho_usd_weights[pool][
                             block
                         ]
@@ -404,13 +416,14 @@ if __name__ == "__main__":
                     # ignore shares sent to zero address
                     df = df.drop(index=ZERO_ADDRESS, errors="ignore")
 
-                    # consolidate user pool shares
-                    df = consolidate_shares(
-                        df,
-                        (morpho_usd_weights[address] if protocol == "morpho" else None),
-                        morpho_usd_block_totals if protocol == "morpho" else None,
-                    )
                     df.to_pickle(cache_file_str)
+
+                # consolidate user pool shares
+                df = consolidate_shares(
+                    df,
+                    (morpho_usd_weights[address] if protocol == "morpho" else None),
+                    morpho_usd_block_totals if protocol == "morpho" else None,
+                )
                 print(df)
 
                 # morpho takes a 50bips fee on json airdrops
