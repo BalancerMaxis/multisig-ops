@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/arbitrum/ARB-Grant-Injector-orbETH-&-eBTC.json`
+MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `9fe73feaa182b4b2f3a5dcb7d49e9ca7f3d3fad2`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7b1339ac-9e56-43f2-8c07-53f65fbc05e9)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                          | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------+-----+----------+
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf3E7b852390478FAa6D44319bDE4782bf35BF2bD (None) | add_reward(address,address) | 0x912CE59144191C1204E64559FE8253a0e49E6548: tokens/ARB | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838: None       |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xb4259ce2724fe85182fee38ac78b794291fad997 (None) | add_reward(address,address) | 0x912CE59144191C1204E64559FE8253a0e49E6548: tokens/ARB | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838: None       |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------+-----+----------+
+```
