@@ -16,7 +16,6 @@ from bal_addresses.addresses import ZERO_ADDRESS, to_checksum_address
 from bal_tools import Subgraph, BalPoolsGauges
 
 
-FIRSTRUN = True
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 SUBGRAPH = Subgraph()
 EPOCH_DURATION = 60 * 60 * 24 * 7
@@ -373,10 +372,15 @@ if __name__ == "__main__":
         if protocol == "aave":
             break
         for chain in WATCHLIST[protocol]:
-            # TODO: other chains not implemented yet
             if chain != "1":
+                # TODO: other chains not implemented yet
                 break
-            if FIRSTRUN:
+            breakdown_needed = False
+            for key, pool in WATCHLIST[protocol][chain]["pools"].items():
+                if pool["reward_wei"] == "":
+                    breakdown_needed = True
+                    break
+            if breakdown_needed:
                 # determine the $ value of the morpho component(s) in each pool
                 # this is used to weigh the user shares in the airdrop
                 morpho_usd_weights = determine_morpho_breakdown(
@@ -401,9 +405,30 @@ if __name__ == "__main__":
                         ]
                 print("morpho usd pool totals:")
                 print(morpho_usd_pool_totals)
-                print("morpho usd block totals:")
-                print(morpho_usd_block_totals)
-                break  # break here and set wei amounts in watchlist json on first run
+
+                cumsum = Decimal(sum([x for x in morpho_usd_pool_totals.values()]))
+                wei_written = Decimal(0)
+                for pool, value in morpho_usd_pool_totals.items():
+                    for key in WATCHLIST[protocol][chain]["pools"]:
+                        if WATCHLIST[protocol][chain]["pools"][key]["address"] == pool:
+                            WATCHLIST[protocol][chain]["pools"][key]["reward_wei"] = (
+                                str(
+                                    int(
+                                        value
+                                        / cumsum
+                                        * Decimal(
+                                            WATCHLIST[protocol][chain]["claimable"]
+                                        )
+                                    )
+                                )
+                            )
+                            wei_written += Decimal(
+                                WATCHLIST[protocol][chain]["pools"][key]["reward_wei"]
+                            )
+                assert wei_written <= Decimal(WATCHLIST[protocol][chain]["claimable"])
+                with open("tools/python/gen_merkl_airdrops_watchlist.json", "w") as f:
+                    json.dump(WATCHLIST, f, indent=2)
+                    f.write("\n")
 
             for pool in WATCHLIST[protocol][chain]["pools"]:
                 address = WATCHLIST[protocol][chain]["pools"][pool]["address"]
