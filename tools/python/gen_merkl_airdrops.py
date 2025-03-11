@@ -1,5 +1,6 @@
 import json
 import os
+import pickle
 import pytest
 from datetime import datetime
 from decimal import Decimal
@@ -15,6 +16,7 @@ from bal_addresses.addresses import ZERO_ADDRESS, to_checksum_address
 from bal_tools import Subgraph, BalPoolsGauges
 
 
+FIRSTRUN = True
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 SUBGRAPH = Subgraph()
 EPOCH_DURATION = 60 * 60 * 24 * 7
@@ -24,7 +26,7 @@ AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 BEEFY_PARTNER_BASE_URL = (
     "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
 )
-CHAINS = {"1": "MAINNET"}
+CHAINS = {"1": "MAINNET", "8453": "BASE"}
 
 adapter = HTTPAdapter(
     pool_connections=20,
@@ -223,12 +225,11 @@ def determine_morpho_breakdown(pools, end, step_size):
     end_cached = end
     morpho_values = {}
     for pool in pools:
-        instance = f"{epoch_name}-{protocol}-{chain}-{pool}"
-        cache_file_str = f"MaxiOps/merkl/cache/morpho_usd/{instance}.json"
+        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+        cache_file_str = f"MaxiOps/merkl/cache/morpho_usd/{instance}.pkl"
         if Path(cache_file_str).is_file():
-            morpho_values[pool] = json.read(open(cache_file_str))
             with open(cache_file_str, "r") as f:
-                morpho_values[pool] = json.load(f)
+                morpho_values[pool] = pickle.load(open(cache_file_str, "rb"))
         else:
             end = end_cached
             print("retrieving morpho usd values for:", pool)
@@ -245,9 +246,8 @@ def determine_morpho_breakdown(pools, end, step_size):
                 end -= step_size
                 n += 1
             end = end_cached
-            with open(cache_file_str, "w") as f:
-                json.dump(morpho_values[pool], f, indent=2)
-                f.write("\n")
+            with open(cache_file_str, "wb") as f:
+                pickle.dump(morpho_values[pool], f)
     return morpho_values
 
 
@@ -322,7 +322,11 @@ def consolidate_shares(df, usd_weights=None, usd_totals=None):
         else:
             # calculate the percentage of the pool each user owns,
             # and weigh it by the total pool size of that block
-            consolidated_block = df[block] / df[block].sum() * df.sum()[block]
+            consolidated_block = (
+                df[block].map(Decimal)
+                / df[block].map(Decimal).sum()
+                * Decimal(df.sum()[block])
+            )
             if usd_weights and usd_totals:
                 # weigh by the $ values for this pool
                 consolidated_block = consolidated_block * usd_weights[block]
@@ -331,12 +335,18 @@ def consolidate_shares(df, usd_weights=None, usd_totals=None):
 
     # sum the weighted percentages per user
     consolidated["total"] = consolidated.sum(axis=1)
-    assert consolidated["total"].sum() <= 1
     # divide the weighted percentages by the sum of all weights
-    consolidated["total"] = consolidated["total"] / df.sum().sum()
+    consolidated["total"] = consolidated["total"] / Decimal(df.sum().sum())
     if usd_weights and usd_totals:
         # divide by the sum of the $ value of all pools
         consolidated["total"] = consolidated["total"] / sum(usd_totals.values())
+    # round down until the sum of all weights is ~1
+    n = Decimal("1e18")
+    while consolidated["total"].sum() > 1:
+        consolidated = np.trunc(n * consolidated) / n
+        n -= 1
+    assert consolidated["total"].sum() <= 1
+    assert float(consolidated["total"].sum()) == pytest.approx(1.0, rel=1e-6)
     return consolidated
 
 
@@ -366,7 +376,7 @@ if __name__ == "__main__":
             # TODO: other chains not implemented yet
             if chain != "1":
                 break
-            if protocol == "morpho":
+            if FIRSTRUN:
                 # determine the $ value of the morpho component(s) in each pool
                 # this is used to weigh the user shares in the airdrop
                 morpho_usd_weights = determine_morpho_breakdown(
@@ -393,11 +403,11 @@ if __name__ == "__main__":
                 print(morpho_usd_pool_totals)
                 print("morpho usd block totals:")
                 print(morpho_usd_block_totals)
-                # break  # break here and set wei amounts in watchlist json on first run
+                break  # break here and set wei amounts in watchlist json on first run
 
             for pool in WATCHLIST[protocol][chain]["pools"]:
                 address = WATCHLIST[protocol][chain]["pools"][pool]["address"]
-                instance = f"{epoch_name}-{protocol}-{chain}-{pool}"
+                instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
                 print(instance)
 
                 cache_file_str = f"MaxiOps/merkl/cache/{instance}.pkl"
@@ -421,8 +431,8 @@ if __name__ == "__main__":
                 # consolidate user pool shares
                 df = consolidate_shares(
                     df,
-                    (morpho_usd_weights[address] if protocol == "morpho" else None),
-                    morpho_usd_block_totals if protocol == "morpho" else None,
+                    # (morpho_usd_weights[address] if protocol == "morpho" else None),
+                    # morpho_usd_block_totals if protocol == "morpho" else None,
                 )
                 print(df)
 
