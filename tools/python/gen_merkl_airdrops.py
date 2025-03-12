@@ -1,137 +1,213 @@
 import json
 import os
+import pickle
 import pytest
 from datetime import datetime
 from decimal import Decimal
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from requests import Session
+from requests.adapters import HTTPAdapter, Retry
 from web3 import Web3, exceptions
 
+from bal_addresses.addresses import ZERO_ADDRESS, to_checksum_address
 from bal_tools import Subgraph, BalPoolsGauges
 
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 SUBGRAPH = Subgraph()
-W3 = Web3(
+EPOCH_DURATION = 60 * 60 * 24 * 7
+FIRST_EPOCH_END = 1737936000
+AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
+AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
+BEEFY_PARTNER_BASE_URL = (
+    "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
+)
+CHAINS = {"1": "MAINNET", "8453": "BASE"}
+
+adapter = HTTPAdapter(
+    pool_connections=20,
+    pool_maxsize=20,
+    max_retries=Retry(
+        total=10, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504, 520]
+    ),
+)
+session_drpc = Session()
+session_drpc.mount("https://", adapter)
+drpc = Web3(
     Web3.HTTPProvider(
-        f"https://lb.drpc.org/ogrpc?network=ethereum&dkey={os.getenv('DRPC_KEY')}"
+        f"https://lb.drpc.org/ogrpc?network=ethereum&dkey={os.getenv('DRPC_KEY')}",
+        session=session_drpc,
     )
 )
-EPOCH_DURATION = 60 * 60 * 24 * 14
-FIRST_EPOCH_END = 1737936000
+session_beefy = Session()
+session_beefy.mount("https://", adapter)
 
 EPOCHS = []
 ts = FIRST_EPOCH_END
 while ts < int(datetime.now().timestamp()):
     EPOCHS.append(ts)
     ts += EPOCH_DURATION
-epoch_name = f"epoch_{len(EPOCHS)}"
-print("epochs:", EPOCHS)
-print(epoch_name)
+epoch_name = f"epoch_{len(EPOCHS) - 1}"
+print("epoch endings:", EPOCHS)
 
 
 def get_user_shares_pool(pool, block):
-    query = """query PoolShares($where: PoolShare_filter, $block: Block_height) {
-        poolShares(where: $where, block: $block) {
-            user {
-                id
-            }
-            balance
-        }
-    }"""
-    params = {
-        "where": {
-            "balance_gt": 0.001,
-            "pool": pool.lower(),
-        },
-        "block": {"number": block},
-    }
     raw = SUBGRAPH.fetch_graphql_data(
-        "subgraphs-v3",
-        query,
-        params,
-        url="https://api.studio.thegraph.com/query/75376/balancer-v3/version/latest",
-        retries=5,
+        "vault-v3",
+        "get_user_shares_by_pool",
+        {"pool": pool.lower(), "block": block},
     )
     return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["poolShares"]])
 
 
 def get_user_shares_gauge(gauge, block):
-    query = """query GaugeShares($where: GaugeShare_filter, $block: Block_height) {
-        gaugeShares(where: $where, block: $block) {
-            user {
-                id
-            }
-            balance
-        }
-    }"""
-    params = {
-        "where": {
-            "balance_gt": 0.001,
-            "gauge": gauge.lower(),
-        },
-        "block": {"number": block},
-    }
-    raw = SUBGRAPH.fetch_graphql_data("gauges", query, params)
-    return dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["gaugeShares"]])
+    raw = SUBGRAPH.fetch_graphql_data(
+        "gauges",
+        "fetch_gauge_shares",
+        {"gaugeAddress": gauge, "block": block},
+    )
+    return (
+        dict([(x["user"]["id"], Decimal(x["balance"])) for x in raw["gaugeShares"]])
+        if gauge
+        else {}
+    )
+
+
+def get_user_shares_aura(pool, block):
+    raw = SUBGRAPH.fetch_graphql_data(
+        "aura",
+        "get_aura_user_pool_balances_by_lp",
+        {"lpToken": pool.lower(), "block": block},
+    )
+    return (
+        dict(
+            [
+                (x["account"]["id"], Decimal(x["staked"]) / Decimal(1e18))
+                for x in raw["pools"][0]["accounts"]
+            ]
+        )
+        if raw.get("pools")
+        else {}
+    )
+
+
+def get_user_shares_beefy(pool, block):
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
+    r.raise_for_status()
+    raw_beefy = r.json()
+    for vault in raw_beefy:
+        if vault["vault_config"]["undelying_lp_address"].lower() == pool.lower():
+            return dict(
+                [
+                    (x["holder"], Decimal(x["balance"]) / Decimal(1e18))
+                    for x in vault["holders"]
+                ]
+            )
+    return {}
+
+
+def get_beefy_strat(pool, block):
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/ethereum/{block}/bundles")
+    r.raise_for_status()
+    raw_beefy = r.json()
+    for vault in raw_beefy:
+        if vault["vault_config"]["undelying_lp_address"].lower() == pool.lower():
+            return vault["vault_config"]["strategy_address"]
+    return ""
 
 
 def get_block_from_timestamp(ts):
-    query = """query GetBlockFromTimestamp($where: Block_filter) {
-        blocks(orderBy: "number", orderDirection: "desc", where: $where) {
-            number
-            timestamp
-        }
-    }"""
-    params = {"where": {"timestamp_lte": ts}}
-    raw = SUBGRAPH.fetch_graphql_data("blocks", query, params)
+    raw = SUBGRAPH.fetch_graphql_data(
+        "blocks",
+        "first_block_after_ts",
+        {"timestamp_lt": "9123456789", "timestamp_gt": ts - 1},
+    )
     return int(raw["blocks"][0]["number"])
 
 
 def build_snapshot_df(
     pool,  # pool address
     end,  # timestamp of the last snapshot
-    step_size=60 * 60 * 8,  # amount of seconds between snapshots
+    step_size,  # amount of seconds between snapshots
 ):
     gauge = BalPoolsGauges().get_preferential_gauge(pool)
+    beefy_strat = get_beefy_strat(pool, get_block_from_timestamp(end)).lower()
 
     # get user shares for pool and gauge at different timestamps
     pool_shares = {}
     gauge_shares = {}
+    aura_shares = {}
+    beefy_shares = {}
     start = end - EPOCH_DURATION
+    n_snapshots = int(np.floor(EPOCH_DURATION / step_size))
+    n = 1
     while end > start:
         block = get_block_from_timestamp(end)
+        print(f"{n}\t/\t{n_snapshots}\t{block}")
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
+        aura_shares[block] = get_user_shares_aura(pool=pool, block=block)
+        beefy_shares[block] = get_user_shares_beefy(pool=pool, block=block)
         end -= step_size
+        n += 1
 
+    contract = drpc.eth.contract(
+        address=Web3.to_checksum_address(pool),
+        abi=json.load(open("tools/python/abis/StablePoolV3.json")),
+    )
     # calculate total shares per user per block
     total_shares = {}
     total_supply = {}
     for block in pool_shares:
         total_shares[block] = {}
         for user_id in pool_shares[block]:
-            if user_id == gauge.lower():
-                # we do not want to count the gauge as a user
+            if user_id in [
+                gauge.lower(),
+                AURA_VOTER_PROXY.lower(),
+                AURA_VOTER_PROXY_LITE.lower(),
+                beefy_strat,
+            ]:
+                # we do not want to count the gauge or the aura voter proxy as a user;
+                # these are accounted for later
                 continue
             total_shares[block][user_id] = pool_shares[block][user_id]
         for user_id in gauge_shares[block]:
+            if user_id in [
+                AURA_VOTER_PROXY.lower(),
+                AURA_VOTER_PROXY_LITE.lower(),
+                beefy_strat,
+            ]:
+                # we do not want to count the aura voter proxy as a user;
+                # it is accounted for later
+                continue
             if user_id not in total_shares[block]:
                 total_shares[block][user_id] = gauge_shares[block][user_id]
             else:
                 total_shares[block][user_id] += gauge_shares[block][user_id]
+        for user_id in aura_shares[block]:
+            if user_id in [beefy_strat]:
+                # we do not want to count the beefy vault as a user;
+                # it is accounted for later
+                continue
+            if user_id not in total_shares[block]:
+                total_shares[block][user_id] = aura_shares[block][user_id]
+            else:
+                total_shares[block][user_id] += aura_shares[block][user_id]
+        for user_id in beefy_shares[block]:
+            if user_id not in total_shares[block]:
+                total_shares[block][user_id] = beefy_shares[block][user_id]
+            else:
+                total_shares[block][user_id] += beefy_shares[block][user_id]
         # collect onchain total supply per block
-        contract = W3.eth.contract(
-            address=Web3.to_checksum_address(pool),
-            abi=json.load(open("tools/python/abis/StablePoolV3.json")),
-        )
         try:
             total_supply[block] = contract.functions.totalSupply().call(
                 block_identifier=block
             )
         except exceptions.BadFunctionCallOutput:
-            total_supply[block] = 0
+            total_supply[block] = Decimal(0)
 
     # build dataframe
     df = pd.DataFrame(total_shares, dtype=float).fillna(0)
@@ -144,27 +220,144 @@ def build_snapshot_df(
     return df
 
 
-def consolidate_shares(df):
-    consolidated = pd.DataFrame()
+def determine_morpho_breakdown(pools, end, step_size):
+    end_cached = end
+    morpho_values = {}
+    for pool in pools:
+        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+        cache_file_str = f"MaxiOps/merkl/cache/morpho_usd/{instance}.pkl"
+        if Path(cache_file_str).is_file():
+            with open(cache_file_str, "r") as f:
+                morpho_values[pool] = pickle.load(open(cache_file_str, "rb"))
+        else:
+            end = end_cached
+            print("retrieving morpho usd values for:", pool)
+            morpho_values[pool] = {}
+            start = end - EPOCH_DURATION
+            n_snapshots = int(np.floor(EPOCH_DURATION / step_size))
+            n = 1
+            while end > start:
+                block = get_block_from_timestamp(end)
+                print(f"{n}\t/\t{n_snapshots}\t{block}")
+                morpho_values[pool][block] = get_morpho_component_value(
+                    pool=pool, timestamp=end
+                )
+                end -= step_size
+                n += 1
+            end = end_cached
+            with open(cache_file_str, "wb") as f:
+                pickle.dump(morpho_values[pool], f)
+    return morpho_values
+
+
+def get_morpho_component_value(pool, timestamp):
+    # calculate the $ value of the morpho component(s) in a pool
+    raw = SUBGRAPH.fetch_graphql_data(
+        "apiv3",
+        """query PoolTokens($poolId: String!, $chain: GqlChain!, $range: GqlPoolSnapshotDataRange!) {
+            poolGetPool(id: $poolId, chain: $chain) {
+                poolTokens {
+                    address
+                    balanceUSD
+                    index
+                }
+            }
+            poolGetSnapshots(id: $poolId, chain: $chain, range: $range) {
+                amounts
+                timestamp
+            }
+        }""",
+        {"poolId": pool.lower(), "chain": CHAINS[chain], "range": "THIRTY_DAYS"},
+    )
+    value = Decimal(0)
+    for component in raw["poolGetPool"]["poolTokens"]:
+        try:
+            if (
+                drpc.eth.contract(
+                    to_checksum_address(component["address"]),
+                    abi=json.load(open("tools/python/abis/MetaMorphoV1_1.json")),
+                )
+                .functions.MORPHO()
+                .call()
+                == "0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb"
+            ):
+                # this is a morpho component
+                for snapshot in raw["poolGetSnapshots"]:
+                    if snapshot["timestamp"] > timestamp:
+                        balance = Decimal(snapshot["amounts"][int(component["index"])])
+                        timestamp_eod = snapshot["timestamp"]
+                        break
+                else:
+                    balance = Decimal(0)
+                prices = SUBGRAPH.fetch_graphql_data(
+                    "apiv3",
+                    "get_historical_token_prices",
+                    {
+                        "addresses": [component["address"]],
+                        "chain": CHAINS[chain],
+                        "range": "THIRTY_DAY",
+                    },
+                )
+                if balance > 0:
+                    for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                        if int(entry["timestamp"]) == timestamp_eod:
+                            price = Decimal(entry["price"])
+                            break
+                    else:
+                        raise ValueError(
+                            f"no historical price found for morpho component {component['address']}!"
+                        )
+                    value += balance * price
+        except exceptions.ContractLogicError:
+            continue
+    return value
+
+
+def consolidate_shares(df, usd_weights=None, usd_totals=None):
+    consolidated = []
     for block in df.columns:
         if df[block].sum() == 0:
-            consolidated[block] = 0
+            consolidated.append(df[block])
         else:
-            # calculate the percentage of the pool each user owns
-            consolidated[block] = df[block] / df[block].sum()
-            # weigh it by the total pool size of that block
-            consolidated[block] *= df.sum()[block]
+            # calculate the percentage of the pool each user owns,
+            # and weigh it by the total pool size of that block
+            consolidated_block = (
+                df[block].map(Decimal)
+                / df[block].map(Decimal).sum()
+                * Decimal(df.sum()[block])
+            )
+            if usd_weights and usd_totals:
+                # weigh by the $ values for this pool
+                consolidated_block = consolidated_block * usd_weights[block]
+            consolidated.append(consolidated_block)
+    consolidated = pd.concat(consolidated, axis=1)
+
     # sum the weighted percentages per user
     consolidated["total"] = consolidated.sum(axis=1)
     # divide the weighted percentages by the sum of all weights
-    consolidated["total"] = consolidated["total"] / df.sum().sum()
+    consolidated["total"] = consolidated["total"] / Decimal(df.sum().sum())
+    if usd_weights and usd_totals:
+        # divide by the sum of the $ value of all pools
+        consolidated["total"] = consolidated["total"] / sum(usd_totals.values())
+    # round down until the sum of all weights is ~1
+    n = Decimal("1e18")
+    while consolidated["total"].sum() > 1:
+        consolidated = np.trunc(n * consolidated) / n
+        n -= 1
+    assert consolidated["total"].sum() <= 1
+    assert float(consolidated["total"].sum()) == pytest.approx(1.0, rel=1e-6)
     return consolidated
 
 
 def build_airdrop(reward_token, reward_total_wei, df):
     # https://docs.merkl.xyz/merkl-mechanisms/types-of-campaign/airdrop
-    df[epoch_name] = df["total"].map(Decimal) * Decimal(reward_total_wei)
-    df[epoch_name] = df[epoch_name].apply(np.floor).astype(str)
+    if reward_total_wei > 0:
+        df[epoch_name] = (df["total"].map(Decimal) * Decimal(reward_total_wei)).apply(
+            np.floor
+        )
+    else:
+        df[epoch_name] = df["total"]
+    df[epoch_name] = df[epoch_name].astype(str)
     df = df[df[epoch_name] != "0"]
     return {
         "rewardToken": reward_token,
@@ -173,52 +366,153 @@ def build_airdrop(reward_token, reward_total_wei, df):
 
 
 if __name__ == "__main__":
+    step_size = 60 * 60
     for protocol in WATCHLIST:
         # TODO: aave not implemented yet
         if protocol == "aave":
             break
-        for pool in WATCHLIST[protocol]["pools"]:
-            print(protocol, pool)
-
-            # get bpt balances for a pool at different timestamps
-            df = build_snapshot_df(
-                pool=WATCHLIST[protocol]["pools"][pool]["address"], end=EPOCHS[-1]
-            )
-
-            # consolidate user pool shares
-            df = consolidate_shares(df)
-            print(df)
-
-            # morpho takes a 50bips fee on json airdrops
-            if protocol == "morpho":
-                reward_total_wei = int(
-                    Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
-                    * Decimal(1 - 0.005)
+        for chain in WATCHLIST[protocol]:
+            if chain != "1":
+                # TODO: other chains not implemented yet
+                break
+            breakdown_needed = False
+            for key, pool in WATCHLIST[protocol][chain]["pools"].items():
+                if pool["reward_wei"] == "":
+                    breakdown_needed = True
+                    break
+            if breakdown_needed:
+                # determine the $ value of the morpho component(s) in each pool
+                # this is used to weigh the user shares in the airdrop
+                morpho_usd_weights = determine_morpho_breakdown(
+                    pools=[
+                        pool["address"]
+                        for pool in WATCHLIST[protocol][chain]["pools"].values()
+                    ],
+                    end=EPOCHS[-1],
+                    step_size=step_size,
                 )
-            else:
-                reward_total_wei = int(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
+                morpho_usd_block_totals = {}
+                morpho_usd_pool_totals = {}
+                for pool in morpho_usd_weights:
+                    if pool not in morpho_usd_pool_totals:
+                        morpho_usd_pool_totals[pool] = Decimal(0)
+                    for block in morpho_usd_weights[list(morpho_usd_weights)[0]]:
+                        morpho_usd_pool_totals[pool] += morpho_usd_weights[pool][block]
+                        if block not in morpho_usd_block_totals:
+                            morpho_usd_block_totals[block] = Decimal(0)
+                        morpho_usd_block_totals[block] += morpho_usd_weights[pool][
+                            block
+                        ]
+                print("morpho usd pool totals:")
+                print(morpho_usd_pool_totals)
 
-            # build airdrop object and dump to json file
-            airdrop = build_airdrop(
-                reward_token=WATCHLIST[protocol]["reward_token"],
-                reward_total_wei=reward_total_wei,
-                df=df,
-            )
+                cumsum = Decimal(sum([x for x in morpho_usd_pool_totals.values()]))
+                wei_written = Decimal(0)
+                for pool, value in morpho_usd_pool_totals.items():
+                    for key in WATCHLIST[protocol][chain]["pools"]:
+                        if WATCHLIST[protocol][chain]["pools"][key]["address"] == pool:
+                            WATCHLIST[protocol][chain]["pools"][key]["reward_wei"] = (
+                                str(
+                                    int(
+                                        value
+                                        / cumsum
+                                        * Decimal(
+                                            WATCHLIST[protocol][chain]["claimable"]
+                                        )
+                                    )
+                                )
+                            )
+                            wei_written += Decimal(
+                                WATCHLIST[protocol][chain]["pools"][key]["reward_wei"]
+                            )
+                assert wei_written <= Decimal(WATCHLIST[protocol][chain]["claimable"])
+                with open("tools/python/gen_merkl_airdrops_watchlist.json", "w") as f:
+                    json.dump(WATCHLIST, f, indent=2)
+                    f.write("\n")
 
-            # checksum
-            total = Decimal(0)
-            for user in airdrop["rewards"]:
-                total += Decimal(airdrop["rewards"][user][epoch_name])
-            assert total <= Decimal(WATCHLIST[protocol]["pools"][pool]["reward_wei"])
-            print(
-                "dust:",
-                Decimal(reward_total_wei) - total,
-            )
+            for pool in WATCHLIST[protocol][chain]["pools"]:
+                address = WATCHLIST[protocol][chain]["pools"][pool]["address"]
+                instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+                print(instance)
 
-            json.dump(
-                airdrop,
-                open(
-                    f"MaxiOps/merkl/airdrops/{protocol}-{pool}-{epoch_name}.json", "w"
-                ),
-                indent=2,
-            )
+                cache_file_str = f"MaxiOps/merkl/cache/{instance}.pkl"
+                if Path(cache_file_str).is_file():
+                    # use locally stored df
+                    # delete local file beforehand to retrieve df from scratch!
+                    df = pd.read_pickle(cache_file_str)
+                else:
+                    # get bpt balances for a pool at different timestamps
+                    df = build_snapshot_df(
+                        pool=address,
+                        end=EPOCHS[-1],
+                        step_size=step_size,
+                    )
+
+                    # ignore shares sent to zero address
+                    df = df.drop(index=ZERO_ADDRESS, errors="ignore")
+
+                    df.to_pickle(cache_file_str)
+
+                # consolidate user pool shares
+                df = consolidate_shares(
+                    df,
+                    # (morpho_usd_weights[address] if protocol == "morpho" else None),
+                    # morpho_usd_block_totals if protocol == "morpho" else None,
+                )
+                print(df)
+
+                # morpho takes a 50bips fee on json airdrops
+                if protocol == "morpho":
+                    reward_total_wei = int(
+                        Decimal(WATCHLIST[protocol][chain]["pools"][pool]["reward_wei"])
+                        * Decimal(1 - 0.005)
+                    )
+                else:
+                    reward_total_wei = int(
+                        WATCHLIST[protocol][chain]["pools"][pool]["reward_wei"]
+                    )
+
+                # build airdrop object and dump to json file
+                airdrop = build_airdrop(
+                    reward_token=WATCHLIST[protocol][chain]["reward_token"],
+                    reward_total_wei=reward_total_wei,
+                    df=df,
+                )
+
+                if reward_total_wei == 0:
+                    # tag the instance as a dry run for the resulting airdrop json
+                    instance += "-dry"
+                else:
+                    # checksum
+                    total = Decimal(0)
+                    for user in airdrop["rewards"]:
+                        total += Decimal(airdrop["rewards"][user][epoch_name])
+                    if protocol == "morpho":
+                        total *= Decimal(1 - 0.005)
+                    assert total <= Decimal(
+                        WATCHLIST[protocol][chain]["pools"][pool]["reward_wei"]
+                    )
+                    print(
+                        "expected dust:",
+                        int(
+                            Decimal(
+                                WATCHLIST[protocol][chain]["pools"][pool]["reward_wei"]
+                            )
+                            - total
+                        ),
+                        Decimal(
+                            int(
+                                Decimal(
+                                    WATCHLIST[protocol][chain]["pools"][pool][
+                                        "reward_wei"
+                                    ]
+                                )
+                                - total
+                            )
+                            / Decimal(1e18)
+                        ),
+                    )
+
+                with open(f"MaxiOps/merkl/airdrops/{instance}.json", "w") as f:
+                    json.dump(airdrop, f, indent=2)
+                    f.write("\n")
