@@ -1,0 +1,13 @@
+FILENAME: `MaxiOps/injectorScheduling/arbitrum/KYC-Multisig-Funding-USDC-Injector-Arb-Grant-M1.json`
+MULTISIG: `multisigs/_deprecated/kyc_grant_safe (arbitrum:0xb6BfF54589f269E248f99D5956f1fDD5b014D50e)`
+COMMIT: `8f0fd0cbd382ee65e3f2582056980d2468c01ecf`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a9e5ad83-c11f-4ab9-9869-f7f484fcd3a4)
+
+```
++----------+-------------------------------------------------+--------------------------------------------------------------------------------------------+----------------------------+-----+----------+
+| function | token_symbol                                    | recipient                                                                                  | amount                     | bip | tx_index |
++----------+-------------------------------------------------+--------------------------------------------------------------------------------------------+----------------------------+-----+----------+
+| transfer | USDC:0xaf88d065e77c8cC2239327C5EDb3A432268e5831 | maxiKeepers/injectorV2/USDC-ARB-Grant-omnichain:0x08F02E2945C175272Acbb238ACCB6eda56129DE8 | 75000.0 (RAW: 75000000000) | N/A |    0     |
++----------+-------------------------------------------------+--------------------------------------------------------------------------------------------+----------------------------+-----+----------+
+```
