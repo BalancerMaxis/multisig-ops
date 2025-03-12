@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/arbitrum/add-USDC-as-reward-ARB-grant-phase1.json`
+MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `c9c362238d117592b3466732899f84dba8438c56`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fb871b91-cdd8-42f9-b530-0a99263ebfbd)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                           | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xb4259ce2724fe85182fee38ac78b794291fad997 (None) | add_reward(address,address) | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831: tokens/USDC | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: None        |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf3e7b852390478faa6d44319bde4782bf35bf2bd (None) | add_reward(address,address) | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831: tokens/USDC | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: None        |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+```
