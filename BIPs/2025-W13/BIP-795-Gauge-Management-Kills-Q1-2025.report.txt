@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W13/BIP-795-Gauge-Management-Kills-Q1-2025.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `afb9278d78bd47dffeb9029a346e11563b7d3470`
+COMMIT: `3bad9808b7eec586564427f751ad0b9cde35d92b`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/11664685-ef17-4142-acf9-e713457e340d)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/79f0bf9e-0c58-4fe2-9ba8-6a4dc4e82b89)
 
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
@@ -50,10 +50,5 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/11664685-ef17-4
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xd9cde95efed2d426f2741e2c44de9573116b8f07 (gauges/50WETH-50-3pool-gauge-d9cd)                   | killGauge() |               | BIP-795 |    39    |
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x5b79494824bc256cd663648ee1aad251b32693a9 (None)                                                | killGauge() |               | BIP-795 |    40    |
 | performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x5670e4e5c8c63c350af2d3cb6b5b1ad19d379947 (root_gauges/smUSDC-sUSDS-base-root-5670)             | killGauge() |               | BIP-795 |    41    |
-| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xB95397A17ACbb5824535ebE69Cd9DCF8fA7aFC50 (root_gauges/USDC-USDT-BPT-avalanche-root-b953)       | killGauge() |               | BIP-795 |    42    |
-| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x00654F788342647A8Aa15f2eb2490e17d222aC85 (root_gauges/ECLP-sFRAX-aFRAX-arbitrum-root-0065)     | killGauge() |               | BIP-795 |    43    |
-| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6b9dE817875952Cb23d985AbF6fa9ec4b7f66ad5 (gauges/20B-baoUSD-LUSD-BPT-80BAO-gauge-6b9d)         | killGauge() |               | BIP-795 |    44    |
-| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x95201B61EF19C867dA0D093DF20021e1a559452c (gauges/50wstETH-50LDO-gauge-9520)                    | killGauge() |               | BIP-795 |    45    |
-| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x4e15b9184553740f5C822bd3d6169029D302e63e (root_gauges/50ANKR/50ankrETH-arbitrum-root-4e15)     | killGauge() |               | BIP-795 |    46    |
 +---------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
 ```
