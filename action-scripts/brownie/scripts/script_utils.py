@@ -185,6 +185,8 @@ def convert_output_into_table(outputs: list[dict]) -> str:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
+        if dict_filtered.get("error"):
+            print(f"Error in response: {dict_filtered['error']}")
         table.add_row(list(dict_filtered.values()))
     table.align["review_summary"] = "c"
     table.align["bip"] = "c"
