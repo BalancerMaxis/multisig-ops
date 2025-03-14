@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1738857705883,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x99752844d4d42aa0bbea232c81aeca7672b74e9c95545c9f88da2f876bf6a232"
+  },
+  "transactions": [
+    {
+      "to": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" },
+          { "name": "value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2",
+        "value": "30000000000"
+      }
+    },
+    {
+      "to": "0xabC414cEE2F6E8Ee262d6dc106c86A3f627f84D2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gaugeAddresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountsPerPeriod",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          { "name": "maxPeriods", "type": "uint8[]", "internalType": "uint8[]" }
+        ],
+        "name": "setRecipientList",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gaugeAddresses": "[0x4be0f45db66e2e6271b52549f26e69771c7dfc71,0x59b889b00e12c52fc0bbfebe297fe64975273715,0x4945a8dedaee4f70b4d6967691ed6ae365a9446f]",
+        "amountsPerPeriod": "[1000000000,750000000,500000000]",
+        "maxPeriods": "[6,6,2]"
+      }
+    }
+  ]
+}

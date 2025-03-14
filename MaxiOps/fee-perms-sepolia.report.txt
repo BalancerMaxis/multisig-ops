@@ -1,0 +1,18 @@
+FILENAME: `MaxiOps/fee-perms-sepolia.json`
+MULTISIG: `multisigs/balancer_labs (sepolia:0x4F99ccB28e78886BEb4d08880e6555896ad7FDd8)`
+COMMIT: `1be6aab6bc2fe67824f1b04c9820281e23a0418a`
+CHAIN(S): `sepolia`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7c33dcd4-1297-45e1-9c93-34f906710b7a)
+
+```
++-----------------------+-----------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name                                         | caller_address                             | fx_paths                                                                                                               | action_ids                                                         | bip | tx_index |
++-----------------------+-----------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRoles | 20250228-v3-protocol-fee-sweeper/ProtocolFeeSweeper | 0x5E69888b605a181A5615aC1b3C8937aFA2913d15 | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)                          | 0xf830de585800a430465649def91ee4e68e52ef19d8734b6836b9a2237853fc07 | N/A |    0     |
+|                       |                                                     |                                            | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/burn(address,address,uint256,address,uint256,address,uint256)         | 0xaa50bbd987485834066c55b007c8789c9c66bcdfb30f3671cbc79009fc293649 |     |          |
+| Authorizer/grantRoles | multisigs/MaxiTesting                               | 0xdb0d41598cE0497C3aF4961599dc9245d3c0B3ce | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/cancelOrder(address,address)                                          | 0xdf6e92ee3838542591ef88c45c623c224acc04dba7c4c8717cea527a62cae030 | N/A |    1     |
+|                       |                                                     |                                            | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/emergencyCancelOrder(address,address)                                 | 0xe469dbca1d7d0527cffb39b6a0f9778cd6f14669ee79b4e340c5c25862280e42 |     |          |
+|                       |                                                     |                                            | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/retryOrder(address,uint256,uint256)                                   | 0x019073176f331d8c6dac59ff4f29a55dadb139b7bcf459f1804723ccaa29d2ef |     |          |
+|                       |                                                     |                                            | 20250228-v3-protocol-fee-sweeper/ProtocolFeeSweeper/sweepProtocolFeesForToken(address,address,uint256,uint256,address) | 0x612d3dfe6957b8b8fb1be52d61747393b102604371dfed06aa8e1e34ed63f9cc |     |          |
++-----------------------+-----------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```

@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1739801457466,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant Contract Registry Roles on Base",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0918fe18bf5dd7146d6ef70b2bc468e01847a23ebc248c46f0f3e860e760b95a,0x4f36a3d4a5722964e73c1331cfbe74b0ce2717c92b0cb39e4e1bb402a34ce490,0xff6339cb1834d4fd03de1defb693e9bdbaf87b32c6ef785e9c1e9306a13e0991,0x6c32ca35628dd90c860faff8e24fa89e8ccb7546536eefc8365ceceb013efad1]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}

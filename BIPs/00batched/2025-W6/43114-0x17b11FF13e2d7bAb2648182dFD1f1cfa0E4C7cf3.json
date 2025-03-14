@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "prevOwner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "oldOwner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "newOwner",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0000000000000000000000000000000000000001",
+        "oldOwner": "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F",
+        "newOwner": "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6/BIP-762/BIP-762-avax-dao.json",
+        "bip_number": "BIP-762"
+      }
+    }
+  ]
+}

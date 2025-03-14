@@ -1,0 +1,258 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_spender",
+            "type": "address"
+          },
+          {
+            "name": "_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+        "_value": "24976887883674161575559"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6-KPK/BIP-759-addToLidoWaGHO-Buffer.json",
+        "bip_number": "BIP-759"
+      }
+    },
+    {
+      "to": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint160",
+            "internalType": "uint160"
+          },
+          {
+            "name": "expiration",
+            "type": "uint48",
+            "internalType": "uint48"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+        "spender": "0x9179C06629ef7f17Cb5759F501D89997FE0E7b45",
+        "amount": "24976887883674161575559",
+        "expiration": "1739664611"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6-KPK/BIP-759-addToLidoWaGHO-Buffer.json",
+        "bip_number": "BIP-759"
+      }
+    },
+    {
+      "to": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C",
+        "amount": "24976894328482514518450"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6-KPK/BIP-759-addToLidoWaGHO-Buffer.json",
+        "bip_number": "BIP-759"
+      }
+    },
+    {
+      "to": "0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "assets",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "assets": "24976894328482514518450",
+        "receiver": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6-KPK/BIP-759-addToLidoWaGHO-Buffer.json",
+        "bip_number": "BIP-759"
+      }
+    },
+    {
+      "to": "0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+        "value": "24976165644238785031553"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6-KPK/BIP-759-addToLidoWaGHO-Buffer.json",
+        "bip_number": "BIP-759"
+      }
+    },
+    {
+      "to": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint160",
+            "internalType": "uint160"
+          },
+          {
+            "name": "expiration",
+            "type": "uint48",
+            "internalType": "uint48"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C",
+        "spender": "0x9179C06629ef7f17Cb5759F501D89997FE0E7b45",
+        "amount": "24976894328482514518450",
+        "expiration": "1739664611"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6-KPK/BIP-759-addToLidoWaGHO-Buffer.json",
+        "bip_number": "BIP-759"
+      }
+    },
+    {
+      "to": "0x9179C06629ef7f17Cb5759F501D89997FE0E7b45",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC4626",
+            "name": "wrappedToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxAmountUnderlyingIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxAmountWrappedIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "exactSharesToIssue",
+            "type": "uint256"
+          }
+        ],
+        "name": "addLiquidityToBuffer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "wrappedToken": "0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C",
+        "maxAmountUnderlyingIn": "24976887883674161575559",
+        "maxAmountWrappedIn": "24950895586194753567538",
+        "exactSharesToIssue": "49498000000000000000000"
+      },
+      "meta": {
+        "tx_index": 6,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W6-KPK/BIP-759-addToLidoWaGHO-Buffer.json",
+        "bip_number": "BIP-759"
+      }
+    }
+  ]
+}

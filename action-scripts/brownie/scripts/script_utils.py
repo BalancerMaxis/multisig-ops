@@ -102,11 +102,7 @@ def get_pool_info(
     """
     Returns a tuple of pool info
     """
-    pool = Contract.from_abi(
-        name="IBalPool",
-        address=pool_address,
-        abi=json.load(open("abis/IBalPool.json", "r")),
-    )
+    pool = Contract(pool_address)
     chain_name = AddrBook.chain_names_by_id[chain.id]
     book = AddrBook(chain_name)
     vault = Contract.from_abi(
@@ -136,17 +132,20 @@ def get_pool_info(
     except Exception:
         try:
             ## TWAMM pools
-            pool = Contract.from_explorer(pool.address)
             pool_id = str(pool.POOL_ID())
         except Exception:
             try:
+                # v3 pools
                 pool_id = pool.address
             except:
                 pool_id = POOL_ID_CUSTOM_FALLBACK
     try:
         fee = pool.getSwapFeePercentage() / BIPS_PRECISION
     except Exception:
-        fee = NOT_FOUND
+        try:
+            fee = pool.getStaticSwapFeePercentage() / BIPS_PRECISION
+        except:
+            fee = NOT_FOUND
     try:
         tokens = vault.getPoolTokens(pool_id)[0]
     except Exception:
@@ -164,9 +163,9 @@ def get_pool_info(
             rate_providers = []
     if len(rate_providers) == 0:
         try:
-            rehype_pool = Contract.from_explorer(pool_address)
-            rate_providers.append(rehype_pool.rateProvider0())
-            rate_providers.append(rehype_pool.rateProvider1())
+            # rehype pools
+            rate_providers.append(pool.rateProvider0())
+            rate_providers.append(pool.rateProvider1())
         except Exception:
             pass
     if pool.totalSupply == 0:
@@ -186,6 +185,8 @@ def convert_output_into_table(outputs: list[dict]) -> str:
         # Create a dict comprehension to include all keys and values except "chain"
         # As we don't want to display chain in the table
         dict_filtered = {k: v for k, v in dict_.items() if k != "chain"}
+        if dict_filtered.get("error"):
+            print(f"Error in response: {dict_filtered['error']}")
         table.add_row(list(dict_filtered.values()))
     table.align["review_summary"] = "c"
     table.align["bip"] = "c"
@@ -199,7 +200,12 @@ def switch_chain_if_needed(network_id: int) -> None:
         network.disconnect()
         chain_name = AddrBook.chain_names_by_id[int(network_id)]
         chain_name = "avax" if chain_name == "avalanche" else chain_name
-        chain_name = f"{chain_name}-main" if chain_name != "mainnet" else "mainnet"
+        chain_name = (
+            f"{chain_name}-main"
+            if chain_name
+            not in ["mainnet", "ropsten", "rinkeby", "sepolia", "goerli", "kovan"]
+            else chain_name
+        )
         print("reconnecting to", chain_name)
         network.connect(chain_name)
         assert web3.chain_id == network_id, (web3.chain_id, network_id)
@@ -235,7 +241,11 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
-                                    (True if x == "true" else False)
+                                    (
+                                        True
+                                        if (x == "true") or (type(x) == bool and x)
+                                        else False
+                                    )
                                     for x in tx["contractInputsValues"][input["name"]]
                                     .strip("[]")
                                     .split(",")
@@ -243,7 +253,12 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         else:
                             tx["contractInputsValues"][input["name"]] = (
                                 True
-                                if tx["contractInputsValues"][input["name"]] == "true"
+                                if (tx["contractInputsValues"][input["name"]] == "true")
+                                or (
+                                    type(tx["contractInputsValues"][input["name"]])
+                                    == bool
+                                    and tx["contractInputsValues"][input["name"]]
+                                )
                                 else False
                             )
                     # int
@@ -288,7 +303,8 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 if "bool" in input["components"][idx]["type"]:
                                     casted_tuple.append(
                                         True
-                                        if tuple_item.strip('"') == "true"
+                                        if (tuple_item.strip('"') == "true")
+                                        or (type(tuple_item) == bool and tuple_item)
                                         else False
                                     )
                                 elif re.search(
