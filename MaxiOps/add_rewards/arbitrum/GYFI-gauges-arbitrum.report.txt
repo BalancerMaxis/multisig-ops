@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/add_rewards/arbitrum/GYFI-gauges-arbitrum.json`
 MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `306ccc5e0ff3d6de1756e651d40a0d26ac2b0aaa`
+COMMIT: `193ac08c6c6645fe907450efef02906f9a365883`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7eff0252-c2b3-43d4-8303-5c1c4ab21151)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/2976ac45-ed30-4967-a65a-e4f79c739586)
 
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
@@ -25,6 +25,10 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7eff0252-c2b3-4
 | performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x2ffa44fDd19B8d3d2b03842E34F1b4c7E9217591 (gauges/ECLP-GHO-GYD-rh-gauge-2ffa)  | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    7     |
 |               |                                                                                                                 |                                                                                 |                             | 0x1382088fFeac391302407253e5C2323f10De4c40: None |     |          |
 | performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x2b52a321Fc2ab77e9fC8488D792BB3CaEA966c0b (gauges/ECLP-AUSDC-AUSDT-gauge-2b52) | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    8     |
+|               |                                                                                                                 |                                                                                 |                             | 0x1382088fFeac391302407253e5C2323f10De4c40: None |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xB541Ae08772EDa705EB95C2A80E2bB931Dc7742b (None)                               | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    9     |
+|               |                                                                                                                 |                                                                                 |                             | 0x1382088fFeac391302407253e5C2323f10De4c40: None |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xaa7137b20D7B99A0b1a9E514c349041667053387 (None)                               | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    10    |
 |               |                                                                                                                 |                                                                                 |                             | 0x1382088fFeac391302407253e5C2323f10De4c40: None |     |          |
 +---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
 ```
