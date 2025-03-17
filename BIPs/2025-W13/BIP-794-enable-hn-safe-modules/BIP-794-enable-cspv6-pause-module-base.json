@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1738676498526,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable HN CSPv6 pause module on base",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x52cbca0c3e3094341766d2d30fa2a1a8d3000771755d5179967019e25467201d"
+  },
+  "transactions": [
+    {
+      "to": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0xbaEa4E4A47a3b88e03C003DE6Baf8F5404DA9d56"
+      }
+    }
+  ]
+}
