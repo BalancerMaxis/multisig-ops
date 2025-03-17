@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1741983337663,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xf7f3b466f1e36321e67a50506eddd25ed5e656b0f62c0f78f98afda1c80e77c5"
+  },
+  "transactions": [
+    {
+      "to": "0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "pool", "type": "address" },
+          {
+            "internalType": "uint256",
+            "name": "newMaxSurgeSurgeFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMaxSurgeFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xB1B8B406EeeBBB636fdBB20E6732c117d828363C",
+        "newMaxSurgeSurgeFeePercentage": "50000000000000000"
+      }
+    },
+    {
+      "to": "0x0Fa0f9990D7969a7aE6f9961d663E4A201Ed6417",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "pool", "type": "address" },
+          {
+            "internalType": "uint256",
+            "name": "newSurgeThresholdPercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSurgeThresholdPercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xB1B8B406EeeBBB636fdBB20E6732c117d828363C",
+        "newSurgeThresholdPercentage": "20000000000000000"
+      }
+    }
+  ]
+}
