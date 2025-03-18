@@ -197,12 +197,16 @@ def build_snapshot_df(
             total_supply[block] = Decimal(0)
 
     # build dataframe
-    df = pd.DataFrame(total_shares, dtype=float).fillna(0)
+    df = pd.DataFrame(total_shares).fillna(0)
 
     # checksum total balances versus total supply
-    assert df.sum().sum() == pytest.approx(sum(total_supply.values()) / 1e18, rel=1e-6)
+    assert df.sum().sum() == pytest.approx(
+        sum(total_supply.values()) / Decimal(1e18), rel=1e-6
+    )
     for block in df.columns:
-        assert df[block].sum() == pytest.approx(total_supply[block] / 1e18, rel=1e-6)
+        assert df[block].sum() == pytest.approx(
+            total_supply[block] / Decimal(1e18), rel=1e-6
+        )
 
     return df
 
