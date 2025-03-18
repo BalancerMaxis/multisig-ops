@@ -378,7 +378,7 @@ if __name__ == "__main__":
                     session=session_drpc,
                 )
             )
-            subgraph = Subgraph(CHAIN_SLUGS[chain])
+            subgraph = Subgraph(CHAINS[chain].lower())
             for reward_token, rewards in WATCHLIST[protocol][chain].items():
                 breakdown_needed = False
                 for key, pool in rewards["pools"].items():
@@ -390,7 +390,7 @@ if __name__ == "__main__":
                     # this is used to weigh the user shares in the airdrop
                     morpho_usd_weights = determine_morpho_breakdown(
                         pools=[pool["address"] for pool in rewards["pools"].values()],
-                        end=EPOCHS[-1],
+                        end=EPOCHS[-2],
                         step_size=step_size,
                     )
                     morpho_usd_block_totals = {}
@@ -442,7 +442,7 @@ if __name__ == "__main__":
                         # get bpt balances for a pool at different timestamps
                         df = build_snapshot_df(
                             pool=address,
-                            end=EPOCHS[-1],
+                            end=EPOCHS[-2],
                             step_size=step_size,
                         )
 
