@@ -17,8 +17,6 @@ from bal_tools import Subgraph, BalPoolsGauges
 
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
-EPOCH_DURATION = 60 * 60 * 24 * 7
-FIRST_EPOCH_END = 1737936000
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
 AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 BEEFY_PARTNER_BASE_URL = (
@@ -33,13 +31,6 @@ ADAPTER = HTTPAdapter(
         total=10, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504, 520]
     ),
 )
-EPOCHS = []
-ts = FIRST_EPOCH_END
-while ts < int(datetime.now().timestamp()):
-    EPOCHS.append(ts)
-    ts += EPOCH_DURATION
-epoch_name = f"epoch_{len(EPOCHS) - 1}"
-print("epoch endings:", EPOCHS)
 
 
 def get_user_shares_pool(pool, block):
@@ -115,7 +106,7 @@ def get_block_from_timestamp(ts):
     raw = subgraph.fetch_graphql_data(
         "blocks",
         "first_block_after_ts",
-        {"timestamp_lt": "9123456789", "timestamp_gt": ts - 1},
+        {"timestamp_lt": ts + step_size, "timestamp_gt": ts - 1},
     )
     return int(raw["blocks"][0]["number"])
 
@@ -133,8 +124,8 @@ def build_snapshot_df(
     gauge_shares = {}
     aura_shares = {}
     beefy_shares = {}
-    start = end - EPOCH_DURATION
-    n_snapshots = int(np.floor(EPOCH_DURATION / step_size))
+    start = end - epoch_duration
+    n_snapshots = int(np.floor(epoch_duration / step_size))
     n = 1
     while end > start:
         block = get_block_from_timestamp(end)
@@ -229,8 +220,8 @@ def determine_morpho_breakdown(pools, end, step_size):
             end = end_cached
             print("retrieving morpho usd values for:", pool)
             morpho_values[pool] = {}
-            start = end - EPOCH_DURATION
-            n_snapshots = int(np.floor(EPOCH_DURATION / step_size))
+            start = end - epoch_duration
+            n_snapshots = int(np.floor(epoch_duration / step_size))
             n = 1
             while end > start:
                 block = get_block_from_timestamp(end)
@@ -309,7 +300,7 @@ def get_morpho_component_value(pool, timestamp):
     return value
 
 
-def consolidate_shares(df, usd_weights=None, usd_totals=None):
+def consolidate_shares(df):
     consolidated = []
     for block in df.columns:
         if df[block].sum() == 0:
@@ -322,9 +313,6 @@ def consolidate_shares(df, usd_weights=None, usd_totals=None):
                 / df[block].map(Decimal).sum()
                 * Decimal(df.sum()[block])
             )
-            if usd_weights and usd_totals:
-                # weigh by the $ values for this pool
-                consolidated_block = consolidated_block * usd_weights[block]
             consolidated.append(consolidated_block)
     consolidated = pd.concat(consolidated, axis=1)
 
@@ -332,9 +320,6 @@ def consolidate_shares(df, usd_weights=None, usd_totals=None):
     consolidated["total"] = consolidated.sum(axis=1)
     # divide the weighted percentages by the sum of all weights
     consolidated["total"] = consolidated["total"] / Decimal(df.sum().sum())
-    if usd_weights and usd_totals:
-        # divide by the sum of the $ value of all pools
-        consolidated["total"] = consolidated["total"] / sum(usd_totals.values())
     # round down until the sum of all weights is ~1
     n = Decimal("1e18")
     while consolidated["total"].sum() > 1:
@@ -366,9 +351,30 @@ if __name__ == "__main__":
     session_beefy = Session()
     session_beefy.mount("https://", ADAPTER)
     for protocol in WATCHLIST:
-        # TODO: aave not implemented yet
-        if protocol == "aave":
-            break
+        if protocol == "merit":
+            # only needed once a month, not every week
+            continue
+            # https://apps.aavechan.com/api/merit/campaigns
+            # replace date string with timestamp once it has passed and uncomment next string
+            # blocks#[21558817, 21979500, 22202701, 22418702, 22641903]
+            epochs = [
+                1733932799,
+                1741163423,
+                "~Sat Apr 05 2025 12:51:21",
+                # "~Mon May 05 2025 18:51:31",
+                # "~Fri Jun 06 2025 01:04:19",
+            ]
+            epoch_duration = epochs[-2] - epochs[-3]
+        if protocol == "morpho":
+            epoch_duration = 60 * 60 * 24 * 7
+            first_epoch_end = 1737936000
+            epochs = []
+            ts = first_epoch_end
+            while ts < int(datetime.now().timestamp()):
+                epochs.append(ts)
+                ts += epoch_duration
+        epoch_name = f"epoch_{len(epochs) - 1}"
+        print("epoch endings:", epochs)
         for chain in WATCHLIST[protocol]:
             session_drpc = Session()
             session_drpc.mount("https://", ADAPTER)
@@ -390,7 +396,7 @@ if __name__ == "__main__":
                     # this is used to weigh the user shares in the airdrop
                     morpho_usd_weights = determine_morpho_breakdown(
                         pools=[pool["address"] for pool in rewards["pools"].values()],
-                        end=EPOCHS[-2],
+                        end=epochs[-2],
                         step_size=step_size,
                     )
                     morpho_usd_block_totals = {}
@@ -442,7 +448,7 @@ if __name__ == "__main__":
                         # get bpt balances for a pool at different timestamps
                         df = build_snapshot_df(
                             pool=address,
-                            end=EPOCHS[-2],
+                            end=epochs[-2],
                             step_size=step_size,
                         )
 
@@ -452,11 +458,7 @@ if __name__ == "__main__":
                         df.to_pickle(cache_file_str)
 
                     # consolidate user pool shares
-                    df = consolidate_shares(
-                        df,
-                        # (morpho_usd_weights[address] if protocol == "morpho" else None),
-                        # morpho_usd_block_totals if protocol == "morpho" else None,
-                    )
+                    df = consolidate_shares(df)
                     print(df)
 
                     # morpho takes a 50bips fee on json airdrops
@@ -475,28 +477,21 @@ if __name__ == "__main__":
                         df=df,
                     )
 
-                    if reward_total_wei == 0:
-                        # tag the instance as a dry run for the resulting airdrop json
-                        instance += "-dry"
-                    else:
-                        # checksum
-                        total = Decimal(0)
-                        for user in airdrop["rewards"]:
-                            total += Decimal(airdrop["rewards"][user][epoch_name])
-                        if protocol == "morpho":
-                            total /= Decimal(1 - 0.005)
-                        assert total <= Decimal(rewards["pools"][pool]["reward_wei"])
-                        print(
-                            "expected dust:",
-                            int(Decimal(rewards["pools"][pool]["reward_wei"]) - total),
-                            Decimal(
-                                int(
-                                    Decimal(rewards["pools"][pool]["reward_wei"])
-                                    - total
-                                )
-                                / Decimal(1e18)
-                            ),
-                        )
+                    # checksum
+                    total = Decimal(0)
+                    for user in airdrop["rewards"]:
+                        total += Decimal(airdrop["rewards"][user][epoch_name])
+                    if protocol == "morpho":
+                        total /= Decimal(1 - 0.005)
+                    assert total <= Decimal(rewards["pools"][pool]["reward_wei"])
+                    print(
+                        "expected dust:",
+                        int(Decimal(rewards["pools"][pool]["reward_wei"]) - total),
+                        Decimal(
+                            int(Decimal(rewards["pools"][pool]["reward_wei"]) - total)
+                            / Decimal(1e18)
+                        ),
+                    )
 
                     with open(
                         f"MaxiOps/merkl/airdrops/{instance}-{reward_token}.json", "w"
