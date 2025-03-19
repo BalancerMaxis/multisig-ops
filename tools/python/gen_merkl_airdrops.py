@@ -466,7 +466,7 @@ if __name__ == "__main__":
                     print(df)
 
                     # morpho takes a 50bips fee on json airdrops
-                    if protocol == "morpho":
+                    if protocol in ["morpho", "merit"]:
                         reward_total_wei = int(
                             Decimal(rewards["pools"][pool]["reward_wei"])
                             * Decimal(1 - 0.005)
