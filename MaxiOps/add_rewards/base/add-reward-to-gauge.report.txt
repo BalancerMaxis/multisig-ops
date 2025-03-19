@@ -1,0 +1,18 @@
+FILENAME: `MaxiOps/add_rewards/base/add-reward-to-gauge.json`
+MULTISIG: `multisigs/lm (base:0x65226673F3D202E0f897C862590d7e1A992B2048)`
+COMMIT: `603eae5fe7e1f879158809e6d7f2bae103242717`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/cd7ada52-01cf-41d8-85a8-7ae687adc3cc)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                           | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6d9c05a6da1c22adfa6bb76bb8aec6cadfe23bfb (None) | add_reward(address,address) | 0xF6BD14Bc7D980122aa2E70dFe2d7CF926709A0F4: esPRF       | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0xdBfeEFAB1833c5219a4E1Ce9Cfa2466E038CAA83: None        |     |          |
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6d9c05a6da1c22adfa6bb76bb8aec6cadfe23bfb (None) | add_reward(address,address) | 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913: tokens/USDC | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x976Daa25C6e0a503D8e3D3550d744C4ca205F3ed: None        |     |          |
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x6d9c05a6da1c22adfa6bb76bb8aec6cadfe23bfb (None) | add_reward(address,address) | 0x4200000000000000000000000000000000000006: WETH        | N/A |    2     |
+|               |                                                                                                                 |                                                   |                             | 0xB86DEe1c91A4573F80A3C0c67F3F30D8116fd850: None        |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+```
