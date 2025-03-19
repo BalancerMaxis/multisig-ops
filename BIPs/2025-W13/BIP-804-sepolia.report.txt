@@ -1,14 +1,14 @@
 FILENAME: `BIPs/2025-W13/BIP-804-sepolia.json`
 MULTISIG: `multisigs/balancer_labs (sepolia:0x4F99ccB28e78886BEb4d08880e6555896ad7FDd8)`
-COMMIT: `2504a87346664a62f6bc938f8e6245f4f02149dc`
+COMMIT: `9934cb10987886ed166362c36b8561c0f711367c`
 CHAIN(S): `sepolia`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7cccf38b-fe7f-4c9b-9101-f55448cc9b1b)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/980b34e0-61b4-448e-9d19-0743d2f9db34)
 
 ```
 +-----------------------+---------------------------------------------------------------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function              | caller_name                                                               | caller_address                             | fx_paths                                                                                      | action_ids                                                         |   bip   | tx_index |
 +-----------------------+---------------------------------------------------------------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | Authorizer/grantRoles | 20250221-protocol-fee-controller-migration/ProtocolFeeControllerMigration | 0x79232d3431463dC2B8Fd8fb28B352B9Ba92Eb280 |                                                                                               | 0x0000000000000000000000000000000000000000000000000000000000000000 | BIP-804 |    0     |
-| Authorizer/grantRoles | !!NOT FOUND!!                                                             | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250221-protocol-fee-controller-migration/ProtocolFeeControllerMigration/finalizeMigration() | 0x8c292d8e1af8e556f1aa3edc7a1214d5e14b9fb1afa68649633af554a5a6b881 | BIP-804 |    1     |
+| Authorizer/grantRoles | multisigs/maxi_omni                                                       | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250221-protocol-fee-controller-migration/ProtocolFeeControllerMigration/finalizeMigration() | 0x8c292d8e1af8e556f1aa3edc7a1214d5e14b9fb1afa68649633af554a5a6b881 | BIP-804 |    1     |
 +-----------------------+---------------------------------------------------------------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
