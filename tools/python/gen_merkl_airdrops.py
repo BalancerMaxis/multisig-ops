@@ -197,7 +197,7 @@ def build_snapshot_df(
             total_supply[block] = Decimal(0)
 
     # build dataframe
-    df = pd.DataFrame(total_shares).fillna(0)
+    df = pd.DataFrame(total_shares).fillna(Decimal(0))
 
     # checksum total balances versus total supply
     assert df.sum().sum() == pytest.approx(
@@ -356,7 +356,7 @@ if __name__ == "__main__":
     session_beefy.mount("https://", ADAPTER)
     for protocol in WATCHLIST:
         if protocol == "merit":
-            # only needed once a month, not every week
+            # comment out once a month, not needed every week
             continue
             # https://apps.aavechan.com/api/merit/campaigns
             # replace date string with timestamp once it has passed and uncomment next string
