@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/arbitrum/add-reward-eclps-arb-grant-usdc.json`
+MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `dabf7e40692040a10f2dc0ade3c283699a11beef`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ae629225-d5d9-4525-aff2-39d6d9e77a07)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                                                               | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------------------------------------------+-----+----------+
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x946fb8fcfa21dbdd2152dac1d39bd30c10679d76 (None) | add_reward(address,address) | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831: tokens/USDC                                     | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: maxiKeepers/injectorV2/USDC-ARB-Grant-omnichain |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x5802e74ac511eaf7Adf0c7092136Ba60fDE1c3E4 (None) | add_reward(address,address) | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831: tokens/USDC                                     | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: maxiKeepers/injectorV2/USDC-ARB-Grant-omnichain |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+---------------------------------------------------------------------------------------------+-----+----------+
+```
