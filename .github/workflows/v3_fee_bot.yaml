@@ -18,6 +18,8 @@ jobs:
           cache: "pip"
 
       - name: Run bot
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
           pip install --upgrade pip
           pip install -r action-scripts/requirements-actions.txt
