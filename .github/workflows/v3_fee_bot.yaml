@@ -19,6 +19,8 @@ jobs:
 
       - name: Run bot
         env:
+          DRPC_KEY: ${{ secrets.DRPC_KEY }}
+          GRAPH_API_KEY: ${{ secrets.GRAPH_API_KEY }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
           pip install --upgrade pip
