@@ -86,9 +86,11 @@ def get_pools(chain: str, broadcast: bool = False):
                             open("action-scripts/abis/ProtocolFeeSweeper.json")
                         ),
                     )
-                    assert ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
+                    if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
                         burner
-                    ).call()
+                    ).call():
+                        print("!!! burner not approved (yet); skipping\n")
+                        continue
                     try:
                         unsigned_tx = (
                             ProtocolFeeSweeper.functions.sweepProtocolFeesForToken(
@@ -116,14 +118,15 @@ def get_pools(chain: str, broadcast: bool = False):
                                 signed_tx.raw_transaction
                             )
                             drpc.eth.wait_for_transaction_receipt(tx_hash)
-                            print(f"tx hash: 0x{tx_hash.hex()}\n")
-                        else:
-                            print("tx hash: <dry run>\n")
+                        print(
+                            "tx hash:",
+                            f"0x{tx_hash.hex()}\n" if broadcast else "<dry run>\n",
+                        )
                     except ContractLogicError as e:
                         if e.data.startswith("0xd0c1b3cf"):
                             # OrderHasUnexpectedStatus
                             print("!!! token stuck in burner; no new order possible\n")
-    print("total collectable and sweepable fees:", running)
+    print(chain, "total collectable and sweepable fees:", running)
 
 
 if __name__ == "__main__":
