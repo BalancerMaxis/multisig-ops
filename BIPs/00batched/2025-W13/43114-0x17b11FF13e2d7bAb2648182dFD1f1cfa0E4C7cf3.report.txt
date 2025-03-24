@@ -1,0 +1,15 @@
+FILENAME: `BIPs/00batched/2025-W13/43114-0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3.json`
+MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
+COMMIT: `3db9bc458a74ba349293ef3ab4e3af1a708ad322`
+CHAIN(S): `avalanche`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6b70eb22-704e-443c-b97e-687f10d22d54)
+
+```
++----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function             | caller_name         | caller_address                             | fx_paths                                                                                           | action_ids                                                         |   bip   | tx_index |
++----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20230316-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address)      | 0xce713085e9498c958964f4c64979785027e7a93323b68bca8e87296c696fa643 | BIP-788 |    0     |
+|                      |                     |                                            | 20220413-child-chain-gauge-factory/ChildChainStreamer/set_reward_distributor(address,address)      |                                                                    |         |          |
+|                      |                     |                                            | 20230316-avax-child-chain-gauge-factory-v2/ChildChainGauge/set_reward_distributor(address,address) |                                                                    |         |          |
++----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
