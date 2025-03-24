@@ -72,7 +72,7 @@ def bribe_aura(gauge_address, bribe_token_address, amount):
         address=r.hidden_hand.aura_briber,
         abi=json.load(open("./abis/IAuraBriber.json")),
     )
-    target_name = get_gauge_name_map()[Web3.toChecksumAddress(gauge_address)]
+    target_name = get_gauge_name_map()[Web3.to_checksum_address(gauge_address)]
     prop = get_hh_aura_target(target_name)
     with open("tx_builder_templates/bribe_aura.json", "r") as f:
         data = json.load(f)
@@ -88,7 +88,7 @@ def bribe_balancer(gauge_address, bribe_token_address, amount):
         address=r.hidden_hand.balancer_briber,
         abi=json.load(open("./abis/IBalancerBribe.json")),
     )
-    prop = Web3.solidityKeccak(["address"], [Web3.toChecksumAddress(gauge_address)])
+    prop = Web3.solidityKeccak(["address"], [Web3.to_checksum_address(gauge_address)])
     amount = int(amount)
 
     if amount == 0:

@@ -35,7 +35,7 @@ def main():
     for row in txs:
         token_address = row[1]
         token_contract = web3.eth.contract(
-            address=Web3.toChecksumAddress(token_address), abi=ERC20_ABI
+            address=Web3.to_checksum_address(token_address), abi=ERC20_ABI
         )
         receiver = row[2]
         amount = float(row[3])

@@ -117,7 +117,7 @@ def main(chain="mainnet"):
     tx_list.append(grant_permissions(actionId, chain))
     ###  Make Changes
     changelist = set_cache_durations(
-        [Web3.toChecksumAddress("0x50cf90b954958480b8df7958a9e965752f627124")], 21600
+        [Web3.to_checksum_address("0x50cf90b954958480b8df7958a9e965752f627124")], 21600
     )
     tx_list.extend(build_changes_tx_list(changelist, 21600))
     ###  Revoke Permissions

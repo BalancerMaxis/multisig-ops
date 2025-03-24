@@ -386,7 +386,7 @@ def checksum_address_dict(addresses):
     checksummed = {}
     for k, v in addresses.items():
         if isinstance(v, str):
-            checksummed[k] = Web3.toChecksumAddress(v)
+            checksummed[k] = Web3.to_checksum_address(v)
         elif isinstance(v, dict):
             checksummed[k] = checksum_address_dict(v)
         else:

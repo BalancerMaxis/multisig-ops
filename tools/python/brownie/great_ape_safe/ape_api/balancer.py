@@ -114,7 +114,7 @@ class Balancer:
         pool_data = self.get_pool_data()
         match = None
         for pool in pool_data:
-            tokens = [Web3.toChecksumAddress(x["address"]) for x in pool["tokens"]]
+            tokens = [Web3.to_checksum_address(x["address"]) for x in pool["tokens"]]
             if underlyings == tokens:
                 if match:
                     raise Exception("multiple matching pools exist, provide `pool`")
@@ -128,7 +128,7 @@ class Balancer:
         pool_data = self.get_pool_data()
         valid_pools = {}
         for pool in pool_data:
-            tokens = [Web3.toChecksumAddress(x["address"]) for x in pool["tokens"]]
+            tokens = [Web3.to_checksum_address(x["address"]) for x in pool["tokens"]]
             if asset_in in tokens and asset_out in tokens:
                 valid_pools[pool["id"]] = pool["totalLiquidity"]
         if len(valid_pools) > 0:
@@ -142,12 +142,12 @@ class Balancer:
             sorted_tokens = dict(sorted(tokens.items()))
             sorted_underlyings, sorted_mantissas = zip(*sorted_tokens.items())
             underlyings_checksummed = [
-                Web3.toChecksumAddress(x) for x in sorted_underlyings
+                Web3.to_checksum_address(x) for x in sorted_underlyings
             ]
             return underlyings_checksummed, sorted_mantissas
         else:
             sorted_tokens = sorted([x.lower() for x in underlyings])
-            return [Web3.toChecksumAddress(x) for x in sorted_tokens]
+            return [Web3.to_checksum_address(x) for x in sorted_tokens]
 
     def pool_type(self, pool_id):
         pool_data = self.get_pool_data()

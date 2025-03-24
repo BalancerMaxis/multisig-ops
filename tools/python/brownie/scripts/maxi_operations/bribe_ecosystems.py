@@ -45,7 +45,7 @@ def get_hh_aura_target(target):
     response = requests.get(f"{HH_API_URL}/aura")
     options = response.json()["data"]
     for option in options:
-        if Web3.toChecksumAddress(option["proposal"]) == target:
+        if Web3.to_checksum_address(option["proposal"]) == target:
             return option["proposalHash"]
     return False  ## return false if no result
 
@@ -57,7 +57,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     item_list = response.json()
     output = {}
     for mapping in item_list:
-        gauge_address = web3.toChecksumAddress(mapping["address"])
+        gauge_address = Web3.to_checksum_address(mapping["address"])
         output[gauge_address] = mapping["label"]
     return output
 
@@ -152,7 +152,7 @@ def main(
 
     ### BALANCER
     def bribe_balancer(gauge, mantissa):
-        prop = web3.solidityKeccak(["address"], [Web3.toChecksumAddress(gauge)])
+        prop = web3.solidityKeccak(["address"], [Web3.to_checksum_address(gauge)])
         mantissa = int(mantissa)
 
         print("******* Posting Balancer Bribe:")
@@ -189,7 +189,7 @@ def main(
     for target, amount in bribes["aura"].items():
         if amount == 0:
             continue
-        target = web3.toChecksumAddress(target)
+        target = Web3.to_checksum_address(target)
         # grab data from proposals to find out the proposal index
         prop = get_hh_aura_target(target)
         mantissa = int(amount * usdc_mantissa_multilpier)

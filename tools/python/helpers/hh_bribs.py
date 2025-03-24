@@ -44,7 +44,7 @@ def get_gauge_name_map(map_url=GAUGE_MAPPING_URL):
     item_list = response.json()
     output = {}
     for mapping in item_list:
-        gauge_address = Web3.toChecksumAddress(mapping["address"])
+        gauge_address = Web3.to_checksum_address(mapping["address"])
         output[gauge_address] = mapping["label"]
     return output
 
