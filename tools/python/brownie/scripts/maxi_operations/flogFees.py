@@ -81,7 +81,7 @@ def claimFees(safe, sweeps):
 def genSweepsFromTokenList(tokenlist, collector):
     sweeps = {}
     for address in tokenlist:
-        address = Web3.toChecksumAddress(address)
+        address = Web3.to_checksum_address(address)
         token = Contract(address)
         sweeps[address] = token.balanceOf(collector)
     return sweeps
@@ -95,8 +95,8 @@ def cowswapFees(safe, sweeps):
     bal = safe.contract(r.tokens.BAL)
     for address, amount in sweeps.items():
         if (
-            Web3.toChecksumAddress(address) == r.tokens.BAL
-            or Web3.toChecksumAddress(address) == r.tokens.USDC
+            Web3.to_checksum_address(address) == r.tokens.BAL
+            or Web3.to_checksum_address(address) == r.tokens.USDC
         ):
             ## Don't sell BAL or USDC
             continue

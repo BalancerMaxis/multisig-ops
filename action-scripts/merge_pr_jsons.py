@@ -125,7 +125,7 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
         )
 
     # Check if msig address is in the address book
-    if Web3.toChecksumAddress(msig) not in ADDRESSES:
+    if Web3.to_checksum_address(msig) not in ADDRESSES:
         raise AddressNotFound(
             f"msig address {msig} not found in address book in file: {file_path}"
         )
