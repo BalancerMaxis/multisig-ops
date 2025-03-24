@@ -1,0 +1,27 @@
+{
+  "chainId": "42161",
+  "createdAt": 1742379769184,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32[]", "name": "roles", "type": "bytes32[]" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0000000000000000000000000000000000000000000000000000000000000000]",
+        "account": "0x687b8C9b41E01Be8B591725fac5d5f52D0564d79"
+      }
+    }
+  ]
+}
