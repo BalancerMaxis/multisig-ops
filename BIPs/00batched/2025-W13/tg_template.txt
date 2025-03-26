@@ -1,0 +1,31 @@
+another monthly batch is ready for execution!
+
+the following bips have been voted in, reviewed and queued up:
+
+- [BIP-788] Grant Maxi Multisig set_reward_distributor permissions
+- [BIP-792] Grant setTokenCacheRateDuration Permissions to Omni-Multisig for Balancer V2 Pools on Gnosis
+- [BIP-795] Kill Stale Gauges Q1 2025
+- [BIP-797] Wire Up V3 Protocol Fee Processing Permissions
+- [BIP-801] Fund Balancer Maxis for Q2 to Q3 2025
+- [BIP-802] Year Four Funding Proposal for the Balancer Foundation
+- [BIP-803] Grant v3 ECLP disable Permissions to the Emergency DAO Multisigs
+- [BIP-804] Protocol Fee Controller Migration
+- [BIP-805] Balancer Registry Initialization
+
+in order to enact them, please sign the following nonces on these chains:
+
+- [Ethereum nonce 266](https://app.safe.global/transactions/tx?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f&id=multisig_0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f_0xb463ac4f92ba9311ff31a9cf572c6f59e21d5d1bfc46fc8ccb0d89206bfedda2)
+- [Optimism nonce 35](https://app.safe.global/transactions/tx?safe=oeth:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc&id=multisig_0x043f9687842771b3dF8852c1E9801DCAeED3f6bc_0x708c0a318ac8ef2047bccadfeffe77ae6f1c0cf63ae344b31c86975c49bd59a0)
+- [Gnosis nonce 30](https://app.safe.global/transactions/tx?safe=gno:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18&id=multisig_0x2a5AEcE0bb9EfFD7608213AE1745873385515c18_0xec50526ada18f10c0505bfbf9c0c80ed758ab0f153bc23fcf860c0ecc3504d46)
+- [Polygon nonce 38](https://app.safe.global/transactions/tx?safe=matic:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85&id=multisig_0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85_0x9c45be63645e80f8bedc5ed8df2c50f8ca8d3724cbe26e5866b11712fd2a0b98)
+- [Base nonce 12](https://app.safe.global/transactions/tx?safe=base:0xC40DCFB13651e64C8551007aa57F9260827B6462&id=multisig_0xC40DCFB13651e64C8551007aa57F9260827B6462_0x534e697aaca10401742453cd19a5ef9b63c18ef4d9706a4d084fcb2febb2358f)
+- [Arbitrum1 nonce 49](https://app.safe.global/transactions/tx?safe=arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0&id=multisig_0xaF23DC5983230E9eEAf93280e312e57539D098D0_0xc8140cfff247ed47498a97b4936ea29fc90dcf40c55ea50c4b95f7b3c5a06bea)
+- [Avalanche nonce 22](https://app.safe.global/transactions/tx?safe=avax:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3&id=multisig_0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3_0xcbd6e3e4dd086849f31afb2da171828a39d1be81049111296ed1727b5ddda944)
+
+for all further details and simulations please reference the combined-report.md and related files on github here: https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs/00batched/2025-W13
+
+note i used the new proposer feature on some chains, meaning it was queued up from a deployer but not yet signed. these txs start off with 0/6 signatures.
+
+happy signing!
+
+@alexanderlan @garaigram @mouph @nanexcool @eboado @OxMaki @StefanGeorge @bonustrack @SausageDoge @lewisjfgu
