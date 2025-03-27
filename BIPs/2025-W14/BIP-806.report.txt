@@ -1,13 +1,13 @@
 FILENAME: `BIPs/2025-W14/BIP-806.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `f083574c1bae3fdec4580f637b8ffb778210ed93`
-CHAIN(S): `base, mainnet, arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fca2082e-b743-473b-8cad-fc1ee3de1c99)
+COMMIT: `9f439d8f6cd412df1b76b843637ec6367babdafa`
+CHAIN(S): `arbitrum, mainnet, base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ebfcd4f8-b21d-4ab5-b17c-3fb266631c83)
 
 | Gauge Validator (0x1CCE9d493224A19FcB5f7fBade8478630141CB54) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             | ❌ ✅  |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
 
 | Gauge Validator (0x15C61f8bfAb804d8EFAE45781843BB654F619F55) | Result |
 | :------------------------------------------------------------| :----: |
@@ -23,7 +23,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fca2082e-b743-4
 +-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | function              | pool_id_and_address                                      | symbol_and_info          | gauge_address_and_info                           | tokens                                                  | rate_providers                             | review_summary |   bip   | tx_index |
 +-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
-| GaugeAdderV4/addGauge | 0x6b31a94029fd7840d780191B6D63Fa0D269bd883               | Surge Fluid wstETH-wETH  | root: 0x1CCE9d493224A19FcB5f7fBade8478630141CB54 | 0x2411802D8BEA09be0aF8fD8D08314a63e706b29C: fwstETH     | 0x8Be2e3D4b85d05cac2dBbAC6c42798fb342aef45 | !!NO REVIEW!!  | BIP-806 |    0     |
+| GaugeAdderV4/addGauge | 0x6b31a94029fd7840d780191B6D63Fa0D269bd883               | Surge Fluid wstETH-wETH  | root: 0x1CCE9d493224A19FcB5f7fBade8478630141CB54 | 0x2411802D8BEA09be0aF8fD8D08314a63e706b29C: fwstETH     | 0x8Be2e3D4b85d05cac2dBbAC6c42798fb342aef45 |      safe      | BIP-806 |    0     |
 |                       | pool_address: 0x6b31a94029fd7840d780191B6D63Fa0D269bd883 | fee (%): 0.005           | side: None                                       | 0x90551c1795392094FE6D29B758EcCD233cFAa260: fWETH       | 0x8fC43e76874CaE40939eDeB90E5683258B63c508 |      safe      |         |          |
 |                       |                                                          | a-factor: 1000           | style: mainnet                                   |                                                         |                                            |                |         |          |
 |                       |                                                          |                          | cap: 100.0%                                      |                                                         |                                            |                |         |          |
