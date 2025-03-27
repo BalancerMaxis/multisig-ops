@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/polygon/gyfi-polygon.json`
+MULTISIG: `multisigs/lm (polygon:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `8357bd5e2e348e8907c4cef027d2ea5f0d20d636`
+CHAIN(S): `polygon`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6c9fa9d3-99af-43cb-b1f6-aecd2c56b925)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                          | selector                    | parsed_inputs                                    | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+| performAction | 0xAB093cd16e765b5B23D34030aaFaF026558e0A19 (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xb771840203c0ec3E5491c28ebd42285cb08c1CAD (gauges/ECLP-AUSDC-AUSDT-gauge-b771) | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    0     |
+|               |                                                                                                                 |                                                                                 |                             | 0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4: None |     |          |
+| performAction | 0xAB093cd16e765b5B23D34030aaFaF026558e0A19 (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xCC322077D4056739FC11E950326b2a97aEcB0cc8 (gauges/ECLP-GYD-AUSDT-gauge-cc32)   | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    1     |
+|               |                                                                                                                 |                                                                                 |                             | 0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4: None |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+```
