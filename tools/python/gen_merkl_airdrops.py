@@ -1,10 +1,10 @@
 import json
 import os
 import pickle
-import pytest
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
+from pytest import approx
 
 import numpy as np
 import pandas as pd
@@ -190,8 +190,8 @@ def build_snapshot_df(
                 total_shares[block][user_id] += beefy_shares[block][user_id]
         # collect onchain total supply per block
         try:
-            total_supply[block] = contract.functions.totalSupply().call(
-                block_identifier=block
+            total_supply[block] = Decimal(
+                contract.functions.totalSupply().call(block_identifier=block)
             )
         except exceptions.BadFunctionCallOutput:
             total_supply[block] = Decimal(0)
@@ -200,12 +200,12 @@ def build_snapshot_df(
     df = pd.DataFrame(total_shares).fillna(Decimal(0))
 
     # checksum total balances versus total supply
-    assert df.sum().sum() == pytest.approx(
-        sum(total_supply.values()) / Decimal(1e18), rel=1e-6
+    assert df.sum().sum() == approx(
+        sum(total_supply.values()) / Decimal(1e18), rel=Decimal(1e-6)
     )
     for block in df.columns:
-        assert df[block].sum() == pytest.approx(
-            total_supply[block] / Decimal(1e18), rel=1e-6
+        assert df[block].sum() == approx(
+            total_supply[block] / Decimal(1e18), rel=Decimal(1e-6)
         )
 
     return df
@@ -279,7 +279,9 @@ def get_morpho_component_value(pool, timestamp):
                         timestamp_eod = snapshot["timestamp"]
                         break
                 else:
-                    balance = Decimal(0)
+                    raise ValueError(
+                        f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
+                    )
                 prices = subgraph.fetch_graphql_data(
                     "apiv3",
                     "get_historical_token_prices",
@@ -289,16 +291,16 @@ def get_morpho_component_value(pool, timestamp):
                         "range": "THIRTY_DAY",
                     },
                 )
-                if balance > 0:
-                    for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
-                        if int(entry["timestamp"]) == timestamp_eod:
-                            price = Decimal(entry["price"])
-                            break
-                    else:
-                        raise ValueError(
-                            f"no historical price found for morpho component {component['address']}!"
-                        )
-                    value += balance * price
+                for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                    if int(entry["timestamp"]) == timestamp_eod:
+                        price = Decimal(entry["price"])
+                        assert price > 0
+                        break
+                else:
+                    raise ValueError(
+                        f"no historical price found for morpho component {component['address']}!"
+                    )
+                value += balance * price
         except exceptions.ContractLogicError:
             continue
     return value
@@ -321,7 +323,7 @@ def consolidate_shares(df):
     consolidated = pd.concat(consolidated, axis=1)
 
     # sum the weighted percentages per user
-    consolidated["total"] = consolidated.sum(axis=1)
+    consolidated["total"] = consolidated.sum(axis=1).map(Decimal)
     # divide the weighted percentages by the sum of all weights
     consolidated["total"] = consolidated["total"] / Decimal(df.sum().sum())
     # round down until the sum of all weights is ~1
@@ -330,7 +332,7 @@ def consolidate_shares(df):
         consolidated = np.trunc(n * consolidated) / n
         n -= 1
     assert consolidated["total"].sum() <= 1
-    assert float(consolidated["total"].sum()) == pytest.approx(1.0, rel=1e-6)
+    assert consolidated["total"].sum() == approx(Decimal(1.0), rel=Decimal(1e-6))
     return consolidated
 
 
