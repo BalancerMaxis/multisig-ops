@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0xbaEa4E4A47a3b88e03C003DE6Baf8F5404DA9d56"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W13/BIP-794-enable-hn-safe-modules/BIP-794-enable-cspv6-pause-module-op.json",
+        "bip_number": "BIP-794"
+      }
+    }
+  ]
+}
