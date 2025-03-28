@@ -63,7 +63,7 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
         to_address, value, data, operation, safe_nonce=nonce
     )
 
-    private_key = Account.from_mnemonic(PRIVATE_WORDS).privateKey
+    private_key = Account.from_mnemonic(PRIVATE_WORDS).key
     safe_tx.sign(private_key.hex()[2:])
 
     safe_service.post_transaction(safe_tx)
