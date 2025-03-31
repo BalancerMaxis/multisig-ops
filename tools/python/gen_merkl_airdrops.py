@@ -216,7 +216,9 @@ def determine_morpho_breakdown(pools, end, step_size):
     morpho_values = {}
     for pool in pools:
         instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
-        cache_file_str = f"MaxiOps/merkl/cache/morpho_usd/{instance}.pkl"
+        cache_dir = "MaxiOps/merkl/cache/morpho_usd/"
+        os.makedirs(os.path.dirname(cache_dir), exist_ok=True)
+        cache_file_str = f"{cache_dir}{instance}.pkl"
         if Path(cache_file_str).is_file():
             with open(cache_file_str, "r") as f:
                 morpho_values[pool] = pickle.load(open(cache_file_str, "rb"))
@@ -445,7 +447,9 @@ if __name__ == "__main__":
                     instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
                     print(instance)
 
-                    cache_file_str = f"MaxiOps/merkl/cache/{instance}.pkl"
+                    cache_dir = "MaxiOps/merkl/cache/"
+                    os.makedirs(os.path.dirname(cache_dir), exist_ok=True)
+                    cache_file_str = f"{cache_dir}{instance}.pkl"
                     if Path(cache_file_str).is_file():
                         # use locally stored df
                         # delete local file beforehand to retrieve df from scratch!
