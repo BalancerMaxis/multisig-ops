@@ -34,12 +34,12 @@ def get_pools(chain: str, broadcast: bool = False):
     sweeper = AddrBook(chain).search_unique("20250228-v3-protocol-fee-sweeper").address
     burner = AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
-    running = 0
     for pool in s.fetch_graphql_data("apiv3", "get_pools", {"chain": chain.upper()})[
         "poolGetPools"
     ]:
         if pool["protocolVersion"] != 3:
             continue
+        report[chain]["n_pools"] += 1
         print(
             f"checking for pending fees on {chain}:{pool['address']} ({pool['symbol']})..."
         )
@@ -63,7 +63,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     except KeyError:
                         print("!!! no price for", token["address"])
                         continue
-                    running += potential
+                    report[chain]["total_potential"] += potential
                     print("token:", token["symbol"], token["address"])
                     print("price:", f"${prices[token['address']]}")
                     print("collectable in vault:", fees_vault, token["symbol"])
@@ -124,11 +124,17 @@ def get_pools(chain: str, broadcast: bool = False):
                         if e.data.startswith("0xd0c1b3cf"):
                             # OrderHasUnexpectedStatus
                             print("!!! token stuck in burner; no new order possible\n")
-    print(chain, "total collectable and sweepable fees:", running)
 
 
 if __name__ == "__main__":
+    report = {}
     for chain in CONFIG:
+        report[chain] = {"n_pools": 0, "total_potential": 0}
         s = Subgraph(chain)
         prices = get_prices(chain)
         get_pools(chain)
+    pprint(report)
+    print(
+        "total total_potential:",
+        sum([chain["total_potential"] for chain in report.values()]),
+    )
