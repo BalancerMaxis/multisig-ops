@@ -112,10 +112,14 @@ def get_pools(chain: str, broadcast: bool = False):
                             unsigned_tx, bot.key
                         )
                         if broadcast:
-                            tx_hash = drpc.eth.send_raw_transaction(
-                                signed_tx.raw_transaction
-                            )
-                            drpc.eth.wait_for_transaction_receipt(tx_hash)
+                            try:
+                                tx_hash = drpc.eth.send_raw_transaction(
+                                    signed_tx.raw_transaction
+                                )
+                                drpc.eth.wait_for_transaction_receipt(tx_hash)
+                            except Exception as e:
+                                print(f"!!! tx failed: {e}\n")
+                                continue
                         print(
                             "tx hash:",
                             f"0x{tx_hash.hex()}\n" if broadcast else "<dry run>\n",
