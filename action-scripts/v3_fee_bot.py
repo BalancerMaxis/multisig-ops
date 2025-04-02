@@ -34,6 +34,8 @@ def get_pools(chain: str, broadcast: bool = False):
     sweeper = AddrBook(chain).search_unique("20250228-v3-protocol-fee-sweeper").address
     burner = AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
+    max_gas_price = int(CONFIG[chain]["max_gas_price"])
+    max_priority_fee = int(CONFIG[chain]["max_priority_fee"])
     for pool in s.fetch_graphql_data("apiv3", "get_pools", {"chain": chain.upper()})[
         "poolGetPools"
     ]:
@@ -103,6 +105,8 @@ def get_pools(chain: str, broadcast: bool = False):
                                     "nonce": drpc.eth.get_transaction_count(
                                         bot.address
                                     ),
+                                    "maxFeePerGas": max_gas_price,
+                                    "maxPriorityFeePerGas": max_priority_fee,
                                 }
                             )
                         )
