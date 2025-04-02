@@ -91,6 +91,12 @@ def get_pools(chain: str, broadcast: bool = False):
                     ).call():
                         print("!!! burner not approved (yet); skipping\n")
                         continue
+                    fee_data = drpc.eth.fee_history(1, "latest")
+                    if fee_data.baseFeePerGas[-1] > max_gas_price:
+                        print(
+                            f"!!! base fee too high ({fee_data.baseFeePerGas[-1]}); skipping\n"
+                        )
+                        continue
                     try:
                         unsigned_tx = (
                             ProtocolFeeSweeper.functions.sweepProtocolFeesForToken(
@@ -106,7 +112,9 @@ def get_pools(chain: str, broadcast: bool = False):
                                         bot.address
                                     ),
                                     "maxFeePerGas": max_gas_price,
-                                    "maxPriorityFeePerGas": max_priority_fee,
+                                    "maxPriorityFeePerGas": min(
+                                        max_priority_fee, fee_data.reward[0][0]
+                                    ),
                                 }
                             )
                         )
