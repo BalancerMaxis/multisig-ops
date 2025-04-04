@@ -98,6 +98,14 @@ def get_pools(chain: str, broadcast: bool = False):
                         )
                         continue
                     try:
+                        try:
+                            max_priority_fee_latest = fee_data.reward[0][0]
+                            if max_priority_fee_latest > 0:
+                                max_priority_fee_optimal = min(
+                                    max_priority_fee, max_priority_fee_latest
+                                )
+                        except:
+                            max_priority_fee_optimal = max_priority_fee
                         unsigned_tx = (
                             ProtocolFeeSweeper.functions.sweepProtocolFeesForToken(
                                 to_checksum_address(pool["address"]),
@@ -112,9 +120,7 @@ def get_pools(chain: str, broadcast: bool = False):
                                         bot.address
                                     ),
                                     "maxFeePerGas": max_gas_price,
-                                    "maxPriorityFeePerGas": min(
-                                        max_priority_fee, fee_data.reward[0][0]
-                                    ),
+                                    "maxPriorityFeePerGas": max_priority_fee_optimal,
                                 }
                             )
                         )
