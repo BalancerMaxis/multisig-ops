@@ -54,7 +54,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     token["vaultProtocolYieldFeeBalance"]
                 )
                 fees_controller = Decimal(token["controllerProtocolFeeBalance"])
-                if fees_vault > 0 or fees_controller > 0:
+                if fees_controller > 0:
                     try:
                         potential = (fees_vault + fees_controller) * prices[
                             token["address"]
