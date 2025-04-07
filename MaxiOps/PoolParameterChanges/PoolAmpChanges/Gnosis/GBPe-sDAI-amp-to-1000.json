@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1744004893708,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Reduce amp factor to 1000 over 7 days",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xaa139822152b1a015a524e80181929b0d84e108ee1ccb38163b228e05996adde"
+  },
+  "transactions": [
+    {
+      "to": "0x9D93F38b75B376AcDFe607cD1ECF4495E047dEfF",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "rawEndValue": "1000",
+        "endTime": "1744639200"
+      }
+    }
+  ]
+}
