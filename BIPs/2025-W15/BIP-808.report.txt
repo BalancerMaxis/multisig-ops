@@ -1,13 +1,13 @@
 FILENAME: `BIPs/2025-W15/BIP-808.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `2b56c5f90cd44881c09f9f0901f8a9cd449b3f6e`
+COMMIT: `b47ba0bac3ceebc5cb7096d49b8aa7cfa43522dd`
 CHAIN(S): `base`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1580045a-b787-4a46-8f0a-642be0f70a53)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/908c7541-1929-415c-8d3f-27070d7dc33c)
 
 | Gauge Validator (0xB1E8ec305b0b29097a117CaFC9721A553533E54C) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             | ❌ ✅  |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
 
 | Gauge Validator (0x1B7E33186C7e9C337508bB65EA9dc498aB14fcAE) | Result |
 | :------------------------------------------------------------| :----: |
@@ -18,7 +18,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1580045a-b787-4
 +-----------------------+----------------------------------------------------------+----------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 | function              | pool_id_and_address                                      | symbol_and_info      | gauge_address_and_info                           | tokens                                                | rate_providers                             | review_summary |   bip   | tx_index |
 +-----------------------+----------------------------------------------------------+----------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
-| GaugeAdderV4/addGauge | 0x9Ab907FB3e098103ca048Ad26E501Bf7B3dfA3EB               | Surge Aave EURC-GHO  | root: 0xB1E8ec305b0b29097a117CaFC9721A553533E54C | 0x729F75Aff28c726e32403e80cef2aFb518CFbfa7: waBasEURC | 0xdBB41Da7dE45729857A09baaF98D1e9b0b1A8740 | !!NO REVIEW!!  | BIP-808 |    0     |
+| GaugeAdderV4/addGauge | 0x9Ab907FB3e098103ca048Ad26E501Bf7B3dfA3EB               | Surge Aave EURC-GHO  | root: 0xB1E8ec305b0b29097a117CaFC9721A553533E54C | 0x729F75Aff28c726e32403e80cef2aFb518CFbfa7: waBasEURC | 0xdBB41Da7dE45729857A09baaF98D1e9b0b1A8740 |      safe      | BIP-808 |    0     |
 |                       | pool_address: 0x9Ab907FB3e098103ca048Ad26E501Bf7B3dfA3EB | fee (%): 0.01        | side: 0xD8376B72E609A410999398b70218F70ae9B310F5 | 0x88b1Cd4b430D95b406E382C3cDBaE54697a0286E: waBasGHO  | 0xf8CDA16566a06f3C848258DE4Ec5fc3401cbB214 |      safe      |         |          |
 |                       |                                                          | a-factor: 1000       | style: L0 sidechain                              |                                                       |                                            |                |         |          |
 |                       |                                                          |                      | cap: 100.0%                                      |                                                       |                                            |                |         |          |
