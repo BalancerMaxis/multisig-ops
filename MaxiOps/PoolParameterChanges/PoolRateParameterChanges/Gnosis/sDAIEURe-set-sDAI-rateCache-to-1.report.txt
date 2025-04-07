@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/PoolParameterChanges/PoolRateParameterChanges/Gnosis/sDAIEURe-set-sDAI-rateCache-to-1.json`
 MULTISIG: `multisigs/maxi_omni (gnosis:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `27248564172fce8ae2e3ba7d42d7d54bbd17505c`
+COMMIT: `1446fd032cfcd5e4f4bb2830d3dadb802ffd31c8`
 CHAIN(S): `gnosis`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/97850baf-cded-4389-b191-8b42296a0940)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a9311a70-3273-4fb4-98fc-7f80055785e4)
 
 ```
 +---------------------------+-------------------------------------------------------------------+-------+----------------------------------------------------------------+------------+----------+
@@ -11,6 +11,14 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/97850baf-cded-4
 | setTokenRateCacheDuration | 0xDd439304A77f54B1F7854751Ac1169b279591Ef7 (pools/EURe/sDAI-dd43) | 0     | {                                                              | N/A        |   N/A    |
 |                           |                                                                   |       |   "token": [                                                   |            |          |
 |                           |                                                                   |       |     "0xaf204776c7245bF4147c2612BF6e5972Ee483701 (tokens/sDAI)" |            |          |
+|                           |                                                                   |       |   ],                                                           |            |          |
+|                           |                                                                   |       |   "duration": [                                                |            |          |
+|                           |                                                                   |       |     "1"                                                        |            |          |
+|                           |                                                                   |       |   ]                                                            |            |          |
+|                           |                                                                   |       | }                                                              |            |          |
+| setTokenRateCacheDuration | 0xDd439304A77f54B1F7854751Ac1169b279591Ef7 (pools/EURe/sDAI-dd43) | 0     | {                                                              | N/A        |   N/A    |
+|                           |                                                                   |       |   "token": [                                                   |            |          |
+|                           |                                                                   |       |     "0xcB444e90D8198415266c6a2724b7900fb12FC56E (N/A)"         |            |          |
 |                           |                                                                   |       |   ],                                                           |            |          |
 |                           |                                                                   |       |   "duration": [                                                |            |          |
 |                           |                                                                   |       |     "1"                                                        |            |          |
