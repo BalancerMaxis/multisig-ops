@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/Payroll_Txns/Q2Q3_2025/mint-stake-sdbal.json`
 MULTISIG: `multisigs/maxi_ops (mainnet:0x166f54F44F271407f24AA1BE415a730035637325)`
-COMMIT: `4e12865b730ed525786cf6e375061236af0abd0b`
+COMMIT: `11162066a5bbe8ccd3fa15447bbaece0b203dae5`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/8ff4e793-dedd-4fa5-a165-7f736f929256)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f019baa9-7aea-42fb-9255-12ec3441c304)
 
 ```
 +---------+-------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------------------------+------------+----------+
@@ -203,7 +203,7 @@ TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simul
 |         |                                                                               |       |     "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61 (stake_dao/Danko-Vester)"                                     |            |          |
 |         |                                                                               |       |   ],                                                                                                          |            |          |
 |         |                                                                               |       |   "_value": [                                                                                                 |            |          |
-|         |                                                                               |       |     "raw:1864236186680610000000, 18 decimals:1864.23618668061, 6 decimals: 1864236186680610"                  |            |          |
+|         |                                                                               |       |     "raw:33556251360250944000000, 18 decimals:33556.251360250944, 6 decimals: 33556251360250944"              |            |          |
 |         |                                                                               |       |   ]                                                                                                           |            |          |
 |         |                                                                               |       | }                                                                                                             |            |          |
 | deposit | 0x40A69d7966295c6Eea95633FA6c0a87F25a89D61 (stake_dao/Danko-Vester)           | 0     | {                                                                                                             | N/A        |   N/A    |
@@ -252,14 +252,6 @@ TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simul
 |         |                                                                               |       |   ],                                                                                                          |            |          |
 |         |                                                                               |       |   "_vestingPeriod": [                                                                                         |            |          |
 |         |                                                                               |       |     "44676000"                                                                                                |            |          |
-|         |                                                                               |       |   ]                                                                                                           |            |          |
-|         |                                                                               |       | }                                                                                                             |            |          |
-| approve | 0x3E8C72655e48591d93e6dfdA16823dB0fF23d859 (stake_dao/sdBAL_gauge_contract)   | 0     | {                                                                                                             | N/A        |   N/A    |
-|         |                                                                               |       |   "_spender": [                                                                                               |            |          |
-|         |                                                                               |       |     "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61 (stake_dao/Danko-Vester)"                                     |            |          |
-|         |                                                                               |       |   ],                                                                                                          |            |          |
-|         |                                                                               |       |   "_value": [                                                                                                 |            |          |
-|         |                                                                               |       |     "raw:1864236186680610000000, 18 decimals:1864.23618668061, 6 decimals: 1864236186680610"                  |            |          |
 |         |                                                                               |       |   ]                                                                                                           |            |          |
 |         |                                                                               |       | }                                                                                                             |            |          |
 | deposit | 0x40A69d7966295c6Eea95633FA6c0a87F25a89D61 (stake_dao/Danko-Vester)           | 0     | {                                                                                                             | N/A        |   N/A    |
