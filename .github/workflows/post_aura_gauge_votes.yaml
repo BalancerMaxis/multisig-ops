@@ -53,6 +53,13 @@ jobs:
           echo "grabbing votes for: ${{ steps.week-string.outputs.week-string }}"
           python3 $RUN_DIR/vote.py --week-string "${{ steps.week-string.outputs.week-string }}"
 
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          prettier_options: --write
+          file_pattern: MaxiOps/**/*.json
+          commit_message: "style: format JSON files"
+
       - name: Create PR
         id: cpr
         uses: peter-evans/create-pull-request@v7

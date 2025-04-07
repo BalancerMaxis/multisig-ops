@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1743163210345,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x8caae358e4a3174ac977993892ac71c46791fd40b5d2e6dbf78e10f10f60499c"
+  },
+  "transactions": [
+    {
+      "to": "0x4F073D894d8d3f43810Ff1662D1792D9E32fe2Ec",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "1500", "endTime": "1744285957" }
+    }
+  ]
+}

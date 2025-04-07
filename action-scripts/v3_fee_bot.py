@@ -1,7 +1,3 @@
-"""
-perms: https://sepolia.etherscan.io/tx/0xdd4fcf35075e69da02fe0c693ec17828f301f5ade08312b8796908b0919f1895#eventlog
-"""
-
 import json
 import os
 from datetime import datetime, timedelta, timezone
@@ -14,8 +10,7 @@ from web3 import Web3
 from web3.exceptions import ContractLogicError
 
 
-V3_CHAINS = ["sepolia"] + AddrBook("mainnet").chains.BALANCER_PRODUCTION_CHAINS_V3
-USDC_THRESHOLD = 0.001
+CONFIG = json.load(open("action-scripts/v3_fee_config.json"))
 
 
 def get_prices(chain: str):
@@ -38,10 +33,15 @@ def get_pools(chain: str, broadcast: bool = False):
     bot = drpc.eth.account.from_key(os.getenv("PRIVATE_KEY"))
     sweeper = AddrBook(chain).search_unique("20250228-v3-protocol-fee-sweeper").address
     burner = AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
-    running = 0
+    threshold = Decimal(CONFIG[chain]["usdc_threshold"])
+    max_gas_price = int(CONFIG[chain]["max_gas_price"])
+    max_priority_fee = int(CONFIG[chain]["max_priority_fee"])
     for pool in s.fetch_graphql_data("apiv3", "get_pools", {"chain": chain.upper()})[
         "poolGetPools"
     ]:
+        if pool["protocolVersion"] != 3:
+            continue
+        report[chain]["n_pools"] += 1
         print(
             f"checking for pending fees on {chain}:{pool['address']} ({pool['symbol']})..."
         )
@@ -65,12 +65,12 @@ def get_pools(chain: str, broadcast: bool = False):
                     except KeyError:
                         print("!!! no price for", token["address"])
                         continue
-                    running += potential
+                    report[chain]["total_potential"] += potential
                     print("token:", token["symbol"], token["address"])
                     print("price:", f"${prices[token['address']]}")
                     print("collectable in vault:", fees_vault, token["symbol"])
                     print("sweepable in controller:", fees_controller, token["symbol"])
-                    if potential < USDC_THRESHOLD:
+                    if potential < threshold:
                         print(f"not enough fees to burn; only worth {potential} USDC\n")
                         continue
                     print("burning for:", potential, "USDC"),
@@ -91,12 +91,26 @@ def get_pools(chain: str, broadcast: bool = False):
                     ).call():
                         print("!!! burner not approved (yet); skipping\n")
                         continue
+                    fee_data = drpc.eth.fee_history(1, "latest")
+                    if fee_data.baseFeePerGas[-1] > max_gas_price:
+                        print(
+                            f"!!! base fee too high ({fee_data.baseFeePerGas[-1]}); skipping\n"
+                        )
+                        continue
                     try:
+                        try:
+                            max_priority_fee_latest = fee_data.reward[0][0]
+                            if max_priority_fee_latest > 0:
+                                max_priority_fee_optimal = min(
+                                    max_priority_fee, max_priority_fee_latest
+                                )
+                        except:
+                            max_priority_fee_optimal = max_priority_fee
                         unsigned_tx = (
                             ProtocolFeeSweeper.functions.sweepProtocolFeesForToken(
                                 to_checksum_address(pool["address"]),
                                 to_checksum_address(token["address"]),
-                                int(Decimal(USDC_THRESHOLD) * Decimal("1e6")),
+                                int(threshold * Decimal("1e6")),
                                 deadline,
                                 burner,
                             ).build_transaction(
@@ -105,6 +119,8 @@ def get_pools(chain: str, broadcast: bool = False):
                                     "nonce": drpc.eth.get_transaction_count(
                                         bot.address
                                     ),
+                                    "maxFeePerGas": max_gas_price,
+                                    "maxPriorityFeePerGas": max_priority_fee_optimal,
                                 }
                             )
                         )
@@ -114,10 +130,14 @@ def get_pools(chain: str, broadcast: bool = False):
                             unsigned_tx, bot.key
                         )
                         if broadcast:
-                            tx_hash = drpc.eth.send_raw_transaction(
-                                signed_tx.raw_transaction
-                            )
-                            drpc.eth.wait_for_transaction_receipt(tx_hash)
+                            try:
+                                tx_hash = drpc.eth.send_raw_transaction(
+                                    signed_tx.raw_transaction
+                                )
+                                drpc.eth.wait_for_transaction_receipt(tx_hash)
+                            except Exception as e:
+                                print(f"!!! tx failed: {e}\n")
+                                continue
                         print(
                             "tx hash:",
                             f"0x{tx_hash.hex()}\n" if broadcast else "<dry run>\n",
@@ -126,11 +146,17 @@ def get_pools(chain: str, broadcast: bool = False):
                         if e.data.startswith("0xd0c1b3cf"):
                             # OrderHasUnexpectedStatus
                             print("!!! token stuck in burner; no new order possible\n")
-    print(chain, "total collectable and sweepable fees:", running)
 
 
 if __name__ == "__main__":
-    for chain in V3_CHAINS:
+    report = {}
+    for chain in CONFIG:
+        report[chain] = {"n_pools": 0, "total_potential": 0}
         s = Subgraph(chain)
         prices = get_prices(chain)
         get_pools(chain)
+    pprint(report)
+    print(
+        "total total_potential:",
+        sum([chain["total_potential"] for chain in report.values()]),
+    )

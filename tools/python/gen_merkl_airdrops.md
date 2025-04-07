@@ -26,7 +26,7 @@ If there is only one pool that the rewards should be redistributed to, fill in t
 
 ### Step 3: Determine User Shares
 
-Run `python tools/python/gen_merkl_airdrops.py` and upload the airdrop json artifact to https://merkl.angle.money/create/drop. Click `Preview Transaction` -> `Build a payload` -> `Download Safe Payload`.
+Run `python tools/python/gen_merkl_airdrops.py` and upload the airdrop json artifact to https://legacy.merkl.xyz/create/drop. Click `Preview Transaction` -> `Build a payload` -> `Download Safe Payload`.
 
 ### Step 4: Consolidate both Payloads
 
