@@ -189,12 +189,19 @@ def build_snapshot_df(
             else:
                 total_shares[block][user_id] += beefy_shares[block][user_id]
         # collect onchain total supply per block
-        try:
-            total_supply[block] = Decimal(
-                contract.functions.totalSupply().call(block_identifier=block)
-            )
-        except exceptions.BadFunctionCallOutput:
-            total_supply[block] = Decimal(0)
+        # we are spamming the rpc here; needs additional retries sometimes
+        retries = 5
+        for i in range(retries):
+            try:
+                total_supply[block] = Decimal(
+                    contract.functions.totalSupply().call(block_identifier=block)
+                )
+                break
+            except exceptions.BadFunctionCallOutput:
+                if i < retries - 1:
+                    continue
+                else:
+                    raise
 
     # build dataframe
     df = pd.DataFrame(total_shares).fillna(Decimal(0))
@@ -364,12 +371,13 @@ if __name__ == "__main__":
             continue
             # https://apps.aavechan.com/api/merit/campaigns
             # replace date string with timestamp once it has passed and uncomment next string
+            # drpc.eth.get_block(22418702).timestamp
             # blocks#[21558817, 21979500, 22202701, 22418702, 22641903]
             epochs = [
                 1733932799,
                 1741163423,
-                "~Sat Apr 05 2025 12:51:21",
-                # "~Mon May 05 2025 18:51:31",
+                1743855959,
+                "~Mon May 05 2025 18:51:31",
                 # "~Fri Jun 06 2025 01:04:19",
             ]
             epoch_duration = epochs[-2] - epochs[-3]
