@@ -56,8 +56,7 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write
-          file_pattern: MaxiOps/**/*.json
+          prettier_options: --write MaxiOps/**/*.json
           commit_message: "style: format JSON files"
 
       - name: Create PR
