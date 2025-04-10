@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/feeDistributions/2025-04-10/2025-04-10.json`
 MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
-COMMIT: `991c27617eb8eb361ae88ad857878198c77fc371`
+COMMIT: `db324ecfedfef1d13578feea31e1ddfeba91fa92`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (ERC20: transfer amount exceeds allowance)`](https://www.tdly.co/shared/simulation/65501027-78e9-446e-841e-adb6d51290b1)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a060e6f7-534e-4857-a545-4f5a3f8eea39)
 
 ```
 +----------+-------------------------------------------------+-------------------------------------------------------------------------+---------------------------------------------------+-----+----------+
@@ -15,9 +15,9 @@ TENDERLY: [`🟥 FAILURE (ERC20: transfer amount exceeds allowance)`](https://ww
 ```
 FILENAME: `MaxiOps/feeDistributions/2025-04-10/2025-04-10.json`
 MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
-COMMIT: `991c27617eb8eb361ae88ad857878198c77fc371`
+COMMIT: `db324ecfedfef1d13578feea31e1ddfeba91fa92`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (ERC20: transfer amount exceeds allowance)`](https://www.tdly.co/shared/simulation/bcf2047b-3e34-46e8-af55-7bc442447555)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/13b8b048-46f8-4da5-ba4c-b0cc2be46b99)
 
 ```
 +--------------+--------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
@@ -93,21 +93,21 @@ TENDERLY: [`🟥 FAILURE (ERC20: transfer amount exceeds allowance)`](https://ww
 ```
 FILENAME: `MaxiOps/feeDistributions/2025-04-10/2025-04-10.json`
 MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
-COMMIT: `991c27617eb8eb361ae88ad857878198c77fc371`
+COMMIT: `db324ecfedfef1d13578feea31e1ddfeba91fa92`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (ERC20: transfer amount exceeds allowance)`](https://www.tdly.co/shared/simulation/3cd7d0ed-2827-421f-9c56-b9ce14075dbc)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/60834a29-19d1-4ba2-a2cb-960ffc468105)
 
 ```
-+---------+----------------------------------------------------------+-------+------------------------------------------------------------------------------+------------+----------+
-| fx_name | to                                                       | value | inputs                                                                       | bip_number | tx_index |
-+---------+----------------------------------------------------------+-------+------------------------------------------------------------------------------+------------+----------+
-| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC) | 0     | {                                                                            | N/A        |   N/A    |
-|         |                                                          |       |   "_spender": [                                                              |            |          |
-|         |                                                          |       |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault)"  |            |          |
-|         |                                                          |       |   ],                                                                         |            |          |
-|         |                                                          |       |   "_value": [                                                                |            |          |
-|         |                                                          |       |     "raw:86737574899, 18 decimals:8.6737574899E-8, 6 decimals: 86737.574899" |            |          |
-|         |                                                          |       |   ]                                                                          |            |          |
-|         |                                                          |       | }                                                                            |            |          |
-+---------+----------------------------------------------------------+-------+------------------------------------------------------------------------------+------------+----------+
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| fx_name | to                                                       | value | inputs                                                                      | bip_number | tx_index |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC) | 0     | {                                                                           | N/A        |   N/A    |
+|         |                                                          |       |   "_spender": [                                                             |            |          |
+|         |                                                          |       |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault)" |            |          |
+|         |                                                          |       |   ],                                                                        |            |          |
+|         |                                                          |       |   "_value": [                                                               |            |          |
+|         |                                                          |       |     "raw:86737574900, 18 decimals:8.67375749E-8, 6 decimals: 86737.5749"    |            |          |
+|         |                                                          |       |   ]                                                                         |            |          |
+|         |                                                          |       | }                                                                           |            |          |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
 ```
