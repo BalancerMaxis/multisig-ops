@@ -98,7 +98,7 @@ CSV file: `{os.path.relpath(csv_file, project_root)}`
 
 ### Snapshot Votes Check
 - All gauge addresses have corresponding snapshot choices: {"✅" if snapshot_label_check else "❌"}
-{f"- Missing labels for {len(missing_labels)} gauge(s):\n" if not snapshot_label_check else ""}
+{f"- Missing labels for {len(missing_labels)} gauge(s):{chr(10)}" if not snapshot_label_check else ""}
 {missing_labels[["Chain", "Label", "Gauge Address"]].to_markdown(index=False) if not snapshot_label_check else ""}
 
 {vote_prep}
