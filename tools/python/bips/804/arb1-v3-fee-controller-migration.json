@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1744359424775,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xdDea349828096DcdC0Cc5B7Db5F924f146AadD90",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address[]", "name": "pools", "type": "address[]" }
+        ],
+        "name": "migratePools",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pools": "[\"0xb407e25f958873bff5ba82ae2fe148733f1abce3\",\"0xa0e5e7728e026bde02810d255a6b94a9aa47b5f9\",\"0x9c5f17d96ca66748b459788148b7357220f2d100\",\"0x10f9e54aeea2fefa124238087dcfd919ba32f14d\",\"0xc2b0d1a1b4cdda10185859b5a5c543024c2df869\",\"0x7f98f42f9550f92dee91344d6b5ab11a9fec2b4e\",\"0x2ece6781bace5e37386adef7a3d45d0bb05f8fce\",\"0x19b001e6bc2d89154c18e2216eec5c8c6047b6d8\",\"0xc072880e1bc0bcddc99db882c7f3e7a839281cf4\",\"0x2d39c2ddf0ae652071d0550718cc7aacaf647d39\",\"0xc09a98b0138d8cfceff0e4ef672e8bd30ec6eda9\",\"0xb2771c669ffe1f4fc64d1dfc98fd9492a745ede4\",\"0x616f69e3bc6163d7aabb942421e4b41c5e8fcd1a\",\"0x4b17f664f1523894a63733cd9a48ec419de8497d\",\"0xc0ef13a538e180151eb783a9e44fe0ae53d1bb08\",\"0x492069d63b1b49cc01a080f77bad8177cd712d71\",\"0x7abe8caa137cdb2490a9fa9f8be70cfbb0ff8652\",\"0x98bcff7db14828520edb7f18ddd8de013bc82ded\",\"0x02594ffe2961a875bbd61e6a58fd3c6eeeb6b407\",\"0x765dbbee9ce5d58ba0b1820eccc8f7dedd8111b1\",\"0xd01ef93952e8d88a676c5b702af041aabeefa21c\",\"0xb5d99a46684668b4efcc216b9bf25f13a9d707cf\",\"0xd305fb29554c42edb9f7d1e7cda1dd4f6e01a5b1\",\"0xfc94926e08cdf756adcf77347e3271730b0fa421\",\"0xb1b8b406eeebbb636fdbb20e6732c117d828363c\",\"0x455548808f1e7e5dc9df52554725cb04f2311f5c\",\"0x4f073d894d8d3f43810ff1662d1792d9e32fe2ec\",\"0xa525b0a4b1aa06b2a7574f8f3fa2297623ea4ba5\"]"
+      }
+    }
+  ]
+}
