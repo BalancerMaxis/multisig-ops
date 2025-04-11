@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W16/BIP-813.json`
 MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
-COMMIT: `06994d57a042c9fe585e74d4203d62353fdeecb6`
+COMMIT: `b352fd636b79555138a601c50c4d1432faf4721c`
 CHAIN(S): `avalanche`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ffbebde9-2c46-4295-81c7-893909828d7e)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d6ddd7bf-96c9-4de6-ae1e-e03675cd7790)
 
 ```
 +-----------------------+-----------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
@@ -48,6 +48,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ffbebde9-2c46-4
 |                       |                                                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deprecateBalancerContract(address)                              | 0x9c10feee782ad68e50a5b38c7039ff1db451e3b4716b5ddb129dbe16a3a5160b |         |          |
 |                       |                                                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deregisterBalancerContract(string)                              | 0x0588e41c5ea1533b0529d4aefe4ed6cd63978d189bd019f4fea8920e3e26585c |         |          |
 |                       |                                                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/registerBalancerContract(uint8,string,address)                  | 0x1d3360e6bb7eaff128cde9cb0a39ca0d3c7a768c38522462573091a7d5016043 |         |          |
+|                       |                                                     |                                            | 20241204-v3-vault/VaultAdmin/setProtocolFeeController(address)                                                         | 0x2832f8d19df98187a279b09b8ed9735908c46640d892c836999ea12b31be0be3 |         |          |
 | Authorizer/grantRoles | EOA/keepers/v3_fee_bot                              | 0x74E283B985EA76c55C8B48d6bD1067a418188424 | 20250228-v3-protocol-fee-sweeper/ProtocolFeeSweeper/sweepProtocolFeesForToken(address,address,uint256,uint256,address) | 0x0662e600b14348fbfb1e89c264bcfacfb108afc48616dfa079476b69de4252fa | BIP-813 |    2     |
 | Authorizer/grantRoles | 20250228-v3-protocol-fee-sweeper/ProtocolFeeSweeper | 0x5B42eC6D40f7B7965BE5308c70e2603c0281C1E9 | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)     | 0xd92d29a05f2748c0b17d7df988dd0a9d2d957f8651a7209ff5f6e8901b60b53f | BIP-813 |    3     |
 |                       |                                                     |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)                          | 0xf830de585800a430465649def91ee4e68e52ef19d8734b6836b9a2237853fc07 |         |          |
