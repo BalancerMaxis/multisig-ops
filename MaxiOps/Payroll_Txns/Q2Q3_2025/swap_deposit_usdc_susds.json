@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1743163280274,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x166f54F44F271407f24AA1BE415a730035637325",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "spender", "type": "address", "internalType": "address" },
+          { "name": "value", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xd0A61F2963622e992e6534bde4D52fd0a89F39E0",
+        "value": "330000000000"
+      }
+    },
+    {
+      "to": "0xd0A61F2963622e992e6534bde4D52fd0a89F39E0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "receiver", "type": "address" },
+          { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "minAmountOut",
+            "type": "uint256"
+          }
+        ],
+        "name": "swapAndDeposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "receiver": "0x166f54F44F271407f24AA1BE415a730035637325",
+        "amountIn": "330000000000",
+        "minAmountOut": "330000000000000000000000"
+      }
+    }
+  ]
+}

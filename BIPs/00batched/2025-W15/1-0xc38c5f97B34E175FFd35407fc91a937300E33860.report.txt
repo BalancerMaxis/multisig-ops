@@ -1,0 +1,42 @@
+FILENAME: `BIPs/00batched/2025-W15/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `6b5785bf0d6f48519726e895bd5c4c0da5b49e23`
+CHAIN(S): `mainnet, base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/95ec42b2-1024-4624-bb63-b9377af0aa68)
+
+| Gauge Validator (0x2A42644C1D3e1b4FE6d01Fdbc995Fc402694a49f) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xB1E8ec305b0b29097a117CaFC9721A553533E54C) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x1B7E33186C7e9C337508bB65EA9dc498aB14fcAE) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+```
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info         | gauge_address_and_info                           | tokens                                                | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0xf40A27C779C74596E063906B2741fa37A36c0957               | Surge sUSDX USDX aUSDT  | root: 0x2A42644C1D3e1b4FE6d01Fdbc995Fc402694a49f | 0x7788A3538C5fc7F9c7C8A74EAC4c898fC8d87d92: sUSDX     | 0xA4c27E4Aa764312fD958345Ed683c6eeC4581A10 |      safe      | BIP-807 |    0     |
+|                       | pool_address: 0xf40A27C779C74596E063906B2741fa37A36c0957 | fee (%): 0.02           | side: None                                       | 0x7Bc3485026Ac48b6cf9BaF0A377477Fff5703Af8: waEthUSDT | 0xEdf63cce4bA70cbE74064b7687882E71ebB0e988 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000          | style: mainnet                                   | 0xf3527ef8dE265eAa3716FB312c12847bFBA66Cef: USDX      | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          |                         | cap: 100.0%                                      |                                                       |                                            |                |         |          |
+|                       |                                                          |                         | preferential: True                               |                                                       |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x9Ab907FB3e098103ca048Ad26E501Bf7B3dfA3EB               | Surge Aave EURC-GHO     | root: 0xB1E8ec305b0b29097a117CaFC9721A553533E54C | 0x729F75Aff28c726e32403e80cef2aFb518CFbfa7: waBasEURC | 0xdBB41Da7dE45729857A09baaF98D1e9b0b1A8740 |      safe      | BIP-808 |    1     |
+|                       | pool_address: 0x9Ab907FB3e098103ca048Ad26E501Bf7B3dfA3EB | fee (%): 0.01           | side: 0xD8376B72E609A410999398b70218F70ae9B310F5 | 0x88b1Cd4b430D95b406E382C3cDBaE54697a0286E: waBasGHO  | 0xf8CDA16566a06f3C848258DE4Ec5fc3401cbB214 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000          | style: L0 sidechain                              |                                                       |                                            |                |         |          |
+|                       |                                                          |                         | cap: 100.0%                                      |                                                       |                                            |                |         |          |
+|                       |                                                          |                         | preferential: True                               |                                                       |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x5b14ce8DE84448e9A6F6aF652af318472aA4FCAF               | Aave GHO-USR            | root: 0x1B7E33186C7e9C337508bB65EA9dc498aB14fcAE | 0x35E5dB674D8e93a03d814FA0ADa70731efe8a4b9: USR       | 0x0000000000000000000000000000000000000000 |       --       | BIP-808 |    2     |
+|                       | pool_address: 0x5b14ce8DE84448e9A6F6aF652af318472aA4FCAF | fee (%): 0.02           | side: 0xec16621C9bD547d64B93c17B51838Ff173bB6DD1 | 0x88b1Cd4b430D95b406E382C3cDBaE54697a0286E: waBasGHO  | 0xf8CDA16566a06f3C848258DE4Ec5fc3401cbB214 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000          | style: L0 sidechain                              |                                                       |                                            |                |         |          |
+|                       |                                                          |                         | cap: 100.0%                                      |                                                       |                                            |                |         |          |
+|                       |                                                          |                         | preferential: True                               |                                                       |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+-------------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```

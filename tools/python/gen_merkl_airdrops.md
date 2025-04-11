@@ -35,3 +35,7 @@ Create one final payload JSON that has the `multicall` transaction from step 1, 
 ### Rename Final Payload and Upload
 
 Rename final payload to `epoch_<#>-<protocol>-<chain_id>.json` and place in `MaxiOps/merkl/payloads/`.
+
+## Merit
+
+See instructions in the `gen_merkl_airdrops.py` comments in order to include a Merit cycle when running the script. Then impersonate the omni msig and capture the claim calldata on https://app.merkl.xyz/users/0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e. Convert the airdrop into a payload via the usual https://legacy.merkl.xyz/create/drop and append the relevant transactions to the claim payload.

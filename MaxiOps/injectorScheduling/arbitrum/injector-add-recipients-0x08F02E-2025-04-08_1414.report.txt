@@ -1,0 +1,41 @@
+FILENAME: `MaxiOps/injectorScheduling/arbitrum/injector-add-recipients-0x08F02E-2025-04-08_1414.json`
+MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `ae7720377721e8d2d73427697676b9b9c2833901`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4d25b3ba-94de-4620-818d-5a599232ad45)
+
+```
++---------------+----------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                                                           | value | inputs                                                                                      | bip_number | tx_index |
++---------------+----------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------+------------+----------+
+| addRecipients | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8 (maxiKeepers/injectorV2/USDC-ARB-Grant-omnichain) | 0     | {                                                                                           | N/A        |   N/A    |
+|               |                                                                                              |       |   "recipients": [                                                                           |            |          |
+|               |                                                                                              |       |     "0xB4259ce2724Fe85182fEE38AC78b794291FaD997 (gauges/Surge eBTC-Aave WBTC-gauge-b425)",  |            |          |
+|               |                                                                                              |       |     "0x946FB8Fcfa21DbDD2152dAC1D39bD30c10679d76 (gauges/Gyro eBTC-Aave USDCn-gauge-946f)"   |            |          |
+|               |                                                                                              |       |   ],                                                                                        |            |          |
+|               |                                                                                              |       |   "amountPerPeriod": [                                                                      |            |          |
+|               |                                                                                              |       |     "raw:1850000000, 18 decimals:1.85E-9, 6 decimals: 1850"                                 |            |          |
+|               |                                                                                              |       |   ],                                                                                        |            |          |
+|               |                                                                                              |       |   "maxPeriods": [                                                                           |            |          |
+|               |                                                                                              |       |     "2"                                                                                     |            |          |
+|               |                                                                                              |       |   ],                                                                                        |            |          |
+|               |                                                                                              |       |   "doNotStartBeforeTimestamp": [                                                            |            |          |
+|               |                                                                                              |       |     "0"                                                                                     |            |          |
+|               |                                                                                              |       |   ]                                                                                         |            |          |
+|               |                                                                                              |       | }                                                                                           |            |          |
+| addRecipients | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8 (maxiKeepers/injectorV2/USDC-ARB-Grant-omnichain) | 0     | {                                                                                           | N/A        |   N/A    |
+|               |                                                                                              |       |   "recipients": [                                                                           |            |          |
+|               |                                                                                              |       |     "0xf3E7b852390478FAa6D44319bDE4782bf35BF2bD (gauges/Surge orbETH-Aave wETH-gauge-f3e7)" |            |          |
+|               |                                                                                              |       |   ],                                                                                        |            |          |
+|               |                                                                                              |       |   "amountPerPeriod": [                                                                      |            |          |
+|               |                                                                                              |       |     "raw:1850000000, 18 decimals:1.85E-9, 6 decimals: 1850"                                 |            |          |
+|               |                                                                                              |       |   ],                                                                                        |            |          |
+|               |                                                                                              |       |   "maxPeriods": [                                                                           |            |          |
+|               |                                                                                              |       |     "1"                                                                                     |            |          |
+|               |                                                                                              |       |   ],                                                                                        |            |          |
+|               |                                                                                              |       |   "doNotStartBeforeTimestamp": [                                                            |            |          |
+|               |                                                                                              |       |     "0"                                                                                     |            |          |
+|               |                                                                                              |       |   ]                                                                                         |            |          |
+|               |                                                                                              |       | }                                                                                           |            |          |
++---------------+----------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------------------+------------+----------+
+```
