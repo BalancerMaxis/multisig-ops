@@ -7,9 +7,8 @@ CHAINS = ["arbitrum", "base", "gnosis", "mainnet", "sepolia"]
 for chain in CHAINS:
     print(chain)
     pools = Subgraph(chain).fetch_graphql_data(
-        "apiv3", "get_pools", {"chain": chain.upper()}
-    )["poolGetPools"]
+        "pools-v3", "get_ordered_pools", {"chain": chain.upper()}
+    )["pools"]
 
     for pool in pools:
-        if pool["protocolVersion"] == 3:
-            print(pool["address"])
+        print(pool["address"])
