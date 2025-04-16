@@ -1,8 +1,8 @@
 FILENAME: `BIPs/00batched/2025-W16/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `16c7b896892312994a6bbc720b0c84403455ccb3`
-CHAIN(S): `mainnet, base, arbitrum`
-TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/1cb1dda6-c187-4bcb-9b6c-808fc93fea54)
+COMMIT: `fab93124de2bee1ce0e1ba037363d09c6a5995cc`
+CHAIN(S): `arbitrum, mainnet, base`
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/d4343bf6-44d9-4457-a397-28897a277d81)
 
 | Gauge Validator (0x088040aA3e8FDF780829c07f8Cc53fa8a8f07FA9) | Result |
 | :------------------------------------------------------------| :----: |
@@ -27,7 +27,7 @@ TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simul
 | Gauge Validator (0x0D3F5D4022279c536a53aaa6bb8c225A0226d168) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             | ✅ ✅  |
+| `validate_rate_providers_safety`                             |   --   |
 
 ```
 +-----------------------+----------------------------------------------------------+------------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
@@ -53,8 +53,8 @@ TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simul
 |                       |                                                          | a-factor: 500          | style: mainnet                                   |                                                        |                                            |                |         |          |
 |                       |                                                          |                        | cap: 100.0%                                      |                                                        |                                            |                |         |          |
 |                       |                                                          |                        | preferential: True                               |                                                        |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x424d19D482A891B2C5cb881D651fBC32B349cB3C               | Surge yUSD-Aave USDC   | root: 0x0D3F5D4022279c536a53aaa6bb8c225A0226d168 | 0x895e15020C3f52ddD4D8e9514eB83C39F53B1579: yUSD       | 0xD47c15CDD7c734db321F07CB9AB1f852aE9A0b83 |      safe      | BIP-809 |    4     |
-|                       | pool_address: 0x424d19D482A891B2C5cb881D651fBC32B349cB3C | fee (%): 0.05          | side: 0x7Ac2f85069470959f5960B6054479aD46dB4d818 | 0xC768c589647798a6EE01A91FdE98EF2ed046DBD6: waBasUSDC  | 0x0368b79b6A173a5aD589594E3227153D8cC7Cecc |      safe      |         |          |
+| GaugeAdderV4/addGauge | 0x424d19D482A891B2C5cb881D651fBC32B349cB3C               | Surge yUSD-Aave USDC   | root: 0x0D3F5D4022279c536a53aaa6bb8c225A0226d168 |                                                        |                                            |                | BIP-809 |    4     |
+|                       | pool_address: 0x424d19D482A891B2C5cb881D651fBC32B349cB3C | fee (%): 0.05          | side: 0x7Ac2f85069470959f5960B6054479aD46dB4d818 |                                                        |                                            |                |         |          |
 |                       |                                                          | a-factor: 500          | style: L0 sidechain                              |                                                        |                                            |                |         |          |
 |                       |                                                          |                        | cap: 100.0%                                      |                                                        |                                            |                |         |          |
 |                       |                                                          |                        | preferential: True                               |                                                        |                                            |                |         |          |
