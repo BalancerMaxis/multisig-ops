@@ -432,6 +432,7 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
         to_string = f"!!f{to_name}??"
 
     chain = chain.replace("-main", "") if chain else "mainnet"
+    chain = chain.replace("avax", "avalanche")
     preferential_target = sidechain_recipient if sidechain_recipient else gauge_address
     is_preferential = (
         BalPoolsGauges(chain).get_preferential_gauge(pool_id) == preferential_target
