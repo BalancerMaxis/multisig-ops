@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/v3_fees/unstuck_tokens_gnosis.json`
 MULTISIG: `multisigs/maxi_omni (gnosis:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `39d65cc555ec42f8772d867e23e2f48dc5b53c09`
+COMMIT: `f1e7e54073352814aa4f0793ba0ffe14fdc820f8`
 CHAIN(S): `gnosis`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/eb8ddfb0-ac63-4688-a162-3aee8f41103e)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b34fcf90-17e8-4c9b-90b5-07f373dbbf5a)
 
 ```
 +-------------+-----------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------+------------+----------+
@@ -10,7 +10,15 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/eb8ddfb0-ac63-4
 +-------------+-----------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------+------------+----------+
 | cancelOrder | 0xAE563E3f8219521950555F5962419C8919758Ea2 (20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
 |             |                                                                                               |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                               |       |     "0xaf204776c7245bf4147c2612bf6e5972ee483701 (tokens/sDAI)"         |            |          |
+|             |                                                                                               |       |     "0x773cda0cade2a3d86e6d4e30699d40bb95174ff2 (N/A)"                 |            |          |
+|             |                                                                                               |       |   ],                                                                   |            |          |
+|             |                                                                                               |       |   "receiver": [                                                        |            |          |
+|             |                                                                                               |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
+|             |                                                                                               |       |   ]                                                                    |            |          |
+|             |                                                                                               |       | }                                                                      |            |          |
+| cancelOrder | 0xAE563E3f8219521950555F5962419C8919758Ea2 (20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
+|             |                                                                                               |       |   "tokenIn": [                                                         |            |          |
+|             |                                                                                               |       |     "0x7c16f0185a26db0ae7a9377f23bc18ea7ce5d644 (N/A)"                 |            |          |
 |             |                                                                                               |       |   ],                                                                   |            |          |
 |             |                                                                                               |       |   "receiver": [                                                        |            |          |
 |             |                                                                                               |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
