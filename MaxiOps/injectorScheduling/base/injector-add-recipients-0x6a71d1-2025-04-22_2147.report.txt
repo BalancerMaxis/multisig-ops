@@ -1,0 +1,41 @@
+FILENAME: `MaxiOps/injectorScheduling/base/injector-add-recipients-0x6a71d1-2025-04-22_2147.json`
+MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `eb4c7a622b89c651331c67033dbb72eea6d667a7`
+CHAIN(S): `base`
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/4ab6f877-40fd-4ee8-9641-12ce473b9552)
+
+```
++---------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                     | value | inputs                                                                                     | bip_number | tx_index |
++---------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                          | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                          |            |          |
+|               |                                                        |       |     "0xec16621c9bd547d64b93c17b51838ff173bb6dd1 (gauges/Aave GHO-USR-gauge-ec16)"          |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                                     |            |          |
+|               |                                                        |       |     "raw:1400000000000000000000, 18 decimals:1400, 6 decimals: 1400000000000000"           |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                          |            |          |
+|               |                                                        |       |     "1"                                                                                    |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                           |            |          |
+|               |                                                        |       |     "0"                                                                                    |            |          |
+|               |                                                        |       |   ]                                                                                        |            |          |
+|               |                                                        |       | }                                                                                          |            |          |
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                          | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                          |            |          |
+|               |                                                        |       |     "0xd8376b72e609a410999398b70218f70ae9b310f5 (gauges/Surge Aave EURC-GHO-gauge-d837)",  |            |          |
+|               |                                                        |       |     "0x80db733644C60E891b3C7a96141430e4bAafF028 (gauges/50WETH-50USDC-MEVTAXD-gauge-80db)" |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                                     |            |          |
+|               |                                                        |       |     "raw:700000000000000000000, 18 decimals:700, 6 decimals: 700000000000000"              |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                          |            |          |
+|               |                                                        |       |     "1"                                                                                    |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                           |            |          |
+|               |                                                        |       |     "0"                                                                                    |            |          |
+|               |                                                        |       |   ]                                                                                        |            |          |
+|               |                                                        |       | }                                                                                          |            |          |
++---------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+```
