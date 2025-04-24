@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/arbitrum/add-rewards-0x046a1a-2025-04-24_1108.json`
+MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `ef1fd45e0e0d8a33a1d2aba0b883bab58c695f35`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f7cc428a-36a4-42e0-9994-9146aca4de5c)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+------------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                                                | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+------------------------------------------------------------------------------+-----+----------+
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x046a1a415b5fe0bcdb2758d8fd261cb09e8b6f10 (None) | add_reward(address,address) | 0xf7d4e7273E5015C96728A6b02f31C505eE184603: osETH                            | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0x2685C0e39EEAAd383fB71ec3F493991d532A87ae: stakewise/SWISE_Distributor_Safe |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x046a1a415b5fe0bcdb2758d8fd261cb09e8b6f10 (None) | add_reward(address,address) | 0x4026AFfABd9032bCC87Fa05C02F088905f3dC09B: SWISE                            | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0x2685C0e39EEAAd383fB71ec3F493991d532A87ae: stakewise/SWISE_Distributor_Safe |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+------------------------------------------------------------------------------+-----+----------+
+```
