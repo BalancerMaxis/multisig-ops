@@ -3,14 +3,20 @@ import os
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from pprint import pprint
+from time import sleep
 
 from bal_addresses import AddrBook, to_checksum_address
+from bal_addresses.addresses import ZERO_ADDRESS
 from bal_tools import Subgraph
 from web3 import Web3
 from web3.exceptions import ContractLogicError
 
 
 CONFIG = json.load(open("action-scripts/v3_fee_config.json"))
+ORDER_COOLDOWN = 60 * 5  # 20 minutes
+SLIPPAGE = Decimal("0.005")  # 50bips slippage
+NULL = None
+OMNI_MSIG = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
 
 
 def get_prices(chain: str):
@@ -24,6 +30,41 @@ def get_prices(chain: str):
     )
 
 
+def _payload_template(chain_id, safe_address):
+    return {
+        "chainId": chain_id,
+        "meta": {
+            "name": "Transactions Batch",
+            "createdFromSafeAddress": safe_address,
+        },
+        "transactions": [],
+    }
+
+
+def _tx_cancelOrder(burner_address, token_address):
+    return {
+        "to": burner_address,
+        "value": "0",
+        "data": NULL,
+        "contractMethod": {
+            "inputs": [
+                {
+                    "internalType": "contract IERC20",
+                    "name": "tokenIn",
+                    "type": "address",
+                },
+                {"internalType": "address", "name": "receiver", "type": "address"},
+            ],
+            "name": "cancelOrder",
+            "payable": False,
+        },
+        "contractInputsValues": {
+            "tokenIn": token_address,
+            "receiver": OMNI_MSIG,
+        },
+    }
+
+
 def get_pools(chain: str, broadcast: bool = False):
     drpc = Web3(
         Web3.HTTPProvider(
@@ -32,7 +73,13 @@ def get_pools(chain: str, broadcast: bool = False):
     )
     bot = drpc.eth.account.from_key(os.getenv("PRIVATE_KEY"))
     sweeper = AddrBook(chain).search_unique("20250228-v3-protocol-fee-sweeper").address
+    ProtocolFeeSweeper = drpc.eth.contract(
+        address=sweeper,
+        abi=json.load(open("action-scripts/abis/ProtocolFeeSweeper.json")),
+    )
+    target_token = ProtocolFeeSweeper.functions.getTargetToken().call().lower()
     burner = AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
+    payload_unstuck_tokens = _payload_template(str(drpc.eth.chain_id), OMNI_MSIG)
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
     max_gas_price = int(CONFIG[chain]["max_gas_price"])
     max_priority_fee = int(CONFIG[chain]["max_priority_fee"])
@@ -50,11 +97,35 @@ def get_pools(chain: str, broadcast: bool = False):
         )
         if fees["pool"]:
             for token in fees["pool"]["tokens"]:
+                erc20 = drpc.eth.contract(
+                    address=to_checksum_address(token["address"]),
+                    abi=json.load(open("action-scripts/abis/ERC20.json")),
+                )
+                balance = erc20.functions.balanceOf(burner).call()
+                if balance > 0:
+                    for tx in payload_unstuck_tokens["transactions"]:
+                        if (
+                            tx["contractInputsValues"]["tokenIn"].lower()
+                            == token["address"].lower()
+                        ):
+                            break
+                    else:
+                        print(f"adding {token['address']} to unstuck payload")
+                        payload_unstuck_tokens["transactions"].append(
+                            _tx_cancelOrder(
+                                burner,
+                                to_checksum_address(token["address"]),
+                            )
+                        )
                 fees_vault = Decimal(token["vaultProtocolSwapFeeBalance"]) + Decimal(
                     token["vaultProtocolYieldFeeBalance"]
                 )
                 fees_controller = Decimal(token["controllerProtocolFeeBalance"])
                 if fees_vault > 0 or fees_controller > 0:
+                    # TODO: confirm onchain
+                    # VaultExplorer.getAggregateSwapFeeAmount(pool, token)
+                    # VaultExplorer.getAggregateYieldFeeAmount(pool, token)
+                    # assert fees_controller == fees_controller_onchain
                     try:
                         potential = (fees_vault + fees_controller) * prices[
                             token["address"]
@@ -80,12 +151,6 @@ def get_pools(chain: str, broadcast: bool = False):
                             datetime.now(timezone.utc) + timedelta(minutes=90)
                         )
                     )
-                    ProtocolFeeSweeper = drpc.eth.contract(
-                        address=sweeper,
-                        abi=json.load(
-                            open("action-scripts/abis/ProtocolFeeSweeper.json")
-                        ),
-                    )
                     if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
                         burner
                     ).call():
@@ -106,13 +171,24 @@ def get_pools(chain: str, broadcast: bool = False):
                                 )
                         except:
                             max_priority_fee_optimal = max_priority_fee
+                        print(
+                            f"ProtocolFeeSweeper({sweeper}).sweepProtocolFeesForToken({to_checksum_address(pool['address'])},{to_checksum_address(token['address'])},{int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))},{deadline},{burner})"
+                        )
                         unsigned_tx = (
                             ProtocolFeeSweeper.functions.sweepProtocolFeesForToken(
                                 to_checksum_address(pool["address"]),
                                 to_checksum_address(token["address"]),
-                                int(threshold * Decimal("1e6")),
+                                int(
+                                    Decimal(potential)
+                                    * (Decimal(1) - SLIPPAGE)
+                                    * Decimal("1e6")
+                                ),
                                 deadline,
-                                burner,
+                                (
+                                    ZERO_ADDRESS
+                                    if token["address"] == target_token
+                                    else burner
+                                ),
                             ).build_transaction(
                                 {
                                     "from": bot.address,
@@ -132,7 +208,7 @@ def get_pools(chain: str, broadcast: bool = False):
                         if broadcast:
                             try:
                                 tx_hash = drpc.eth.send_raw_transaction(
-                                    signed_tx.raw_transaction
+                                    signed_tx.rawTransaction
                                 )
                                 drpc.eth.wait_for_transaction_receipt(tx_hash)
                             except Exception as e:
@@ -140,21 +216,39 @@ def get_pools(chain: str, broadcast: bool = False):
                                 continue
                         print(
                             "tx hash:",
-                            f"0x{tx_hash.hex()}\n" if broadcast else "<dry run>\n",
+                            tx_hash.hex() if broadcast else "<dry run>",
+                            "\n",
                         )
-                    except ContractLogicError as e:
-                        if e.data.startswith("0xd0c1b3cf"):
-                            # OrderHasUnexpectedStatus
-                            print("!!! token stuck in burner; no new order possible\n")
+                        print("waiting for cooldown...")
+                        sleep(ORDER_COOLDOWN)
+                    except (ContractLogicError, ValueError) as e:
+                        if "data" in dir(e):
+                            if "0xd0c1b3cf" in e.data:
+                                # OrderHasUnexpectedStatus
+                                print(
+                                    "!!! token stuck in burner; no new order possible\n"
+                                )
+                        if "message" in dir(e):
+                            if "0xd0c1b3cf" in e.message:
+                                # OrderHasUnexpectedStatus
+                                print(
+                                    "!!! token stuck in burner; no new order possible\n"
+                                )
+    if len(payload_unstuck_tokens["transactions"]) > 0:
+        json.dump(
+            payload_unstuck_tokens,
+            open(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json", "w"),
+            indent=2,
+        )
 
 
 if __name__ == "__main__":
     report = {}
     for chain in CONFIG:
-        report[chain] = {"n_pools": 0, "total_potential": 0}
+        report[chain] = {"n_pools": 0, "total_potential": 0, "usdc_collectable": []}
         s = Subgraph(chain)
         prices = get_prices(chain)
-        get_pools(chain)
+        get_pools(chain, broadcast=False)
     pprint(report)
     print(
         "total total_potential:",
