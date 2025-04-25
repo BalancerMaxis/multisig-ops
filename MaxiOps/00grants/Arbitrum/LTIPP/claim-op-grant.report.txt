@@ -1,0 +1,24 @@
+FILENAME: `MaxiOps/00grants/Arbitrum/LTIPP/claim-op-grant.json`
+MULTISIG: `multisigs/maxi_omni (optimism:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `f18b59f4e2d38f0725891350ae305ee4e56d6e9f`
+CHAIN(S): `optimism`
+TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `claim`, positional arguments with type(s) `str,(str,str),int` and keyword arguments with type(s) `{}`.\nFound 1 function(s) with the name `claim`: ['claim(bytes16,bytes32[],uint256)']\nFunction invocation failed due to no matching argument types."))`
+
+```
++---------+--------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+| fx_name | to                                                     | value | inputs                                                                                 | bip_number | tx_index |
++---------+--------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+| claim   | 0x8A2725a6f04816A5274dDD9FEaDd3bd0C253C1A6 (Not Found) | 0     | {                                                                                      | N/A        |   N/A    |
+|         |                                                        |       |   "campaignId": [                                                                      |            |          |
+|         |                                                        |       |     "0x5c2040d697834d318acf3da0df9dfaad"                                               |            |          |
+|         |                                                        |       |   ],                                                                                   |            |          |
+|         |                                                        |       |   "proof": [                                                                           |            |          |
+|         |                                                        |       |     "\"0xd55c2a34ea2936b7fafc96e12ef9c8f5a40bf143de415a4ab3b18848ec360059\"",          |            |          |
+|         |                                                        |       |     "\"0x0ac26e69087b2f5fd62a4c46591d5707c8254dc565716480bcf633afd20d117b\""           |            |          |
+|         |                                                        |       |   ],                                                                                   |            |          |
+|         |                                                        |       |   "claimAmount": [                                                                     |            |          |
+|         |                                                        |       |     "raw:100000000000000000000000, 18 decimals:100000, 6 decimals: 100000000000000000" |            |          |
+|         |                                                        |       |   ]                                                                                    |            |          |
+|         |                                                        |       | }                                                                                      |            |          |
++---------+--------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+```
