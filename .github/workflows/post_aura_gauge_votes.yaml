@@ -55,7 +55,7 @@ jobs:
 
       - name: vlAURA Voting
         env:
-          ETHNODEURL: ${{ secrets.ETHNODEURL }}
+          DRPC_KEY: ${{ secrets.DRPC_KEY }}
           KEEPER_PRIVATE_WORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
         run: |
           pwd
