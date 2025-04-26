@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - "MaxiOps/vlaura_voting/**/input/*.csv"
+  workflow_dispatch:
+    inputs:
+      week-string:
+        description: 'Week string in YYYY-W## format'
+        required: true
+        type: string
 
 jobs:
   post_aura_gauge_votes:
@@ -26,21 +32,26 @@ jobs:
       - name: Determine week-string
         id: week-string
         run: |
-          # Get the path of the changed CSV file
-          CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '/input/.*\.csv$' | head -n 1)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            WEEK_STRING="${{ github.event.inputs.week-string }}"
+          else
+            # Get the path of the changed CSV file
+            CSV_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '/input/.*\.csv$' | head -n 1)
 
-          if [ -z "$CSV_PATH" ]; then
-            echo "No CSV file found in recent changes."
-            exit 1
+            if [ -z "$CSV_PATH" ]; then
+              echo "No CSV file found in recent changes."
+              exit 1
+            fi
+
+            echo "CSV Path: $CSV_PATH"
+
+            YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
+            WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
+            WEEK_STRING="${YEAR}-${WEEK}"
           fi
 
-          echo "CSV Path: $CSV_PATH"
-
-          YEAR=$(echo $CSV_PATH | cut -d'/' -f3)
-          WEEK=$(echo $CSV_PATH | cut -d'/' -f4)
-          WEEK_STRING="${YEAR}-${WEEK}"
-
           echo "week-string=$WEEK_STRING" >> $GITHUB_OUTPUT
+          echo "Using week-string: $WEEK_STRING"
 
       - name: vlAURA Voting
         env:
