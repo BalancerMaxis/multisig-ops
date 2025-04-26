@@ -16,7 +16,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 import requests
 from bal_addresses import AddrBook
 from bal_addresses.utils import to_checksum_address
-from web3 import Web3
+from bal_tools import Web3Rpc
 from eth_account._utils.structured_data.hashing import hash_message, hash_domain
 from eth_utils import keccak
 import pandas as pd
@@ -33,7 +33,7 @@ from helpers.path_utils import find_project_root
 
 load_dotenv()
 
-ETHNODEURL = os.getenv("ETHNODEURL")
+DRPC_KEY = os.getenv("DRPC_KEY")
 PRIVATE_WORDS = os.getenv("KEEPER_PRIVATE_WORDS")
 
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
@@ -54,7 +54,8 @@ class Operation(IntEnum):
 
 
 def post_safe_tx(safe_address, to_address, value, data, operation):
-    ethereum_client = EthereumClient(ETHNODEURL)
+    api_url = Web3Rpc("mainnet", DRPC_KEY).w3.provider.endpoint_uri
+    ethereum_client = EthereumClient(api_url)
     safe = Safe(safe_address, ethereum_client)
     safe_service = TransactionServiceApi(1, ethereum_client, SAFE_API_URL)
 
