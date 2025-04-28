@@ -1,0 +1,28 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/Mainnet/configure-wusdn-gho-surge-2thres-5max.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `6ae68ec8dc14b25c0e1b7bbcb611b17978843cbb`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/52e03ddd-842a-487f-8ea9-7f5dc39125dc)
+
+```
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+| fx_name                     | to                                                                                            | value | inputs                                                                               | bip_number | tx_index |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+| setMaxSurgeFeePercentage    | 0xBDbADc891BB95DEE80eBC491699228EF0f7D6fF1 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                                                    | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                                                          |            |          |
+|                             |                                                                                               |       |     "0x9ed5175aecb6653c1bdaa19793c16fd74fbeeb37 (pools/Surge tETH-Lido wstETH-9ed5)" |            |          |
+|                             |                                                                                               |       |   ],                                                                                 |            |          |
+|                             |                                                                                               |       |   "newMaxSurgeSurgeFeePercentage": [                                                 |            |          |
+|                             |                                                                                               |       |     "50000000000000000"                                                              |            |          |
+|                             |                                                                                               |       |   ]                                                                                  |            |          |
+|                             |                                                                                               |       | }                                                                                    |            |          |
+| setSurgeThresholdPercentage | 0xBDbADc891BB95DEE80eBC491699228EF0f7D6fF1 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                                                    | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                                                          |            |          |
+|                             |                                                                                               |       |     "0x9ed5175aecb6653c1bdaa19793c16fd74fbeeb37 (pools/Surge tETH-Lido wstETH-9ed5)" |            |          |
+|                             |                                                                                               |       |   ],                                                                                 |            |          |
+|                             |                                                                                               |       |   "newSurgeThresholdPercentage": [                                                   |            |          |
+|                             |                                                                                               |       |     "20000000000000000"                                                              |            |          |
+|                             |                                                                                               |       |   ]                                                                                  |            |          |
+|                             |                                                                                               |       | }                                                                                    |            |          |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+```
