@@ -328,7 +328,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         if "[]" in input["type"]:
                             if type(tx["contractInputsValues"][input["name"]]) != list:
                                 tx["contractInputsValues"][input["name"]] = [
-                                    str(x).strip()
+                                    str(x).strip().strip('"')
                                     for x in tx["contractInputsValues"][input["name"]]
                                     .strip("[]")
                                     .split(",")
@@ -339,7 +339,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             )
                 tx["data"] = contract.encodeABI(
                     fn_name=tx["contractMethod"]["name"],
-                    args=list(tx["contractInputsValues"].values()),
+                    kwargs=tx["contractInputsValues"],
                 )
             else:
                 tx["data"] = contract.encodeABI(
