@@ -317,9 +317,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                     )
                                 else:
                                     casted_tuple.append(str(tuple_item.strip('"')))
-                                tx["contractInputsValues"][input["name"]] = [
-                                    tuple(casted_tuple)
-                                ]
+                                tx["contractInputsValues"][input["name"]] = tuple(
+                                    casted_tuple
+                                )
                             except IndexError:
                                 # payload contains nested tuples; no support yet
                                 continue
