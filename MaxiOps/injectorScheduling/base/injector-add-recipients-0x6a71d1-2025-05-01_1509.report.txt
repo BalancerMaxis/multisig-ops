@@ -1,0 +1,41 @@
+FILENAME: `MaxiOps/injectorScheduling/base/injector-add-recipients-0x6a71d1-2025-05-01_1509.json`
+MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `976a4bfc6bb082466f3b6a9736f4f1d7f8b1ff10`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/9b977d33-f6c9-47f4-ace5-0b469a814c07)
+
+```
++---------------+-------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                                                  | value | inputs                                                                                     | bip_number | tx_index |
++---------------+-------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (maxiKeepers/injectorV2/axlOP-omnichain) | 0     | {                                                                                          | N/A        |   N/A    |
+|               |                                                                                     |       |   "recipients": [                                                                          |            |          |
+|               |                                                                                     |       |     "0xec16621C9bD547d64B93c17B51838Ff173bB6DD1 (gauges/Aave GHO-USR-gauge-ec16)"          |            |          |
+|               |                                                                                     |       |   ],                                                                                       |            |          |
+|               |                                                                                     |       |   "amountPerPeriod": [                                                                     |            |          |
+|               |                                                                                     |       |     "raw:1400000000000000000000, 18 decimals:1400, 6 decimals: 1400000000000000"           |            |          |
+|               |                                                                                     |       |   ],                                                                                       |            |          |
+|               |                                                                                     |       |   "maxPeriods": [                                                                          |            |          |
+|               |                                                                                     |       |     "1"                                                                                    |            |          |
+|               |                                                                                     |       |   ],                                                                                       |            |          |
+|               |                                                                                     |       |   "doNotStartBeforeTimestamp": [                                                           |            |          |
+|               |                                                                                     |       |     "0"                                                                                    |            |          |
+|               |                                                                                     |       |   ]                                                                                        |            |          |
+|               |                                                                                     |       | }                                                                                          |            |          |
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (maxiKeepers/injectorV2/axlOP-omnichain) | 0     | {                                                                                          | N/A        |   N/A    |
+|               |                                                                                     |       |   "recipients": [                                                                          |            |          |
+|               |                                                                                     |       |     "0xD8376B72E609A410999398b70218F70ae9B310F5 (gauges/Surge Aave EURC-GHO-gauge-d837)",  |            |          |
+|               |                                                                                     |       |     "0x80db733644C60E891b3C7a96141430e4bAafF028 (gauges/50WETH-50USDC-MEVTAXD-gauge-80db)" |            |          |
+|               |                                                                                     |       |   ],                                                                                       |            |          |
+|               |                                                                                     |       |   "amountPerPeriod": [                                                                     |            |          |
+|               |                                                                                     |       |     "raw:700000000000000000000, 18 decimals:700, 6 decimals: 700000000000000"              |            |          |
+|               |                                                                                     |       |   ],                                                                                       |            |          |
+|               |                                                                                     |       |   "maxPeriods": [                                                                          |            |          |
+|               |                                                                                     |       |     "1"                                                                                    |            |          |
+|               |                                                                                     |       |   ],                                                                                       |            |          |
+|               |                                                                                     |       |   "doNotStartBeforeTimestamp": [                                                           |            |          |
+|               |                                                                                     |       |     "0"                                                                                    |            |          |
+|               |                                                                                     |       |   ]                                                                                        |            |          |
+|               |                                                                                     |       | }                                                                                          |            |          |
++---------------+-------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+```
