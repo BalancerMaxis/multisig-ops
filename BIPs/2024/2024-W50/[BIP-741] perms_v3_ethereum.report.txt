@@ -1,8 +1,8 @@
-FILENAME: `BIPs/2024-W50/[BIP-741] perms_v3_ethereum.json`
+FILENAME: `BIPs/2024/2024-W50/[BIP-741] perms_v3_ethereum.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `55bb116955e3b0842256bd41974bb689e57eef92`
+COMMIT: `20c2e6aad1de0eb47aa4533bf01014cadb763929`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c248b9a2-8a1c-4c1a-a160-9d61b663d999)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/eef66718-cb0b-452e-a886-9e04f9240ffd)
 
 ```
 +-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
@@ -17,6 +17,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c248b9a2-8a1c-4
 |                       |                     |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address) | 0xf830de585800a430465649def91ee4e68e52ef19d8734b6836b9a2237853fc07 |         |          |
 |                       |                     |                                            | 20241205-v3-stable-pool/StablePool/startAmplificationParameterUpdate(uint256,uint256)         | 0xc1d77fef06a5acef26a30536474b98eb44840e5f17e86114c8aaa4274e206b3c |         |          |
 |                       |                     |                                            | 20241205-v3-stable-pool/StablePool/stopAmplificationParameterUpdate()                         | 0xeeed27c13054947e3283c26fca5c34c2e514ef8caa98f1c6a6778c06f1d247da |         |          |
+|                       |                     |                                            |                                                                                               | 0xb01db316b35cf20a130fad715a1dd1fd078958d7409909b6bf28ff322c99006d |         |          |
 | Authorizer/grantRoles | multisigs/emergency | 0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888 | 20241204-v3-vault/VaultAdmin/pauseVault()                                                     | 0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886 | BIP-741 |    1     |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVault()                                                   | 0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e |         |          |
 |                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pausePool(address)                                               | 0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272 |         |          |

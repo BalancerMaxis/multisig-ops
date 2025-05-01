@@ -1,0 +1,199 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1744628273383,
+  "meta": {
+    "name": "Create Merkl Campaign",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x23055618898e202386e6c13955a58D3C68200BFB",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "data", "type": "bytes[]", "internalType": "bytes[]" }
+        ],
+        "name": "multicall",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "data": "[\"0x6b89026a0000000000000000000000005400dbb270c956e8985184335a1c62aca6ce13330000000000000000000000009ff471f9f98f42e5151c7855fd1b5aa906b1af7e0000000000000000000000001c7a460413dd4e964f96d8dfc56e7223ce88cd85000000000000000000000000000000000000000000000066506a8f70e406488e00000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000011cc00f92c703bb917982be0595441a16c8a73a8a72bc0a0e4755d9c3393f58ca6d087c6942ce4c5bde63f139957d9b1ce1220ee2ffbb11686dffd24db206ad51ea6d660a5f6cdeaa0feee842d16e040b9b20d6d12d4212e8a53cb0f1cb80c3dfaf442df06338fd99d15751c1e8cf66d657373d779cee8898b639034679a3ec890217f30eb1c8ca45f37378de7b7794a449b75672ff64ad8ba1f72dcd4c8c0061524a9f5e2ed045858b99ff23e3d82885d36b4188d1be397a67ca3bb15fb694170a790564c0bca0f749f63fce70afab96279d31d980731e7f7b5209948156732f12aa24f33a0d4c55f68e36279ce23e5c942cee153fd058d3e43de17d60ae191e7e5af20f5c6d4f6450106f51cdead5d4d8f4fa7a9e9ee35eba1b4ea1f0daca78c30d36241170bbfa66b365948628bbf6403643a5b2583f5a72ef379572184fd45aee8e317903c708d728422d0c3980fd81ba113f18dd68ede08ea0a12e6d3c1954c6025a117caba205da4d9bb161625ad9337f169b3e028d71433d3a81510f7ecddc866ad96fe7e0cafe55ce6401639895674bcb2569d445db3c658fd8f9f1077f380d5d1ad24181f955e52ed1e9ea1a03a166f9c2c12250ad507a7abbdf8359680fffd040c46078769ad00d47495332a06d0034f0f95b54967978194a3ab6ae9d212b7f409c50256652bfc520e83dac326ace862f4296acfeecdd912b6aa0f93a652c29565edbe6df4f4109d78c63f854d150a5cf0b0ef8e21a1a3ed08082e7a\",\"0x6b89026a0000000000000000000000005400dbb270c956e8985184335a1c62aca6ce13330000000000000000000000009ff471f9f98f42e5151c7855fd1b5aa906b1af7e000000000000000000000000baa5cc21fd487b8fcc2f632f3f4e8d37262a08420000000000000000000000000000000000000000000000191e42da99d382bb7700000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000011e162bcb3b2b1f3fce6650630d5a2fcc6186749d849d9dce483a005ae2456470c8b3c974c8d2f9bf0eac74b0d16f5f00b6d68433609948be6aa47dd314ca2fc602d1834a7b4f1d0a75be574c4c5b14c4ef9c5219ecf210a17d3f5f058539ad7f638152f692515ed7418321e7aaf1cbb215ca9caf85081c973a526dd3cb7b7429b883f419716f20df6044d1d21e5c93cb9cf4ec858b8db77de2819aa696b42d656b341dccf21e763bf61f9f70613dde8ac364bbcd447324c7c0c84678419f44689fd7866e81084a0853b812ab2a72807f45ab1996184e2c1eb873cf732e1b3c2a1dde366812853f36524e573b4f24ef9feb290647f961c354a17f248e7873a1226db8b866e0cc6c755adf870c30acbe79e9c870417c69d72fe9568e1d769d6b38d5aca0b85b98644456b8336dc8b3ab1f5a37322936f9b8e54bad19868255bc098592dd20f11e80aef7f5cf5fa21fec74b41401758b989fc20cc6d169ebb9f6d0982e1b941f9aa2b522aff1b89f1ea941220d27b4e8234cfcf6b12b2011288c0dd1dfde945830fcba6a7c9b0b9d74fffde17f5e1557588c8309dfa47e74f57b86695bbaba90d23cba5897a6c90693f465b999bb3b8c4a95716ee37f8e385ead203e0f4fa0093a0f8b4f81c9d224da3b95802d01b5184ca3a5bdb4f2bfe50ec5004d212b7f409c50256652bfc520e83dac326ace862f4296acfeecdd912b6aa0f93a652c29565edbe6df4f4109d78c63f854d150a5cf0b0ef8e21a1a3ed08082e7a\"]"
+      }
+    },
+    {
+      "to": "0x1c7a460413dd4e964f96d8dfc56e7223ce88cd85",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+        "amount": "130415271864721016426"
+      }
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "campaignId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "creator",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "rewardToken",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint32",
+                "name": "campaignType",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "startTimestamp",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "duration",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "campaignData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct CampaignParameters",
+            "name": "newCampaign",
+            "type": "tuple"
+          }
+        ],
+        "name": "createCampaign",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"0x0000000000000000000000000000000000000000\",\"0x1C7a460413dD4e964f96D8dFC56E7223cE88CD85\",\"130415271864721016426\",4,1744635600,3600,\"0x0000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000005568747470733a2f2f616e676c652d626c6f672e696e667572612d697066732e696f2f697066732f516d5444757634727a62614e753859755541574d51506f34754143665251694c714a33686f5a613543644a426a590000000000000000000000000000000000000000000000000000000000000000000000000000000000000865706f63685f313100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"]"
+      }
+    },
+    {
+      "to": "0xBAa5CC21fd487B8Fcc2F632f3F4E8D37262a0842",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+        "amount": "37356811852348728708"
+      }
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "campaignId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "creator",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "rewardToken",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint32",
+                "name": "campaignType",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "startTimestamp",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "duration",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "campaignData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct CampaignParameters",
+            "name": "newCampaign",
+            "type": "tuple"
+          }
+        ],
+        "name": "createCampaign",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"0x0000000000000000000000000000000000000000\",\"0xBAa5CC21fd487B8Fcc2F632f3F4E8D37262a0842\",\"37356811852348728708\",4,1744635600,3600,\"0x0000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000005568747470733a2f2f616e676c652d626c6f672e696e667572612d697066732e696f2f697066732f516d63786a6439637a5175707033467063575758574c41777242567677634434567277466b66394669734b4331710000000000000000000000000000000000000000000000000000000000000000000000000000000000000865706f63685f313100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"]"
+      }
+    }
+  ]
+}

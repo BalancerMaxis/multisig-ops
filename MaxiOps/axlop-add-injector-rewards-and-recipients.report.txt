@@ -1,0 +1,59 @@
+FILENAME: `MaxiOps/axlop-add-injector-rewards-and-recipients.json`
+MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `d6808c2d81e23b2a4c04777a4685425aaeedd4b2`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/46bd7631-da74-4339-9215-a9fd9cb6c818)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                               | selector                    | parsed_inputs                                     | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------+-----+----------+
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xec16621c9bd547d64b93c17b51838ff173bb6dd1 (gauges/Aave GHO-USR-gauge-ec16)          | add_reward(address,address) | 0x994ac01750047B9d35431a7Ae4Ed312ee955E030: axlOP | N/A |    0     |
+|               |                                                                                                                 |                                                                                      |                             | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01: None  |     |          |
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xd8376b72e609a410999398b70218f70ae9b310f5 (gauges/Surge Aave EURC-GHO-gauge-d837)   | add_reward(address,address) | 0x994ac01750047B9d35431a7Ae4Ed312ee955E030: axlOP | N/A |    1     |
+|               |                                                                                                                 |                                                                                      |                             | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01: None  |     |          |
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x80db733644C60E891b3C7a96141430e4bAafF028 (gauges/50WETH-50USDC-MEVTAXD-gauge-80db) | add_reward(address,address) | 0x994ac01750047B9d35431a7Ae4Ed312ee955E030: axlOP | N/A |    2     |
+|               |                                                                                                                 |                                                                                      |                             | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01: None  |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------+-----+----------+
+```
+FILENAME: `MaxiOps/axlop-add-injector-rewards-and-recipients.json`
+MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `d6808c2d81e23b2a4c04777a4685425aaeedd4b2`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1578bd85-b5d8-4cec-9f18-62bb0d3dd1cf)
+
+```
++---------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                     | value | inputs                                                                                     | bip_number | tx_index |
++---------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                          | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                          |            |          |
+|               |                                                        |       |     "0xec16621C9bD547d64B93c17B51838Ff173bB6DD1 (gauges/Aave GHO-USR-gauge-ec16)"          |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                                     |            |          |
+|               |                                                        |       |     "raw:1400000000000000000000, 18 decimals:1400, 6 decimals: 1400000000000000"           |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                          |            |          |
+|               |                                                        |       |     1                                                                                      |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                           |            |          |
+|               |                                                        |       |     0                                                                                      |            |          |
+|               |                                                        |       |   ]                                                                                        |            |          |
+|               |                                                        |       | }                                                                                          |            |          |
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                          | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                          |            |          |
+|               |                                                        |       |     "0xD8376B72E609A410999398b70218F70ae9B310F5 (gauges/Surge Aave EURC-GHO-gauge-d837)",  |            |          |
+|               |                                                        |       |     "0x80db733644C60E891b3C7a96141430e4bAafF028 (gauges/50WETH-50USDC-MEVTAXD-gauge-80db)" |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                                     |            |          |
+|               |                                                        |       |     "raw:700000000000000000000, 18 decimals:700, 6 decimals: 700000000000000"              |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                          |            |          |
+|               |                                                        |       |     1                                                                                      |            |          |
+|               |                                                        |       |   ],                                                                                       |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                           |            |          |
+|               |                                                        |       |     0                                                                                      |            |          |
+|               |                                                        |       |   ]                                                                                        |            |          |
+|               |                                                        |       | }                                                                                          |            |          |
++---------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------------+------------+----------+
+```

@@ -1,0 +1,42 @@
+FILENAME: `BIPs/2025-W16/BIP-811.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `dcdf6a146ce450aa54eadf6cc866fd493491b6a2`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d41e78d6-137d-4659-8c8e-6549b95a5a52)
+
+| Gauge Validator (0x088040aA3e8FDF780829c07f8Cc53fa8a8f07FA9) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0x1a965ea559364fb5667985B26899644712c81b18) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0x72E7d4B2925a33A8F57e4b080EeAC4fa778A5729) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+```
++-----------------------+----------------------------------------------------------+------------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info        | gauge_address_and_info                           | tokens                                                 | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+------------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x10F9E54AeEA2FeFA124238087DCFD919BA32f14d               | Surge eBTC-Aave WBTC   | root: 0x088040aA3e8FDF780829c07f8Cc53fa8a8f07FA9 | 0x52Dc1FEeFA4f9a99221F93D79da46Ae89b8c0967: waArbWBTC  | 0xDEA44786E61fd5475B35869586737D99B5e6dB59 |      safe      | BIP-811 |    0     |
+|                       | pool_address: 0x10F9E54AeEA2FeFA124238087DCFD919BA32f14d | fee (%): 0.04          | side: 0xB4259ce2724Fe85182fEE38AC78b794291FaD997 | 0x657e8C867D8B37dCC18fA4Caead9C45EB088C642: eBTC       | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: 750          | style: L0 sidechain                              |                                                        |                                            |                |         |          |
+|                       |                                                          |                        | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                        | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x2d39c2DdF0ae652071d0550718CC7AACaF647d39               | Gyro eBTC- Aave weETH  | root: 0x1a965ea559364fb5667985B26899644712c81b18 | 0x657e8C867D8B37dCC18fA4Caead9C45EB088C642: eBTC       | 0x0000000000000000000000000000000000000000 |       --       | BIP-811 |    1     |
+|                       | pool_address: 0x2d39c2DdF0ae652071d0550718CC7AACaF647d39 | fee (%): 0.1           | side: 0x5802e74ac511eaf7Adf0c7092136Ba60fDE1c3E4 | 0xD9E3Ef2c12de90E3b03F7b7E3964956a71920d40: waArbweETH | 0xcdAa68ce322728FE4185a60f103C194F1E2c47BC |      safe      |         |          |
+|                       |                                                          | a-factor: N/A          | style: L0 sidechain                              |                                                        |                                            |                |         |          |
+|                       |                                                          |                        | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                        | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xA0E5e7728e026bDE02810D255a6b94A9aA47b5F9               | Gyro eBTC-Aave USDCn   | root: 0x72E7d4B2925a33A8F57e4b080EeAC4fa778A5729 | 0x657e8C867D8B37dCC18fA4Caead9C45EB088C642: eBTC       | 0x0000000000000000000000000000000000000000 |       --       | BIP-811 |    2     |
+|                       | pool_address: 0xA0E5e7728e026bDE02810D255a6b94A9aA47b5F9 | fee (%): 0.1           | side: 0x946FB8Fcfa21DbDD2152dAC1D39bD30c10679d76 | 0x7F6501d3B98eE91f9b9535E4b0ac710Fb0f9e0bc: waArbUSDCn | 0xDAff80737b23A6E40F77Aa28957a10c9Af5dff45 |      safe      |         |          |
+|                       |                                                          | a-factor: N/A          | style: L0 sidechain                              |                                                        |                                            |                |         |          |
+|                       |                                                          |                        | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                        | preferential: True                               |                                                        |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+------------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```

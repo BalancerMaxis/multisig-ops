@@ -1,0 +1,40 @@
+FILENAME: `MaxiOps/injectorScheduling/base/injector-add-recipients-0x08F02E-2025-04-29_1331.json`
+MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `bb281bf04dac492c7fcdd76f8c00403474e666bc`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4261a481-3e73-4bcb-a085-b6e8fada3e02)
+
+```
++---------------+-----------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                                                | value | inputs                                                                                  | bip_number | tx_index |
++---------------+-----------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------+------------+----------+
+| addRecipients | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8 (maxiKeepers/injectorV2/GHO-omnichain) | 0     | {                                                                                       | N/A        |   N/A    |
+|               |                                                                                   |       |   "recipients": [                                                                       |            |          |
+|               |                                                                                   |       |     "0x70DB188E5953f67a4B16979a2ceA26248b315401 (gauges/Aave USDC-Aave GHO-gauge-70db)" |            |          |
+|               |                                                                                   |       |   ],                                                                                    |            |          |
+|               |                                                                                   |       |   "amountPerPeriod": [                                                                  |            |          |
+|               |                                                                                   |       |     "raw:11300000000000000000000, 18 decimals:11300, 6 decimals: 11300000000000000"     |            |          |
+|               |                                                                                   |       |   ],                                                                                    |            |          |
+|               |                                                                                   |       |   "maxPeriods": [                                                                       |            |          |
+|               |                                                                                   |       |     "1"                                                                                 |            |          |
+|               |                                                                                   |       |   ],                                                                                    |            |          |
+|               |                                                                                   |       |   "doNotStartBeforeTimestamp": [                                                        |            |          |
+|               |                                                                                   |       |     "0"                                                                                 |            |          |
+|               |                                                                                   |       |   ]                                                                                     |            |          |
+|               |                                                                                   |       | }                                                                                       |            |          |
+| addRecipients | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8 (maxiKeepers/injectorV2/GHO-omnichain) | 0     | {                                                                                       | N/A        |   N/A    |
+|               |                                                                                   |       |   "recipients": [                                                                       |            |          |
+|               |                                                                                   |       |     "0xec16621C9bD547d64B93c17B51838Ff173bB6DD1 (gauges/Aave GHO-USR-gauge-ec16)"       |            |          |
+|               |                                                                                   |       |   ],                                                                                    |            |          |
+|               |                                                                                   |       |   "amountPerPeriod": [                                                                  |            |          |
+|               |                                                                                   |       |     "raw:12000000000000000000000, 18 decimals:12000, 6 decimals: 12000000000000000"     |            |          |
+|               |                                                                                   |       |   ],                                                                                    |            |          |
+|               |                                                                                   |       |   "maxPeriods": [                                                                       |            |          |
+|               |                                                                                   |       |     "1"                                                                                 |            |          |
+|               |                                                                                   |       |   ],                                                                                    |            |          |
+|               |                                                                                   |       |   "doNotStartBeforeTimestamp": [                                                        |            |          |
+|               |                                                                                   |       |     "0"                                                                                 |            |          |
+|               |                                                                                   |       |   ]                                                                                     |            |          |
+|               |                                                                                   |       | }                                                                                       |            |          |
++---------------+-----------------------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------------+------------+----------+
+```

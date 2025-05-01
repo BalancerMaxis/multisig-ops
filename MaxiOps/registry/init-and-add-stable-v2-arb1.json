@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1745838776244,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x687b8C9b41E01Be8B591725fac5d5f52D0564d79",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "initializeBalancerContractRegistry",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x0C8f71D19f87c0bD1b9baD2484EcC3388D5DbB98",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "enum ContractType",
+            "name": "contractType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "contractAddress",
+            "type": "address"
+          }
+        ],
+        "name": "registerBalancerContract",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "contractType": "1",
+        "contractName": "20250324-v3-stable-pool-v2",
+        "contractAddress": "0x44d33798dddCdAbc93Fe6a40C80588033Dc502d3"
+      }
+    },
+    {
+      "to": "0x0C8f71D19f87c0bD1b9baD2484EcC3388D5DbB98",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "contractAlias",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "contractAddress",
+            "type": "address"
+          }
+        ],
+        "name": "addOrUpdateBalancerContractAlias",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "contractAlias": "StablePool",
+        "contractAddress": "0x44d33798dddCdAbc93Fe6a40C80588033Dc502d3"
+      }
+    }
+  ]
+}

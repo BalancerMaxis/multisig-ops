@@ -1,0 +1,42 @@
+FILENAME: `BIPs/00batched/2025-W17/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `1bdfc424b159585e46dad573c8af578571639d4e`
+CHAIN(S): `base, mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/19d51ca4-2e2b-4b3b-a67d-b4648cf5e199)
+
+| Gauge Validator (0x3b163Ca3875e91c580bDeC0CE9c97d4eF6501f20) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x30FB447441195a5b72A382Ef14c5865C0fc1A9aa) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0xFccE9b5C1e8D56D9Fc6Dcbb706aCC51dD03fe9F1) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+```
++-----------------------+----------------------------------------------------------+----------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info            | gauge_address_and_info                           | tokens                                                      | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+----------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x6D0216CF4B6741B23B4beeda42b7100EB8A7CA0C               | inwstETHs-waEthLidowstETH  | root: 0x3b163Ca3875e91c580bDeC0CE9c97d4eF6501f20 | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH | 0xcdAa68ce322728FE4185a60f103C194F1E2c47BC |      safe      | BIP-815 |    0     |
+|                       | pool_address: 0x6D0216CF4B6741B23B4beeda42b7100EB8A7CA0C | fee (%): 0.01              | side: None                                       | 0x8E0789d39db454DBE9f4a77aCEF6dc7c69f6D552: inwstETHs       | 0x3ba1a97D96F53611C4b2A788A5aa65c840d94c54 |      safe      |         |          |
+|                       |                                                          | a-factor: 500              | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                          |                            | cap: 10.0%                                       |                                                             |                                            |                |         |          |
+|                       |                                                          |                            | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x1846C6cBE0D433e152fA358e5fF27968E18bcE7c               | 80PRL-20WETH               | root: 0x30FB447441195a5b72A382Ef14c5865C0fc1A9aa | 0x6c0aeceeDc55c9d55d8B99216a670D85330941c3: PRL             | 0x0000000000000000000000000000000000000000 |       --       | BIP-816 |    1     |
+|                       | pool_address: 0x1846C6cBE0D433e152fA358e5fF27968E18bcE7c | fee (%): 1.0               | side: None                                       | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2: WETH            | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A              | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                          |                            | cap: 2.0%                                        |                                                             |                                            |                |         |          |
+|                       |                                                          |                            | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x19E3E19945E7Fd2A7856824c595981C7Fe450Bb5               | 80PRL-20WETH               | root: 0xFccE9b5C1e8D56D9Fc6Dcbb706aCC51dD03fe9F1 |                                                             | 0x0000000000000000000000000000000000000000 |       --       | BIP-816 |    2     |
+|                       | pool_address: 0x19E3E19945E7Fd2A7856824c595981C7Fe450Bb5 | fee (%): 1.0               | side: 0xcA66072Ca2D7C3Af6f44F4D4d29Eb9E088a2df79 |                                                             | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A              | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                          |                            | cap: 2.0%                                        |                                                             |                                            |                |         |          |
+|                       |                                                          |                            | preferential: True                               |                                                             |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+----------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```

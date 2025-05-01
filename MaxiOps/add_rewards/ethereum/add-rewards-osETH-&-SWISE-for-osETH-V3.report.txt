@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-rewards-osETH-&-SWISE-for-osETH-V3.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `f974f751b36c1a722f8f237501bfbcd846bd48a5`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6c8511a0-9a5d-4e80-bc6c-785b651e6c58)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------+----------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                      | selector                    | parsed_inputs                                            | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------+----------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x70a1c01902dab7a45dca1098ca76a8314dd8adba (gauges/osETH-waWETH-gauge-70a1) | add_reward(address,address) | 0x48C3399719B582dD63eB5AADf12A40B4C3f52FA2: tokens/SWISE | N/A |    0     |
+|               |                                                                                                                 |                                                                             |                             | 0x189Cb93839AD52b5e955ddA254Ed7212ae1B1f61: None         |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x70a1c01902dab7a45dca1098ca76a8314dd8adba (gauges/osETH-waWETH-gauge-70a1) | add_reward(address,address) | 0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38: osETH        | N/A |    1     |
+|               |                                                                                                                 |                                                                             |                             | 0x189Cb93839AD52b5e955ddA254Ed7212ae1B1f61: None         |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------+----------------------------------------------------------+-----+----------+
+```
