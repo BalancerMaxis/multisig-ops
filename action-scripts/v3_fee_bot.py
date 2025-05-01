@@ -171,34 +171,44 @@ def get_pools(chain: str, broadcast: bool = False):
                                 )
                         except:
                             max_priority_fee_optimal = max_priority_fee
-                        print(
-                            f"ProtocolFeeSweeper({sweeper}).sweepProtocolFeesForToken({to_checksum_address(pool['address'])},{to_checksum_address(token['address'])},{int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))},{deadline},{burner})"
+                        for pool_token in pool["poolTokens"]:
+                            if (
+                                pool_token["address"].lower()
+                                == token["address"].lower()
+                            ):
+                                token_is_erc4626 = pool_token["isErc4626"]
+                                break
+                        sweep_func_name = (
+                            "sweepProtocolFeesForWrappedToken"
+                            if token_is_erc4626
+                            else "sweepProtocolFeesForToken"
                         )
-                        unsigned_tx = (
-                            ProtocolFeeSweeper.functions.sweepProtocolFeesForToken(
-                                to_checksum_address(pool["address"]),
-                                to_checksum_address(token["address"]),
-                                int(
-                                    Decimal(potential)
-                                    * (Decimal(1) - SLIPPAGE)
-                                    * Decimal("1e6")
-                                ),
-                                deadline,
-                                (
-                                    ZERO_ADDRESS
-                                    if token["address"] == target_token
-                                    else burner
-                                ),
-                            ).build_transaction(
-                                {
-                                    "from": bot.address,
-                                    "nonce": drpc.eth.get_transaction_count(
-                                        bot.address
-                                    ),
-                                    "maxFeePerGas": max_gas_price,
-                                    "maxPriorityFeePerGas": max_priority_fee_optimal,
-                                }
-                            )
+                        print(
+                            f"ProtocolFeeSweeper({sweeper}).{sweep_func_name}({to_checksum_address(pool['address'])},{to_checksum_address(token['address'])},{int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))},{deadline},{burner})"
+                        )
+                        unsigned_tx = getattr(
+                            ProtocolFeeSweeper.functions, sweep_func_name
+                        )(
+                            to_checksum_address(pool["address"]),
+                            to_checksum_address(token["address"]),
+                            int(
+                                Decimal(potential)
+                                * (Decimal(1) - SLIPPAGE)
+                                * Decimal("1e6")
+                            ),
+                            deadline,
+                            (
+                                ZERO_ADDRESS
+                                if token["address"] == target_token
+                                else burner
+                            ),
+                        ).build_transaction(
+                            {
+                                "from": bot.address,
+                                "nonce": drpc.eth.get_transaction_count(bot.address),
+                                "maxFeePerGas": max_gas_price,
+                                "maxPriorityFeePerGas": max_priority_fee_optimal,
+                            }
                         )
                         print("tx: ", end="")
                         pprint(unsigned_tx)
