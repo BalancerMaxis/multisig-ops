@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1745838776244,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x91F17800Ca7DD29f2124D9D9eA8D4794693192C7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "initializeBalancerContractRegistry",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xa1D0791a41318c775707C56eAe247AF81a05322C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "enum ContractType",
+            "name": "contractType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "contractAddress",
+            "type": "address"
+          }
+        ],
+        "name": "registerBalancerContract",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "contractType": "1",
+        "contractName": "20250324-v3-stable-pool-v2",
+        "contractAddress": "0xe42C2E153BB0A8899b59C73F5Ff941f9742F1197"
+      }
+    },
+    {
+      "to": "0xa1D0791a41318c775707C56eAe247AF81a05322C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "contractAlias",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "contractAddress",
+            "type": "address"
+          }
+        ],
+        "name": "addOrUpdateBalancerContractAlias",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "contractAlias": "StablePool",
+        "contractAddress": "0xe42C2E153BB0A8899b59C73F5Ff941f9742F1197"
+      }
+    }
+  ]
+}

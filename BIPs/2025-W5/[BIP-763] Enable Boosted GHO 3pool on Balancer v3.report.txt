@@ -1,0 +1,22 @@
+FILENAME: `BIPs/2025-W5/[BIP-763] Enable Boosted GHO 3pool on Balancer v3.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `5ce343c5d761fccb26292146b3f9eacef214f541`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7dc55355-bda4-4b3e-9d49-34e6dfbf7570)
+
+| Gauge Validator (0x9fdD52eFEb601E4Bc78b89C6490505B8aC637E9f) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+```
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+----------------------------------------------------------+----------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info     | gauge_address_and_info                           | tokens                                                   | rate_providers | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+----------------------------------------------------------+----------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x85B2b559bC2D21104C4DEFdd6EFcA8A20343361D               | Aave GHO/USDT/USDC  | root: 0x9fdD52eFEb601E4Bc78b89C6490505B8aC637E9f | 0x7Bc3485026Ac48b6cf9BaF0A377477Fff5703Af8: waEthUSDT    |                |                | BIP-763 |    0     |
+|                       | pool_address: 0x85B2b559bC2D21104C4DEFdd6EFcA8A20343361D | fee: Not Found      | side: None                                       | 0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C: waEthLidoGHO |                |                |         |          |
+|                       |                                                          | a-factor: 500       | style: mainnet                                   | 0xD4fa2D31b7968E448877f69A96DE69f5de8cD23E: waEthUSDC    |                |                |         |          |
+|                       |                                                          |                     | cap: 100.0%                                      |                                                          |                |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                          |                |                |         |          |
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+----------------------------------------------------------+----------------+----------------+---------+----------+
+```

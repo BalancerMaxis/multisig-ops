@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2025-W9/BIP-790-grant-roles-registry-gnosis.json`
+MULTISIG: `multisigs/dao (gnosis:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)`
+COMMIT: `2d27cd6c0ca8576028cca6ab2d2525cc384c711f`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c94cc3c5-a4da-419c-a64e-3374af446048)
+
+```
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                                | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250117-v3-contract-registry/BalancerContractRegistry/addOrUpdateBalancerContractAlias(string,address) | 0x96933475aa135d9d02d175e3f20f420fb65595ebeade476edf970dd5fddda874 | BIP-790 |    0     |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deprecateBalancerContract(address)               | 0xdb3b99d52cd97741d98d8cf58982c82a1c7caee958ed94e5fcf909ba57ef27bc |         |          |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deregisterBalancerContract(string)               | 0xa2ccd901b5d57e951d23051ad0a49e4127722628b5f0318468fae768fd6e4a02 |         |          |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/registerBalancerContract(uint8,string,address)   | 0xd7b567352ab1dc8647c52f123cd411b5b0d47dbd5a4c5a65d799d675cc6604f2 |         |          |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```

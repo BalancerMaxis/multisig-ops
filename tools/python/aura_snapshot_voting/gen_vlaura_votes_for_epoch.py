@@ -7,7 +7,7 @@ import requests
 from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
 from dune_client.query import QueryBase
-from bal_addresses.subgraph import Subgraph
+from bal_tools import Subgraph
 
 
 def _get_prop_and_determine_date_range():

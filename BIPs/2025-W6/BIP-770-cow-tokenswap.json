@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1738070746762,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Approve tokenswap amounts on the COW-BAL tokenwswap contract",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x38a39191ffa26d29c67fec344e9549c715cfb5db6408a26568112fb0a58da66b"
+  },
+  "transactions": [
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xdBe554ee86FEb0b1c0ac4743503D46cbDF0e8B54",
+        "amount": "200000000000000000000000"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+FILENAME: `BIPs/2025-W13/BIP-797-Wire-Up-V3-Protocol-Fee-gnosis.json`
+MULTISIG: `multisigs/dao (gnosis:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)`
+COMMIT: `6b502d3271d02dce69738920bd9826248ff37274`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/874c53b5-fdca-4194-a516-e74373e7f47d)
+
+```
++-----------------------+-----------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name                                         | caller_address                             | fx_paths                                                                                                               | action_ids                                                         |   bip   | tx_index |
++-----------------------+-----------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | 20250228-v3-protocol-fee-sweeper/ProtocolFeeSweeper | 0x1bcA39b01F451b0a05D7030e6e6981a73B716b1C | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)     | 0x7c0fa8c5add2fab51cc64b00dc8278f6829e8235e9ac804973fc336736b88ba6 | BIP-797 |    0     |
+|                       |                                                     |                                            | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/burn(address,address,uint256,address,uint256,address,uint256)         | 0x550dbb0ba7b87f6c77a30b7559b4078dafbd6c35c257adc9bfa42c4a8042c0e8 |         |          |
+| Authorizer/grantRoles | EOA/keepers/v3_fee_bot                              | 0x74E283B985EA76c55C8B48d6bD1067a418188424 | 20250228-v3-protocol-fee-sweeper/ProtocolFeeSweeper/sweepProtocolFeesForToken(address,address,uint256,uint256,address) | 0xa416691cb28def2fe33e6860b33636e69616f4ff9d71ff477f11499a30886356 | BIP-797 |    1     |
+| Authorizer/grantRoles | multisigs/maxi_omni                                 | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/cancelOrder(address,address)                                          | 0x5a8ff4e96aec20c15090bab4dfb2044c26640b11397719826f3fae35af71f6fd | BIP-797 |    2     |
+|                       |                                                     |                                            | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/emergencyCancelOrder(address,address)                                 | 0xc2a80baf0ed1f066df5b19750ecdcaf84afdfd8442e8eaf892b2db94c7455c78 |         |          |
+|                       |                                                     |                                            | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/retryOrder(address,uint256,uint256)                                   | 0x9a8caba945fa103f13d5bc9ef3c72c37f4a107088b1b3cef27bdf55cd6cf6cf7 |         |          |
++-----------------------+-----------------------------------------------------+--------------------------------------------+------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```

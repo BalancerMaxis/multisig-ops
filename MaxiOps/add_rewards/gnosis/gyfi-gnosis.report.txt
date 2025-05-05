@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/gnosis/gyfi-gnosis.json`
+MULTISIG: `multisigs/lm (gnosis:0x14969B55a675d13a1700F71A37511bc22D90155a)`
+COMMIT: `8357bd5e2e348e8907c4cef027d2ea5f0d20d636`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ff62b578-4784-44ca-baf2-d01081424139)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                          | selector                    | parsed_inputs                                    | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+| performAction | 0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75 (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xEA71b7FDAA3683D2d307e8AF3e236FB7a395e88d (gauges/ECLP-GYD-sDAI-gauge-ea71)    | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    0     |
+|               |                                                                                                                 |                                                                                 |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: None |     |          |
+| performAction | 0x8F42aDBbA1B16EaAE3BB5754915E0D06059aDd75 (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xeCC38A7E4EB20FB72BA1cDcF2fC7A6002C6C59f3 (gauges/ECLP-GYD-AUSDC.e-gauge-ecc3) | add_reward(address,address) | 0xc63529297dE076eB15fcbE873AE9136E446cFbB9: GYFI | N/A |    1     |
+|               |                                                                                                                 |                                                                                 |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: None |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+```

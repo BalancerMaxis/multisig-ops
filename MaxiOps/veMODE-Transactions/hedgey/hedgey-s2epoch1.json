@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1738688643564,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xd88240fe2d15c758b0bcf45563641c41d9e5f5dacf9ecf1659c1403899386634"
+  },
+  "transactions": [
+    {
+      "to": "0x8A2725a6f04816A5274dDD9FEaDd3bd0C253C1A6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes16",
+            "name": "campaignId",
+            "type": "bytes16"
+          },
+          { "internalType": "bytes32[]", "name": "proof", "type": "bytes32[]" },
+          {
+            "internalType": "uint256",
+            "name": "claimAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "claim",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "campaignId": "0x164167bc91ff434385df9c191ed08275",
+        "proof": "[\"0xa3ec52f6fb73e0f0673234f3b075e90def8ed2c54e70a93cb9d37b0ec3825213\",\"0xb1d16a58bc7aae04df828a12888c2cd7d23a6f65308f27430aba3cf3a2a481f7\",\"0xbb8b96c8ec2008081cf7f59444a8898a804b12b9d2c800d8a3d65776fc96940a\",\"0x81880706b8898c21009c8aa9091ab2aca0091e7262acff69d23e5e27f4d70446\",\"0xa179ed099cd3909919d5daca069d69e8ae9a5c7135053ae1328c3acd483f0841\",\"0x2704661e9d49ffd2b7e72b54110aa62cc1353c023ff77e0fffb6aae9d9ef5cab\",\"0x3db6ed9599f1909676c15f304bca4126c4f0c5a0943d668d21947c2ccbc8a445\",\"0x25e7d8f818c848eabe8d8935065a289f45b13b10db0f5cf148463a9f3ef4d36c\",\"0x678196b23bc241849ff8b67a4718b49bdd993cfc3fb694ac9061a6c109be691f\",\"0x11002d16fb41c379b3c7d21f9cd1f5f5c351697046f10db638f770372c2d1ce8\",\"0x23f2968ef4b46adb0b0d9dfe04a4a487952f5444dd042bef2af24ffafe8f008c\",\"0x9e9deed68d34b19241542506df8a19b3b43ef843f6df8259edf7c6246a5330a1\"]",
+        "claimAmount": "1209077299000000000000"
+      }
+    },
+    {
+      "to": "0x4200000000000000000000000000000000000042",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "to", "type": "address", "internalType": "address" },
+          { "name": "amount", "type": "uint256", "internalType": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+        "amount": "1209077299000000000000"
+      }
+    }
+  ]
+}

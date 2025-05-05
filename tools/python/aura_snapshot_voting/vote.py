@@ -16,7 +16,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 import requests
 from bal_addresses import AddrBook
 from bal_addresses.utils import to_checksum_address
-from web3 import Web3
+from bal_tools import Web3Rpc
 from eth_account._utils.structured_data.hashing import hash_message, hash_domain
 from eth_utils import keccak
 import pandas as pd
@@ -24,7 +24,7 @@ from web3 import Web3
 from gnosis.safe import Safe
 from gnosis.eth import EthereumClient
 from gnosis.safe.api import TransactionServiceApi
-from eth_abi import encode_abi
+from eth_abi import encode
 from eth_account import Account
 
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
@@ -33,7 +33,7 @@ from helpers.path_utils import find_project_root
 
 load_dotenv()
 
-ETHNODEURL = os.getenv("ETHNODEURL")
+DRPC_KEY = os.getenv("DRPC_KEY")
 PRIVATE_WORDS = os.getenv("KEEPER_PRIVATE_WORDS")
 
 SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
@@ -54,7 +54,8 @@ class Operation(IntEnum):
 
 
 def post_safe_tx(safe_address, to_address, value, data, operation):
-    ethereum_client = EthereumClient(ETHNODEURL)
+    api_url = Web3Rpc("mainnet", DRPC_KEY).w3.provider.endpoint_uri
+    ethereum_client = EthereumClient(api_url)
     safe = Safe(safe_address, ethereum_client)
     safe_service = TransactionServiceApi(1, ethereum_client, SAFE_API_URL)
 
@@ -63,7 +64,7 @@ def post_safe_tx(safe_address, to_address, value, data, operation):
         to_address, value, data, operation, safe_nonce=nonce
     )
 
-    private_key = Account.from_mnemonic(PRIVATE_WORDS).privateKey
+    private_key = Account.from_mnemonic(PRIVATE_WORDS).key
     safe_tx.sign(private_key.hex()[2:])
 
     safe_service.post_transaction(safe_tx)
@@ -188,9 +189,7 @@ if __name__ == "__main__":
     print(f"payload: {data}")
     print(f"hash: {hash.hex()}")
 
-    calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode_abi(
-        ["bytes"], [hash]
-    )
+    calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
 
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL

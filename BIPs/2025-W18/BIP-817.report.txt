@@ -1,0 +1,92 @@
+FILENAME: `BIPs/2025-W18/BIP-817.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `24764e170cd7fe390d67fd01096851b721822792`
+CHAIN(S): `avalanche`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/11bea20d-a65a-4390-a82d-e0daf391d230)
+
+| Gauge Validator (0xb2A8f0f477Aae4D78Ea78d85234233285c91bB08) |  Result  |
+| :------------------------------------------------------------| :------: |
+| `validate_preferential_gauge`                                |    ✅    |
+| `validate_rate_providers_safety`                             | ✅ ✅ ✅ |
+
+| Gauge Validator (0x219b3a4a2D2351582277A87048995034ca7e9aEF) |  Result  |
+| :------------------------------------------------------------| :------: |
+| `validate_preferential_gauge`                                |    ✅    |
+| `validate_rate_providers_safety`                             | ✅ ✅ ✅ |
+
+| Gauge Validator (0x5c13C3b72b031b6405046C319B2D840d3C1403c7) |  Result  |
+| :------------------------------------------------------------| :------: |
+| `validate_preferential_gauge`                                |    ✅    |
+| `validate_rate_providers_safety`                             | ✅ ✅ ✅ |
+
+| Gauge Validator (0xd42Fae61a6D0f8466B9E790db921c3469d5BEf55) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x608f2b6F31C102aD4b956761956e2362e2Ba8941) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x0aea1abC694a3608C8aC5F131d8310f95039111A) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xd43fc9340adbff1C0c28db7A5fB554F736d256fa) |  Result  |
+| :------------------------------------------------------------| :------: |
+| `validate_preferential_gauge`                                |    ✅    |
+| `validate_rate_providers_safety`                             | ✅ ✅ ✅ |
+
+| Gauge Validator (0xA7165E1E3dEfe55DAdA5C4289268d57faBA6dAd2) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+```
++-----------------------+----------------------------------------------------------+-----------------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info             | gauge_address_and_info                           | tokens                                                 | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+-----------------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x31Ae873544658654CE767BDE179fD1BbCB84850b               | Aave USDT/USDC/AUSD         | root: 0xb2A8f0f477Aae4D78Ea78d85234233285c91bB08 | 0x45cf39EeB437FA95Bb9b52c0105254a6BD25D01e: waAvaAUSD  | 0x04936CB19eFA1c0E9091922CF143d3690ED31038 |      safe      | BIP-817 |    0     |
+|                       | pool_address: 0x31Ae873544658654CE767BDE179fD1BbCB84850b | fee (%): 0.003              | side: 0x408C08485aF7Cb4c1870b11794ff7B4429929A17 | 0x59933c571d200dc6A7Fd1CDa22495dB442082E34: waAvaUSDT  | 0x3a053D215dA33BE9B24Dd11b2e44B22a97836Dc3 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000              | style: L0 sidechain                              | 0xe1bFC96d95BAdCB10Ff013Cb0C9C6c737ca07009: waAvaUSDC  | 0x37C9a6Ca1124D7C6166fbdFa566575D93F398241 |      safe      |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x695A7F28c3628187c8264d2CDF7a617036BA8406               | upAUSD-savUSD-sdeUSD        | root: 0x219b3a4a2D2351582277A87048995034ca7e9aEF | 0x06d47F3fb376649c3A9Dafe069B3D6E35572219E: savUSD     | 0xEC21c3e82B89EC14d3dDF4beBD50f4B1bd52CFE6 |      safe      | BIP-817 |    1     |
+|                       | pool_address: 0x695A7F28c3628187c8264d2CDF7a617036BA8406 | fee (%): 0.003              | side: 0xA0D1dFe42ee4E99E973E51Bc7E7c74b1BdC94F11 | 0x3408b22d8895753C9A3e14e4222E981d4E9A599E: upAUSD     | 0x06fF8A561Eabe71554fa44C727E76fCaa731F5ef |      safe      |         |          |
+|                       |                                                          | a-factor: 1000              | style: L0 sidechain                              | 0x68088C91446c7bEa49ea7Dbd3B96Ce62B272DC96: sdeUSD     | 0x7DB6B5bD0E9EAC1E050544f478961830cc676d30 |      safe      |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x99a9a471DBe0Dcc6855b4cD4bbabECCb1280F5e8               | aWAVAX-aSAVAX-ggAVAX        | root: 0x5c13C3b72b031b6405046C319B2D840d3C1403c7 | 0x7D0394F8898fBA73836Bf12bD606228887705895: waAvaSAVAX | 0xcdAa68ce322728FE4185a60f103C194F1E2c47BC |      safe      | BIP-817 |    2     |
+|                       | pool_address: 0x99a9a471DBe0Dcc6855b4cD4bbabECCb1280F5e8 | fee (%): 0.003              | side: 0x8647a995CC10C6C529a680F446797849163bE9E4 | 0xA25EaF2906FA1a3a13EdAc9B9657108Af7B703e3: ggAVAX     | 0x1bB74eC551cCd9FE416C71F904D64f42079A0a7f |      safe      |         |          |
+|                       |                                                          | a-factor: 1000              | style: L0 sidechain                              | 0xD7da0De6Ef4f51d6206bF2A35fCd2030F54c3F7B: waAvaWAVAX | 0x358Ea83380F1a66B22A15E5F5965967Db6D75748 |      safe      |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xa4E1B0DDFFC0E3Aa63dBCa462cf370E4f1dC9b8B               | Gyro AAVE WAVAX-USDC        | root: 0xd42Fae61a6D0f8466B9E790db921c3469d5BEf55 | 0xD7da0De6Ef4f51d6206bF2A35fCd2030F54c3F7B: waAvaWAVAX | 0x358Ea83380F1a66B22A15E5F5965967Db6D75748 |      safe      | BIP-817 |    3     |
+|                       | pool_address: 0xa4E1B0DDFFC0E3Aa63dBCa462cf370E4f1dC9b8B | fee (%): 0.1                | side: 0x40F9a910685D2a41a66D13D56627505747117563 | 0xe1bFC96d95BAdCB10Ff013Cb0C9C6c737ca07009: waAvaUSDC  | 0x37C9a6Ca1124D7C6166fbdFa566575D93F398241 |      safe      |         |          |
+|                       |                                                          | a-factor: N/A               | style: L0 sidechain                              |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x58374fFF35d1F3023bbFC646fb9eCd2b180cA0b0               | Aave wAVAX/BTC.b            | root: 0x608f2b6F31C102aD4b956761956e2362e2Ba8941 | 0x2d324fD1Ca86D90f61B0965d2db2f86d22eA4B74: waAvaBTC.b | 0x3dc85A7d42875E086Ce1717a57c080F8Dddd1A71 |      safe      | BIP-817 |    4     |
+|                       | pool_address: 0x58374fFF35d1F3023bbFC646fb9eCd2b180cA0b0 | fee (%): 0.05               | side: 0xd6CF1ADC6bF14634435b66dEB2900B9441fb3739 | 0xD7da0De6Ef4f51d6206bF2A35fCd2030F54c3F7B: waAvaWAVAX | 0x358Ea83380F1a66B22A15E5F5965967Db6D75748 |      safe      |         |          |
+|                       |                                                          | a-factor: N/A               | style: L0 sidechain                              |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x1C39Ebe0ee53B52Ab24D3945e9CDE9E6c09D0851               | Aave wAVAX/wETH.e           | root: 0x0aea1abC694a3608C8aC5F131d8310f95039111A | 0xD7da0De6Ef4f51d6206bF2A35fCd2030F54c3F7B: waAvaWAVAX | 0x358Ea83380F1a66B22A15E5F5965967Db6D75748 |      safe      | BIP-817 |    5     |
+|                       | pool_address: 0x1C39Ebe0ee53B52Ab24D3945e9CDE9E6c09D0851 | fee (%): 0.05               | side: 0x4a3550D03F702Ef61798bdfc2A57aAaa7B4Ec19a | 0xdFD2b2437a94108323045C282fF1916de5Ac6Af7: waAvaWETH  | 0x64a721E8BAE80983D00F96CCfA8Ed95Ec9352255 |      safe      |         |          |
+|                       |                                                          | a-factor: N/A               | style: L0 sidechain                              |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xC07F45EE39f3Fa2aBaeb2b3309543e69129e3C21               | Euler Re7 savUSD-AUSD-USDC  | root: 0xd43fc9340adbff1C0c28db7A5fB554F736d256fa | 0x2137568666f12fc5A026f5430Ae7194F1C1362aB: eAUSD-2    | 0x392Eb09258cEC61C3f7278A4c855d6686202aF85 |      safe      | BIP-817 |    6     |
+|                       | pool_address: 0xC07F45EE39f3Fa2aBaeb2b3309543e69129e3C21 | fee (%): 1.0                | side: 0xB9Ca65C7Fda939AaD76bC286C95A1249D2C9ECe1 | 0x39dE0f00189306062D79eDEC6DcA5bb6bFd108f9: eUSDC-2    | 0xfEFCB3d15100f87911631f0A625bAf87dfFb8a5f |      safe      |         |          |
+|                       |                                                          | a-factor: 1000              | style: L0 sidechain                              | 0x72F92a966f1874f74e1b601BEe7CF57031B53A03: esavUSD-2  | 0x9062a576D3e6Cf6999e99e405608063033c4CFF6 |      safe      |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x22715161201922Af61F4ca22e979eF0c6c20be13               | Surge eK3 savUSD-USDT       | root: 0xA7165E1E3dEfe55DAdA5C4289268d57faBA6dAd2 | 0x5030183B3DD0105d69D7d45595C120Fc4b542EC3: esavUSD-3  | 0xfa5D15F15bC1BeBf3B413d9373E27586ac799dB6 |      safe      | BIP-817 |    7     |
+|                       | pool_address: 0x22715161201922Af61F4ca22e979eF0c6c20be13 | fee (%): 0.1                | side: 0x47C27a82F4ECCaB0720aB32462D4B808566Bb7ee | 0xa446938b0204Aa4055cdFEd68Ddf0E0d1BAB3E9E: eUSDt-3    | 0x4e7cE59ccBF84fA0C1d012Ae2F86f990d324A038 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000              | style: L0 sidechain                              |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | cap: 100.0%                                      |                                                        |                                            |                |         |          |
+|                       |                                                          |                             | preferential: True                               |                                                        |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+-----------------------------+--------------------------------------------------+--------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```

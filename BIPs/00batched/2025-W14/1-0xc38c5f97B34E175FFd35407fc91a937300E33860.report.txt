@@ -1,0 +1,42 @@
+FILENAME: `BIPs/00batched/2025-W14/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `d372b9ec0718af52b2d4523cf4173669b0d4fd25`
+CHAIN(S): `mainnet, base, arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/24054852-f0e5-4c92-9687-cb039b9d8e04)
+
+| Gauge Validator (0x1CCE9d493224A19FcB5f7fBade8478630141CB54) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x15C61f8bfAb804d8EFAE45781843BB654F619F55) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x9604a525630E7d9d72d804bDcB678862bab1971c) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+```
++-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info          | gauge_address_and_info                           | tokens                                                  | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x6b31a94029fd7840d780191B6D63Fa0D269bd883               | Surge Fluid wstETH-wETH  | root: 0x1CCE9d493224A19FcB5f7fBade8478630141CB54 | 0x2411802D8BEA09be0aF8fD8D08314a63e706b29C: fwstETH     | 0x8Be2e3D4b85d05cac2dBbAC6c42798fb342aef45 |      safe      | BIP-806 |    0     |
+|                       | pool_address: 0x6b31a94029fd7840d780191B6D63Fa0D269bd883 | fee (%): 0.005           | side: None                                       | 0x90551c1795392094FE6D29B758EcCD233cFAa260: fWETH       | 0x8fC43e76874CaE40939eDeB90E5683258B63c508 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000           | style: mainnet                                   |                                                         |                                            |                |         |          |
+|                       |                                                          |                          | cap: 100.0%                                      |                                                         |                                            |                |         |          |
+|                       |                                                          |                          | preferential: True                               |                                                         |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xB1B8B406EeeBBB636fdBB20E6732c117d828363C               | Surge Aave wstETH-fWETH  | root: 0x15C61f8bfAb804d8EFAE45781843BB654F619F55 | 0x45Df0656F8aDf017590009d2f1898eeca4F0a205: fWETH       | 0xeAaf42989c294e2280eFbB0B0f368E806AD8cA69 |      safe      | BIP-806 |    1     |
+|                       | pool_address: 0xB1B8B406EeeBBB636fdBB20E6732c117d828363C | fee (%): 0.005           | side: 0x1C81E457d435788C70B7BB71e1eE149f3C6710D3 | 0xe98fc055c99DECD8Da0c111B090885d5d15C774E: waArbwstETH | 0x9CC54cb63E61c7D5231c506e4206Eb459250D2A7 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000           | style: L0 sidechain                              |                                                         |                                            |                |         |          |
+|                       |                                                          |                          | cap: 100.0%                                      |                                                         |                                            |                |         |          |
+|                       |                                                          |                          | preferential: True                               |                                                         |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x9972c4f21b5Ae6062233031314aDbBddA7513Ed2               | Surge Aave wstETH-fWETH  | root: 0x9604a525630E7d9d72d804bDcB678862bab1971c | 0x0830820D1A9aa1554364752d6D8F55C836871B74: waBaswstETH | 0xcb1f29103F710A0A562de7f0e9DDE223D0860674 |      safe      | BIP-806 |    2     |
+|                       | pool_address: 0x9972c4f21b5Ae6062233031314aDbBddA7513Ed2 | fee (%): 0.005           | side: 0xf63c00BeAd3A6bcB970B55864c8E0BAB9A56Bd47 | 0x9272D6153133175175Bc276512B2336BE3931CE9: fWETH       | 0x0bB7028D24b24424485E769bD44b936B315Cb8FC |      safe      |         |          |
+|                       |                                                          | a-factor: 1000           | style: L0 sidechain                              |                                                         |                                            |                |         |          |
+|                       |                                                          |                          | cap: 100.0%                                      |                                                         |                                            |                |         |          |
+|                       |                                                          |                          | preferential: True                               |                                                         |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```

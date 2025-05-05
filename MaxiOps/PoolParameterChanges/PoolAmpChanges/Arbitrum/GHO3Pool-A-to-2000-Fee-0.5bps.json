@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1743166612621,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x4eea08de38ea524061558ee33344c4a6797d3c60221df6202ba4945208dd1169"
+  },
+  "transactions": [
+    {
+      "to": "0x19B001e6Bc2d89154c18e2216eec5C8c6047b6d8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "2000", "endTime": "1743425700" }
+    },
+    {
+      "to": "0xbA1333333333a1BA1108E8412f11850A5C319bA9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "pool", "type": "address" },
+          {
+            "internalType": "uint256",
+            "name": "swapFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setStaticSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x19B001e6Bc2d89154c18e2216eec5C8c6047b6d8",
+        "swapFeePercentage": "50000000000000"
+      }
+    }
+  ]
+}

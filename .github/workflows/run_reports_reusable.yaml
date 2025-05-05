@@ -39,25 +39,24 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
 
-      - name: Cache Compiler Installations
-        uses: actions/cache@v4
+      - name: Restore Compiler Caches
+        id: restore-compiler-caches
+        uses: actions/cache/restore@v4
         with:
           path: |
             ~/.solcx
             ~/.vvm
-          key: compiler-cache
+          key: evm-compiler-caches
 
       - name: Setup Python 3.10
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+          cache: "pip"
 
       - name: Setup Environment
         run: |
           cd action-scripts/brownie
-          : # https://github.com/yaml/pyyaml/issues/724#issuecomment-1848423837
-          pip install "cython<3.0.0" wheel
-          pip install "pyyaml==5.4.1" --no-build-isolation
           pip install -r requirements-actions.txt
           touch .env
           pwd
@@ -125,3 +124,18 @@ jobs:
           commit_user_name: GitHub Actions
           commit_user_email: github-actions[bot]@users.noreply.github.com
           commit_author: Github Actions <noreply@users.noreply.github.com>
+
+      - name: Clear Old Compiler Caches
+        if: ${{ steps.restore-compiler-caches.outputs.cache-hit }}
+        continue-on-error: true
+        run: gh cache delete "evm-compiler-caches"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save EVM Compiler Caches
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.solcx
+            ~/.vvm
+          key: evm-compiler-caches

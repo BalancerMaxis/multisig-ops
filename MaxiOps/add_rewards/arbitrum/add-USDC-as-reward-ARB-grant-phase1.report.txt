@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/arbitrum/add-USDC-as-reward-ARB-grant-phase1.json`
+MULTISIG: `multisigs/lm (arbitrum:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `87d70d112b408037a99e9e5c442e89212d859743`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/143f6f59-065d-42d3-96e5-131b8cd35ae4)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                                | selector                    | parsed_inputs                                                                               | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------------------------------+-----+----------+
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xb4259ce2724fe85182fee38ac78b794291fad997 (gauges/Surge eBTC-Aave WBTC-gauge-b425)   | add_reward(address,address) | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831: tokens/USDC                                     | N/A |    0     |
+|               |                                                                                                                 |                                                                                       |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: maxiKeepers/injectorV2/USDC-ARB-Grant-omnichain |     |          |
+| performAction | 0x97207B095e4D5C9a6e4cfbfcd2C3358E03B90c4A (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xf3e7b852390478faa6d44319bde4782bf35bf2bd (gauges/Surge orbETH-Aave wETH-gauge-f3e7) | add_reward(address,address) | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831: tokens/USDC                                     | N/A |    1     |
+|               |                                                                                                                 |                                                                                       |                             | 0x08F02E2945C175272Acbb238ACCB6eda56129DE8: maxiKeepers/injectorV2/USDC-ARB-Grant-omnichain |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------------------------------+-----+----------+
+```

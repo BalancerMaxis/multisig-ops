@@ -1,0 +1,160 @@
+FILENAME: `MaxiOps/feeDistributions/2025-04-24/2025-04-24.json`
+MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
+COMMIT: `feefee7369d0b6509b767e9fc3abee6d0f5dc59b`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/257a8ba6-b16f-4a1d-928d-f9f6c0027fd3)
+
+```
++----------+-------------------------------------------------+-------------------------------------------------------------------------+---------------------------------------------------+-----+----------+
+| function | token_symbol                                    | recipient                                                               | amount                                            | bip | tx_index |
++----------+-------------------------------------------------+-------------------------------------------------------------------------+---------------------------------------------------+-----+----------+
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f                | 26265.156969 (RAW: 26265156969)                   | N/A |    29    |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f                | 25192.027672 (RAW: 25192027672)                   | N/A |    55    |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | maxiKeepers/veBalFeeInjector:0x8AD2512819A7eae1dd398973EFfaE48dafBe8255 | 114033.903794 (RAW: 114033903794)                 | N/A |    56    |
+| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D  | maxiKeepers/veBalFeeInjector:0x8AD2512819A7eae1dd398973EFfaE48dafBe8255 | 17218.134034639323 (RAW: 17218134034639324044098) | N/A |    57    |
++----------+-------------------------------------------------+-------------------------------------------------------------------------+---------------------------------------------------+-----+----------+
+```
+FILENAME: `MaxiOps/feeDistributions/2025-04-24/2025-04-24.json`
+MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
+COMMIT: `feefee7369d0b6509b767e9fc3abee6d0f5dc59b`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/21d4f6c9-86d0-4b9d-9a47-08826dbd58ed)
+
+```
++--------------+--------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function     | title_and_poolId                                                   | incentive_paid                                    | market_and_prophash                                                | periods | tx_index |
++--------------+--------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| depositBribe | (A) sUSDX USDX                                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    1     |
+|              | 0xb3047330c1cb5eb1a3670fabfb99bdc106d631eb0000000000000000000005e4 |  630.6614(630661400)                              | 0xa3c1dac263f7082de1d8a3ab8ac70431a8772ba53fcd7c81e285d99cc31ad336 |         |          |
+| depositBribe | a-ComposableStable sUSDX/USDX                                      | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    2     |
+|              | 0xb3047330c1cb5eb1a3670fabfb99bdc106d631eb0000000000000000000005e4 |  2837.281(2837281000)                             | 0xa3c1dac263f7082de1d8a3ab8ac70431a8772ba53fcd7c81e285d99cc31ad336 |         |          |
+| depositBribe | (A) ezETH wstETH                                                   | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    3     |
+|              | 0xb61371ab661b1acec81c699854d2f911070c059e000000000000000000000516 |  698.7338(698733800)                              | 0x35f0db0217e1509c9edc86b7b4017a5d9d2b4d68a3e3388e97ee3597dc27422f |         |          |
+| depositBribe | (A) WETH rETH                                                      | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    4     |
+|              | 0xd0ec47c54ca5e20aaae4616c25c825c7f48d40690000000000000000000004ef |  816.3514(816351400)                              | 0xbd7630d0e05b94dc91a35b417ecb286391af930bcc3e87c50f19486fb379fd73 |         |          |
+| depositBribe | a-80/20 RDNT/WETH                                                  | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    5     |
+|              | 0x32df62dc3aed2cd6224193052ce665dc181658410002000000000000000003bd |  1151.7234(1151723400)                            | 0x621f3eb8fd5653e67afdb1f8a9e00ecd874b66cc9fa5a2cfa0733985196831fe |         |          |
+| depositBribe | (AV) sAVAX WAVAX                                                   | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    6     |
+|              | 0xfd2620c9cfcec7d152467633b3b0ca338d3d78cc00000000000000000000001c |  620.4437(620443700)                              | 0x914f232c88637f3f301e1309049974e16a8ad3a4ed7989a1dd6cb7199c93ca30 |         |          |
+| depositBribe | (P) wPOL MaticX                                                    | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    7     |
+|              | 0xcd78a20c597e367a4e478a2411ceb790604d7c8f000000000000000000000c22 |  939.1155(939115500)                              | 0xcbb8720a0ad5592ac16f8e384579708c9c9c95f42b36186b677ff8ed015b5a1a |         |          |
+| depositBribe | b-ComposableStable rETH/WETH                                       | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    8     |
+|              | 0xc771c1a5905420daec317b154eb13e4198ba97d0000000000000000000000023 |  1689.5227(1689522700)                            | 0xc20113e699a8cc094b01a28cda05f42e052b32fb52da0e75677696fa53f414d5 |         |          |
+| depositBribe | (B) IMO-80% WETH-20%                                               | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    9     |
+|              | 0x007bb7a4bfc214df06474e39142288e99540f2b3000200000000000000000191 |  735.2256(735225600)                              | 0x0dd2c80f350c81111f5ba8ed00bd2b4cdf5f282fa9e23218d4b6a4179fabe70c |         |          |
+| depositBribe | (G) wstETH WETH                                                    | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    10    |
+|              | 0xbad20c15a773bf03ab973302f61fabcea5101f0a000000000000000000000034 |  750.3435(750343500)                              | 0xfa663e35d2750065af9ccb9b839d2dc90eb496bc7a5564d97cafa241904310e0 |         |          |
+| depositBribe | g-ComposableStable wstETH/WETH                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    11    |
+|              | 0xbad20c15a773bf03ab973302f61fabcea5101f0a000000000000000000000034 |  1533.5897(1533589700)                            | 0xfa663e35d2750065af9ccb9b839d2dc90eb496bc7a5564d97cafa241904310e0 |         |          |
+| depositBribe | ComposableStable weETH/rETH                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    12    |
+|              | 0x05ff47afada98a98982113758878f9a8b9fdda0a000000000000000000000645 |  1064.1672(1064167200)                            | 0xe5e764574f51f588997f73047f8d1d869102330f6cc45a29cab33e68c39dbc0b |         |          |
+| depositBribe | rETH WETH                                                          | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    13    |
+|              | 0x1e19cf2d73a72ef1332c882f20534b6519be0276000200000000000000000112 |  6212.3988(6212398800)                            | 0x9da569f067c8ce7105bddd07c2dd92a257983c53e631290d7c202d27e7072cbf |         |          |
+| depositBribe | wstETH-50% ACX-50%                                                 | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    14    |
+|              | 0x36be1e97ea98ab43b4debf92742517266f5731a3000200000000000000000466 |  106.0448(106044800)                              | 0xe71103e76460c687649b7fef55f411db9c3f3e14067689822494328394b48e4b |         |          |
+| depositBribe | 50/50 wstETH/ACX                                                   | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    15    |
+|              | 0x36be1e97ea98ab43b4debf92742517266f5731a3000200000000000000000466 |  1658.0151(1658015100)                            | 0xe71103e76460c687649b7fef55f411db9c3f3e14067689822494328394b48e4b |         |          |
+| depositBribe | rETH sfrxETH wstETH                                                | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    16    |
+|              | 0x42ed016f826165c2e5976fe5bc3df540c5ad0af700000000000000000000058b |  308.3245(308324500)                              | 0xbd289a16c8632127837dc9aaeaac774103472e81246bc6e73d982e5592d7ffd3 |         |          |
+| depositBribe | ComposableStable rETH/sfrxETH/wstETH                               | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    17    |
+|              | 0x42ed016f826165c2e5976fe5bc3df540c5ad0af700000000000000000000058b |  2071.444399(2071444399)                          | 0xbd289a16c8632127837dc9aaeaac774103472e81246bc6e73d982e5592d7ffd3 |         |          |
+| depositBribe | WETH ezETH                                                         | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    18    |
+|              | 0x596192bb6e41802428ac943d2f1476c1af25cc0e000000000000000000000659 |  2123.6787(2123678700)                            | 0x9dbc094e3628d47695438a384279c49dbc7ea1ec5195c7a74ec2acf617b35e95 |         |          |
+| depositBribe | ComposableStable WETH/ezETH                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    19    |
+|              | 0x596192bb6e41802428ac943d2f1476c1af25cc0e000000000000000000000659 |  5781.7563(5781756300)                            | 0x9dbc094e3628d47695438a384279c49dbc7ea1ec5195c7a74ec2acf617b35e95 |         |          |
+| depositBribe | wstETH WETH                                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    20    |
+|              | 0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2 |  2339.3543(2339354300)                            | 0x5393491357661cb2d39d5057abeaf751616b755a33a39ac0268b6bba440130f3 |         |          |
+| depositBribe | ComposableStable wstETH/WETH                                       | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    21    |
+|              | 0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2 |  6222.5649(6222564900)                            | 0x5393491357661cb2d39d5057abeaf751616b755a33a39ac0268b6bba440130f3 |         |          |
+| depositBribe | ComposableStable USDC/sUSDe                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    22    |
+|              | 0xb819feef8f0fcdc268afe14162983a69f6bf179e000000000000000000000689 |  1071.8604(1071860400)                            | 0x534eb2e0dff0b465a2278ea916e1d6eed99e6f8d8dd551430750af9371b09796 |         |          |
+| depositBribe | wstETH ETHx                                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    23    |
+|              | 0xb91159aa527d4769cb9faf3e4adb760c7e8c8ea700000000000000000000067c |  839.3676(839367600)                              | 0xd3c4003d9ddc9b88014f0b81bc812752e80d749b476bc51e4f172bcc1f2aa6de |         |          |
+| depositBribe | eBTC WBTC                                                          | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    24    |
+|              | 0xda17f3663c5d04c0b316cfa1a04aa53ebbc8c12c0000000000000000000006e7 |  93.7713(93771300)                                | 0x96a402278aa4e8c142f74c3b70aeb750160aeba51ede6b349de71b681769235c |         |          |
+| depositBribe | ComposableStable eBTC/WBTC                                         | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    25    |
+|              | 0xda17f3663c5d04c0b316cfa1a04aa53ebbc8c12c0000000000000000000006e7 |  1632.9299(1632929900)                            | 0x96a402278aa4e8c142f74c3b70aeb750160aeba51ede6b349de71b681769235c |         |          |
+| depositBribe | 80/20 ALCX/WETH                                                    | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    26    |
+|              | 0xf16aee6a71af1a9bc8f56975a4c2705ca7a782bc0002000000000000000004bb |  1531.1793(1531179300)                            | 0x032da7c2d942c0e5982a4c06651997dccbe2003f8930e8670ed63d6806e7380e |         |          |
+| depositBribe | 50/50 STG/USDC                                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    27    |
+|              | 0x3ff3a210e57cfe679d9ad1e9ba6453a716c56a2e0002000000000000000005d5 |  1443.8486(1443848600)                            | 0xb77540810d85a619ece994507eea9d81cdf80853be8c230dc60c8ca28f3695af |         |          |
+| depositBribe | Gyroe sdeUSD/deUSD                                                 | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    28    |
+|              | 0x41fdbea2e52790c0a1dc374f07b628741f2e062d0002000000000000000006be |  1636.2494(1636249400)                            | 0xb3bc3a7d6ce63b937e14db4912221da78d3c2250b5a79c5bfeba9db698ba2574 |         |          |
+| depositBribe | (A) waArbUSDCn waArbUSDT waArbGHO                                  | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    31    |
+|              | 0x19b001e6bc2d89154c18e2216eec5c8c6047b6d8                         |  4167.0042(4167004200)                            | 0xb56fbdce51407eaacd3d604a5bf7e24a002c3d2ff72ea7730f5e20cbe35fd42c |         |          |
+| depositBribe | a-Stable waArbUSDCn/waArbUSDT/waArbGHO                             | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    32    |
+|              | 0x19b001e6bc2d89154c18e2216eec5c8c6047b6d8                         |  9894.9347(9894934700)                            | 0xb56fbdce51407eaacd3d604a5bf7e24a002c3d2ff72ea7730f5e20cbe35fd42c |         |          |
+| depositBribe | (A) waArbUSDCn yUSD                                                | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    33    |
+|              | 0x7abe8caa137cdb2490a9fa9f8be70cfbb0ff8652                         |  674.3169(674316900)                              | 0xb78eec6b8912d334c98d7dd579e76b076e2493f14094373926b8a71092e7652d |         |          |
+| depositBribe | (B) waBasUSDC waBasGHO                                             | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    34    |
+|              | 0x7ab124ec4029316c2a42f713828ddf2a192b36db                         |  2386.3822(2386382200)                            | 0x0e89bda9685d6b9226b1a02946ab5612d520bc315f305fc7d248980d7d8dccfb |         |          |
+| depositBribe | b-Stable waBasUSDC/waBasGHO                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    35    |
+|              | 0x7ab124ec4029316c2a42f713828ddf2a192b36db                         |  4877.4076(4877407600)                            | 0x0e89bda9685d6b9226b1a02946ab5612d520bc315f305fc7d248980d7d8dccfb |         |          |
+| depositBribe | (G) waGnowstETH-50% waGnoGNO-50%                                   | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    36    |
+|              | 0x272d6be442e30d7c87390edeb9b96f1e84cecd8d                         |  828.6767(828676700)                              | 0x495c2f986b437636409c562283db9189560d4c00999576d146b6ca2073690da1 |         |          |
+| depositBribe | g-50/50 waGnowstETH/waGnoGNO                                       | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    37    |
+|              | 0x272d6be442e30d7c87390edeb9b96f1e84cecd8d                         |  1693.691(1693691000)                             | 0x495c2f986b437636409c562283db9189560d4c00999576d146b6ca2073690da1 |         |          |
+| depositBribe | (G) waGnowstETH waGnoWETH                                          | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    38    |
+|              | 0x6e6bb18449fcf15b79efa2cfa70acf7593088029                         |  598.3945(598394500)                              | 0x449f1cd28548d32d8ee8cc0c3681e66f6fb24a87c6ffd3c0f3c56dddd914dbf7 |         |          |
+| depositBribe | g-Stable waGnowstETH/waGnoWETH                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    39    |
+|              | 0x6e6bb18449fcf15b79efa2cfa70acf7593088029                         |  1223.0287(1223028700)                            | 0x449f1cd28548d32d8ee8cc0c3681e66f6fb24a87c6ffd3c0f3c56dddd914dbf7 |         |          |
+| depositBribe | (G) waGnoGNO-50% sDAI-50%                                          | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    40    |
+|              | 0xd1d7fa8871d84d0e77020fc28b7cd5718c446522                         |  3408.72(3408720000)                              | 0x0814f156360b46d593ab7a82064270e52a4839f9387888ac6804f396d6cc857d |         |          |
+| depositBribe | g-50/50 waGnoGNO/sDAI                                              | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    41    |
+|              | 0xd1d7fa8871d84d0e77020fc28b7cd5718c446522                         |  6966.9127(6966912700)                            | 0x0814f156360b46d593ab7a82064270e52a4839f9387888ac6804f396d6cc857d |         |          |
+| depositBribe | csUSDC csUSDL                                                      | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    42    |
+|              | 0x10a04efba5b880e169920fd4348527c64fb29d4d                         |  1516.458(1516458000)                             | 0x35526ea761749eca07da1b971e23ec71da41e3d435aaca46152ad63319cac97e |         |          |
+| depositBribe | Stable csUSDC/csUSDL                                               | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    43    |
+|              | 0x10a04efba5b880e169920fd4348527c64fb29d4d                         |  3357.863(3357863000)                             | 0x35526ea761749eca07da1b971e23ec71da41e3d435aaca46152ad63319cac97e |         |          |
+| depositBribe | rstETH waEthLidowstETH                                             | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    44    |
+|              | 0x121edb0badc036f5fc610d015ee14093c142313b                         |  402.2274(402227400)                              | 0x23572d986f915da70c99c8295586d3f64f8339848a4e45a6d22b0ab4999fe573 |         |          |
+| depositBribe | Stable rstETH/waEthLidowstETH                                      | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    45    |
+|              | 0x121edb0badc036f5fc610d015ee14093c142313b                         |  1080.5427(1080542700)                            | 0x23572d986f915da70c99c8295586d3f64f8339848a4e45a6d22b0ab4999fe573 |         |          |
+| depositBribe | ETHx waEthWETH                                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    46    |
+|              | 0x4ab7ab316d43345009b2140e0580b072eec7df16                         |  475.1463(475146300)                              | 0x0b8892a662f93046bd171f80abb45afcb5d2e386296a8ea592fa7296102210f4 |         |          |
+| depositBribe | Stable ETHx/waEthWETH                                              | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    47    |
+|              | 0x4ab7ab316d43345009b2140e0580b072eec7df16                         |  1229.578(1229578000)                             | 0x0b8892a662f93046bd171f80abb45afcb5d2e386296a8ea592fa7296102210f4 |         |          |
+| depositBribe | waEthWETH osETH                                                    | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    48    |
+|              | 0x57c23c58b1d8c3292c15becf07c62c5c52457a42                         |  758.7158(758715800)                              | 0x57215c60f37d91fbfe5c7579b64d5cb54177487e00ac15fb1a47e52fbc2f2cbb |         |          |
+| depositBribe | Aave Prime GHO Aave Core pyUSD                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    49    |
+|              | 0x64b84023cfe8397df83c67eaccc2c03ecda4aee5                         |  1119.4866(1119486600)                            | 0x9b2ca31b143f7566b59916c9cbda527aa3b67475bd5dcb562595b7de7f47a1e4 |         |          |
+| depositBribe | Stable Aave Prime GHO/Aave Core pyUSD                              | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    50    |
+|              | 0x64b84023cfe8397df83c67eaccc2c03ecda4aee5                         |  2546.513(2546513000)                             | 0x9b2ca31b143f7566b59916c9cbda527aa3b67475bd5dcb562595b7de7f47a1e4 |         |          |
+| depositBribe | waEthUSDT Aave Prime GHO waEthUSDC                                 | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    51    |
+|              | 0x85b2b559bc2d21104c4defdd6efca8a20343361d                         |  7740.8588(7740858800)                            | 0x5af8de3497a037fe4db1cb5a7af3ef1b0bf08830c0142ee3781a158b1d77eff3 |         |          |
+| depositBribe | Stable waEthUSDT/Aave Prime GHO/waEthUSDC                          | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    52    |
+|              | 0x85b2b559bc2d21104c4defdd6efca8a20343361d                         |  16079.6053(16079605300)                          | 0x5af8de3497a037fe4db1cb5a7af3ef1b0bf08830c0142ee3781a158b1d77eff3 |         |          |
+| depositBribe | waEthLidoWETH waEthLidowstETH                                      | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    53    |
+|              | 0xc4ce391d82d164c166df9c8336ddf84206b2f812                         |  2209.4076(2209407600)                            | 0xaaf8a660fecf97718794a9f613cf639a935c69126fdf36039d93b68d1205fc85 |         |          |
+| depositBribe | Stable waEthLidoWETH/waEthLidowstETH                               | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    54    |
+|              | 0xc4ce391d82d164c166df9c8336ddf84206b2f812                         |  4774.1482(4774148200)                            | 0xaaf8a660fecf97718794a9f613cf639a935c69126fdf36039d93b68d1205fc85 |         |          |
++--------------+--------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `MaxiOps/feeDistributions/2025-04-24/2025-04-24.json`
+MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
+COMMIT: `feefee7369d0b6509b767e9fc3abee6d0f5dc59b`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6d82474c-27ae-4422-b7f0-d51a94ce030e)
+
+```
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| fx_name | to                                                       | value | inputs                                                                      | bip_number | tx_index |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC) | 0     | {                                                                           | N/A        |   N/A    |
+|         |                                                          |       |   "_spender": [                                                             |            |          |
+|         |                                                          |       |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault)" |            |          |
+|         |                                                          |       |   ],                                                                        |            |          |
+|         |                                                          |       |   "_value": [                                                               |            |          |
+|         |                                                          |       |     "raw:48539950000, 18 decimals:4.853995E-8, 6 decimals: 48539.95"        |            |          |
+|         |                                                          |       |   ]                                                                         |            |          |
+|         |                                                          |       | }                                                                           |            |          |
+| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC) | 0     | {                                                                           | N/A        |   N/A    |
+|         |                                                          |       |   "_spender": [                                                             |            |          |
+|         |                                                          |       |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault)" |            |          |
+|         |                                                          |       |   ],                                                                        |            |          |
+|         |                                                          |       |   "_value": [                                                               |            |          |
+|         |                                                          |       |     "raw:80010020000, 18 decimals:8.001002E-8, 6 decimals: 80010.02"        |            |          |
+|         |                                                          |       |   ]                                                                         |            |          |
+|         |                                                          |       | }                                                                           |            |          |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+```

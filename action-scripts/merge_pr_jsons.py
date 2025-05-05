@@ -16,6 +16,10 @@ ADDRESSES_OPTIMISM = AddrBook("optimism").reversebook
 ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
 ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
 ADDRESSES_BASE = AddrBook("base").reversebook
+ADDRESSES_FANTOM = AddrBook("fantom").reversebook
+ADDRESSES_MODE = AddrBook("mode").reversebook
+ADDRESSES_FRAXTAL = AddrBook("fraxtal").reversebook
+ADDRESSES_SEPOLIA = AddrBook("sepolia").reversebook
 
 # Merge all addresses into one dictionary
 ADDRESSES = {
@@ -27,6 +31,10 @@ ADDRESSES = {
     **ADDRESSES_GNOSIS,
     **ADDRESSES_ZKEVM,
     **ADDRESSES_BASE,
+    **ADDRESSES_FANTOM,
+    **ADDRESSES_MODE,
+    **ADDRESSES_FRAXTAL,
+    **ADDRESSES_SEPOLIA,
 }
 
 # Initialize the parser
@@ -125,7 +133,7 @@ def _parse_bip_json(file_path: str, chain: int) -> Optional[dict]:
         )
 
     # Check if msig address is in the address book
-    if Web3.toChecksumAddress(msig) not in ADDRESSES:
+    if Web3.to_checksum_address(msig) not in ADDRESSES:
         raise AddressNotFound(
             f"msig address {msig} not found in address book in file: {file_path}"
         )

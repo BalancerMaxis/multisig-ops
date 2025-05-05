@@ -1,0 +1,34 @@
+FILENAME: `BIPs/00batched/2025-W9/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `0e2696d808dbfe8f09aa7270c89074e07f649236`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/3b6d455c-7bc1-469e-8f0d-12e7722482ea)
+
+```
++----------+-------------------------------------------------+------------------------------------------------------------------------+----------------------------+---------+----------+
+| function | token_symbol                                    | recipient                                                              | amount                     |   bip   | tx_index |
++----------+-------------------------------------------------+------------------------------------------------------------------------+----------------------------+---------+----------+
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/foundation_opco:0x3B8910F378034FD6E103Df958863e5c684072693   | 35200.0 (RAW: 35200000000) | BIP-786 |    1     |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | payees/hypernative_payments:0x5CA24e2A586834A7B96216D68b26A82405e3DC15 | 80000.0 (RAW: 80000000000) | BIP-775 |    4     |
++----------+-------------------------------------------------+------------------------------------------------------------------------+----------------------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2025-W9/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `0e2696d808dbfe8f09aa7270c89074e07f649236`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ae95ae4a-d19b-49e7-b1bd-51b4352ac8fa)
+
+```
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                                | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250121-v3-stable-surge/StablePool/startAmplificationParameterUpdate(uint256,uint256)                  | 0x3050dfbb6294dc29c5cae13acb241fddea61d345d9b8c809f216c8259b013ff8 | BIP-787 |    0     |
+|                       |                     |                                            | 20250121-v3-stable-surge/StablePool/stopAmplificationParameterUpdate()                                  | 0x866d7d17a9b007d202e4da84f38a0bfbb310db8184a4f1d2e6de3c8e78ecd1e0 |         |          |
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250121-v3-stable-surge/StableSurgeHook/setMaxSurgeFeePercentage(address,uint256)                      | 0x2f27aa67b6bf44b4441ea2656c22e09252261845a98dc577a6fc06b6526f8bcc | BIP-778 |    2     |
+|                       |                     |                                            | 20250121-v3-stable-surge/StableSurgeHook/setSurgeThresholdPercentage(address,uint256)                   | 0x66c657ea0d5ce1dc0286795937131c61620bb6ccd0f126fbfe3799d8b89a9753 |         |          |
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250117-v3-contract-registry/BalancerContractRegistry/addOrUpdateBalancerContractAlias(string,address) | 0xc50be693f82453d6b7fbfabf52ae750e168eb530ce663aec7b2fe1c96cfdf381 | BIP-790 |    3     |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deprecateBalancerContract(address)               | 0xda5605d0e7c70ae825d1d2e45f0656490960542c725946cd5532909f723501b4 |         |          |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/deregisterBalancerContract(string)               | 0x534d9f0ca09366b50105b12a7492e9429c8621cf57c845195e7c6874fa413d03 |         |          |
+|                       |                     |                                            | 20250117-v3-contract-registry/BalancerContractRegistry/registerBalancerContract(uint8,string,address)   | 0xf539cbe9be426b500591a2dd63970d37952d95006d1039f35e731b4b52b33e73 |         |          |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```

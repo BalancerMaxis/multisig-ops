@@ -21,7 +21,7 @@ dust_factor = 10000
 def genSweepsFromTokenList(tokenlist, collector):
     sweeps = {}
     for address in tokenlist:
-        address = Web3.toChecksumAddress(address)
+        address = Web3.to_checksum_address(address)
         token = Contract.from_explorer(address)
         sweeps[address] = token.balanceOf(collector)
     return sweeps

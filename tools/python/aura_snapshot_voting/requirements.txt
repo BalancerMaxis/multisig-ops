@@ -1,13 +1,7 @@
-safe-eth-py==4.3.2
+safe-eth-py<6.0.0
 eth-abi-lite
-datetime
-pandas
-requests
-web3
-git+https://github.com/BalancerMaxis/bal_addresses@0.9.1
+git+https://github.com/BalancerMaxis/bal_addresses.git@0.9.15#egg=bal_addresses
 dune-client
 dataclasses-json
-python-dotenv
-pytest
-eth-account
 tabulate
+eth-account==0.10.0

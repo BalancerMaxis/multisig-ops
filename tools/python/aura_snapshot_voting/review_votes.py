@@ -63,6 +63,10 @@ def review_votes(week_string):
 
     vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
 
+    vote_df["Clean Address"] = vote_df["Gauge Address"].str.strip().str.lower()
+    duplicate_gauges = vote_df[vote_df["Clean Address"].duplicated(keep=False)]
+    duplicate_check = len(duplicate_gauges) == 0
+
     gauge_labels = fetch_gauge_labels()
 
     vote_df["Checksum Address"] = vote_df["Gauge Address"].apply(
@@ -75,6 +79,13 @@ def review_votes(week_string):
     total_allocation = vote_df["Allocation %"].str.rstrip("%").astype(float).sum()
     allocation_check = abs(total_allocation - 100) < 0.0001
 
+    duplicate_message = ""
+    if not duplicate_check:
+        duplicate_message = "- Duplicate gauges found:\n"
+        duplicate_message += duplicate_gauges[
+            ["Chain", "Label", "Gauge Address", "Allocation %"]
+        ].to_markdown(index=False)
+
     report = f"""## vLAURA Votes Review
 
 CSV file: `{os.path.relpath(csv_file, project_root)}`
@@ -82,11 +93,13 @@ CSV file: `{os.path.relpath(csv_file, project_root)}`
 ### Allocation Check
 - Total allocation: {total_allocation:.2f}%
 - Passes 100% check: {"✅" if allocation_check else "❌"}
+- No duplicate gauge addresses: {"✅" if duplicate_check else "❌"}
+{duplicate_message}
 
 ### Snapshot Votes Check
 - All gauge addresses have corresponding snapshot choices: {"✅" if snapshot_label_check else "❌"}
-{f"- Missing labels for {len(missing_labels)} gauge(s):" if not snapshot_label_check else ""}
-{missing_labels[["Chain", "Label", "Gauge Address"]].to_string(index=False) if not snapshot_label_check else ""}
+{f"- Missing labels for {len(missing_labels)} gauge(s):{chr(10)}" if not snapshot_label_check else ""}
+{missing_labels[["Chain", "Label", "Gauge Address"]].to_markdown(index=False) if not snapshot_label_check else ""}
 
 {vote_prep}
 
@@ -94,7 +107,7 @@ CSV file: `{os.path.relpath(csv_file, project_root)}`
 
 {vote_df[["Chain", "Label", "Gauge Address", "Allocation %"]].to_markdown(index=False)}
 
-{"### ✅ All checks passed!" if (allocation_check and snapshot_label_check and vote_check) else "### ❌ Some checks failed - please review the issues above"}
+{"### ✅ All checks passed!" if (allocation_check and snapshot_label_check and vote_check and duplicate_check) else "### ❌ Some checks failed - please review the issues above"}
     """
 
     with open("review_output.md", "w") as f:
