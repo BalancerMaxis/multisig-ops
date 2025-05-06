@@ -1,15 +1,14 @@
 FILENAME: `BIPs/2025-W20/BIP-XXX-Update-Permissions-ProtocolFeeSweeperV2-ethereum.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `28fe4c8ed97b215dd724d58abe12fd1e10b58b98`
+COMMIT: `038db5c9a73e206ed0884ecbcb01f3dae8ceb61f`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f8f4d7b7-0480-4675-8201-9f476680f9c4)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/3be2daeb-eaf9-48ac-8175-a418b1f31a26)
 
 ```
 +-----------------------+------------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 | function              | caller_name            | caller_address                             | fx_paths                                                                                                           | action_ids                                                         | bip | tx_index |
 +-----------------------+------------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
 | Authorizer/grantRoles | !!NOT FOUND!!          | 0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address) | 0x9fe8e7d354d4d4c9b828af97a9fb461b79747eb597d1d1919127b884ed03a3df | N/A |    0     |
-|                       |                        |                                            | 20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner/burn(address,address,uint256,address,uint256,address,uint256)     | 0x9dee5e8e180c04cd338ca59779239cc78a0ef36e21890593ce1fe7ab0535af86 |     |          |
 | Authorizer/grantRoles | EOA/keepers/v3_fee_bot | 0x74E283B985EA76c55C8B48d6bD1067a418188424 |                                                                                                                    | 0x948915f00181e892799c0395cd771a3e2799fa1b93083824be21aabd4aa8f344 | N/A |    1     |
 |                       |                        |                                            |                                                                                                                    | 0x00d2a3463fdb96359d21e38b6b564b93a1b869bbb3cbaa1c73510d0b103659d6 |     |          |
 +-----------------------+------------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
