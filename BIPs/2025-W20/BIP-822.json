@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1746605362688,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Transfer $10k BAL (30d moving average) to Rocket alliance msig",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+  },
+  "transactions": [
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xb867EA3bBC909954d737019FEf5AB25dFDb38CB9",
+        "value": "9587000000000000000000"
+      }
+    }
+  ]
+}
