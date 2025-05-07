@@ -179,7 +179,8 @@ def get_pools(chain: str, broadcast: bool = False):
                                 token_is_erc4626 = pool_token["isErc4626"]
                                 break
                         sweep_func_name = (
-                            "sweepProtocolFeesForWrappedToken"
+                            "sweepProtocolFeesForToken"
+                            # "sweepProtocolFeesForWrappedToken"
                             if token_is_erc4626
                             else "sweepProtocolFeesForToken"
                         )
@@ -224,13 +225,9 @@ def get_pools(chain: str, broadcast: bool = False):
                             except Exception as e:
                                 print(f"!!! tx failed: {e}\n")
                                 continue
-                        print(
-                            "tx hash:",
-                            tx_hash.hex() if broadcast else "<dry run>",
-                            "\n",
-                        )
-                        print("waiting for cooldown...")
-                        sleep(ORDER_COOLDOWN)
+                            print("tx hash:", tx_hash.hex(), "\n")
+                            print("waiting for cooldown...")
+                            sleep(ORDER_COOLDOWN)
                     except (ContractLogicError, ValueError) as e:
                         if "data" in dir(e):
                             if "0xd0c1b3cf" in e.data:
