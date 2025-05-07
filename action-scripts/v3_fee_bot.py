@@ -13,7 +13,7 @@ from web3.exceptions import ContractLogicError
 
 
 CONFIG = json.load(open("action-scripts/v3_fee_config.json"))
-ORDER_COOLDOWN = 60 * 5  # 20 minutes
+ORDER_COOLDOWN = 60 * 5  # 5 minutes
 SLIPPAGE = Decimal("0.005")  # 50bips slippage
 NULL = None
 OMNI_MSIG = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
