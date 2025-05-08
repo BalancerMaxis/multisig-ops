@@ -1,0 +1,28 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/Base/USR-USDC-GHO-SurgeUpdate-30Percent.json`
+MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `7f4a8556974fad5007b3268684f1e870b8fb8674`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5fcf44f7-9b1d-4732-8210-9776ebd9b3a9)
+
+```
++-----------------------------+---------------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------+------------+----------+
+| fx_name                     | to                                                                                    | value | inputs                                                                           | bip_number | tx_index |
++-----------------------------+---------------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------+------------+----------+
+| setSurgeThresholdPercentage | 0xb2007b8b7e0260042517f635cfd8e6dd2dd7f007 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                                                | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                                                      |            |          |
+|                             |                                                                                       |       |     "0x7ab124ec4029316c2a42f713828ddf2a192b36db (pools/Aave USDC-Aave GHO-7ab1)" |            |          |
+|                             |                                                                                       |       |   ],                                                                             |            |          |
+|                             |                                                                                       |       |   "newSurgeThresholdPercentage": [                                               |            |          |
+|                             |                                                                                       |       |     "300000000000000000"                                                         |            |          |
+|                             |                                                                                       |       |   ]                                                                              |            |          |
+|                             |                                                                                       |       | }                                                                                |            |          |
+| setSurgeThresholdPercentage | 0xb2007b8b7e0260042517f635cfd8e6dd2dd7f007 (20250121-v3-stable-surge/StableSurgeHook) | 0     | {                                                                                | N/A        |   N/A    |
+|                             |                                                                                       |       |   "pool": [                                                                      |            |          |
+|                             |                                                                                       |       |     "0x5b14ce8de84448e9a6f6af652af318472aa4fcaf (pools/Aave GHO-USR-5b14)"       |            |          |
+|                             |                                                                                       |       |   ],                                                                             |            |          |
+|                             |                                                                                       |       |   "newSurgeThresholdPercentage": [                                               |            |          |
+|                             |                                                                                       |       |     "300000000000000000"                                                         |            |          |
+|                             |                                                                                       |       |   ]                                                                              |            |          |
+|                             |                                                                                       |       | }                                                                                |            |          |
++-----------------------------+---------------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------+------------+----------+
+```
