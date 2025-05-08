@@ -79,6 +79,9 @@ def get_pools(chain: str, broadcast: bool = False):
     )
     target_token = ProtocolFeeSweeper.functions.getTargetToken().call().lower()
     burner = AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
+    erc4626_burner = (
+        AddrBook(chain).search_unique("20250507-v3-erc4626-cow-swap-fee-burner").address
+    )
     payload_unstuck_tokens = _payload_template(str(drpc.eth.chain_id), OMNI_MSIG)
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
     max_gas_price = int(CONFIG[chain]["max_gas_price"])
@@ -151,8 +154,13 @@ def get_pools(chain: str, broadcast: bool = False):
                             datetime.now(timezone.utc) + timedelta(minutes=90)
                         )
                     )
+                    for pool_token in pool["poolTokens"]:
+                        if pool_token["address"].lower() == token["address"].lower():
+                            token_is_erc4626 = pool_token["isErc4626"]
+                            break
+                    designated_burner = erc4626_burner if token_is_erc4626 else burner
                     if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
-                        burner
+                        designated_burner
                     ).call():
                         print("!!! burner not approved (yet); skipping\n")
                         continue
@@ -171,13 +179,6 @@ def get_pools(chain: str, broadcast: bool = False):
                                 )
                         except:
                             max_priority_fee_optimal = max_priority_fee
-                        for pool_token in pool["poolTokens"]:
-                            if (
-                                pool_token["address"].lower()
-                                == token["address"].lower()
-                            ):
-                                token_is_erc4626 = pool_token["isErc4626"]
-                                break
                         sweep_func_name = (
                             "sweepProtocolFeesForToken"
                             # "sweepProtocolFeesForWrappedToken"
@@ -201,7 +202,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             (
                                 ZERO_ADDRESS
                                 if token["address"] == target_token
-                                else burner
+                                else designated_burner
                             ),
                         ).build_transaction(
                             {
@@ -225,9 +226,10 @@ def get_pools(chain: str, broadcast: bool = False):
                             except Exception as e:
                                 print(f"!!! tx failed: {e}\n")
                                 continue
-                            print("tx hash:", tx_hash.hex(), "\n")
+                            print("tx hash:", tx_hash.hex())
                             print("waiting for cooldown...")
                             sleep(ORDER_COOLDOWN)
+                        print("\n")
                     except (ContractLogicError, ValueError) as e:
                         if "data" in dir(e):
                             if "0xd0c1b3cf" in e.data:
