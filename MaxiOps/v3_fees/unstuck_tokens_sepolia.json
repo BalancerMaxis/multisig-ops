@@ -1,0 +1,84 @@
+{
+  "chainId": "11155111",
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x3400AaFA47C6dC0D8Ffc2380D3665f701cD53eBc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          }
+        ],
+        "name": "cancelOrder",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9",
+        "receiver": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x3400AaFA47C6dC0D8Ffc2380D3665f701cD53eBc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          }
+        ],
+        "name": "cancelOrder",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8",
+        "receiver": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x3400AaFA47C6dC0D8Ffc2380D3665f701cD53eBc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          }
+        ],
+        "name": "cancelOrder",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb19382073c7A0aDdbb56Ac6AF1808Fa49e377B75",
+        "receiver": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
