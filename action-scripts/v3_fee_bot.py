@@ -186,7 +186,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             else "sweepProtocolFeesForToken"
                         )
                         print(
-                            f"ProtocolFeeSweeper({sweeper}).{sweep_func_name}({to_checksum_address(pool['address'])},{to_checksum_address(token['address'])},{int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))},{deadline},{burner})"
+                            f"ProtocolFeeSweeper({sweeper}).{sweep_func_name}({to_checksum_address(pool['address'])},{to_checksum_address(token['address'])},{int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))},{deadline},{designated_burner})"
                         )
                         unsigned_tx = getattr(
                             ProtocolFeeSweeper.functions, sweep_func_name
@@ -257,7 +257,7 @@ if __name__ == "__main__":
         report[chain] = {"n_pools": 0, "total_potential": 0, "usdc_collectable": []}
         s = Subgraph(chain)
         prices = get_prices(chain)
-        get_pools(chain, broadcast=False)
+        get_pools(chain, broadcast=True)
     pprint(report)
     print(
         "total total_potential:",
