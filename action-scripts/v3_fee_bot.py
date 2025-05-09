@@ -130,7 +130,7 @@ def get_pools(chain: str, broadcast: bool = False):
                         payload_unstuck_tokens["transactions"].append(
                             _tx_cancelOrder(
                                 designated_burner,
-                                to_checksum_address(token["address"]),
+                                to_checksum_address(asset_address),
                             )
                         )
                 fees_vault = Decimal(token["vaultProtocolSwapFeeBalance"]) + Decimal(
