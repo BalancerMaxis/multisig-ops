@@ -122,7 +122,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     for tx in payload_unstuck_tokens["transactions"]:
                         if (
                             tx["contractInputsValues"]["tokenIn"].lower()
-                            == token["address"].lower()
+                            == asset_address.lower()
                         ):
                             break
                     else:
@@ -254,11 +254,9 @@ def get_pools(chain: str, broadcast: bool = False):
                                     "!!! token stuck in burner; no new order possible\n"
                                 )
     if len(payload_unstuck_tokens["transactions"]) > 0:
-        json.dump(
-            payload_unstuck_tokens,
-            open(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json", "w"),
-            indent=2,
-        )
+        with open(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json", "w") as f:
+            json.dump(payload_unstuck_tokens, f, indent=2)
+            f.write("\n")
 
 
 if __name__ == "__main__":
