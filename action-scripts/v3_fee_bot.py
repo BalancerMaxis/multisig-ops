@@ -100,16 +100,24 @@ def get_pools(chain: str, broadcast: bool = False):
         )
         if fees["pool"]:
             for token in fees["pool"]["tokens"]:
-                erc20 = drpc.eth.contract(
-                    address=to_checksum_address(token["address"]),
-                    abi=json.load(open("action-scripts/abis/ERC20.json")),
-                )
                 for pool_token in pool["poolTokens"]:
                     if pool_token["address"].lower() == token["address"].lower():
                         token_is_erc4626 = pool_token["isErc4626"]
                         break
+                if token_is_erc4626:
+                    erc4626 = drpc.eth.contract(
+                        address=to_checksum_address(token["address"]),
+                        abi=json.load(open("action-scripts/abis/ERC4626.json")),
+                    )
+                    asset_address = erc4626.functions.asset().call()
+                else:
+                    asset_address = token["address"]
+                asset = drpc.eth.contract(
+                    address=to_checksum_address(asset_address),
+                    abi=json.load(open("action-scripts/abis/ERC20.json")),
+                )
                 designated_burner = erc4626_burner if token_is_erc4626 else burner
-                balance = erc20.functions.balanceOf(designated_burner).call()
+                balance = asset.functions.balanceOf(designated_burner).call()
                 if balance > 0:
                     for tx in payload_unstuck_tokens["transactions"]:
                         if (
@@ -227,8 +235,9 @@ def get_pools(chain: str, broadcast: bool = False):
                                 print(f"!!! tx failed: {e}\n")
                                 continue
                             print("tx hash:", tx_hash.hex())
-                            print("waiting for cooldown...")
-                            sleep(ORDER_COOLDOWN)
+                            if token["address"] != target_token:
+                                print("waiting for cooldown...")
+                                sleep(ORDER_COOLDOWN)
                         print("\n")
                     except (ContractLogicError, ValueError) as e:
                         if "data" in dir(e):
