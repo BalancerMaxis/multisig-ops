@@ -104,7 +104,12 @@ def get_pools(chain: str, broadcast: bool = False):
                     address=to_checksum_address(token["address"]),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
                 )
-                balance = erc20.functions.balanceOf(burner).call()
+                for pool_token in pool["poolTokens"]:
+                    if pool_token["address"].lower() == token["address"].lower():
+                        token_is_erc4626 = pool_token["isErc4626"]
+                        break
+                designated_burner = erc4626_burner if token_is_erc4626 else burner
+                balance = erc20.functions.balanceOf(designated_burner).call()
                 if balance > 0:
                     for tx in payload_unstuck_tokens["transactions"]:
                         if (
@@ -116,7 +121,7 @@ def get_pools(chain: str, broadcast: bool = False):
                         print(f"adding {token['address']} to unstuck payload")
                         payload_unstuck_tokens["transactions"].append(
                             _tx_cancelOrder(
-                                burner,
+                                designated_burner,
                                 to_checksum_address(token["address"]),
                             )
                         )
@@ -154,11 +159,6 @@ def get_pools(chain: str, broadcast: bool = False):
                             datetime.now(timezone.utc) + timedelta(minutes=90)
                         )
                     )
-                    for pool_token in pool["poolTokens"]:
-                        if pool_token["address"].lower() == token["address"].lower():
-                            token_is_erc4626 = pool_token["isErc4626"]
-                            break
-                    designated_burner = erc4626_burner if token_is_erc4626 else burner
                     if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
                         designated_burner
                     ).call():
@@ -237,6 +237,7 @@ def get_pools(chain: str, broadcast: bool = False):
                                 print(
                                     "!!! token stuck in burner; no new order possible\n"
                                 )
+                                continue
                         if "message" in dir(e):
                             if "0xd0c1b3cf" in e.message:
                                 # OrderHasUnexpectedStatus
