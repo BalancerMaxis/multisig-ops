@@ -57,56 +57,6 @@
         "pool": "0x21f132ade35684b230af974b80b5bfd2678ebd80",
         "newSurgeThresholdPercentage": "50000000000000000"
       }
-    },
-    {
-      "to": "0xdb8d758bcb971e482b2c45f7f8a7740283a1bd3a",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "pool",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "newMaxSurgeSurgeFeePercentage",
-            "type": "uint256"
-          }
-        ],
-        "name": "setMaxSurgeFeePercentage",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "pool": "0xb6a9a815d98cb98fd9f2353ec59de07b63f5b485",
-        "newMaxSurgeSurgeFeePercentage": "50000000000000000"
-      }
-    },
-    {
-      "to": "0xdb8d758bcb971e482b2c45f7f8a7740283a1bd3a",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "pool",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "newSurgeThresholdPercentage",
-            "type": "uint256"
-          }
-        ],
-        "name": "setSurgeThresholdPercentage",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "pool": "0xb6a9a815d98cb98fd9f2353ec59de07b63f5b485",
-        "newSurgeThresholdPercentage": "50000000000000000"
-      }
     }
   ]
 }
