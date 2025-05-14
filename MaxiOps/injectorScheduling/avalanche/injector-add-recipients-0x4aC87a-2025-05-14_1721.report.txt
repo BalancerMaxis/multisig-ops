@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/injectorScheduling/avalanche/injector-add-recipients-0x4aC87a-2025-05-14_1721.json`
 MULTISIG: `multisigs/maxi_omni (avalanche:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `2d537e4cce14ada52e0a71af6ac1ad1477df902a`
+COMMIT: `edc892de643b13ff7dfa6ef21f99b99fde2fae2e`
 CHAIN(S): `avalanche`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/69b9ce6b-5986-454f-9b71-9ebd00660e30)
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/bd03b16f-d47b-4f6c-9ca1-379d83d93d90)
 
 ```
 +---------------+-------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------------+------------+----------+
@@ -86,6 +86,20 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/69b9ce6b-5986-4
 |               |                                                                                     |       |   ],                                                                                            |            |          |
 |               |                                                                                     |       |   "amountPerPeriod": [                                                                          |            |          |
 |               |                                                                                     |       |     "raw:125000000000000000000, 18 decimals:125, 6 decimals: 125000000000000"                   |            |          |
+|               |                                                                                     |       |   ],                                                                                            |            |          |
+|               |                                                                                     |       |   "maxPeriods": [                                                                               |            |          |
+|               |                                                                                     |       |     "1"                                                                                         |            |          |
+|               |                                                                                     |       |   ],                                                                                            |            |          |
+|               |                                                                                     |       |   "doNotStartBeforeTimestamp": [                                                                |            |          |
+|               |                                                                                     |       |     "0"                                                                                         |            |          |
+|               |                                                                                     |       |   ]                                                                                             |            |          |
+|               |                                                                                     |       | }                                                                                               |            |          |
+| addRecipients | 0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838 (maxiKeepers/injectorV2/WAVAX-omnichain) | 0     | {                                                                                               | N/A        |   N/A    |
+|               |                                                                                     |       |   "recipients": [                                                                               |            |          |
+|               |                                                                                     |       |     "0xD8b74632eA90bd6eb51C8da0B4183748Df62e638 (N/A)"                                          |            |          |
+|               |                                                                                     |       |   ],                                                                                            |            |          |
+|               |                                                                                     |       |   "amountPerPeriod": [                                                                          |            |          |
+|               |                                                                                     |       |     "raw:110000000000000000000, 18 decimals:110, 6 decimals: 110000000000000"                   |            |          |
 |               |                                                                                     |       |   ],                                                                                            |            |          |
 |               |                                                                                     |       |   "maxPeriods": [                                                                               |            |          |
 |               |                                                                                     |       |     "1"                                                                                         |            |          |
