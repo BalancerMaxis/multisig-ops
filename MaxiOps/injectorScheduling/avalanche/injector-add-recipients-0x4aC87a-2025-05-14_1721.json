@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "chainId": "43114",
-  "createdAt": 1747257662,
+  "createdAt": 1747258002,
   "meta": {
     "name": "Rewards Injector Schedule - ADD",
     "description": "Configure rewards injector schedule to add recipients",
@@ -24,7 +24,11 @@
             "type": "uint256",
             "internalType": "uint256"
           },
-          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
           {
             "name": "doNotStartBeforeTimestamp",
             "type": "uint56",
@@ -57,7 +61,11 @@
             "type": "uint256",
             "internalType": "uint256"
           },
-          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
           {
             "name": "doNotStartBeforeTimestamp",
             "type": "uint56",
@@ -90,7 +98,11 @@
             "type": "uint256",
             "internalType": "uint256"
           },
-          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
           {
             "name": "doNotStartBeforeTimestamp",
             "type": "uint56",
@@ -123,7 +135,11 @@
             "type": "uint256",
             "internalType": "uint256"
           },
-          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
           {
             "name": "doNotStartBeforeTimestamp",
             "type": "uint56",
@@ -156,7 +172,11 @@
             "type": "uint256",
             "internalType": "uint256"
           },
-          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
           {
             "name": "doNotStartBeforeTimestamp",
             "type": "uint56",
@@ -189,7 +209,11 @@
             "type": "uint256",
             "internalType": "uint256"
           },
-          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
           {
             "name": "doNotStartBeforeTimestamp",
             "type": "uint56",
@@ -202,6 +226,43 @@
       "contractInputsValues": {
         "recipients": "[0x47C27a82F4ECCaB0720aB32462D4B808566Bb7ee]",
         "amountPerPeriod": "125000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "0"
+      }
+    },
+    {
+      "to": "0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xD8b74632eA90bd6eb51C8da0B4183748Df62e638]",
+        "amountPerPeriod": "110000000000000000000",
         "maxPeriods": "1",
         "doNotStartBeforeTimestamp": "0"
       }
