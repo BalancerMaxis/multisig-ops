@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1747203225,
+  "meta": {
+    "name": "Rewards Injector Schedule - ADD",
+    "description": "Configure rewards injector schedule to add recipients",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x08F02E2945C175272Acbb238ACCB6eda56129DE8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x70DB188E5953f67a4B16979a2ceA26248b315401]",
+        "amountPerPeriod": "5850000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "0"
+      }
+    },
+    {
+      "to": "0x08F02E2945C175272Acbb238ACCB6eda56129DE8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xec16621C9bD547d64B93c17B51838Ff173bB6DD1]",
+        "amountPerPeriod": "2150000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "0"
+      }
+    }
+  ]
+}
