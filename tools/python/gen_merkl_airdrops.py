@@ -368,17 +368,16 @@ if __name__ == "__main__":
     for protocol in WATCHLIST:
         if protocol == "merit":
             # comment out once a month, not needed every week
-            continue
+            # continue
             # https://apps.aavechan.com/api/merit/campaigns
             # replace date string with timestamp once it has passed and uncomment next string
-            # drpc.eth.get_block(22418702).timestamp
-            # blocks#[21558817, 21979500, 22202701, 22418702, 22641903]
+            # drpc.eth.get_block(22638003).timestamp
             epochs = [
-                1733932799,
-                1741163423,
-                1743855959,
-                "~Mon May 05 2025 18:51:31",
-                # "~Fri Jun 06 2025 01:04:19",
+                1733932799,  # 21558817
+                1741163423,  # 21979500
+                1743855959,  # 22202701
+                1746462191,  # 22418702
+                "~Thu Jun 05 2025 10:43:33UTC",  # 22638003
             ]
             epoch_duration = epochs[-2] - epochs[-3]
         if protocol == "morpho":
