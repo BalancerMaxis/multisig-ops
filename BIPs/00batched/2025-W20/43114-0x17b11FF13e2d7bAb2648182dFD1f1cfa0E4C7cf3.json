@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xd92d29a05f2748c0b17d7df988dd0a9d2d957f8651a7209ff5f6e8901b60b53f]",
+        "account": "0xB9d01CA61b9C181dA1051bFDd28e1097e920AB14"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W20/BIP-821-Update-Permissions-ProtocolFeeSweeperV2-avalanche.json",
+        "bip_number": "BIP-821"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x56bec12b93b41e25525d94ad33219973ebd07435c70d646ed8de38740b32b062,0xb00c6b1b735e7187175763c9d5ca79c75662399946b352289e53d53cadbc750e]",
+        "account": "0x74E283B985EA76c55C8B48d6bD1067a418188424"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W20/BIP-821-Update-Permissions-ProtocolFeeSweeperV2-avalanche.json",
+        "bip_number": "BIP-821"
+      }
+    }
+  ]
+}

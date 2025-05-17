@@ -1,0 +1,17 @@
+FILENAME: `BIPs/00batched/2025-W20/42161-0xaF23DC5983230E9eEAf93280e312e57539D098D0.json`
+MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
+COMMIT: `d4b7b72b9781bbdc73de27734981b61f691ef09c`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c7b56b4b-454d-4957-b981-ee53f3dd1e9b)
+
+```
++-----------------------+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name                                            | caller_address                             | fx_paths                                                                                                                         | action_ids                                                         |   bip   | tx_index |
++-----------------------+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | 20250503-v3-protocol-fee-sweeper-v2/ProtocolFeeSweeper | 0x136f1EFcC3f8f88516B9E94110D56FDBfB1778d1 | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)               | 0x610537725ddaed423abcb2b23d9191781b990fceb0f445f4bfe56f049514ff4c | BIP-821 |    0     |
+| Authorizer/grantRoles | EOA/keepers/v3_fee_bot                                 | 0x74E283B985EA76c55C8B48d6bD1067a418188424 | 20250503-v3-protocol-fee-sweeper-v2/ProtocolFeeSweeper/sweepProtocolFeesForToken(address,address,uint256,uint256,address)        | 0x14063ceb23c91467860eb9a242020a95c50c929fb1f9b7a3f8df15f0a0c4df70 | BIP-821 |    1     |
+|                       |                                                        |                                            | 20250503-v3-protocol-fee-sweeper-v2/ProtocolFeeSweeper/sweepProtocolFeesForWrappedToken(address,address,uint256,uint256,address) | 0xe804beeda244417d4f174b615090e88cd0ade3ba64e3307cd01cedf9306ee16c |         |          |
+| Authorizer/grantRoles | multisigs/maxi_omni                                    | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250403-v3-stable-surge-hook-v2/StableSurgeHook/setMaxSurgeFeePercentage(address,uint256)                                       | 0x7ed51e972f7682e8a513e8d697daf6179714308b17bffd3d972a34a8a86fe107 | BIP-820 |    2     |
+|                       |                                                        |                                            | 20250403-v3-stable-surge-hook-v2/StableSurgeHook/setSurgeThresholdPercentage(address,uint256)                                    | 0x3e5b3786c2433c83d82d4d118259a3cf5b7dd26b4f21c6c56115c2ce1cfa825b |         |          |
++-----------------------+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
