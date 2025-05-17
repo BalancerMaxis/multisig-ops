@@ -41,7 +41,7 @@
 
 [Tenderly](https://dashboard.tenderly.co/public/safe/safe-apps/simulator/40b06a15-8052-41f6-9048-c4b4bf9c8a6f)
 
-[Sign nonce 56](xxx)
+[Sign nonce 56](https://app.safe.global/transactions/queue?safe=eth:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89)
 
 ```
 +----------+-------------------------------------------------+----------------------------------------------------------------------+----------------------------+---------+----------+
