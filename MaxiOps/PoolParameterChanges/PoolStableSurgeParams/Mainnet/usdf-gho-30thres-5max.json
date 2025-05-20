@@ -32,31 +32,6 @@
         "pool": "0x6c5972311191097d002e804a9bf97c96c54059ed",
         "newMaxSurgeSurgeFeePercentage": "50000000000000000"
       }
-    },
-    {
-      "to": "0xbdbadc891bb95dee80ebc491699228ef0f7d6ff1",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "pool",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "newSurgeThresholdPercentage",
-            "type": "uint256"
-          }
-        ],
-        "name": "setSurgeThresholdPercentage",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "pool": "0x6c5972311191097d002e804a9bf97c96c54059ed",
-        "newSurgeThresholdPercentage": "300000000000000000"
-      }
     }
   ]
 }
