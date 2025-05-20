@@ -1,0 +1,52 @@
+FILENAME: `BIPs/00batched/2025-W21/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `717f3ee114a3f724db8365d99b9c2bc5cdcc9bf6`
+CHAIN(S): `mainnet, base, optimism, arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d51a8536-b092-4816-8773-8c8a13e2090a)
+
+| Gauge Validator (0x4eB7C7fD67B9b2C24d9fF1601ccDa5A01bD40c7f) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0xAC3b3fFf577561C58f126e4F6375F56476DD9fDb) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x31Ccb4E5005Fd37005523E6e3f1d084F9aBe25B6) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xD606Ea6f6d93D90EFafc7d21972353FB98205Eb8) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+```
++-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+-----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info          | gauge_address_and_info                           | tokens                                                    | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+-----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0xe2332649955C7c98389480aB46dD4Cb6755aC703               | 75SDEX25AaveLidoETH      | root: 0x4eB7C7fD67B9b2C24d9fF1601ccDa5A01bD40c7f | 0x0FE906e030a44eF24CA8c7dC7B7c53A6C4F00ce9: waEthLidoWETH | 0xf4b5D1C22F35a460b91edD7F33Cefe619E2fAaF4 |      safe      | BIP-828 |    0     |
+|                       | pool_address: 0xe2332649955C7c98389480aB46dD4Cb6755aC703 | fee (%): 1.0             | side: None                                       | 0x5DE8ab7E27f6E7A1fFf3E5B337584Aa43961BEeF: SDEX          | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A            | style: mainnet                                   |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | cap: 5.0%                                        |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | preferential: True                               |                                                           |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x5418a64e0cdb20548ACB394f5D00a089BAf02161               | Balancer rETH-Aave wETH  | root: 0xAC3b3fFf577561C58f126e4F6375F56476DD9fDb | 0x4cE13a79f45C1Be00BdABD38B764aC28C082704E: waArbWETH     | 0xE3dF105DB16282E5ce5cDa2d15391b04A408BcCf |      safe      | BIP-827 |    1     |
+|                       | pool_address: 0x5418a64e0cdb20548ACB394f5D00a089BAf02161 | fee (%): 0.04            | side: 0xE1Ee6f4C68836bE5b00d88d10BF57099Bc8b428D | 0xEC70Dcb4A1EFa46b8F2D97C310C9c4790ba5ffA8: rETH          | 0xd4E96eF8eee8678dBFf4d535E033Ed1a4F7605b7 |      safe      |         |          |
+|                       |                                                          | a-factor: 100            | style: L0 sidechain                              |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | cap: 100.0%                                      |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | preferential: True                               |                                                           |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xB7B8B3AfC010169779C5C2385ec0eB0477FE3347               | Balancer rETH-Aave wETH  | root: 0x31Ccb4E5005Fd37005523E6e3f1d084F9aBe25B6 | 0xB6fe221Fe9EeF5aBa221c348bA20A1Bf5e73624c: rETH          | 0x039f7205C2cBa4535C2575123Ac3D657263892c4 |      safe      | BIP-827 |    2     |
+|                       | pool_address: 0xB7B8B3AfC010169779C5C2385ec0eB0477FE3347 | fee (%): 0.04            | side: 0x5D2ca46c5FfD5CfC279cD05adcF2896436b6626e | 0xe298b938631f750DD409fB18227C4a23dCdaab9b: waBasWETH     | 0x14BD1e9b30007510c2aFE3a7a8053A6DE5605d35 |      safe      |         |          |
+|                       |                                                          | a-factor: 100            | style: L0 sidechain                              |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | cap: 100.0%                                      |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | preferential: True                               |                                                           |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x870c0Af8A1af0B58b4b0bD31CE4fe72864ae45BE               | Balancer rETH-Aave wETH  | root: 0xD606Ea6f6d93D90EFafc7d21972353FB98205Eb8 | 0x464b808c2C7E04b07e860fDF7a91870620246148: waOptWETH     | 0x35B6B84cE756769338a7b9665c178Be001a1137C |      safe      | BIP-827 |    3     |
+|                       | pool_address: 0x870c0Af8A1af0B58b4b0bD31CE4fe72864ae45BE | fee (%): 0.04            | side: 0x81e8a3b56B20597f08B505aFE9B0454d9B3de83F | 0x9Bcef72be871e61ED4fBbc7630889beE758eb81D: rETH          | 0x658843BB859B7b85cEAb5cF77167e3F0a78dFE7f |      safe      |         |          |
+|                       |                                                          | a-factor: 100            | style: L0 sidechain                              |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | cap: 100.0%                                      |                                                           |                                            |                |         |          |
+|                       |                                                          |                          | preferential: True                               |                                                           |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+--------------------------+--------------------------------------------------+-----------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
