@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1747821500089,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Disable wrongly configured locker module",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x5250e9e0ac832403dfce8762f9e75280e6c65e30b55384cb5cf6067ca2d877ed"
+  },
+  "transactions": [
+    {
+      "to": "0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevModule",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "disableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevModule": "0x0000000000000000000000000000000000000001",
+        "module": "0xfD20C63554A9916816dC5e5Df596A0333185F263"
+      }
+    }
+  ]
+}
