@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1746684870655,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x1bcA39b01F451b0a05D7030e6e6981a73B716b1C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeBurner",
+            "name": "protocolFeeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeBurner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeBurner": "0x7D92FCDC8Aa56057D5E318B2881F2167c67FdAfA"
+      }
+    }
+  ]
+}

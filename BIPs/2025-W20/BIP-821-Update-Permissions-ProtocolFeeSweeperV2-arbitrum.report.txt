@@ -1,0 +1,15 @@
+FILENAME: `BIPs/2025-W20/BIP-821-Update-Permissions-ProtocolFeeSweeperV2-arbitrum.json`
+MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
+COMMIT: `5d05229ac02759c7fc6f7719a85da951ec5c0d9d`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/588936f9-c028-4fa6-bfa9-7c02d66615ab)
+
+```
++-----------------------+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name                                            | caller_address                             | fx_paths                                                                                                                         | action_ids                                                         |   bip   | tx_index |
++-----------------------+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | 20250503-v3-protocol-fee-sweeper-v2/ProtocolFeeSweeper | 0x136f1EFcC3f8f88516B9E94110D56FDBfB1778d1 | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)               | 0x610537725ddaed423abcb2b23d9191781b990fceb0f445f4bfe56f049514ff4c | BIP-821 |    0     |
+| Authorizer/grantRoles | EOA/keepers/v3_fee_bot                                 | 0x74E283B985EA76c55C8B48d6bD1067a418188424 | 20250503-v3-protocol-fee-sweeper-v2/ProtocolFeeSweeper/sweepProtocolFeesForToken(address,address,uint256,uint256,address)        | 0x14063ceb23c91467860eb9a242020a95c50c929fb1f9b7a3f8df15f0a0c4df70 | BIP-821 |    1     |
+|                       |                                                        |                                            | 20250503-v3-protocol-fee-sweeper-v2/ProtocolFeeSweeper/sweepProtocolFeesForWrappedToken(address,address,uint256,uint256,address) | 0xe804beeda244417d4f174b615090e88cd0ade3ba64e3307cd01cedf9306ee16c |         |          |
++-----------------------+--------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
