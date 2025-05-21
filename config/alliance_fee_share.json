@@ -1,25 +1,8 @@
 {
   "alliance_members": [
     {
-      "name": "Lido",
-      "multisig_address": "0x1234567890123456789012345678901234567890",
-      "active": true,
-      "join_date": "2025-04-15",
-      "last_lock_date": "2025-04-30",
-      "pools": [
-        {
-          "pool_id": "0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2",
-          "network": "mainnet",
-          "partner": "Lido",
-          "pool_type": "core",
-          "eligibility_date": "2025-04-15",
-          "active": true
-        }
-      ]
-    },
-    {
       "name": "Rocket Pool",
-      "multisig_address": "0x1234567890123456789012345678901234567890",
+      "multisig_address": "0xb867EA3bBC909954d737019FEf5AB25dFDb38CB9",
       "active": true,
       "join_date": "2025-04-15",
       "last_lock_date": "2025-04-30",
@@ -31,54 +14,27 @@
           "pool_type": "core",
           "eligibility_date": "2025-04-15",
           "active": true
-        }
-      ]
-    },
-    {
-      "name": "Radiant",
-      "multisig_address": "0x1234567890123456789012345678901234567890",
-      "active": true,
-      "join_date": "2025-04-15",
-      "last_lock_date": "2025-04-30",
-      "pools": [
+        },
         {
-          "pool_id": "0x32df62dc3aed2cd6224193052ce665dc181658410002000000000000000003bd",
+          "pool_id": "0x6b31a94029fd7840d780191b6d63fa0d269bd883",
+          "network": "mainnet",
+          "partner": "Rocket Pool",
+          "pool_type": "core",
+          "eligibility_date": "2025-04-15",
+          "active": true
+        },
+        {
+          "pool_id": "0xb1b8b406eeebbb636fdbb20e6732c117d828363c",
           "network": "arbitrum",
-          "partner": "Radiant",
-          "pool_type": "core",
+          "partner": "Rocket Pool",
+          "pool_type": "non_core",
           "eligibility_date": "2025-04-15",
           "active": true
-        }
-      ]
-    },
-    {
-      "name": "Renzo",
-      "multisig_address": "0x1234567890123456789012345678901234567890",
-      "active": true,
-      "join_date": "2025-04-15",
-      "last_lock_date": "2025-04-30",
-      "pools": [
+        },
         {
-          "pool_id": "0x596192bb6e41802428ac943d2f1476c1af25cc0e000000000000000000000659",
-          "network": "mainnet",
-          "partner": "Renzo",
-          "pool_type": "core",
-          "eligibility_date": "2025-04-15",
-          "active": true
-        }
-      ]
-    },
-    {
-      "name": "Aave",
-      "multisig_address": "0x1234567890123456789012345678901234567890",
-      "active": true,
-      "join_date": "2025-04-15",
-      "last_lock_date": "2025-04-30",
-      "pools": [
-        {
-          "pool_id": "0x3de27efa2f1aa663ae5d458857e731c129069f29000200000000000000000588",
-          "network": "mainnet",
-          "partner": "Aave",
+          "pool_id": "0x9972c4f21b5ae6062233031314adbbdda7513ed2",
+          "network": "base",
+          "partner": "Rocket Pool",
           "pool_type": "non_core",
           "eligibility_date": "2025-04-15",
           "active": true
