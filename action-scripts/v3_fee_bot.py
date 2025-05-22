@@ -235,7 +235,10 @@ def get_pools(chain: str, broadcast: bool = False):
                                 print(f"!!! tx failed: {e}\n")
                                 continue
                             print("tx hash:", tx_hash.hex())
-                            if token["address"] != target_token:
+                            if (
+                                token["address"] != target_token
+                                or asset_address != target_token
+                            ):
                                 print("waiting for cooldown...")
                                 sleep(ORDER_COOLDOWN)
                         print("\n")
