@@ -12,6 +12,31 @@
   },
   "transactions": [
     {
+      "to": "0xC0c293ce456fF0ED870ADd98a0828Dd4d2903DBF",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC",
+        "amount": "2000000000000000000000000"
+      }
+    },
+    {
       "to": "0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC",
       "value": "0",
       "data": null,
