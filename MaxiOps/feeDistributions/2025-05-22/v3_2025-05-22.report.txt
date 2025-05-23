@@ -1,0 +1,71 @@
+FILENAME: `MaxiOps/feeDistributions/2025-05-22/v3_2025-05-22.json`
+MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
+COMMIT: `feefeed265a60e469252ada322920676a69ffde9`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5a778d10-5360-4c7f-bd29-69e599dca406)
+
+```
++----------+-------------------------------------------------+-------------------------------------------------------------------------+---------------------------------------------------+-----+----------+
+| function | token_symbol                                    | recipient                                                               | amount                                            | bip | tx_index |
++----------+-------------------------------------------------+-------------------------------------------------------------------------+---------------------------------------------------+-----+----------+
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | multisigs/dao:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f                | 13059.573371 (RAW: 13059573371)                   | N/A |    13    |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | maxiKeepers/veBalFeeInjector:0x8AD2512819A7eae1dd398973EFfaE48dafBe8255 | 165498.338192 (RAW: 165498338192)                 | N/A |    14    |
+| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D  | maxiKeepers/veBalFeeInjector:0x8AD2512819A7eae1dd398973EFfaE48dafBe8255 | 12396.105257388803 (RAW: 12396105257388802169106) | N/A |    15    |
++----------+-------------------------------------------------+-------------------------------------------------------------------------+---------------------------------------------------+-----+----------+
+```
+FILENAME: `MaxiOps/feeDistributions/2025-05-22/v3_2025-05-22.json`
+MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
+COMMIT: `feefeed265a60e469252ada322920676a69ffde9`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/94deb285-9cc7-4f34-a251-d55bbc669dd1)
+
+```
++--------------+--------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function     | title_and_poolId                           | incentive_paid                                    | market_and_prophash                                                | periods | tx_index |
++--------------+--------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| depositBribe | (G) waGnowstETH-50% waGnoGNO-50%           | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    1     |
+|              | 0x272d6be442e30d7c87390edeb9b96f1e84cecd8d |  94.1413(94141300)                                | 0x495c2f986b437636409c562283db9189560d4c00999576d146b6ca2073690da1 |         |          |
+| depositBribe | g-Stable waGnoWETH/waGnowstETH             | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    2     |
+|              | 0x6e6bb18449fcf15b79efa2cfa70acf7593088029 |  33.3085(33308500)                                | 0x449f1cd28548d32d8ee8cc0c3681e66f6fb24a87c6ffd3c0f3c56dddd914dbf7 |         |          |
+| depositBribe | (G) waGnoGNO-50% sDAI-50%                  | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    3     |
+|              | 0xd1d7fa8871d84d0e77020fc28b7cd5718c446522 |  90.4722(90472200)                                | 0x0814f156360b46d593ab7a82064270e52a4839f9387888ac6804f396d6cc857d |         |          |
+| depositBribe | (A) waArbUSDCn waArbUSDT waArbGHO          | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    4     |
+|              | 0x19b001e6bc2d89154c18e2216eec5c8c6047b6d8 |  490.8231(490823100)                              | 0xb56fbdce51407eaacd3d604a5bf7e24a002c3d2ff72ea7730f5e20cbe35fd42c |         |          |
+| depositBribe | a-Stable waArbGHO/waArbUSDCn/waArbUSDT     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    5     |
+|              | 0x19b001e6bc2d89154c18e2216eec5c8c6047b6d8 |  982.3868(982386800)                              | 0xb56fbdce51407eaacd3d604a5bf7e24a002c3d2ff72ea7730f5e20cbe35fd42c |         |          |
+| depositBribe | (B) waBasGHO waBasUSDC                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    6     |
+|              | 0x7ab124ec4029316c2a42f713828ddf2a192b36db |  952.3847(952384700)                              | 0x0e89bda9685d6b9226b1a02946ab5612d520bc315f305fc7d248980d7d8dccfb |         |          |
+| depositBribe | b-Stable waBasGHO/waBasUSDC                | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    7     |
+|              | 0x7ab124ec4029316c2a42f713828ddf2a192b36db |  1906.2066(1906206600)                            | 0x0e89bda9685d6b9226b1a02946ab5612d520bc315f305fc7d248980d7d8dccfb |         |          |
+| depositBribe | waEthWETH osETH                            | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    8     |
+|              | 0x57c23c58b1d8c3292c15becf07c62c5c52457a42 |  995.3905(995390500)                              | 0x57215c60f37d91fbfe5c7579b64d5cb54177487e00ac15fb1a47e52fbc2f2cbb |         |          |
+| depositBribe | waEthUSDT Aave Prime GHO waEthUSDC         | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    9     |
+|              | 0x85b2b559bc2d21104c4defdd6efca8a20343361d |  1030.156099(1030156099)                          | 0x5af8de3497a037fe4db1cb5a7af3ef1b0bf08830c0142ee3781a158b1d77eff3 |         |          |
+| depositBribe | Stable Aave Prime GHO/waEthUSDC/waEthUSDT  | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    10    |
+|              | 0x85b2b559bc2d21104c4defdd6efca8a20343361d |  3058.0081(3058008100)                            | 0x5af8de3497a037fe4db1cb5a7af3ef1b0bf08830c0142ee3781a158b1d77eff3 |         |          |
+| depositBribe | waEthLidoWETH waEthLidowstETH              | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | balancer                                                           | 2       |    11    |
+|              | 0xc4ce391d82d164c166df9c8336ddf84206b2f812 |  522.1431(522143100)                              | 0xaaf8a660fecf97718794a9f613cf639a935c69126fdf36039d93b68d1205fc85 |         |          |
+| depositBribe | Stable waEthLidoWETH/waEthLidowstETH       | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    12    |
+|              | 0xc4ce391d82d164c166df9c8336ddf84206b2f812 |  2041.2157(2041215700)                            | 0xaaf8a660fecf97718794a9f613cf639a935c69126fdf36039d93b68d1205fc85 |         |          |
++--------------+--------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `MaxiOps/feeDistributions/2025-05-22/v3_2025-05-22.json`
+MULTISIG: `multisigs/fees (mainnet:0x7c68c42De679ffB0f16216154C996C354cF1161B)`
+COMMIT: `feefeed265a60e469252ada322920676a69ffde9`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c97198dc-f6a2-415d-87d3-1578e7e8b83c)
+
+```
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| fx_name | to                                                       | value | inputs                                                                      | bip_number | tx_index |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC) | 0     | {                                                                           | N/A        |   N/A    |
+|         |                                                          |       |   "_spender": [                                                             |            |          |
+|         |                                                          |       |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault)" |            |          |
+|         |                                                          |       |   ],                                                                        |            |          |
+|         |                                                          |       |   "_value": [                                                               |            |          |
+|         |                                                          |       |     "raw:12196636700, 18 decimals:1.21966367E-8, 6 decimals: 12196.6367"    |            |          |
+|         |                                                          |       |   ]                                                                         |            |          |
+|         |                                                          |       | }                                                                           |            |          |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+```
