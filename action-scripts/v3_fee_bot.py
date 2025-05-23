@@ -65,13 +65,36 @@ def _tx_cancelOrder(burner_address, token_address):
     }
 
 
+def _add_to_payload(
+    DesignatedBurner, payload_unstuck_tokens, asset_address, designated_burner
+):
+    if DesignatedBurner.functions.getOrderStatus(
+        to_checksum_address(asset_address)
+    ).call() not in [0, 2]:
+        # OrderStatus is neither NonExistent nor Filled, thus can be cancelled
+        print("!!! token stuck in burner; adding to unstuck payload\n")
+        for tx in payload_unstuck_tokens["transactions"]:
+            if tx["contractInputsValues"]["tokenIn"].lower() == asset_address.lower():
+                break
+        else:
+            print(f"adding {asset_address} to unstuck payload")
+            payload_unstuck_tokens["transactions"].append(
+                _tx_cancelOrder(
+                    designated_burner,
+                    to_checksum_address(asset_address),
+                )
+            )
+    else:
+        print("!!! token can neither be burned nor cancelled\n")
+
+
 def get_pools(chain: str, broadcast: bool = False):
     drpc = Web3(
         Web3.HTTPProvider(
             f"https://lb.drpc.org/ogrpc?network={('ethereum' if chain == 'mainnet' else chain)}&dkey={os.getenv('DRPC_KEY')}"
         )
     )
-    bot = drpc.eth.account.from_key(os.getenv("PRIVATE_KEY"))
+    Bot = drpc.eth.account.from_key(os.getenv("PRIVATE_KEY"))
     sweeper = AddrBook(chain).search_unique("20250228-v3-protocol-fee-sweeper").address
     ProtocolFeeSweeper = drpc.eth.contract(
         address=sweeper,
@@ -105,33 +128,35 @@ def get_pools(chain: str, broadcast: bool = False):
                         token_is_erc4626 = pool_token["isErc4626"]
                         break
                 if token_is_erc4626:
-                    erc4626 = drpc.eth.contract(
+                    ERC4626 = drpc.eth.contract(
                         address=to_checksum_address(token["address"]),
                         abi=json.load(open("action-scripts/abis/ERC4626.json")),
                     )
-                    asset_address = erc4626.functions.asset().call()
+                    asset_address = ERC4626.functions.asset().call()
                 else:
                     asset_address = token["address"]
-                asset = drpc.eth.contract(
+                Asset = drpc.eth.contract(
                     address=to_checksum_address(asset_address),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
                 )
                 designated_burner = erc4626_burner if token_is_erc4626 else burner
-                balance = asset.functions.balanceOf(designated_burner).call()
+                DesignatedBurner = drpc.eth.contract(
+                    address=to_checksum_address(designated_burner),
+                    abi=json.load(
+                        open("action-scripts/abis/IERC4626CowSwapFeeBurner.json")
+                    ),
+                )
+                balance = Asset.functions.balanceOf(designated_burner).call()
                 if balance > 0:
-                    for tx in payload_unstuck_tokens["transactions"]:
-                        if (
-                            tx["contractInputsValues"]["tokenIn"].lower()
-                            == asset_address.lower()
-                        ):
-                            break
-                    else:
-                        print(f"adding {token['address']} to unstuck payload")
-                        payload_unstuck_tokens["transactions"].append(
-                            _tx_cancelOrder(
-                                designated_burner,
-                                to_checksum_address(asset_address),
-                            )
+                    if DesignatedBurner.functions.getOrderStatus(
+                        to_checksum_address(asset_address)
+                    ).call() not in [0, 2]:
+                        # OrderStatus is neither NonExistent nor Filled, thus can be cancelled
+                        _add_to_payload(
+                            DesignatedBurner,
+                            payload_unstuck_tokens,
+                            asset_address,
+                            designated_burner,
                         )
                 fees_vault = Decimal(token["vaultProtocolSwapFeeBalance"]) + Decimal(
                     token["vaultProtocolYieldFeeBalance"]
@@ -214,8 +239,8 @@ def get_pools(chain: str, broadcast: bool = False):
                             ),
                         ).build_transaction(
                             {
-                                "from": bot.address,
-                                "nonce": drpc.eth.get_transaction_count(bot.address),
+                                "from": Bot.address,
+                                "nonce": drpc.eth.get_transaction_count(Bot.address),
                                 "maxFeePerGas": max_gas_price,
                                 "maxPriorityFeePerGas": max_priority_fee_optimal,
                             }
@@ -223,7 +248,7 @@ def get_pools(chain: str, broadcast: bool = False):
                         print("tx: ", end="")
                         pprint(unsigned_tx)
                         signed_tx = drpc.eth.account.sign_transaction(
-                            unsigned_tx, bot.key
+                            unsigned_tx, Bot.key
                         )
                         if broadcast:
                             try:
@@ -246,20 +271,32 @@ def get_pools(chain: str, broadcast: bool = False):
                         if "data" in dir(e):
                             if "0xd0c1b3cf" in e.data:
                                 # OrderHasUnexpectedStatus
-                                print(
-                                    "!!! token stuck in burner; no new order possible\n"
+                                _add_to_payload(
+                                    DesignatedBurner,
+                                    payload_unstuck_tokens,
+                                    asset_address,
+                                    designated_burner,
                                 )
                                 continue
                         if "message" in dir(e):
                             if "0xd0c1b3cf" in e.message:
                                 # OrderHasUnexpectedStatus
-                                print(
-                                    "!!! token stuck in burner; no new order possible\n"
+                                _add_to_payload(
+                                    DesignatedBurner,
+                                    payload_unstuck_tokens,
+                                    asset_address,
+                                    designated_burner,
                                 )
     if len(payload_unstuck_tokens["transactions"]) > 0:
         with open(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json", "w") as f:
             json.dump(payload_unstuck_tokens, f, indent=2)
             f.write("\n")
+    else:
+        # delete old file if present
+        try:
+            os.remove(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json")
+        except FileNotFoundError:
+            pass
 
 
 if __name__ == "__main__":
@@ -268,7 +305,7 @@ if __name__ == "__main__":
         report[chain] = {"n_pools": 0, "total_potential": 0, "usdc_collectable": []}
         s = Subgraph(chain)
         prices = get_prices(chain)
-        get_pools(chain, broadcast=True)
+        get_pools(chain, broadcast=False)
     pprint(report)
     print(
         "total total_potential:",
