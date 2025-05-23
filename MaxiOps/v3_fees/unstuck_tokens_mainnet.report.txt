@@ -1,16 +1,16 @@
 FILENAME: `MaxiOps/v3_fees/unstuck_tokens_mainnet.json`
 MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `d9f5f662c8024a539cf35ee0f2734e6bae93639c`
+COMMIT: `f97763526a124179ff843a887aa9e4565e2ff2ef`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/4e216ae1-64d2-4d58-b337-17aac2cae30e)
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/3ac53213-7da5-42e4-9d4d-14fcf017150d)
 
 ```
 +-------------+--------------------------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------+------------+----------+
 | fx_name     | to                                                                                                           | value | inputs                                                                 | bip_number | tx_index |
 +-------------+--------------------------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------+------------+----------+
-| cancelOrder | 0x0E800D8d2E8b4694610AEdc385Aa6D763492B106 (20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner)                | 0     | {                                                                      | N/A        |   N/A    |
+| cancelOrder | 0x45fB5aF0a1aD80Ea16C803146eb81844D9972373 (20250507-v3-erc4626-cow-swap-fee-burner/ERC4626CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
 |             |                                                                                                              |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                                              |       |     "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599 (tokens/WBTC)"         |            |          |
+|             |                                                                                                              |       |     "0xdAC17F958D2ee523a2206206994597C13D831ec7 (tokens/USDT)"         |            |          |
 |             |                                                                                                              |       |   ],                                                                   |            |          |
 |             |                                                                                                              |       |   "receiver": [                                                        |            |          |
 |             |                                                                                                              |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
@@ -27,22 +27,6 @@ TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simul
 | cancelOrder | 0x45fB5aF0a1aD80Ea16C803146eb81844D9972373 (20250507-v3-erc4626-cow-swap-fee-burner/ERC4626CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
 |             |                                                                                                              |       |   "tokenIn": [                                                         |            |          |
 |             |                                                                                                              |       |     "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 (tokens/WETH)"         |            |          |
-|             |                                                                                                              |       |   ],                                                                   |            |          |
-|             |                                                                                                              |       |   "receiver": [                                                        |            |          |
-|             |                                                                                                              |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
-|             |                                                                                                              |       |   ]                                                                    |            |          |
-|             |                                                                                                              |       | }                                                                      |            |          |
-| cancelOrder | 0x45fB5aF0a1aD80Ea16C803146eb81844D9972373 (20250507-v3-erc4626-cow-swap-fee-burner/ERC4626CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
-|             |                                                                                                              |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                                              |       |     "0xdAC17F958D2ee523a2206206994597C13D831ec7 (tokens/USDT)"         |            |          |
-|             |                                                                                                              |       |   ],                                                                   |            |          |
-|             |                                                                                                              |       |   "receiver": [                                                        |            |          |
-|             |                                                                                                              |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
-|             |                                                                                                              |       |   ]                                                                    |            |          |
-|             |                                                                                                              |       | }                                                                      |            |          |
-| cancelOrder | 0x45fB5aF0a1aD80Ea16C803146eb81844D9972373 (20250507-v3-erc4626-cow-swap-fee-burner/ERC4626CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
-|             |                                                                                                              |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                                              |       |     "0x8238884Ec9668Ef77B90C6dfF4D1a9F4F4823BFe (N/A)"                 |            |          |
 |             |                                                                                                              |       |   ],                                                                   |            |          |
 |             |                                                                                                              |       |   "receiver": [                                                        |            |          |
 |             |                                                                                                              |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
