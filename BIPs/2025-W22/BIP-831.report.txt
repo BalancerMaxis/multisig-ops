@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2025-W22/BIP-831.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `6649f9312786779cc12606555a797dc7946d2886`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/770f1caa-5863-4a6b-99d9-3d004bcb6fd4)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                                      | selector    | parsed_inputs |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x5f0a99997ab2acc5097dc5349adf6985761336ac (root_gauges/sFRAX/sfrxETH-fraxtal-root-5f0a)    | killGauge() |               | BIP-831 |    0     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x58e71af9ce4378b79daaf2c4e7be9765c442dfc2 (root_gauges/sFRAX/sDAI-fraxtal-root-58e7)       | killGauge() |               | BIP-831 |    1     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xea8ba6b0cb5908a5d803b01ceaea5a6e65d33508 (root_gauges/sFRAX/sDAI/sUSDe-fraxtal-root-ea8b) | killGauge() |               | BIP-831 |    2     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x259371ca8ac5e7f3163704ce58b0da58820173ed (root_gauges/FRAX/USDe-fraxtal-root-2593)        | killGauge() |               | BIP-831 |    3     |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+```
