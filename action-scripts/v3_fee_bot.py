@@ -154,6 +154,11 @@ def get_pools(chain: str, broadcast: bool = False):
                     asset_address = ERC4626.functions.asset().call()
                 else:
                     asset_address = token["address"]
+                if not _can_get_quote(chain, asset_address):
+                    print(
+                        f"!!! {asset_address} not supported by cow burner; skipping for now\n"
+                    )
+                    continue
                 Asset = drpc.eth.contract(
                     address=to_checksum_address(asset_address),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
@@ -237,11 +242,6 @@ def get_pools(chain: str, broadcast: bool = False):
                             if token_is_erc4626
                             else "sweepProtocolFeesForToken"
                         )
-                        if not _can_get_quote(chain, asset_address):
-                            print(
-                                f"!!! {asset_address} not supported by cow burner; skipping for now\n"
-                            )
-                            continue
                         print(
                             f"ProtocolFeeSweeper({sweeper}).{sweep_func_name}({to_checksum_address(pool['address'])},{to_checksum_address(token['address'])},{int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))},{deadline},{designated_burner})"
                         )
