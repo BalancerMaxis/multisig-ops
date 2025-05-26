@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1747740599719,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Install vlAURA Locker Module",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x1f8906fb2a988b8a559d97394156a54c74464687928ee60bb24c0df097881b5e"
+  },
+  "transactions": [
+    {
+      "to": "0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0xfD20C63554A9916816dC5e5Df596A0333185F263"
+      }
+    }
+  ]
+}

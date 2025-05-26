@@ -366,41 +366,42 @@ if __name__ == "__main__":
     session_beefy = Session()
     session_beefy.mount("https://", ADAPTER)
     for protocol in WATCHLIST:
+        if protocol == "merit":
+            # comment out once a month, not needed every week
+            # continue
+
+            # https://apps.aavechan.com/api/merit/campaigns
+            # replace date string with timestamp once it has passed and uncomment next string
+            # drpc.eth.get_block(22638003).timestamp
+
+            if chain == "1":
+                epochs = [
+                    1733932799,  # 21558817
+                    1741163423,  # 21979500
+                    1743855959,  # 22202701
+                    1746462191,  # 22418702
+                    "~Thu Jun 05 2025 10:43:33UTC",  # 22638003
+                ]
+            elif chain == "43114":
+                epochs = [
+                    0,
+                    1745518691,
+                    "22430000",  # TODO
+                    "~Wed May 07 2025",
+                    # 22340603 Thu Apr 24 2025
+                ]
+            epoch_duration = epochs[-2] - epochs[-3]
+        if protocol == "morpho":
+            epoch_duration = 60 * 60 * 24 * 7
+            first_epoch_end = 1737936000
+            epochs = []
+            ts = first_epoch_end
+            while ts < int(datetime.now().timestamp()):
+                epochs.append(ts)
+                ts += epoch_duration
+        epoch_name = f"epoch_{len(epochs) - 1}"
+        print("epoch endings:", epochs)
         for chain in WATCHLIST[protocol]:
-            if protocol == "merit":
-                # comment out once a month, not needed every week
-                continue
-                # https://apps.aavechan.com/api/merit/campaigns
-                # replace date string with timestamp once it has passed and uncomment next string
-                # drpc.eth.get_block(22418702).timestamp
-                if chain == "1":
-                    # blocks#[21558817, 21979500, 22202701, 22418702, 22641903]
-                    epochs = [
-                        1733932799,
-                        1741163423,
-                        1743855959,
-                        "~Mon May 05 2025 18:51:31",
-                        # "~Fri Jun 06 2025 01:04:19",
-                    ]
-                elif chain == "43114":
-                    epochs = [
-                        0,
-                        1745518691,
-                        "22430000",  # TODO
-                        "~Wed May 07 2025",
-                        # 22340603 Thu Apr 24 2025
-                    ]
-                epoch_duration = epochs[-2] - epochs[-3]
-            if protocol == "morpho":
-                epoch_duration = 60 * 60 * 24 * 7
-                first_epoch_end = 1737936000
-                epochs = []
-                ts = first_epoch_end
-                while ts < int(datetime.now().timestamp()):
-                    epochs.append(ts)
-                    ts += epoch_duration
-            epoch_name = f"epoch_{len(epochs) - 1}"
-            print("epoch endings:", epochs)
             session_drpc = Session()
             session_drpc.mount("https://", ADAPTER)
             drpc = Web3(
