@@ -90,6 +90,7 @@ def _add_to_payload(
 
 
 def _can_get_quote(chain: str, asset_address: str) -> bool:
+    # ref: https://docs.cow.fi/cow-protocol/reference/apis/orderbook
     chain_name = {
         "sepolia": "sepolia",
         "mainnet": "mainnet",
