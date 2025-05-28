@@ -1,8 +1,8 @@
 FILENAME: `BIPs/00batched/2025-W22/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `ef43861a2bebf90e54150322ee75385a6a87722a`
+COMMIT: `fce704205ca1c8e2772015083efbd0c577ee42a6`
 CHAIN(S): `mainnet, base`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b03d075d-853c-48df-9684-ca7e69f48f4a)
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/19eb1a23-a8b8-44e6-8008-de6d7325957e)
 
 | Gauge Validator (0x52d28dfF7759Ca78978954eBAbF87481BD5Cf8f0) | Result |
 | :------------------------------------------------------------| :----: |
@@ -35,8 +35,8 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b03d075d-853c-4
 |                       |                                                          |                        | preferential: True                               |                                                          |                                            |                |         |          |
 | GaugeAdderV4/addGauge | 0xb4161AeA25BD6C5c8590aD50deB4Ca752532F05D               | BTF:BMACRO             | root: 0xAa23FC5Fafba846F07181761903fB9350e954c34 | 0x4200000000000000000000000000000000000006: None         |                                            |                | BIP-835 |    1     |
 |                       | pool_address: 0xb4161AeA25BD6C5c8590aD50deB4Ca752532F05D | fee (%): 0.3           | side: 0x23EA3F5eA00ab8B66B2E5B52Df56ebc4AaB493e8 | 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913: None         |                                            |                |         |          |
-|                       |                                                          | a-factor: N/A          | style: L0 sidechain                              | 0x940181a94A35A4569E4529A3CDfB74e38FD98631: None         |                                            |                |         |          |
-|                       |                                                          |                        | cap: 100.0%                                      | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf: None         |                                            |                |         |          |
+|                       |                                                          | a-factor: N/A          | style: L0 sidechain                              | 0x940181a94A35A4569E4529A3CDfB74e38FD98631: AERO         |                                            |                |         |          |
+|                       |                                                          |                        | cap: 100.0%                                      | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf: cbBTC        |                                            |                |         |          |
 |                       |                                                          |                        | preferential: True                               |                                                          |                                            |                |         |          |
 | GaugeAdderV4/addGauge | 0x950682e741aBD1498347A93B942463AF4Ec7132b               | Surge wUSDN-Prime GHO  | root: 0x9798995a042973D9705A4f0fea691a4541d13B43 | 0x99999999999999Cc837C997B882957daFdCb1Af9: WUSDN        | 0x829dE46686CD24EdFcd28763a70034B3B9B4D7CD |      safe      | BIP-830 |    2     |
 |                       | pool_address: 0x950682e741aBD1498347A93B942463AF4Ec7132b | fee (%): 0.04          | side: None                                       | 0xC71Ea051a5F82c67ADcF634c36FFE6334793D24C: waEthLidoGHO | 0x851b73c4BFd5275D47FFf082F9e8B4997dCCB253 |      safe      |         |          |
