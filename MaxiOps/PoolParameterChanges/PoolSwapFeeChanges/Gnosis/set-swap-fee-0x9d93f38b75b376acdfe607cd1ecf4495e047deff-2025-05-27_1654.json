@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1748379246883,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set swap fee to 0.2% for Balancer GBPe/sDAI",
+    "createdFromSafeAddress": "0x14969B55a675d13a1700F71A37511bc22D90155a"
+  },
+  "transactions": [
+    {
+      "to": "0x9d93f38b75b376acdfe607cd1ecf4495e047deff",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": { "swapFeePercentage": "2000000000000000" }
+    }
+  ]
+}

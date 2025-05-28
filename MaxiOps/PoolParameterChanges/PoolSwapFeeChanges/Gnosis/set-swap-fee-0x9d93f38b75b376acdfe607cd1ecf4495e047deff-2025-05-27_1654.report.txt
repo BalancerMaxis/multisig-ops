@@ -1,0 +1,17 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolSwapFeeChanges/Gnosis/set-swap-fee-0x9d93f38b75b376acdfe607cd1ecf4495e047deff-2025-05-27_1654.json`
+MULTISIG: `multisigs/lm (gnosis:0x14969B55a675d13a1700F71A37511bc22D90155a)`
+COMMIT: `77fc7f3da922709c8c25cb13363392da61d416f7`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/9a8bec0a-e1d9-40fc-b3e7-6a93189fafb5)
+
+```
++----------------------+-------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| fx_name              | to                                                                | value | inputs                   | bip_number | tx_index |
++----------------------+-------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| setSwapFeePercentage | 0x9d93f38b75b376acdfe607cd1ecf4495e047deff (pools/GBPe/sDAI-9d93) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                   |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                   |       |     "2000000000000000"   |            |          |
+|                      |                                                                   |       |   ]                      |            |          |
+|                      |                                                                   |       | }                        |            |          |
++----------------------+-------------------------------------------------------------------+-------+--------------------------+------------+----------+
+```
