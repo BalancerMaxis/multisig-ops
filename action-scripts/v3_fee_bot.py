@@ -5,6 +5,7 @@ from decimal import Decimal
 from pprint import pprint
 from time import sleep
 
+import requests
 from bal_addresses import AddrBook, to_checksum_address
 from bal_addresses.addresses import ZERO_ADDRESS
 from bal_tools import Subgraph
@@ -88,6 +89,25 @@ def _add_to_payload(
         print("!!! token can neither be burned nor cancelled\n")
 
 
+def _can_get_quote(chain: str, asset_address: str) -> bool:
+    # ref: https://docs.cow.fi/cow-protocol/reference/apis/orderbook
+    chain_name = {
+        "sepolia": "sepolia",
+        "mainnet": "mainnet",
+        "gnosis": "xdai",
+        "arbitrum": "arbitrum_one",
+        "base": "base",
+    }[chain]
+    r = requests.get(
+        f"https://api.cow.fi/{chain_name}/api/v1/token/{to_checksum_address(asset_address)}/native_price"
+    )
+    if r.status_code == 200:
+        if float(r.json().get("price")) > 0:
+            return True
+        else:
+            return False
+
+
 def get_pools(chain: str, broadcast: bool = False):
     drpc = Web3(
         Web3.HTTPProvider(
@@ -135,6 +155,11 @@ def get_pools(chain: str, broadcast: bool = False):
                     asset_address = ERC4626.functions.asset().call()
                 else:
                     asset_address = token["address"]
+                if not _can_get_quote(chain, asset_address):
+                    print(
+                        f"!!! {asset_address} not supported by cow burner; skipping for now\n"
+                    )
+                    continue
                 Asset = drpc.eth.contract(
                     address=to_checksum_address(asset_address),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
