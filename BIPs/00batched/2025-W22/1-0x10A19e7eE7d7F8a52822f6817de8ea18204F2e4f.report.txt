@@ -1,0 +1,52 @@
+FILENAME: `BIPs/00batched/2025-W22/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `fdac7968856388f7148b36de607eb85fe17ec3ca`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/e534f510-a65c-4d39-8241-b31578ec7079)
+
+```
++----------+-------------------------------------------------+----------------------------------------------------------------------------+--------------------------------------------+---------+----------+
+| function | token_symbol                                    | recipient                                                                  | amount                                     |   bip   | tx_index |
++----------+-------------------------------------------------+----------------------------------------------------------------------------+--------------------------------------------+---------+----------+
+| transfer | AURA:0xC0c293ce456fF0ED870ADd98a0828Dd4d2903DBF | multisigs/maxi_aura_locker:0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28      | 2000000.0 (RAW: 2000000000000000000000000) | BIP-832 |    5     |
+| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D  | multisigs/alliance_program/lido:0x87D93d9B2C672bf9c9642d853a8682546a5012B5 | 9826.0 (RAW: 9826000000000000000000)       | BIP-829 |    6     |
++----------+-------------------------------------------------+----------------------------------------------------------------------------+--------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2025-W22/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `fdac7968856388f7148b36de607eb85fe17ec3ca`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/93c29b74-cd14-4649-a358-9d466a588b36)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                                      | selector    | parsed_inputs |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x5f0a99997ab2AcC5097dc5349aDF6985761336ac (root_gauges/sFRAX/sfrxETH-fraxtal-root-5f0a)    | killGauge() |               | BIP-831 |    0     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x58e71Af9CE4378b79dAAf2C4E7be9765c442dFC2 (root_gauges/sFRAX/sDAI-fraxtal-root-58e7)       | killGauge() |               | BIP-831 |    1     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xEA8Ba6b0cB5908A5d803b01CeAea5a6E65D33508 (root_gauges/sFRAX/sDAI/sUSDe-fraxtal-root-ea8b) | killGauge() |               | BIP-831 |    2     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x259371cA8AC5E7F3163704Ce58B0dA58820173ed (root_gauges/FRAX/USDe-fraxtal-root-2593)        | killGauge() |               | BIP-831 |    3     |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+-------------+---------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2025-W22/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `fdac7968856388f7148b36de607eb85fe17ec3ca`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟨 PARTIAL`](https://www.tdly.co/shared/simulation/5bdc6ac8-ba11-4628-ad76-d7bc7626170b)
+
+```
++---------------------+-----------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
+| fx_name             | to                                                                                            | value | inputs                                                                             | bip_number | tx_index |
++---------------------+-----------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
+| processExpiredLocks | 0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC (aura/vlAURA)                                      | 0     | {                                                                                  | BIP-832    |   N/A    |
+|                     |                                                                                               |       |   "_relock": [                                                                     |            |          |
+|                     |                                                                                               |       |     false                                                                          |            |          |
+|                     |                                                                                               |       |   ]                                                                                |            |          |
+|                     |                                                                                               |       | }                                                                                  |            |          |
+| allowlistAddress    | 0x7869296Efd0a76872fEE62A058C8fBca5c1c826C (20220420-smart-wallet-checker/SmartWalletChecker) | 0     | {                                                                                  | BIP-829    |   N/A    |
+|                     |                                                                                               |       |   "contractAddress": [                                                             |            |          |
+|                     |                                                                                               |       |     "0x87D93d9B2C672bf9c9642d853a8682546a5012B5 (multisigs/alliance_program/lido)" |            |          |
+|                     |                                                                                               |       |   ]                                                                                |            |          |
+|                     |                                                                                               |       | }                                                                                  |            |          |
++---------------------+-----------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
+```
