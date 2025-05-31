@@ -369,16 +369,27 @@ if __name__ == "__main__":
         if protocol == "merit":
             # comment out once a month, not needed every week
             # continue
+
             # https://apps.aavechan.com/api/merit/campaigns
             # replace date string with timestamp once it has passed and uncomment next string
             # drpc.eth.get_block(22638003).timestamp
-            epochs = [
-                1733932799,  # 21558817
-                1741163423,  # 21979500
-                1743855959,  # 22202701
-                1746462191,  # 22418702
-                "~Thu Jun 05 2025 10:43:33UTC",  # 22638003
-            ]
+
+            if chain == "1":
+                epochs = [
+                    1733932799,  # 21558817
+                    1741163423,  # 21979500
+                    1743855959,  # 22202701
+                    1746462191,  # 22418702
+                    "~Thu Jun 05 2025 10:43:33UTC",  # 22638003
+                ]
+            elif chain == "43114":
+                epochs = [
+                    0,
+                    1745518691,
+                    "22430000",  # TODO
+                    "~Wed May 07 2025",
+                    # 22340603 Thu Apr 24 2025
+                ]
             epoch_duration = epochs[-2] - epochs[-3]
         if protocol == "morpho":
             epoch_duration = 60 * 60 * 24 * 7
