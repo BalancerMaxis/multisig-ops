@@ -101,10 +101,17 @@ def get_pools(chain: str, broadcast: bool = False):
         abi=json.load(open("action-scripts/abis/ProtocolFeeSweeper.json")),
     )
     target_token = ProtocolFeeSweeper.functions.getTargetToken().call().lower()
-    burner = AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
-    erc4626_burner = (
-        AddrBook(chain).search_unique("20250507-v3-erc4626-cow-swap-fee-burner").address
-    )
+    if chain == "avalanche":
+        burner = AddrBook(chain).search_unique("mimic/fee_burner").address
+    else:
+        burner = (
+            AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
+        )
+        erc4626_burner = (
+            AddrBook(chain)
+            .search_unique("20250507-v3-erc4626-cow-swap-fee-burner")
+            .address
+        )
     payload_unstuck_tokens = _payload_template(str(drpc.eth.chain_id), OMNI_MSIG)
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
     max_gas_price = int(CONFIG[chain]["max_gas_price"])
@@ -139,7 +146,10 @@ def get_pools(chain: str, broadcast: bool = False):
                     address=to_checksum_address(asset_address),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
                 )
-                designated_burner = erc4626_burner if token_is_erc4626 else burner
+                if chain == "avalanche":
+                    designated_burner = burner
+                else:
+                    designated_burner = erc4626_burner if token_is_erc4626 else burner
                 DesignatedBurner = drpc.eth.contract(
                     address=to_checksum_address(designated_burner),
                     abi=json.load(
