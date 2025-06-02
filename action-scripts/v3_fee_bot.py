@@ -95,7 +95,14 @@ def get_pools(chain: str, broadcast: bool = False):
         )
     )
     Bot = drpc.eth.account.from_key(os.getenv("PRIVATE_KEY"))
-    sweeper = AddrBook(chain).search_unique("20250228-v3-protocol-fee-sweeper").address
+    if chain == "avalanche":
+        sweeper = (
+            AddrBook(chain).search_unique("20250503-v3-protocol-fee-sweeper-v2").address
+        )
+    else:
+        sweeper = (
+            AddrBook(chain).search_unique("20250228-v3-protocol-fee-sweeper").address
+        )
     ProtocolFeeSweeper = drpc.eth.contract(
         address=sweeper,
         abi=json.load(open("action-scripts/abis/ProtocolFeeSweeper.json")),
