@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/set_rewards/base/set-distributors-0x70db18-2025-05-27_1413.json`
+MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `965f765846fc11c7a54372cd0a0eecf0caef3638`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/72702506-8363-45a8-b025-b9d86f7f83fb)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------------------------------------+---------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                            | selector                                | parsed_inputs                                                             | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------------------------------------+---------------------------------------------------------------------------+-----+----------+
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x70db188e5953f67a4b16979a2cea26248b315401 (gauges/Aave USDC-Aave GHO-gauge-70db) | set_reward_distributor(address,address) | 0x6Bb7a212910682DCFdbd5BCBb3e28FB4E8da10Ee: GHO                           | N/A |    0     |
+|               |                                                                                                                 |                                                                                   |                                         | 0x12Da7E0c469CEeC4EFADa2F5E8CAedCD3F3E6748: paladin/QuestBoardV2Sidechain |     |          |
+| performAction | 0x9129E834e15eA19b6069e8f08a8EcFc13686B8dC (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xec16621c9bd547d64b93c17b51838ff173bb6dd1 (gauges/Aave GHO-USR-gauge-ec16)       | set_reward_distributor(address,address) | 0x6Bb7a212910682DCFdbd5BCBb3e28FB4E8da10Ee: GHO                           | N/A |    1     |
+|               |                                                                                                                 |                                                                                   |                                         | 0x12Da7E0c469CEeC4EFADa2F5E8CAedCD3F3E6748: paladin/QuestBoardV2Sidechain |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------------------------------------+---------------------------------------------------------------------------+-----+----------+
+```
