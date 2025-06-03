@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1710000000,
+  "meta": {
+    "name": "Whitelist Protocol Fee Burner and Set Target Token",
+    "description": "Whitelist the v3 cow swap fee burner and set USDC.e as target token on Avalanche",
+    "txBuilderVersion": "1.16.2",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "transactions": [
+    {
+      "to": "0x5B42eC6D40f7B7965BE5308c70e2603c0281C1E9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeBurner",
+            "name": "protocolFeeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeBurner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeBurner": "0x2d39c2ddf0ae652071d0550718cc7aacaf647d39"
+      }
+    },
+    {
+      "to": "0x5B42eC6D40f7B7965BE5308c70e2603c0281C1E9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          }
+        ],
+        "name": "setTargetToken",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "token": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
+      }
+    }
+  ]
+}
