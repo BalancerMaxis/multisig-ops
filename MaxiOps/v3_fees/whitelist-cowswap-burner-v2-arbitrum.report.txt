@@ -1,0 +1,17 @@
+FILENAME: `MaxiOps/v3_fees/whitelist-cowswap-burner-v2-arbitrum.json`
+MULTISIG: `multisigs/maxi_omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `5c075e399bf8e707d3c8445a67f95fe9cfbdb5d2`
+CHAIN(S): `arbitrum`
+TENDERLY: `🟪 SKIPPED (ValueError("when sending a str, it must be a hex string. Got: '0x20250530-v3-cow-swap-fee-burner-v2'"))`
+
+```
++----------------------+--------------------------------------------------------------------------------------------------+-------+--------------------------------------------+------------+----------+
+| fx_name              | to                                                                                               | value | inputs                                     | bip_number | tx_index |
++----------------------+--------------------------------------------------------------------------------------------------+-------+--------------------------------------------+------------+----------+
+| addProtocolFeeBurner | 0x3BEb058DE1A25dd24223fd9e1796df8589429AcE (20250228-v3-protocol-fee-sweeper/ProtocolFeeSweeper) | 0     | {                                          | N/A        |   N/A    |
+|                      |                                                                                                  |       |   "protocolFeeBurner": [                   |            |          |
+|                      |                                                                                                  |       |     "0x20250530-v3-cow-swap-fee-burner-v2" |            |          |
+|                      |                                                                                                  |       |   ]                                        |            |          |
+|                      |                                                                                                  |       | }                                          |            |          |
++----------------------+--------------------------------------------------------------------------------------------------+-------+--------------------------------------------+------------+----------+
+```
