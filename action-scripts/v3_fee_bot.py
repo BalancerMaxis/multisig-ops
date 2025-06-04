@@ -65,8 +65,8 @@ def _tx_cancelOrder(burner_address, token_address):
     }
 
 
-def _add_to_payload(Burner, payload_unstuck_tokens, asset_address):
-    if Burner.functions.getOrderStatus(
+def _add_to_payload(DesignatedBurner, payload_unstuck_tokens, asset_address):
+    if DesignatedBurner.functions.getOrderStatus(
         to_checksum_address(asset_address)
     ).call() not in [0, 2]:
         # OrderStatus is neither NonExistent nor Filled, thus can be cancelled
@@ -78,7 +78,7 @@ def _add_to_payload(Burner, payload_unstuck_tokens, asset_address):
             print(f"adding {asset_address} to unstuck payload")
             payload_unstuck_tokens["transactions"].append(
                 _tx_cancelOrder(
-                    Burner.address,
+                    DesignatedBurner.address,
                     to_checksum_address(asset_address),
                 )
             )
@@ -103,6 +103,13 @@ def get_pools(chain: str, broadcast: bool = False):
         AddrBook(chain).search_unique("mimic/fee_burner").address
         if chain == "avalanche"
         else AddrBook(chain).search_unique("20250530-v3-cow-swap-fee-burner-v2").address
+    )
+    erc4626_burner = (
+        burner
+        if chain == "avalanche"
+        else AddrBook(chain)
+        .search_unique("20250507-v3-erc4626-cow-swap-fee-burner")
+        .address
     )
     payload_unstuck_tokens = _payload_template(str(drpc.eth.chain_id), OMNI_MSIG)
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
@@ -138,18 +145,19 @@ def get_pools(chain: str, broadcast: bool = False):
                     address=to_checksum_address(asset_address),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
                 )
-                Burner = drpc.eth.contract(
-                    address=to_checksum_address(burner),
+                designated_burner = erc4626_burner if token_is_erc4626 else burner
+                DesignatedBurner = drpc.eth.contract(
+                    address=to_checksum_address(designated_burner),
                     abi=json.load(open("action-scripts/abis/ICowSwapFeeBurner.json")),
                 )
-                balance = Asset.functions.balanceOf(burner).call()
+                balance = Asset.functions.balanceOf(designated_burner).call()
                 if balance > 0:
-                    if Burner.functions.getOrderStatus(
+                    if DesignatedBurner.functions.getOrderStatus(
                         to_checksum_address(asset_address)
                     ).call() not in [0, 2]:
                         # OrderStatus is neither NonExistent nor Filled, thus can be cancelled
                         _add_to_payload(
-                            Burner,
+                            DesignatedBurner,
                             payload_unstuck_tokens,
                             asset_address,
                         )
@@ -188,7 +196,7 @@ def get_pools(chain: str, broadcast: bool = False):
                         )
                     )
                     if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
-                        burner
+                        designated_burner
                     ).call():
                         print("!!! burner not approved (yet); skipping\n")
                         continue
@@ -230,7 +238,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             (
                                 ZERO_ADDRESS
                                 if token["address"] == target_token
-                                else burner
+                                else designated_burner
                             ),
                         ).build_transaction(
                             {
@@ -267,7 +275,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             if "0xd0c1b3cf" in e.data:
                                 # OrderHasUnexpectedStatus
                                 _add_to_payload(
-                                    Burner,
+                                    DesignatedBurner,
                                     payload_unstuck_tokens,
                                     asset_address,
                                 )
@@ -276,7 +284,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             if "0xd0c1b3cf" in e.message:
                                 # OrderHasUnexpectedStatus
                                 _add_to_payload(
-                                    Burner,
+                                    DesignatedBurner,
                                     payload_unstuck_tokens,
                                     asset_address,
                                 )
