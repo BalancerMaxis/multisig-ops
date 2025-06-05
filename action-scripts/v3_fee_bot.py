@@ -108,7 +108,7 @@ def get_pools(chain: str, broadcast: bool = False):
         burner
         if chain == "avalanche"
         else AddrBook(chain)
-        .search_unique("20250507-v3-erc4626-cow-swap-fee-burner")
+        .search_unique("20250530-v3-erc4626-cow-swap-fee-burner-v2")
         .address
     )
     payload_unstuck_tokens = _payload_template(str(drpc.eth.chain_id), OMNI_MSIG)
