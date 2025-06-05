@@ -12,7 +12,7 @@
   },
   "transactions": [
     {
-      "to": "0x5B42eC6D40f7B7965BE5308c70e2603c0281C1E9",
+      "to": "0xd22eecBB495380Ef52b1CCeF1cA594979885D484",
       "value": "0",
       "data": null,
       "contractMethod": {
@@ -27,7 +27,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "protocolFeeBurner": "0x891EC9B34829276a9a8ef2F8A9cEAF2486017e0d"
+        "protocolFeeBurner": "0x5B42eC6D40f7B7965BE5308c70e2603c0281C1E9"
       }
     },
     {
@@ -46,7 +46,26 @@
         "payable": false
       },
       "contractInputsValues": {
-        "protocolFeeBurner": "0xD53F5d8d926fb2a0f7Be614B16e649B8aC102D83"
+        "protocolFeeBurner": "0x4b979eD48F982Ba0baA946cB69c1083eB799729c"
+      }
+    },
+    {
+      "to": "0xe2fa4e1d17725e72dcdAfe943Ecf45dF4B9E285b",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeSweeper",
+            "name": "protocolFeeSweeper",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeSweeper",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeSweeper": "0xe2fa4e1d17725e72dcdAfe943Ecf45dF4B9E285b"
       }
     }
   ]
