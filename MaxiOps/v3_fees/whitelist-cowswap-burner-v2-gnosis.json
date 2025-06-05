@@ -27,7 +27,26 @@
         "payable": false
       },
       "contractInputsValues": {
-        "protocolFeeBurner": "0x397BC40Ba584E651f4f5Cf4Ae089F0130569a1c7"
+        "protocolFeeBurner": "0x254F3A2974b97dc2E675f6115c845567C55f83b0"
+      }
+    },
+    {
+      "to": "0x1bcA39b01F451b0a05D7030e6e6981a73B716b1C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeBurner",
+            "name": "protocolFeeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeBurner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeBurner": "0x5915DEA04ce390F0f44CA0806F7c6Dd99Ce2f941"
       }
     }
   ]
