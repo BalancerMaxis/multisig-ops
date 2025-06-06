@@ -180,7 +180,6 @@ def get_pools(chain: str, broadcast: bool = False):
                     except KeyError:
                         print("!!! no price for", token["address"])
                         continue
-                    report[chain]["total_potential"] += potential
                     print("token:", token["symbol"], token["address"])
                     print("price:", f"${prices[token['address']]}")
                     print("collectable in vault:", fees_vault, token["symbol"])
@@ -188,6 +187,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     if potential < threshold:
                         print(f"not enough fees to burn; only worth {potential} USDC\n")
                         continue
+                    report[chain]["total_potential"] += potential
                     print("burning for:", potential, "USDC"),
 
                     deadline = int(
