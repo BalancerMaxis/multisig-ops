@@ -1,0 +1,24 @@
+FILENAME: `MaxiOps/Emergency-Multisigs/Mainnet/pause & enableRecoveryMode DvstETH-pools.json`
+MULTISIG: `multisigs/emergency (mainnet:0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888)`
+COMMIT: `83aa23cb055ea70f16fdda0308a6cee3f7206102`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/68cc489c-61b5-4711-a661-d7e507c48f8f)
+
+```
++--------------------+------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
+| fx_name            | to                                                                     | value | inputs                                                                             | bip_number | tx_index |
++--------------------+------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
+| pause              | 0x632aafC2D3D2cA1764E702aa25c065c273Cd08eD (pools/DVstETH/wstETH-632a) | 0     | "N/A"                                                                              | N/A        |   N/A    |
+| enableRecoveryMode | 0x632aafC2D3D2cA1764E702aa25c065c273Cd08eD (pools/DVstETH/wstETH-632a) | 0     | "N/A"                                                                              | N/A        |   N/A    |
+| pausePool          | 0xbA1333333333a1BA1108E8412f11850A5C319bA9 (20241204-v3-vault/Vault)   | 0     | {                                                                                  | N/A        |   N/A    |
+|                    |                                                                        |       |   "pool": [                                                                        |            |          |
+|                    |                                                                        |       |     "0xeb95d6BD67f613E7918A031d9F4a9a92766659aC (pools/DVstETH-Prime wstETH-eb95)" |            |          |
+|                    |                                                                        |       |   ]                                                                                |            |          |
+|                    |                                                                        |       | }                                                                                  |            |          |
+| enableRecoveryMode | 0xbA1333333333a1BA1108E8412f11850A5C319bA9 (20241204-v3-vault/Vault)   | 0     | {                                                                                  | N/A        |   N/A    |
+|                    |                                                                        |       |   "pool": [                                                                        |            |          |
+|                    |                                                                        |       |     "0xeb95d6BD67f613E7918A031d9F4a9a92766659aC (pools/DVstETH-Prime wstETH-eb95)" |            |          |
+|                    |                                                                        |       |   ]                                                                                |            |          |
+|                    |                                                                        |       | }                                                                                  |            |          |
++--------------------+------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
+```
