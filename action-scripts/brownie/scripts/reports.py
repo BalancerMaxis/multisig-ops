@@ -496,6 +496,11 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     caller_name = addr.reversebook.get(caller_address, "!!NOT FOUND!!")
     fx_paths = []
     for action_id in action_ids:
+        if not isinstance(action_id, str):
+            print(
+                f"Function {function} came up with action_id `{action_id}` which is not a valid string."
+            )
+            return
         paths = perms.paths_by_action_id[action_id]
         fx_paths = [*fx_paths, *paths]
     return {
