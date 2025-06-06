@@ -66,9 +66,7 @@ def _tx_cancelOrder(burner_address, token_address):
     }
 
 
-def _add_to_payload(
-    DesignatedBurner, payload_unstuck_tokens, asset_address, designated_burner
-):
+def _add_to_payload(DesignatedBurner, payload_unstuck_tokens, asset_address):
     if DesignatedBurner.functions.getOrderStatus(
         to_checksum_address(asset_address)
     ).call() not in [0, 2]:
@@ -81,7 +79,7 @@ def _add_to_payload(
             print(f"adding {asset_address} to unstuck payload")
             payload_unstuck_tokens["transactions"].append(
                 _tx_cancelOrder(
-                    designated_burner,
+                    DesignatedBurner.address,
                     to_checksum_address(asset_address),
                 )
             )
@@ -121,9 +119,17 @@ def get_pools(chain: str, broadcast: bool = False):
         abi=json.load(open("action-scripts/abis/ProtocolFeeSweeper.json")),
     )
     target_token = ProtocolFeeSweeper.functions.getTargetToken().call().lower()
-    burner = AddrBook(chain).search_unique("20250221-v3-cow-swap-fee-burner").address
+    burner = (
+        AddrBook(chain).search_unique("mimic/fee_burner").address
+        if chain == "avalanche"
+        else AddrBook(chain).search_unique("20250530-v3-cow-swap-fee-burner-v2").address
+    )
     erc4626_burner = (
-        AddrBook(chain).search_unique("20250507-v3-erc4626-cow-swap-fee-burner").address
+        burner
+        if chain == "avalanche"
+        else AddrBook(chain)
+        .search_unique("20250530-v3-erc4626-cow-swap-fee-burner-v2")
+        .address
     )
     payload_unstuck_tokens = _payload_template(str(drpc.eth.chain_id), OMNI_MSIG)
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
@@ -167,9 +173,7 @@ def get_pools(chain: str, broadcast: bool = False):
                 designated_burner = erc4626_burner if token_is_erc4626 else burner
                 DesignatedBurner = drpc.eth.contract(
                     address=to_checksum_address(designated_burner),
-                    abi=json.load(
-                        open("action-scripts/abis/IERC4626CowSwapFeeBurner.json")
-                    ),
+                    abi=json.load(open("action-scripts/abis/ICowSwapFeeBurner.json")),
                 )
                 balance = Asset.functions.balanceOf(designated_burner).call()
                 if balance > 0:
@@ -181,7 +185,6 @@ def get_pools(chain: str, broadcast: bool = False):
                             DesignatedBurner,
                             payload_unstuck_tokens,
                             asset_address,
-                            designated_burner,
                         )
                 fees_vault = Decimal(token["vaultProtocolSwapFeeBalance"]) + Decimal(
                     token["vaultProtocolYieldFeeBalance"]
@@ -202,7 +205,6 @@ def get_pools(chain: str, broadcast: bool = False):
                     except KeyError:
                         print("!!! no price for", token["address"])
                         continue
-                    report[chain]["total_potential"] += potential
                     print("token:", token["symbol"], token["address"])
                     print("price:", f"${prices[token['address']]}")
                     print("collectable in vault:", fees_vault, token["symbol"])
@@ -210,6 +212,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     if potential < threshold:
                         print(f"not enough fees to burn; only worth {potential} USDC\n")
                         continue
+                    report[chain]["total_potential"] += potential
                     print("burning for:", potential, "USDC"),
 
                     deadline = int(
@@ -244,7 +247,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             else "sweepProtocolFeesForToken"
                         )
                         print(
-                            f"ProtocolFeeSweeper({sweeper}).{sweep_func_name}({to_checksum_address(pool['address'])},{to_checksum_address(token['address'])},{int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))},{deadline},{designated_burner})"
+                            f"ProtocolFeeSweeper({sweeper}).{sweep_func_name}({to_checksum_address(pool['address'])}, {to_checksum_address(token['address'])}, {int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))}, {deadline}, {burner})"
                         )
                         unsigned_tx = getattr(
                             ProtocolFeeSweeper.functions, sweep_func_name
@@ -288,7 +291,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             if (
                                 token["address"] != target_token
                                 or asset_address != target_token
-                            ):
+                            ) and chain != "avalanche":
                                 print("waiting for cooldown...")
                                 sleep(ORDER_COOLDOWN)
                         print("\n")
@@ -300,7 +303,6 @@ def get_pools(chain: str, broadcast: bool = False):
                                     DesignatedBurner,
                                     payload_unstuck_tokens,
                                     asset_address,
-                                    designated_burner,
                                 )
                                 continue
                         if "message" in dir(e):
@@ -310,7 +312,6 @@ def get_pools(chain: str, broadcast: bool = False):
                                     DesignatedBurner,
                                     payload_unstuck_tokens,
                                     asset_address,
-                                    designated_burner,
                                 )
     if len(payload_unstuck_tokens["transactions"]) > 0:
         with open(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json", "w") as f:
@@ -330,7 +331,7 @@ if __name__ == "__main__":
         report[chain] = {"n_pools": 0, "total_potential": 0, "usdc_collectable": []}
         s = Subgraph(chain)
         prices = get_prices(chain)
-        get_pools(chain, broadcast=False)
+        get_pools(chain, broadcast=True)
     pprint(report)
     print(
         "total total_potential:",
