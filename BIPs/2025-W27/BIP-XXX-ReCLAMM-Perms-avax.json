@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1749643540,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Manage permissions for wallet",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2cd44f7180492cb72db2386c418a5a431835ac212ef513756e2defbe7df6dfbe, 0xe774fca950134465234dd2773cab89492cf048e8f904a47047f77c9a90e6b4b1, 0x054419ca82786d37908e27054aadb9a853aa9bc4b8d005626b019165a0f33303, 0xa11689780dd3e2bf325f90a5766500ed258b394bad149bf71b8b6c24d706007a]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
