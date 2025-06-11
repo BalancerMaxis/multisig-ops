@@ -15,6 +15,6 @@ jobs:
           options: "--verbose"
 
       - name: Auto commit
-        uses: stefanzweifel/git-auto-commit-action@v5.0.1
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "style: ci lint with `black`"
