@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
@@ -31,7 +33,7 @@ jobs:
           python3 sweepFees.py
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Generate Fee Sweep transaction builder jsons
           commit_user_name: GitHub Actions
