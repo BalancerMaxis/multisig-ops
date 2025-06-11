@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2025-W27/BIP-XXX-ReCLAMM-Perms-arbitrum.json`
+MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
+COMMIT: `34f9b4dd782b315e8ce6d3e0bf27381b3863b5aa`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6bc073fa-2bd6-4222-82d5-38d4331bf5e1)
+
+```
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                            | action_ids                                                         | bip | tx_index |
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250409-v3-reclamm-pool/ReClammPool/stopPriceRatioUpdate()                         | 0x88231e1b202c07a43d9358792a93fe8f997690cddc3de65936ad6dca17ccebac | N/A |    0     |
+|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/startPriceRatioUpdate(uint256,uint256,uint256) | 0x5fb8b6cd494cbe90988ca6d485eae55c2de57e694219ce25be7f4d38addac178 |     |          |
+|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/setDailyPriceShiftExponent(uint256)            | 0xf0965833ab10492aee52b7abc365544892b981527e54e0780c886c3aa0ad47b4 |     |          |
+|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/setCenterednessMargin(uint256)                 | 0x5a0f2587cf3923c4c723345de0c97eb51231505849b8be143b7f5d2d7ba0d210 |     |          |
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```
