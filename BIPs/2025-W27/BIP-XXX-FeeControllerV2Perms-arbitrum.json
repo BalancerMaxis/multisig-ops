@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1749626115,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Fee Controller V2 Perms on Arbitrum",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x169fe9610ecd0cb7f8680927630bb0b562351909417e49a88e6b1d607b10282b, 0xda92693293572e502571c904657bc7f881f3ace9157f794f076feea9cba5b282, 0x859d7eee4fdfbe7046c52999e8fe757a805e73fc915be3aa48b7297f433a0761, 0x54cb3a64febc747a01ae1714afdb6be7f4a2f968a361bbb262790ef259a88afb, 0x250d10ca8bc432846d95bf9c839d79155e541037a17f2be65a84797d89cb831f, 0x610537725ddaed423abcb2b23d9191781b990fceb0f445f4bfe56f049514ff4c]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
