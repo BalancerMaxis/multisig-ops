@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1749640749,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Emergency: ReCLAMM Perms: Disable Factory",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e]",
+        "account": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"
+      }
+    }
+  ]
+}
