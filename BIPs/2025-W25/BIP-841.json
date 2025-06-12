@@ -1,1 +1,28 @@
-{"version":"1.0","chainId":"1","createdAt":1749712547448,"meta":{"name":"Transactions Batch","createdFromSafeAddress":"0xc38c5f97B34E175FFd35407fc91a937300E33860"},"transactions":[{"to":"0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd","value":"0","data":null,"contractMethod":{"inputs":[{"name":"gauge","type":"address","internalType":"address"},{"name":"gaugeType","type":"string","internalType":"string"}],"name":"addGauge","payable":false},"contractInputsValues":{"gauge":"0xac681deb529b49b5a563fbf0dcccb95d5bb7cdb0","gaugeType":"Ethereum"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1749712547448,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0xac681deb529b49b5a563fbf0dcccb95d5bb7cdb0",
+        "gaugeType": "Ethereum"
+      }
+    }
+  ]
+}
