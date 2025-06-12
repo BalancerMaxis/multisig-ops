@@ -448,7 +448,6 @@ if __name__ == "__main__":
                     session=session_drpc,
                 )
             )
-            # breakpoint()
             subgraph = Subgraph(CHAINS[chain].lower())
             for reward_token, rewards in WATCHLIST[protocol][chain].items():
                 if rewards["claimable"] == "":
