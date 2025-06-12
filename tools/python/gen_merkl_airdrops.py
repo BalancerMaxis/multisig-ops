@@ -369,7 +369,6 @@ if __name__ == "__main__":
         if protocol == "merit":
             # comment out once a month, not needed every week
             # continue
-
             # https://apps.aavechan.com/api/merit/campaigns
             # replace date string with timestamp once it has passed and uncomment next string
             # drpc.eth.get_block(22638003).timestamp

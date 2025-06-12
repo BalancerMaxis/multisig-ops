@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/v3_fees/unstuck_tokens_base.json`
 MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `a703296116ca085a2c555ce22eab71dce4f2ac67`
+COMMIT: `b0fa4dd5b0d9a5e427b396a76031e628b593c516`
 CHAIN(S): `base`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b84e2bae-7874-4934-a0b5-79c0cd68fb4e)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/46530f7f-ca1d-4219-af43-406edc7dd949)
 
 ```
 +-------------+-----------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------+------------+----------+
@@ -10,31 +10,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b84e2bae-7874-4
 +-------------+-----------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------+------------+----------+
 | cancelOrder | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
 |             |                                                                                               |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                               |       |     "0x88b1cd4b430d95b406e382c3cdbae54697a0286e (N/A)"                 |            |          |
-|             |                                                                                               |       |   ],                                                                   |            |          |
-|             |                                                                                               |       |   "receiver": [                                                        |            |          |
-|             |                                                                                               |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
-|             |                                                                                               |       |   ]                                                                    |            |          |
-|             |                                                                                               |       | }                                                                      |            |          |
-| cancelOrder | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
-|             |                                                                                               |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                               |       |     "0xc768c589647798a6ee01a91fde98ef2ed046dbd6 (N/A)"                 |            |          |
-|             |                                                                                               |       |   ],                                                                   |            |          |
-|             |                                                                                               |       |   "receiver": [                                                        |            |          |
-|             |                                                                                               |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
-|             |                                                                                               |       |   ]                                                                    |            |          |
-|             |                                                                                               |       | }                                                                      |            |          |
-| cancelOrder | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
-|             |                                                                                               |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                               |       |     "0x0830820d1a9aa1554364752d6d8f55c836871b74 (N/A)"                 |            |          |
-|             |                                                                                               |       |   ],                                                                   |            |          |
-|             |                                                                                               |       |   "receiver": [                                                        |            |          |
-|             |                                                                                               |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |
-|             |                                                                                               |       |   ]                                                                    |            |          |
-|             |                                                                                               |       | }                                                                      |            |          |
-| cancelOrder | 0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd (20250221-v3-cow-swap-fee-burner/CowSwapFeeBurner) | 0     | {                                                                      | N/A        |   N/A    |
-|             |                                                                                               |       |   "tokenIn": [                                                         |            |          |
-|             |                                                                                               |       |     "0x4200000000000000000000000000000000000006 (N/A)"                 |            |          |
+|             |                                                                                               |       |     "0x2531ec1720E5d1bC82052585271D4BE3f43E392F (N/A)"                 |            |          |
 |             |                                                                                               |       |   ],                                                                   |            |          |
 |             |                                                                                               |       |   "receiver": [                                                        |            |          |
 |             |                                                                                               |       |     "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni)" |            |          |

@@ -1,0 +1,52 @@
+FILENAME: `BIPs/00batched/2025-W23/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `54652813141fb70613cf11c988dc99e06b8ddbaf`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/072b9769-ca1f-40f2-93f1-31cb0e4bbac7)
+
+| Gauge Validator (0x6dDEdCdB545e04927B2ABa21778A790A3318E3cb) |  Result  |
+| :------------------------------------------------------------| :------: |
+| `validate_preferential_gauge`                                |    ✅    |
+| `validate_rate_providers_safety`                             | ✅ ✅ ✅ |
+
+| Gauge Validator (0xeaDB24ebe7348F716780C162C56b61Bef8283455) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xAB39b84287769481d7D004E17AC3875248d3C631) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x91beC9e7867635487668B3dF73971456a6a5f2Fa) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+```
++-----------------------+----------------------------------------------------------+----------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info            | gauge_address_and_info                           | tokens                                                  | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+----------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x49e75c0df48aD09a0e20E8bBDeD07Ee60dD8bC03               | ss-sfrxETH-rETH-wstETH     | root: 0x6dDEdCdB545e04927B2ABa21778A790A3318E3cb | 0x3Ec3849C33291a9eF4c5dB86De593EB4A37fDe45: sfrxETH     | 0xf752dd899F87a91370C1C8ac1488Aef6be687505 |      safe      | BIP-836 |    0     |
+|                       | pool_address: 0x49e75c0df48aD09a0e20E8bBDeD07Ee60dD8bC03 | fee (%): 0.04              | side: 0x4768753E2C42D456a1a1c2CBab93b4a2ab57e27b | 0x8e6a81b9d541A0CeA090818B62C4B2DE7f2A2Cf7: waOptrETH   | 0xDd4CAC23A178D221D4eA159B9CE0697cAE05081B |      safe      |         |          |
+|                       |                                                          | a-factor: 1000             | style: L0 sidechain                              | 0xbaF95bB30CDab3d5b7a11B67EDeF5631bD62be86: waOptwstETH | 0xf6655d9F5C2060eF4836A067e61A78891F8fEB03 |      safe      |         |          |
+|                       |                                                          |                            | cap: 100.0%                                      |                                                         |                                            |                |         |          |
+|                       |                                                          |                            | preferential: True                               |                                                         |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x08a8BBa83aF849e3755771a4070Aec87c9d6b86e               | eclp-sfrxETH-waOptWETH     | root: 0xeaDB24ebe7348F716780C162C56b61Bef8283455 | 0x3Ec3849C33291a9eF4c5dB86De593EB4A37fDe45: sfrxETH     | 0xf752dd899F87a91370C1C8ac1488Aef6be687505 |      safe      | BIP-836 |    1     |
+|                       | pool_address: 0x08a8BBa83aF849e3755771a4070Aec87c9d6b86e | fee (%): 0.01              | side: 0x320DA6adBc8ca573A41b9dfcB369b748753C6ebc | 0x464b808c2C7E04b07e860fDF7a91870620246148: waOptWETH   | 0x35B6B84cE756769338a7b9665c178Be001a1137C |      safe      |         |          |
+|                       |                                                          | a-factor: N/A              | style: L0 sidechain                              |                                                         |                                            |                |         |          |
+|                       |                                                          |                            | cap: 100.0%                                      |                                                         |                                            |                |         |          |
+|                       |                                                          |                            | preferential: True                               |                                                         |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xa4Dd31a2725f74163B5826bbD1DfE7684215B104               | eclp-sfrxUSD-waOptUSDCn    | root: 0xAB39b84287769481d7D004E17AC3875248d3C631 | 0x41B334E9F2C0ED1f30fD7c351874a6071C53a78E: waOptUSDCn  | 0x2124372fB3F106A9753eDf1C248Eb1FD3FC72833 |      safe      | BIP-836 |    2     |
+|                       | pool_address: 0xa4Dd31a2725f74163B5826bbD1DfE7684215B104 | fee (%): 0.01              | side: 0x022E09393d1897ff4dDa12b274174C630ff7ECb8 | 0x5Bff88cA1442c2496f7E475E9e7786383Bc070c0: sfrxUSD     | 0x91151BA698253E24C23A754d94f94049a17e8084 |      safe      |         |          |
+|                       |                                                          | a-factor: N/A              | style: L0 sidechain                              |                                                         |                                            |                |         |          |
+|                       |                                                          |                            | cap: 100.0%                                      |                                                         |                                            |                |         |          |
+|                       |                                                          |                            | preferential: True                               |                                                         |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x0854C8fA68cff2ac363b541f08f35181cA51B870               | bpt-50sfrxUSD-50waOptWETH  | root: 0x91beC9e7867635487668B3dF73971456a6a5f2Fa | 0x464b808c2C7E04b07e860fDF7a91870620246148: waOptWETH   | 0x35B6B84cE756769338a7b9665c178Be001a1137C |      safe      | BIP-836 |    3     |
+|                       | pool_address: 0x0854C8fA68cff2ac363b541f08f35181cA51B870 | fee (%): 0.1               | side: 0xbaf734f9C7afB2505298Aff746Be6C8D93C790a6 | 0x5Bff88cA1442c2496f7E475E9e7786383Bc070c0: sfrxUSD     | 0x91151BA698253E24C23A754d94f94049a17e8084 |      safe      |         |          |
+|                       |                                                          | a-factor: N/A              | style: L0 sidechain                              |                                                         |                                            |                |         |          |
+|                       |                                                          |                            | cap: 100.0%                                      |                                                         |                                            |                |         |          |
+|                       |                                                          |                            | preferential: True                               |                                                         |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+----------------------------+--------------------------------------------------+---------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
