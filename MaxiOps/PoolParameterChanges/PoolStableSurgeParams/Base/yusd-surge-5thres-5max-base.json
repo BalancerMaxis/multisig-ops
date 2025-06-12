@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1746797909397,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set surge threshold to 5% and max surge fee to 5% for pool 0xb6a9a815d98cb98fd9f2353ec59de07b63f5b485",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xdb8d758bcb971e482b2c45f7f8a7740283a1bd3a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newMaxSurgeSurgeFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMaxSurgeFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xb6a9a815d98cb98fd9f2353ec59de07b63f5b485",
+        "newMaxSurgeSurgeFeePercentage": "50000000000000000"
+      }
+    },
+    {
+      "to": "0xdb8d758bcb971e482b2c45f7f8a7740283a1bd3a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newSurgeThresholdPercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSurgeThresholdPercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xb6a9a815d98cb98fd9f2353ec59de07b63f5b485",
+        "newSurgeThresholdPercentage": "50000000000000000"
+      }
+    }
+  ]
+}
