@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-rewards-0xdee29b-2025-06-13_1604.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `4ea052c002d4cf3f94a0e40c1dfb9dc6050989ff`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/e3b1ffdb-ccc8-40b1-b56e-f397c1d2111a)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+-------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                    | selector                    | parsed_inputs                                                     | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+-------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xdee29b7b6df3576280bfbbc088ee9ebaa767c0bd (gauges/pxETH/wETH-gauge-dee2) | add_reward(address,address) | 0x04C154b66CB340F3Ae24111CC767e0184Ed00Cc6: pxETH                 | N/A |    0     |
+|               |                                                                                                                 |                                                                           |                             | 0x7f6494D4fBEA1c06daC2250A3FCa81003bF8D20C: hidden_hand2/ops_msig |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xdee29b7b6df3576280bfbbc088ee9ebaa767c0bd (gauges/pxETH/wETH-gauge-dee2) | add_reward(address,address) | 0x6B175474E89094C44Da98b954EedeAC495271d0F: tokens/DAI            | N/A |    1     |
+|               |                                                                                                                 |                                                                           |                             | 0x7f6494D4fBEA1c06daC2250A3FCa81003bF8D20C: hidden_hand2/ops_msig |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+-------------------------------------------------------------------+-----+----------+
+```
