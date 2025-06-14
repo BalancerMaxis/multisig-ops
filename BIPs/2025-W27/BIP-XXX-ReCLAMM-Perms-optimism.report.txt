@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2025-W27/BIP-XXX-ReCLAMM-Perms-optimism.json`
+MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
+COMMIT: `34f9b4dd782b315e8ce6d3e0bf27381b3863b5aa`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/28fbbecd-5e0a-4fe9-91d1-12d51f43ef0a)
+
+```
++-----------------------+--------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name  | caller_address                             | fx_paths                                                                            | action_ids                                                         | bip | tx_index |
++-----------------------+--------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRoles | multisigs/lm | 0x09Df1626110803C7b3b07085Ef1E053494155089 | 20250409-v3-reclamm-pool/ReClammPool/setCenterednessMargin(uint256)                 | 0x7c79070d868f39f7c4bcc35d33b1d2bedc80d3e44de8fe1189f58d9c66389ee2 | N/A |    0     |
+|                       |              |                                            | 20250409-v3-reclamm-pool/ReClammPool/setDailyPriceShiftExponent(uint256)            | 0x1de86ceaf07d14a63d412678b4e26cffbb8e21ba401f159c8de273f2a862a726 |     |          |
+|                       |              |                                            | 20250409-v3-reclamm-pool/ReClammPool/startPriceRatioUpdate(uint256,uint256,uint256) | 0x0b15127ffd27b52818f57c5573504fc5ee7072d38999b4eb94c155d0e646aff4 |     |          |
+|                       |              |                                            | 20250409-v3-reclamm-pool/ReClammPool/stopPriceRatioUpdate()                         | 0x4a1d26432de4236d7a6776eaa81a5c3e2ee306db1d821d08e3123ef539d25825 |     |          |
++-----------------------+--------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```
