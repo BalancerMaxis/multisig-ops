@@ -1,6 +1,7 @@
 import json
 import os
 import pickle
+import requests
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -17,10 +18,14 @@ from bal_tools import Subgraph, BalPoolsGauges
 
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
+BALANCER_VAULT_V3 = "0xbA1333333333a1BA1108E8412f11850A5C319bA9"
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
 AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 BEEFY_PARTNER_BASE_URL = (
     "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
+)
+AAVECHAN_MERIT_API = (
+    f"https://apps.aavechan.com/api/merit/rewards?user={BALANCER_VAULT_V3.lower()}"
 )
 CHAINS = {"1": "MAINNET", "8453": "BASE", "43114": "AVALANCHE"}
 CHAIN_SLUGS = {"1": "ethereum", "8453": "base", "43114": "avalanche"}
@@ -209,11 +214,11 @@ def build_snapshot_df(
     # checksum total balances versus total supply
     assert df.sum().sum() == approx(
         sum(total_supply.values()) / Decimal(1e18), rel=Decimal(1e-6)
-    )
+    ), f"total shares do not match total supply: {df.sum().sum()} != {sum(total_supply.values()) / Decimal(1e18)}"
     for block in df.columns:
         assert df[block].sum() == approx(
             total_supply[block] / Decimal(1e18), rel=Decimal(1e-6)
-        )
+        ), f"total shares for block {block} do not match total supply: {df[block].sum()} != {total_supply[block] / Decimal(1e18)}"
 
     return df
 
@@ -348,7 +353,65 @@ def get_morpho_component_value(pool, timestamp):
 
 
 def get_merit_component_value(pool, timestamp):
-    pass
+    # calculate the $ value of the merit component(s) in a pool
+    raw = subgraph.fetch_graphql_data(
+        "apiv3",
+        """query PoolTokens($poolId: String!, $chain: GqlChain!, $range: GqlPoolSnapshotDataRange!) {
+            poolGetPool(id: $poolId, chain: $chain) {
+                poolTokens {
+                    address
+                    balanceUSD
+                    index
+                }
+            }
+            poolGetSnapshots(id: $poolId, chain: $chain, range: $range) {
+                amounts
+                timestamp
+            }
+        }""",
+        {"poolId": pool.lower(), "chain": CHAINS[chain], "range": "THIRTY_DAYS"},
+    )
+    value = Decimal(0)
+    for component in raw["poolGetPool"]["poolTokens"]:
+        r = requests.get(AAVECHAN_MERIT_API)
+        r.raise_for_status()
+        raw_merit = r.json()
+        for campaign in raw_merit:
+            if (
+                raw_merit[campaign][0]["actionTokens"][0]["book"]["STATA_TOKEN"].lower()
+                == component["address"]
+            ):
+                # this is a merit component
+                for snapshot in raw["poolGetSnapshots"]:
+                    if snapshot["timestamp"] > timestamp:
+                        balance = Decimal(snapshot["amounts"][int(component["index"])])
+                        timestamp_eod = snapshot["timestamp"]
+                        break
+                else:
+                    raise ValueError(
+                        f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
+                    )
+                prices = subgraph.fetch_graphql_data(
+                    "apiv3",
+                    "get_historical_token_prices",
+                    {
+                        "addresses": [component["address"]],
+                        "chain": CHAINS[chain],
+                        "range": "THIRTY_DAY",
+                    },
+                )
+                for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                    if int(entry["timestamp"]) == timestamp_eod:
+                        price = Decimal(entry["price"])
+                        assert price > 0
+                        break
+                else:
+                    raise ValueError(
+                        f"no historical price found for morpho component {component['address']}!"
+                    )
+                value += balance * price
+                breakpoint()
+    return value
 
 
 def consolidate_shares(df):
