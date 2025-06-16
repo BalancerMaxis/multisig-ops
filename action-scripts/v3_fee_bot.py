@@ -161,11 +161,12 @@ def get_pools(chain: str, broadcast: bool = False):
                     asset_address = ERC4626.functions.asset().call()
                 else:
                     asset_address = token["address"]
-                if not _can_get_quote(chain, asset_address):
-                    print(
-                        f"!!! {asset_address} not supported by cow burner; skipping for now\n"
-                    )
-                    continue
+                if chain != "avalanche":
+                    if not _can_get_quote(chain, asset_address):
+                        print(
+                            f"!!! {asset_address} cant get quote from cow burner; skipping for now\n"
+                        )
+                        continue
                 Asset = drpc.eth.contract(
                     address=to_checksum_address(asset_address),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
