@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1749044744230,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xb0a2f64d778c28916b2f78f798ef35681053b65b2d404f651bf30a2a45585bf4"
+  },
+  "transactions": [
+    {
+      "to": "0x632aafC2D3D2cA1764E702aa25c065c273Cd08eD",
+      "value": "0",
+      "data": null,
+      "contractMethod": { "inputs": [], "name": "pause", "payable": false },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x632aafC2D3D2cA1764E702aa25c065c273Cd08eD",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xbA1333333333a1BA1108E8412f11850A5C319bA9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "pool", "type": "address" }
+        ],
+        "name": "pausePool",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xeb95d6BD67f613E7918A031d9F4a9a92766659aC"
+      }
+    },
+    {
+      "to": "0xbA1333333333a1BA1108E8412f11850A5C319bA9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "pool", "type": "address" }
+        ],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xeb95d6BD67f613E7918A031d9F4a9a92766659aC"
+      }
+    }
+  ]
+}
