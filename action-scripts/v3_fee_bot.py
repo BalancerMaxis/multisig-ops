@@ -10,7 +10,6 @@ from bal_addresses import AddrBook, to_checksum_address
 from bal_addresses.addresses import ZERO_ADDRESS
 from bal_tools import Subgraph
 from web3 import Web3
-from web3.exceptions import ContractLogicError
 
 
 CONFIG = json.load(open("action-scripts/v3_fee_config.json"))
@@ -31,59 +30,74 @@ def get_prices(chain: str):
     )
 
 
-def _payload_template(chain_id, safe_address):
-    return {
-        "chainId": chain_id,
-        "meta": {
-            "name": "Transactions Batch",
-            "createdFromSafeAddress": safe_address,
-        },
-        "transactions": [],
-    }
+def _execute_tx(Contract, contract_name, func_name, params, Bot, drpc, broadcast):
+    print(f"{contract_name}.({Contract.address}).{func_name}({params})")
+
+    # sort out gas price and priority fee
+    fee_data = drpc.eth.fee_history(1, "latest")
+    max_gas_price = int(CONFIG[chain]["max_gas_price"])
+    max_priority_fee = int(CONFIG[chain]["max_priority_fee"])
+    if fee_data.baseFeePerGas[-1] > max_gas_price:
+        print(f"!!! base fee too high ({fee_data.baseFeePerGas[-1]}); skipping\n")
+        return
+    try:
+        max_priority_fee_latest = fee_data.reward[0][0]
+        if max_priority_fee_latest > 0:
+            max_priority_fee_optimal = min(max_priority_fee, max_priority_fee_latest)
+    except:
+        max_priority_fee_optimal = max_priority_fee
+
+    # build tx
+    unsigned_tx = getattr(Contract.functions, func_name)(*params).build_transaction(
+        {
+            "from": Bot.address,
+            "nonce": drpc.eth.get_transaction_count(Bot.address),
+            "maxFeePerGas": max_gas_price,
+            "maxPriorityFeePerGas": max_priority_fee_optimal,
+        }
+    )
+    print("tx: ", end="")
+    pprint(unsigned_tx)
+
+    # sign tx
+    signed_tx = drpc.eth.account.sign_transaction(unsigned_tx, Bot.key)
+    if broadcast:
+        try:
+            tx_hash = drpc.eth.send_raw_transaction(signed_tx.rawTransaction)
+            drpc.eth.wait_for_transaction_receipt(tx_hash)
+        except Exception as e:
+            print(f"!!! tx failed: {e}\n")
+            return
+        print("tx hash:", tx_hash.hex())
+    print("\n")
 
 
-def _tx_cancelOrder(burner_address, token_address):
-    return {
-        "to": burner_address,
-        "value": "0",
-        "data": NULL,
-        "contractMethod": {
-            "inputs": [
-                {
-                    "internalType": "contract IERC20",
-                    "name": "tokenIn",
-                    "type": "address",
-                },
-                {"internalType": "address", "name": "receiver", "type": "address"},
-            ],
-            "name": "cancelOrder",
-            "payable": False,
-        },
-        "contractInputsValues": {
-            "tokenIn": token_address,
-            "receiver": OMNI_MSIG,
-        },
-    }
-
-
-def _add_to_payload(DesignatedBurner, payload_unstuck_tokens, asset_address):
+def _can_cancel_order(DesignatedBurner, asset_address):
     if DesignatedBurner.functions.getOrderStatus(
         to_checksum_address(asset_address)
     ).call() not in [0, 2]:
-        # OrderStatus is neither NonExistent nor Filled, thus can be cancelled
-        print("!!! token stuck in burner; adding to unstuck payload\n")
-        for tx in payload_unstuck_tokens["transactions"]:
-            if tx["contractInputsValues"]["tokenIn"].lower() == asset_address.lower():
-                break
-        else:
-            print(f"adding {asset_address} to unstuck payload")
-            payload_unstuck_tokens["transactions"].append(
-                _tx_cancelOrder(
-                    DesignatedBurner.address,
-                    to_checksum_address(asset_address),
-                )
-            )
-    else:
+        # OrderStatus is neither NonExistent nor Filled
+        # can thus be cancelled as soon as it expires
+        if DesignatedBurner.functions.getOrder(
+            to_checksum_address(asset_address)
+        ).call()[5] < int(datetime.timestamp(datetime.now(timezone.utc))):
+            return True
+    return False
+
+
+def _unstuck_token(DesignatedBurner, Bot, drpc, asset_address, broadcast):
+    print("!!! token stuck in burner; unstucking...\n")
+    try:
+        _execute_tx(
+            DesignatedBurner,
+            "DesignatedBurner",
+            "cancelOrder",
+            [to_checksum_address(asset_address), OMNI_MSIG],
+            Bot,
+            drpc,
+            broadcast,
+        )
+    except:
         print("!!! token can neither be burned nor cancelled\n")
 
 
@@ -131,10 +145,19 @@ def get_pools(chain: str, broadcast: bool = False):
         .search_unique("20250530-v3-erc4626-cow-swap-fee-burner-v2")
         .address
     )
-    payload_unstuck_tokens = _payload_template(str(drpc.eth.chain_id), OMNI_MSIG)
+    VaultExplorer = drpc.eth.contract(
+        address=AddrBook(chain)
+        .search_unique("20250407-v3-vault-explorer-v2/VaultExplorer")
+        .address,
+        abi=json.load(open("action-scripts/abis/IVaultExplorer.json")),
+    )
+    ProtocolFeeController = drpc.eth.contract(
+        address=AddrBook(chain)
+        .search_unique("20250214-v3-protocol-fee-controller-v2/ProtocolFeeController")
+        .address,
+        abi=json.load(open("action-scripts/abis/IProtocolFeeController.json")),
+    )
     threshold = Decimal(CONFIG[chain]["usdc_threshold"])
-    max_gas_price = int(CONFIG[chain]["max_gas_price"])
-    max_priority_fee = int(CONFIG[chain]["max_priority_fee"])
     for pool in s.fetch_graphql_data("apiv3", "get_pools", {"chain": chain.upper()})[
         "poolGetPools"
     ]:
@@ -172,30 +195,83 @@ def get_pools(chain: str, broadcast: bool = False):
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
                 )
                 designated_burner = erc4626_burner if token_is_erc4626 else burner
+                if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
+                    designated_burner
+                ).call():
+                    print("!!! burner not approved (yet); skipping\n")
+                    continue
                 DesignatedBurner = drpc.eth.contract(
                     address=to_checksum_address(designated_burner),
                     abi=json.load(open("action-scripts/abis/ICowSwapFeeBurner.json")),
                 )
                 balance = Asset.functions.balanceOf(designated_burner).call()
                 if balance > 0:
-                    if DesignatedBurner.functions.getOrderStatus(
-                        to_checksum_address(asset_address)
-                    ).call() not in [0, 2]:
-                        # OrderStatus is neither NonExistent nor Filled, thus can be cancelled
-                        _add_to_payload(
-                            DesignatedBurner,
-                            payload_unstuck_tokens,
-                            asset_address,
+                    if _can_cancel_order(DesignatedBurner, asset_address):
+                        _unstuck_token(
+                            DesignatedBurner, Bot, drpc, asset_address, broadcast
                         )
+                        if broadcast == False:
+                            # do not try to burn fees; cancellation has not been broadcasted
+                            continue
+                    else:
+                        print("!!! token still has an open order; skipping\n")
+                        continue
                 fees_vault = Decimal(token["vaultProtocolSwapFeeBalance"]) + Decimal(
                     token["vaultProtocolYieldFeeBalance"]
                 )
                 fees_controller = Decimal(token["controllerProtocolFeeBalance"])
                 if fees_vault > 0 or fees_controller > 0:
-                    # TODO: confirm onchain
-                    # VaultExplorer.getAggregateSwapFeeAmount(pool, token)
-                    # VaultExplorer.getAggregateYieldFeeAmount(pool, token)
-                    # assert fees_controller == fees_controller_onchain
+                    decimals = Asset.functions.decimals().call()
+                    # confirm fees onchain
+                    swap_fees_vault_onchain = Decimal(
+                        VaultExplorer.functions.getAggregateSwapFeeAmount(
+                            to_checksum_address(pool["address"]),
+                            to_checksum_address(token["address"]),
+                        ).call()
+                    ) / Decimal(10**decimals)
+                    # assert swap_fees_onchain == Decimal(
+                    #     token["vaultProtocolSwapFeeBalance"]
+                    # )
+                    yield_fees_vault_onchain = Decimal(
+                        VaultExplorer.functions.getAggregateYieldFeeAmount(
+                            to_checksum_address(pool["address"]),
+                            to_checksum_address(token["address"]),
+                        ).call()
+                    ) / Decimal(10**decimals)
+                    # assert yield_fees_onchain == Decimal(
+                    #     token["vaultProtocolYieldFeeBalance"]
+                    # )
+                    fees_vault_onchain = (
+                        swap_fees_vault_onchain + yield_fees_vault_onchain
+                    )
+                    if fees_vault != fees_vault_onchain:
+                        # subgraph is running behind; skip for now
+                        print("!!! subgraph is running behind; skipping\n")
+                        continue
+                    fees_controller_onchain_all = (
+                        ProtocolFeeController.functions.getProtocolFeeAmounts(
+                            to_checksum_address(pool["address"])
+                        ).call()
+                    )
+                    # find correct index for token; fees are sorted in token registration order
+                    for i, t in enumerate(pool["poolTokens"]):
+                        if t["address"].lower() == token["address"].lower():
+                            idx = i
+                            break
+                    else:
+                        print(
+                            f"!!! cannot find token {token['address']} in pool {pool['address']}, skipping\n"
+                        )
+                        continue
+                    fees_controller_onchain = fees_controller_onchain_all[
+                        idx
+                    ] / Decimal(10**decimals)
+                    # assert fees_controller_onchain == fees_controller
+                    if fees_controller != fees_controller_onchain:
+                        # subgraph is running behind; skip for now
+                        print("!!! subgraph is running behind; skipping\n")
+                        breakpoint()
+                        continue
                     try:
                         potential = (fees_vault + fees_controller) * prices[
                             token["address"]
@@ -221,38 +297,19 @@ def get_pools(chain: str, broadcast: bool = False):
                             datetime.now(timezone.utc) + timedelta(minutes=90)
                         )
                     )
-                    if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
-                        designated_burner
-                    ).call():
-                        print("!!! burner not approved (yet); skipping\n")
+                    if (
+                        token["address"].lower()
+                        == "0x7788A3538C5fc7F9c7C8A74EAC4c898fC8d87d92".lower()
+                    ):
+                        # StakedUSDX.redeem() reverts on modifier ensureCooldownOff();
+                        # require(cooldownDuration == 0, Errors.OPERATION_NOT_ALLOWED)
+                        print("!!! skipping StakedUSDX; has redeem issues...\n")
                         continue
-                    fee_data = drpc.eth.fee_history(1, "latest")
-                    if fee_data.baseFeePerGas[-1] > max_gas_price:
-                        print(
-                            f"!!! base fee too high ({fee_data.baseFeePerGas[-1]}); skipping\n"
-                        )
-                        continue
-                    try:
-                        try:
-                            max_priority_fee_latest = fee_data.reward[0][0]
-                            if max_priority_fee_latest > 0:
-                                max_priority_fee_optimal = min(
-                                    max_priority_fee, max_priority_fee_latest
-                                )
-                        except:
-                            max_priority_fee_optimal = max_priority_fee
-                        sweep_func_name = (
-                            "sweepProtocolFeesForToken"
-                            # "sweepProtocolFeesForWrappedToken"
-                            if token_is_erc4626
-                            else "sweepProtocolFeesForToken"
-                        )
-                        print(
-                            f"ProtocolFeeSweeper({sweeper}).{sweep_func_name}({to_checksum_address(pool['address'])}, {to_checksum_address(token['address'])}, {int(Decimal(potential)* (Decimal(1) - SLIPPAGE)* Decimal('1e6'))}, {deadline}, {burner})"
-                        )
-                        unsigned_tx = getattr(
-                            ProtocolFeeSweeper.functions, sweep_func_name
-                        )(
+                    _execute_tx(
+                        ProtocolFeeSweeper,
+                        "ProtocolFeeSweeper",
+                        "sweepProtocolFeesForToken",
+                        [
                             to_checksum_address(pool["address"]),
                             to_checksum_address(token["address"]),
                             int(
@@ -266,64 +323,19 @@ def get_pools(chain: str, broadcast: bool = False):
                                 if token["address"] == target_token
                                 else designated_burner
                             ),
-                        ).build_transaction(
-                            {
-                                "from": Bot.address,
-                                "nonce": drpc.eth.get_transaction_count(Bot.address),
-                                "maxFeePerGas": max_gas_price,
-                                "maxPriorityFeePerGas": max_priority_fee_optimal,
-                            }
-                        )
-                        print("tx: ", end="")
-                        pprint(unsigned_tx)
-                        signed_tx = drpc.eth.account.sign_transaction(
-                            unsigned_tx, Bot.key
-                        )
-                        if broadcast:
-                            try:
-                                tx_hash = drpc.eth.send_raw_transaction(
-                                    signed_tx.rawTransaction
-                                )
-                                drpc.eth.wait_for_transaction_receipt(tx_hash)
-                            except Exception as e:
-                                print(f"!!! tx failed: {e}\n")
-                                continue
-                            print("tx hash:", tx_hash.hex())
-                            if (
-                                token["address"] != target_token
-                                or asset_address != target_token
-                            ) and chain != "avalanche":
-                                print("waiting for cooldown...")
-                                sleep(ORDER_COOLDOWN)
-                        print("\n")
-                    except (ContractLogicError, ValueError) as e:
-                        if "data" in dir(e):
-                            if "0xd0c1b3cf" in e.data:
-                                # OrderHasUnexpectedStatus
-                                _add_to_payload(
-                                    DesignatedBurner,
-                                    payload_unstuck_tokens,
-                                    asset_address,
-                                )
-                                continue
-                        if "message" in dir(e):
-                            if "0xd0c1b3cf" in e.message:
-                                # OrderHasUnexpectedStatus
-                                _add_to_payload(
-                                    DesignatedBurner,
-                                    payload_unstuck_tokens,
-                                    asset_address,
-                                )
-    if len(payload_unstuck_tokens["transactions"]) > 0:
-        with open(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json", "w") as f:
-            json.dump(payload_unstuck_tokens, f, indent=2)
-            f.write("\n")
-    else:
-        # delete old file if present
-        try:
-            os.remove(f"MaxiOps/v3_fees/unstuck_tokens_{chain}.json")
-        except FileNotFoundError:
-            pass
+                        ],
+                        Bot,
+                        drpc,
+                        broadcast,
+                    )
+                    if broadcast:
+                        if (
+                            token["address"] != target_token
+                            or asset_address != target_token
+                        ) and chain != "avalanche":
+                            print("waiting for cooldown...")
+                            sleep(ORDER_COOLDOWN)
+                    print("\n")
 
 
 if __name__ == "__main__":
