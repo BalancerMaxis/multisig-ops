@@ -41,7 +41,7 @@ GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contract
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 
 flatbook = AddrBook("mainnet").flatbook
-vlaura_safe_addr = flatbook["maxi_aura_locker"]
+vlaura_safe_addr = flatbook["multisigs/maxi_aura_locker"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
 
 Account.enable_unaudited_hdwallet_features()
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     print(f"hash: {hash.hex()}")
 
     calldata = Web3.keccak(text="signMessage(bytes)")[0:4] + encode(["bytes"], [hash])
-
+    exit()
     post_safe_tx(
         vlaura_safe_addr, sign_msg_lib_addr, 0, calldata, Operation.DELEGATE_CALL
     )
