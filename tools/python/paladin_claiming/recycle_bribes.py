@@ -99,6 +99,17 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path) ->
             print(f"Claiming - token: {claim['token']}, gauge: {claim['gauge']}")
 
             distributor = distributor_contracts[claim["distributor"]]
+            w3_distributor = w3_by_chain[chain_name].eth.contract(
+                address=Web3.to_checksum_address(claim["distributor"]),
+                abi=paladin_distributor_abi,
+            )
+
+            is_claimed = w3_distributor.functions.isClaimed(
+                claim["questId"], claim["period"], claim["index"]
+            ).call()
+            if is_claimed:
+                print(f"skipping {claim['token']} because it's already claimed")
+                continue
 
             distributor.claim(
                 claim["questId"],
@@ -178,6 +189,7 @@ def deposit_hh_bribes(
 
         brib_token.approve(chain_addrs["bribe_vault"], bribe_amount_mantissa)
         briber.depositBribe(prop_hash, token, bribe_amount_mantissa, 0, 2)
+
 
     # output sell amounts to csv
     with open(sell_csv_path, "a") as f:
