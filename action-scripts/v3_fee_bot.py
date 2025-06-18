@@ -5,10 +5,11 @@ from decimal import Decimal
 from pprint import pprint
 from time import sleep
 
-import requests
 from bal_addresses import AddrBook, to_checksum_address
 from bal_addresses.addresses import ZERO_ADDRESS
 from bal_tools import Subgraph
+from requests import Session
+from requests.adapters import HTTPAdapter, Retry
 from web3 import Web3
 
 
@@ -17,6 +18,21 @@ ORDER_COOLDOWN = 60 * 5  # 5 minutes
 SLIPPAGE = Decimal("0.005")  # 50bips slippage
 NULL = None
 OMNI_MSIG = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+ADAPTER = HTTPAdapter(
+    pool_connections=20,
+    pool_maxsize=20,
+    max_retries=Retry(
+        # 400 and 404 have special meaning in the context of this api:
+        # 400: error finding the price
+        # 404: no liquidity was found
+        # ref: https://docs.cow.fi/cow-protocol/reference/apis/orderbook
+        total=10,
+        backoff_factor=0.5,
+        status_forcelist=[429, 500, 502, 503, 504, 520],
+    ),
+)
+COW_API_SESSION = Session()
+COW_API_SESSION.mount("https://", ADAPTER)
 
 
 def get_prices(chain: str):
@@ -102,7 +118,6 @@ def _unstuck_token(DesignatedBurner, Bot, drpc, asset_address, broadcast):
 
 
 def _can_get_quote(chain: str, asset_address: str) -> bool:
-    # ref: https://docs.cow.fi/cow-protocol/reference/apis/orderbook
     chain_name = {
         "sepolia": "sepolia",
         "mainnet": "mainnet",
@@ -110,14 +125,12 @@ def _can_get_quote(chain: str, asset_address: str) -> bool:
         "arbitrum": "arbitrum_one",
         "base": "base",
     }[chain]
-    r = requests.get(
+    r = COW_API_SESSION.get(
         f"https://api.cow.fi/{chain_name}/api/v1/token/{to_checksum_address(asset_address)}/native_price"
     )
     if r.status_code == 200:
         if float(r.json().get("price")) > 0:
             return True
-        else:
-            return False
 
 
 def get_pools(chain: str, broadcast: bool = False):
