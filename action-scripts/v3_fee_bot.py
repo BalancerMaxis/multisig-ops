@@ -54,7 +54,7 @@ def _execute_tx(Contract, contract_name, func_name, params, Bot, drpc, broadcast
     max_gas_price = int(CONFIG[chain]["max_gas_price"])
     max_priority_fee = int(CONFIG[chain]["max_priority_fee"])
     if fee_data.baseFeePerGas[-1] > max_gas_price:
-        print(f"!!! base fee too high ({fee_data.baseFeePerGas[-1]}); skipping\n")
+        print(f"!!! base fee too high ({fee_data.baseFeePerGas[-1]}); skipping")
         return
     try:
         max_priority_fee_latest = fee_data.reward[0][0]
@@ -82,10 +82,9 @@ def _execute_tx(Contract, contract_name, func_name, params, Bot, drpc, broadcast
             tx_hash = drpc.eth.send_raw_transaction(signed_tx.rawTransaction)
             drpc.eth.wait_for_transaction_receipt(tx_hash)
         except Exception as e:
-            print(f"!!! tx failed: {e}\n")
+            print(f"!!! tx failed: {e}")
             return
         print("tx hash:", tx_hash.hex())
-    print("\n")
 
 
 def _can_cancel_order(DesignatedBurner, asset_address):
@@ -102,7 +101,7 @@ def _can_cancel_order(DesignatedBurner, asset_address):
 
 
 def _unstuck_token(DesignatedBurner, Bot, drpc, asset_address, broadcast):
-    print("!!! token stuck in burner; unstucking...\n")
+    print("!!! token stuck in burner; unstucking...")
     try:
         _execute_tx(
             DesignatedBurner,
@@ -114,7 +113,7 @@ def _unstuck_token(DesignatedBurner, Bot, drpc, asset_address, broadcast):
             broadcast,
         )
     except:
-        print("!!! token can neither be burned nor cancelled\n")
+        print("!!! token can neither be burned nor cancelled")
 
 
 def _can_get_quote(chain: str, asset_address: str) -> bool:
@@ -178,7 +177,7 @@ def get_pools(chain: str, broadcast: bool = False):
             continue
         report[chain]["n_pools"] += 1
         print(
-            f"checking for pending fees on {chain}:{pool['address']} ({pool['symbol']})..."
+            f"\n\nchecking for pending fees on {chain}:{pool['address']} ({pool['symbol']})..."
         )
         fees = s.fetch_graphql_data(
             "vault-v3", "get_v3_fees", {"poolId": pool["address"].lower()}
@@ -205,7 +204,7 @@ def get_pools(chain: str, broadcast: bool = False):
                 if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
                     designated_burner
                 ).call():
-                    print("!!! burner not approved (yet); skipping\n")
+                    print("!!! burner not approved (yet); skipping")
                     continue
                 DesignatedBurner = drpc.eth.contract(
                     address=to_checksum_address(designated_burner),
@@ -221,7 +220,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             # do not try to burn fees; cancellation has not been broadcasted
                             continue
                     else:
-                        print("!!! token still has an open order; skipping\n")
+                        print("!!! token still has an open order; skipping")
                         continue
                 fees_vault = Decimal(token["vaultProtocolSwapFeeBalance"]) + Decimal(
                     token["vaultProtocolYieldFeeBalance"]
@@ -253,7 +252,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     )
                     if fees_vault != fees_vault_onchain:
                         # subgraph is running behind; skip for now
-                        print("!!! subgraph is running behind; skipping\n")
+                        print("!!! subgraph is running behind; skipping")
                         continue
                     fees_controller_onchain_all = (
                         ProtocolFeeController.functions.getProtocolFeeAmounts(
@@ -267,7 +266,7 @@ def get_pools(chain: str, broadcast: bool = False):
                             break
                     else:
                         print(
-                            f"!!! cannot find token {token['address']} in pool {pool['address']}, skipping\n"
+                            f"!!! cannot find token {token['address']} in pool {pool['address']}, skipping"
                         )
                         continue
                     fees_controller_onchain = fees_controller_onchain_all[
@@ -276,7 +275,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     # assert fees_controller_onchain == fees_controller
                     if fees_controller != fees_controller_onchain:
                         # subgraph is running behind; skip for now
-                        print("!!! subgraph is running behind; skipping\n")
+                        print("!!! subgraph is running behind; skipping")
                         breakpoint()
                         continue
                     try:
@@ -294,7 +293,7 @@ def get_pools(chain: str, broadcast: bool = False):
                     print("collectable in vault:", fees_vault, token["symbol"])
                     print("sweepable in controller:", fees_controller, token["symbol"])
                     if potential < threshold:
-                        print(f"not enough fees to burn; only worth {potential} USDC\n")
+                        print(f"not enough fees to burn; only worth {potential} USDC")
                         continue
                     report[chain]["total_potential"] += potential
                     print("burning for:", potential, "USDC"),
@@ -310,12 +309,12 @@ def get_pools(chain: str, broadcast: bool = False):
                     ):
                         # StakedUSDX.redeem() reverts on modifier ensureCooldownOff();
                         # require(cooldownDuration == 0, Errors.OPERATION_NOT_ALLOWED)
-                        print("!!! skipping StakedUSDX; has redeem issues...\n")
+                        print("!!! skipping StakedUSDX; has redeem issues...")
                         continue
                     if chain != "avalanche":
                         if not _can_get_quote(chain, asset_address):
                             print(
-                                f"!!! {asset_address} cant get quote from cow burner; skipping for now\n"
+                                f"!!! {asset_address} cant get quote from cow burner; skipping for now"
                             )
                             continue
                     _execute_tx(
@@ -348,7 +347,6 @@ def get_pools(chain: str, broadcast: bool = False):
                         ) and chain != "avalanche":
                             print("waiting for cooldown...")
                             sleep(ORDER_COOLDOWN)
-                    print("\n")
 
 
 if __name__ == "__main__":
