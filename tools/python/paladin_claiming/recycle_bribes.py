@@ -190,7 +190,6 @@ def deposit_hh_bribes(
         brib_token.approve(chain_addrs["bribe_vault"], bribe_amount_mantissa)
         briber.depositBribe(prop_hash, token, bribe_amount_mantissa, 0, 2)
 
-
     # output sell amounts to csv
     with open(sell_csv_path, "a") as f:
         for token, sell_amount_mantissa in token_sell_amounts.items():
