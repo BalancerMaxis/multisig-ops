@@ -14,8 +14,8 @@ from web3 import Web3
 
 
 CONFIG = json.load(open("action-scripts/v3_fee_config.json"))
-ORDER_COOLDOWN = 60 * 5  # 5 minutes
-SLIPPAGE = Decimal("0.005")  # 50bips slippage
+ORDER_COOLDOWN = 60  # 1 minutes
+SLIPPAGE = Decimal("0.01")  # 100bips slippage
 NULL = None
 OMNI_MSIG = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
 ADAPTER = HTTPAdapter(
@@ -177,7 +177,7 @@ def get_pools(chain: str, broadcast: bool = False):
             continue
         report[chain]["n_pools"] += 1
         print(
-            f"\n\nchecking for pending fees on {chain}:{pool['address']} ({pool['symbol']})..."
+            f"\nchecking for pending fees on {chain}:{pool['address']} ({pool['symbol']})..."
         )
         fees = s.fetch_graphql_data(
             "vault-v3", "get_v3_fees", {"poolId": pool["address"].lower()}
