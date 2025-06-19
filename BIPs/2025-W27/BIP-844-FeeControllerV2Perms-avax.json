@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1749626437,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Fee Controller V2 Perms on AVAX",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x701132b3081adaee7c6a6021790845591f05970ac86c81a1b3c289d5d8720112, 0xbe0002f7666bf4af958935691eed7c6022e4c656667dc504c919955636df84bf, 0xd27f1aad48128567766fcfa0ca4aadccef84c22031755a5ce8069d4422c27f2a, 0x01fca4dde947951c3738819f5049dc1998457c8aedad1b7d194188df28eca03d, 0x97295b130cd0cac7ca34ac82289b4fa59f4f9fea3b2b2693f0e2d819cfb77118, 0xd92d29a05f2748c0b17d7df988dd0a9d2d957f8651a7209ff5f6e8901b60b53f]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}

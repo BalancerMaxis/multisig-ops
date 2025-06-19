@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1749625180,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Fee Controller V2 Perms on Mainnet",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6f9cec1ed72546777f4811dfb98cddfc8c5450bbafe05338a2b448042fa66ccb, 0x131cd3af8d8c0c7f25e7dd8769c67d3f02f751e3157cba459136bb2198d6f176, 0xe438e214335740a99a96051b910141e28a247536c13657f84f4347ee29692ad4, 0xe514c4844d51db5976965d920621cc6b06d82b326c4aa9378c581f6f599127b3, 0xc41c3677f4ceeb34f5721789e9888c8ed8a6d28ee9f766a3a4485001e19148b1, 0x9fe8e7d354d4d4c9b828af97a9fb461b79747eb597d1d1919127b884ed03a3df]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
