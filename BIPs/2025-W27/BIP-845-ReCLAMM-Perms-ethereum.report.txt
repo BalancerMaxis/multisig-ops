@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2025-W27/BIP-845-ReCLAMM-Perms-ethereum.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `ec33cd93b881ce2062d836cfd4fb3a1717912552`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/db26247f-cc22-43b4-a64a-9ad0877f5e4b)
+
+```
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                            | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250409-v3-reclamm-pool/ReClammPool/stopPriceRatioUpdate()                         | 0x01de4c053a60444da7268081ed113502caa3ffee3a4bfa3414d85a54dc88acec | BIP-845 |    0     |
+|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/startPriceRatioUpdate(uint256,uint256,uint256) | 0xbc893e2d6e1362a8409880d32b05a49c7c67e33489453b78304e4a912a339729 |         |          |
+|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/setDailyPriceShiftExponent(uint256)            | 0xd032be3b96ecc5fac2f052295a6bb8352b088445f26e8798a251ffdc87bc7622 |         |          |
+|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/setCenterednessMargin(uint256)                 | 0x1dc8aedad4a691f9b5cd63e9c364be99e5787cfb1e641440b2d0cab530d772f0 |         |          |
++-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```

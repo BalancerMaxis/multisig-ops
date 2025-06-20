@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1749643567,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant Omnimultisig permissions to ReCLAMM admin functions",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x01de4c053a60444da7268081ed113502caa3ffee3a4bfa3414d85a54dc88acec, 0xbc893e2d6e1362a8409880d32b05a49c7c67e33489453b78304e4a912a339729, 0xd032be3b96ecc5fac2f052295a6bb8352b088445f26e8798a251ffdc87bc7622, 0x1dc8aedad4a691f9b5cd63e9c364be99e5787cfb1e641440b2d0cab530d772f0]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
