@@ -1,6 +1,7 @@
 import json
 import os
 import pickle
+import requests
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -17,13 +18,17 @@ from bal_tools import Subgraph, BalPoolsGauges
 
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
+BALANCER_VAULT_V3 = "0xbA1333333333a1BA1108E8412f11850A5C319bA9"
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
 AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 BEEFY_PARTNER_BASE_URL = (
     "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
 )
-CHAINS = {"1": "MAINNET", "8453": "BASE"}
-CHAIN_SLUGS = {"1": "ethereum", "8453": "base"}
+AAVECHAN_MERIT_API = (
+    f"https://apps.aavechan.com/api/merit/rewards?user={BALANCER_VAULT_V3.lower()}"
+)
+CHAINS = {"1": "MAINNET", "8453": "BASE", "43114": "AVALANCHE"}
+CHAIN_SLUGS = {"1": "ethereum", "8453": "base", "43114": "avalanche"}
 ADAPTER = HTTPAdapter(
     pool_connections=20,
     pool_maxsize=20,
@@ -209,11 +214,11 @@ def build_snapshot_df(
     # checksum total balances versus total supply
     assert df.sum().sum() == approx(
         sum(total_supply.values()) / Decimal(1e18), rel=Decimal(1e-6)
-    )
+    ), f"total shares do not match total supply: {df.sum().sum()} != {sum(total_supply.values()) / Decimal(1e18)}"
     for block in df.columns:
         assert df[block].sum() == approx(
             total_supply[block] / Decimal(1e18), rel=Decimal(1e-6)
-        )
+        ), f"total shares for block {block} do not match total supply: {df[block].sum()} != {total_supply[block] / Decimal(1e18)}"
 
     return df
 
@@ -248,6 +253,38 @@ def determine_morpho_breakdown(pools, end, step_size):
             with open(cache_file_str, "wb") as f:
                 pickle.dump(morpho_values[pool], f)
     return morpho_values
+
+
+def determine_merit_breakdown(pools, end, step_size):
+    end_cached = end
+    merit_values = {}
+    for pool in pools:
+        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+        cache_dir = "MaxiOps/merkl/cache/merit_usd/"
+        os.makedirs(os.path.dirname(cache_dir), exist_ok=True)
+        cache_file_str = f"{cache_dir}{instance}.pkl"
+        if Path(cache_file_str).is_file():
+            with open(cache_file_str, "r") as f:
+                merit_values[pool] = pickle.load(open(cache_file_str, "rb"))
+        else:
+            end = end_cached
+            print("retrieving merit usd values for:", pool)
+            merit_values[pool] = {}
+            start = end - epoch_duration
+            n_snapshots = int(np.floor(epoch_duration / step_size))
+            n = 1
+            while end > start:
+                block = get_block_from_timestamp(end)
+                print(f"{n}\t/\t{n_snapshots}\t{block}")
+                merit_values[pool][block] = get_merit_component_value(
+                    pool=pool, timestamp=end
+                )
+                end -= step_size
+                n += 1
+            end = end_cached
+            with open(cache_file_str, "wb") as f:
+                pickle.dump(merit_values[pool], f)
+    return merit_values
 
 
 def get_morpho_component_value(pool, timestamp):
@@ -315,6 +352,68 @@ def get_morpho_component_value(pool, timestamp):
     return value
 
 
+def get_merit_component_value(pool, timestamp):
+    # calculate the $ value of the merit component(s) in a pool
+    raw = subgraph.fetch_graphql_data(
+        "apiv3",
+        """query PoolTokens($poolId: String!, $chain: GqlChain!, $range: GqlPoolSnapshotDataRange!) {
+            poolGetPool(id: $poolId, chain: $chain) {
+                poolTokens {
+                    address
+                    balanceUSD
+                    index
+                }
+            }
+            poolGetSnapshots(id: $poolId, chain: $chain, range: $range) {
+                amounts
+                timestamp
+            }
+        }""",
+        {"poolId": pool.lower(), "chain": CHAINS[chain], "range": "THIRTY_DAYS"},
+    )
+    value = Decimal(0)
+    for component in raw["poolGetPool"]["poolTokens"]:
+        r = requests.get(AAVECHAN_MERIT_API)
+        r.raise_for_status()
+        raw_merit = r.json()
+        for campaign in raw_merit:
+            if (
+                raw_merit[campaign][0]["actionTokens"][0]["book"]["STATA_TOKEN"].lower()
+                == component["address"]
+            ):
+                # this is a merit component
+                for snapshot in raw["poolGetSnapshots"]:
+                    if snapshot["timestamp"] > timestamp:
+                        balance = Decimal(snapshot["amounts"][int(component["index"])])
+                        timestamp_eod = snapshot["timestamp"]
+                        break
+                else:
+                    raise ValueError(
+                        f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
+                    )
+                prices = subgraph.fetch_graphql_data(
+                    "apiv3",
+                    "get_historical_token_prices",
+                    {
+                        "addresses": [component["address"]],
+                        "chain": CHAINS[chain],
+                        "range": "THIRTY_DAY",
+                    },
+                )
+                for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                    if int(entry["timestamp"]) == timestamp_eod:
+                        price = Decimal(entry["price"])
+                        assert price > 0
+                        break
+                else:
+                    raise ValueError(
+                        f"no historical price found for morpho component {component['address']}!"
+                    )
+                value += balance * price
+                breakpoint()
+    return value
+
+
 def consolidate_shares(df):
     consolidated = []
     for block in df.columns:
@@ -366,31 +465,44 @@ if __name__ == "__main__":
     session_beefy = Session()
     session_beefy.mount("https://", ADAPTER)
     for protocol in WATCHLIST:
-        if protocol == "merit":
-            # comment out once a month, not needed every week
-            continue
-            # https://apps.aavechan.com/api/merit/campaigns
-            # replace date string with timestamp once it has passed and uncomment next string
-            # drpc.eth.get_block(22638003).timestamp
-            epochs = [
-                1733932799,  # 21558817
-                1741163423,  # 21979500
-                1743855959,  # 22202701
-                1746462191,  # 22418702
-                "~Thu Jun 05 2025 10:43:33UTC",  # 22638003
-            ]
-            epoch_duration = epochs[-2] - epochs[-3]
-        if protocol == "morpho":
-            epoch_duration = 60 * 60 * 24 * 7
-            first_epoch_end = 1737936000
-            epochs = []
-            ts = first_epoch_end
-            while ts < int(datetime.now().timestamp()):
-                epochs.append(ts)
-                ts += epoch_duration
-        epoch_name = f"epoch_{len(epochs) - 1}"
-        print("epoch endings:", epochs)
         for chain in WATCHLIST[protocol]:
+            if protocol == "merit":
+                # comment out once a month, not needed every week
+                # continue
+                # https://apps.aavechan.com/api/merit/campaigns
+                # replace date string with timestamp once it has passed and uncomment next string
+                # drpc = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ogrpc?network={CHAIN_SLUGS['1']}&dkey={os.getenv('DRPC_KEY')}",session=session_drpc))
+                # drpc.eth.get_block(22731000).timestamp
+
+                if chain == "1":
+                    epochs = [
+                        1733932799,  # 21558817
+                        1741163423,  # 21979500
+                        1743855959,  # 22202701
+                        1746462191,  # 22418702
+                        1749121559,  # 22638003
+                        "ENDED",  # https://apps.aavechan.com/merit/ethereum-stkgho
+                    ]
+                elif chain == "43114":
+                    epochs = [
+                        0,
+                        1745518679,  # 22340602; round 10
+                        1749036779,  # 22631000; round 13
+                        "22731000",  # 22731000; round 14
+                    ]
+                epoch_duration = epochs[-2] - epochs[-3]
+            if protocol == "morpho":
+                continue  # maybe one more run; picked up by merkl forwarding rules after that
+                epoch_duration = 60 * 60 * 24 * 7
+                first_epoch_end = 1737936000
+                epochs = []
+                ts = first_epoch_end
+                while ts < int(datetime.now().timestamp()):
+                    epochs.append(ts)
+                    ts += epoch_duration
+            epoch_name = f"epoch_{len(epochs) - 1}"
+            print("epoch endings:", epochs)
+
             session_drpc = Session()
             session_drpc.mount("https://", ADAPTER)
             drpc = Web3(
@@ -401,6 +513,8 @@ if __name__ == "__main__":
             )
             subgraph = Subgraph(CHAINS[chain].lower())
             for reward_token, rewards in WATCHLIST[protocol][chain].items():
+                if rewards["claimable"] == "":
+                    continue
                 breakdown_needed = False
                 for key, pool in rewards["pools"].items():
                     if pool["reward_wei"] == "":
