@@ -1,0 +1,58 @@
+FILENAME: `MaxiOps/vlaura_voting/rebate_incentives/vlAura_incentives_round2.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `8e82c038e7d818204dbf29c2c64aa3e97fd45b6e`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/e3e322de-66e2-46af-b0f3-5be3f5e01d3d)
+
+```
++--------------+--------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function     | title_and_poolId                                                   | incentive_paid                                    | market_and_prophash                                                | periods | tx_index |
++--------------+--------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| depositBribe | ComposableStable GHO/USDC/USDT                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    1     |
+|              | 0x8353157092ed8be69a9df8f95af097bbf33cb2af0000000000000000000005d9 |  476.0(476000000)                                 | 0xf7584003dcd19d66e6354e5d6da2e1d087ef28ecb175d098c47ecaf038c4b46f |         |          |
+| depositBribe | b-Stable waBasEURC/waBasGHO                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    2     |
+|              | 0x9ab907fb3e098103ca048ad26e501bf7b3dfa3eb                         |  340.0(340000000)                                 | 0xa2aa015b386973b8b485cd4690791c81d069a663877ba2a2f075f5f34aacecd1 |         |          |
+| depositBribe | b-Stable waBasGHO/waBasUSDC                                        | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    3     |
+|              | 0x7ab124ec4029316c2a42f713828ddf2a192b36db                         |  680.0(680000000)                                 | 0x0e89bda9685d6b9226b1a02946ab5612d520bc315f305fc7d248980d7d8dccfb |         |          |
+| depositBribe | b-Stable USR/waBasGHO                                              | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    4     |
+|              | 0x5b14ce8de84448e9a6f6af652af318472aa4fcaf                         |  340.0(340000000)                                 | 0xffc0b901596dbba1ea14fcf8c8726c5473be7946a30b201b609a4b018ff968aa |         |          |
+| depositBribe | b-Stable fWETH/waBaswstETH                                         | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    5     |
+|              | 0x9972c4f21b5ae6062233031314adbbdda7513ed2                         |  612.0(612000000)                                 | 0xdf0fb661a35c8d861ea573a897edefe3ae10aec3eeec5e45ad196579e9828cd0 |         |          |
+| depositBribe | b-Stable waBasezETH/waBaswstETH                                    | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    6     |
+|              | 0xb5bfb5adb736ea852bd58fec71db3b356c2a3938                         |  340.0(340000000)                                 | 0x2e88e42fd38dbff52a0b17dd3f3b926a95c99999d4aa84f4c72d08c9048c9385 |         |          |
+| depositBribe | b-Stable rETH/waBasWETH                                            | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    7     |
+|              | 0xb7b8b3afc010169779c5c2385ec0eb0477fe3347                         |  612.0(612000000)                                 | 0x6312feb4239f00be4826753596672e9db019bebb8928fded20322ad38f324d8f |         |          |
+| depositBribe | Stable Aave Prime GHO/USDf                                         | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    8     |
+|              | 0x6c5972311191097d002e804a9bf97c96c54059ed                         |  680.0(680000000)                                 | 0x49e3ab087c8b94ca651f94dff5184db7878c674102de50146cb15b08c7d46ae4 |         |          |
+| depositBribe | a-Stable waArbWETH/waArbwstETH                                     | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    9     |
+|              | 0xc072880e1bc0bcddc99db882c7f3e7a839281cf4                         |  476.0(476000000)                                 | 0x994cfd7ebe74e118dac58cc64170a4dedab38dd2b1b9b1c7268ec08b225ace6d |         |          |
+| depositBribe | a-Stable waArbezETH/waArbwstETH                                    | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    10    |
+|              | 0x9c5f17d96ca66748b459788148b7357220f2d100                         |  204.0(204000000)                                 | 0x437f417f30bae29d2eb91b37c453f6ef362b7e47cf675d4acd9b5c27fd913a66 |         |          |
+| depositBribe | av-Stable ggAVAX/waAvaSAVAX/waAvaWAVAX                             | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    11    |
+|              | 0x99a9a471dbe0dcc6855b4cd4bbabeccb1280f5e8                         |  646.0(646000000)                                 | 0x94494d7538b582312a35cb36f0d74d1fb28d68accf2d5fdf04f1b3a3838f54cd |         |          |
+| depositBribe | av-Stable waAvaAUSD/waAvaUSDC/waAvaUSDT                            | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    12    |
+|              | 0x31ae873544658654ce767bde179fd1bbcb84850b                         |  1054.0(1054000000)                               | 0x596c65223d151ac5e6dff79910a27283061b128b7fb5ded08a99dc3f53ce4e5c |         |          |
+| depositBribe | b-QuantAmmWeighted cbBTC/WETH/USDC/AERO                            | USDC(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)  | aura                                                               | 1       |    13    |
+|              | 0xb4161aea25bd6c5c8590ad50deb4ca752532f05d                         |  340.0(340000000)                                 | 0xf9b4ff5f900ebf34b3fcb2fec4e0111d2f38ee371184db632bb032317e90d6a9 |         |          |
++--------------+--------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `MaxiOps/vlaura_voting/rebate_incentives/vlAura_incentives_round2.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `8e82c038e7d818204dbf29c2c64aa3e97fd45b6e`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/650d1fbf-83f6-4f3a-89b9-cb45285e34db)
+
+```
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| fx_name | to                                                       | value | inputs                                                                      | bip_number | tx_index |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| approve | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 (tokens/USDC) | 0     | {                                                                           | N/A        |   N/A    |
+|         |                                                          |       |   "spender": [                                                              |            |          |
+|         |                                                          |       |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault)" |            |          |
+|         |                                                          |       |   ],                                                                        |            |          |
+|         |                                                          |       |   "value": [                                                                |            |          |
+|         |                                                          |       |     "raw:6800000000, 18 decimals:6.8E-9, 6 decimals: 6800"                  |            |          |
+|         |                                                          |       |   ]                                                                         |            |          |
+|         |                                                          |       | }                                                                           |            |          |
++---------+----------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+```
