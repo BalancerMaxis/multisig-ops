@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1750709786570,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x8292Bb45bf1Ee4d140127049757C2E0fF06317eD",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x976Daa25C6e0a503D8e3D3550d744C4ca205F3ed",
+        "value": "8000000000000000000000"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xc0B8B8A948c29e7757f66B553A419C1A3856E84C",
+        "data": "0xe8de0d4d0000000000000000000000008292Bb45bf1Ee4d140127049757C2E0fF06317eD000000000000000000000000976Daa25C6e0a503D8e3D3550d744C4ca205F3ed"
+      }
+    },
+    {
+      "to": "0x976Daa25C6e0a503D8e3D3550d744C4ca205F3ed",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xc0B8B8A948c29e7757f66B553A419C1A3856E84C]",
+        "amountPerPeriod": "2000000000000000000000",
+        "maxPeriods": "4",
+        "doNotStartBeforeTimestamp": "1750770000"
+      }
+    }
+  ]
+}
