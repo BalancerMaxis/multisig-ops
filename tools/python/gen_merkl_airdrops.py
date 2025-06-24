@@ -258,6 +258,9 @@ def determine_morpho_breakdown(pools, end, step_size):
 def determine_merit_breakdown(pools, end, step_size):
     end_cached = end
     merit_values = {}
+    r = requests.get(AAVECHAN_MERIT_API)
+    r.raise_for_status()
+    raw_merit = r.json()
     for pool in pools:
         instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
         cache_dir = "MaxiOps/merkl/cache/merit_usd/"
@@ -277,7 +280,7 @@ def determine_merit_breakdown(pools, end, step_size):
                 block = get_block_from_timestamp(end)
                 print(f"{n}\t/\t{n_snapshots}\t{block}")
                 merit_values[pool][block] = get_merit_component_value(
-                    pool=pool, timestamp=end
+                    pool=pool, timestamp=end, raw_merit=raw_merit
                 )
                 end -= step_size
                 n += 1
@@ -352,7 +355,7 @@ def get_morpho_component_value(pool, timestamp):
     return value
 
 
-def get_merit_component_value(pool, timestamp):
+def get_merit_component_value(pool, timestamp, raw_merit):
     # calculate the $ value of the merit component(s) in a pool
     raw = subgraph.fetch_graphql_data(
         "apiv3",
@@ -373,9 +376,6 @@ def get_merit_component_value(pool, timestamp):
     )
     value = Decimal(0)
     for component in raw["poolGetPool"]["poolTokens"]:
-        r = requests.get(AAVECHAN_MERIT_API)
-        r.raise_for_status()
-        raw_merit = r.json()
         for campaign in raw_merit:
             if (
                 raw_merit[campaign][0]["actionTokens"][0]["book"]["STATA_TOKEN"].lower()
@@ -407,10 +407,9 @@ def get_merit_component_value(pool, timestamp):
                         break
                 else:
                     raise ValueError(
-                        f"no historical price found for morpho component {component['address']}!"
+                        f"no historical price found for merit component {component['address']}!"
                     )
                 value += balance * price
-                breakpoint()
     return value
 
 
@@ -475,6 +474,7 @@ if __name__ == "__main__":
                 # drpc.eth.get_block(22731000).timestamp
 
                 if chain == "1":
+                    continue
                     epochs = [
                         1733932799,  # 21558817
                         1741163423,  # 21979500
@@ -521,33 +521,41 @@ if __name__ == "__main__":
                         breakdown_needed = True
                         break
                 if breakdown_needed:
+                    if protocol == "morpho":
+                        breakdown_func = determine_morpho_breakdown
+                    elif protocol == "merit":
+                        breakdown_func = determine_merit_breakdown
                     # determine the $ value of the morpho component(s) in each pool
                     # this is used to weigh the user shares in the airdrop
-                    morpho_usd_weights = determine_morpho_breakdown(
+                    protocol_usd_weights = breakdown_func(
                         pools=[pool["address"] for pool in rewards["pools"].values()],
                         end=epochs[-2],
                         step_size=step_size,
                     )
-                    morpho_usd_block_totals = {}
-                    morpho_usd_pool_totals = {}
-                    for pool in morpho_usd_weights:
-                        if pool not in morpho_usd_pool_totals:
-                            morpho_usd_pool_totals[pool] = Decimal(0)
-                        for block in morpho_usd_weights[list(morpho_usd_weights)[0]]:
-                            morpho_usd_pool_totals[pool] += morpho_usd_weights[pool][
-                                block
-                            ]
-                            if block not in morpho_usd_block_totals:
-                                morpho_usd_block_totals[block] = Decimal(0)
-                            morpho_usd_block_totals[block] += morpho_usd_weights[pool][
-                                block
-                            ]
-                    print("morpho usd pool totals:")
-                    print(morpho_usd_pool_totals)
+                    protocol_usd_block_totals = {}
+                    protocol_usd_pool_totals = {}
+                    for pool in protocol_usd_weights:
+                        if pool not in protocol_usd_pool_totals:
+                            protocol_usd_pool_totals[pool] = Decimal(0)
+                        for block in protocol_usd_weights[
+                            list(protocol_usd_weights)[0]
+                        ]:
+                            protocol_usd_pool_totals[pool] += protocol_usd_weights[
+                                pool
+                            ][block]
+                            if block not in protocol_usd_block_totals:
+                                protocol_usd_block_totals[block] = Decimal(0)
+                            protocol_usd_block_totals[block] += protocol_usd_weights[
+                                pool
+                            ][block]
+                    print(f"{protocol} usd pool totals:")
+                    print(protocol_usd_pool_totals)
 
-                    cumsum = Decimal(sum([x for x in morpho_usd_pool_totals.values()]))
+                    cumsum = Decimal(
+                        sum([x for x in protocol_usd_pool_totals.values()])
+                    )
                     wei_written = Decimal(0)
-                    for pool, value in morpho_usd_pool_totals.items():
+                    for pool, value in protocol_usd_pool_totals.items():
                         for key in rewards["pools"]:
                             if rewards["pools"][key]["address"] == pool:
                                 rewards["pools"][key]["reward_wei"] = str(
