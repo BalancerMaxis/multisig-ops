@@ -1,8 +1,8 @@
-FILENAME: `BIPs/2025-W31/BIP-XXX_Mainnet_Treasury_Migration.json`
+FILENAME: `BIPs/2025-W27/BIP-XXX_Mainnet_Treasury_Migration.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `7bb8ab33dcfbae795c47938e3a1c28ddd4fd3986`
+COMMIT: `b4993a1becf8684def93e01353147f2c82ae2a4c`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d415178e-4b38-49a2-a7fe-ce11eb71b851)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/e3a3662e-15f0-4616-9ae6-bbe4a4c13af0)
 
 ```
 +----------+---------------------------------------------------------------+------------------------------------------------------------------+----------------------------------------------------+-----+----------+
@@ -19,55 +19,55 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d415178e-4b38-4
 | transfer | aEthBAL:0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8            | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 318572.8435278465 (RAW: 318572843527846527764449)  | N/A |    10    |
 | transfer | Av2-BAL-LP:0xfacd2eC4647df2Cb758F684C2aAAB56A93288f9e         | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 79268.99687426626 (RAW: 79268996874266253290329)   | N/A |    12    |
 | transfer | sBAL:0x6f2269797C449bab47f76d095ddAe5ddA4AF98ae               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 16493.235351841202 (RAW: 16493235351841203417133)  | N/A |    13    |
-| transfer | stETH:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84              | N/A:None                                                         | N/A (RAW: None)                                    | N/A |    16    |
+| transfer | stETH:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84              | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 0.5074670013383723 (RAW: 507467001338372305)       | N/A |    16    |
 | transfer | GTC:0xDe30da39c46104798bB5aA3fe8B9e0e1F348163F                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 20100.10258340178 (RAW: 20100102583401776876303)   | N/A |    17    |
 +----------+---------------------------------------------------------------+------------------------------------------------------------------+----------------------------------------------------+-----+----------+
 ```
-FILENAME: `BIPs/2025-W31/BIP-XXX_Mainnet_Treasury_Migration.json`
+FILENAME: `BIPs/2025-W27/BIP-XXX_Mainnet_Treasury_Migration.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `7bb8ab33dcfbae795c47938e3a1c28ddd4fd3986`
+COMMIT: `b4993a1becf8684def93e01353147f2c82ae2a4c`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/58f79d39-b2a2-4fe0-b697-1e0ec65e0c9e)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fc6b35a6-43f4-4f1d-91ae-494f433d75bf)
 
 ```
-+------------------+----------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
-| fx_name          | to                                                       | value | inputs                                                                                 | bip_number | tx_index |
-+------------------+----------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
-| withdraw         | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 (tokens/WETH) | 0     | {                                                                                      | N/A        |   N/A    |
-|                  |                                                          |       |   "wad": [                                                                             |            |          |
-|                  |                                                          |       |     7500000000000000000                                                                |            |          |
-|                  |                                                          |       |   ]                                                                                    |            |          |
-|                  |                                                          |       | }                                                                                      |            |          |
-| claim            | 0x68FFAaC7A431f276fe73604C127Bd78E49070c92 (Not Found)   | 0     | "0x4e71d92d"                                                                           | N/A        |   N/A    |
-| safeTransferFrom | 0x7CC7e125d83A581ff438608490Cc0f7bDff79127 (Not Found)   | 0     | {                                                                                      | N/A        |   N/A    |
-|                  |                                                          |       |   "from": [                                                                            |            |          |
-|                  |                                                          |       |     "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f (multisigs/dao)"                       |            |          |
-|                  |                                                          |       |   ],                                                                                   |            |          |
-|                  |                                                          |       |   "to": [                                                                              |            |          |
-|                  |                                                          |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
-|                  |                                                          |       |   ],                                                                                   |            |          |
-|                  |                                                          |       |   "tokenId": [                                                                         |            |          |
-|                  |                                                          |       |     958                                                                                |            |          |
-|                  |                                                          |       |   ]                                                                                    |            |          |
-|                  |                                                          |       | }                                                                                      |            |          |
-| claimReward      | 0x8f2326316eC696F6d023E37A9931c2b2C177a3D7 (Not Found)   | 0     | {                                                                                      | N/A        |   N/A    |
-|                  |                                                          |       |   "_to": [                                                                             |            |          |
-|                  |                                                          |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
-|                  |                                                          |       |   ]                                                                                    |            |          |
-|                  |                                                          |       | }                                                                                      |            |          |
-| withdraw         | 0x8f2326316eC696F6d023E37A9931c2b2C177a3D7 (Not Found)   | 0     | {                                                                                      | N/A        |   N/A    |
-|                  |                                                          |       |   "_amount": [                                                                         |            |          |
-|                  |                                                          |       |     "raw:334000000000000000000000, 18 decimals:334000, 6 decimals: 334000000000000000" |            |          |
-|                  |                                                          |       |   ],                                                                                   |            |          |
-|                  |                                                          |       |   "_recipient": [                                                                      |            |          |
-|                  |                                                          |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
-|                  |                                                          |       |   ],                                                                                   |            |          |
-|                  |                                                          |       |   "_amountIncludesFee": [                                                              |            |          |
-|                  |                                                          |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                              |            |          |
-|                  |                                                          |       |   ],                                                                                   |            |          |
-|                  |                                                          |       |   "_exitCooldown": [                                                                   |            |          |
-|                  |                                                          |       |     false                                                                              |            |          |
-|                  |                                                          |       |   ]                                                                                    |            |          |
-|                  |                                                          |       | }                                                                                      |            |          |
-+------------------+----------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
++------------------+--------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+| fx_name          | to                                                                             | value | inputs                                                                                 | bip_number | tx_index |
++------------------+--------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+| withdraw         | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 (tokens/WETH)                       | 0     | {                                                                                      | N/A        |   N/A    |
+|                  |                                                                                |       |   "wad": [                                                                             |            |          |
+|                  |                                                                                |       |     7500000000000000000                                                                |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
+| claim            | 0x68FFAaC7A431f276fe73604C127Bd78E49070c92 (cow/gnosis_dao_cow_vesting)        | 0     | "0x4e71d92d"                                                                           | N/A        |   N/A    |
+| safeTransferFrom | 0x7CC7e125d83A581ff438608490Cc0f7bDff79127 (sablier/sablier_v2_dynamic_lockup) | 0     | {                                                                                      | N/A        |   N/A    |
+|                  |                                                                                |       |   "from": [                                                                            |            |          |
+|                  |                                                                                |       |     "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f (multisigs/dao)"                       |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "to": [                                                                              |            |          |
+|                  |                                                                                |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "tokenId": [                                                                         |            |          |
+|                  |                                                                                |       |     958                                                                                |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
+| claimReward      | 0x8f2326316eC696F6d023E37A9931c2b2C177a3D7 (tokens/stkMTA)                     | 0     | {                                                                                      | N/A        |   N/A    |
+|                  |                                                                                |       |   "_to": [                                                                             |            |          |
+|                  |                                                                                |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
+| withdraw         | 0x8f2326316eC696F6d023E37A9931c2b2C177a3D7 (tokens/stkMTA)                     | 0     | {                                                                                      | N/A        |   N/A    |
+|                  |                                                                                |       |   "_amount": [                                                                         |            |          |
+|                  |                                                                                |       |     "raw:334000000000000000000000, 18 decimals:334000, 6 decimals: 334000000000000000" |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "_recipient": [                                                                      |            |          |
+|                  |                                                                                |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "_amountIncludesFee": [                                                              |            |          |
+|                  |                                                                                |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                              |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "_exitCooldown": [                                                                   |            |          |
+|                  |                                                                                |       |     false                                                                              |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
++------------------+--------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
 ```
