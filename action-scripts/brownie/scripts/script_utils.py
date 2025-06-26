@@ -13,10 +13,10 @@ from bal_tools import Aura
 import requests
 from brownie import Contract, chain, network, web3
 from eth_abi import encode
-from gnosis.eth import EthereumClient
-from gnosis.eth.constants import NULL_ADDRESS
-from gnosis.safe import SafeOperation
-from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
+from safe_eth.eth import EthereumClient
+from safe_eth.eth.constants import NULL_ADDRESS
+from safe_eth.safe import SafeOperationEnum
+from safe_eth.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
 from prettytable import MARKDOWN, PrettyTable
 
 ROOT_DIR = os.path.dirname(
@@ -364,7 +364,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         "to": multisend_call_only,
         "value": 0,
         "data": data,
-        "operation": SafeOperation.DELEGATE_CALL.value,
+        "operation": SafeOperationEnum.DELEGATE_CALL.value,
         "safeTxGas": 0,
         "baseGas": 0,
         "gasPrice": 0,
