@@ -1,33 +1,33 @@
 FILENAME: `BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `a714cfc25e18260d5e4cebb13253a5ad81cdbba0`
+COMMIT: `9c6642f5f2020917da7082e503faad1dcb1aa1d2`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/84667e73-2fce-45f6-b4f8-5aea54a026c8)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/05ebdad2-037e-4f22-bfcb-a50a859af82d)
 
 ```
-+----------+---------------------------------------------------------------+------------------------------------------------------------------+----------------------------------------------------+---------+----------+
-| function | token_symbol                                                  | recipient                                                        | amount                                             |   bip   | tx_index |
-+----------+---------------------------------------------------------------+------------------------------------------------------------------+----------------------------------------------------+---------+----------+
-| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 2161266.709987071 (RAW: 2161266709987070726748821) | BIP-850 |    0     |
-| transfer | WETH:0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 59.41853435356383 (RAW: 59418534353563827069)      | BIP-850 |    2     |
-| transfer | COW:0xDEf1CA1fb7FBcDC777520aa7f396b4E015F497aB                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 539916.1837837283 (RAW: 539916183783728283903348)  | BIP-850 |    4     |
-| transfer | USDT:0xdAC17F958D2ee523a2206206994597C13D831ec7               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 23365.999005 (RAW: 23365999005)                    | BIP-850 |    5     |
-| transfer | DAI:0x6B175474E89094C44Da98b954EedeAC495271d0F                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 10504.366262164192 (RAW: 10504366262164191965302)  | BIP-850 |    6     |
-| transfer | BCoW-50WETH-50USDC:0xf08D4dEa369C456d26a3168ff0024B904F2d8b91 | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 5194.38155406354 (RAW: 5194381554063539272643)     | BIP-850 |    7     |
-| transfer | BCoW-50BAL-50ETH:0xf8F5B88328DFF3d19E5f4F11A9700293Ac8f638F   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 156039.11966192012 (RAW: 156039119661920131226849) | BIP-850 |    8     |
-| transfer | 80BAL20wETH/wETH:0xC5c91aea7551095c3E1FF0f94f682c45b347AD73   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 726.3468443791895 (RAW: 726346844379189492574)     | BIP-850 |    9     |
-| transfer | aEthBAL:0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8            | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 318572.8435278465 (RAW: 318572843527846527764449)  | BIP-850 |    10    |
-| transfer | Av2-BAL-LP:0xfacd2eC4647df2Cb758F684C2aAAB56A93288f9e         | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 79268.99687426626 (RAW: 79268996874266253290329)   | BIP-850 |    12    |
-| transfer | sBAL:0x6f2269797C449bab47f76d095ddAe5ddA4AF98ae               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 16493.235351841202 (RAW: 16493235351841203417133)  | BIP-850 |    13    |
-| transfer | stETH:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84              | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 0.5074670013383723 (RAW: 507467001338372305)       | BIP-850 |    16    |
-| transfer | GTC:0xDe30da39c46104798bB5aA3fe8B9e0e1F348163F                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 20100.10258340178 (RAW: 20100102583401776876303)   | BIP-850 |    17    |
-+----------+---------------------------------------------------------------+------------------------------------------------------------------+----------------------------------------------------+---------+----------+
++----------+---------------------------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------+---------+----------+
+| function | token_symbol                                                  | recipient                                                        | amount                                              |   bip   | tx_index |
++----------+---------------------------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------+---------+----------+
+| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 1961266.7099870706 (RAW: 1961266709987070726748821) | BIP-850 |    0     |
+| transfer | WETH:0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 59.41853435356383 (RAW: 59418534353563827069)       | BIP-850 |    2     |
+| transfer | COW:0xDEf1CA1fb7FBcDC777520aa7f396b4E015F497aB                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 1171767.007859095 (RAW: 1171767007859094958186022)  | BIP-850 |    4     |
+| transfer | USDT:0xdAC17F958D2ee523a2206206994597C13D831ec7               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 23365.999005 (RAW: 23365999005)                     | BIP-850 |    5     |
+| transfer | DAI:0x6B175474E89094C44Da98b954EedeAC495271d0F                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 10504.366262164192 (RAW: 10504366262164191965302)   | BIP-850 |    6     |
+| transfer | BCoW-50WETH-50USDC:0xf08D4dEa369C456d26a3168ff0024B904F2d8b91 | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 5194.38155406354 (RAW: 5194381554063539272643)      | BIP-850 |    7     |
+| transfer | BCoW-50BAL-50ETH:0xf8F5B88328DFF3d19E5f4F11A9700293Ac8f638F   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 156039.11966192012 (RAW: 156039119661920131226849)  | BIP-850 |    8     |
+| transfer | 80BAL20wETH/wETH:0xC5c91aea7551095c3E1FF0f94f682c45b347AD73   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 726.3468443791895 (RAW: 726346844379189492574)      | BIP-850 |    9     |
+| transfer | aEthBAL:0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8            | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 318572.8435278465 (RAW: 318572843527846527764449)   | BIP-850 |    10    |
+| transfer | Av2-BAL-LP:0xfacd2eC4647df2Cb758F684C2aAAB56A93288f9e         | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 79268.99687426626 (RAW: 79268996874266253290329)    | BIP-850 |    12    |
+| transfer | sBAL:0x6f2269797C449bab47f76d095ddAe5ddA4AF98ae               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 16493.235351841202 (RAW: 16493235351841203417133)   | BIP-850 |    13    |
+| transfer | stETH:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84              | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 0.5074670013383723 (RAW: 507467001338372305)        | BIP-850 |    16    |
+| transfer | GTC:0xDe30da39c46104798bB5aA3fe8B9e0e1F348163F                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 20100.10258340178 (RAW: 20100102583401776876303)    | BIP-850 |    17    |
++----------+---------------------------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `a714cfc25e18260d5e4cebb13253a5ad81cdbba0`
+COMMIT: `9c6642f5f2020917da7082e503faad1dcb1aa1d2`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5b2249f3-32b9-4543-8344-17b726967876)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c38c530c-ccae-4025-bbf2-915a918a9b46)
 
 ```
 +------------------+--------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
