@@ -79,9 +79,8 @@ def get_user_shares_aura(pool, block):
 
 
 def get_user_shares_beefy(pool, block):
-    r = session_beefy.get(
-        BEEFY_PARTNER_BASE_URL + f"/{CHAIN_SLUGS[chain]}/{block}/bundles"
-    )
+    beefy_slug = "avax" if chain == "43114" else CHAIN_SLUGS[chain]
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/{beefy_slug}/{block}/bundles")
     r.raise_for_status()
     raw_beefy = r.json()
     for vault in raw_beefy:
@@ -96,9 +95,8 @@ def get_user_shares_beefy(pool, block):
 
 
 def get_beefy_strat(pool, block):
-    r = session_beefy.get(
-        BEEFY_PARTNER_BASE_URL + f"/{CHAIN_SLUGS[chain]}/{block}/bundles"
-    )
+    beefy_slug = "avax" if chain == "43114" else CHAIN_SLUGS[chain]
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/{beefy_slug}/{block}/bundles")
     r.raise_for_status()
     raw_beefy = r.json()
     for vault in raw_beefy:
