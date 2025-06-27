@@ -311,6 +311,14 @@ def get_pools(chain: str, broadcast: bool = False):
                         # require(cooldownDuration == 0, Errors.OPERATION_NOT_ALLOWED)
                         print("!!! skipping StakedUSDX; has redeem issues...")
                         continue
+                    if (
+                        token["address"].lower()
+                        == "0x80ac24aA929eaF5013f6436cdA2a7ba190f5Cc0b".lower()
+                    ):
+                        # StakedUSDX.redeem() reverts on modifier ensureCooldownOff();
+                        # require(cooldownDuration == 0, Errors.OPERATION_NOT_ALLOWED)
+                        print("!!! skipping syrupUSDC; has redeem issues...")
+                        continue
                     if chain != "avalanche":
                         if not _can_get_quote(chain, asset_address):
                             print(
@@ -355,7 +363,7 @@ if __name__ == "__main__":
         report[chain] = {"n_pools": 0, "total_potential": 0, "usdc_collectable": []}
         s = Subgraph(chain)
         prices = get_prices(chain)
-        get_pools(chain, broadcast=True)
+        get_pools(chain, broadcast=False)
     pprint(report)
     print(
         "total total_potential:",
