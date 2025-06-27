@@ -496,6 +496,11 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     caller_name = addr.reversebook.get(caller_address, "!!NOT FOUND!!")
     fx_paths = []
     for action_id in action_ids:
+        if not isinstance(action_id, str):
+            print(
+                f"Function {function} came up with action_id `{action_id}` which is not a valid string."
+            )
+            return
         paths = perms.paths_by_action_id[action_id]
         fx_paths = [*fx_paths, *paths]
     return {
@@ -609,6 +614,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("dst")
         or transaction["contractInputsValues"].get("recipient")
         or transaction["contractInputsValues"].get("_to")
+        or transaction["contractInputsValues"].get("_recipient")
     )
     if is_address(recipient_address):
         recipient_address = to_checksum_address(recipient_address)
@@ -621,6 +627,7 @@ def _parse_transfer(transaction: dict, **kwargs) -> Optional[dict]:
         or transaction["contractInputsValues"].get("wad")
         or transaction["contractInputsValues"].get("_value")
         or transaction["contractInputsValues"].get("rawAmount")
+        or transaction["contractInputsValues"].get("_amount")
     )
     amount = int(raw_amount) / 10 ** token.decimals() if raw_amount else "N/A"
     symbol = token.symbol()
