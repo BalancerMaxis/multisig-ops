@@ -12,11 +12,11 @@ from brownie.network.account import LocalAccount
 from brownie.network.transaction import TransactionReceipt
 from eth_abi import encode_abi
 from eth_utils import is_address, to_checksum_address
-from gnosis.eth import EthereumClient
-from gnosis.safe import Safe, SafeOperation
-from gnosis.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
-from gnosis.safe.safe_tx import SafeTx
-from gnosis.safe.signatures import signature_split, signature_to_bytes
+from safe_eth.eth import EthereumClient
+from safe_eth.safe import Safe, SafeOperationEnum
+from safe_eth.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
+from safe_eth.safe.safe_tx import SafeTx
+from safe_eth.safe.signatures import signature_split, signature_to_bytes
 from hexbytes import HexBytes
 from trezorlib import tools, ui, ethereum
 from trezorlib.client import TrezorClient
@@ -102,7 +102,7 @@ class ApeSafe(Safe):
     def tx_from_receipt(
         self,
         receipt: TransactionReceipt,
-        operation: SafeOperation = SafeOperation.CALL,
+        operation: SafeOperationEnum = SafeOperationEnum.CALL,
         safe_nonce: int = None,
     ) -> SafeTx:
         """
@@ -140,7 +140,7 @@ class ApeSafe(Safe):
             self.multisend,
             0,
             data,
-            SafeOperation.DELEGATE_CALL.value,
+            SafeOperationEnum.DELEGATE_CALL.value,
             safe_nonce=safe_nonce,
         )
 
