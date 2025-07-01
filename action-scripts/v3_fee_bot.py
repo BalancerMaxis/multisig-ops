@@ -368,7 +368,7 @@ if __name__ == "__main__":
         report[chain] = {"n_pools": 0, "total_potential": 0, "usdc_collectable": []}
         s = Subgraph(chain)
         prices = get_prices(chain)
-        get_pools(chain, broadcast=False)
+        get_pools(chain, broadcast=True)
     pprint(report)
     print(
         "total total_potential:",
