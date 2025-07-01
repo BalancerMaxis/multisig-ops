@@ -1,0 +1,1979 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x3B8910F378034FD6E103Df958863e5c684072693",
+        "value": "80490000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-847-Fund-OpCo-Product-Q3-2025.json",
+        "bip_number": "BIP-847"
+      }
+    },
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "amount": "1961266709987070726748821"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "wad",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdraw",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "wad": "7500000000000000000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "dst",
+            "type": "address"
+          },
+          {
+            "name": "wad",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "dst": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "wad": "59418534353563827069"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0x68FFAaC7A431f276fe73604C127Bd78E49070c92",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "claim",
+        "payable": false
+      },
+      "contractInputsValues": null,
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xDEf1CA1fb7FBcDC777520aa7f396b4E015F497aB",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "amount": "1175253107255868689172133"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_to",
+            "type": "address"
+          },
+          {
+            "name": "_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "_value": "23365999005"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "dst",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "wad",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "dst": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "wad": "10504366262164191965302"
+      },
+      "meta": {
+        "tx_index": 6,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xf08D4dEa369C456d26a3168ff0024B904F2d8b91",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "5194381554063539272643"
+      },
+      "meta": {
+        "tx_index": 7,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xf8F5B88328DFF3d19E5f4F11A9700293Ac8f638F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "156039119661920131226849"
+      },
+      "meta": {
+        "tx_index": 8,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xC5c91aea7551095c3E1FF0f94f682c45b347AD73",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "amount": "726346844379189492574"
+      },
+      "meta": {
+        "tx_index": 9,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "amount": "318572843527846527764449"
+      },
+      "meta": {
+        "tx_index": 10,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0x7CC7e125d83A581ff438608490Cc0f7bDff79127",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "from",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "to",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "tokenId",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "safeTransferFrom",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "from": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "tokenId": "958"
+      },
+      "meta": {
+        "tx_index": 11,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xfacd2eC4647df2Cb758F684C2aAAB56A93288f9e",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "amount": "79268996874266253290329"
+      },
+      "meta": {
+        "tx_index": 12,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0x6f2269797C449bab47f76d095ddAe5ddA4AF98ae",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "amount": "16493235351841203417133"
+      },
+      "meta": {
+        "tx_index": 13,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0x8f2326316eC696F6d023E37A9931c2b2C177a3D7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_to",
+            "type": "address"
+          }
+        ],
+        "name": "claimReward",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+      },
+      "meta": {
+        "tx_index": 14,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0x8f2326316eC696F6d023E37A9931c2b2C177a3D7",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "_amountIncludesFee",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "_exitCooldown",
+            "type": "bool"
+          }
+        ],
+        "name": "withdraw",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "334000000000000000000000",
+        "_recipient": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "_amountIncludesFee": "false",
+        "_exitCooldown": "false"
+      },
+      "meta": {
+        "tx_index": 15,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_recipient",
+            "type": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_recipient": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "_amount": "507467001338372305"
+      },
+      "meta": {
+        "tx_index": 16,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xDe30da39c46104798bB5aA3fe8B9e0e1F348163F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "dst",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "rawAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "dst": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "rawAmount": "20100102583401776876303"
+      },
+      "meta": {
+        "tx_index": 17,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json",
+        "bip_number": "BIP-850"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x01de4c053a60444da7268081ed113502caa3ffee3a4bfa3414d85a54dc88acec, 0xbc893e2d6e1362a8409880d32b05a49c7c67e33489453b78304e4a912a339729, 0xd032be3b96ecc5fac2f052295a6bb8352b088445f26e8798a251ffdc87bc7622, 0x1dc8aedad4a691f9b5cd63e9c364be99e5787cfb1e641440b2d0cab530d772f0]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-845-ReCLAMM-Perms-ethereum.json",
+        "bip_number": "BIP-845"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e]",
+        "account": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-845-ReCLAMM-Perms-Emergency-ethereum.json",
+        "bip_number": "BIP-845"
+      }
+    },
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x3B8910F378034FD6E103Df958863e5c684072693",
+        "value": "93141250000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-846-Fund-Opco-Year4-Q3-2025.json",
+        "bip_number": "BIP-846"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6f9cec1ed72546777f4811dfb98cddfc8c5450bbafe05338a2b448042fa66ccb, 0x131cd3af8d8c0c7f25e7dd8769c67d3f02f751e3157cba459136bb2198d6f176, 0xe438e214335740a99a96051b910141e28a247536c13657f84f4347ee29692ad4, 0xe514c4844d51db5976965d920621cc6b06d82b326c4aa9378c581f6f599127b3, 0xc41c3677f4ceeb34f5721789e9888c8ed8a6d28ee9f766a3a4485001e19148b1, 0x9fe8e7d354d4d4c9b828af97a9fb461b79747eb597d1d1919127b884ed03a3df]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-844-FeeControllerV2Perms-ethereum.json",
+        "bip_number": "BIP-844"
+      }
+    },
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x811912c19eEF91b9Dc3cA52fc426590cFB84FC86",
+        "value": "108000000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-848-Fund-Beets-Tech-Q3-2025.json",
+        "bip_number": "BIP-848"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x62a82fe26e21a8807599374cac8024fae342ef83",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xf91ba601c53f831869da4aceaaec11c479413972",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xe8bed31b0245cd174a182d18cd0de0355a77151f",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x49cfd5afd2a05a1894a2ae50036a42dd8eba9a3b",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xf8150d9599a9c994a9528d7a28af1262be4e3ebd",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x8c596e8d1b3be04a6caa1b1152b51c495f799a16",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x001edf44d8aa79922dbe74f57c703ebce2e13b43",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 6,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x80f129622dc60f5a7de85cbc98f7e3a99b09e57f",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 7,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xc8ba8e58df99e974960789494a615c876f8190c9",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 8,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xe6a0fd593e6beca161d0d933b4fb4fecaf49d46a",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 9,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x82bcad0c8f51d88ec339141f0d8953bc25cc3d8c",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 10,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x0ad055942640eaf282179d89eb2f3d59136959c7",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 11,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x7e1726d24b1cd3dfcd713f67a83cceaa6108d069",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 12,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x27213687f92cda21f10cc09a3e860b6d817ef096",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 13,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x047301b311741ce6c007ffef7f182ec93ab07968",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 14,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xd449efa0a587f2cb6be3ae577bc167a774525810",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 15,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x5af3b93fb82ab8691b82a09cbbae7b8d3eb5ac11",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 16,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xeaf1eef5814d9be44d0dbfb54c7773844339b7f8",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 17,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x03ac2920378a51d6ca78813b1d7578dab08d3760",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 18,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x4a7475d32ccd29edd65b2a1712b091aa741ba9bb",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 19,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x2fa29bbfd19314b3faf170dc7826ef69372203a6",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 20,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xa2f8bd6b95a0cb9094206075504cd0ed1cc717be",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 21,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xbc5e2f2945ff4a6568c4dbd3aa15d9e8ffdf0125",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 22,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x1a8f7747ca103d229d7bdff5f89c176b95faf301",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 23,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xbb034e493ebf45f874e038ae76576df9cc1137e5",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 24,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x6a58e7c904ecf991a3183d28fc73be90732b7a30",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 25,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xd103dd49b8051a09b399a52e9a8ab629392de2fb",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 26,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x3aba56cec68987963566a9aa93bb7f7dd28de3f5",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 27,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x2c2179abce3413e27bda6917f60ae37f96d01826",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 28,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x25869f277f474fa9459f40f5d4cb0d6a8ab41967",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 29,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x058059cb764a98c18b937222ed06c1ad2f174dce",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 30,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xa4c104ab9116a84714c081e0ed6d750221e4c756",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 31,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xee01c0d9c0439c94d314a6ecae0490989750746c",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 32,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xf17f1e67bc384e43b4acf69cc032ad086f15f262",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 33,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x85d6840eab7473b60f10d1a3e2452243eb702c97",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 34,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x20d03f9d0304744891881e6ac1d45b996e7f39b5",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 35,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xc40f4abc616ab3136a002a667a7830f3f7dec5fa",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 36,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x5612876e6f6ca370d93873fe28c874e89e741fb9",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 37,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xf720e9137baa9c7612e6ca59149a5057ab320cfa",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 38,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0x2e8a05f0216c6cc43bc123ee7def58901d3844d2",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 39,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xb599e35f760c47888ad3ff684ff4cd01ff4dc45b",
+        "data": "0xab8f0945"
+      },
+      "meta": {
+        "tx_index": 40,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-849-gauge-kills-q2-2025.json",
+        "bip_number": "BIP-849"
+      }
+    },
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x3B8910F378034FD6E103Df958863e5c684072693",
+        "value": "122500000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-840-fund-opco-marketing.json",
+        "bip_number": "BIP-840"
+      }
+    }
+  ]
+}
