@@ -33,6 +33,22 @@ ADAPTER = HTTPAdapter(
 )
 COW_API_SESSION = Session()
 COW_API_SESSION.mount("https://", ADAPTER)
+# sUSDX:
+# .redeem() reverts on modifier ensureCooldownOff();
+# require(cooldownDuration == 0, Errors.OPERATION_NOT_ALLOWED)
+# syrupusdc:
+# reverts (WM:PE:TOO_MANY_SHARES)
+# rstETH:
+# 0x5db1dd1e0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0
+BLACKLIST = {
+    "mainnet": {
+        "0x80ac24aA929eaF5013f6436cdA2a7ba190f5Cc0b".lower(): True,  # syrupUSDC
+        "0x7a4EffD87C2f3C55CA251080b1343b605f327E3a".lower(): True,  # rstETH
+    },
+    "arbitrum": {
+        "0x7788A3538C5fc7F9c7C8A74EAC4c898fC8d87d92".lower(): True,  # sUSDX
+    },
+}
 
 
 def get_prices(chain: str):
@@ -303,13 +319,10 @@ def get_pools(chain: str, broadcast: bool = False):
                             datetime.now(timezone.utc) + timedelta(minutes=90)
                         )
                     )
-                    if (
-                        token["address"].lower()
-                        == "0x7788A3538C5fc7F9c7C8A74EAC4c898fC8d87d92".lower()
-                    ):
-                        # StakedUSDX.redeem() reverts on modifier ensureCooldownOff();
-                        # require(cooldownDuration == 0, Errors.OPERATION_NOT_ALLOWED)
-                        print("!!! skipping StakedUSDX; has redeem issues...")
+                    if BLACKLIST.get(chain, {}).get(token["address"].lower()):
+                        print(
+                            f"!!! skipping blacklisted token {token['address']}; skipping"
+                        )
                         continue
                     if chain != "avalanche":
                         if not _can_get_quote(chain, asset_address):
