@@ -201,10 +201,11 @@ def get_pools(chain: str, broadcast: bool = False):
         if fees["pool"]:
             for token in fees["pool"]["tokens"]:
                 for pool_token in pool["poolTokens"]:
+                    blacklisted = BLACKLIST.get(chain, {}).get(token["address"].lower())
                     if pool_token["address"].lower() == token["address"].lower():
                         token_is_erc4626 = pool_token["isErc4626"]
                         break
-                if token_is_erc4626:
+                if token_is_erc4626 and not blacklisted:
                     ERC4626 = drpc.eth.contract(
                         address=to_checksum_address(token["address"]),
                         abi=json.load(open("action-scripts/abis/ERC4626.json")),
@@ -216,7 +217,9 @@ def get_pools(chain: str, broadcast: bool = False):
                     address=to_checksum_address(asset_address),
                     abi=json.load(open("action-scripts/abis/ERC20.json")),
                 )
-                designated_burner = erc4626_burner if token_is_erc4626 else burner
+                designated_burner = (
+                    erc4626_burner if token_is_erc4626 and not blacklisted else burner
+                )
                 if not ProtocolFeeSweeper.functions.isApprovedProtocolFeeBurner(
                     designated_burner
                 ).call():
@@ -319,11 +322,6 @@ def get_pools(chain: str, broadcast: bool = False):
                             datetime.now(timezone.utc) + timedelta(minutes=90)
                         )
                     )
-                    if BLACKLIST.get(chain, {}).get(token["address"].lower()):
-                        print(
-                            f"!!! skipping blacklisted token {token['address']}; skipping"
-                        )
-                        continue
                     if chain != "avalanche":
                         if not _can_get_quote(chain, asset_address):
                             print(
