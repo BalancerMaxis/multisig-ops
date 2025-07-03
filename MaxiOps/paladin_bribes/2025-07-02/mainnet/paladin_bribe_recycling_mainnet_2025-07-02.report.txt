@@ -1,28 +1,26 @@
 FILENAME: `MaxiOps/paladin_bribes/2025-07-02/mainnet/paladin_bribe_recycling_mainnet_2025-07-02.json`
 MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `e224e2a333d0d84d0281ff908ab6c483b5cf5445`
+COMMIT: `fa084102cf5ae4ef45dd617bdaa28fb2df4ec39f`
 CHAIN(S): `mainnet`
-TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `claim`, positional arguments with type(s) `` and keyword arguments with type(s) `{'period': 'int', 'questID': 'int', 'merkleProof': '(str,str)', 'amount': 'int', 'index': 'int', 'account': 'address'}`.\nFound 1 function(s) with the name `claim`: ['claim(uint256,uint256,uint256,address,uint256,bytes32[])']\nFunction invocation failed due to no matching argument types."))`
+TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `claim`, positional arguments with type(s) `` and keyword arguments with type(s) `{'questID': 'int', 'index': 'int', 'period': 'int', 'amount': 'int', 'merkleProof': '(str,str)', 'account': 'address'}`.\nFound 1 function(s) with the name `claim`: ['claim(uint256,uint256,uint256,address,uint256,bytes32[])']\nFunction invocation failed due to no matching argument types."))`
 
 ```
 +--------------+--------------------------------------------------------------------+-----------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | function     | title_and_poolId                                                   | incentive_paid                                      | market_and_prophash                                                | periods | tx_index |
 +--------------+--------------------------------------------------------------------+-----------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | depositBribe | waEthUSDT Aave Prime GHO waEthUSDC                                 | GHO(0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f)     | balancer                                                           | 2       |    37    |
-|              | 0x85b2b559bc2d21104c4defdd6efca8a20343361d                         |  3998.6832547561316(3998683254756131426279)         | 0x5af8de3497a037fe4db1cb5a7af3ef1b0bf08830c0142ee3781a158b1d77eff3 |         |          |
+|              | 0x85b2b559bc2d21104c4defdd6efca8a20343361d                         |  5239.698673226635(5239698673226634769837)          | 0x5af8de3497a037fe4db1cb5a7af3ef1b0bf08830c0142ee3781a158b1d77eff3 |         |          |
 | depositBribe | rETH WETH                                                          | RPL(0xD33526068D116cE69F19A9ee46F0bd304F21A51f)     | balancer                                                           | 2       |    39    |
 |              | 0x1e19cf2d73a72ef1332c882f20534b6519be0276000200000000000000000112 |  557.3718959722444(557371895972244424168)           | 0x9da569f067c8ce7105bddd07c2dd92a257983c53e631290d7c202d27e7072cbf |         |          |
-| depositBribe | GHO USDC USDT                                                      | GHO(0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f)     | balancer                                                           | 2       |    41    |
-|              | 0x8353157092ed8be69a9df8f95af097bbf33cb2af0000000000000000000005d9 |  1241.0154184705034(1241015418470503343558)         | 0xf7584003dcd19d66e6354e5d6da2e1d087ef28ecb175d098c47ecaf038c4b46f |         |          |
-| depositBribe | fwstETH fWETH                                                      | wstETH(0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0)  | balancer                                                           | 2       |    43    |
+| depositBribe | fwstETH fWETH                                                      | wstETH(0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0)  | balancer                                                           | 2       |    41    |
 |              | 0x6b31a94029fd7840d780191b6d63fa0d269bd883                         |  0.15494063497548813(154940634975488115)            | 0x796d43d9adae5227bf6b2941fec8476e11078a7fc3db1eb9fe339968358185fe |         |          |
 +--------------+--------------------------------------------------------------------+-----------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `MaxiOps/paladin_bribes/2025-07-02/mainnet/paladin_bribe_recycling_mainnet_2025-07-02.json`
 MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `e224e2a333d0d84d0281ff908ab6c483b5cf5445`
+COMMIT: `fa084102cf5ae4ef45dd617bdaa28fb2df4ec39f`
 CHAIN(S): `mainnet`
-TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `claim`, positional arguments with type(s) `` and keyword arguments with type(s) `{'period': 'int', 'questID': 'int', 'merkleProof': '(str,str)', 'amount': 'int', 'index': 'int', 'account': 'address'}`.\nFound 1 function(s) with the name `claim`: ['claim(uint256,uint256,uint256,address,uint256,bytes32[])']\nFunction invocation failed due to no matching argument types."))`
+TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended function with name `claim`, positional arguments with type(s) `` and keyword arguments with type(s) `{'questID': 'int', 'index': 'int', 'period': 'int', 'amount': 'int', 'merkleProof': '(str,str)', 'account': 'address'}`.\nFound 1 function(s) with the name `claim`: ['claim(uint256,uint256,uint256,address,uint256,bytes32[])']\nFunction invocation failed due to no matching argument types."))`
 
 ```
 +---------+--------------------------------------------------------------------+-------+------------------------------------------------------------------------------------------------------------+------------+----------+
@@ -821,14 +819,6 @@ TENDERLY: `🟪 SKIPPED (Web3ValidationError("\nCould not identify the intended 
 |         |                                                                    |       |   ],                                                                                                       |            |          |
 |         |                                                                    |       |   "_value": [                                                                                              |            |          |
 |         |                                                                    |       |     "raw:557371895972244424168, 18 decimals:557.371895972244424168, 6 decimals: 557371895972244.424168"    |            |          |
-|         |                                                                    |       |   ]                                                                                                        |            |          |
-|         |                                                                    |       | }                                                                                                          |            |          |
-| approve | 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f (tokens/GHO)            | 0     | {                                                                                                          | N/A        |   N/A    |
-|         |                                                                    |       |   "_spender": [                                                                                            |            |          |
-|         |                                                                    |       |     "0xE00fe722e5bE7ad45b1A16066E431E47Df476CeC (hidden_hand2/bribe_vault)"                                |            |          |
-|         |                                                                    |       |   ],                                                                                                       |            |          |
-|         |                                                                    |       |   "_value": [                                                                                              |            |          |
-|         |                                                                    |       |     "raw:1241015418470503343558, 18 decimals:1241.015418470503343558, 6 decimals: 1241015418470503.343558" |            |          |
 |         |                                                                    |       |   ]                                                                                                        |            |          |
 |         |                                                                    |       | }                                                                                                          |            |          |
 | approve | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0 (tokens/wstETH)         | 0     | {                                                                                                          | N/A        |   N/A    |
