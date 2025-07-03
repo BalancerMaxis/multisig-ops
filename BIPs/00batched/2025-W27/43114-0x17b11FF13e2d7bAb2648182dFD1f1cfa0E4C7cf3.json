@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x701132b3081adaee7c6a6021790845591f05970ac86c81a1b3c289d5d8720112, 0xbe0002f7666bf4af958935691eed7c6022e4c656667dc504c919955636df84bf, 0xd27f1aad48128567766fcfa0ca4aadccef84c22031755a5ce8069d4422c27f2a, 0x01fca4dde947951c3738819f5049dc1998457c8aedad1b7d194188df28eca03d, 0x97295b130cd0cac7ca34ac82289b4fa59f4f9fea3b2b2693f0e2d819cfb77118, 0xd92d29a05f2748c0b17d7df988dd0a9d2d957f8651a7209ff5f6e8901b60b53f]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-844-FeeControllerV2Perms-avax.json",
+        "bip_number": "BIP-844"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0c7a521518492bafe8bb3109ed0848eafcbfa5382840684d4c1f3f937d7de214]",
+        "account": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-845-ReCLAMM-Perms-Emergency-avax.json",
+        "bip_number": "BIP-845"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2cd44f7180492cb72db2386c418a5a431835ac212ef513756e2defbe7df6dfbe, 0xe774fca950134465234dd2773cab89492cf048e8f904a47047f77c9a90e6b4b1, 0x054419ca82786d37908e27054aadb9a853aa9bc4b8d005626b019165a0f33303, 0xa11689780dd3e2bf325f90a5766500ed258b394bad149bf71b8b6c24d706007a]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-845-ReCLAMM-Perms-avax.json",
+        "bip_number": "BIP-845"
+      }
+    }
+  ]
+}
