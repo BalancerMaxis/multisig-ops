@@ -21,9 +21,9 @@ from eth_account._utils.structured_data.hashing import hash_message, hash_domain
 from eth_utils import keccak
 import pandas as pd
 from web3 import Web3
-from gnosis.safe import Safe
-from gnosis.eth import EthereumClient
-from gnosis.safe.api import TransactionServiceApi
+from safe_eth.safe import Safe
+from safe_eth.eth import EthereumClient
+from safe_eth.safe.api import TransactionServiceApi
 from eth_abi import encode
 from eth_account import Account
 
