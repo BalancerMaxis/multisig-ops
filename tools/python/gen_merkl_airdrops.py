@@ -225,7 +225,9 @@ def determine_morpho_breakdown(pools, end, step_size):
     end_cached = end
     morpho_values = {}
     for pool in pools:
-        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
+            "/", "_"
+        )
         cache_dir = "MaxiOps/merkl/cache/morpho_usd/"
         os.makedirs(os.path.dirname(cache_dir), exist_ok=True)
         cache_file_str = f"{cache_dir}{instance}.pkl"
@@ -260,7 +262,9 @@ def determine_merit_breakdown(pools, end, step_size):
     r.raise_for_status()
     raw_merit = r.json()
     for pool in pools:
-        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
+            "/", "_"
+        )
         cache_dir = "MaxiOps/merkl/cache/merit_usd/"
         os.makedirs(os.path.dirname(cache_dir), exist_ok=True)
         cache_file_str = f"{cache_dir}{instance}.pkl"
@@ -571,7 +575,11 @@ if __name__ == "__main__":
 
                 for pool in rewards["pools"]:
                     address = rewards["pools"][pool]["address"]
-                    instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+                    instance = (
+                        f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
+                            "/", "_"
+                        )
+                    )
                     print(instance)
 
                     cache_dir = "MaxiOps/merkl/cache/"
