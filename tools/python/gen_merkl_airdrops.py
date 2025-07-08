@@ -200,7 +200,14 @@ def build_snapshot_df(
                     contract.functions.totalSupply().call(block_identifier=block)
                 )
                 break
-            except exceptions.BadFunctionCallOutput:
+            except exceptions.BadFunctionCallOutput as e:
+                if (
+                    "Could not decode contract function call to totalSupply with return data: b''"
+                    in str(e)
+                ):
+                    # contract is not deployed yet
+                    total_supply[block] = Decimal(0)
+                    break
                 if i < retries - 1:
                     continue
                 else:
@@ -491,6 +498,7 @@ if __name__ == "__main__":
                         1745518679,  # 22340602; round 10
                         1750245275,  # 22731000; round 14
                         "22831800",  # 22831800; round 15
+                        #              22932600; round 16
                     ]
                 epoch_duration = epochs[-2] - epochs[-3]
             if protocol == "morpho":
