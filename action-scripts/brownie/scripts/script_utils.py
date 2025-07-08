@@ -193,9 +193,21 @@ def parse_contract_input(value: Any, param_type: str, components: List[dict] = N
         # Parse the string representation
         if isinstance(value, str):
             value = value.strip()
-            # Check if it contains hex values (addresses or bytes32)
-            if "0x" in value:
-                # Don't use ast.literal_eval for hex values as it converts them to int
+            # Check if it's a Python-style list with quotes (like ['0x...', '0x...'])
+            if value.startswith("[") and ("'" in value or '"' in value):
+                try:
+                    # Use ast.literal_eval for Python-style lists
+                    parsed_value = ast.literal_eval(value)
+                except (ValueError, SyntaxError):
+                    # Fallback to manual parsing
+                    if array_depth == 1:
+                        # Remove quotes and brackets
+                        cleaned = value.strip("[]").replace("'", "").replace('"', '')
+                        parsed_value = [x.strip() for x in cleaned.split(",") if x.strip()]
+                    else:
+                        raise ValueError(f"Cannot parse array value: {value}")
+            elif "0x" in value:
+                # Handle hex values without quotes
                 if array_depth == 1:
                     parsed_value = [x.strip() for x in value.strip("[]").split(",") if x.strip()]
                 else:
