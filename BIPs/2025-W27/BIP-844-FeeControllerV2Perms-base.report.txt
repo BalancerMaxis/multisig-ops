@@ -1,0 +1,18 @@
+FILENAME: `BIPs/2025-W27/BIP-844-FeeControllerV2Perms-base.json`
+MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
+COMMIT: `fb340d62951334c1e94f2512ecadd7607b78e9cd`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ec4f3acd-dded-4514-bcbb-3f2a99143fb8)
+
+```
++-----------------------+---------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                                           | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setGlobalProtocolSwapFeePercentage(uint256)           | 0xac222aee6f4413c1bad41634af0291124abee7746eeb3d17eb46df7cdea17dff | BIP-844 |    0     |
+|                       |                     |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setGlobalProtocolYieldFeePercentage(uint256)          | 0x71e2a72a00c6217b2f3f19b8fa367c7173b890caa41b84406184c70be3f33272 |         |          |
+|                       |                     |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setProtocolSwapFeePercentage(address,uint256)         | 0x3c8dbbfedbf56e2dc54f8e242d85ce20fa974f083d38d50002785d734a6f4c86 |         |          |
+|                       |                     |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setProtocolYieldFeePercentage(address,uint256)        | 0x8984af9dc64b34f4d278943372ac8d3d039cad3e96cf2c2eb6012cb91080b487 |         |          |
+|                       |                     |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFees(address,address)                 | 0xf60eaa7af7226ebf1c1d579db711d045c331a117113b2f2e4a2976ee4a898bb9 |         |          |
+|                       |                     |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address) | 0x0ef595d0eed0a6e5adfc1fe810c72ad3d4b23e7c0d66a74fd4799e2f799af0bf |         |          |
++-----------------------+---------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```

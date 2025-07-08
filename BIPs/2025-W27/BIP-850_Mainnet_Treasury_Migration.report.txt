@@ -1,0 +1,73 @@
+FILENAME: `BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `44a3bbf9c072c51436afa1131fe761955b792f73`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/bf0ffab3-2b10-49fc-96af-abd1757a9423)
+
+```
++----------+---------------------------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------+---------+----------+
+| function | token_symbol                                                  | recipient                                                        | amount                                              |   bip   | tx_index |
++----------+---------------------------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------+---------+----------+
+| transfer | BAL:0xba100000625a3754423978a60c9317c58a424e3D                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 1961266.7099870706 (RAW: 1961266709987070726748821) | BIP-850 |    0     |
+| transfer | WETH:0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 59.41853435356383 (RAW: 59418534353563827069)       | BIP-850 |    2     |
+| transfer | COW:0xDEf1CA1fb7FBcDC777520aa7f396b4E015F497aB                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 1175253.1072558686 (RAW: 1175253107255868689172133) | BIP-850 |    4     |
+| transfer | USDT:0xdAC17F958D2ee523a2206206994597C13D831ec7               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 23365.999005 (RAW: 23365999005)                     | BIP-850 |    5     |
+| transfer | DAI:0x6B175474E89094C44Da98b954EedeAC495271d0F                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 10504.366262164192 (RAW: 10504366262164191965302)   | BIP-850 |    6     |
+| transfer | BCoW-50WETH-50USDC:0xf08D4dEa369C456d26a3168ff0024B904F2d8b91 | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 5194.38155406354 (RAW: 5194381554063539272643)      | BIP-850 |    7     |
+| transfer | BCoW-50BAL-50ETH:0xf8F5B88328DFF3d19E5f4F11A9700293Ac8f638F   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 156039.11966192012 (RAW: 156039119661920131226849)  | BIP-850 |    8     |
+| transfer | 80BAL20wETH/wETH:0xC5c91aea7551095c3E1FF0f94f682c45b347AD73   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 726.3468443791895 (RAW: 726346844379189492574)      | BIP-850 |    9     |
+| transfer | aEthBAL:0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8            | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 318572.8435278465 (RAW: 318572843527846527764449)   | BIP-850 |    10    |
+| transfer | Av2-BAL-LP:0xfacd2eC4647df2Cb758F684C2aAAB56A93288f9e         | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 79268.99687426626 (RAW: 79268996874266253290329)    | BIP-850 |    12    |
+| transfer | sBAL:0x6f2269797C449bab47f76d095ddAe5ddA4AF98ae               | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 16493.235351841202 (RAW: 16493235351841203417133)   | BIP-850 |    13    |
+| transfer | stETH:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84              | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 0.5074670013383723 (RAW: 507467001338372305)        | BIP-850 |    16    |
+| transfer | GTC:0xDe30da39c46104798bB5aA3fe8B9e0e1F348163F                | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 20100.10258340178 (RAW: 20100102583401776876303)    | BIP-850 |    17    |
++----------+---------------------------------------------------------------+------------------------------------------------------------------+-----------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2025-W27/BIP-850_Mainnet_Treasury_Migration.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `44a3bbf9c072c51436afa1131fe761955b792f73`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/bbe77c8a-bac7-4a29-82cf-fda61e57b073)
+
+```
++------------------+--------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+| fx_name          | to                                                                             | value | inputs                                                                                 | bip_number | tx_index |
++------------------+--------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+| withdraw         | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 (tokens/WETH)                       | 0     | {                                                                                      | BIP-850    |   N/A    |
+|                  |                                                                                |       |   "wad": [                                                                             |            |          |
+|                  |                                                                                |       |     7500000000000000000                                                                |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
+| claim            | 0x68FFAaC7A431f276fe73604C127Bd78E49070c92 (cow/gnosis_dao_cow_vesting)        | 0     | "0x4e71d92d"                                                                           | BIP-850    |   N/A    |
+| safeTransferFrom | 0x7CC7e125d83A581ff438608490Cc0f7bDff79127 (sablier/sablier_v2_dynamic_lockup) | 0     | {                                                                                      | BIP-850    |   N/A    |
+|                  |                                                                                |       |   "from": [                                                                            |            |          |
+|                  |                                                                                |       |     "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f (multisigs/dao)"                       |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "to": [                                                                              |            |          |
+|                  |                                                                                |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "tokenId": [                                                                         |            |          |
+|                  |                                                                                |       |     958                                                                                |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
+| claimReward      | 0x8f2326316eC696F6d023E37A9931c2b2C177a3D7 (tokens/stkMTA)                     | 0     | {                                                                                      | BIP-850    |   N/A    |
+|                  |                                                                                |       |   "_to": [                                                                             |            |          |
+|                  |                                                                                |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
+| withdraw         | 0x8f2326316eC696F6d023E37A9931c2b2C177a3D7 (tokens/stkMTA)                     | 0     | {                                                                                      | BIP-850    |   N/A    |
+|                  |                                                                                |       |   "_amount": [                                                                         |            |          |
+|                  |                                                                                |       |     "raw:334000000000000000000000, 18 decimals:334000, 6 decimals: 334000000000000000" |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "_recipient": [                                                                      |            |          |
+|                  |                                                                                |       |     "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed)"               |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "_amountIncludesFee": [                                                              |            |          |
+|                  |                                                                                |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                              |            |          |
+|                  |                                                                                |       |   ],                                                                                   |            |          |
+|                  |                                                                                |       |   "_exitCooldown": [                                                                   |            |          |
+|                  |                                                                                |       |     false                                                                              |            |          |
+|                  |                                                                                |       |   ]                                                                                    |            |          |
+|                  |                                                                                |       | }                                                                                      |            |          |
++------------------+--------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------------------+------------+----------+
+```

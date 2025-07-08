@@ -21,9 +21,9 @@ from eth_account._utils.structured_data.hashing import hash_message, hash_domain
 from eth_utils import keccak
 import pandas as pd
 from web3 import Web3
-from gnosis.safe import Safe
-from gnosis.eth import EthereumClient
-from gnosis.safe.api import TransactionServiceApi
+from safe_eth.safe import Safe
+from safe_eth.eth import EthereumClient
+from safe_eth.safe.api import TransactionServiceApi
 from eth_abi import encode
 from eth_account import Account
 
@@ -41,7 +41,7 @@ GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contract
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 
 flatbook = AddrBook("mainnet").flatbook
-vlaura_safe_addr = flatbook["multisigs/maxi_omni"]
+vlaura_safe_addr = flatbook["multisigs/maxi_aura_locker"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
 
 Account.enable_unaudited_hdwallet_features()
