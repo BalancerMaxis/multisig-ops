@@ -1,6 +1,7 @@
 import json
 import os
 import pickle
+import requests
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -17,13 +18,17 @@ from bal_tools import Subgraph, BalPoolsGauges
 
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
+BALANCER_VAULT_V3 = "0xbA1333333333a1BA1108E8412f11850A5C319bA9"
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
 AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 BEEFY_PARTNER_BASE_URL = (
     "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
 )
-CHAINS = {"1": "MAINNET", "8453": "BASE"}
-CHAIN_SLUGS = {"1": "ethereum", "8453": "base"}
+AAVECHAN_MERIT_API = (
+    f"https://apps.aavechan.com/api/merit/rewards?user={BALANCER_VAULT_V3.lower()}"
+)
+CHAINS = {"1": "MAINNET", "8453": "BASE", "43114": "AVALANCHE"}
+CHAIN_SLUGS = {"1": "ethereum", "8453": "base", "43114": "avalanche"}
 ADAPTER = HTTPAdapter(
     pool_connections=20,
     pool_maxsize=20,
@@ -74,9 +79,8 @@ def get_user_shares_aura(pool, block):
 
 
 def get_user_shares_beefy(pool, block):
-    r = session_beefy.get(
-        BEEFY_PARTNER_BASE_URL + f"/{CHAIN_SLUGS[chain]}/{block}/bundles"
-    )
+    beefy_slug = "avax" if chain == "43114" else CHAIN_SLUGS[chain]
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/{beefy_slug}/{block}/bundles")
     r.raise_for_status()
     raw_beefy = r.json()
     for vault in raw_beefy:
@@ -91,9 +95,8 @@ def get_user_shares_beefy(pool, block):
 
 
 def get_beefy_strat(pool, block):
-    r = session_beefy.get(
-        BEEFY_PARTNER_BASE_URL + f"/{CHAIN_SLUGS[chain]}/{block}/bundles"
-    )
+    beefy_slug = "avax" if chain == "43114" else CHAIN_SLUGS[chain]
+    r = session_beefy.get(BEEFY_PARTNER_BASE_URL + f"/{beefy_slug}/{block}/bundles")
     r.raise_for_status()
     raw_beefy = r.json()
     for vault in raw_beefy:
@@ -209,11 +212,11 @@ def build_snapshot_df(
     # checksum total balances versus total supply
     assert df.sum().sum() == approx(
         sum(total_supply.values()) / Decimal(1e18), rel=Decimal(1e-6)
-    )
+    ), f"total shares do not match total supply: {df.sum().sum()} != {sum(total_supply.values()) / Decimal(1e18)}"
     for block in df.columns:
         assert df[block].sum() == approx(
             total_supply[block] / Decimal(1e18), rel=Decimal(1e-6)
-        )
+        ), f"total shares for block {block} do not match total supply: {df[block].sum()} != {total_supply[block] / Decimal(1e18)}"
 
     return df
 
@@ -222,7 +225,9 @@ def determine_morpho_breakdown(pools, end, step_size):
     end_cached = end
     morpho_values = {}
     for pool in pools:
-        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
+            "/", "_"
+        )
         cache_dir = "MaxiOps/merkl/cache/morpho_usd/"
         os.makedirs(os.path.dirname(cache_dir), exist_ok=True)
         cache_file_str = f"{cache_dir}{instance}.pkl"
@@ -248,6 +253,43 @@ def determine_morpho_breakdown(pools, end, step_size):
             with open(cache_file_str, "wb") as f:
                 pickle.dump(morpho_values[pool], f)
     return morpho_values
+
+
+def determine_merit_breakdown(pools, end, step_size):
+    end_cached = end
+    merit_values = {}
+    r = requests.get(AAVECHAN_MERIT_API)
+    r.raise_for_status()
+    raw_merit = r.json()
+    for pool in pools:
+        instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
+            "/", "_"
+        )
+        cache_dir = "MaxiOps/merkl/cache/merit_usd/"
+        os.makedirs(os.path.dirname(cache_dir), exist_ok=True)
+        cache_file_str = f"{cache_dir}{instance}.pkl"
+        if Path(cache_file_str).is_file():
+            with open(cache_file_str, "r") as f:
+                merit_values[pool] = pickle.load(open(cache_file_str, "rb"))
+        else:
+            end = end_cached
+            print("retrieving merit usd values for:", pool)
+            merit_values[pool] = {}
+            start = end - epoch_duration
+            n_snapshots = int(np.floor(epoch_duration / step_size))
+            n = 1
+            while end > start:
+                block = get_block_from_timestamp(end)
+                print(f"{n}\t/\t{n_snapshots}\t{block}")
+                merit_values[pool][block] = get_merit_component_value(
+                    pool=pool, timestamp=end, raw_merit=raw_merit
+                )
+                end -= step_size
+                n += 1
+            end = end_cached
+            with open(cache_file_str, "wb") as f:
+                pickle.dump(merit_values[pool], f)
+    return merit_values
 
 
 def get_morpho_component_value(pool, timestamp):
@@ -315,6 +357,64 @@ def get_morpho_component_value(pool, timestamp):
     return value
 
 
+def get_merit_component_value(pool, timestamp, raw_merit):
+    # calculate the $ value of the merit component(s) in a pool
+    raw = subgraph.fetch_graphql_data(
+        "apiv3",
+        """query PoolTokens($poolId: String!, $chain: GqlChain!, $range: GqlPoolSnapshotDataRange!) {
+            poolGetPool(id: $poolId, chain: $chain) {
+                poolTokens {
+                    address
+                    balanceUSD
+                    index
+                }
+            }
+            poolGetSnapshots(id: $poolId, chain: $chain, range: $range) {
+                amounts
+                timestamp
+            }
+        }""",
+        {"poolId": pool.lower(), "chain": CHAINS[chain], "range": "THIRTY_DAYS"},
+    )
+    value = Decimal(0)
+    for component in raw["poolGetPool"]["poolTokens"]:
+        for campaign in raw_merit:
+            if (
+                raw_merit[campaign][0]["actionTokens"][0]["book"]["STATA_TOKEN"].lower()
+                == component["address"]
+            ):
+                # this is a merit component
+                for snapshot in raw["poolGetSnapshots"]:
+                    if snapshot["timestamp"] > timestamp:
+                        balance = Decimal(snapshot["amounts"][int(component["index"])])
+                        timestamp_eod = snapshot["timestamp"]
+                        break
+                else:
+                    raise ValueError(
+                        f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
+                    )
+                prices = subgraph.fetch_graphql_data(
+                    "apiv3",
+                    "get_historical_token_prices",
+                    {
+                        "addresses": [component["address"]],
+                        "chain": CHAINS[chain],
+                        "range": "THIRTY_DAY",
+                    },
+                )
+                for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                    if int(entry["timestamp"]) == timestamp_eod:
+                        price = Decimal(entry["price"])
+                        assert price > 0
+                        break
+                else:
+                    raise ValueError(
+                        f"no historical price found for merit component {component['address']}!"
+                    )
+                value += balance * price
+    return value
+
+
 def consolidate_shares(df):
     consolidated = []
     for block in df.columns:
@@ -366,31 +466,45 @@ if __name__ == "__main__":
     session_beefy = Session()
     session_beefy.mount("https://", ADAPTER)
     for protocol in WATCHLIST:
-        if protocol == "merit":
-            # comment out once a month, not needed every week
-            continue
-            # https://apps.aavechan.com/api/merit/campaigns
-            # replace date string with timestamp once it has passed and uncomment next string
-            # drpc.eth.get_block(22638003).timestamp
-            epochs = [
-                1733932799,  # 21558817
-                1741163423,  # 21979500
-                1743855959,  # 22202701
-                1746462191,  # 22418702
-                "~Thu Jun 05 2025 10:43:33UTC",  # 22638003
-            ]
-            epoch_duration = epochs[-2] - epochs[-3]
-        if protocol == "morpho":
-            epoch_duration = 60 * 60 * 24 * 7
-            first_epoch_end = 1737936000
-            epochs = []
-            ts = first_epoch_end
-            while ts < int(datetime.now().timestamp()):
-                epochs.append(ts)
-                ts += epoch_duration
-        epoch_name = f"epoch_{len(epochs) - 1}"
-        print("epoch endings:", epochs)
         for chain in WATCHLIST[protocol]:
+            if protocol == "merit":
+                # comment out once a month, not needed every week
+                # continue
+                # https://apps.aavechan.com/api/merit/campaigns
+                # replace date string with timestamp once it has passed and uncomment next string
+                # drpc = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ogrpc?network={CHAIN_SLUGS['1']}&dkey={os.getenv('DRPC_KEY')}",session=session_drpc))
+                # drpc.eth.get_block(22831800).timestamp
+
+                if chain == "1":
+                    continue
+                    epochs = [
+                        1733932799,  # 21558817
+                        1741163423,  # 21979500
+                        1743855959,  # 22202701
+                        1746462191,  # 22418702
+                        1749121559,  # 22638003
+                        "ENDED",  # https://apps.aavechan.com/merit/ethereum-stkgho
+                    ]
+                elif chain == "43114":
+                    epochs = [
+                        0,
+                        1745518679,  # 22340602; round 10
+                        1750245275,  # 22731000; round 14
+                        "22831800",  # 22831800; round 15
+                    ]
+                epoch_duration = epochs[-2] - epochs[-3]
+            if protocol == "morpho":
+                continue  # maybe one more run; picked up by merkl forwarding rules after that
+                epoch_duration = 60 * 60 * 24 * 7
+                first_epoch_end = 1737936000
+                epochs = []
+                ts = first_epoch_end
+                while ts < int(datetime.now().timestamp()):
+                    epochs.append(ts)
+                    ts += epoch_duration
+            epoch_name = f"epoch_{len(epochs) - 1}"
+            print("epoch endings:", epochs)
+
             session_drpc = Session()
             session_drpc.mount("https://", ADAPTER)
             drpc = Web3(
@@ -401,39 +515,49 @@ if __name__ == "__main__":
             )
             subgraph = Subgraph(CHAINS[chain].lower())
             for reward_token, rewards in WATCHLIST[protocol][chain].items():
+                if rewards["claimable"] == "":
+                    continue
                 breakdown_needed = False
                 for key, pool in rewards["pools"].items():
                     if pool["reward_wei"] == "":
                         breakdown_needed = True
                         break
                 if breakdown_needed:
+                    if protocol == "morpho":
+                        breakdown_func = determine_morpho_breakdown
+                    elif protocol == "merit":
+                        breakdown_func = determine_merit_breakdown
                     # determine the $ value of the morpho component(s) in each pool
                     # this is used to weigh the user shares in the airdrop
-                    morpho_usd_weights = determine_morpho_breakdown(
+                    protocol_usd_weights = breakdown_func(
                         pools=[pool["address"] for pool in rewards["pools"].values()],
                         end=epochs[-2],
                         step_size=step_size,
                     )
-                    morpho_usd_block_totals = {}
-                    morpho_usd_pool_totals = {}
-                    for pool in morpho_usd_weights:
-                        if pool not in morpho_usd_pool_totals:
-                            morpho_usd_pool_totals[pool] = Decimal(0)
-                        for block in morpho_usd_weights[list(morpho_usd_weights)[0]]:
-                            morpho_usd_pool_totals[pool] += morpho_usd_weights[pool][
-                                block
-                            ]
-                            if block not in morpho_usd_block_totals:
-                                morpho_usd_block_totals[block] = Decimal(0)
-                            morpho_usd_block_totals[block] += morpho_usd_weights[pool][
-                                block
-                            ]
-                    print("morpho usd pool totals:")
-                    print(morpho_usd_pool_totals)
+                    protocol_usd_block_totals = {}
+                    protocol_usd_pool_totals = {}
+                    for pool in protocol_usd_weights:
+                        if pool not in protocol_usd_pool_totals:
+                            protocol_usd_pool_totals[pool] = Decimal(0)
+                        for block in protocol_usd_weights[
+                            list(protocol_usd_weights)[0]
+                        ]:
+                            protocol_usd_pool_totals[pool] += protocol_usd_weights[
+                                pool
+                            ][block]
+                            if block not in protocol_usd_block_totals:
+                                protocol_usd_block_totals[block] = Decimal(0)
+                            protocol_usd_block_totals[block] += protocol_usd_weights[
+                                pool
+                            ][block]
+                    print(f"{protocol} usd pool totals:")
+                    print(protocol_usd_pool_totals)
 
-                    cumsum = Decimal(sum([x for x in morpho_usd_pool_totals.values()]))
+                    cumsum = Decimal(
+                        sum([x for x in protocol_usd_pool_totals.values()])
+                    )
                     wei_written = Decimal(0)
-                    for pool, value in morpho_usd_pool_totals.items():
+                    for pool, value in protocol_usd_pool_totals.items():
                         for key in rewards["pools"]:
                             if rewards["pools"][key]["address"] == pool:
                                 rewards["pools"][key]["reward_wei"] = str(
@@ -451,7 +575,11 @@ if __name__ == "__main__":
 
                 for pool in rewards["pools"]:
                     address = rewards["pools"][pool]["address"]
-                    instance = f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}"
+                    instance = (
+                        f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
+                            "/", "_"
+                        )
+                    )
                     print(instance)
 
                     cache_dir = "MaxiOps/merkl/cache/"
