@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1751963955,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant admin permissions for ReCLAMM v2 pools",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6e046fe940d85928049936e9d9bdb308ad4f3976555fd604de80d328add103dd, 0x8db4ac6c119a5cc0416d2807822f1b5b5a3d77a4388dda0d76edd6f275b8fc1b, 0xe0fcb73a58b98efeebb2e03cd2438ef9c013d9a25da2028a4937fa3ccf559e0c, 0x2d2f06c0ad430fbe424d230caf8b6e734be0b5774a9aac513c28d9b60cc8fd1e]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}
