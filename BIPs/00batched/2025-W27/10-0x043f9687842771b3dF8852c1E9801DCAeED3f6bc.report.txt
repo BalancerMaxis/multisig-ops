@@ -1,17 +1,17 @@
 FILENAME: `BIPs/00batched/2025-W27/10-0x043f9687842771b3dF8852c1E9801DCAeED3f6bc.json`
 MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
-COMMIT: `4fa6b8bf0bfa282250e7b74d47aee2ab153151f5`
+COMMIT: `c087d4f861c549e7df6ff2542ee2e7c61cf962f2`
 CHAIN(S): `optimism`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a3c7ae62-83ae-40db-a4b2-40c50162a199)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/59d0f2fb-c98c-497a-8990-be175e4253b3)
 
 ```
-+-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name         | caller_address                             | fx_paths                                                                            | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRoles | multisigs/emergency | 0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B | 20250409-v3-reclamm-pool/ReClammPoolFactory/disable()                               | 0x3f6401a12ca8f8048783a6e5b059877235fcf452f62691cbcbe45ebe6bf3c217 | BIP-845 |    0     |
-| Authorizer/grantRoles | multisigs/lm        | 0x09Df1626110803C7b3b07085Ef1E053494155089 | 20250409-v3-reclamm-pool/ReClammPool/setCenterednessMargin(uint256)                 | 0x7c79070d868f39f7c4bcc35d33b1d2bedc80d3e44de8fe1189f58d9c66389ee2 | BIP-845 |    1     |
-|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/setDailyPriceShiftExponent(uint256)            | 0x1de86ceaf07d14a63d412678b4e26cffbb8e21ba401f159c8de273f2a862a726 |         |          |
-|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/startPriceRatioUpdate(uint256,uint256,uint256) | 0x0b15127ffd27b52818f57c5573504fc5ee7072d38999b4eb94c155d0e646aff4 |         |          |
-|                       |                     |                                            | 20250409-v3-reclamm-pool/ReClammPool/stopPriceRatioUpdate()                         | 0x4a1d26432de4236d7a6776eaa81a5c3e2ee306db1d821d08e3123ef539d25825 |         |          |
-+-----------------------+---------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
++-----------------------+-------------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name             | caller_address                             | fx_paths                                                                            | action_ids                                                         |   bip   | tx_index |
++-----------------------+-------------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/emergency     | 0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B | 20250409-v3-reclamm-pool/ReClammPoolFactory/disable()                               | 0x3f6401a12ca8f8048783a6e5b059877235fcf452f62691cbcbe45ebe6bf3c217 | BIP-845 |    0     |
+| Authorizer/grantRoles | multisigs/maxi_beets_lm | 0x09Df1626110803C7b3b07085Ef1E053494155089 | 20250409-v3-reclamm-pool/ReClammPool/setCenterednessMargin(uint256)                 | 0x7c79070d868f39f7c4bcc35d33b1d2bedc80d3e44de8fe1189f58d9c66389ee2 | BIP-845 |    1     |
+|                       |                         |                                            | 20250409-v3-reclamm-pool/ReClammPool/setDailyPriceShiftExponent(uint256)            | 0x1de86ceaf07d14a63d412678b4e26cffbb8e21ba401f159c8de273f2a862a726 |         |          |
+|                       |                         |                                            | 20250409-v3-reclamm-pool/ReClammPool/startPriceRatioUpdate(uint256,uint256,uint256) | 0x0b15127ffd27b52818f57c5573504fc5ee7072d38999b4eb94c155d0e646aff4 |         |          |
+|                       |                         |                                            | 20250409-v3-reclamm-pool/ReClammPool/stopPriceRatioUpdate()                         | 0x4a1d26432de4236d7a6776eaa81a5c3e2ee306db1d821d08e3123ef539d25825 |         |          |
++-----------------------+-------------------------+--------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
