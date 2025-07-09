@@ -451,6 +451,43 @@
         "maxPeriods": "1",
         "doNotStartBeforeTimestamp": "0"
       }
+    },
+    {
+      "to": "0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x8e8C3d4313fd5C5051A02b9E580415691A0f7951]",
+        "amountPerPeriod": "150000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "0"
+      }
     }
   ]
 }
