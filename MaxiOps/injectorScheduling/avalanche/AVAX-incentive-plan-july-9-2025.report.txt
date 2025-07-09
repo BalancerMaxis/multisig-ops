@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/injectorScheduling/avalanche/AVAX-incentive-plan-july-9-2025.json`
 MULTISIG: `multisigs/maxi_omni (avalanche:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `1c735863795807a660028684c4d7f4dcfd849dca`
+COMMIT: `e20164f996eedb9d90c06a8a2f0e2f4d7b3156e7`
 CHAIN(S): `avalanche`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6998d513-ffc1-4439-a702-ae96820f28b3)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/3faea371-6f6d-428e-9847-61f019274254)
 
 ```
 +---------------+-------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------------------------+------------+----------+
@@ -168,6 +168,20 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6998d513-ffc1-4
 |               |                                                                                     |       |   ],                                                                                            |            |          |
 |               |                                                                                     |       |   "amountPerPeriod": [                                                                          |            |          |
 |               |                                                                                     |       |     "raw:125000000000000000000, 18 decimals:125, 6 decimals: 125000000000000"                   |            |          |
+|               |                                                                                     |       |   ],                                                                                            |            |          |
+|               |                                                                                     |       |   "maxPeriods": [                                                                               |            |          |
+|               |                                                                                     |       |     "1"                                                                                         |            |          |
+|               |                                                                                     |       |   ],                                                                                            |            |          |
+|               |                                                                                     |       |   "doNotStartBeforeTimestamp": [                                                                |            |          |
+|               |                                                                                     |       |     "0"                                                                                         |            |          |
+|               |                                                                                     |       |   ]                                                                                             |            |          |
+|               |                                                                                     |       | }                                                                                               |            |          |
+| addRecipients | 0x4aC87aEa2A3A99f34Fec78A6A73Bc495893b2838 (maxiKeepers/injectorV2/WAVAX-omnichain) | 0     | {                                                                                               | N/A        |   N/A    |
+|               |                                                                                     |       |   "recipients": [                                                                               |            |          |
+|               |                                                                                     |       |     "0x8e8C3d4313fd5C5051A02b9E580415691A0f7951 (gauges/Aave GHO/USDT/USDC-gauge-8e8c)"         |            |          |
+|               |                                                                                     |       |   ],                                                                                            |            |          |
+|               |                                                                                     |       |   "amountPerPeriod": [                                                                          |            |          |
+|               |                                                                                     |       |     "raw:150000000000000000000, 18 decimals:150, 6 decimals: 150000000000000"                   |            |          |
 |               |                                                                                     |       |   ],                                                                                            |            |          |
 |               |                                                                                     |       |   "maxPeriods": [                                                                               |            |          |
 |               |                                                                                     |       |     "1"                                                                                         |            |          |
