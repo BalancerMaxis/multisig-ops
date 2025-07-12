@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1751964222,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant ReCLAMM v2 factory disable to emergency subDAO multisig",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x7576f83c39a4f75ece8e6da99676712301067f196442916c688500f9320af5fb]",
+        "account": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
+      }
+    }
+  ]
+}
