@@ -1,0 +1,18 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-rewards-0x9C1A15-2025-07-14_1208.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `374a670b38060516ce92cfc5edf6cde1a982e15e`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/be1cd570-f82b-4645-b60b-2804e830a942)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                        | selector                    | parsed_inputs                                    | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x9C1A157cf8B242F67b3c950EDA9A30b320bDe9cd (gauges/ECLP-GYD-USDC-gauge-9c1a)  | add_reward(address,address) | 0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A: GYD  | N/A |    0     |
+|               |                                                                                                                 |                                                                               |                             | 0xdBfeEFAB1833c5219a4E1Ce9Cfa2466E038CAA83: None |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x146b6030E6d6a6398B918E9854652a71C9537180 (gauges/ECLP-sUSDe-GYD-gauge-146b) | add_reward(address,address) | 0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A: GYD  | N/A |    1     |
+|               |                                                                                                                 |                                                                               |                             | 0xdBfeEFAB1833c5219a4E1Ce9Cfa2466E038CAA83: None |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xF8150d9599a9c994A9528d7a28AF1262BE4e3ebd (gauges/ECLP-USR-GYD-gauge-f815)   | add_reward(address,address) | 0xe07F9D810a48ab5c3c914BA3cA53AF14E4491e8A: GYD  | N/A |    2     |
+|               |                                                                                                                 |                                                                               |                             | 0xdBfeEFAB1833c5219a4E1Ce9Cfa2466E038CAA83: None |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+-----------------------------+--------------------------------------------------+-----+----------+
+```
