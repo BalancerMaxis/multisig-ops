@@ -1,0 +1,10 @@
+name: Schedule V3 Fee Bot
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  call_fee_bot:
+    uses: ./.github/workflows/v3-fee-bot.yml@v3-fee-bot-cron
+    secrets: inherit  # Pass secrets
