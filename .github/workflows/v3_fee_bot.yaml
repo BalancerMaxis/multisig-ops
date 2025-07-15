@@ -7,9 +7,6 @@ jobs:
   v3_fee_bot:
     runs-on: ubuntu-latest
     environment: v3-fee-bot
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
