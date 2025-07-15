@@ -1,6 +1,7 @@
 name: Schedule V3 Fee Bot
 
 permissions:
+  actions: write  # Needed to trigger the workflow via API
   contents: read
 
 on:
@@ -9,6 +10,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  call_fee_bot:
-    uses: ./.github/workflows/v3-fee-bot.yml@v3-fee-bot-cron
-    secrets: inherit
+  trigger_fee_bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger fee bot workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'v3-fee-bot.yml',
+              ref: 'v3-fee-bot-cron'
+            });
