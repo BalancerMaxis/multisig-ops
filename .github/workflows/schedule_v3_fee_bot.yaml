@@ -1,4 +1,8 @@
 name: Schedule V3 Fee Bot
+
+permissions:
+  contents: read
+
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -7,4 +11,4 @@ on:
 jobs:
   call_fee_bot:
     uses: ./.github/workflows/v3-fee-bot.yml@v3-fee-bot-cron
-    secrets: inherit  # Pass secrets
+    secrets: inherit
