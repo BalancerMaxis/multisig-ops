@@ -1,9 +1,6 @@
 name: V3 Fee Bot
-
 on:
-  schedule:
-    # Run daily at midnight UTC
-    - cron: "0 0 * * *"
+  workflow_call:  # Makes this workflow reusable
   workflow_dispatch:
 
 jobs:
@@ -13,8 +10,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: v3-fee-bot-cron
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
