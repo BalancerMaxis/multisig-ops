@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2025-W31/BIP-857-Mimic-perms-OP.json`
+MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
+COMMIT: `4c6cc9c8af761a29f217c17c227cc9016fadf9a9`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/9ec8bd75-5671-4a95-a8c7-2f3ffdf2d225)
+
+```
++-----------------------+--------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name        | caller_address                             | fx_paths                                                                                                           | action_ids                                                         |   bip   | tx_index |
++-----------------------+--------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | mimic/smartVaultV3 | 0x9e5d6427d2cdadc68870197b099c2df535ec3c97 | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFees(address,address)                                      | 0x9b50ab496733616199be03f9adb07dedbc053ee47e3f069d57a7b1db51480332 | BIP-857 |    0     |
+|                       |                    |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFees(address,address)                 | 0xd8f952fca9feeca8075fa8cf14298353b4b424103a602b3879b031c57cf6def7 |         |          |
+|                       |                    |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address) |                                                                    |         |          |
+|                       |                    |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)                      |                                                                    |         |          |
++-----------------------+--------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
