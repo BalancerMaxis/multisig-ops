@@ -1,0 +1,32 @@
+FILENAME: `BIPs/00batched/2025-W27/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `ddc3ce3128e920ff213ede24495f474740868b8e`
+CHAIN(S): `avalanche, mainnet`
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/0219519f-d541-4606-b374-4e89b486e36c)
+
+| Gauge Validator (0xB1EFE3B01D5Cf28Bd923de3E5a567621588F435a) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xD3Ea1345352047bD039BaC9d4177c883E06D449d) |  Result  |
+| :------------------------------------------------------------| :------: |
+| `validate_preferential_gauge`                                |    ✅    |
+| `validate_rate_providers_safety`                             | ✅ ✅ ✅ |
+
+```
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info     | gauge_address_and_info                           | tokens                                                | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x071828ACC755314E687448703775F22194f56867               | Surge siUSD-sUSDe   | root: 0xB1EFE3B01D5Cf28Bd923de3E5a567621588F435a | 0x9D39A5DE30e57443BfF2A8307A4256c8797A3497: sUSDe     | 0x3A244e6B3cfed21593a5E5B347B593C0B48C7dA1 |      safe      | BIP-853 |    0     |
+|                       | pool_address: 0x071828ACC755314E687448703775F22194f56867 | fee (%): 0.01       | side: None                                       | 0xDBDC1Ef57537E34680B898E1FEBD3D68c7389bCB: siUSD     | 0x50a6dBB52D271b68D17b018a5b60f0d0EB711e67 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000      | style: mainnet                                   |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | cap: 100.0%                                      |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                       |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xfCec3c8D86329DEfB548202Fe1b86Ff2188603A8               | Aave GHO/USDT/USDC  | root: 0xD3Ea1345352047bD039BaC9d4177c883E06D449d | 0x59933c571d200dc6A7Fd1CDa22495dB442082E34: waAvaUSDT | 0x3a053D215dA33BE9B24Dd11b2e44B22a97836Dc3 |      safe      | BIP-852 |    1     |
+|                       | pool_address: 0xfCec3c8D86329DEfB548202Fe1b86Ff2188603A8 | fee (%): 0.005      | side: 0x8e8C3d4313fd5C5051A02b9E580415691A0f7951 | 0x79459f4C9AfC902488109D058C3E76ed0B037c41: waAvaGHO  | 0x3F83967F262A1aeF68CfC6C884be8B75f06947C3 |      safe      |         |          |
+|                       |                                                          | a-factor: 2000      | style: L0 sidechain                              | 0xe1bFC96d95BAdCB10Ff013Cb0C9C6c737ca07009: waAvaUSDC | 0x37C9a6Ca1124D7C6166fbdFa566575D93F398241 |      safe      |         |          |
+|                       |                                                          |                     | cap: 100.0%                                      |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                       |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```

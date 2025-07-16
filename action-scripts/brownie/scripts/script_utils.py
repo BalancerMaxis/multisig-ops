@@ -1,9 +1,10 @@
+import ast
 import json
 import os
 import re
 from decimal import Decimal
 from json import JSONDecodeError
-from typing import Optional
+from typing import Optional, Any, List
 from urllib.request import urlopen
 
 from collections import defaultdict
@@ -174,6 +175,131 @@ def get_pool_info(
     return name, symbol, pool_id, pool.address, a_factor, fee, tokens, rate_providers
 
 
+def parse_contract_input(value: Any, param_type: str, components: List[dict] = None) -> Any:
+    """
+    Parse contract input values based on their type.
+    Handles nested arrays and complex types like bytes32[][].
+    """
+    # Already parsed
+    if isinstance(value, (list, tuple, bool, int)) and param_type != "tuple":
+        return value
+    
+    # Handle array types
+    if "[]" in param_type:
+        # Determine base type and array depth
+        base_type = param_type.replace("[]", "")
+        array_depth = param_type.count("[]")
+        
+        # Parse the string representation
+        if isinstance(value, str):
+            value = value.strip()
+            # Check if it's a Python-style list with quotes (like ['0x...', '0x...'])
+            if value.startswith("[") and ("'" in value or '"' in value):
+                try:
+                    # Use ast.literal_eval for Python-style lists
+                    parsed_value = ast.literal_eval(value)
+                except (ValueError, SyntaxError):
+                    # Fallback to manual parsing
+                    if array_depth == 1:
+                        # Remove quotes and brackets
+                        cleaned = value.strip("[]").replace("'", "").replace('"', '')
+                        parsed_value = [x.strip() for x in cleaned.split(",") if x.strip()]
+                    else:
+                        raise ValueError(f"Cannot parse array value: {value}")
+            elif "0x" in value:
+                # Handle hex values without quotes
+                if array_depth == 1:
+                    parsed_value = [x.strip() for x in value.strip("[]").split(",") if x.strip()]
+                else:
+                    # For nested arrays with hex values, we need custom parsing
+                    # Remove outer brackets and split by "],["
+                    value_stripped = value.strip("[]")
+                    if "],[" in value_stripped:
+                        # Multiple arrays
+                        arrays = value_stripped.split("],[")
+                        parsed_value = []
+                        for arr in arrays:
+                            arr = arr.strip("[]")
+                            parsed_value.append([x.strip() for x in arr.split(",") if x.strip()])
+                    else:
+                        # Single nested array
+                        parsed_value = [[x.strip() for x in value_stripped.split(",") if x.strip()]]
+            else:
+                # Use ast.literal_eval for safe parsing of non-hex nested arrays
+                try:
+                    parsed_value = ast.literal_eval(value)
+                except (ValueError, SyntaxError):
+                    # Fallback to manual parsing for simple arrays
+                    if array_depth == 1:
+                        parsed_value = [x.strip() for x in value.strip("[]").split(",") if x.strip()]
+                    else:
+                        raise ValueError(f"Cannot parse array value: {value}")
+        else:
+            parsed_value = value
+        
+        # Process based on base type
+        if array_depth == 1:
+            # Single dimensional array
+            if base_type.startswith("bool"):
+                return [
+                    True if (str(x).lower() == "true" or (isinstance(x, bool) and x)) else False
+                    for x in parsed_value
+                ]
+            elif re.search(r"^u?int\d*$", base_type):
+                return [int(x) for x in parsed_value]
+            elif base_type == "address":
+                return [to_checksum_address(x) for x in parsed_value]
+            elif base_type.startswith("bytes"):
+                # For bytes32 and other bytes types
+                return [str(x) for x in parsed_value]
+            else:
+                return [str(x) for x in parsed_value]
+        else:
+            # Multi-dimensional array (e.g., bytes32[][])
+            # Recursively parse inner arrays
+            inner_type = param_type.replace("[]", "", 1)  # Remove one level
+            return [parse_contract_input(item, inner_type) for item in parsed_value]
+    
+    # Handle tuple types
+    elif param_type == "tuple":
+        if isinstance(value, str):
+            # Parse tuple from string representation
+            items = []
+            value = value.strip("[]")
+            # Simple split by comma (this might need improvement for nested tuples)
+            parts = value.split(",")
+            
+            for idx, component in enumerate(components or []):
+                if idx < len(parts):
+                    item_value = parts[idx].strip().strip('"')
+                    items.append(parse_contract_input(item_value, component["type"]))
+                else:
+                    raise ValueError(f"Missing tuple component at index {idx}")
+            
+            return tuple(items)
+        else:
+            return tuple(value) if not isinstance(value, tuple) else value
+    
+    # Handle primitive types
+    elif param_type.startswith("bool"):
+        if isinstance(value, str):
+            return value.lower() == "true"
+        return bool(value)
+    
+    elif re.search(r"^u?int\d*$", param_type):
+        return int(value)
+    
+    elif param_type == "address":
+        return to_checksum_address(value)
+    
+    elif param_type.startswith("bytes"):
+        return str(value)
+    
+    else:
+        # Default to string
+        return str(value)
+
+
 def convert_output_into_table(outputs: list[dict]) -> str:
     """
     Converts list of dicts into a pretty table
@@ -236,107 +362,19 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             )
             if len(tx["contractMethod"]["inputs"]) > 0:
                 for input in tx["contractMethod"]["inputs"]:
-                    # bool
-                    if "bool" in input["type"]:
-                        if "[]" in input["type"]:
-                            if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    (
-                                        True
-                                        if (x == "true") or (type(x) == bool and x)
-                                        else False
-                                    )
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
-                        else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                True
-                                if (tx["contractInputsValues"][input["name"]] == "true")
-                                or (
-                                    type(tx["contractInputsValues"][input["name"]])
-                                    == bool
-                                    and tx["contractInputsValues"][input["name"]]
-                                )
-                                else False
-                            )
-                    # int
-                    elif re.search(r"int[0-9]+", input["type"]):
-                        if "[]" in input["type"]:
-                            if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    int(x)
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
-                        else:
-                            tx["contractInputsValues"][input["name"]] = int(
-                                tx["contractInputsValues"][input["name"]]
-                            )
-                    # address
-                    elif "address" in input["type"]:
-                        if "[]" in input["type"]:
-                            if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    to_checksum_address(x.strip())
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
-                        else:
-                            tx["contractInputsValues"][input["name"]] = (
-                                to_checksum_address(
-                                    tx["contractInputsValues"][input["name"]]
-                                )
-                            )
-                    # tuple
-                    elif "tuple" in input["type"]:
-                        casted_tuple = []
-                        for idx, tuple_item in enumerate(
-                            tx["contractInputsValues"][input["name"]]
-                            .strip("[]")
-                            .split(",")
-                        ):
-                            try:
-                                if "bool" in input["components"][idx]["type"]:
-                                    casted_tuple.append(
-                                        True
-                                        if (tuple_item.strip('"') == "true")
-                                        or (type(tuple_item) == bool and tuple_item)
-                                        else False
-                                    )
-                                elif re.search(
-                                    r"int[0-9]+", input["components"][idx]["type"]
-                                ):
-                                    casted_tuple.append(int(tuple_item.strip('"')))
-                                elif "address" in input["components"][idx]["type"]:
-                                    casted_tuple.append(
-                                        to_checksum_address(tuple_item.strip('"'))
-                                    )
-                                else:
-                                    casted_tuple.append(str(tuple_item.strip('"')))
-                                tx["contractInputsValues"][input["name"]] = tuple(
-                                    casted_tuple
-                                )
-                            except IndexError:
-                                # payload contains nested tuples; no support yet
-                                continue
-                    # catchall; cast to str
-                    else:
-                        if "[]" in input["type"]:
-                            if type(tx["contractInputsValues"][input["name"]]) != list:
-                                tx["contractInputsValues"][input["name"]] = [
-                                    str(x).strip().strip('"')
-                                    for x in tx["contractInputsValues"][input["name"]]
-                                    .strip("[]")
-                                    .split(",")
-                                ]
-                        else:
-                            tx["contractInputsValues"][input["name"]] = str(
-                                tx["contractInputsValues"][input["name"]]
-                            )
+                    param_name = input["name"]
+                    param_type = input["type"]
+                    param_value = tx["contractInputsValues"][param_name]
+                    
+                    # Skip if already processed
+                    if isinstance(param_value, (list, tuple, bool, int)) and param_type != "tuple":
+                        continue
+                    
+                    # Parse the value based on type
+                    tx["contractInputsValues"][param_name] = parse_contract_input(
+                        param_value, param_type, input.get("components")
+                    )
+                    
                 tx["data"] = contract.encodeABI(
                     fn_name=tx["contractMethod"]["name"],
                     kwargs=tx["contractInputsValues"],
@@ -376,28 +414,25 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     }
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
-    # build tenderly data
-    data = {
-        "network_id": network_id,
-        "from": owners[0],
-        "to": safe_addr,
-        "input": input,
-        "save": True,
-        "save_if_fails": True,
-        "simulation_type": "quick",
-        "state_objects": {
-            safe_addr: {
-                "storage": {
-                    "0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"
-                }
-            }
-        },
-    }
-
     # post to tenderly api
     r = requests.post(
         url=f"{api_base_url}/simulate",
-        json=data,
+        json={
+            "network_id": network_id,
+            "from": owners[0],
+            "to": safe_addr,
+            "input": input,
+            "save": True,
+            "save_if_fails": True,
+            "simulation_type": "quick",
+            "state_objects": {
+                safe_addr: {
+                    "storage": {
+                        "0x0000000000000000000000000000000000000000000000000000000000000004": "0x0000000000000000000000000000000000000000000000000000000000000001"
+                    }
+                }
+            },
+        },
         headers={
             "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
             "Content-Type": "application/json",

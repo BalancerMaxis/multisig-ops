@@ -1,0 +1,54 @@
+gm everybody. welcome back. quite some movement this month, including two big ones (kpk subroles wire up and treasury migration):
+
+Ethereum: `multisigs/kpk_managed`
+Nonce 57: https://app.safe.global/transactions/tx?safe=eth:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89&id=multisig_0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89_0x1ca9cbf0d4e0c428f6fe77c69d066edcf860c7453d632261dfe1b00fd7780490
+- BIP-842: Deploy Roles V2 module, disable Roles V1, enable submodule, set default role and transfer ownership
+
+Ethereum: `multisigs/dao`
+Nonce 270: https://app.safe.global/transactions/tx?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f&id=multisig_0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f_0x11eabe3cbd63fae56fedf3afdf7369cbab02161e04ab81f5e00247eea68484f6
+- BIP-840: Transfer 122,500 USDC to foundation_opco
+- BIP-844: Grant roles for ProtocolFeeController V2 operations (fee percentages, withdrawals)
+- BIP-845: Grant roles for ReClammPool operations (price ratio updates, margin settings)
+- BIP-846: Transfer 93,141.25 USDC to foundation_opco
+- BIP-847: Transfer 80,490 USDC to foundation_opco
+- BIP-848: Transfer 108,000 USDC to beets_service_provider
+- BIP-849: Kill 40 gauges across various pools
+- BIP-850: Treasury migration to kpk_managed msig
+
+Optimism: `multisigs/dao`
+Nonce 37: https://app.safe.global/transactions/tx?safe=oeth:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc&id=multisig_0x043f9687842771b3dF8852c1E9801DCAeED3f6bc_0xae7a9faa34f33e3d36a696001417bd19cc8b8b61303537f5b8bf5c55a2c10695
+- BIP-845: Grant roles for ReClammPool operations
+
+Gnosis: `multisigs/kpk_managed`
+Nonce 15: https://app.safe.global/transactions/tx?safe=gno:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89&id=multisig_0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89_0x9ca310ab159f7207aa370926a1eb2de52dae84fa8ba6823f40df4f220359058d
+- BIP-762: Replace signer Tritium with Lewis (old but never executed)
+Nonce 16: https://app.safe.global/transactions/tx?safe=gno:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89&id=multisig_0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89_0xad3b9753a8ee1118a1e801461a1901f7bcb7e788dc872e7e814d16faa5973d83
+- BIP-842: Deploy Roles V2 module, enable submodule, set transaction unwrappers, set default role and transfer ownership
+
+Gnosis: `multisigs/dao`
+Nonce 32: https://app.safe.global/transactions/tx?safe=gno:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18&id=multisig_0x2a5AEcE0bb9EfFD7608213AE1745873385515c18_0x03556aac3e02feb533cc10acbf93c644940ad0c9fa7a24838678626c5796287c
+- BIP-844: Grant roles for ProtocolFeeController V2 operations
+- BIP-845: Grant roles for ReClammPool operations
+
+Polygon: `multisigs/dao`
+Nonce 39: https://app.safe.global/transactions/tx?safe=matic:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85&id=multisig_0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85_0xa72c8ba6a85dba7067692e4db02dcd89011c342b2d993b9568ac64bc7c4817c4
+- BIP-851: Transfer 74,805.38 WPOL to multisigs/lm
+
+Arbitrum: `multisigs/dao`
+Nonce 51: https://app.safe.global/transactions/tx?safe=arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0&id=multisig_0xaF23DC5983230E9eEAf93280e312e57539D098D0_0x8a2ed95849029931ecef6327839ee2e2beda69e1715ee3f1296c5956ec740ad0
+- BIP-844: Grant roles for ProtocolFeeController V2 operations
+- BIP-845: Grant roles for ReClammPool operations
+
+Avalanche: `multisigs/dao`
+Nonce 25: https://app.safe.global/transactions/tx?safe=avax:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3&id=multisig_0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3_0xa20bc20e0927a72dd57739578f133ae37b436dd382965826da3562bbbfc95517
+- BIP-844: Grant roles for ProtocolFeeController V2 operations
+- BIP-845: Grant roles for ReClammPool operations
+
+Base: `multisigs/dao`
+Nonce 14: https://app.safe.global/transactions/tx?safe=base:0xC40DCFB13651e64C8551007aa57F9260827B6462&id=multisig_0xC40DCFB13651e64C8551007aa57F9260827B6462_0xc3d1189eaff036d0a8d3185cbbb333e2b980e6e324fbc83369f7d25f1d5b2f57
+- BIP-844: Grant roles for ProtocolFeeController V2 operations
+- BIP-845: Grant roles for ReClammPool operations
+
+See detailed reports here: https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs/00batched/2025-W27
+
+@alexanderlan @garaigram @mouph @nanexcool @eboado @OxMaki @StefanGeorge @bonustrack @SausageDoge @lewisjfg

@@ -1,0 +1,290 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevModule",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "disableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevModule": "0x13c61a25DB73e7a94a244bD2205aDba8b4a60F4a",
+        "module": "0xd8dd9164E765bEF903E429c9462E51F0Ea8514F9"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0x000000000000aDdB49795b0f9bA5BC298cDda236",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "masterCopy",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "initializer",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "saltNonce",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "deployModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "masterCopy": "0x9646fDAD06d3e24444381f44362a3B0eB343D337",
+        "initializer": "0xa4f9edbf000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc890000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc890000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc89",
+        "saltNonce": "1742396655395"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0x13c61a25DB73e7a94a244bD2205aDba8b4a60F4a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "contract ITransactionUnwrapper",
+            "name": "adapter",
+            "type": "address"
+          }
+        ],
+        "name": "setTransactionUnwrapper",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x38869bf66a61cF6bDB996A6aE40D5853Fd43B526",
+        "selector": "0x8d80ff0a",
+        "adapter": "0x93B7fCbc63ED8a3a24B59e1C3e6649D50B7427c0"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          },
+          {
+            "internalType": "contract ITransactionUnwrapper",
+            "name": "adapter",
+            "type": "address"
+          }
+        ],
+        "name": "setTransactionUnwrapper",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x9641d764fc13c8B624c04430C7356C1C7C8102e2",
+        "selector": "0x8d80ff0a",
+        "adapter": "0x93B7fCbc63ED8a3a24B59e1C3e6649D50B7427c0"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0x13c61a25DB73e7a94a244bD2205aDba8b4a60F4a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "roleKey",
+            "type": "bytes32"
+          }
+        ],
+        "name": "setDefaultRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C",
+        "roleKey": "0x4d414e4147455200000000000000000000000000000000000000000000000000"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0x13c61a25DB73e7a94a244bD2205aDba8b4a60F4a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32[]",
+            "name": "roleKeys",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "bool[]",
+            "name": "memberOf",
+            "type": "bool[]"
+          }
+        ],
+        "name": "assignRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C",
+        "roleKeys": "[\"0x4d414e4147455200000000000000000000000000000000000000000000000000\"]",
+        "memberOf": "[true]"
+      },
+      "meta": {
+        "tx_index": 6,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_target",
+            "type": "address"
+          }
+        ],
+        "name": "setTarget",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_target": "0x13c61a25DB73e7a94a244bD2205aDba8b4a60F4a"
+      },
+      "meta": {
+        "tx_index": 7,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    },
+    {
+      "to": "0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "transferOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newOwner": "0x60716991aCDA9E990bFB3b1224f1f0fB81538267"
+      },
+      "meta": {
+        "tx_index": 8,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W27/BIP-842 kpk_SubRoles_Minnet.json",
+        "bip_number": "BIP-842"
+      }
+    }
+  ]
+}
