@@ -499,8 +499,9 @@ if __name__ == "__main__":
                         0,
                         1745518679,  # 22340602; round 10
                         1750245275,  # 22731000; round 14
-                        1751462483,  # 22831800; round 15
-                        "22932600",  # 22932600; round 16
+                        # 1751462483,  # 22831800; round 15; released together with 16
+                        1752679127,  # 22932600; round 16
+                        "23033400",  # 23033400; round 17
                     ]
                 epoch_duration = epochs[-2] - epochs[-3]
             if protocol == "morpho":
