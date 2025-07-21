@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1752136644039,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x09Df1626110803C7b3b07085Ef1E053494155089",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xd5080762bb4473f89c99c23bf9a6dc1ffd69ae0265d00412c7f013730a80b62b"
+  },
+  "transactions": [
+    {
+      "to": "0x6eaD84Af26E997D27998Fc9f8614e8a19BB93938",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "enum ContractType",
+            "name": "contractType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "contractAddress",
+            "type": "address"
+          }
+        ],
+        "name": "registerBalancerContract",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "contractType": "1",
+        "contractName": "20241205-v3-weighted-pool",
+        "contractAddress": "0x0f08eEf2C785AA5e7539684aF04755dEC1347b7c"
+      }
+    },
+    {
+      "to": "0x6eaD84Af26E997D27998Fc9f8614e8a19BB93938",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "contractAlias",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "contractAddress",
+            "type": "address"
+          }
+        ],
+        "name": "addOrUpdateBalancerContractAlias",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "contractAlias": "WeightedPool",
+        "contractAddress": "0x0f08eEf2C785AA5e7539684aF04755dEC1347b7c"
+      }
+    }
+  ]
+}
