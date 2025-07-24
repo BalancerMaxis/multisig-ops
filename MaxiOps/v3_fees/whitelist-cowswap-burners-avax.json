@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1753277277955,
+  "meta": {
+    "name": "Whitelist CowSwap Burners",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xB9d01CA61b9C181dA1051bFDd28e1097e920AB14",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeBurner",
+            "name": "protocolFeeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeBurner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeBurner": "0x9179C06629ef7f17Cb5759F501D89997FE0E7b45"
+      }
+    },
+    {
+      "to": "0xB9d01CA61b9C181dA1051bFDd28e1097e920AB14",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeBurner",
+            "name": "protocolFeeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeBurner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeBurner": "0x5C6fb490BDFD3246EB0bB062c168DeCAF4bD9FDd"
+      }
+    }
+  ]
+}
