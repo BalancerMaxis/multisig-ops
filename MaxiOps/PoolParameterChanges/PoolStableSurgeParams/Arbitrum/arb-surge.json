@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1753372392601,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set surge threshold to 40% for pool 0x2ece6781bace5e37386adef7a3d45d0bb05f8fce",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x0fa0f9990d7969a7ae6f9961d663e4a201ed6417",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newSurgeThresholdPercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSurgeThresholdPercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x2ece6781bace5e37386adef7a3d45d0bb05f8fce",
+        "newSurgeThresholdPercentage": "400000000000000000"
+      }
+    }
+  ]
+}
