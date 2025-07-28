@@ -83,53 +83,7 @@
       ]
     }
   ],
-  "partners": [
-    {
-      "name": "QuantAMM",
-      "multisig_address": "0x0000000000000000000000000000000000000001",
-      "active": true,
-      "pools": [
-        {
-          "pool_id": "0x05ff47afada98a98982113758878f9a8b9fdda0a000000000000000000000645",
-          "network": "mainnet",
-          "eligibility_date": "2025-06-01",
-          "active": true
-        }
-      ],
-      "custom_fee_allocation": {
-        "vebal_share_pct": 0.1,
-        "vote_incentive_pct": 0.2,
-        "partner_share_pct": 0.6,
-        "dao_share_pct": 0.1
-      }
-    },
-    {
-      "name": "TestPartner",
-      "multisig_address": "0x0000000000000000000000000000000000000002",
-      "active": true,
-      "pools": [
-        {
-          "pool_id": "0x1d13531bf6344c102280ce4c458781fbf14dad140000000000000000000006df",
-          "network": "mainnet",
-          "eligibility_date": "2025-06-01",
-          "active": true
-        }
-      ]
-    },
-    {
-      "name": "NonCorePartner",
-      "multisig_address": "0x0000000000000000000000000000000000000003",
-      "active": true,
-      "pools": [
-        {
-          "pool_id": "0xb986fd52697f16be888bfad2c5bf12cd67ce834b000200000000000000000634",
-          "network": "mainnet",
-          "eligibility_date": "2025-06-01",
-          "active": true
-        }
-      ]
-    }
-  ],
+  "partners": [],
   "alliance_fee_allocations": {
     "core": {
       "vebal_share_pct": 0.125,
