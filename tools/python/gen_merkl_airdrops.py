@@ -448,7 +448,9 @@ def consolidate_shares(df):
         consolidated = np.trunc(n * consolidated) / n
         n -= 1
     assert consolidated["total"].sum() <= 1
-    assert consolidated["total"].sum() == approx(Decimal(1.0), rel=Decimal(1e-6))
+    assert consolidated["total"].sum() == approx(
+        Decimal(1.0), rel=Decimal(1e-6)
+    ) or consolidated["total"].sum() == approx(Decimal(0.0), rel=Decimal(1e-6))
     return consolidated
 
 
@@ -480,7 +482,7 @@ if __name__ == "__main__":
                 # https://apps.aavechan.com/api/merit/campaigns
                 # replace date string with timestamp once it has passed and uncomment next string
                 # drpc = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ogrpc?network={CHAIN_SLUGS['1']}&dkey={os.getenv('DRPC_KEY')}",session=session_drpc))
-                # drpc.eth.get_block(22831800).timestamp
+                # drpc.eth.get_block(22932600).timestamp
 
                 if chain == "1":
                     continue
@@ -497,8 +499,9 @@ if __name__ == "__main__":
                         0,
                         1745518679,  # 22340602; round 10
                         1750245275,  # 22731000; round 14
-                        "22831800",  # 22831800; round 15
-                        #              22932600; round 16
+                        # 1751462483,  # 22831800; round 15; released together with 16
+                        1752679127,  # 22932600; round 16
+                        "23033400",  # 23033400; round 17
                     ]
                 epoch_duration = epochs[-2] - epochs[-3]
             if protocol == "morpho":

@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "999",
+  "createdAt": 1752739519,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant registry initializer contract registry perms on HyperEVM",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xfa7026c16afe0a03f479e8790377bc3f4c3dd4b77c6702d9085b1e04d605cc5f, 0x3836b797500f8a5a5f7e34ac882c1f373c6e7c761c625c497fa782bd0827b961]",
+        "account": "0x65A22Ec32c37835Ad5E77Eb6f7452Ac59E113a9F"
+      }
+    }
+  ]
+}
