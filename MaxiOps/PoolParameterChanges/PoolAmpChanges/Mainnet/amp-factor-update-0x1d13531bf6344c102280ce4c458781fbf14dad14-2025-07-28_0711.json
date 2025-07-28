@@ -1,1 +1,32 @@
-{"version":"1.0","chainId":"1","createdAt":1753701101613,"meta":{"name":"Transactions Batch","description":"Update amplification factor to 500 for Balancer tETH/wstETH","txBuilderVersion":"1.18.0","createdFromSafeAddress":"0xc38c5f97B34E175FFd35407fc91a937300E33860","createdFromOwnerAddress":""},"transactions":[{"to":"0x1d13531bf6344c102280ce4c458781fbf14dad14","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"uint256","name":"rawEndValue","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"}],"name":"startAmplificationParameterUpdate","payable":false},"contractInputsValues":{"rawEndValue":"500","endTime":"1753830000"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1753701101613,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Update amplification factor to 500 for Balancer tETH/wstETH",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x1d13531bf6344c102280ce4c458781fbf14dad14",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "500", "endTime": "1753830000" }
+    }
+  ]
+}
