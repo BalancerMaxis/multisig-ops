@@ -485,16 +485,18 @@ if __name__ == "__main__":
                 # drpc.eth.get_block(22932600).timestamp
 
                 if chain == "1":
-                    continue
                     epochs = [
-                        1733932799,  # 21558817
-                        1741163423,  # 21979500
-                        1743855959,  # 22202701
-                        1746462191,  # 22418702
-                        1749121559,  # 22638003
-                        "ENDED",  # https://apps.aavechan.com/merit/ethereum-stkgho
+                        1745348075,  # 22326470; start
+                        1746566027,  # 22427270; end round 1
+                        1747791815,  # 22528070; end round 2
+                        1749010979,  # 22628870; end round 3
+                        # 22729670,  # 22729670; end round 4
+                        # 22830470,  # 22830470; end round 5
+                        1752663107,  # 22931270; end round 4 + 5 + 6
+                        "23031200",  # 23031200; end round 7
                     ]
                 elif chain == "43114":
+                    continue
                     epochs = [
                         0,
                         1745518679,  # 22340602; round 10
