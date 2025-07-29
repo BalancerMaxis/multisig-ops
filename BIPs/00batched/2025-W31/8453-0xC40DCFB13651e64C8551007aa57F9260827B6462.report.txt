@@ -1,0 +1,17 @@
+FILENAME: `BIPs/00batched/2025-W31/8453-0xC40DCFB13651e64C8551007aa57F9260827B6462.json`
+MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
+COMMIT: `54c0758d33529f473e87169f62c6e852b478fb70`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d3483b62-ca4c-41a7-a5db-fd2c11aa93e0)
+
+```
++-----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                               | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/emergency | 0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a | 20250702-v3-reclamm-pool-v2/ReClammPoolFactory/disable()                               | 0xed6f8a5f0602534601834cae86e16a9424b7bf30c562d15bd781fbcd5026d9a1 | BIP-856 |    0     |
+| Authorizer/grantRoles | multisigs/maxi_omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250702-v3-reclamm-pool-v2/ReClammPool/stopPriceRatioUpdate()                         | 0x9ab650e0d79e50d3072ec3ea6b32de3a2d95d9cf4b0e85ed25e44c6875c4ceef | BIP-856 |    1     |
+|                       |                     |                                            | 20250702-v3-reclamm-pool-v2/ReClammPool/startPriceRatioUpdate(uint256,uint256,uint256) | 0xe36c8a29e382a9e068016ba59a17df30e94d2a62e291922464818cf0da07e9ad |         |          |
+|                       |                     |                                            | 20250702-v3-reclamm-pool-v2/ReClammPool/setDailyPriceShiftExponent(uint256)            | 0xd1f6775ef61086b605c69359e45fd6475d73a8dca463f8420ec61087bbd84f99 |         |          |
+|                       |                     |                                            | 20250702-v3-reclamm-pool-v2/ReClammPool/setCenterednessMargin(uint256)                 | 0x184f484b1c3cf21d4d9d31bf73151563fbd39b438a0c6203a89fe7ddb66438e4 |         |          |
++-----------------------+---------------------+--------------------------------------------+----------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
