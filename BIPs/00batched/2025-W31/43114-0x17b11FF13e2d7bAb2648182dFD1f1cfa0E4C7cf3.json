@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x542e3fedf42dc1ec1ec2a386c7ccbe63facd180b5f565f23d855820b4502f757, 0x1d3360e6bb7eaff128cde9cb0a39ca0d3c7a768c38522462573091a7d5016043]",
+        "account": "0xFc00536A0fd292c284deeF6af8F644d8373d9cad"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W31/BIP-861-registry-initializer-roles-avax.json",
+        "bip_number": "BIP-861"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xb3d8576074dc51b671adf838c9ea405fcee3ad81574df01d5992bc9123e0fee8, 0xda5b7988d29178b108abb65c47e1b696feefe673ac478e4097350036fcb124cf, 0x1c75a1f4cafde1981ef618745f3e3f790245b0dcd0085ff28da2094cf34f2943, 0x405c51665b7764cb7b8a0ec626780dfc8b9a34e1bc68c66784fd8185ff73f730]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W31/BIP-856-ReCLAMM-v2-perms-omni-avax.json",
+        "bip_number": "BIP-856"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x0ddb27cb2342e41e9877e708ffb6688bf54cc7cb229f8e9e13fcb94123c8ae8e]",
+        "account": "0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W31/BIP-856-ReCLAMM-v2-perms-emergency-avax.json",
+        "bip_number": "BIP-856"
+      }
+    }
+  ]
+}
