@@ -2,7 +2,7 @@ from typing import Callable
 from typing import Optional
 
 from bal_addresses import AddrBook, BalPermissions
-from bal_tools import Aura, BalPoolsGauges
+from bal_tools import Aura, BalPoolsGauges, Subgraph
 from bal_addresses import to_checksum_address, is_address
 from brownie import Contract
 from brownie import web3
@@ -71,6 +71,62 @@ SELECTORS_MAPPING = {
 ERC20_ABI = json.load(open("abis/ERC20.json", "r"))
 
 today = datetime.today().strftime("%Y-%m-%d")
+
+
+def check_existing_gauge_destinations(
+    pool_id: str, gauge_address: str, chain: str
+) -> tuple[bool, list[str]]:
+    """
+    Check if there are existing gauges with the same destination (pool or child gauge).
+    Returns a tuple of (has_existing_gauge, list_of_existing_gauge_addresses)
+    """
+    try:
+        # Query the Balancer v3 API for gauges associated with this pool
+        subgraph = Subgraph(chain)
+
+        # Try to query gauges for this pool using the v3 API
+        query = """
+        query GetPoolGauges($poolId: String!, $chain: GqlChain!) {
+            poolGetPool(id: $poolId, chain: $chain) {
+                staking {
+                    gauge {
+                        gaugeAddress
+                        status
+                    }
+                }
+            }
+        }
+        """
+
+        # Convert chain name to GQL chain enum value
+        # Remove -main suffix and convert special cases
+        chain_normalized = chain.lower().replace("-main", "")
+        if chain_normalized == "avax":
+            chain_normalized = "avalanche"
+
+        gql_chain = chain_normalized.upper()
+
+        result = subgraph.fetch_graphql_data(
+            "apiv3", query, {"poolId": pool_id.lower(), "chain": gql_chain}
+        )
+
+        existing_gauges = []
+        if result and "poolGetPool" in result and result["poolGetPool"]:
+            pool_data = result["poolGetPool"]
+            if "staking" in pool_data and pool_data["staking"]:
+                staking_data = pool_data["staking"]
+                if "gauge" in staking_data and staking_data["gauge"]:
+                    gauge_data = staking_data["gauge"]
+                    existing_gauge = gauge_data.get("gaugeAddress", "").lower()
+                    # Check if this is a different gauge than the one being added
+                    if existing_gauge and existing_gauge != gauge_address.lower():
+                        existing_gauges.append(existing_gauge)
+
+        return (len(existing_gauges) > 0, existing_gauges)
+
+    except Exception as e:
+        print(f"Error checking existing gauge destinations: {e}")
+        return (False, [])
 
 
 def _extract_pool(
@@ -439,18 +495,36 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
     )
     rate_providers_reviews = get_rate_provider_review_summaries(rate_providers, chain)
 
+    # Check for existing gauges with the same destination
+    has_existing_gauge, existing_gauge_addresses = check_existing_gauge_destinations(
+        pool_id, gauge_address, chain
+    )
+
+    # Format existing gauge addresses for display
+    existing_gauges_display = ""
+    if has_existing_gauge:
+        existing_gauges_display = "\nexisting_gauges: " + ", ".join(
+            existing_gauge_addresses
+        )
+
     return {
         "function": f"{to_string}/{command}",
         "chain": chain,
         "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
         "symbol_and_info": f"{pool_symbol} \nfee (%): {fee}\na-factor: {a_factor}",
-        "gauge_address_and_info": f"root: {gauge_address}\nside: {sidechain_recipient}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}",
+        "gauge_address_and_info": f"root: {gauge_address}\nside: {sidechain_recipient}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}\nhas_existing_gauge: {has_existing_gauge}{existing_gauges_display}",
         "tokens": "\n".join(tokens),
         "rate_providers": "\n".join(rate_providers),
         "review_summary": "\n".join(rate_providers_reviews),
         "bip": kwargs.get("bip_number", "N/A"),
         "tx_index": kwargs.get("tx_index", "N/A"),
-        "add_gauge_summary": (is_preferential, rate_providers_reviews, gauge_address),
+        "add_gauge_summary": (
+            is_preferential,
+            rate_providers_reviews,
+            gauge_address,
+            has_existing_gauge,
+            existing_gauge_addresses,
+        ),
     }
 
 

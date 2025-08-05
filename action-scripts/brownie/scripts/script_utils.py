@@ -558,6 +558,15 @@ def format_into_report(
             table.add_row(
                 [f"`validate_rate_providers_safety`", " ".join(rate_providers_safety)]
             )
+            # Add duplicate gauge check if available
+            if len(gauge_check) >= 5:
+                has_existing_gauge = gauge_check[3]
+                existing_gauges = gauge_check[4]
+                duplicate_check = "❌" if has_existing_gauge else "✅"
+                duplicate_info = duplicate_check
+                if has_existing_gauge and existing_gauges:
+                    duplicate_info += f" (found: {', '.join(existing_gauges[:3])}{'...' if len(existing_gauges) > 3 else ''})"
+                table.add_row([f"`validate_no_duplicate_gauge`", duplicate_info])
             file_report += table.get_string()
             file_report += "\n\n"
 
