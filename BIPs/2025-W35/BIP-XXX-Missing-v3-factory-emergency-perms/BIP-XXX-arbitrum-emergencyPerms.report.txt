@@ -1,0 +1,15 @@
+FILENAME: `BIPs/2025-W35/BIP-XXX-Missing-v3-factory-emergency-perms/BIP-XXX-arbitrum-emergencyPerms.json`
+MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
+COMMIT: `d66a63e425c3c2325622b87c8588e876f9547e29`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c3841e9e-05db-4fad-848f-16b1f709d568)
+
+```
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                  | action_ids                                                         | bip | tx_index |
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRoles | multisigs/emergency | 0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D | 20250120-v3-gyro-2clp/Gyro2CLPPoolFactory/disable()       | 0x8962b605c4877aadeecae387492d3bc0bfb2f52c30aa0633200cf1e8c3238f3c | N/A |    0     |
+|                       |                     |                                            | 20250324-v3-stable-pool-v2/StablePoolFactory/disable()    | 0x54d04f96e1384dacfbc4bb06d4876678ad3ba07c255782bd693bc9df4b367e24 |     |          |
+|                       |                     |                                            | 20250121-v3-stable-surge/StableSurgePoolFactory/disable() | 0xfdae18cb216aeaa8c8bfbb7a875699bd6b0e7d31cc28292a26a182860745d00c |     |          |
++-----------------------+---------------------+--------------------------------------------+-----------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```
