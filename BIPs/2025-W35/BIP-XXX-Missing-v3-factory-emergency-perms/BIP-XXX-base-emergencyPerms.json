@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1725559200,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant v3 pool factory disable permissions to emergency subDAO multisig",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xac0d1be9ff7d3e69a1596ff43dec0fa65eb1ffb47dafc81433455b3f5014370f, 0x28e9e31c7abbe803f2c44dde4b6b484e671a6ee8ced3402269274f6064ab48b4, 0x72a5df2a33143829e209d8720489edacfae688c4df61120a45ae57de8907b8b6]",
+        "account": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a"
+      }
+    }
+  ]
+}
