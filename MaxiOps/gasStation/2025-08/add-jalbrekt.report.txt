@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/gasStation/2025-08/add-jalbrekt.json`
 MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `f87b85ee7751261347913e42ac81695a3fd0e389`
+COMMIT: `17e5e544f5c2f731f6912f10fd2bfb5d4e03aa97`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/713e71b7-0159-4c8e-8204-647b8ef8840b)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/2b1e026f-018b-4e15-a3e1-674e8a71928d)
 
 ```
 +---------------+---------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
@@ -11,6 +11,17 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/713e71b7-0159-4
 | addRecipients | 0x7fb8f5D04b521B6880158819E69538655AABD5c4 (maxiKeepers/gasStation) | 0     | {                                                                        | N/A        |   N/A    |
 |               |                                                                     |       |   "recipients": [                                                        |            |          |
 |               |                                                                     |       |     "0x119de05a00BD4e75C4aD6041b82d7afa984aB1B9 (EOA/maxis/jalbrekt)"    |            |          |
+|               |                                                                     |       |   ],                                                                     |            |          |
+|               |                                                                     |       |   "minBalanceWei": [                                                     |            |          |
+|               |                                                                     |       |     "100000000000000000"                                                 |            |          |
+|               |                                                                     |       |   ],                                                                     |            |          |
+|               |                                                                     |       |   "topUpToAmountWei": [                                                  |            |          |
+|               |                                                                     |       |     "raw:250000000000000000, 18 decimals:0.25, 6 decimals: 250000000000" |            |          |
+|               |                                                                     |       |   ]                                                                      |            |          |
+|               |                                                                     |       | }                                                                        |            |          |
+| addRecipients | 0x7fb8f5D04b521B6880158819E69538655AABD5c4 (maxiKeepers/gasStation) | 0     | {                                                                        | N/A        |   N/A    |
+|               |                                                                     |       |   "recipients": [                                                        |            |          |
+|               |                                                                     |       |     "0x960bE2d20669E1b2bfc38dBC92bf1c440Cc60F9d (EOA/maxis/raq)"         |            |          |
 |               |                                                                     |       |   ],                                                                     |            |          |
 |               |                                                                     |       |   "minBalanceWei": [                                                     |            |          |
 |               |                                                                     |       |     "100000000000000000"                                                 |            |          |
