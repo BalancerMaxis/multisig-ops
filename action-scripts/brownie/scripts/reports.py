@@ -139,7 +139,7 @@ def check_killed_gauge_destinations(
     try:
         # Query the Balancer v3 API for all voting list gauges
         subgraph = Subgraph("mainnet")  # veBalGetVotingList is always on mainnet
-        
+
         query = """
         query {
             veBalGetVotingList {
@@ -156,48 +156,63 @@ def check_killed_gauge_destinations(
             }
         }
         """
-        
+
         result = subgraph.fetch_graphql_data("apiv3", query, {})
-        
+
         killed_matching_gauges = []
         if result and "veBalGetVotingList" in result:
             voting_list = result["veBalGetVotingList"]
-            
+
             # Convert chain name for comparison
             chain_normalized = chain.lower().replace("-main", "")
             if chain_normalized == "avax":
                 chain_normalized = "avalanche"
             chain_upper = chain_normalized.upper()
-            
+
             for item in voting_list:
                 gauge_info = item.get("gauge", {})
-                
+
                 # Only check killed gauges on the same chain
                 if gauge_info.get("isKilled") and item.get("chain") == chain_upper:
-                    # Check if the pool address matches (for mainnet gauges) 
+                    # Check if the pool address matches (for mainnet gauges)
                     # or child gauge address matches (for sidechain gauges)
                     item_pool_address = item.get("address", "").lower()
-                    item_child_gauge = gauge_info.get("childGaugeAddress", "").lower() if gauge_info.get("childGaugeAddress") else ""
-                    
+                    item_child_gauge = (
+                        gauge_info.get("childGaugeAddress", "").lower()
+                        if gauge_info.get("childGaugeAddress")
+                        else ""
+                    )
+
                     if pool_address and item_pool_address == pool_address.lower():
-                        killed_matching_gauges.append({
-                            "gauge_address": gauge_info.get("address"),
-                            "child_gauge_address": gauge_info.get("childGaugeAddress"),
-                            "pool_address": item.get("address"),
-                            "symbol": item.get("symbol"),
-                            "type": item.get("type")
-                        })
-                    elif child_gauge_address and item_child_gauge == child_gauge_address.lower():
-                        killed_matching_gauges.append({
-                            "gauge_address": gauge_info.get("address"),
-                            "child_gauge_address": gauge_info.get("childGaugeAddress"),
-                            "pool_address": item.get("address"),
-                            "symbol": item.get("symbol"),
-                            "type": item.get("type")
-                        })
-        
+                        killed_matching_gauges.append(
+                            {
+                                "gauge_address": gauge_info.get("address"),
+                                "child_gauge_address": gauge_info.get(
+                                    "childGaugeAddress"
+                                ),
+                                "pool_address": item.get("address"),
+                                "symbol": item.get("symbol"),
+                                "type": item.get("type"),
+                            }
+                        )
+                    elif (
+                        child_gauge_address
+                        and item_child_gauge == child_gauge_address.lower()
+                    ):
+                        killed_matching_gauges.append(
+                            {
+                                "gauge_address": gauge_info.get("address"),
+                                "child_gauge_address": gauge_info.get(
+                                    "childGaugeAddress"
+                                ),
+                                "pool_address": item.get("address"),
+                                "symbol": item.get("symbol"),
+                                "type": item.get("type"),
+                            }
+                        )
+
         return (len(killed_matching_gauges) > 0, killed_matching_gauges)
-        
+
     except Exception as e:
         print(f"Error checking killed gauge destinations: {e}")
         return (False, [])
