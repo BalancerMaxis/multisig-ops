@@ -129,6 +129,80 @@ def check_existing_gauge_destinations(
         return (False, [])
 
 
+def check_killed_gauge_destinations(
+    pool_address: str, child_gauge_address: str, chain: str
+) -> tuple[bool, list[dict]]:
+    """
+    Check if the destination (pool or child gauge) matches any killed gauge.
+    Returns a tuple of (matches_killed_gauge, list_of_killed_gauge_info)
+    """
+    try:
+        # Query the Balancer v3 API for all voting list gauges
+        subgraph = Subgraph("mainnet")  # veBalGetVotingList is always on mainnet
+        
+        query = """
+        query {
+            veBalGetVotingList {
+                id
+                address
+                chain
+                type
+                symbol
+                gauge {
+                    address
+                    isKilled
+                    childGaugeAddress
+                }
+            }
+        }
+        """
+        
+        result = subgraph.fetch_graphql_data("apiv3", query, {})
+        
+        killed_matching_gauges = []
+        if result and "veBalGetVotingList" in result:
+            voting_list = result["veBalGetVotingList"]
+            
+            # Convert chain name for comparison
+            chain_normalized = chain.lower().replace("-main", "")
+            if chain_normalized == "avax":
+                chain_normalized = "avalanche"
+            chain_upper = chain_normalized.upper()
+            
+            for item in voting_list:
+                gauge_info = item.get("gauge", {})
+                
+                # Only check killed gauges on the same chain
+                if gauge_info.get("isKilled") and item.get("chain") == chain_upper:
+                    # Check if the pool address matches (for mainnet gauges) 
+                    # or child gauge address matches (for sidechain gauges)
+                    item_pool_address = item.get("address", "").lower()
+                    item_child_gauge = gauge_info.get("childGaugeAddress", "").lower() if gauge_info.get("childGaugeAddress") else ""
+                    
+                    if pool_address and item_pool_address == pool_address.lower():
+                        killed_matching_gauges.append({
+                            "gauge_address": gauge_info.get("address"),
+                            "child_gauge_address": gauge_info.get("childGaugeAddress"),
+                            "pool_address": item.get("address"),
+                            "symbol": item.get("symbol"),
+                            "type": item.get("type")
+                        })
+                    elif child_gauge_address and item_child_gauge == child_gauge_address.lower():
+                        killed_matching_gauges.append({
+                            "gauge_address": gauge_info.get("address"),
+                            "child_gauge_address": gauge_info.get("childGaugeAddress"),
+                            "pool_address": item.get("address"),
+                            "symbol": item.get("symbol"),
+                            "type": item.get("type")
+                        })
+        
+        return (len(killed_matching_gauges) > 0, killed_matching_gauges)
+        
+    except Exception as e:
+        print(f"Error checking killed gauge destinations: {e}")
+        return (False, [])
+
+
 def _extract_pool(
     chain: str, gauge: Contract, gauge_selectors: dict
 ) -> tuple[str, str, str, str, str, str, str, list[str], list[str]]:
@@ -507,12 +581,27 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
             existing_gauge_addresses
         )
 
+    # Check for killed gauges with the same destination
+    matches_killed_gauge, killed_gauge_info = check_killed_gauge_destinations(
+        pool_address, sidechain_recipient, chain
+    )
+
+    # Format killed gauge info for display
+    killed_gauges_display = ""
+    if matches_killed_gauge:
+        killed_info_strings = []
+        for killed_gauge in killed_gauge_info:
+            killed_info_strings.append(
+                f"{killed_gauge['gauge_address']} ({killed_gauge['symbol']})"
+            )
+        killed_gauges_display = "\nkilled_gauges: " + ", ".join(killed_info_strings)
+
     return {
         "function": f"{to_string}/{command}",
         "chain": chain,
         "pool_id_and_address": f"{pool_id} \npool_address: {pool_address}",
         "symbol_and_info": f"{pool_symbol} \nfee (%): {fee}\na-factor: {a_factor}",
-        "gauge_address_and_info": f"root: {gauge_address}\nside: {sidechain_recipient}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}\nhas_existing_gauge: {has_existing_gauge}{existing_gauges_display}",
+        "gauge_address_and_info": f"root: {gauge_address}\nside: {sidechain_recipient}\nstyle: {style}\ncap: {gauge_cap}\npreferential: {is_preferential}\nhas_existing_gauge: {has_existing_gauge}{existing_gauges_display}\nmatches_killed_gauge: {matches_killed_gauge}{killed_gauges_display}",
         "tokens": "\n".join(tokens),
         "rate_providers": "\n".join(rate_providers),
         "review_summary": "\n".join(rate_providers_reviews),
@@ -524,6 +613,8 @@ def _parse_added_transaction(transaction: dict, **kwargs) -> Optional[dict]:
             gauge_address,
             has_existing_gauge,
             existing_gauge_addresses,
+            matches_killed_gauge,
+            killed_gauge_info,
         ),
     }
 
