@@ -1,0 +1,134 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x7576f83c39a4f75ece8e6da99676712301067f196442916c688500f9320af5fb]",
+        "account": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W31/BIP-856-ReCLAMM-v2-perms-emergency-op.json",
+        "bip_number": "BIP-856"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x8b408ccd53b2ae4c2ce1ed83e9af719ed711a8e38a82471d5f28cb5fab4ab223, 0x4c59a6a3b0c9f281668e9fafa669ca3f1b1897e4fee5e5d7cd1287e99d3c047c, 0x85f0be3893671607f6319eada53a17b0ec9c9c0808ee6ff1a74dc5ad18da1a0f, 0xcc936382e676c0559a9e68d9b56d58ef88d7b570099c5a4df89abdbca4a06c4c]",
+        "account": "0x09Df1626110803C7b3b07085Ef1E053494155089"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W31/BIP-856-ReCLAMM-v2-perms-omni-optimism.json",
+        "bip_number": "BIP-856"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x9b50ab496733616199be03f9adb07dedbc053ee47e3f069d57a7b1db51480332, 0xd8f952fca9feeca8075fa8cf14298353b4b424103a602b3879b031c57cf6def7]",
+        "account": "0x1d8e78300db118dce5d8176c93bef1d6028d74eb"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W31/BIP-859.json",
+        "bip_number": "BIP-859"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x978d0476f95beb8e55f9ac7f0e2f7d9dbdef1d74308f521f9ceee2e40a93669d, 0x99ca15d5716ec66b32e8ec8aa85541c3c8879d3a1c16a2b18ec3a9304f5b4bc7]",
+        "account": "0xa1D0791a41318c775707C56eAe247AF81a05322C"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W31/BIP-861-registry-initializer-roles-optimism.json",
+        "bip_number": "BIP-861"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1752739690,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "rant registry initializer contract registry perms on OP",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x978d0476f95beb8e55f9ac7f0e2f7d9dbdef1d74308f521f9ceee2e40a93669d, 0x99ca15d5716ec66b32e8ec8aa85541c3c8879d3a1c16a2b18ec3a9304f5b4bc7]",
+        "account": "0xa1D0791a41318c775707C56eAe247AF81a05322C"
+      }
+    }
+  ]
+}
