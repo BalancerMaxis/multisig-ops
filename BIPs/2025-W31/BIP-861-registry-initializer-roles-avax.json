@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1752739519,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant registry initializer contract registry perms on AVAX",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x542e3fedf42dc1ec1ec2a386c7ccbe63facd180b5f565f23d855820b4502f757, 0x1d3360e6bb7eaff128cde9cb0a39ca0d3c7a768c38522462573091a7d5016043]",
+        "account": "0xFc00536A0fd292c284deeF6af8F644d8373d9cad"
+      }
+    }
+  ]
+}
