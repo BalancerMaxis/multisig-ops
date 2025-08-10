@@ -1,1 +1,78 @@
-{"version":"1.0","chainId":"8453","createdAt":1754818318,"meta":{"name":"Rewards Injector Configuration Update","description":"Update rewards injector configurations","createdFromSafeAddress":"0xbA53D5bF49362Ec2907B12DB3468Bb5Be16F5704"},"transactions":[{"to":"0x1195F6f03ad53FEBCbEf5b347C840040E641E5f2","value":"0","data":null,"contractMethod":{"inputs":[{"name":"recipients","type":"address[]","internalType":"address[]"},{"name":"amountPerPeriod","type":"uint256","internalType":"uint256"},{"name":"maxPeriods","type":"uint8","internalType":"uint8"},{"name":"doNotStartBeforeTimestamp","type":"uint56","internalType":"uint56"}],"name":"addRecipients","payable":false},"contractInputsValues":{"recipients":"[0x6e17579EEd635B9BCEF6b61E2bC8DD16BB9e7B29]","amountPerPeriod":"1000000000000000000","maxPeriods":"1","doNotStartBeforeTimestamp":"0"}},{"to":"0x1195F6f03ad53FEBCbEf5b347C840040E641E5f2","value":"0","data":null,"contractMethod":{"inputs":[{"name":"recipients","type":"address[]","internalType":"address[]"},{"name":"amountPerPeriod","type":"uint256","internalType":"uint256"},{"name":"maxPeriods","type":"uint8","internalType":"uint8"},{"name":"doNotStartBeforeTimestamp","type":"uint56","internalType":"uint56"}],"name":"addRecipients","payable":false},"contractInputsValues":{"recipients":"[0x87680d376235b9A6E3119977dE027b459d8937D3]","amountPerPeriod":"1000000000000000000","maxPeriods":"1","doNotStartBeforeTimestamp":"0"}}]}
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1754818318,
+  "meta": {
+    "name": "Rewards Injector Configuration Update",
+    "description": "Update rewards injector configurations",
+    "createdFromSafeAddress": "0xbA53D5bF49362Ec2907B12DB3468Bb5Be16F5704"
+  },
+  "transactions": [
+    {
+      "to": "0x1195F6f03ad53FEBCbEf5b347C840040E641E5f2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x6e17579EEd635B9BCEF6b61E2bC8DD16BB9e7B29]",
+        "amountPerPeriod": "1000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "0"
+      }
+    },
+    {
+      "to": "0x1195F6f03ad53FEBCbEf5b347C840040E641E5f2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x87680d376235b9A6E3119977dE027b459d8937D3]",
+        "amountPerPeriod": "1000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "0"
+      }
+    }
+  ]
+}
