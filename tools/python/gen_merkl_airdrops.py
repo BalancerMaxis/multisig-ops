@@ -477,8 +477,6 @@ if __name__ == "__main__":
     for protocol in WATCHLIST:
         for chain in WATCHLIST[protocol]:
             if protocol == "merit":
-                # comment out once a month, not needed every week
-                # continue
                 # https://apps.aavechan.com/api/merit/campaigns
                 # replace date string with timestamp once it has passed and uncomment next string
                 # drpc = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ogrpc?network={CHAIN_SLUGS['1']}&dkey={os.getenv('DRPC_KEY')}",session=session_drpc))
@@ -497,7 +495,6 @@ if __name__ == "__main__":
                         "23131333",  # 23131333, end round 8
                     ]
                 elif chain == "43114":
-                    # continue
                     epochs = [
                         0,
                         1745518679,  # 22340602; round 10
@@ -509,7 +506,6 @@ if __name__ == "__main__":
                     ]
                 epoch_duration = epochs[-2] - epochs[-3]
             if protocol == "morpho":
-                continue  # maybe one more run; picked up by merkl forwarding rules after that
                 epoch_duration = 60 * 60 * 24 * 7
                 first_epoch_end = 1737936000
                 epochs = []
