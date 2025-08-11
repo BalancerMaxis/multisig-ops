@@ -57,12 +57,11 @@ def claim_paladin_bribes(
     """Fetch and claim all bribes from paladin."""
     chain_dir = get_chain_dirs(date_dir, chain_name)
     csv_path = chain_dir / f"bribe_claims_{chain_name}_{CURRENT_DATE}.csv"
-    
+
     # Fetch claims from Paladin API
     try:
         response = requests.get(
-            f"https://api.paladin.vote/quest/v3/copilot/claims/{omni_safe}",
-            timeout=30
+            f"https://api.paladin.vote/quest/v3/copilot/claims/{omni_safe}", timeout=30
         )
         response.raise_for_status()
         all_claims = response.json()["claims"]
@@ -265,7 +264,7 @@ def claim_hidden_hand_bribes(
             formatted_claims = format_hidden_hand_claims(valid_claims)
             claims_str = json.dumps(formatted_claims)
             distributor.claim(claims_str)
-    
+
     return csv_path
 
 
