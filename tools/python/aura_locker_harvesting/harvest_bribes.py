@@ -51,13 +51,19 @@ def get_chain_dirs(base_dir: Path, chain_name: str) -> Path:
     return base_dir / chain_name
 
 
-def claim_paladin_bribes(
-    chain_name: str, chain_id: int, date_dir: Path, builder: SafeTxBuilder
-) -> str:
-    """Fetch and claim all bribes from paladin."""
+def create_claims_csv(chain_name: str, date_dir: Path) -> Path:
+    """Create a CSV template for bribe claims."""
     chain_dir = get_chain_dirs(date_dir, chain_name)
     csv_path = chain_dir / f"bribe_claims_{chain_name}_{CURRENT_DATE}.csv"
+    with open(csv_path, "w") as f:
+        f.write("chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n")
+    return csv_path
 
+
+def claim_paladin_bribes(
+    chain_name: str, chain_id: int, csv_path: str
+) -> None:
+    """Fetch and claim all bribes from paladin and append to existing CSV."""
     # Fetch claims from Paladin API
     try:
         response = requests.get(
@@ -67,22 +73,13 @@ def claim_paladin_bribes(
         all_claims = response.json()["claims"]
     except requests.RequestException as e:
         print(f"Failed to fetch Paladin claims: {e}")
-        # Create empty CSV
-        with open(csv_path, "w") as f:
-            f.write(
-                "chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n"
-            )
-        return csv_path
+        return
 
     claims = [claim for claim in all_claims if claim["chainId"] == chain_id]
 
     if not claims:
         print(f"No Paladin claims found for {chain_name}")
-        with open(csv_path, "w") as f:
-            f.write(
-                "chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n"
-            )
-        return csv_path
+        return
 
     w3 = w3_by_chain[chain_name]
 
@@ -92,11 +89,7 @@ def claim_paladin_bribes(
         for addr in unique_distributors
     }
 
-    with open(csv_path, "w") as f:
-        f.write(
-            "chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n"
-        )
-
+    with open(csv_path, "a") as f:
         for claim in claims:
             print(
                 f"Claiming Paladin - token: {claim['token']}, gauge: {claim['gauge']}"
@@ -134,8 +127,6 @@ def claim_paladin_bribes(
                 f"{chain_name},paladin,{claim['token']},{claim['gauge']},{amount},{claim['amount']}\n"
             )
 
-    return csv_path
-
 
 def format_hidden_hand_claims(claims: List[Dict]) -> List[List]:
     formatted_claims = []
@@ -169,13 +160,11 @@ def format_hidden_hand_claims(claims: List[Dict]) -> List[List]:
 
 def claim_hidden_hand_bribes(
     chain_name: str,
-    date_dir: Path,
-    builder: SafeTxBuilder,
     csv_path: str,
-) -> str:
+) -> None:
     """Fetch and claim all bribes from Hidden Hand and append to existing CSV."""
     if chain_name != "mainnet":
-        return csv_path
+        return
 
     print("\nChecking Hidden Hand rewards...")
 
@@ -184,17 +173,17 @@ def claim_hidden_hand_bribes(
         response = requests.get(url, timeout=10)
         if not response.ok:
             print(f"Hidden Hand API returned status {response.status_code}")
-            return csv_path
+            return
 
         data = response.json()
         if "error" in data and data["error"]:
             print(f"Hidden Hand API error: {data}")
-            return csv_path
+            return
 
         rewards_data = data.get("data", [])
     except Exception as e:
         print(f"Failed to fetch Hidden Hand rewards: {e}")
-        return csv_path
+        return
 
     # Process rewards into claims
     claims = []
@@ -226,7 +215,7 @@ def claim_hidden_hand_bribes(
 
     if not claims:
         print("No Hidden Hand rewards to claim")
-        return csv_path
+        return
 
     print(f"\nFound {len(claims)} Hidden Hand rewards to claim")
 
@@ -264,8 +253,6 @@ def claim_hidden_hand_bribes(
             formatted_claims = format_hidden_hand_claims(valid_claims)
             claims_str = json.dumps(formatted_claims)
             distributor.claim(claims_str)
-
-    return csv_path
 
 
 def generate_tokens_to_sell_csv(csv_path: str, chain_name: str, date_dir: Path):
@@ -305,9 +292,12 @@ if __name__ == "__main__":
 
     for chain_name, chain_id in [("mainnet", 1), ("arbitrum", 42161)]:
         builder = SafeTxBuilder(safe_address=omni_safe, chain_name=chain_name)
+        
+        csv_path = create_claims_csv(chain_name, date_dir)
 
-        csv_path = claim_paladin_bribes(chain_name, chain_id, date_dir, builder)
-        claim_hidden_hand_bribes(chain_name, date_dir, builder, csv_path)
+        claim_paladin_bribes(chain_name, chain_id, csv_path)
+        claim_hidden_hand_bribes(chain_name, csv_path)
+        
         generate_tokens_to_sell_csv(csv_path, chain_name, date_dir)
 
         builder.output_payload(
