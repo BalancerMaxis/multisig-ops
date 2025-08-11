@@ -1,0 +1,64 @@
+name: Recycle Bribes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  recycle_bribes:
+    runs-on: ubuntu-latest
+    outputs:
+      pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+      pull-request-branch: ${{ steps.generate-branch-name.outputs.branch }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install -r tools/python/requirements.txt
+
+      - name: Run script
+        env:
+          DRPC_KEY: ${{ secrets.DRPC_KEY }}
+        run: |
+          python tools/python/bribe_recycling/recycle_bribes.py
+
+      - name: Generate branch name
+        id: generate-branch-name
+        run: |
+          echo "branch=bribe-recycling-$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "feat: recycle bribes - ${{ steps.generate-branch-name.outputs.date }}"
+          title: "Recycle Bribes (Paladin & Hidden Hand) - ${{ steps.generate-branch-name.outputs.date }}"
+          body: |
+            Run result from [`tools/python/bribe_recycling/recycle_bribes.py`](../blob/main/tools/python/bribe_recycling/recycle_bribes.py)
+
+            Output CSV files:
+            * [Mainnet bribe claims](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/mainnet/bribe_claims_mainnet_${{ steps.generate-branch-name.outputs.date }}.csv)
+            * [Mainnet tokens to sell](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/mainnet/tokens_to_sell_mainnet_${{ steps.generate-branch-name.outputs.date }}.csv)
+            * [Arbitrum bribe claims](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/arbitrum/bribe_claims_arbitrum_${{ steps.generate-branch-name.outputs.date }}.csv)
+            * [Arbitrum tokens to sell](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/arbitrum/tokens_to_sell_arbitrum_${{ steps.generate-branch-name.outputs.date }}.csv)
+
+          branch: ${{ steps.generate-branch-name.outputs.branch }}
+          labels: "Automatic Payload"
+          delete-branch: true
+
+  run_reports:
+    needs: recycle_bribes
+    secrets: inherit
+    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
+    with:
+      pr_number: ${{ needs.recycle_bribes.outputs.pull-request-number }}
+      checkout_ref: ${{ needs.recycle_bribes.outputs.pull-request-branch }}
