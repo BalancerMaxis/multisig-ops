@@ -61,17 +61,19 @@ def claim_paladin_bribes(
     )
     response.raise_for_status()
     all_claims = response.json()["claims"]
-    
+
     claims = [claim for claim in all_claims if claim["chainId"] == chain_id]
-    
+
     if not claims:
         print(f"No Paladin claims found for {chain_name}")
         chain_dir = get_chain_dirs(date_dir, chain_name)
         csv_path = chain_dir / f"bribe_claims_{chain_name}_{CURRENT_DATE}.csv"
         with open(csv_path, "w") as f:
-            f.write("chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n")
+            f.write(
+                "chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n"
+            )
         return csv_path
-    
+
     w3 = w3_by_chain[chain_name]
 
     unique_distributors = set(claim["distributor"] for claim in claims)
@@ -167,26 +169,26 @@ def claim_hidden_hand_bribes(
     """Fetch and claim all bribes from Hidden Hand and append to existing CSV."""
     if chain_name != "mainnet":
         return
-    
+
     print("\nChecking Hidden Hand rewards...")
-    
+
     try:
         url = f"https://api.hiddenhand.finance/reward/1/{omni_safe.lower()}"
         response = requests.get(url, timeout=10)
         if not response.ok:
             print(f"Hidden Hand API returned status {response.status_code}")
             return
-        
+
         data = response.json()
         if "error" in data and data["error"]:
             print(f"Hidden Hand API error: {data}")
             return
-        
+
         rewards_data = data.get("data", [])
     except Exception as e:
         print(f"Failed to fetch Hidden Hand rewards: {e}")
         return
-    
+
     # Process rewards into claims
     claims = []
     for reward in rewards_data:
@@ -195,26 +197,32 @@ def claim_hidden_hand_bribes(
             claim_data = reward["claimMetadata"]
             identifier_hex = claim_data["identifier"]
             identifier = bytes.fromhex(
-                identifier_hex[2:] if identifier_hex.startswith("0x") else identifier_hex
+                identifier_hex[2:]
+                if identifier_hex.startswith("0x")
+                else identifier_hex
             )
-            
-            claims.append({
-                "market": reward["protocol"],
-                "token": reward["token"],
-                "symbol": reward.get("symbol", "UNKNOWN").upper(),
-                "identifier": identifier,
-                "amount": claimable_amount,
-                "proof": claim_data["merkleProof"],
-                "account": omni_safe,
-            })
-            print(f"  - Found {reward.get('symbol', 'UNKNOWN').upper()} ({reward['token']}): {claimable_amount} mantissa")
-    
+
+            claims.append(
+                {
+                    "market": reward["protocol"],
+                    "token": reward["token"],
+                    "symbol": reward.get("symbol", "UNKNOWN").upper(),
+                    "identifier": identifier,
+                    "amount": claimable_amount,
+                    "proof": claim_data["merkleProof"],
+                    "account": omni_safe,
+                }
+            )
+            print(
+                f"  - Found {reward.get('symbol', 'UNKNOWN').upper()} ({reward['token']}): {claimable_amount} mantissa"
+            )
+
     if not claims:
         print("No Hidden Hand rewards to claim")
         return
-    
+
     print(f"\nFound {len(claims)} Hidden Hand rewards to claim")
-    
+
     w3 = w3_by_chain[chain_name]
     distributor = SafeContract(HH_V2_DISTRIBUTOR, reward_distributor_abi)
     w3_distributor = w3.eth.contract(
@@ -264,13 +272,13 @@ def generate_tokens_to_sell_csv(csv_path: str, chain_name: str, date_dir: Path):
             parts = line.strip().split(",")
             _, _, token, _, _, amount_mantissa = parts
 
-            token_sell_amounts[token] = (
-                token_sell_amounts.get(token, Decimal(0)) + Decimal(amount_mantissa)
-            )
+            token_sell_amounts[token] = token_sell_amounts.get(
+                token, Decimal(0)
+            ) + Decimal(amount_mantissa)
 
     with open(sell_csv_path, "w") as f:
         f.write("chain,token_address,amount,amount_mantissa\n")
-        
+
         for token, sell_amount_mantissa in token_sell_amounts.items():
             token_contract = w3_by_chain[chain_name].eth.contract(
                 address=Web3.to_checksum_address(token), abi=erc20_abi
@@ -278,7 +286,7 @@ def generate_tokens_to_sell_csv(csv_path: str, chain_name: str, date_dir: Path):
             decimals = token_contract.functions.decimals().call()
             amount = sell_amount_mantissa / Decimal(10**decimals)
             sell_amount_mantissa_int = int(sell_amount_mantissa)
-            
+
             print(f"Adding to sell list - token: {token}, amount: {amount}")
             f.write(f"{chain_name},{token},{amount},{sell_amount_mantissa_int}\n")
 
@@ -294,5 +302,6 @@ if __name__ == "__main__":
         generate_tokens_to_sell_csv(csv_path, chain_name, date_dir)
 
         builder.output_payload(
-            get_chain_dirs(date_dir, chain_name) / f"bribe_claims_{chain_name}_{CURRENT_DATE}.json"
+            get_chain_dirs(date_dir, chain_name)
+            / f"bribe_claims_{chain_name}_{CURRENT_DATE}.json"
         )
