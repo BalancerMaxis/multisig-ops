@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1754920743,
+  "meta": {
+    "name": "Rewards Injector Configuration Update",
+    "description": "Update rewards injector configurations",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xF7d32a6D1FFA5DEe909728fF2fEFf4C31C85b052",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          }
+        ],
+        "name": "removeRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x292BAC8fF96381B75aAB0E338A94069597d04E7a]"
+      }
+    }
+  ]
+}
