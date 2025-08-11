@@ -56,13 +56,13 @@ def create_claims_csv(chain_name: str, date_dir: Path) -> Path:
     chain_dir = get_chain_dirs(date_dir, chain_name)
     csv_path = chain_dir / f"bribe_claims_{chain_name}_{CURRENT_DATE}.csv"
     with open(csv_path, "w") as f:
-        f.write("chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n")
+        f.write(
+            "chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n"
+        )
     return csv_path
 
 
-def claim_paladin_bribes(
-    chain_name: str, chain_id: int, csv_path: str
-) -> None:
+def claim_paladin_bribes(chain_name: str, chain_id: int, csv_path: str) -> None:
     """Fetch and claim all bribes from paladin and append to existing CSV."""
     # Fetch claims from Paladin API
     try:
@@ -292,12 +292,12 @@ if __name__ == "__main__":
 
     for chain_name, chain_id in [("mainnet", 1), ("arbitrum", 42161)]:
         builder = SafeTxBuilder(safe_address=omni_safe, chain_name=chain_name)
-        
+
         csv_path = create_claims_csv(chain_name, date_dir)
 
         claim_paladin_bribes(chain_name, chain_id, csv_path)
         claim_hidden_hand_bribes(chain_name, csv_path)
-        
+
         generate_tokens_to_sell_csv(csv_path, chain_name, date_dir)
 
         builder.output_payload(
