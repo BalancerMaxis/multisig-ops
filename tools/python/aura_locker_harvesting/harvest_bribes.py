@@ -31,37 +31,12 @@ flatbook_arb = AddrBook("arbitrum").flatbook
 
 omni_safe = flatbook_mainnet["multisigs/maxi_aura_locker"]
 
-CHAIN_ADDRS = {
-    "mainnet": {
-        "bribe_vault": flatbook_mainnet["hidden_hand2/bribe_vault"],
-        "bal_briber": flatbook_mainnet["hidden_hand2/balancer_briber"],
-    },
-    "arbitrum": {
-        "bribe_vault": flatbook_arb["hidden_hand2/bribe_vault"],
-        "bal_briber": flatbook_arb["hidden_hand2/bal_briber"],
-    },
-}
-
 HH_V2_DISTRIBUTOR = "0xa9b08b4ceec1ef29edec7f9c94583270337d6416"
 
 ABI_DIR = PROJECT_ROOT / "tools/python/abis"
 paladin_distributor_abi = json.load(open(ABI_DIR / "MultiMerkleDistributorV2.json"))
 erc20_abi = json.load(open(ABI_DIR / "ERC20.json"))
-bribe_market_abi = json.load(open(ABI_DIR / "BribeMarket.json"))
 reward_distributor_abi = json.load(open(ABI_DIR / "RewardDistributor.json"))
-
-
-def fetch_claimable_paladin_bribes(address: str) -> List[dict]:
-    response = requests.get(
-        f"https://api.paladin.vote/quest/v3/copilot/claims/{address}"
-    )
-    response.raise_for_status()
-    return response.json()["claims"]
-
-
-def get_prop_hash(target: str) -> str:
-    prop = Web3.solidity_keccak(["address"], [Web3.to_checksum_address(target)])
-    return f"0x{prop.hex().lstrip('0x')}"
 
 
 def create_dirs_for_date(base_path: Path, date: str):
@@ -69,8 +44,6 @@ def create_dirs_for_date(base_path: Path, date: str):
     for chain in ["mainnet", "arbitrum"]:
         chain_dir = date_dir / chain
         os.makedirs(chain_dir, exist_ok=True)
-        # with open(chain_dir / ".gitkeep", "w") as f:
-        #     f.write("")
     return date_dir
 
 
@@ -79,9 +52,26 @@ def get_chain_dirs(base_dir: Path, chain_name: str) -> Path:
 
 
 def claim_paladin_bribes(
-    claims: List[dict], chain_name: str, date_dir: Path, builder: SafeTxBuilder
+    chain_name: str, chain_id: int, date_dir: Path, builder: SafeTxBuilder
 ) -> str:
-    """Generate tx to claim all bribes from paladin."""
+    """Fetch and claim all bribes from paladin."""
+    # Fetch claims from Paladin API
+    response = requests.get(
+        f"https://api.paladin.vote/quest/v3/copilot/claims/{omni_safe}"
+    )
+    response.raise_for_status()
+    all_claims = response.json()["claims"]
+    
+    claims = [claim for claim in all_claims if claim["chainId"] == chain_id]
+    
+    if not claims:
+        print(f"No Paladin claims found for {chain_name}")
+        chain_dir = get_chain_dirs(date_dir, chain_name)
+        csv_path = chain_dir / f"bribe_claims_{chain_name}_{CURRENT_DATE}.csv"
+        with open(csv_path, "w") as f:
+            f.write("chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n")
+        return csv_path
+    
     w3 = w3_by_chain[chain_name]
 
     unique_distributors = set(claim["distributor"] for claim in claims)
@@ -139,7 +129,6 @@ def claim_paladin_bribes(
 
 
 def format_hidden_hand_claims(claims: List[Dict]) -> List[List]:
-    """Format Hidden Hand claims for contract call."""
     formatted_claims = []
     for claim in claims:
         identifier_hex = (
@@ -169,76 +158,63 @@ def format_hidden_hand_claims(claims: List[Dict]) -> List[List]:
     return formatted_claims
 
 
-def fetch_hidden_hand_rewards(address: str, chain_id: int = 1) -> Dict:
-    """Fetch rewards from HiddenHand API."""
-    url = f"https://api.hiddenhand.finance/reward/{chain_id}/{address.lower()}"
-    response = requests.get(url, timeout=10)
-    if not response.ok:
-        raise RuntimeError(f"Hidden Hand API returned status {response.status_code}")
-
-    data = response.json()
-    if "error" in data and data["error"]:
-        raise RuntimeError(f"Hidden Hand API returned error: {data}")
-    if "data" not in data:
-        raise ValueError(f"Missing 'data' field in Hidden Hand API response")
-
-    return data
-
-
-def get_claimable_hidden_hand_rewards(address: str) -> List[Dict]:
-    """Get claimable rewards from Hidden Hand."""
-    address = Web3.to_checksum_address(address)
-    claimable_rewards = []
-
-    response = fetch_hidden_hand_rewards(address)
-    rewards_data = response.get("data", [])
-
-    for reward in rewards_data:
-        protocol = reward["protocol"]
-        process_reward(reward, protocol, address, claimable_rewards)
-
-    return claimable_rewards
-
-
-def process_reward(reward: dict, protocol: str, address: str, claimable_rewards: list):
-    """Process a single reward."""
-    claimable_amount = int(reward["cumulativeAmount"])
-
-    if claimable_amount > 0:
-        claim_data = reward["claimMetadata"]
-        identifier_hex = claim_data["identifier"]
-        identifier = bytes.fromhex(
-            identifier_hex[2:] if identifier_hex.startswith("0x") else identifier_hex
-        )
-
-        claimable_rewards.append(
-            {
-                "market": protocol,
-                "token": reward["token"],
-                "symbol": reward.get("symbol", "UNKNOWN").upper(),
-                "identifier": identifier,
-                "amount": claimable_amount,
-                "proof": claim_data["merkleProof"],
-                "account": address,
-            }
-        )
-        print(
-            f"  - Found {reward.get('symbol', 'UNKNOWN').upper()} ({reward['token']}): {reward.get('claimable', '0')} ({claimable_amount} mantissa)"
-        )
-
-
 def claim_hidden_hand_bribes(
-    claims: List[Dict],
     chain_name: str,
     date_dir: Path,
     builder: SafeTxBuilder,
     csv_path: str,
 ) -> None:
-    """Generate tx to claim all bribes from Hidden Hand and append to existing CSV."""
+    """Fetch and claim all bribes from Hidden Hand and append to existing CSV."""
     if chain_name != "mainnet":
-        print(f"Hidden Hand claims only supported on mainnet, skipping {chain_name}")
         return
-
+    
+    print("\nChecking Hidden Hand rewards...")
+    
+    try:
+        url = f"https://api.hiddenhand.finance/reward/1/{omni_safe.lower()}"
+        response = requests.get(url, timeout=10)
+        if not response.ok:
+            print(f"Hidden Hand API returned status {response.status_code}")
+            return
+        
+        data = response.json()
+        if "error" in data and data["error"]:
+            print(f"Hidden Hand API error: {data}")
+            return
+        
+        rewards_data = data.get("data", [])
+    except Exception as e:
+        print(f"Failed to fetch Hidden Hand rewards: {e}")
+        return
+    
+    # Process rewards into claims
+    claims = []
+    for reward in rewards_data:
+        claimable_amount = int(reward["cumulativeAmount"])
+        if claimable_amount > 0:
+            claim_data = reward["claimMetadata"]
+            identifier_hex = claim_data["identifier"]
+            identifier = bytes.fromhex(
+                identifier_hex[2:] if identifier_hex.startswith("0x") else identifier_hex
+            )
+            
+            claims.append({
+                "market": reward["protocol"],
+                "token": reward["token"],
+                "symbol": reward.get("symbol", "UNKNOWN").upper(),
+                "identifier": identifier,
+                "amount": claimable_amount,
+                "proof": claim_data["merkleProof"],
+                "account": omni_safe,
+            })
+            print(f"  - Found {reward.get('symbol', 'UNKNOWN').upper()} ({reward['token']}): {claimable_amount} mantissa")
+    
+    if not claims:
+        print("No Hidden Hand rewards to claim")
+        return
+    
+    print(f"\nFound {len(claims)} Hidden Hand rewards to claim")
+    
     w3 = w3_by_chain[chain_name]
     distributor = SafeContract(HH_V2_DISTRIBUTOR, reward_distributor_abi)
     w3_distributor = w3.eth.contract(
@@ -275,70 +251,26 @@ def claim_hidden_hand_bribes(
             distributor.claim(claims_str)
 
 
-def deposit_paladin_bribes(csv_path: str, chain_name: str, date_dir: Path):
-    """Deposit 70% of Paladin bribe amounts on HH, save 30% DAO fee."""
-    chain_addrs = CHAIN_ADDRS[chain_name]
+def generate_tokens_to_sell_csv(csv_path: str, chain_name: str, date_dir: Path):
+    """Generate CSV of all claimed tokens to be sold for AURA"""
     chain_dir = get_chain_dirs(date_dir, chain_name)
-
     sell_csv_path = chain_dir / f"tokens_to_sell_{chain_name}_{CURRENT_DATE}.csv"
-
-    with open(sell_csv_path, "w") as f:
-        f.write("chain,token_address,amount,amount_mantissa\n")
-
-    aggregated_bribes = {}
-    hh_tokens = {}
-
-    with open(csv_path, "r") as f:
-        next(f)
-        for line in f:
-            parts = line.strip().split(",")
-            _, bribe_market, token, gauge, _, amount_mantissa = parts
-
-            if bribe_market == "paladin":
-                key = (token, gauge)
-                aggregated_bribes[key] = aggregated_bribes.get(
-                    key, Decimal(0)
-                ) + Decimal(amount_mantissa)
-            elif bribe_market == "hiddenhand":
-                # HH claims don't have gauge info, all go to sell
-                hh_tokens[token] = hh_tokens.get(token, Decimal(0)) + Decimal(
-                    amount_mantissa
-                )
 
     token_sell_amounts = {}
 
-    for (token, gauge), amount_mantissa in aggregated_bribes.items():
-        print(
-            f"depositing bribe on HH - token: {token}, gauge: {gauge}, amount: {amount_mantissa}"
-        )
+    with open(csv_path, "r") as f:
+        next(f)  # Skip header
+        for line in f:
+            parts = line.strip().split(",")
+            _, _, token, _, _, amount_mantissa = parts
 
-        brib_token = SafeContract(token, erc20_abi)
-        briber = SafeContract(chain_addrs["bal_briber"], bribe_market_abi)
+            token_sell_amounts[token] = (
+                token_sell_amounts.get(token, Decimal(0)) + Decimal(amount_mantissa)
+            )
 
-        prop_hash = get_prop_hash(gauge)
-        assert prop_hash, f"no prop hash for {gauge}"
-
-        bribe_amount_decimal = amount_mantissa * Decimal("0.7")
-        bribe_amount_mantissa = int(bribe_amount_decimal)
-
-        token_sell_amounts[token] = (
-            token_sell_amounts.get(token, Decimal(0))
-            + amount_mantissa
-            - Decimal(bribe_amount_mantissa)
-        )
-
-        brib_token.approve(chain_addrs["bribe_vault"], bribe_amount_mantissa)
-        briber.depositBribe(prop_hash, token, bribe_amount_mantissa, 0, 2)
-
-    for token, amount_mantissa in hh_tokens.items():
-        print(
-            f"Adding HH claimed token to sell list - token: {token}, amount: {amount_mantissa}"
-        )
-        token_sell_amounts[token] = (
-            token_sell_amounts.get(token, Decimal(0)) + amount_mantissa
-        )
-
-    with open(sell_csv_path, "a") as f:
+    with open(sell_csv_path, "w") as f:
+        f.write("chain,token_address,amount,amount_mantissa\n")
+        
         for token, sell_amount_mantissa in token_sell_amounts.items():
             token_contract = w3_by_chain[chain_name].eth.contract(
                 address=Web3.to_checksum_address(token), abi=erc20_abi
@@ -346,38 +278,21 @@ def deposit_paladin_bribes(csv_path: str, chain_name: str, date_dir: Path):
             decimals = token_contract.functions.decimals().call()
             amount = sell_amount_mantissa / Decimal(10**decimals)
             sell_amount_mantissa_int = int(sell_amount_mantissa)
+            
+            print(f"Adding to sell list - token: {token}, amount: {amount}")
             f.write(f"{chain_name},{token},{amount},{sell_amount_mantissa_int}\n")
 
 
 if __name__ == "__main__":
     date_dir = create_dirs_for_date(BASE_PATH, CURRENT_DATE)
 
-    claims = fetch_claimable_paladin_bribes(omni_safe)
-    mainnet_claims = [claim for claim in claims if claim["chainId"] == 1]
-    arb_claims = [claim for claim in claims if claim["chainId"] == 42161]
-
-    print("\nChecking Hidden Hand rewards...")
-    try:
-        hh_claims = get_claimable_hidden_hand_rewards(omni_safe)
-        print(f"\nFound {len(hh_claims)} Hidden Hand rewards to claim")
-    except Exception as e:
-        print(f"\nERROR: Failed to fetch Hidden Hand rewards: {e}")
-        hh_claims = []
-
-    for chain_name, chain_claims in [
-        ("mainnet", mainnet_claims),
-        ("arbitrum", arb_claims),
-    ]:
+    for chain_name, chain_id in [("mainnet", 1), ("arbitrum", 42161)]:
         builder = SafeTxBuilder(safe_address=omni_safe, chain_name=chain_name)
 
-        csv_path = claim_paladin_bribes(chain_claims, chain_name, date_dir, builder)
-
-        if chain_name == "mainnet" and hh_claims:
-            claim_hidden_hand_bribes(hh_claims, chain_name, date_dir, builder, csv_path)
-
-        deposit_paladin_bribes(csv_path, chain_name, date_dir)
+        csv_path = claim_paladin_bribes(chain_name, chain_id, date_dir, builder)
+        claim_hidden_hand_bribes(chain_name, date_dir, builder, csv_path)
+        generate_tokens_to_sell_csv(csv_path, chain_name, date_dir)
 
         builder.output_payload(
-            get_chain_dirs(date_dir, chain_name)
-            / f"combined_bribe_recycling_{chain_name}_{CURRENT_DATE}.json"
+            get_chain_dirs(date_dir, chain_name) / f"bribe_claims_{chain_name}_{CURRENT_DATE}.json"
         )
