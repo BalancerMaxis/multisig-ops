@@ -17,7 +17,6 @@ sys.path.append(str(Path(__file__).parent.parent))
 from helpers.path_utils import find_project_root
 
 
-
 load_dotenv()
 
 
@@ -79,7 +78,9 @@ def get_chain_dirs(base_dir: Path, chain_name: str) -> Path:
     return base_dir / chain_name
 
 
-def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path, builder: SafeTxBuilder) -> str:
+def claim_paladin_bribes(
+    claims: List[dict], chain_name: str, date_dir: Path, builder: SafeTxBuilder
+) -> str:
     """Generate tx to claim all bribes from paladin."""
     w3 = w3_by_chain[chain_name]
 
@@ -93,10 +94,14 @@ def claim_paladin_bribes(claims: List[dict], chain_name: str, date_dir: Path, bu
     csv_path = chain_dir / f"bribe_claims_{chain_name}_{CURRENT_DATE}.csv"
 
     with open(csv_path, "w") as f:
-        f.write("chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n")
+        f.write(
+            "chain,bribe_market,token_address,gauge_address,amount,amount_mantissa\n"
+        )
 
         for claim in claims:
-            print(f"Claiming Paladin - token: {claim['token']}, gauge: {claim['gauge']}")
+            print(
+                f"Claiming Paladin - token: {claim['token']}, gauge: {claim['gauge']}"
+            )
 
             distributor = distributor_contracts[claim["distributor"]]
             w3_distributor = w3_by_chain[chain_name].eth.contract(
@@ -137,24 +142,30 @@ def format_hidden_hand_claims(claims: List[Dict]) -> List[List]:
     """Format Hidden Hand claims for contract call."""
     formatted_claims = []
     for claim in claims:
-        identifier_hex = claim['identifier'].hex() if isinstance(claim['identifier'], bytes) else claim['identifier']
-        if not identifier_hex.startswith('0x'):
-            identifier_hex = '0x' + identifier_hex
-        
+        identifier_hex = (
+            claim["identifier"].hex()
+            if isinstance(claim["identifier"], bytes)
+            else claim["identifier"]
+        )
+        if not identifier_hex.startswith("0x"):
+            identifier_hex = "0x" + identifier_hex
+
         proof_hex = []
-        for p in claim['proof']:
-            if not p.startswith('0x'):
-                proof_hex.append('0x' + p)
+        for p in claim["proof"]:
+            if not p.startswith("0x"):
+                proof_hex.append("0x" + p)
             else:
                 proof_hex.append(p)
-        
-        formatted_claims.append([
-            identifier_hex,
-            Web3.to_checksum_address(claim['account']),
-            str(claim['amount']),
-            proof_hex
-        ])
-    
+
+        formatted_claims.append(
+            [
+                identifier_hex,
+                Web3.to_checksum_address(claim["account"]),
+                str(claim["amount"]),
+                proof_hex,
+            ]
+        )
+
     return formatted_claims
 
 
@@ -164,13 +175,13 @@ def fetch_hidden_hand_rewards(address: str, chain_id: int = 1) -> Dict:
     response = requests.get(url, timeout=10)
     if not response.ok:
         raise RuntimeError(f"Hidden Hand API returned status {response.status_code}")
-    
+
     data = response.json()
     if "error" in data and data["error"]:
         raise RuntimeError(f"Hidden Hand API returned error: {data}")
     if "data" not in data:
         raise ValueError(f"Missing 'data' field in Hidden Hand API response")
-    
+
     return data
 
 
@@ -178,83 +189,93 @@ def get_claimable_hidden_hand_rewards(address: str) -> List[Dict]:
     """Get claimable rewards from Hidden Hand."""
     address = Web3.to_checksum_address(address)
     claimable_rewards = []
-    
+
     response = fetch_hidden_hand_rewards(address)
-    rewards_data = response.get('data', [])
-    
+    rewards_data = response.get("data", [])
+
     for reward in rewards_data:
-        protocol = reward['protocol']
+        protocol = reward["protocol"]
         process_reward(reward, protocol, address, claimable_rewards)
-    
+
     return claimable_rewards
 
 
 def process_reward(reward: dict, protocol: str, address: str, claimable_rewards: list):
     """Process a single reward."""
-    claimable_amount = int(reward['cumulativeAmount'])
-    
+    claimable_amount = int(reward["cumulativeAmount"])
+
     if claimable_amount > 0:
-        claim_data = reward['claimMetadata']
-        identifier_hex = claim_data['identifier']
-        identifier = bytes.fromhex(identifier_hex[2:] if identifier_hex.startswith('0x') else identifier_hex)
-        
-        claimable_rewards.append({
-            'market': protocol,
-            'token': reward['token'],
-            'symbol': reward.get('symbol', 'UNKNOWN').upper(),
-            'identifier': identifier,
-            'amount': claimable_amount,
-            'proof': claim_data['merkleProof'],
-            'account': address
-        })
-        print(f"  - Found {reward.get('symbol', 'UNKNOWN').upper()} ({reward['token']}): {reward.get('claimable', '0')} ({claimable_amount} mantissa)")
+        claim_data = reward["claimMetadata"]
+        identifier_hex = claim_data["identifier"]
+        identifier = bytes.fromhex(
+            identifier_hex[2:] if identifier_hex.startswith("0x") else identifier_hex
+        )
+
+        claimable_rewards.append(
+            {
+                "market": protocol,
+                "token": reward["token"],
+                "symbol": reward.get("symbol", "UNKNOWN").upper(),
+                "identifier": identifier,
+                "amount": claimable_amount,
+                "proof": claim_data["merkleProof"],
+                "account": address,
+            }
+        )
+        print(
+            f"  - Found {reward.get('symbol', 'UNKNOWN').upper()} ({reward['token']}): {reward.get('claimable', '0')} ({claimable_amount} mantissa)"
+        )
 
 
-def claim_hidden_hand_bribes(claims: List[Dict], chain_name: str, date_dir: Path, builder: SafeTxBuilder, csv_path: str) -> None:
+def claim_hidden_hand_bribes(
+    claims: List[Dict],
+    chain_name: str,
+    date_dir: Path,
+    builder: SafeTxBuilder,
+    csv_path: str,
+) -> None:
     """Generate tx to claim all bribes from Hidden Hand and append to existing CSV."""
     if chain_name != "mainnet":
         print(f"Hidden Hand claims only supported on mainnet, skipping {chain_name}")
         return
-        
+
     w3 = w3_by_chain[chain_name]
     distributor = SafeContract(HH_V2_DISTRIBUTOR, reward_distributor_abi)
     w3_distributor = w3.eth.contract(
-        address=Web3.to_checksum_address(HH_V2_DISTRIBUTOR),
-        abi=reward_distributor_abi
+        address=Web3.to_checksum_address(HH_V2_DISTRIBUTOR), abi=reward_distributor_abi
     )
-    
+
     with open(csv_path, "a") as f:
         valid_claims = []
         for claim in claims:
             claimed_amount = w3_distributor.functions.claimed(
-                claim['identifier'],
-                Web3.to_checksum_address(claim['account'])
+                claim["identifier"], Web3.to_checksum_address(claim["account"])
             ).call()
-            
+
             if claimed_amount > 0:
                 print(f"Skipping {claim['token']} because it's already claimed")
                 continue
-                
+
             print(f"Claiming HH - token: {claim['token']}, amount: {claim['amount']}")
             valid_claims.append(claim)
-            
+
             token_contract = w3.eth.contract(
-                address=Web3.to_checksum_address(claim['token']), abi=erc20_abi
+                address=Web3.to_checksum_address(claim["token"]), abi=erc20_abi
             )
             decimals = token_contract.functions.decimals().call()
-            amount = Decimal(claim['amount']) / Decimal(10**decimals)
-            
-            f.write(f"{chain_name},hiddenhand,{claim['token']},,{amount},{claim['amount']}\n")
-        
+            amount = Decimal(claim["amount"]) / Decimal(10**decimals)
+
+            f.write(
+                f"{chain_name},hiddenhand,{claim['token']},,{amount},{claim['amount']}\n"
+            )
+
         if valid_claims:
             formatted_claims = format_hidden_hand_claims(valid_claims)
             claims_str = json.dumps(formatted_claims)
             distributor.claim(claims_str)
 
 
-def deposit_paladin_bribes(
-    csv_path: str, chain_name: str, date_dir: Path
-):
+def deposit_paladin_bribes(csv_path: str, chain_name: str, date_dir: Path):
     """Deposit 70% of Paladin bribe amounts on HH, save 30% DAO fee."""
     chain_addrs = CHAIN_ADDRS[chain_name]
     chain_dir = get_chain_dirs(date_dir, chain_name)
@@ -266,24 +287,30 @@ def deposit_paladin_bribes(
 
     aggregated_bribes = {}
     hh_tokens = {}
-    
+
     with open(csv_path, "r") as f:
         next(f)
         for line in f:
             parts = line.strip().split(",")
             _, bribe_market, token, gauge, _, amount_mantissa = parts
-            
+
             if bribe_market == "paladin":
                 key = (token, gauge)
-                aggregated_bribes[key] = aggregated_bribes.get(key, Decimal(0)) + Decimal(amount_mantissa)
+                aggregated_bribes[key] = aggregated_bribes.get(
+                    key, Decimal(0)
+                ) + Decimal(amount_mantissa)
             elif bribe_market == "hiddenhand":
                 # HH claims don't have gauge info, all go to sell
-                hh_tokens[token] = hh_tokens.get(token, Decimal(0)) + Decimal(amount_mantissa)
+                hh_tokens[token] = hh_tokens.get(token, Decimal(0)) + Decimal(
+                    amount_mantissa
+                )
 
     token_sell_amounts = {}
 
     for (token, gauge), amount_mantissa in aggregated_bribes.items():
-        print(f"depositing bribe on HH - token: {token}, gauge: {gauge}, amount: {amount_mantissa}")
+        print(
+            f"depositing bribe on HH - token: {token}, gauge: {gauge}, amount: {amount_mantissa}"
+        )
 
         brib_token = SafeContract(token, erc20_abi)
         briber = SafeContract(chain_addrs["bal_briber"], bribe_market_abi)
@@ -302,10 +329,14 @@ def deposit_paladin_bribes(
 
         brib_token.approve(chain_addrs["bribe_vault"], bribe_amount_mantissa)
         briber.depositBribe(prop_hash, token, bribe_amount_mantissa, 0, 2)
-    
+
     for token, amount_mantissa in hh_tokens.items():
-        print(f"Adding HH claimed token to sell list - token: {token}, amount: {amount_mantissa}")
-        token_sell_amounts[token] = token_sell_amounts.get(token, Decimal(0)) + amount_mantissa
+        print(
+            f"Adding HH claimed token to sell list - token: {token}, amount: {amount_mantissa}"
+        )
+        token_sell_amounts[token] = (
+            token_sell_amounts.get(token, Decimal(0)) + amount_mantissa
+        )
 
     with open(sell_csv_path, "a") as f:
         for token, sell_amount_mantissa in token_sell_amounts.items():
@@ -324,7 +355,7 @@ if __name__ == "__main__":
     claims = fetch_claimable_paladin_bribes(omni_safe)
     mainnet_claims = [claim for claim in claims if claim["chainId"] == 1]
     arb_claims = [claim for claim in claims if claim["chainId"] == 42161]
-    
+
     print("\nChecking Hidden Hand rewards...")
     try:
         hh_claims = get_claimable_hidden_hand_rewards(omni_safe)
@@ -332,17 +363,21 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\nERROR: Failed to fetch Hidden Hand rewards: {e}")
         hh_claims = []
-    
-    for chain_name, chain_claims in [("mainnet", mainnet_claims), ("arbitrum", arb_claims)]:
+
+    for chain_name, chain_claims in [
+        ("mainnet", mainnet_claims),
+        ("arbitrum", arb_claims),
+    ]:
         builder = SafeTxBuilder(safe_address=omni_safe, chain_name=chain_name)
-        
+
         csv_path = claim_paladin_bribes(chain_claims, chain_name, date_dir, builder)
-        
+
         if chain_name == "mainnet" and hh_claims:
             claim_hidden_hand_bribes(hh_claims, chain_name, date_dir, builder, csv_path)
-        
+
         deposit_paladin_bribes(csv_path, chain_name, date_dir)
-            
+
         builder.output_payload(
-            get_chain_dirs(date_dir, chain_name) / f"combined_bribe_recycling_{chain_name}_{CURRENT_DATE}.json"
+            get_chain_dirs(date_dir, chain_name)
+            / f"combined_bribe_recycling_{chain_name}_{CURRENT_DATE}.json"
         )
