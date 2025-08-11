@@ -1,10 +1,10 @@
-name: Recycle Bribes
+name: Aura Locker Harvesting
 
 on:
   workflow_dispatch:
 
 jobs:
-  recycle_bribes:
+  harvest_bribes:
     runs-on: ubuntu-latest
     outputs:
       pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
@@ -28,22 +28,22 @@ jobs:
         env:
           DRPC_KEY: ${{ secrets.DRPC_KEY }}
         run: |
-          python tools/python/bribe_recycling/recycle_bribes.py
+          python tools/python/aura_locker_harvesting/harvest_bribes.py
 
       - name: Generate branch name
         id: generate-branch-name
         run: |
-          echo "branch=bribe-recycling-$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "branch=aura-locker-harvest-$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
           echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "feat: recycle bribes - ${{ steps.generate-branch-name.outputs.date }}"
-          title: "Recycle Bribes (Paladin & Hidden Hand) - ${{ steps.generate-branch-name.outputs.date }}"
+          commit-message: "feat: harvest aura locker bribes - ${{ steps.generate-branch-name.outputs.date }}"
+          title: "Aura Locker Harvest - ${{ steps.generate-branch-name.outputs.date }}"
           body: |
-            Run result from [`tools/python/bribe_recycling/recycle_bribes.py`](../blob/main/tools/python/bribe_recycling/recycle_bribes.py)
+            Run result from [`tools/python/aura_locker_harvesting/harvest_bribes.py`](../blob/main/tools/python/aura_locker_harvesting/harvest_bribes.py)
 
             Output CSV files:
             * [Mainnet bribe claims](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/mainnet/bribe_claims_mainnet_${{ steps.generate-branch-name.outputs.date }}.csv)
@@ -56,9 +56,9 @@ jobs:
           delete-branch: true
 
   run_reports:
-    needs: recycle_bribes
+    needs: harvest_bribes
     secrets: inherit
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     with:
-      pr_number: ${{ needs.recycle_bribes.outputs.pull-request-number }}
-      checkout_ref: ${{ needs.recycle_bribes.outputs.pull-request-branch }}
+      pr_number: ${{ needs.harvest_bribes.outputs.pull-request-number }}
+      checkout_ref: ${{ needs.harvest_bribes.outputs.pull-request-branch }}
