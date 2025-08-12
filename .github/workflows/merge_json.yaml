@@ -15,7 +15,7 @@ jobs:
       pull-request-head-sha: ${{ steps.cpr.outputs.pull-request-head-sha }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Restore Compiler Caches
         id: restore-compiler-caches
