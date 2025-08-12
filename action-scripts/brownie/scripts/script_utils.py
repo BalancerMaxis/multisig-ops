@@ -538,7 +538,10 @@ def format_into_report(
         )
         file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
     except Exception as e:
-        file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n\n"
+        exception = repr(e)
+        if os.getenv("DRPC_KEY") in exception:
+            exception = exception.replace(os.getenv("DRPC_KEY"), "***")
+        file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
 
     if gauge_checklist:
         for gauge_check in gauge_checklist:
