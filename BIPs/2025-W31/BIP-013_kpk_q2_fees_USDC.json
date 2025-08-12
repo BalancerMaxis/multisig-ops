@@ -14,23 +14,15 @@
       "data": null,
       "contractMethod": {
         "inputs": [
-          {
-            "name": "to",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "value",
-            "type": "uint256",
-            "internalType": "uint256"
-          }
+          { "internalType": "address", "name": "to", "type": "address" },
+          { "internalType": "uint256", "name": "value", "type": "uint256" }
         ],
         "name": "transfer",
         "payable": false
       },
       "contractInputsValues": {
         "to": "0x58e6c7ab55Aa9012eAccA16d1ED4c15795669E1C",
-        "value": "41450000000"
+        "value": "41449999798"
       }
     }
   ]
