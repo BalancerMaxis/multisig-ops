@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Black
         uses: psf/black@stable
@@ -17,6 +17,7 @@ jobs:
           options: "--verbose"
 
       - name: Auto commit
+        if: github.event.pull_request.head.repo.full_name == github.repository
         uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "style: ci lint with `black`"

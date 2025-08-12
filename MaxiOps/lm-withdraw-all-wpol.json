@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1754383484984,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x75f2725982461970c285fdfbea8b4dd8d56b8a510bf9df44039734247404b1af"
+  },
+  "transactions": [
+    {
+      "to": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [{ "name": "wad", "type": "uint256" }],
+        "name": "withdraw",
+        "payable": false
+      },
+      "contractInputsValues": { "wad": "74805384965757455386908" }
+    }
+  ]
+}
