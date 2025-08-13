@@ -17,6 +17,8 @@ The authorizer will grant the following permissions to **Maxi Omni** (`0x9ff471F
 | Function | Action ID | Description |
 |----------|-----------|-------------|
 | `GaugeAdder.addGauge(address,string)` | `0x83dc5eaaade2c71d34c71bd21fe617f5f6d83bf53bd9d886d00c756e386b8cd1` | Add new gauges to the system |
+| `GaugeAdder.addGaugeType(string)` | `0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151` | Add new gauge types |
+| `GaugeAdder.setGaugeFactory(address,string)` | `0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166` | Set gauge factory addresses |
 | `LiquidityGaugeV5.setRelativeWeightCap(uint256)` | `0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba` | Set relative weight caps for gauges |
 | `LiquidityGaugeV5.unkillGauge()` | `0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea` | Reactivate killed gauges |
 | `LiquidityGaugeV5.killGauge()` | `0xec1d467d9ab03a0079c22a89037209f5763aec973897ea763e2cf25d71a5f12e` | Deactivate gauges |
@@ -24,20 +26,28 @@ The authorizer will grant the following permissions to **Maxi Omni** (`0x9ff471F
 ### Detailed Action ID Mapping
 
 - **20230519-gauge-adder-v4/GaugeAdder.addGauge(address,string)**
-  - Action ID: `0x83dc5eaaade2c71d34c71bd21fe617f5f6d83bf53bd9d886d00c756e386b8cd1`
-  - Function: Enable addition of new liquidity gauges
+    - Action ID: `0x83dc5eaaade2c71d34c71bd21fe617f5f6d83bf53bd9d886d00c756e386b8cd1`
+    - Function: Enable addition of new liquidity gauges
+
+- **20230519-gauge-adder-v4/GaugeAdder.addGaugeType(string)**
+    - Action ID: `0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151`
+    - Function: Enable addition of new gauge types to the system
+
+- **20230519-gauge-adder-v4/GaugeAdder.setGaugeFactory(address,string)**
+    - Action ID: `0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166`
+    - Function: Set and update gauge factory contract addresses
 
 - **20220822-mainnet-gauge-factory-v2/LiquidityGaugeV5.setRelativeWeightCap(uint256)**
-  - Action ID: `0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba`
-  - Function: Set maximum relative weight caps for gauge emissions
+    - Action ID: `0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba`
+    - Function: Set maximum relative weight caps for gauge emissions
 
 - **20220325-mainnet-gauge-factory/LiquidityGaugeV5.unkillGauge()**
-  - Action ID: `0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea`
-  - Function: Reactivate previously killed gauges to resume emissions
+    - Action ID: `0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea`
+    - Function: Reactivate previously killed gauges to resume emissions
 
 - **20220325-mainnet-gauge-factory/LiquidityGaugeV5.killGauge()**
-  - Action ID: `0xec1d467d9ab03a0079c22a89037209f5763aec973897ea763e2cf25d71a5f12e`
-  - Function: Deactivate gauges to stop emissions
+    - Action ID: `0xec1d467d9ab03a0079c22a89037209f5763aec973897ea763e2cf25d71a5f12e`
+    - Function: Deactivate gauges to stop emissions
 
 ## Technical Specification
 
@@ -49,6 +59,8 @@ Function: grantRoles
 Grantee: 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (Maxi Omni)
 Action IDs: 
   - 0x83dc5eaaade2c71d34c71bd21fe617f5f6d83bf53bd9d886d00c756e386b8cd1
+  - 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151
+  - 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166
   - 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba
   - 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea
   - 0xec1d467d9ab03a0079c22a89037209f5763aec973897ea763e2cf25d71a5f12e
