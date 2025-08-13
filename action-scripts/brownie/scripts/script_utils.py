@@ -195,8 +195,20 @@ def parse_contract_input(
         # Parse the string representation
         if isinstance(value, str):
             value = value.strip()
+
+            # Check if it's a JSON-encoded string with escaped quotes
+            if '\\"' in value or (value.startswith("[[") and value.endswith("]]")):
+                try:
+                    # Try to parse as JSON first (handles escaped quotes)
+                    parsed_value = json.loads(value)
+                except json.JSONDecodeError:
+                    # If JSON parsing fails, try ast.literal_eval
+                    try:
+                        parsed_value = ast.literal_eval(value)
+                    except (ValueError, SyntaxError):
+                        raise ValueError(f"Cannot parse array value: {value}")
             # Check if it's a Python-style list with quotes (like ['0x...', '0x...'])
-            if value.startswith("[") and ("'" in value or '"' in value):
+            elif value.startswith("[") and ("'" in value or '"' in value):
                 try:
                     # Use ast.literal_eval for Python-style lists
                     parsed_value = ast.literal_eval(value)
@@ -252,7 +264,13 @@ def parse_contract_input(
         # Process based on base type
         if array_depth == 1:
             # Single dimensional array
-            if base_type.startswith("bool"):
+            if base_type == "tuple":
+                # For tuple arrays, each element needs to be parsed as a tuple
+                return [
+                    parse_contract_input(item, "tuple", components)
+                    for item in parsed_value
+                ]
+            elif base_type.startswith("bool"):
                 return [
                     (
                         True
@@ -274,7 +292,10 @@ def parse_contract_input(
             # Multi-dimensional array (e.g., bytes32[][])
             # Recursively parse inner arrays
             inner_type = param_type.replace("[]", "", 1)  # Remove one level
-            return [parse_contract_input(item, inner_type) for item in parsed_value]
+            return [
+                parse_contract_input(item, inner_type, components)
+                for item in parsed_value
+            ]
 
     # Handle tuple types
     elif param_type == "tuple":
@@ -292,6 +313,19 @@ def parse_contract_input(
                 else:
                     raise ValueError(f"Missing tuple component at index {idx}")
 
+            return tuple(items)
+        elif isinstance(value, list):
+            # If value is already a list (from JSON parsing), process each component
+            items = []
+            for idx, component in enumerate(components or []):
+                if idx < len(value):
+                    items.append(
+                        parse_contract_input(
+                            value[idx], component["type"], component.get("components")
+                        )
+                    )
+                else:
+                    raise ValueError(f"Missing tuple component at index {idx}")
             return tuple(items)
         else:
             return tuple(value) if not isinstance(value, tuple) else value
@@ -538,7 +572,10 @@ def format_into_report(
         )
         file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
     except Exception as e:
-        file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n\n"
+        exception = repr(e)
+        if os.getenv("DRPC_KEY") in exception:
+            exception = exception.replace(os.getenv("DRPC_KEY"), "***")
+        file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
 
     if gauge_checklist:
         for gauge_check in gauge_checklist:
