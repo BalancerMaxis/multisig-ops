@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2025-W31/BIP-859.json`
+MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
+COMMIT: `06f3ea4241b0f54cfdadd03b998f5163bf983a35`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/42685de1-9688-4835-8472-d0b965c9d61c)
+
+```
++-----------------------+--------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name        | caller_address                             | fx_paths                                                                                                           | action_ids                                                         |   bip   | tx_index |
++-----------------------+--------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | mimic/smartVaultV3 | 0x1d8e78300db118dce5d8176c93bef1d6028d74eb | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFees(address,address)                 | 0x9b50ab496733616199be03f9adb07dedbc053ee47e3f069d57a7b1db51480332 | BIP-859 |    0     |
+|                       |                    |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFees(address,address)                                      | 0xd8f952fca9feeca8075fa8cf14298353b4b424103a602b3879b031c57cf6def7 |         |          |
+|                       |                    |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)                      |                                                                    |         |          |
+|                       |                    |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address) |                                                                    |         |          |
++-----------------------+--------------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```

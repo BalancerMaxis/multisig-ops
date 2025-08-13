@@ -83,6 +83,7 @@
       ]
     }
   ],
+  "partners": [],
   "alliance_fee_allocations": {
     "core": {
       "vebal_share_pct": 0.125,
@@ -93,6 +94,19 @@
     "non_core": {
       "vebal_share_pct": 0.65,
       "partner_share_pct": 0.175,
+      "dao_share_pct": 0.175
+    }
+  },
+  "partner_fee_allocations": {
+    "default": {
+      "vebal_share_pct": 0.125,
+      "vote_incentive_pct": 0.35,
+      "partner_share_pct": 0.35,
+      "dao_share_pct": 0.175
+    },
+    "default_non_core": {
+      "vebal_share_pct": 0.475,
+      "partner_share_pct": 0.35,
       "dao_share_pct": 0.175
     }
   },

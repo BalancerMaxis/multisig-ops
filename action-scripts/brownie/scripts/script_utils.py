@@ -175,7 +175,9 @@ def get_pool_info(
     return name, symbol, pool_id, pool.address, a_factor, fee, tokens, rate_providers
 
 
-def parse_contract_input(value: Any, param_type: str, components: List[dict] = None) -> Any:
+def parse_contract_input(
+    value: Any, param_type: str, components: List[dict] = None
+) -> Any:
     """
     Parse contract input values based on their type.
     Handles nested arrays and complex types like bytes32[][].
@@ -183,18 +185,30 @@ def parse_contract_input(value: Any, param_type: str, components: List[dict] = N
     # Already parsed
     if isinstance(value, (list, tuple, bool, int)) and param_type != "tuple":
         return value
-    
+
     # Handle array types
     if "[]" in param_type:
         # Determine base type and array depth
         base_type = param_type.replace("[]", "")
         array_depth = param_type.count("[]")
-        
+
         # Parse the string representation
         if isinstance(value, str):
             value = value.strip()
+
+            # Check if it's a JSON-encoded string with escaped quotes
+            if '\\"' in value or (value.startswith("[[") and value.endswith("]]")):
+                try:
+                    # Try to parse as JSON first (handles escaped quotes)
+                    parsed_value = json.loads(value)
+                except json.JSONDecodeError:
+                    # If JSON parsing fails, try ast.literal_eval
+                    try:
+                        parsed_value = ast.literal_eval(value)
+                    except (ValueError, SyntaxError):
+                        raise ValueError(f"Cannot parse array value: {value}")
             # Check if it's a Python-style list with quotes (like ['0x...', '0x...'])
-            if value.startswith("[") and ("'" in value or '"' in value):
+            elif value.startswith("[") and ("'" in value or '"' in value):
                 try:
                     # Use ast.literal_eval for Python-style lists
                     parsed_value = ast.literal_eval(value)
@@ -202,14 +216,18 @@ def parse_contract_input(value: Any, param_type: str, components: List[dict] = N
                     # Fallback to manual parsing
                     if array_depth == 1:
                         # Remove quotes and brackets
-                        cleaned = value.strip("[]").replace("'", "").replace('"', '')
-                        parsed_value = [x.strip() for x in cleaned.split(",") if x.strip()]
+                        cleaned = value.strip("[]").replace("'", "").replace('"', "")
+                        parsed_value = [
+                            x.strip() for x in cleaned.split(",") if x.strip()
+                        ]
                     else:
                         raise ValueError(f"Cannot parse array value: {value}")
             elif "0x" in value:
                 # Handle hex values without quotes
                 if array_depth == 1:
-                    parsed_value = [x.strip() for x in value.strip("[]").split(",") if x.strip()]
+                    parsed_value = [
+                        x.strip() for x in value.strip("[]").split(",") if x.strip()
+                    ]
                 else:
                     # For nested arrays with hex values, we need custom parsing
                     # Remove outer brackets and split by "],["
@@ -220,10 +238,14 @@ def parse_contract_input(value: Any, param_type: str, components: List[dict] = N
                         parsed_value = []
                         for arr in arrays:
                             arr = arr.strip("[]")
-                            parsed_value.append([x.strip() for x in arr.split(",") if x.strip()])
+                            parsed_value.append(
+                                [x.strip() for x in arr.split(",") if x.strip()]
+                            )
                     else:
                         # Single nested array
-                        parsed_value = [[x.strip() for x in value_stripped.split(",") if x.strip()]]
+                        parsed_value = [
+                            [x.strip() for x in value_stripped.split(",") if x.strip()]
+                        ]
             else:
                 # Use ast.literal_eval for safe parsing of non-hex nested arrays
                 try:
@@ -231,18 +253,30 @@ def parse_contract_input(value: Any, param_type: str, components: List[dict] = N
                 except (ValueError, SyntaxError):
                     # Fallback to manual parsing for simple arrays
                     if array_depth == 1:
-                        parsed_value = [x.strip() for x in value.strip("[]").split(",") if x.strip()]
+                        parsed_value = [
+                            x.strip() for x in value.strip("[]").split(",") if x.strip()
+                        ]
                     else:
                         raise ValueError(f"Cannot parse array value: {value}")
         else:
             parsed_value = value
-        
+
         # Process based on base type
         if array_depth == 1:
             # Single dimensional array
-            if base_type.startswith("bool"):
+            if base_type == "tuple":
+                # For tuple arrays, each element needs to be parsed as a tuple
                 return [
-                    True if (str(x).lower() == "true" or (isinstance(x, bool) and x)) else False
+                    parse_contract_input(item, "tuple", components)
+                    for item in parsed_value
+                ]
+            elif base_type.startswith("bool"):
+                return [
+                    (
+                        True
+                        if (str(x).lower() == "true" or (isinstance(x, bool) and x))
+                        else False
+                    )
                     for x in parsed_value
                 ]
             elif re.search(r"^u?int\d*$", base_type):
@@ -258,8 +292,11 @@ def parse_contract_input(value: Any, param_type: str, components: List[dict] = N
             # Multi-dimensional array (e.g., bytes32[][])
             # Recursively parse inner arrays
             inner_type = param_type.replace("[]", "", 1)  # Remove one level
-            return [parse_contract_input(item, inner_type) for item in parsed_value]
-    
+            return [
+                parse_contract_input(item, inner_type, components)
+                for item in parsed_value
+            ]
+
     # Handle tuple types
     elif param_type == "tuple":
         if isinstance(value, str):
@@ -268,33 +305,46 @@ def parse_contract_input(value: Any, param_type: str, components: List[dict] = N
             value = value.strip("[]")
             # Simple split by comma (this might need improvement for nested tuples)
             parts = value.split(",")
-            
+
             for idx, component in enumerate(components or []):
                 if idx < len(parts):
                     item_value = parts[idx].strip().strip('"')
                     items.append(parse_contract_input(item_value, component["type"]))
                 else:
                     raise ValueError(f"Missing tuple component at index {idx}")
-            
+
+            return tuple(items)
+        elif isinstance(value, list):
+            # If value is already a list (from JSON parsing), process each component
+            items = []
+            for idx, component in enumerate(components or []):
+                if idx < len(value):
+                    items.append(
+                        parse_contract_input(
+                            value[idx], component["type"], component.get("components")
+                        )
+                    )
+                else:
+                    raise ValueError(f"Missing tuple component at index {idx}")
             return tuple(items)
         else:
             return tuple(value) if not isinstance(value, tuple) else value
-    
+
     # Handle primitive types
     elif param_type.startswith("bool"):
         if isinstance(value, str):
             return value.lower() == "true"
         return bool(value)
-    
+
     elif re.search(r"^u?int\d*$", param_type):
         return int(value)
-    
+
     elif param_type == "address":
         return to_checksum_address(value)
-    
+
     elif param_type.startswith("bytes"):
         return str(value)
-    
+
     else:
         # Default to string
         return str(value)
@@ -365,16 +415,19 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                     param_name = input["name"]
                     param_type = input["type"]
                     param_value = tx["contractInputsValues"][param_name]
-                    
+
                     # Skip if already processed
-                    if isinstance(param_value, (list, tuple, bool, int)) and param_type != "tuple":
+                    if (
+                        isinstance(param_value, (list, tuple, bool, int))
+                        and param_type != "tuple"
+                    ):
                         continue
-                    
+
                     # Parse the value based on type
                     tx["contractInputsValues"][param_name] = parse_contract_input(
                         param_value, param_type, input.get("components")
                     )
-                    
+
                 tx["data"] = contract.encodeABI(
                     fn_name=tx["contractMethod"]["name"],
                     kwargs=tx["contractInputsValues"],
@@ -519,7 +572,10 @@ def format_into_report(
         )
         file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
     except Exception as e:
-        file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n\n"
+        exception = repr(e)
+        if os.getenv("DRPC_KEY") in exception:
+            exception = exception.replace(os.getenv("DRPC_KEY"), "***")
+        file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
 
     if gauge_checklist:
         for gauge_check in gauge_checklist:
