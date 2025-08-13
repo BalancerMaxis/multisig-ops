@@ -4,7 +4,9 @@
 
 This BIP proposes to grant universal gauge management permissions to the Maxi Omni multisig to streamline gauge operations and reduce turnaround time for gauge management activities. Currently, gauge management operations require individual permission grants for specific functions, creating bottlenecks and delays in routine gauge maintenance and administration.
 
-By granting comprehensive gauge management permissions, the Balancer DAO can enable more efficient gauge operations while maintaining proper oversight through the established multisig governance structure.
+These permissions will remain under full DAO governance control. The Maxi Omni multisig will only execute gauge management actions following explicit DAO approval through snapshot votes. This proposal changes the execution multisig from individual permission grants to a streamlined execution model, while maintaining the requirement for DAO governance approval for all gauge management decisions.
+
+By granting these execution permissions, the Balancer DAO can enable more efficient gauge operations while preserving the governance oversight and approval process through established DAO voting mechanisms.
 
 ## Gauge Management Permissions
 
