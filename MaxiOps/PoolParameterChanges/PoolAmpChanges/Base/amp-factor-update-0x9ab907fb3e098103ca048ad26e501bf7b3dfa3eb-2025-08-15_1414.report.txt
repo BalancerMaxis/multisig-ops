@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/PoolParameterChanges/PoolAmpChanges/Base/amp-factor-update-0x9ab907fb3e098103ca048ad26e501bf7b3dfa3eb-2025-08-15_1414.json`
 MULTISIG: `multisigs/maxi_omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `7736c75d8dcd1a961f9b1692b9b5435c0c6575b6`
+COMMIT: `004729c00c2037f9b6b7862fa8cb81f9494327fd`
 CHAIN(S): `base`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/99dfc913-16bf-4aac-960e-a487ec629d76)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/05ba9b3d-fa07-4375-a94f-0ac8ee9f7cd0)
 
 ```
 +-----------------------------------+-----------------------------------------------------------------------------+-------+------------------------------------------------------+------------+----------+
@@ -11,6 +11,14 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/99dfc913-16bf-4
 | startAmplificationParameterUpdate | 0x9ab907fb3e098103ca048ad26e501bf7b3dfa3eb (pools/Surge Aave EURC-GHO-9ab9) | 0     | {                                                    | N/A        |   N/A    |
 |                                   |                                                                             |       |   "rawEndValue": [                                   |            |          |
 |                                   |                                                                             |       |     "raw:700, 18 decimals:7E-16, 6 decimals: 0.0007" |            |          |
+|                                   |                                                                             |       |   ],                                                 |            |          |
+|                                   |                                                                             |       |   "endTime": [                                       |            |          |
+|                                   |                                                                             |       |     "1755518400"                                     |            |          |
+|                                   |                                                                             |       |   ]                                                  |            |          |
+|                                   |                                                                             |       | }                                                    |            |          |
+| startAmplificationParameterUpdate | 0x5b14ce8de84448e9a6f6af652af318472aa4fcaf (pools/Aave GHO-USR-5b14)        | 0     | {                                                    | N/A        |   N/A    |
+|                                   |                                                                             |       |   "rawEndValue": [                                   |            |          |
+|                                   |                                                                             |       |     "raw:1000, 18 decimals:1E-15, 6 decimals: 0.001" |            |          |
 |                                   |                                                                             |       |   ],                                                 |            |          |
 |                                   |                                                                             |       |   "endTime": [                                       |            |          |
 |                                   |                                                                             |       |     "1755518400"                                     |            |          |
