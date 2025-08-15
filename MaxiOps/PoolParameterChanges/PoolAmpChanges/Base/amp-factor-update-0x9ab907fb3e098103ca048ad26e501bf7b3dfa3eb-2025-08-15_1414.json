@@ -27,6 +27,24 @@
         "payable": false
       },
       "contractInputsValues": { "rawEndValue": "700", "endTime": "1755518400" }
+    },
+    {
+      "to": "0x5b14ce8de84448e9a6f6af652af318472aa4fcaf",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "1000", "endTime": "1755518400" }
     }
   ]
 }
