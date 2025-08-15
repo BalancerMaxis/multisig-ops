@@ -49,6 +49,31 @@
         "pool": "0x6c5972311191097d002e804a9bf97c96c54059ed",
         "newSurgeThresholdPercentage": "600000000000000000"
       }
+    },
+    {
+      "to": "0xbA1333333333a1BA1108E8412f11850A5C319bA9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "pool",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setStaticSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x6c5972311191097d002e804a9bf97c96c54059ed",
+        "swapFeePercentage": "100000000000000"
+      }
     }
   ]
 }
