@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/Mainnet/stable-surge-params-0x6c5972311191097d002e804a9bf97c96c54059ed-2025-08-15_1425.json`
 MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `ace8210cde77a5fba5559129ac5d63358f5128b7`
+COMMIT: `0effe113348ac722520cb27e7e92167d253ee149`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a6138cc0-3f52-4fd1-b7b7-df85f848ab8f)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/27352735-7dab-481f-abe9-4a59462936b7)
 
 ```
 +-----------------------------+-----------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------+------------+----------+
@@ -22,6 +22,14 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a6138cc0-3f52-4
 |                             |                                                                                               |       |   ],                                                                          |            |          |
 |                             |                                                                                               |       |   "newSurgeThresholdPercentage": [                                            |            |          |
 |                             |                                                                                               |       |     "600000000000000000"                                                      |            |          |
+|                             |                                                                                               |       |   ]                                                                           |            |          |
+|                             |                                                                                               |       | }                                                                             |            |          |
+| setStaticSwapFeePercentage  | 0xbA1333333333a1BA1108E8412f11850A5C319bA9 (20241204-v3-vault/Vault)                          | 0     | {                                                                             | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                                                   |            |          |
+|                             |                                                                                               |       |     "0x6c5972311191097d002e804a9bf97c96c54059ed (pools/Surge USDf-aGHO-6c59)" |            |          |
+|                             |                                                                                               |       |   ],                                                                          |            |          |
+|                             |                                                                                               |       |   "swapFeePercentage": [                                                      |            |          |
+|                             |                                                                                               |       |     "100000000000000"                                                         |            |          |
 |                             |                                                                                               |       |   ]                                                                           |            |          |
 |                             |                                                                                               |       | }                                                                             |            |          |
 +-----------------------------+-----------------------------------------------------------------------------------------------+-------+-------------------------------------------------------------------------------+------------+----------+
