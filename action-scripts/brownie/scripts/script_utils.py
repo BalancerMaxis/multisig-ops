@@ -621,12 +621,29 @@ def parse_txbuilder_list_string(list_string) -> list:
         list_string = list_string.strip("[ ]")
         list_string = list_string.replace(" ", "")
         list_string = list_string.split(",")
+        # Strip quotes from each element
+        list_string = [
+            item.strip('"').strip("'").replace('\\"', "").replace("\\'", "")
+            for item in list_string
+        ]
         # if nothing left return an empty list
         if not list_string:
             return []
     if isinstance(list_string, list):
-        return list_string
+        # Also clean list items
+        return [
+            (
+                item.strip('"').strip("'").replace('\\"', "").replace("\\'", "")
+                if isinstance(item, str)
+                else item
+            )
+            for item in list_string
+        ]
     # If we still don't have a list, create a single item list with what we do have.
+    if isinstance(list_string, str):
+        list_string = (
+            list_string.strip('"').strip("'").replace('\\"', "").replace("\\'", "")
+        )
     return [list_string]
 
 
