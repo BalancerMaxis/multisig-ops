@@ -243,43 +243,57 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             # Store original parse function
             original_parse_func = decoder_module.parse_input_value
 
-            # Use enhanced safe-cli encoding that properly handles tuples
-            # Monkey-patch parse_input_value to handle tuples with proper component types
+            # Monkey-patch to handle Safe's JSON format with quoted array elements
             def enhanced_parse_input_value(field_type, value):
-                """Enhanced parser that handles tuple components correctly"""
-                # Find the input spec for this field to get components
-                for input_spec in tx["contractMethod"]["inputs"]:
-                    if input_spec["type"] == field_type and field_type == "tuple":
-                        # Parse tuple with proper component types
-                        trimmed_value = (
-                            value.strip() if isinstance(value, str) else value
-                        )
-                        # Handle escaped quotes
-                        if '\\"' in trimmed_value:
-                            trimmed_value = trimmed_value.replace('\\"', '"')
-                        parsed_array = json.loads(trimmed_value)
+                """Convert Safe's JSON arrays (with quotes) to safe_cli format (without quotes)."""
+                if not isinstance(value, str):
+                    return original_parse_func(field_type, value)
 
-                        result = []
-                        for i, component in enumerate(input_spec.get("components", [])):
-                            comp_value = (
-                                parsed_array[i] if i < len(parsed_array) else ""
-                            )
-                            comp_type = component["type"]
+                # Arrays: Remove quotes by parsing as JSON and reformatting
+                if value.strip().startswith("[") and "]" in field_type:
+                    try:
+                        parsed = json.loads(value)
 
-                            # Convert each component to proper type
-                            if comp_type.startswith("bytes"):
-                                result.append(HexBytes(comp_value))
-                            elif comp_type == "address":
-                                result.append(to_checksum_address(comp_value))
-                            elif comp_type.startswith("uint") or comp_type.startswith(
-                                "int"
-                            ):
-                                result.append(int(comp_value))
-                            else:
-                                result.append(comp_value)
-                        return tuple(result)
+                        # Recursively format without quotes
+                        def unquote(obj):
+                            if isinstance(obj, list):
+                                if obj and isinstance(obj[0], list):
+                                    # Nested array
+                                    return (
+                                        "["
+                                        + ",".join(unquote(item) for item in obj)
+                                        + "]"
+                                    )
+                                else:
+                                    # Simple array
+                                    return (
+                                        "[" + ",".join(str(item) for item in obj) + "]"
+                                    )
+                            return str(obj)
 
-                # Fall back to original for non-tuples
+                        return original_parse_func(field_type, unquote(parsed))
+                    except:
+                        pass  # Fall through to original parser
+
+                # Tuples: Need type-aware parsing
+                if field_type == "tuple":
+                    for input_spec in tx["contractMethod"]["inputs"]:
+                        if input_spec["type"] == field_type:
+                            parsed = json.loads(value)
+                            result = []
+                            for i, comp in enumerate(input_spec.get("components", [])):
+                                val = parsed[i] if i < len(parsed) else ""
+                                # Convert based on component type
+                                if comp["type"].startswith("bytes"):
+                                    result.append(HexBytes(val))
+                                elif comp["type"] == "address":
+                                    result.append(to_checksum_address(val))
+                                elif "int" in comp["type"]:
+                                    result.append(int(val))
+                                else:
+                                    result.append(val)
+                            return tuple(result)
+
                 return original_parse_func(field_type, value)
 
             # Temporarily replace parse_input_value
@@ -607,12 +621,29 @@ def parse_txbuilder_list_string(list_string) -> list:
         list_string = list_string.strip("[ ]")
         list_string = list_string.replace(" ", "")
         list_string = list_string.split(",")
+        # Strip quotes from each element
+        list_string = [
+            item.strip('"').strip("'").replace('\\"', "").replace("\\'", "")
+            for item in list_string
+        ]
         # if nothing left return an empty list
         if not list_string:
             return []
     if isinstance(list_string, list):
-        return list_string
+        # Also clean list items
+        return [
+            (
+                item.strip('"').strip("'").replace('\\"', "").replace("\\'", "")
+                if isinstance(item, str)
+                else item
+            )
+            for item in list_string
+        ]
     # If we still don't have a list, create a single item list with what we do have.
+    if isinstance(list_string, str):
+        list_string = (
+            list_string.strip('"').strip("'").replace('\\"', "").replace("\\'", "")
+        )
     return [list_string]
 
 
