@@ -248,25 +248,33 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                 """Convert Safe's JSON arrays (with quotes) to safe_cli format (without quotes)."""
                 if not isinstance(value, str):
                     return original_parse_func(field_type, value)
-                
+
                 # Arrays: Remove quotes by parsing as JSON and reformatting
                 if value.strip().startswith("[") and "]" in field_type:
                     try:
                         parsed = json.loads(value)
+
                         # Recursively format without quotes
                         def unquote(obj):
                             if isinstance(obj, list):
                                 if obj and isinstance(obj[0], list):
                                     # Nested array
-                                    return "[" + ",".join(unquote(item) for item in obj) + "]"
+                                    return (
+                                        "["
+                                        + ",".join(unquote(item) for item in obj)
+                                        + "]"
+                                    )
                                 else:
                                     # Simple array
-                                    return "[" + ",".join(str(item) for item in obj) + "]"
+                                    return (
+                                        "[" + ",".join(str(item) for item in obj) + "]"
+                                    )
                             return str(obj)
+
                         return original_parse_func(field_type, unquote(parsed))
                     except:
                         pass  # Fall through to original parser
-                
+
                 # Tuples: Need type-aware parsing
                 if field_type == "tuple":
                     for input_spec in tx["contractMethod"]["inputs"]:
@@ -285,7 +293,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 else:
                                     result.append(val)
                             return tuple(result)
-                
+
                 return original_parse_func(field_type, value)
 
             # Temporarily replace parse_input_value
