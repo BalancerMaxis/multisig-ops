@@ -252,9 +252,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                     # Handle escaped quotes in any string value
                     if '\\"' in value:
                         value = value.replace('\\"', '"')
-                    
+
                     # Special handling for bytes32[][] - parse as JSON and convert back
-                    if field_type == "bytes32[][]" and value.strip().startswith('['):
+                    if field_type == "bytes32[][]" and value.strip().startswith("["):
                         try:
                             # Parse as JSON to properly handle quoted strings
                             parsed = json.loads(value)
@@ -262,19 +262,21 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             # without quotes around the hex values
                             formatted_arrays = []
                             for inner_array in parsed:
-                                formatted_inner = '[' + ','.join(inner_array) + ']'
+                                formatted_inner = "[" + ",".join(inner_array) + "]"
                                 formatted_arrays.append(formatted_inner)
-                            formatted_value = '[' + ','.join(formatted_arrays) + ']'
+                            formatted_value = "[" + ",".join(formatted_arrays) + "]"
                             return original_parse_func(field_type, formatted_value)
                         except:
                             pass
-                    
+
                     # For other arrays, the original parser expects a string representation
                     # So we just clean the escaped quotes and pass it along
-                    if (field_type.endswith('[]') or field_type.endswith(']')) and value.strip().startswith('['):
+                    if (
+                        field_type.endswith("[]") or field_type.endswith("]")
+                    ) and value.strip().startswith("["):
                         # Just pass the cleaned string to the original parser
                         return original_parse_func(field_type, value)
-                
+
                 # Find the input spec for this field to get components
                 for input_spec in tx["contractMethod"]["inputs"]:
                     if input_spec["type"] == field_type and field_type == "tuple":
