@@ -480,7 +480,7 @@ if __name__ == "__main__":
                 # https://apps.aavechan.com/api/merit/campaigns
                 # replace date string with timestamp once it has passed and uncomment next string
                 # drpc = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ogrpc?network={CHAIN_SLUGS['1']}&dkey={os.getenv('DRPC_KEY')}",session=session_drpc))
-                # drpc.eth.get_block(23131333).timestamp
+                # drpc.eth.get_block(23231500).timestamp
 
                 if chain == "1":
                     epochs = [
@@ -492,7 +492,8 @@ if __name__ == "__main__":
                         # 22830470,  # 22830470; end round 5
                         1752663107,  # 22931270; end round 4 + 5 + 6
                         1753869563,  # 23031200; end round 7
-                        "23131333",  # 23131333, end round 8
+                        1755078491,  # 23131333, end round 8
+                        "23231500",  # 23231500, end round 9
                     ]
                 elif chain == "43114":
                     epochs = [
