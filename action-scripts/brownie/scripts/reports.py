@@ -493,7 +493,9 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
     elif isinstance(to_name, str):
         to_string = f"!!{to_name}??"
     caller_address = transaction["contractInputsValues"].get("account")
-    caller_name = addr.reversebook.get(caller_address, "!!NOT FOUND!!")
+    caller_name = addr.reversebook.get(
+        to_checksum_address(caller_address), "!!NOT FOUND!!"
+    )
     fx_paths = []
     for action_id in action_ids:
         if not isinstance(action_id, str):
@@ -501,8 +503,11 @@ def _parse_permissions(transaction: dict, **kwargs) -> Optional[dict]:
                 f"Function {function} came up with action_id `{action_id}` which is not a valid string."
             )
             return
-        paths = perms.paths_by_action_id[action_id]
-        fx_paths = [*fx_paths, *paths]
+        paths = perms.paths_by_action_id.get(action_id, [])
+        if not paths:
+            fx_paths.append("!! NOT FOUND !!")
+        else:
+            fx_paths = [*fx_paths, *paths]
     return {
         "function": f"{to_string}/{function}",
         "chain": chain_name,

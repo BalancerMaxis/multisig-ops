@@ -16,7 +16,7 @@ jobs:
     environment: ${{ github.event.pull_request.head.repo.fork && 'external' || 'internal' }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+      DRPC_KEY: ${{ secrets.DRPC_KEY }}
       ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
       ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}
       GNOSISSCAN_TOKEN: ${{ secrets.GNOSISSCAN_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
       COMMIT_SHA: ${{ inputs.checkout_ref }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ inputs.checkout_ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}

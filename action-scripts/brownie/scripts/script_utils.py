@@ -1,24 +1,28 @@
-import ast
 import json
 import os
 import re
+from collections import defaultdict
 from decimal import Decimal
 from json import JSONDecodeError
-from typing import Optional, Any, List
+from typing import Optional, Any
 from urllib.request import urlopen
 
-from collections import defaultdict
+import requests
 from bal_addresses import AddrBook, BalPermissions, RateProviders
 from bal_addresses import to_checksum_address, is_address
 from bal_tools import Aura
-import requests
 from brownie import Contract, chain, network, web3
 from eth_abi import encode
+from hexbytes import HexBytes
+from prettytable import MARKDOWN, PrettyTable
+from safe_cli.tx_builder.tx_builder_file_decoder import (
+    encode_contract_method_to_hex_data,
+)
+import safe_cli.tx_builder.tx_builder_file_decoder as decoder_module
 from safe_eth.eth import EthereumClient
 from safe_eth.eth.constants import NULL_ADDRESS
 from safe_eth.safe import SafeOperationEnum
 from safe_eth.safe.multi_send import MultiSend, MultiSendOperation, MultiSendTx
-from prettytable import MARKDOWN, PrettyTable
 
 ROOT_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -175,131 +179,6 @@ def get_pool_info(
     return name, symbol, pool_id, pool.address, a_factor, fee, tokens, rate_providers
 
 
-def parse_contract_input(value: Any, param_type: str, components: List[dict] = None) -> Any:
-    """
-    Parse contract input values based on their type.
-    Handles nested arrays and complex types like bytes32[][].
-    """
-    # Already parsed
-    if isinstance(value, (list, tuple, bool, int)) and param_type != "tuple":
-        return value
-    
-    # Handle array types
-    if "[]" in param_type:
-        # Determine base type and array depth
-        base_type = param_type.replace("[]", "")
-        array_depth = param_type.count("[]")
-        
-        # Parse the string representation
-        if isinstance(value, str):
-            value = value.strip()
-            # Check if it's a Python-style list with quotes (like ['0x...', '0x...'])
-            if value.startswith("[") and ("'" in value or '"' in value):
-                try:
-                    # Use ast.literal_eval for Python-style lists
-                    parsed_value = ast.literal_eval(value)
-                except (ValueError, SyntaxError):
-                    # Fallback to manual parsing
-                    if array_depth == 1:
-                        # Remove quotes and brackets
-                        cleaned = value.strip("[]").replace("'", "").replace('"', '')
-                        parsed_value = [x.strip() for x in cleaned.split(",") if x.strip()]
-                    else:
-                        raise ValueError(f"Cannot parse array value: {value}")
-            elif "0x" in value:
-                # Handle hex values without quotes
-                if array_depth == 1:
-                    parsed_value = [x.strip() for x in value.strip("[]").split(",") if x.strip()]
-                else:
-                    # For nested arrays with hex values, we need custom parsing
-                    # Remove outer brackets and split by "],["
-                    value_stripped = value.strip("[]")
-                    if "],[" in value_stripped:
-                        # Multiple arrays
-                        arrays = value_stripped.split("],[")
-                        parsed_value = []
-                        for arr in arrays:
-                            arr = arr.strip("[]")
-                            parsed_value.append([x.strip() for x in arr.split(",") if x.strip()])
-                    else:
-                        # Single nested array
-                        parsed_value = [[x.strip() for x in value_stripped.split(",") if x.strip()]]
-            else:
-                # Use ast.literal_eval for safe parsing of non-hex nested arrays
-                try:
-                    parsed_value = ast.literal_eval(value)
-                except (ValueError, SyntaxError):
-                    # Fallback to manual parsing for simple arrays
-                    if array_depth == 1:
-                        parsed_value = [x.strip() for x in value.strip("[]").split(",") if x.strip()]
-                    else:
-                        raise ValueError(f"Cannot parse array value: {value}")
-        else:
-            parsed_value = value
-        
-        # Process based on base type
-        if array_depth == 1:
-            # Single dimensional array
-            if base_type.startswith("bool"):
-                return [
-                    True if (str(x).lower() == "true" or (isinstance(x, bool) and x)) else False
-                    for x in parsed_value
-                ]
-            elif re.search(r"^u?int\d*$", base_type):
-                return [int(x) for x in parsed_value]
-            elif base_type == "address":
-                return [to_checksum_address(x) for x in parsed_value]
-            elif base_type.startswith("bytes"):
-                # For bytes32 and other bytes types
-                return [str(x) for x in parsed_value]
-            else:
-                return [str(x) for x in parsed_value]
-        else:
-            # Multi-dimensional array (e.g., bytes32[][])
-            # Recursively parse inner arrays
-            inner_type = param_type.replace("[]", "", 1)  # Remove one level
-            return [parse_contract_input(item, inner_type) for item in parsed_value]
-    
-    # Handle tuple types
-    elif param_type == "tuple":
-        if isinstance(value, str):
-            # Parse tuple from string representation
-            items = []
-            value = value.strip("[]")
-            # Simple split by comma (this might need improvement for nested tuples)
-            parts = value.split(",")
-            
-            for idx, component in enumerate(components or []):
-                if idx < len(parts):
-                    item_value = parts[idx].strip().strip('"')
-                    items.append(parse_contract_input(item_value, component["type"]))
-                else:
-                    raise ValueError(f"Missing tuple component at index {idx}")
-            
-            return tuple(items)
-        else:
-            return tuple(value) if not isinstance(value, tuple) else value
-    
-    # Handle primitive types
-    elif param_type.startswith("bool"):
-        if isinstance(value, str):
-            return value.lower() == "true"
-        return bool(value)
-    
-    elif re.search(r"^u?int\d*$", param_type):
-        return int(value)
-    
-    elif param_type == "address":
-        return to_checksum_address(value)
-    
-    elif param_type.startswith("bytes"):
-        return str(value)
-    
-    else:
-        # Default to string
-        return str(value)
-
-
 def convert_output_into_table(outputs: list[dict]) -> str:
     """
     Converts list of dicts into a pretty table
@@ -360,29 +239,70 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             contract = web3.eth.contract(
                 address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
             )
-            if len(tx["contractMethod"]["inputs"]) > 0:
-                for input in tx["contractMethod"]["inputs"]:
-                    param_name = input["name"]
-                    param_type = input["type"]
-                    param_value = tx["contractInputsValues"][param_name]
-                    
-                    # Skip if already processed
-                    if isinstance(param_value, (list, tuple, bool, int)) and param_type != "tuple":
-                        continue
-                    
-                    # Parse the value based on type
-                    tx["contractInputsValues"][param_name] = parse_contract_input(
-                        param_value, param_type, input.get("components")
+
+            # Store original parse function
+            original_parse_func = decoder_module.parse_input_value
+
+            # Use enhanced safe-cli encoding that properly handles tuples
+            # Monkey-patch parse_input_value to handle tuples with proper component types
+            def enhanced_parse_input_value(field_type, value):
+                """Enhanced parser that handles tuple components correctly"""
+                # Find the input spec for this field to get components
+                for input_spec in tx["contractMethod"]["inputs"]:
+                    if input_spec["type"] == field_type and field_type == "tuple":
+                        # Parse tuple with proper component types
+                        trimmed_value = (
+                            value.strip() if isinstance(value, str) else value
+                        )
+                        # Handle escaped quotes
+                        if '\\"' in trimmed_value:
+                            trimmed_value = trimmed_value.replace('\\"', '"')
+                        parsed_array = json.loads(trimmed_value)
+
+                        result = []
+                        for i, component in enumerate(input_spec.get("components", [])):
+                            comp_value = (
+                                parsed_array[i] if i < len(parsed_array) else ""
+                            )
+                            comp_type = component["type"]
+
+                            # Convert each component to proper type
+                            if comp_type.startswith("bytes"):
+                                result.append(HexBytes(comp_value))
+                            elif comp_type == "address":
+                                result.append(to_checksum_address(comp_value))
+                            elif comp_type.startswith("uint") or comp_type.startswith(
+                                "int"
+                            ):
+                                result.append(int(comp_value))
+                            else:
+                                result.append(comp_value)
+                        return tuple(result)
+
+                # Fall back to original for non-tuples
+                return original_parse_func(field_type, value)
+
+            # Temporarily replace parse_input_value
+            decoder_module.parse_input_value = enhanced_parse_input_value
+
+            try:
+                encoded_data = encode_contract_method_to_hex_data(
+                    tx["contractMethod"], tx["contractInputsValues"]
+                )
+
+                if encoded_data:
+                    tx["data"] = (
+                        encoded_data.hex()
+                        if isinstance(encoded_data, HexBytes)
+                        else encoded_data
                     )
-                    
-                tx["data"] = contract.encodeABI(
-                    fn_name=tx["contractMethod"]["name"],
-                    kwargs=tx["contractInputsValues"],
-                )
-            else:
-                tx["data"] = contract.encodeABI(
-                    fn_name=tx["contractMethod"]["name"], args=[]
-                )
+                else:
+                    tx["data"] = contract.encodeABI(
+                        fn_name=tx["contractMethod"]["name"], args=[]
+                    )
+            finally:
+                # Restore original function
+                decoder_module.parse_input_value = original_parse_func
 
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
@@ -519,7 +439,10 @@ def format_into_report(
         )
         file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
     except Exception as e:
-        file_report += f"TENDERLY: `🟪 SKIPPED ({repr(e)})`\n\n"
+        exception = repr(e)
+        if os.getenv("DRPC_KEY") in exception:
+            exception = exception.replace(os.getenv("DRPC_KEY"), "***")
+        file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
 
     if gauge_checklist:
         for gauge_check in gauge_checklist:

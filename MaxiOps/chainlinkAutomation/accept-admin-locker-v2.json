@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1755081216609,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xef5b5276eb5cc019695656dcd274b3c1fc9aac5f033dc04daad61b9d65deceae"
+  },
+  "transactions": [
+    {
+      "to": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_to", "type": "address" },
+          { "name": "_value", "type": "uint256" },
+          { "name": "_data", "type": "bytes" }
+        ],
+        "name": "transferAndCall",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x6593c7De001fC8542bB1703532EE1E5aA0D458fD",
+        "_value": "10000000000000000000",
+        "_data": "0xf1ac311400000000000000000000000027d8a79ee870fedfbab58c4808cf1127"
+      }
+    },
+    {
+      "to": "0x6593c7De001fC8542bB1703532EE1E5aA0D458fD",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" }
+        ],
+        "name": "acceptUpkeepAdmin",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "id": "109311632928479007783297829972340436051907522136692764355292435534301608481063"
+      }
+    }
+  ]
+}

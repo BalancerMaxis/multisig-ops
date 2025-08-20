@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1755281547501,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Update amplification factor to 700 for Balancer Surge Aave EURC-GHO",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x9ab907fb3e098103ca048ad26e501bf7b3dfa3eb",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "700", "endTime": "1755518400" }
+    },
+    {
+      "to": "0x5b14ce8de84448e9a6f6af652af318472aa4fcaf",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "1000", "endTime": "1755518400" }
+    }
+  ]
+}
