@@ -243,73 +243,49 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             # Store original parse function
             original_parse_func = decoder_module.parse_input_value
 
-            # Use enhanced safe-cli encoding that properly handles tuples
-            # Monkey-patch parse_input_value to handle tuples with proper component types
+            # Monkey-patch to handle Safe's JSON format with quoted array elements
             def enhanced_parse_input_value(field_type, value):
-                """Enhanced parser that handles tuple components and arrays correctly"""
-                # Handle strings with escaped quotes
-                if isinstance(value, str):
-                    # Handle escaped quotes in any string value
-                    if '\\"' in value:
-                        value = value.replace('\\"', '"')
-
-                    # Special handling for bytes32[][] - parse as JSON and convert back
-                    if field_type == "bytes32[][]" and value.strip().startswith("["):
-                        try:
-                            # Parse as JSON to properly handle quoted strings
+                """Convert Safe's JSON arrays (with quotes) to safe_cli format (without quotes)."""
+                if not isinstance(value, str):
+                    return original_parse_func(field_type, value)
+                
+                # Arrays: Remove quotes by parsing as JSON and reformatting
+                if value.strip().startswith("[") and "]" in field_type:
+                    try:
+                        parsed = json.loads(value)
+                        # Recursively format without quotes
+                        def unquote(obj):
+                            if isinstance(obj, list):
+                                if obj and isinstance(obj[0], list):
+                                    # Nested array
+                                    return "[" + ",".join(unquote(item) for item in obj) + "]"
+                                else:
+                                    # Simple array
+                                    return "[" + ",".join(str(item) for item in obj) + "]"
+                            return str(obj)
+                        return original_parse_func(field_type, unquote(parsed))
+                    except:
+                        pass  # Fall through to original parser
+                
+                # Tuples: Need type-aware parsing
+                if field_type == "tuple":
+                    for input_spec in tx["contractMethod"]["inputs"]:
+                        if input_spec["type"] == field_type:
                             parsed = json.loads(value)
-                            # Convert back to a string format that parse_string_to_array can handle
-                            # without quotes around the hex values
-                            formatted_arrays = []
-                            for inner_array in parsed:
-                                formatted_inner = "[" + ",".join(inner_array) + "]"
-                                formatted_arrays.append(formatted_inner)
-                            formatted_value = "[" + ",".join(formatted_arrays) + "]"
-                            return original_parse_func(field_type, formatted_value)
-                        except:
-                            pass
-
-                    # For other arrays, the original parser expects a string representation
-                    # So we just clean the escaped quotes and pass it along
-                    if (
-                        field_type.endswith("[]") or field_type.endswith("]")
-                    ) and value.strip().startswith("["):
-                        # Just pass the cleaned string to the original parser
-                        return original_parse_func(field_type, value)
-
-                # Find the input spec for this field to get components
-                for input_spec in tx["contractMethod"]["inputs"]:
-                    if input_spec["type"] == field_type and field_type == "tuple":
-                        # Parse tuple with proper component types
-                        trimmed_value = (
-                            value.strip() if isinstance(value, str) else value
-                        )
-                        # Handle escaped quotes
-                        if '\\"' in trimmed_value:
-                            trimmed_value = trimmed_value.replace('\\"', '"')
-                        parsed_array = json.loads(trimmed_value)
-
-                        result = []
-                        for i, component in enumerate(input_spec.get("components", [])):
-                            comp_value = (
-                                parsed_array[i] if i < len(parsed_array) else ""
-                            )
-                            comp_type = component["type"]
-
-                            # Convert each component to proper type
-                            if comp_type.startswith("bytes"):
-                                result.append(HexBytes(comp_value))
-                            elif comp_type == "address":
-                                result.append(to_checksum_address(comp_value))
-                            elif comp_type.startswith("uint") or comp_type.startswith(
-                                "int"
-                            ):
-                                result.append(int(comp_value))
-                            else:
-                                result.append(comp_value)
-                        return tuple(result)
-
-                # Fall back to original for non-tuples and non-arrays
+                            result = []
+                            for i, comp in enumerate(input_spec.get("components", [])):
+                                val = parsed[i] if i < len(parsed) else ""
+                                # Convert based on component type
+                                if comp["type"].startswith("bytes"):
+                                    result.append(HexBytes(val))
+                                elif comp["type"] == "address":
+                                    result.append(to_checksum_address(val))
+                                elif "int" in comp["type"]:
+                                    result.append(int(val))
+                                else:
+                                    result.append(val)
+                            return tuple(result)
+                
                 return original_parse_func(field_type, value)
 
             # Temporarily replace parse_input_value
