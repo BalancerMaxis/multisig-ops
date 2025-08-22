@@ -28,6 +28,7 @@ CURRENT_DATE = datetime.now().strftime("%Y-%m-%d")
 w3_by_chain = Web3RpcByChain(os.getenv("DRPC_KEY"))
 flatbook_mainnet = AddrBook("mainnet").flatbook
 flatbook_arb = AddrBook("arbitrum").flatbook
+flatbook_base = AddrBook("base").flatbook
 
 omni_safe = flatbook_mainnet["multisigs/maxi_aura_locker"]
 
@@ -41,7 +42,7 @@ reward_distributor_abi = json.load(open(ABI_DIR / "RewardDistributor.json"))
 
 def create_dirs_for_date(base_path: Path, date: str):
     date_dir = base_path / date
-    for chain in ["mainnet", "arbitrum"]:
+    for chain in ["mainnet", "arbitrum", "base"]:
         chain_dir = date_dir / chain
         os.makedirs(chain_dir, exist_ok=True)
     return date_dir
@@ -290,7 +291,7 @@ def generate_tokens_to_sell_csv(csv_path: str, chain_name: str, date_dir: Path):
 if __name__ == "__main__":
     date_dir = create_dirs_for_date(BASE_PATH, CURRENT_DATE)
 
-    for chain_name, chain_id in [("mainnet", 1), ("arbitrum", 42161)]:
+    for chain_name, chain_id in [("mainnet", 1), ("arbitrum", 42161), ("base", 8453)]:
         builder = SafeTxBuilder(safe_address=omni_safe, chain_name=chain_name)
 
         csv_path = create_claims_csv(chain_name, date_dir)
