@@ -48,8 +48,7 @@ jobs:
           DISTRIBUTOR: ${{ github.event.inputs.distributor }}
           MULTISIG: ${{ github.event.inputs.multisig }}
           CHAIN_NAME: ${{ github.event.inputs.chain_name }}
-          INFURA_KEY: ${{ secrets.INFURA_KEY }}
-          ALCHEMY_KEY: ${{ secrets.ALCHEMY_KEY }}
+          DRPC_KEY: ${{ secrets.DRPC_KEY }}
 
       - name: Prepare PR title and body
         run: |
