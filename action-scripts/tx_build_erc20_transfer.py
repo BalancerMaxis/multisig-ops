@@ -7,28 +7,19 @@ from bal_addresses import AddrBook
 ## Todo move this to bal_addresses
 is_address = Web3.is_address
 
-INFURA_KEY = os.getenv("INFURA_KEY")
-ALCHEMY_KEY = os.getenv("ALCHEMY_KEY")
+DRPC_KEY = os.getenv("DRPC_KEY")
 W3_BY_CHAIN = {
-    "base": Web3(
-        Web3.HTTPProvider(f"https://base-mainnet.g.alchemy.com/v2/{ALCHEMY_KEY}")
-    ),
-    "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com")),
-    "zkevm": Web3(Web3.HTTPProvider(f"https://zkevm-rpc.com")),
-    "avalanche": Web3(Web3.HTTPProvider(f"https://api.avax.network/ext/bc/C/rpc")),
-    #    "fantom": Web3(Web3.HTTPProvider("https://rpc.fantom.network")),
+    "base": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/base/{DRPC_KEY}")),
+    "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/gnosis/{DRPC_KEY}")),
+    "zkevm": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon-zkevm/{DRPC_KEY}")),
+    "avalanche": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/avalanche/{DRPC_KEY}")),
+    #    "fantom": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/fantom/{DRPC_KEY}")),
     ### Less reliable RPCs first to fail fast :)
-    "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
-    "arbitrum": Web3(
-        Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "optimism": Web3(
-        Web3.HTTPProvider(f"https://optimism-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "polygon": Web3(
-        Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")),
+    "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}")),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")),
+    "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")),
+    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")),
+    "sepolia": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/sepolia/{DRPC_KEY}")),
 }
 
 ERC20_ABI = json.load(open("abis/ERC20.json"))

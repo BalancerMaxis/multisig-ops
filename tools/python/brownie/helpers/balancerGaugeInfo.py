@@ -16,17 +16,11 @@ from web3 import Web3
 
 
 load_dotenv()
-INFURA_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
+DRPC_KEY = os.getenv("DRPC_KEY")
 
-w3arbitrum = Web3(
-    Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")
-)
-w3optimism = Web3(
-    Web3.HTTPProvider(f"https://optimism-mainnet.infura.io/v3/{INFURA_KEY}")
-)
-w3polygon = Web3(
-    Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")
-)
+w3arbitrum = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}"))
+w3optimism = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}"))
+w3polygon = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}"))
 
 
 def buildGaugesDictFromContract():

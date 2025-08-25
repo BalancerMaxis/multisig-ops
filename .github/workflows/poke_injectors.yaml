@@ -6,7 +6,7 @@ on:
     - cron: "0/5 * * * *"
 env:
   KEYWORDS: ${{ secrets.KEEPER_PRIVATE_WORDS }}
-  WEB3_INFURA_PROJECT_ID: ${{ secrets.WEB3_INFURA_PROJECT_ID }}
+  DRPC_KEY: ${{ secrets.DRPC_KEY }}
   ETHERSCAN_TOKEN: ${{ secrets.ETHERSCAN_TOKEN }}
   FRAXSCAN_TOKEN: ${{ secrets.FRAXSCAN_TOKEN }}
   ARBISCAN_TOKEN: ${{ secrets.ARBISCAN_TOKEN }}

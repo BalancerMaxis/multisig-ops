@@ -5,8 +5,7 @@ import time
 from bal_addresses import AddrBook, is_address, to_checksum_address
 
 
-INFURA_KEY = os.getenv("INFURA_KEY")
-ALCHEMY_KEY = os.getenv("ALCHEMY_KEY")
+DRPC_KEY = os.getenv("DRPC_KEY")
 
 ## TODO refactor this script to use python native pathing and be less sensitive about where it is run from
 GAUGE_ABI = json.load(open("action-scripts/abis/ChildChainGauge.json"))

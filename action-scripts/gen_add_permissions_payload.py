@@ -13,26 +13,20 @@ debug = False
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # TODO: The below settings must be set before running the script
-INFURA_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
+DRPC_KEY = os.getenv("DRPC_KEY")
 BALANCER_DEPLOYMENTS_URL = (
     "https://raw.githubusercontent.com/balancer/balancer-deployments/master"
 )
 W3_BY_CHAIN = {
-    "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
-    "arbitrum": Web3(
-        Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "optimism": Web3(Web3.HTTPProvider(f"https://optimism-rpc.gateway.pokt.network")),
-    "polygon": Web3(
-        Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "zkevm": Web3(Web3.HTTPProvider(f"https://zkevm-rpc.com")),
-    "avalanche": Web3(
-        Web3.HTTPProvider(f"https://avalanche-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
-    "goerli": Web3(Web3.HTTPProvider(f"https://goerli.infura.io/v3/{INFURA_KEY}")),
-    "sepolia": Web3(Web3.HTTPProvider(f"https://sepolia.infura.io/v3/{INFURA_KEY}")),
+    "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}")),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")),
+    "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")),
+    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")),
+    "zkevm": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon-zkevm/{DRPC_KEY}")),
+    "avalanche": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/avalanche/{DRPC_KEY}")),
+    "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/gnosis/{DRPC_KEY}")),
+    "goerli": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/goerli/{DRPC_KEY}")),
+    "sepolia": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/sepolia/{DRPC_KEY}")),
 }
 
 book_by_chain = {}
