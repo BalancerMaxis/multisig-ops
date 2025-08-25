@@ -16,15 +16,9 @@ DRPC_KEY = os.getenv("DRPC_KEY")
 
 w3_by_chain = {
     "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}")),
-    "arbitrum": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")
-    ),
-    "optimism": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")
-    ),
-    "polygon": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")
-    ),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")),
+    "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")),
+    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")),
     "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/gnosis/{DRPC_KEY}")),
 }
 

@@ -9,24 +9,16 @@ is_address = Web3.is_address
 
 DRPC_KEY = os.getenv("DRPC_KEY")
 W3_BY_CHAIN = {
-    "base": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/base/{DRPC_KEY}")
-    ),
+    "base": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/base/{DRPC_KEY}")),
     "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/gnosis/{DRPC_KEY}")),
     "zkevm": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon-zkevm/{DRPC_KEY}")),
     "avalanche": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/avalanche/{DRPC_KEY}")),
     #    "fantom": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/fantom/{DRPC_KEY}")),
     ### Less reliable RPCs first to fail fast :)
     "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}")),
-    "arbitrum": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")
-    ),
-    "optimism": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")
-    ),
-    "polygon": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")
-    ),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")),
+    "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")),
+    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")),
     "sepolia": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/sepolia/{DRPC_KEY}")),
 }
 

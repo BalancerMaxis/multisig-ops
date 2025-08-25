@@ -19,17 +19,11 @@ BALANCER_DEPLOYMENTS_URL = (
 )
 W3_BY_CHAIN = {
     "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}")),
-    "arbitrum": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")
-    ),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")),
     "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")),
-    "polygon": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")
-    ),
+    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")),
     "zkevm": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon-zkevm/{DRPC_KEY}")),
-    "avalanche": Web3(
-        Web3.HTTPProvider(f"https://lb.drpc.org/avalanche/{DRPC_KEY}")
-    ),
+    "avalanche": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/avalanche/{DRPC_KEY}")),
     "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/gnosis/{DRPC_KEY}")),
     "goerli": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/goerli/{DRPC_KEY}")),
     "sepolia": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/sepolia/{DRPC_KEY}")),
