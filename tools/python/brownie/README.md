@@ -19,7 +19,7 @@ pip3 install regex==2021.09.30
 ```
 Ignore the warnings about version conflict.
 
-Copy .env.example to .env and populate.  You need at bare minimum an infura id.  etherscan id is also nice to have/makes brownie better.
+Copy .env.example to .env and populate.  You need at bare minimum a DRPC key.  etherscan id is also nice to have/makes brownie better.
 
 
 ## Now what
