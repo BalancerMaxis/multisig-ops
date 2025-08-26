@@ -1,0 +1,1552 @@
+{
+  "version": "1.0",
+  "chainId": "999",
+  "createdAt": 1756238648324,
+  "meta": {
+    "name": "HyperEVM Pool Registry Transactions",
+    "description": "Generated from pool analysis with minimum TVL $100",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "transactions": [
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "tokenOut": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x8207c7541ce31b38dbd46890f2a832cf1ef7c512",
+            "tokenOut": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "tokenOut": "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
+        "steps": [
+          {
+            "pool": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "tokenOut": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x8207c7541ce31b38dbd46890f2a832cf1ef7c512",
+            "tokenOut": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
+        "steps": [
+          {
+            "pool": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "tokenOut": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x8207c7541ce31b38dbd46890f2a832cf1ef7c512",
+            "tokenOut": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "tokenOut": "0x3bcc0a5a66bb5bdceef5dd8a659a4ec75f3834d8",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x8207c7541ce31b38dbd46890f2a832cf1ef7c512",
+            "tokenOut": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "tokenOut": "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x2cec78ae807f7d64280e74032b259d3460c99c61"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x0a3d8466f5de586fa5f6de117301e2f90bcc5c48"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
+        "steps": [
+          {
+            "pool": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "tokenOut": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x2cec78ae807f7d64280e74032b259d3460c99c61",
+            "tokenOut": "0x0a3d8466f5de586fa5f6de117301e2f90bcc5c48",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x0a3d8466f5de586fa5f6de117301e2f90bcc5c48",
+        "steps": [
+          {
+            "pool": "0x2cec78ae807f7d64280e74032b259d3460c99c61",
+            "tokenOut": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xd3a9cb7312b9c29113290758f5adfe12304cd16a",
+            "tokenOut": "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0xd704254eb350e0d3baecd194d095862267897ae0"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0xfd739d4e423301ce9385c1fb8850539d657c296d"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x5555555555555555555555555555555555555555",
+        "steps": [
+          {
+            "pool": "0xd704254eb350e0d3baecd194d095862267897ae0",
+            "tokenOut": "0xd704254eb350e0d3baecd194d095862267897ae0",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x1c9854020388ea51b3f0a4e86695596362073bbd",
+            "tokenOut": "0xfd739d4e423301ce9385c1fb8850539d657c296d",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xfd739d4e423301ce9385c1fb8850539d657c296d",
+        "steps": [
+          {
+            "pool": "0x1c9854020388ea51b3f0a4e86695596362073bbd",
+            "tokenOut": "0xd704254eb350e0d3baecd194d095862267897ae0",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xd704254eb350e0d3baecd194d095862267897ae0",
+            "tokenOut": "0x5555555555555555555555555555555555555555",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x2c910f67dbf81099e6f8e126e7265d7595dc20ad"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x9fd7466f987fd4c45a5bbde22ed8aba5bc8d72d1"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x2c910f67dbf81099e6f8e126e7265d7595dc20ad",
+            "tokenOut": "0x2c910f67dbf81099e6f8e126e7265d7595dc20ad",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x768e4f8219095d714bc7dcfd60a5ece67d32faf9",
+            "tokenOut": "0x9fd7466f987fd4c45a5bbde22ed8aba5bc8d72d1",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x9fd7466f987fd4c45a5bbde22ed8aba5bc8d72d1",
+        "steps": [
+          {
+            "pool": "0x768e4f8219095d714bc7dcfd60a5ece67d32faf9",
+            "tokenOut": "0x2c910f67dbf81099e6f8e126e7265d7595dc20ad",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x2c910f67dbf81099e6f8e126e7265d7595dc20ad",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0xd10d872997e45686d2543ccb62e8f259ab44cc65"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x00fdbc53719604d924226215bc871d55e40a1009",
+        "steps": [
+          {
+            "pool": "0xd10d872997e45686d2543ccb62e8f259ab44cc65",
+            "tokenOut": "0xb50a96253abdf803d85efcdce07ad8becbc52bd5",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb50a96253abdf803d85efcdce07ad8becbc52bd5",
+        "steps": [
+          {
+            "pool": "0xd10d872997e45686d2543ccb62e8f259ab44cc65",
+            "tokenOut": "0x00fdbc53719604d924226215bc871d55e40a1009",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x06fd9d03b3d0f18e4919919b72d30c582f0a97e5"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x1359b05241ca5076c9f59605214f4f84114c0de8"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x06fd9d03b3d0f18e4919919b72d30c582f0a97e5",
+            "tokenOut": "0x06fd9d03b3d0f18e4919919b72d30c582f0a97e5",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x3e914881614438eea85cf0e67c3624ba039b37b3",
+            "tokenOut": "0x1359b05241ca5076c9f59605214f4f84114c0de8",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x1359b05241ca5076c9f59605214f4f84114c0de8",
+        "steps": [
+          {
+            "pool": "0x3e914881614438eea85cf0e67c3624ba039b37b3",
+            "tokenOut": "0x06fd9d03b3d0f18e4919919b72d30c582f0a97e5",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x06fd9d03b3d0f18e4919919b72d30c582f0a97e5",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x85f8666a2d09fd8d8d7a8a0ba25a7f3be848c257"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x5555555555555555555555555555555555555555",
+        "steps": [
+          {
+            "pool": "0x85f8666a2d09fd8d8d7a8a0ba25a7f3be848c257",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x85f8666a2d09fd8d8d7a8a0ba25a7f3be848c257",
+            "tokenOut": "0x5555555555555555555555555555555555555555",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x5555555555555555555555555555555555555555",
+        "steps": [
+          {
+            "pool": "0x85f8666a2d09fd8d8d7a8a0ba25a7f3be848c257",
+            "tokenOut": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+        "steps": [
+          {
+            "pool": "0x85f8666a2d09fd8d8d7a8a0ba25a7f3be848c257",
+            "tokenOut": "0x5555555555555555555555555555555555555555",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x85f8666a2d09fd8d8d7a8a0ba25a7f3be848c257",
+            "tokenOut": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+        "steps": [
+          {
+            "pool": "0x85f8666a2d09fd8d8d7a8a0ba25a7f3be848c257",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb50a96253abdf803d85efcdce07ad8becbc52bd5",
+        "steps": [
+          {
+            "pool": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "tokenOut": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "isBuffer": true
+          },
+          {
+            "pool": "0xa5bec44e681e8138dfd4925f3023a54eddc99ea2",
+            "tokenOut": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "tokenOut": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "isBuffer": true
+          },
+          {
+            "pool": "0xa5bec44e681e8138dfd4925f3023a54eddc99ea2",
+            "tokenOut": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "tokenOut": "0xb50a96253abdf803d85efcdce07ad8becbc52bd5",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "tokenOut": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "isBuffer": true
+          },
+          {
+            "pool": "0xa5bec44e681e8138dfd4925f3023a54eddc99ea2",
+            "tokenOut": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "tokenOut": "0xb50a96253abdf803d85efcdce07ad8becbc52bd5",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb50a96253abdf803d85efcdce07ad8becbc52bd5",
+        "steps": [
+          {
+            "pool": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "tokenOut": "0x9c59a9389d8f72de2cdaf1126f36ea4790e2275e",
+            "isBuffer": true
+          },
+          {
+            "pool": "0xa5bec44e681e8138dfd4925f3023a54eddc99ea2",
+            "tokenOut": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xfc5126377f0efc0041c0969ef9ba903ce67d151e",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x0571362ba5ea9784a97605f57483f865a37dbeaa"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0xd19e3d00f8547f7d108abfd4bbb015486437b487"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+        "steps": [
+          {
+            "pool": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "tokenOut": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x6bd8de0fed17dc0c0a82b9fe5522b129ecaebdbd",
+            "tokenOut": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "tokenOut": "0x5555555555555555555555555555555555555555",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x5555555555555555555555555555555555555555",
+        "steps": [
+          {
+            "pool": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "tokenOut": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x6bd8de0fed17dc0c0a82b9fe5522b129ecaebdbd",
+            "tokenOut": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "tokenOut": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x5555555555555555555555555555555555555555",
+        "steps": [
+          {
+            "pool": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "tokenOut": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x6bd8de0fed17dc0c0a82b9fe5522b129ecaebdbd",
+            "tokenOut": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "isBuffer": false
+          },
+          {
+            "pool": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "tokenOut": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xbe6727b535545c67d5caa73dea54865b92cf7907",
+        "steps": [
+          {
+            "pool": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "tokenOut": "0x0571362ba5ea9784a97605f57483f865a37dbeaa",
+            "isBuffer": true
+          },
+          {
+            "pool": "0x6bd8de0fed17dc0c0a82b9fe5522b129ecaebdbd",
+            "tokenOut": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "isBuffer": false
+          },
+          {
+            "pool": "0xd19e3d00f8547f7d108abfd4bbb015486437b487",
+            "tokenOut": "0x5555555555555555555555555555555555555555",
+            "isBuffer": true
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "poolOrBuffer",
+            "type": "address"
+          }
+        ],
+        "name": "addSimplePath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolOrBuffer": "0x7344f2d57402a03c07d47893fe9c045cdd3d0a6b"
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x5555555555555555555555555555555555555555",
+        "steps": [
+          {
+            "pool": "0x7344f2d57402a03c07d47893fe9c045cdd3d0a6b",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x7344f2d57402a03c07d47893fe9c045cdd3d0a6b",
+            "tokenOut": "0x5555555555555555555555555555555555555555",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x27ec642013bcb3d80ca3706599d3cda04f6f4452",
+        "steps": [
+          {
+            "pool": "0xcc6ee2bcc7537173f1f2c42ecb2d4d8ec219a1f4",
+            "tokenOut": "0x5555555555555555555555555555555555555555",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x5555555555555555555555555555555555555555",
+        "steps": [
+          {
+            "pool": "0xcc6ee2bcc7537173f1f2c42ecb2d4d8ec219a1f4",
+            "tokenOut": "0x27ec642013bcb3d80ca3706599d3cda04f6f4452",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x9fd7466f987fd4c45a5bbde22ed8aba5bc8d72d1",
+        "steps": [
+          {
+            "pool": "0x9eed7d6914cc0d00139e99aec0cd60b02ba8c07e",
+            "tokenOut": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+            "isBuffer": false
+          }
+        ]
+      }
+    },
+    {
+      "to": "0x4Cb42fc3b5fb9392Ce0772C3A540E4AE4da4Ac4d",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "struct IBatchRouter.SwapPathStep[]",
+            "name": "steps",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addPath",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "steps": [
+          {
+            "pool": "0x9eed7d6914cc0d00139e99aec0cd60b02ba8c07e",
+            "tokenOut": "0x9fd7466f987fd4c45a5bbde22ed8aba5bc8d72d1",
+            "isBuffer": false
+          }
+        ]
+      }
+    }
+  ]
+}
