@@ -12,20 +12,14 @@ from dotmap import DotMap
 import collections
 from helpers.addresses import get_registry_by_chain_id
 
-INFURA_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
+DRPC_KEY = os.getenv("DRPC_KEY")
 
 w3_by_chain = {
-    "mainnet": Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}")),
-    "arbitrum": Web3(
-        Web3.HTTPProvider(f"https://arbitrum-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "optimism": Web3(
-        Web3.HTTPProvider(f"https://optimism-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "polygon": Web3(
-        Web3.HTTPProvider(f"https://polygon-mainnet.infura.io/v3/{INFURA_KEY}")
-    ),
-    "gnosis": Web3(Web3.HTTPProvider(f"https://rpc.gnosischain.com/")),
+    "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}")),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")),
+    "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")),
+    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")),
+    "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/gnosis/{DRPC_KEY}")),
 }
 
 ALL_CHAINS_MAP = {

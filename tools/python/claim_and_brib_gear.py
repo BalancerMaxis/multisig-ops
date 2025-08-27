@@ -14,13 +14,13 @@ debug = False
 r = get_registry_by_chain_id(1)
 
 ###TODO: The below settings must be set before running the script
-INFURA_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
+DRPC_KEY = os.getenv("DRPC_KEY")
 GEARBOX_MERKLE_URL = (
     "https://raw.githubusercontent.com/Gearbox-protocol/rewards/master/merkle/"
 )
 GEARBOX_TREE = "0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC"
 GAUGE_TO_BRIB = "0x19A13793af96f534F0027b4b6a3eB699647368e7"  ## bb-g-usd
-w3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{INFURA_KEY}"))
+w3 = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}"))
 tree = w3.eth.contract(
     address=GEARBOX_TREE, abi=json.load(open("./abis/GearAirdropDistributor.json"))
 )

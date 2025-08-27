@@ -1,0 +1,16 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-RZR-to-weETH-lstRZR-gauge.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `2aa5627ffed57098044d857885b36b60ddaf92d6`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ab62459f-2c61-4dd7-82f4-d611cab4d7e4)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                    | selector                    | parsed_inputs                                                            | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x320216774426b2765c72ab1ea9606d1474adf677 (gauges/RZR-weETH-gauge-3202)  | add_reward(address,address) | 0xb4444468e444f89e1c2CAc2F1D3ee7e336cBD1f5: RZR                          | N/A |    0     |
+|               |                                                                                                                 |                                                                           |                             | 0xE2E45c8747133D32Adb732abaBCf25d800A8513d: rezerve/rzr_rewards_injector |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x69bd054863dbf43a42189665dbd4060d2c07a2c8 (gauges/RZR-lstRZR-gauge-69bd) | add_reward(address,address) | 0xb4444468e444f89e1c2CAc2F1D3ee7e336cBD1f5: RZR                          | N/A |    1     |
+|               |                                                                                                                 |                                                                           |                             | 0xE2E45c8747133D32Adb732abaBCf25d800A8513d: rezerve/rzr_rewards_injector |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+--------------------------------------------------------------------------+-----+----------+
+```
