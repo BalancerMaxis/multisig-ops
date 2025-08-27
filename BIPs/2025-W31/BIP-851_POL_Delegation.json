@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1755038696506,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x2011365164af3bec7b555ac81a09c8e0c574c84533b085a5e1908312e7111402"
+  },
+  "transactions": [
+    {
+      "to": "0x455e53CBB86018Ac2B8092FdCd39d8444aFFC3F6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "spender", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x5e3Ef299fDDf15eAa0432E6e66473ace8c13D908",
+        "amount": "91874484965757455386908"
+      }
+    },
+    {
+      "to": "0x503B36441618e61135adE1Fa6Aa8e5345DA7Ce75",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_minSharesToMint",
+            "type": "uint256"
+          }
+        ],
+        "name": "buyVoucherPOL",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "91874483772116024377328",
+        "_minSharesToMint": "0"
+      }
+    },
+    {
+      "to": "0xb83EEf820AeC27E443D23cdCd6F383aBFa419ff9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "string", "name": "context", "type": "string" },
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "delegate",
+                "type": "bytes32"
+              },
+              { "internalType": "uint256", "name": "ratio", "type": "uint256" }
+            ],
+            "internalType": "struct Delegation[]",
+            "name": "delegation",
+            "type": "tuple[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expirationTimestamp",
+            "type": "uint256"
+          }
+        ],
+        "name": "setDelegation",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "context": "\"polygongovernancehub.eth\"",
+        "delegation": "[   [\"0x0000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc89\", \"0\"],   [\"0x000000000000000000000000122afb4667c5f80e45721a42c7c81e9140c62fa4\", \"100\"] ]",
+        "expirationTimestamp": "0"
+      }
+    }
+  ]
+}
