@@ -1,0 +1,28 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/HyperEVM/stable-surge-params-0xba0163e18b8b6236d5046841e698f2f2d89bd4bd-2025-08-26_1711.json`
+MULTISIG: `multisigs/maxi_omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `0a3d619f9d54614e028dd741295856821d2a9391`
+CHAIN(S): `hyperevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'f408a801-3464-4f7c-9e00-6034520d78b0', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name                     | to                                                                                            | value | inputs                                                 | bip_number | tx_index |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| setMaxSurgeFeePercentage    | 0x5dbad78818d4c8958eff2d5b95b28385a22113cd (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0xba0163e18b8b6236d5046841e698f2f2d89bd4bd (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newMaxSurgeSurgeFeePercentage": [                   |            |          |
+|                             |                                                                                               |       |     "70000000000000000"                                |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
+| setSurgeThresholdPercentage | 0x5dbad78818d4c8958eff2d5b95b28385a22113cd (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0xba0163e18b8b6236d5046841e698f2f2d89bd4bd (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newSurgeThresholdPercentage": [                     |            |          |
+|                             |                                                                                               |       |     "600000000000000000"                               |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
