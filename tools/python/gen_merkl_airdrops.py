@@ -151,8 +151,10 @@ def build_snapshot_df(
     # calculate total shares per user per block
     total_shares = {}
     total_supply = {}
+    protocol_reserves = {}
     for block in pool_shares:
         total_shares[block] = {}
+        protocol_reserves[block] = Decimal(0)
         for user_id in pool_shares[block]:
             if user_id in [
                 gauge,
@@ -172,6 +174,14 @@ def build_snapshot_df(
             ]:
                 # we do not want to count the aura voter proxy as a user;
                 # it is accounted for later
+                # for beefy: track the difference between what it holds and what it distributes
+                # (its gauge balance != its total user shares)
+                if user_id == beefy_strat and beefy_strat:
+                    beefy_gauge_balance = gauge_shares[block].get(
+                        beefy_strat, Decimal(0)
+                    )
+                    beefy_user_total = sum(beefy_shares[block].values())
+                    protocol_reserves[block] += beefy_gauge_balance - beefy_user_total
                 continue
             if user_id not in total_shares[block]:
                 total_shares[block][user_id] = gauge_shares[block][user_id]
@@ -216,14 +226,23 @@ def build_snapshot_df(
     # build dataframe
     df = pd.DataFrame(total_shares).fillna(Decimal(0))
 
+    # account for protocol reserves (eg beefy) that should not be distributed
+    total_protocol_reserves = sum(protocol_reserves.values())
+    expected_user_shares = (
+        sum(total_supply.values()) / Decimal(1e18) - total_protocol_reserves
+    )
+
     # checksum total balances versus total supply
     assert df.sum().sum() == approx(
-        sum(total_supply.values()) / Decimal(1e18), rel=Decimal(1e-6)
-    ), f"total shares do not match total supply: {df.sum().sum()} != {sum(total_supply.values()) / Decimal(1e18)}"
+        expected_user_shares, rel=Decimal(1e-6)
+    ), f"total shares do not match expected user shares: {df.sum().sum()} != {expected_user_shares} (protocol reserves: {total_protocol_reserves})"
     for block in df.columns:
+        expected_block_shares = (
+            total_supply[block] / Decimal(1e18) - protocol_reserves[block]
+        )
         assert df[block].sum() == approx(
-            total_supply[block] / Decimal(1e18), rel=Decimal(1e-6)
-        ), f"total shares for block {block} do not match total supply: {df[block].sum()} != {total_supply[block] / Decimal(1e18)}"
+            expected_block_shares, rel=Decimal(1e-6)
+        ), f"shares for block {block} do not match expected: {df[block].sum()} != {expected_block_shares} (protocol reserves: {protocol_reserves[block]})"
 
     return df
 
@@ -503,7 +522,9 @@ if __name__ == "__main__":
                         # 1751462483,  # 22831800; round 15; released together with 16
                         1752679127,  # 22932600; round 16
                         1753896131,  # 23033400; round 17
-                        "23134200",  # 23134200, round 18
+                        # 1755113051,  # 23134200; round 18
+                        1755695435,  # 23182500, round 18 +19
+                        "23282608",  # 23282608, round 20
                     ]
                 epoch_duration = epochs[-2] - epochs[-3]
             if protocol == "morpho":
