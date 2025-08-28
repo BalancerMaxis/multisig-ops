@@ -1,0 +1,20 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-RZR-for-RPL-rETH-ETHFI-eBTC-RZR-pools.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `a82d00deafb9e7611c3dcf71d1043c28237fd902`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/2357666e-2fbf-46c9-9aeb-bbd0bd6dedcc)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                            | selector                    | parsed_inputs                                                            | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x4487ab9adca4695014e2fb43ac7adf330549a93d (None) | add_reward(address,address) | 0xb4444468e444f89e1c2CAc2F1D3ee7e336cBD1f5: RZR                          | N/A |    0     |
+|               |                                                                                                                 |                                                   |                             | 0xE2E45c8747133D32Adb732abaBCf25d800A8513d: rezerve/rzr_rewards_injector |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xd6dd2fb970145c55b0332212756cbb9eb8f5718f (None) | add_reward(address,address) | 0xb4444468e444f89e1c2CAc2F1D3ee7e336cBD1f5: RZR                          | N/A |    1     |
+|               |                                                                                                                 |                                                   |                             | 0xE2E45c8747133D32Adb732abaBCf25d800A8513d: rezerve/rzr_rewards_injector |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x9188d877c7cd88111e75acc700db5560efb7b3aa (None) | add_reward(address,address) | 0xb4444468e444f89e1c2CAc2F1D3ee7e336cBD1f5: RZR                          | N/A |    2     |
+|               |                                                                                                                 |                                                   |                             | 0xE2E45c8747133D32Adb732abaBCf25d800A8513d: rezerve/rzr_rewards_injector |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x85d35e7bf8ee27fe10cf993a4564467645d78e56 (None) | add_reward(address,address) | 0xb4444468e444f89e1c2CAc2F1D3ee7e336cBD1f5: RZR                          | N/A |    3     |
+|               |                                                                                                                 |                                                   |                             | 0xE2E45c8747133D32Adb732abaBCf25d800A8513d: rezerve/rzr_rewards_injector |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------+-----------------------------+--------------------------------------------------------------------------+-----+----------+
+```
