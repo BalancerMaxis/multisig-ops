@@ -1,0 +1,52 @@
+{
+    "domain": {
+        "name": "snapshot",
+        "version": "0.1.4"
+    },
+    "types": {
+        "Vote": [
+            {
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "name": "space",
+                "type": "string"
+            },
+            {
+                "name": "timestamp",
+                "type": "uint64"
+            },
+            {
+                "name": "proposal",
+                "type": "bytes32"
+            },
+            {
+                "name": "choice",
+                "type": "string"
+            },
+            {
+                "name": "reason",
+                "type": "string"
+            },
+            {
+                "name": "app",
+                "type": "string"
+            },
+            {
+                "name": "metadata",
+                "type": "string"
+            }
+        ]
+    },
+    "message": {
+        "space": "gauges.aurafinance.eth",
+        "proposal": "0x43cc862173ea90584cc2ec4a18ab8d50bcf7f33dfcb4695fd5602d67b85e61ff",
+        "choice": "{\"75\":5.0,\"222\":10.0,\"220\":8.0,\"217\":8.0,\"141\":8.0,\"237\":10.0,\"149\":7.0,\"146\":10.0,\"74\":7.0,\"27\":11.0,\"137\":6.0,\"142\":5.0,\"215\":5.0}",
+        "app": "snapshot",
+        "reason": "",
+        "metadata": "{}",
+        "from": "0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28",
+        "timestamp": 1756412818
+    }
+}
