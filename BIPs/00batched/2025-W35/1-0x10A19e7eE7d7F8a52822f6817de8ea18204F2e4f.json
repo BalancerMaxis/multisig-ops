@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x125f8185b9efebee1266720f09cd756bd130f70cb24b5929efa8ff3df158e86f]",
+        "account": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W35/BIP-865-Missing-v3-factory-emergency-perms/BIP-865-mainnet-emergencyPerms.json",
+        "bip_number": "BIP-865"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x83dc5eaaade2c71d34c71bd21fe617f5f6d83bf53bd9d886d00c756e386b8cd1, 0xae60dce27f51ce5815357b9f6b40f200557867f8222262a1646c005d09b7dfba, 0x076e9815202aa39577192023cfa569d6504b003183b2bc13cd0046523dfa23ea, 0xec1d467d9ab03a0079c22a89037209f5763aec973897ea763e2cf25d71a5f12e, 0x2960d085c4c968d7cad55c0da3f97014525b948fdce990ecaef4e832b5f0b151, 0x3f44776af02a9227991da37715b44e45db40735e216b3ab33144859bb6737166]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W35/BIP-867-Omni-gauge-perms/BIP-867-Grant-Omni-Gauge-mgmt-perms.json",
+        "bip_number": "BIP-867"
+      }
+    }
+  ]
+}

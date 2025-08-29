@@ -1,0 +1,36 @@
+gm!!! mostly (light) treasury migrations on l2s this batch, also some gauge and emergency permissions. see detailed reports here: https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs/00batched/2025-W35
+
+ ### Arbitrum: `multisigs/kpk_managed`
+Nonce 7: https://app.safe.global/transactions/tx?safe=arb1:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89&id=multisig_0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89_0xb8468f671d3fadd474bee2c63c247a3e3c4c3b6cce67a7b1df92f5a3d205d179
+- BIP-850: Delegate ARB tokens to karpatkey delegate multisig
+
+### Arbitrum: `multisigs/dao`
+Nonce 53: https://app.safe.global/transactions/tx?safe=arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0&id=multisig_0xaF23DC5983230E9eEAf93280e312e57539D098D0_0x961346e990a4d492a813e5b88af50a85242bf3d0f9f7856862ef0213ded77816
+- BIP-865: Grant emergency permissions to disable v3 pool factories (Gyro2CLP, StablePoolV2, StableSurge)
+
+### Avalanche: `multisigs/dao`
+Nonce 27: https://app.safe.global/transactions/tx?safe=avax:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3&id=multisig_0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3_0x74756eaf5972f8a76b55a70b5f462d4ddf2f2f6ebccc1953ce36e6057e354b36
+- BIP-850: Transfer treasury assets (80BAL/20WAVAX LP, USDC, USDt) to maxi_omni multisig
+
+### Base: `multisigs/dao`
+Nonce 16: https://app.safe.global/transactions/tx?safe=base:0xC40DCFB13651e64C8551007aa57F9260827B6462&id=multisig_0xC40DCFB13651e64C8551007aa57F9260827B6462_0x26f4eb8e09765faad28a8196c0e98bfaaba57cbdc5d56903c25764b86d356d8e
+- BIP-865: Grant emergency permissions to disable v3 pool factories (Gyro2CLP, StablePoolV2, StableSurge)
+
+### Ethereum: `multisigs/dao`
+Nonce 272: https://app.safe.global/transactions/tx?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f&id=multisig_0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f_0xc37bb056498f854fed4563433585061da9b26836742e540988509bebc52c100b
+- BIP-865: Grant emergency permissions to disable StableSurgePoolFactory
+- BIP-867: Grant omni gauge management permissions (addGauge, setRelativeWeightCap, kill/unkillGauge)
+
+### Gnosis: `multisigs/dao`
+Nonce 34: https://app.safe.global/transactions/tx?safe=gno:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18&id=multisig_0x2a5AEcE0bb9EfFD7608213AE1745873385515c18_0x0a0c4b479bfc88073a83f811a10c8e1679e8aae2019fa34eb30842d03027aea1
+- BIP-865: Grant emergency permissions to disable v3 pool factories (Gyro2CLP, StablePoolV2, StableSurge)
+
+### Optimism: `multisigs/dao`
+Nonce 39: https://app.safe.global/transactions/tx?safe=oeth:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc&id=multisig_0x043f9687842771b3dF8852c1E9801DCAeED3f6bc_0xab9211c920791843d48675de9e7bba4435b2284b809177535f768357ac6784ec
+- BIP-850: Transfer treasury assets (USDC, OP, BAL, 80BAL-20WETH LP) to maxi_omni multisig
+
+### Polygon: `multisigs/dao`
+Nonce 40: https://app.safe.global/transactions/tx?safe=matic:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85&id=multisig_0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85_0xae4173056f52da2b087a7ca4655a6e26fc0544a3675848df6b8796279223f558
+- BIP-850: Transfer treasury assets (USDT, USDC, WETH) to maxi_omni multisig and withdraw BAL from Aave
+
+@alexanderlan @garaigram @mouph @nanexcool @eboado @OxMaki @StefanGeorge @bonustrack @SausageDoge @lewisjfg
