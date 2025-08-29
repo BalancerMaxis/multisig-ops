@@ -1,0 +1,32 @@
+FILENAME: `BIPs/2025-W36/BIP-869.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `f519bd100c03231d64f2a0a2f0273c2604d5e65b`
+CHAIN(S): `arbitrum, mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/90ce53e0-f635-46c4-9d15-0cba79039d27)
+
+| Gauge Validator (0x6bA97C44AecF7CC15B05947c172a6D797cE96693) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0x3c982431ffDE3447a2086495631d1Af27bD5686D) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+```
++-----------------------+----------------------------------------------------------+--------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info    | gauge_address_and_info                           | tokens                                           | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+--------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x9d1Fcf346eA1b073de4D5834e25572CC6ad71f4d               | reCLAMM-AAVE-WETH  | root: 0x6bA97C44AecF7CC15B05947c172a6D797cE96693 | 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9: AAVE | 0x0000000000000000000000000000000000000000 |       --       | BIP-869 |    0     |
+|                       | pool_address: 0x9d1Fcf346eA1b073de4D5834e25572CC6ad71f4d | fee (%): 0.25      | side: None                                       | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2: WETH | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A      | style: mainnet                                   |                                                  |                                            |                |         |          |
+|                       |                                                          |                    | cap: 100.0%                                      |                                                  |                                            |                |         |          |
+|                       |                                                          |                    | preferential: True                               |                                                  |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x5Ea58d57952b028c40Bd200E5AFF20FC4b590f51               | reCLAMM-AAVE-WETH  | root: 0x3c982431ffDE3447a2086495631d1Af27bD5686D | 0x82aF49447D8a07e3bd95BD0d56f35241523fBab1: WETH | 0x0000000000000000000000000000000000000000 |       --       | BIP-869 |    1     |
+|                       | pool_address: 0x5Ea58d57952b028c40Bd200E5AFF20FC4b590f51 | fee (%): 0.25      | side: 0x193C0CEBcb5ABE326Fd6E148EFF63c615579c98d | 0xba5DdD1f9d7F570dc94a51479a000E3BCE967196: AAVE | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A      | style: L0 sidechain                              |                                                  |                                            |                |         |          |
+|                       |                                                          |                    | cap: 100.0%                                      |                                                  |                                            |                |         |          |
+|                       |                                                          |                    | preferential: True                               |                                                  |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+--------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
