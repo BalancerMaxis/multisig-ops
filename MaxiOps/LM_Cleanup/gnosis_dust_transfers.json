@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1735826000000,
+  "meta": {
+    "name": "Gnosis Token Transfers to gosuto_deployer",
+    "description": "Transfer BAL (0.001268461583997469) to gosuto_deployer",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x14969B55a675d13a1700F71A37511bc22D90155a",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x7eF541E2a22058048904fE5744f9c7E4C57AF717",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "1268461583997469"
+      }
+    }
+  ]
+}

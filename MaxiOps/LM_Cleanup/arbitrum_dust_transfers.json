@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1735826000000,
+  "meta": {
+    "name": "Arbitrum Token Transfers to gosuto_deployer",
+    "description": "Transfer LINK (12.559586162296156085) to Omni, USDT (25.13491), and ETH (0.001) to gosuto_deployer",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xf97f4df75117a78c1a5a0dbb814af92458539fb4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+        "value": "12559586162296156085"
+      }
+    },
+    {
+      "to": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "_to",
+            "type": "address"
+          },
+          {
+            "name": "_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "_value": "25134910"
+      }
+    },
+    {
+      "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+      "value": "1000000000000000",
+      "data": null,
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}
