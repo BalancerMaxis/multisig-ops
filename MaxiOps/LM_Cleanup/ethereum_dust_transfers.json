@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1735826000000,
+  "meta": {
+    "name": "Ethereum Token Transfers to gosuto_deployer",
+    "description": "Transfer ETH (0.073638815371443902), TUSD (30), aBAL (0.893950579082797267), and VITA (0.01050278) to gosuto_deployer",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+      "value": "73638815371443902",
+      "data": null,
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x0000000000085d4780b73119b644ae5ecd22b376",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "30000000000000000000"
+      }
+    },
+    {
+      "to": "0x272f97b7a56a387ae942350bbc7df5700f8a4576",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "893950579082797267"
+      }
+    },
+    {
+      "to": "0x81f8f0bb1cb2a06649e51913a151f0e7ef6fa321",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "10502780000000000"
+      }
+    }
+  ]
+}

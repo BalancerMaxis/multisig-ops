@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1735826000000,
+  "meta": {
+    "name": "Avalanche Token Transfers to gosuto_deployer",
+    "description": "Transfer AVAX (0.5928) native token and BAL (0.00000052) to gosuto_deployer",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x326A7778DB9B741Cb2acA0DE07b9402C7685dAc6",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+      "value": "592840416907091590",
+      "data": null,
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0xE15bCB9E0EA69e6aB9FA080c4c4A5632896298C3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "520000000000"
+      }
+    }
+  ]
+}

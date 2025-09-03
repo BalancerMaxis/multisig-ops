@@ -1,0 +1,113 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1735826000000,
+  "meta": {
+    "name": "Polygon Token Transfers to gosuto_deployer",
+    "description": "Transfer Aave Polygon BAL (3.639977150090615761), LDO (1), TUSD (1), TEL (0.00161), and POL (0.00119364143100958) to gosuto_deployer",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x8ffDf2DE812095b1D19CB146E4c004587C0A0692",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "3639977150090615761"
+      }
+    },
+    {
+      "to": "0xC3C7d422809852031b44ab29EEC9F1EfF2A58756",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "1000000000000000000"
+      }
+    },
+    {
+      "to": "0x2e1AD108fF1D8C782fcBbB89AAd783aC49586756",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "1000000000000000000"
+      }
+    },
+    {
+      "to": "0xdF7837DE1F2Fa4631D716CF2502f8b230F1dcc32",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+        "value": "161"
+      }
+    },
+    {
+      "to": "0x4BC8121278056BFCaC2BD14D455659224d6dDf48",
+      "value": "1193641431009580",
+      "data": null,
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}
