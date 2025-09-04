@@ -1,1 +1,29 @@
-{"version":"1.0","chainId":"1","createdAt":1756991113486,"meta":{"name":"Combined Transactions Batch (1 operations)","description":"Composed from: Change Swap Fee (v2)","createdFromSafeAddress":"0xc38c5f97B34E175FFd35407fc91a937300E33860"},"transactions":[{"to":"0x3de27efa2f1aa663ae5d458857e731c129069f29","value":"0","data":null,"contractMethod":{"inputs":[{"name":"swapFeePercentage","type":"uint256","internalType":"uint256"}],"name":"setSwapFeePercentage","payable":false},"contractInputsValues":{"swapFeePercentage":"5000000000000000"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1756991113486,
+  "meta": {
+    "name": "Combined Transactions Batch (1 operations)",
+    "description": "Composed from: Change Swap Fee (v2)",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
+  },
+  "transactions": [
+    {
+      "to": "0x3de27efa2f1aa663ae5d458857e731c129069f29",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": { "swapFeePercentage": "5000000000000000" }
+    }
+  ]
+}
