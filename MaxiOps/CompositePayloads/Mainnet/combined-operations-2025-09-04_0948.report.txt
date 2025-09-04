@@ -1,0 +1,57 @@
+FILENAME: `MaxiOps/CompositePayloads/Mainnet/combined-operations-2025-09-04_0948.json`
+MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
+COMMIT: `84a21ba5f5fc9a83128006df5205d7f479ea6304`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/029ae6d0-f7b0-4849-8ecd-cad3906b7ef4)
+
+```
++----------------------+-------------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| fx_name              | to                                                                      | value | inputs                   | bip_number | tx_index |
++----------------------+-------------------------------------------------------------------------+-------+--------------------------+------------+----------+
+| setSwapFeePercentage | 0xc29562b045d80fd77c69bec09541f5c16fe20d9d (pools/B-80AURA-20WETH-c295) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "10000000000000000"  |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0x5c6ee304399dbdb9c8ef030ab642b10820db8f56 (tokens/BalWeth8020)         | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "10000000000000000"  |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0xcfca23ca9ca720b6e98e3eb9b6aa0ffc4a5c08b9 (pools/50WETH-50AURA-cfca)   | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "5000000000000000"   |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0xfd1cf6fd41f229ca86ada0584c63c49c3d66bbc9 (pools/50PENDLE-50WETH-fd1c) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "10000000000000000"  |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0xa6f548df93de924d73be7d25dc02554c6bd66db5 (pools/B-50WBTC-50WETH-a6f5) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "2500000000000000"   |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0x96646936b91d6b9d7d0c47c496afbf3d6ec7b6f8 (pools/B-50USDC-50WETH-9664) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "3000000000000000"   |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0x3ff3a210e57cfe679d9ad1e9ba6453a716c56a2e (pools/STG/USDC-3ff3)        | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "10000000000000000"  |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0x3de27efa2f1aa663ae5d458857e731c129069f29 (pools/20wstETH-80AAVE-3de2) | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "5000000000000000"   |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
+| setSwapFeePercentage | 0xf4c0dd9b82da36c07605df83c8a416f11724d88b (pools/B-80GNO-20WETH-f4c0)  | 0     | {                        | N/A        |   N/A    |
+|                      |                                                                         |       |   "swapFeePercentage": [ |            |          |
+|                      |                                                                         |       |     "3000000000000000"   |            |          |
+|                      |                                                                         |       |   ]                      |            |          |
+|                      |                                                                         |       | }                        |            |          |
++----------------------+-------------------------------------------------------------------------+-------+--------------------------+------------+----------+
+```
