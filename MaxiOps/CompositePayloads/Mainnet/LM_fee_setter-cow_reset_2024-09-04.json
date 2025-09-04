@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1756993801302,
+  "meta": {
+    "name": "Combined Transactions Batch (1 operations)",
+    "description": "Composed from: Change Swap Fee (v2)",
+    "createdFromSafeAddress": "0xc38c5f97B34E175FFd35407fc91a937300E33860"
+  },
+  "transactions": [
+    {
+      "to": "0x3ff3a210e57cfe679d9ad1e9ba6453a716c56a2e",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "swapFeePercentage": "1000000000000000"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1756992569010,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x860a792d4e11e4dfe7633e8d3145965bae5ef8480c5120c8e9656502076d1eb5"
+  },
+  "transactions": [
+    {
+      "to": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address[]",
+            "name": "addresses",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "fees",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "setSwapFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "addresses": "[0xc29562b045d80fd77c69bec09541f5c16fe20d9d, 0x5c6ee304399dbdb9c8ef030ab642b10820db8f56, 0xcfca23ca9ca720b6e98e3eb9b6aa0ffc4a5c08b9,0xfd1cf6fd41f229ca86ada0584c63c49c3d66bbc9,0xa6f548df93de924d73be7d25dc02554c6bd66db5,0x96646936b91d6b9d7d0c47c496afbf3d6ec7b6f8,0xf4c0dd9b82da36c07605df83c8a416f11724d88b]",
+        "fees": "[10000000000000000, 10000000000000000, 5000000000000000,10000000000000000,2500000000000000,3000000000000000,3000000000000000]"
+      }
+    }
+  ]
+}
