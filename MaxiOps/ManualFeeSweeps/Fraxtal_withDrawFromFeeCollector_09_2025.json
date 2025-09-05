@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "chainId": "252",
+  "createdAt": 1757074216000,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Withdraw accumulated Fraxtal fees from Fee Collector to Xeonus' deployer for processing.",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20[]",
+            "name": "tokens",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "amounts",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          }
+        ],
+        "name": "withdrawCollectedFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokens": "[0xA0b92B33BeafcE388Ce0092afDcd0cA77323Eb12,0x33251abeCb0364Df98a27A8D5d7b5CCddc774c42,0x1570315476480fa80cec1fff07a20c1df1adfd53]",
+        "amounts": "[570282567531983730631,1008161369349430842179,81473192543529746992]",
+        "recipient": "0x735fddb3e475e5f7a61ef674c72a7ede82d1f493"
+      }
+    }
+  ]
+}
+
