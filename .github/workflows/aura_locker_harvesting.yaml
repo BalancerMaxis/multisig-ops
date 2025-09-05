@@ -54,6 +54,8 @@ jobs:
             * [Mainnet tokens to sell](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/mainnet/tokens_to_sell_mainnet_${{ steps.generate-branch-name.outputs.date }}.csv)
             * [Arbitrum bribe claims](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/arbitrum/bribe_claims_arbitrum_${{ steps.generate-branch-name.outputs.date }}.csv)
             * [Arbitrum tokens to sell](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/arbitrum/tokens_to_sell_arbitrum_${{ steps.generate-branch-name.outputs.date }}.csv)
+            * [Base bribe claims](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/base/bribe_claims_base_${{ steps.generate-branch-name.outputs.date }}.csv)
+            * [Base tokens to sell](../tree/${{ steps.generate-branch-name.outputs.branch }}/MaxiOps/paladin_bribes/${{ steps.generate-branch-name.outputs.date }}/base/tokens_to_sell_base_${{ steps.generate-branch-name.outputs.date }}.csv)
 
           branch: ${{ steps.generate-branch-name.outputs.branch }}
           labels: "Automatic Payload"

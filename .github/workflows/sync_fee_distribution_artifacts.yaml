@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.MULTISIG_OPS_PAT }}
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v6
@@ -89,7 +89,7 @@ jobs:
         if: steps.summary.outputs.skipped != 'True'
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.MULTISIG_OPS_PAT }}
           commit-message: "Add fee distribution artifacts for ${{ steps.summary.outputs.end-date }}"
           title: "Biweekly Fee Run ending ${{ steps.summary.outputs.end-date }}"
           body: |
