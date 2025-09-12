@@ -603,6 +603,16 @@ if __name__ == "__main__":
                         "23382608",  # 23382608, round 21
                         # "23482608",  # 23482608, round 22
                     ]
+                elif chain == "8453":
+                    # Base chain epochs from base-supply-usdc, base-supply-gho, base-supply-eth-borrow-multiple campaigns
+                    # Only including campaigns after block 22983001
+                    # Note: These are Ethereum block numbers, not Base block numbers
+                    epochs = [
+                        1753287431,  # 22983001; start
+                        1755981251,  # 23206201; end round 1 (rounds 5-7 for USDC, 1-3 for GHO/ETH)
+                        "23422200",  # 23422200; end round 2
+                        # "23638200",  # 23638200; end round 3
+                    ]
                 epoch_duration = epochs[-2] - epochs[-3]
             if protocol == "morpho":
                 epoch_duration = 60 * 60 * 24 * 7
