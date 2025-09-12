@@ -105,13 +105,87 @@ def get_beefy_strat(pool, block):
     return ""
 
 
-def get_block_from_timestamp(ts):
-    raw = subgraph.fetch_graphql_data(
-        "blocks",
-        "first_block_after_ts",
-        {"timestamp_lt": ts + step_size, "timestamp_gt": ts - 1},
-    )
-    return int(raw["blocks"][0]["number"])
+# Cache for timestamp to block lookups
+_timestamp_block_cache = {}
+_timestamp_cache_file = "MaxiOps/merkl/cache/timestamp_blocks.pkl"
+
+# Load cache from file if it exists
+if Path(_timestamp_cache_file).is_file():
+    with open(_timestamp_cache_file, "rb") as f:
+        _timestamp_block_cache = pickle.load(f)
+
+
+def get_block_from_timestamp(ts, chain_id=None):
+    # Use global chain if chain_id not provided
+    chain_to_use = chain_id if chain_id is not None else chain
+
+    # Check cache first
+    cache_key = f"{chain_to_use}:{ts}"
+    if cache_key in _timestamp_block_cache:
+        return _timestamp_block_cache[cache_key]
+
+    # Try subgraph first with retries for intermittent failures
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            raw = subgraph.fetch_graphql_data(
+                "blocks",
+                "first_block_after_ts",
+                {"timestamp_lt": ts + step_size, "timestamp_gt": ts - 1},
+            )
+            block_number = int(raw["blocks"][0]["number"])
+            _timestamp_block_cache[cache_key] = block_number
+            # Save cache to file
+            os.makedirs(os.path.dirname(_timestamp_cache_file), exist_ok=True)
+            with open(_timestamp_cache_file, "wb") as f:
+                pickle.dump(_timestamp_block_cache, f)
+            return block_number
+        except Exception as e:
+            if "bad indexers" in str(e) and attempt < max_retries - 1:
+                # Known intermittent issue with Base blocks subgraph
+                import time
+
+                time.sleep(1)  # Wait before retry
+                continue
+            # If all retries failed, fall back to Etherscan API v2
+            break
+
+    # Fallback to Etherscan API v2 (omnichain)
+    import os
+    import requests
+
+    api_key = os.getenv("ETHERSCAN_API_KEY")
+    if not api_key:
+        raise ValueError("ETHERSCAN_API_KEY not set, cannot use fallback")
+
+    # Etherscan v2 API endpoint
+    api_url = "https://api.etherscan.io/v2/api"
+
+    # Use the omnichain endpoint for getting block by timestamp
+    params = {
+        "chainid": chain_to_use,  # Chain ID (1 for mainnet, 8453 for Base, etc.)
+        "module": "block",
+        "action": "getblocknobytime",
+        "timestamp": ts,
+        "closest": "after",
+        "apikey": api_key,
+    }
+
+    response = requests.get(api_url, params=params)
+    response.raise_for_status()
+    data = response.json()
+
+    if data.get("status") == "1" and data.get("result"):
+        # The result is just the block number as a string
+        block_number = int(data["result"])
+        _timestamp_block_cache[cache_key] = block_number
+        # Save cache to file
+        os.makedirs(os.path.dirname(_timestamp_cache_file), exist_ok=True)
+        with open(_timestamp_cache_file, "wb") as f:
+            pickle.dump(_timestamp_block_cache, f)
+        return block_number
+    else:
+        raise Exception(f"Etherscan API error: {data.get('message', 'Unknown error')}")
 
 
 def build_snapshot_df(
