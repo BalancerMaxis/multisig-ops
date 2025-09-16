@@ -51,13 +51,12 @@
   "pool_id": "0x...",
   "network": "mainnet",
   "partner": "Alliance Member Name",
-  "pool_type": "core",
   "eligibility_date": "YYYY-MM-DD",
   "active": true
 }
 ```
 
-**Note:** Alliance members use fee allocations from `alliance_fee_allocations.core` or `alliance_fee_allocations.non_core` based on `pool_type`.
+**Note:** Alliance members use fee allocations from `alliance_fee_allocations.core` or `alliance_fee_allocations.non_core` based on whether the pool is core or non-core (determined dynamically).
 
 ### Adding New Alliance Member
 
@@ -73,7 +72,6 @@
       "pool_id": "0x...",
       "network": "mainnet",
       "partner": "New Alliance Member",
-      "pool_type": "core",
       "eligibility_date": "YYYY-MM-DD",
       "active": true
     }
@@ -83,8 +81,8 @@
 
 ### Notes
 
-- `pool_type` must be either "core" or "non_core"
 - `partner` field in pools must match the alliance member's `name`
+- Pool core/non-core status is determined dynamically
 
 ## Pool Incentives Overrides
 
