@@ -19,13 +19,14 @@ from bal_tools import Subgraph, BalPoolsGauges
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 BALANCER_VAULT_V3 = "0xbA1333333333a1BA1108E8412f11850A5C319bA9"
+OMNI_MSIG = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"  # Omni multisig address for Merit campaigns
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
 AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 BEEFY_PARTNER_BASE_URL = (
     "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
 )
 AAVECHAN_MERIT_API = (
-    f"https://apps.aavechan.com/api/merit/rewards?user={BALANCER_VAULT_V3.lower()}"
+    f"https://apps.aavechan.com/api/merit/rewards?user={OMNI_MSIG.lower()}"
 )
 CHAINS = {"1": "MAINNET", "8453": "BASE", "43114": "AVALANCHE"}
 CHAIN_SLUGS = {"1": "ethereum", "8453": "base", "43114": "avalanche"}
@@ -478,40 +479,57 @@ def get_merit_component_value(pool, timestamp, raw_merit):
     )
     value = Decimal(0)
     for component in raw["poolGetPool"]["poolTokens"]:
+        is_merit_component = False
+
+        # Check all campaigns for matching tokens
         for campaign in raw_merit:
-            if (
-                raw_merit[campaign][0]["actionTokens"][0]["book"]["STATA_TOKEN"].lower()
-                == component["address"]
-            ):
-                # this is a merit component
-                for snapshot in raw["poolGetSnapshots"]:
-                    if snapshot["timestamp"] > timestamp:
-                        balance = Decimal(snapshot["amounts"][int(component["index"])])
-                        timestamp_eod = snapshot["timestamp"]
-                        break
-                else:
-                    raise ValueError(
-                        f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
-                    )
-                prices = subgraph.fetch_graphql_data(
-                    "apiv3",
-                    "get_historical_token_prices",
-                    {
-                        "addresses": [component["address"]],
-                        "chain": CHAINS[chain],
-                        "range": "THIRTY_DAY",
-                    },
+            if isinstance(raw_merit[campaign], list) and len(raw_merit[campaign]) > 0:
+                campaign_data = raw_merit[campaign][0]
+                if "actionTokens" in campaign_data and len(campaign_data["actionTokens"]) > 0:
+                    action_token = campaign_data["actionTokens"][0]
+                    # Check if book exists and has STATA_TOKEN
+                    if "book" in action_token and "STATA_TOKEN" in action_token["book"]:
+                        if action_token["book"]["STATA_TOKEN"].lower() == component["address"].lower():
+                            is_merit_component = True
+                            break
+
+        # Also check against watchlist addresses directly (for waBasGHO and similar tokens)
+        if not is_merit_component and chain in WATCHLIST.get("merit", {}):
+            for watchlist_addr in WATCHLIST["merit"][chain].keys():
+                if watchlist_addr.lower() == component["address"].lower():
+                    is_merit_component = True
+                    break
+
+        if is_merit_component:
+            # this is a merit component
+            for snapshot in raw["poolGetSnapshots"]:
+                if snapshot["timestamp"] > timestamp:
+                    balance = Decimal(snapshot["amounts"][int(component["index"])])
+                    timestamp_eod = snapshot["timestamp"]
+                    break
+            else:
+                raise ValueError(
+                    f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
                 )
-                for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
-                    if int(entry["timestamp"]) == timestamp_eod:
-                        price = Decimal(entry["price"])
-                        assert price > 0
-                        break
-                else:
-                    raise ValueError(
-                        f"no historical price found for merit component {component['address']}!"
-                    )
-                value += balance * price
+            prices = subgraph.fetch_graphql_data(
+                "apiv3",
+                "get_historical_token_prices",
+                {
+                    "addresses": [component["address"]],
+                    "chain": CHAINS[chain],
+                    "range": "THIRTY_DAY",
+                },
+            )
+            for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                if int(entry["timestamp"]) == timestamp_eod:
+                    price = Decimal(entry["price"])
+                    assert price > 0
+                    break
+            else:
+                raise ValueError(
+                    f"no historical price found for merit component {component['address']}!"
+                )
+            value += balance * price
     return value
 
 
