@@ -1,0 +1,49 @@
+{
+  "partners": [
+    {
+      "name": "QuantAMM",
+      "multisig_address": "0xd785201fd2D9be7602F6682296Bb415530C027Ef",
+      "active": true,
+      "fee_allocations": {
+        "core_with_gauge": {
+          "vebal_share_pct": 0.0625,
+          "vote_incentive_pct": 0.7,
+          "partner_share_pct": 0.15,
+          "dao_share_pct": 0.0875
+        },
+        "non_core_with_gauge": {
+          "vebal_share_pct": 0.25,
+          "vote_incentive_pct": 0.0,
+          "partner_share_pct": 0.5,
+          "dao_share_pct": 0.25
+        },
+        "non_core_without_gauge": {
+          "vebal_share_pct": 0.30,
+          "vote_incentive_pct": 0.0,
+          "partner_share_pct": 0.45,
+          "dao_share_pct": 0.25
+        }
+      }
+    }
+  ],
+  "default_fee_allocations": {
+    "core_with_gauge": {
+      "vebal_share_pct": 0.0625,
+      "vote_incentive_pct": 0.7,
+      "partner_share_pct": 0.15,
+      "dao_share_pct": 0.0875
+    },
+    "non_core_with_gauge": {
+      "vebal_share_pct": 0.25,
+      "vote_incentive_pct": 0.0,
+      "partner_share_pct": 0.5,
+      "dao_share_pct": 0.25
+    },
+    "non_core_without_gauge": {
+      "vebal_share_pct": 0.30,
+      "vote_incentive_pct": 0.0,
+      "partner_share_pct": 0.45,
+      "dao_share_pct": 0.25
+    }
+  }
+}
