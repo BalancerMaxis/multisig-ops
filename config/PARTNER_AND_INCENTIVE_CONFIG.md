@@ -4,40 +4,43 @@
 
 ### Quick Steps
 
-1. Add partner object to `partners` array in `config/alliance_fee_share.json`:
+1. Add partner object to `partners` array in `config/partner_fee_share.json`:
 
 ```json
 {
   "name": "PartnerName",
   "multisig_address": "0x...",
   "active": true,
-  "pools": [
-    {
-      "pool_id": "0x...",
-      "network": "mainnet",
-      "eligibility_date": "YYYY-MM-DD",
-      "active": true
+  "pool_types": ["POOL_TYPE_1", "POOL_TYPE_2"],
+  "fee_allocations": {
+    "core_with_gauge": {
+      "vebal_share_pct": 0.0625,
+      "vote_incentive_pct": 0.7,
+      "partner_share_pct": 0.15,
+      "dao_share_pct": 0.0875
+    },
+    "non_core_with_gauge": {
+      "vebal_share_pct": 0.25,
+      "vote_incentive_pct": 0.0,
+      "partner_share_pct": 0.5,
+      "dao_share_pct": 0.25
+    },
+    "non_core_without_gauge": {
+      "vebal_share_pct": 0.30,
+      "vote_incentive_pct": 0.0,
+      "partner_share_pct": 0.45,
+      "dao_share_pct": 0.25
     }
-  ]
-}
-```
-
-**Note:** Partners will use the default allocation from `partner_fee_allocations.default` unless a custom allocation is specified. To override, add:
-
-```json
-{
-  "name": "PartnerName",
-  "multisig_address": "0x...",
-  "active": true,
-  "pools": [...],
-  "custom_fee_allocation": {
-    "vebal_share_pct": 0.125,
-    "vote_incentive_pct": 0.35,
-    "partner_share_pct": 0.35,
-    "dao_share_pct": 0.175
   }
 }
 ```
+
+**Note:**
+- `pool_types` is a list of pool type identifiers that this partner manages
+- Pools are discovered dynamically based on matching pool types
+- If `fee_allocations` are not specified, the partner will use the default allocations from `partner_fee_allocations`
+- Each fee allocation must have three scenarios: `core_with_gauge`, `non_core_with_gauge`, and `non_core_without_gauge`
+- All percentages in each scenario must sum to 1.0
 
 ## Adding Alliance Members
 
@@ -50,13 +53,12 @@
   "pool_id": "0x...",
   "network": "mainnet",
   "partner": "Alliance Member Name",
-  "pool_type": "core",
   "eligibility_date": "YYYY-MM-DD",
   "active": true
 }
 ```
 
-**Note:** Alliance members use fee allocations from `alliance_fee_allocations.core` or `alliance_fee_allocations.non_core` based on `pool_type`.
+**Note:** Alliance members use fee allocations from `alliance_fee_allocations.core` or `alliance_fee_allocations.non_core` based on whether the pool is core or non-core (determined dynamically).
 
 ### Adding New Alliance Member
 
@@ -72,7 +74,6 @@
       "pool_id": "0x...",
       "network": "mainnet",
       "partner": "New Alliance Member",
-      "pool_type": "core",
       "eligibility_date": "YYYY-MM-DD",
       "active": true
     }
@@ -82,8 +83,8 @@
 
 ### Notes
 
-- `pool_type` must be either "core" or "non_core"
 - `partner` field in pools must match the alliance member's `name`
+- Pool core/non-core status is determined dynamically
 
 ## Pool Incentives Overrides
 
