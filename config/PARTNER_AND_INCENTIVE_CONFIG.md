@@ -11,6 +11,7 @@
   "name": "PartnerName",
   "multisig_address": "0x...",
   "active": true,
+  "pool_types": ["POOL_TYPE_1", "POOL_TYPE_2"],
   "fee_allocations": {
     "core_with_gauge": {
       "vebal_share_pct": 0.0625,
@@ -35,7 +36,8 @@
 ```
 
 **Note:**
-- Pools are discovered dynamically based on the partner name
+- `pool_types` is a list of pool type identifiers that this partner manages
+- Pools are discovered dynamically based on matching pool types
 - If `fee_allocations` are not specified, the partner will use the default allocations from `partner_fee_allocations`
 - Each fee allocation must have three scenarios: `core_with_gauge`, `non_core_with_gauge`, and `non_core_without_gauge`
 - All percentages in each scenario must sum to 1.0
