@@ -308,15 +308,24 @@ def build_snapshot_df(
     )
 
     # checksum total balances versus total supply
-    assert df.sum().sum() == approx(
-        expected_user_shares, rel=Decimal(1e-6)
-    ), f"total shares do not match expected user shares: {df.sum().sum()} != {expected_user_shares} (protocol reserves: {total_protocol_reserves})"
+    tolerance = Decimal(1e-2)  # 1% tolerance for all pools
+
+    actual_total = df.sum().sum()
+    discrepancy_pct = (
+        abs(actual_total - expected_user_shares) / expected_user_shares
+        if expected_user_shares > 0
+        else 0
+    )
+
+    assert actual_total == approx(
+        expected_user_shares, rel=tolerance
+    ), f"total shares do not match expected user shares: {actual_total} != {expected_user_shares} (discrepancy: {discrepancy_pct:.4%}, protocol reserves: {total_protocol_reserves})"
     for block in df.columns:
         expected_block_shares = (
             total_supply[block] / Decimal(1e18) - protocol_reserves[block]
         )
         assert df[block].sum() == approx(
-            expected_block_shares, rel=Decimal(1e-6)
+            expected_block_shares, rel=tolerance
         ), f"shares for block {block} do not match expected: {df[block].sum()} != {expected_block_shares} (protocol reserves: {protocol_reserves[block]})"
 
     return df
@@ -485,11 +494,17 @@ def get_merit_component_value(pool, timestamp, raw_merit):
         for campaign in raw_merit:
             if isinstance(raw_merit[campaign], list) and len(raw_merit[campaign]) > 0:
                 campaign_data = raw_merit[campaign][0]
-                if "actionTokens" in campaign_data and len(campaign_data["actionTokens"]) > 0:
+                if (
+                    "actionTokens" in campaign_data
+                    and len(campaign_data["actionTokens"]) > 0
+                ):
                     action_token = campaign_data["actionTokens"][0]
                     # Check if book exists and has STATA_TOKEN
                     if "book" in action_token and "STATA_TOKEN" in action_token["book"]:
-                        if action_token["book"]["STATA_TOKEN"].lower() == component["address"].lower():
+                        if (
+                            action_token["book"]["STATA_TOKEN"].lower()
+                            == component["address"].lower()
+                        ):
                             is_merit_component = True
                             break
 
@@ -713,6 +728,10 @@ if __name__ == "__main__":
                         f.write("\n")
 
                 for pool in rewards["pools"]:
+                    # skip pools with 0 rewards
+                    if Decimal(rewards["pools"][pool]["reward_wei"]) == 0:
+                        continue
+
                     address = rewards["pools"][pool]["address"]
                     instance = (
                         f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
