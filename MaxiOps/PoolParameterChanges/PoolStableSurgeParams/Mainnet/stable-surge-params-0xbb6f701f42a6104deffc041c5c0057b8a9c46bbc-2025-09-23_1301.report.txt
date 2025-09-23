@@ -1,0 +1,28 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/Mainnet/stable-surge-params-0xbb6f701f42a6104deffc041c5c0057b8a9c46bbc-2025-09-23_1301.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `e5b19edb281fafd24232d5cc468716e939fde6b6`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b47c4ec9-7122-4b0e-8939-54f51928c912)
+
+```
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name                     | to                                                                                            | value | inputs                                                 | bip_number | tx_index |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| setMaxSurgeFeePercentage    | 0xbdbadc891bb95dee80ebc491699228ef0f7d6ff1 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0xbb6f701f42a6104deffc041c5c0057b8a9c46bbc (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newMaxSurgeSurgeFeePercentage": [                   |            |          |
+|                             |                                                                                               |       |     "90000000000000000"                                |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
+| setSurgeThresholdPercentage | 0xbdbadc891bb95dee80ebc491699228ef0f7d6ff1 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0xbb6f701f42a6104deffc041c5c0057b8a9c46bbc (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newSurgeThresholdPercentage": [                     |            |          |
+|                             |                                                                                               |       |     "400000000000000000"                               |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
