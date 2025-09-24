@@ -195,6 +195,8 @@ def build_snapshot_df(
     step_size,  # amount of seconds between snapshots
 ):
     gauge = BalPoolsGauges(CHAINS[chain]).get_preferential_gauge(pool)
+    if gauge:
+        gauge = gauge.lower()
     beefy_strat = get_beefy_strat(pool, get_block_from_timestamp(end)).lower()
 
     # get user shares for pool and gauge at different timestamps
@@ -210,7 +212,6 @@ def build_snapshot_df(
         print(f"{n}\t/\t{n_snapshots}\t{block}")
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         if gauge:
-            gauge = gauge.lower()
             gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
         else:
             gauge_shares[block] = {}
