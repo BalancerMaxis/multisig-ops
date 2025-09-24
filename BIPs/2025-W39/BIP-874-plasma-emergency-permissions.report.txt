@@ -1,0 +1,30 @@
+FILENAME: `BIPs/2025-W39/BIP-874-plasma-emergency-permissions.json`
+MULTISIG: `multisigs/maxi_omni (plasma:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `214353de6931cb58426ee33fcd660642c7e482ae`
+CHAIN(S): `plasma`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d8c35e66-0f6a-4cb0-ab21-067b0207e1bf)
+
+```
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                  | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/emergency | 0x0d3319A8057A0C8afd87dFEEA252541A76d56Ebf | 20241204-v3-vault/VaultAdmin/pauseVault()                                 | 0x461c5a059d49bcf53ff00ff0d6fe644f40cc96ff9f6012e75ea70824dba5f886 | BIP-874 |    0     |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVault()                               | 0xa3cc69d3a95a1b4020228f384f292c33a2db8f395442b06805d5195609d66b4e |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pausePool(address)                           | 0xae26501f09c96de9e98977fff0d65a23cb22db73a58ddef38127af1a616cf272 |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpausePool(address)                         | 0xa4443105bdb833cb364c9f76caa2adf3c6e62427cb693ffd6f1d8d7f44ad1bb5 |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/pauseVaultBuffers()                          | 0xe80d721d89f2236e9428bfba076cbbbb355faeb9d9b97b49890ebcf930d05bc9 |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/unpauseVaultBuffers()                        | 0xf923c4af23349707476c28766c280b0178ab3c4ebfa546da8c25a546a066a2dc |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableRecoveryMode(address)                  | 0xb1539e3ebdcf854dedf819f6232d1e447cfb129f7bf572e70295fb998bd8c85e |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableRecoveryMode(address)                 | 0x03aef606b4b82495d96af41cf1ed84b739a1de2bfb37bc1c0cfde2c53cf096aa |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/enableQuery()                                | 0x130ac25c06d0a78c43cee16ed4147a8a2337d8dc08571f397ca9ac15e1fc2ec2 |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQuery()                               | 0x7b9f4d9b9d0380987936892409571a5e0b6e9b538806ac662699a305304bd15d |         |          |
+|                       |                     |                                            | 20241204-v3-vault/VaultAdmin/disableQueryPermanently()                    | 0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16 |         |          |
+|                       |                     |                                            | 20250324-v3-stable-pool-v2/StablePoolFactory/disable()                    | 0x2557f8248706295322f1c28d5ebe9d9e49c68c1c9535e151a3fd1f90a9bbe1e5 |         |          |
+|                       |                     |                                            | 20241205-v3-weighted-pool/WeightedPoolFactory/disable()                   | 0x06efe7e891755c060de5033e398e2d4d9f1bc713591717209ef84b7e021bd154 |         |          |
+|                       |                     |                                            | 20250124-v3-gyro-eclp/GyroECLPPoolFactory/disable()                       | 0x77ff3dec18d58949bf76d17d30438c252828127846a6337e032250714ad98783 |         |          |
+|                       |                     |                                            | 20250120-v3-gyro-2clp/Gyro2CLPPoolFactory/disable()                       | 0x12068567376f5214f735cd6e477a885e135c8964f6771112086ce1fda7cc475d |         |          |
+|                       |                     |                                            | 20250404-v3-stable-surge-pool-factory-v2/StableSurgePoolFactory/disable() | 0x438c1c430f94d84d2f73f3f908259eecc519e4505349a103a768d55c3ee01c93 |         |          |
+|                       |                     |                                            | 20250702-v3-reclamm-pool-v2/ReClammPoolFactory/disable()                  | 0xb4abfdf0a490599e9a35cfefa92ed81b15bcf767a883899f9aaf250dd67fa6ed |         |          |
+|                       |                     |                                            | !! NOT FOUND !!                                                           | 0xc4947a848de6cca284acda6c460b475a939b9ad4ed6361cb81514fb0c723493e |         |          |
++-----------------------+---------------------+--------------------------------------------+---------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
