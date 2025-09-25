@@ -34,7 +34,9 @@ ADAPTER = HTTPAdapter(
     pool_connections=20,
     pool_maxsize=20,
     max_retries=Retry(
-        total=10, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504, 520, 521]
+        total=10,
+        backoff_factor=0.5,
+        status_forcelist=[429, 500, 502, 503, 504, 520, 521],
     ),
 )
 
