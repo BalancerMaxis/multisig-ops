@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1758784752,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "EZKL fee perms - v2 mainnet",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x78e9adfe5f05d7114a59d0870d78971192f871f57bb36e2aff2edbe75d425844, 0xd8638fc873fb8c5c0e67c437099a19eb0546fb439dab8babff44196f11d44831, 0xa5547190e3d59f2bfeb4174ca3454b2f2acaeed644bc7ad7018014516f73f2bd]",
+        "account": "0x8A8B9f35765899B3a0291700141470D79EA2eA88"
+      }
+    }
+  ]
+}
