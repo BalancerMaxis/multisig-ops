@@ -1,1 +1,45 @@
-{"version":"1.0","chainId":"43114","createdAt":1758781345,"meta":{"name":"Rewards Injector Configuration Update","description":"Update rewards injector configurations","createdFromSafeAddress":"0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"},"transactions":[{"to":"0x08F02E2945C175272Acbb238ACCB6eda56129DE8","value":"0","data":null,"contractMethod":{"inputs":[{"name":"recipients","type":"address[]","internalType":"address[]"},{"name":"amountPerPeriod","type":"uint256","internalType":"uint256"},{"name":"maxPeriods","type":"uint8","internalType":"uint8"},{"name":"doNotStartBeforeTimestamp","type":"uint56","internalType":"uint56"}],"name":"addRecipients","payable":false},"contractInputsValues":{"recipients":"[0x746dB23A0b49E002697fAd244C281A36b86b1b01]","amountPerPeriod":"250000000000000000000000","maxPeriods":"4","doNotStartBeforeTimestamp":"1756818000"}}]}
+{
+  "version": "1.0",
+  "chainId": "43114",
+  "createdAt": 1758781345,
+  "meta": {
+    "name": "Rewards Injector Configuration Update",
+    "description": "Update rewards injector configurations",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x08F02E2945C175272Acbb238ACCB6eda56129DE8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x746dB23A0b49E002697fAd244C281A36b86b1b01]",
+        "amountPerPeriod": "250000000000000000000000",
+        "maxPeriods": "4",
+        "doNotStartBeforeTimestamp": "1756818000"
+      }
+    }
+  ]
+}
