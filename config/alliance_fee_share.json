@@ -11,7 +11,6 @@
           "pool_id": "0x1e19cf2d73a72ef1332c882f20534b6519be0276000200000000000000000112",
           "network": "mainnet",
           "partner": "Rocket Pool",
-          "pool_type": "core",
           "eligibility_date": "2025-04-15",
           "active": true
         },
@@ -19,7 +18,6 @@
           "pool_id": "0x5418a64e0cdb20548ACB394f5D00a089BAf02161",
           "network": "arbitrum",
           "partner": "Rocket Pool",
-          "pool_type": "core",
           "eligibility_date": "2025-06-04",
           "active": true
         },
@@ -27,7 +25,6 @@
           "pool_id": "0x870c0Af8A1af0B58b4b0bD31CE4fe72864ae45BE",
           "network": "optimism",
           "partner": "Rocket Pool",
-          "pool_type": "core",
           "eligibility_date": "2025-06-04",
           "active": true
         },
@@ -35,7 +32,6 @@
           "pool_id": "0xB7B8B3AfC010169779C5C2385ec0eB0477FE3347",
           "network": "base",
           "partner": "Rocket Pool",
-          "pool_type": "core",
           "eligibility_date": "2025-06-04",
           "active": true
         }
@@ -52,7 +48,6 @@
           "pool_id": "0x93d199263632a4ef4bb438f1feb99e57b4b5f0bd0000000000000000000005c2",
           "network": "mainnet",
           "partner": "Lido",
-          "pool_type": "core",
           "eligibility_date": "2025-05-19",
           "active": true
         },
@@ -60,7 +55,6 @@
           "pool_id": "0x6b31a94029fd7840d780191b6d63fa0d269bd883",
           "network": "mainnet",
           "partner": "Lido",
-          "pool_type": "core",
           "eligibility_date": "2025-06-04",
           "active": true
         },
@@ -68,7 +62,6 @@
           "pool_id": "0xb1b8b406eeebbb636fdbb20e6732c117d828363c",
           "network": "arbitrum",
           "partner": "Lido",
-          "pool_type": "core",
           "eligibility_date": "2025-06-04",
           "active": true
         },
@@ -76,29 +69,7 @@
           "pool_id": "0x9972c4f21b5ae6062233031314adbbdda7513ed2",
           "network": "base",
           "partner": "Lido",
-          "pool_type": "core",
           "eligibility_date": "2025-06-04",
-          "active": true
-        }
-      ]
-    }
-  ],
-  "partners": [
-    {
-      "name": "QuantAMM",
-      "multisig_address": "0xd785201fd2D9be7602F6682296Bb415530C027Ef",
-      "active": true,
-      "pools": [
-        {
-          "pool_id": "0x6b61d8680c4f9e560c8306807908553f95c749c5",
-          "network": "mainnet",
-          "eligibility_date": "2025-05-07",
-          "active": true
-        },
-        {
-          "pool_id": "0xb4161aea25bd6c5c8590ad50deb4ca752532f05d",
-          "network": "base",
-          "eligibility_date": "2025-05-22",
           "active": true
         }
       ]
@@ -115,20 +86,6 @@
       "vebal_share_pct": 0.65,
       "partner_share_pct": 0.175,
       "dao_share_pct": 0.175
-    }
-  },
-  "partner_fee_allocations": {
-    "default": {
-      "vebal_share_pct": 0.0625,
-      "vote_incentive_pct": 0.7,
-      "partner_share_pct": 0.15,
-      "dao_share_pct": 0.0875
-    },
-    "default_non_core": {
-      "vebal_share_pct": 0.25,
-      "vote_incentive_pct": 0.0,
-      "partner_share_pct": 0.5,
-      "dao_share_pct": 0.25
     }
   },
   "alliance_thresholds": {

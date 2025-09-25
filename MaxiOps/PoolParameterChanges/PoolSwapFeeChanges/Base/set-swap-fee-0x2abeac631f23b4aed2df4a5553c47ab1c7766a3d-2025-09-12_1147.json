@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1757692070215,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set swap fee to 1% for 80VLR 20waBasWETH",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xbA1333333333a1BA1108E8412f11850A5C319bA9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "pool", "type": "address", "internalType": "address" },
+          {
+            "name": "swapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setStaticSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x2abeac631f23b4aed2df4a5553c47ab1c7766a3d",
+        "swapFeePercentage": "10000000000000000"
+      }
+    }
+  ]
+}

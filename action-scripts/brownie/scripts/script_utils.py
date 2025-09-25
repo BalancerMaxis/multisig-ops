@@ -8,6 +8,8 @@ from typing import Optional, Any
 from urllib.request import urlopen
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bal_addresses import AddrBook, BalPermissions, RateProviders
 from bal_addresses import to_checksum_address, is_address
 from bal_tools import Aura
@@ -34,13 +36,35 @@ POOL_ID_CUSTOM_FALLBACK = "Custom"
 BIPS_PRECISION = 1e16
 
 
+def get_retry_session(
+    retries=3,
+    backoff_factor=0.3,
+    status_forcelist=(500, 502, 503, 504, 521),
+    session=None,
+):
+    session = session or requests.Session()
+    retry = Retry(
+        total=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    return session
+
+
+# global session for reuse
+_session = get_retry_session()
+
+
 def return_hh_brib_maps() -> dict:
     """
     Grabs and reformats hidden hand API data into a dict that has data for each proposal formatted like prop.market.prop_data_dict
     """
-    hh_bal_props = requests.get("https://api.hiddenhand.finance/proposal/balancer")
+    hh_bal_props = _session.get("https://api.hiddenhand.finance/proposal/balancer")
     hh_bal_props.raise_for_status()
-    hh_aura_props = requests.get("https://api.hiddenhand.finance/proposal/aura")
+    hh_aura_props = _session.get("https://api.hiddenhand.finance/proposal/aura")
     hh_aura_props.raise_for_status()
     results = {"aura": {}, "balancer": {}}
     for prop in hh_bal_props.json()["data"]:
@@ -68,7 +92,7 @@ def get_changed_files() -> list[dict]:
     pr_number = os.environ["PR_NUMBER"]
     api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files?per_page=100"
     print(f"Using {api_url} to get changed files")
-    response = requests.get(api_url)
+    response = _session.get(api_url)
     pr_file_data = json.loads(response.text)
     changed_files = []
     for file_json in pr_file_data:
@@ -79,7 +103,7 @@ def get_changed_files() -> list[dict]:
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
             try:
-                r = requests.get(file_json["contents_url"])
+                r = _session.get(file_json["contents_url"])
             except:
                 print(f"{file_json['contents_url']} does not exist")
                 continue
@@ -349,7 +373,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     input = safe.encodeABI(fn_name="execTransaction", args=list(exec_tx.values()))
 
     # post to tenderly api
-    r = requests.post(
+    r = _session.post(
         url=f"{api_base_url}/simulate",
         json={
             "network_id": network_id,
@@ -383,7 +407,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
         raise ValueError(result)
 
     # make the simulation public
-    r = requests.post(
+    r = _session.post(
         url=f"{api_base_url}/simulations/{result['simulation']['id']}/share",
         headers={
             "X-Access-Key": os.getenv("TENDERLY_ACCESS_KEY"),
