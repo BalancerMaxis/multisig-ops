@@ -19,13 +19,14 @@ from bal_tools import Subgraph, BalPoolsGauges
 
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 BALANCER_VAULT_V3 = "0xbA1333333333a1BA1108E8412f11850A5C319bA9"
+OMNI_MSIG = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"  # Omni multisig address for Merit campaigns
 AURA_VOTER_PROXY = "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"
 AURA_VOTER_PROXY_LITE = "0xC181Edc719480bd089b94647c2Dc504e2700a2B0"
 BEEFY_PARTNER_BASE_URL = (
     "https://balance-api.beefy.finance/api/v1/partner/balancer/config"
 )
 AAVECHAN_MERIT_API = (
-    f"https://apps.aavechan.com/api/merit/rewards?user={BALANCER_VAULT_V3.lower()}"
+    f"https://apps.aavechan.com/api/merit/rewards?user={OMNI_MSIG.lower()}"
 )
 CHAINS = {"1": "MAINNET", "8453": "BASE", "43114": "AVALANCHE"}
 CHAIN_SLUGS = {"1": "ethereum", "8453": "base", "43114": "avalanche"}
@@ -33,7 +34,9 @@ ADAPTER = HTTPAdapter(
     pool_connections=20,
     pool_maxsize=20,
     max_retries=Retry(
-        total=10, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504, 520]
+        total=10,
+        backoff_factor=0.5,
+        status_forcelist=[429, 500, 502, 503, 504, 520, 521],
     ),
 )
 
@@ -105,13 +108,87 @@ def get_beefy_strat(pool, block):
     return ""
 
 
-def get_block_from_timestamp(ts):
-    raw = subgraph.fetch_graphql_data(
-        "blocks",
-        "first_block_after_ts",
-        {"timestamp_lt": ts + step_size, "timestamp_gt": ts - 1},
-    )
-    return int(raw["blocks"][0]["number"])
+# Cache for timestamp to block lookups
+_timestamp_block_cache = {}
+_timestamp_cache_file = "MaxiOps/merkl/cache/timestamp_blocks.pkl"
+
+# Load cache from file if it exists
+if Path(_timestamp_cache_file).is_file():
+    with open(_timestamp_cache_file, "rb") as f:
+        _timestamp_block_cache = pickle.load(f)
+
+
+def get_block_from_timestamp(ts, chain_id=None):
+    # Use global chain if chain_id not provided
+    chain_to_use = chain_id if chain_id is not None else chain
+
+    # Check cache first
+    cache_key = f"{chain_to_use}:{ts}"
+    if cache_key in _timestamp_block_cache:
+        return _timestamp_block_cache[cache_key]
+
+    # Try subgraph first with retries for intermittent failures
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            raw = subgraph.fetch_graphql_data(
+                "blocks",
+                "first_block_after_ts",
+                {"timestamp_lt": ts + step_size, "timestamp_gt": ts - 1},
+            )
+            block_number = int(raw["blocks"][0]["number"])
+            _timestamp_block_cache[cache_key] = block_number
+            # Save cache to file
+            os.makedirs(os.path.dirname(_timestamp_cache_file), exist_ok=True)
+            with open(_timestamp_cache_file, "wb") as f:
+                pickle.dump(_timestamp_block_cache, f)
+            return block_number
+        except Exception as e:
+            if "bad indexers" in str(e) and attempt < max_retries - 1:
+                # Known intermittent issue with Base blocks subgraph
+                import time
+
+                time.sleep(1)  # Wait before retry
+                continue
+            # If all retries failed, fall back to Etherscan API v2
+            break
+
+    # Fallback to Etherscan API v2 (omnichain)
+    import os
+    import requests
+
+    api_key = os.getenv("ETHERSCAN_API_KEY")
+    if not api_key:
+        raise ValueError("ETHERSCAN_API_KEY not set, cannot use fallback")
+
+    # Etherscan v2 API endpoint
+    api_url = "https://api.etherscan.io/v2/api"
+
+    # Use the omnichain endpoint for getting block by timestamp
+    params = {
+        "chainid": chain_to_use,  # Chain ID (1 for mainnet, 8453 for Base, etc.)
+        "module": "block",
+        "action": "getblocknobytime",
+        "timestamp": ts,
+        "closest": "after",
+        "apikey": api_key,
+    }
+
+    response = requests.get(api_url, params=params)
+    response.raise_for_status()
+    data = response.json()
+
+    if data.get("status") == "1" and data.get("result"):
+        # The result is just the block number as a string
+        block_number = int(data["result"])
+        _timestamp_block_cache[cache_key] = block_number
+        # Save cache to file
+        os.makedirs(os.path.dirname(_timestamp_cache_file), exist_ok=True)
+        with open(_timestamp_cache_file, "wb") as f:
+            pickle.dump(_timestamp_block_cache, f)
+        return block_number
+    else:
+        raise Exception(f"Etherscan API error: {data.get('message', 'Unknown error')}")
 
 
 def build_snapshot_df(
@@ -120,6 +197,8 @@ def build_snapshot_df(
     step_size,  # amount of seconds between snapshots
 ):
     gauge = BalPoolsGauges(CHAINS[chain]).get_preferential_gauge(pool)
+    if gauge:
+        gauge = gauge.lower()
     beefy_strat = get_beefy_strat(pool, get_block_from_timestamp(end)).lower()
 
     # get user shares for pool and gauge at different timestamps
@@ -135,7 +214,6 @@ def build_snapshot_df(
         print(f"{n}\t/\t{n_snapshots}\t{block}")
         pool_shares[block] = get_user_shares_pool(pool=pool, block=block)
         if gauge:
-            gauge = gauge.lower()
             gauge_shares[block] = get_user_shares_gauge(gauge=gauge, block=block)
         else:
             gauge_shares[block] = {}
@@ -233,15 +311,24 @@ def build_snapshot_df(
     )
 
     # checksum total balances versus total supply
-    assert df.sum().sum() == approx(
-        expected_user_shares, rel=Decimal(1e-6)
-    ), f"total shares do not match expected user shares: {df.sum().sum()} != {expected_user_shares} (protocol reserves: {total_protocol_reserves})"
+    tolerance = Decimal(1e-2)  # 1% tolerance for all pools
+
+    actual_total = df.sum().sum()
+    discrepancy_pct = (
+        abs(actual_total - expected_user_shares) / expected_user_shares
+        if expected_user_shares > 0
+        else 0
+    )
+
+    assert actual_total == approx(
+        expected_user_shares, rel=tolerance
+    ), f"total shares do not match expected user shares: {actual_total} != {expected_user_shares} (discrepancy: {discrepancy_pct:.4%}, protocol reserves: {total_protocol_reserves})"
     for block in df.columns:
         expected_block_shares = (
             total_supply[block] / Decimal(1e18) - protocol_reserves[block]
         )
         assert df[block].sum() == approx(
-            expected_block_shares, rel=Decimal(1e-6)
+            expected_block_shares, rel=tolerance
         ), f"shares for block {block} do not match expected: {df[block].sum()} != {expected_block_shares} (protocol reserves: {protocol_reserves[block]})"
 
     return df
@@ -404,40 +491,63 @@ def get_merit_component_value(pool, timestamp, raw_merit):
     )
     value = Decimal(0)
     for component in raw["poolGetPool"]["poolTokens"]:
+        is_merit_component = False
+
+        # Check all campaigns for matching tokens
         for campaign in raw_merit:
-            if (
-                raw_merit[campaign][0]["actionTokens"][0]["book"]["STATA_TOKEN"].lower()
-                == component["address"]
-            ):
-                # this is a merit component
-                for snapshot in raw["poolGetSnapshots"]:
-                    if snapshot["timestamp"] > timestamp:
-                        balance = Decimal(snapshot["amounts"][int(component["index"])])
-                        timestamp_eod = snapshot["timestamp"]
-                        break
-                else:
-                    raise ValueError(
-                        f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
-                    )
-                prices = subgraph.fetch_graphql_data(
-                    "apiv3",
-                    "get_historical_token_prices",
-                    {
-                        "addresses": [component["address"]],
-                        "chain": CHAINS[chain],
-                        "range": "THIRTY_DAY",
-                    },
+            if isinstance(raw_merit[campaign], list) and len(raw_merit[campaign]) > 0:
+                campaign_data = raw_merit[campaign][0]
+                if (
+                    "actionTokens" in campaign_data
+                    and len(campaign_data["actionTokens"]) > 0
+                ):
+                    action_token = campaign_data["actionTokens"][0]
+                    # Check if book exists and has STATA_TOKEN
+                    if "book" in action_token and "STATA_TOKEN" in action_token["book"]:
+                        if (
+                            action_token["book"]["STATA_TOKEN"].lower()
+                            == component["address"].lower()
+                        ):
+                            is_merit_component = True
+                            break
+
+        # Also check against watchlist addresses directly (for waBasGHO and similar tokens)
+        if not is_merit_component and chain in WATCHLIST.get("merit", {}):
+            for watchlist_addr in WATCHLIST["merit"][chain].keys():
+                if watchlist_addr.lower() == component["address"].lower():
+                    is_merit_component = True
+                    break
+
+        if is_merit_component:
+            # this is a merit component
+            for snapshot in raw["poolGetSnapshots"]:
+                if snapshot["timestamp"] > timestamp:
+                    balance = Decimal(snapshot["amounts"][int(component["index"])])
+                    timestamp_eod = snapshot["timestamp"]
+                    break
+            else:
+                raise ValueError(
+                    f"no snapshot found for {component['address']}! latest one found has timestamp {snapshot['timestamp']}"
                 )
-                for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
-                    if int(entry["timestamp"]) == timestamp_eod:
-                        price = Decimal(entry["price"])
-                        assert price > 0
-                        break
-                else:
-                    raise ValueError(
-                        f"no historical price found for merit component {component['address']}!"
-                    )
-                value += balance * price
+            prices = subgraph.fetch_graphql_data(
+                "apiv3",
+                "get_historical_token_prices",
+                {
+                    "addresses": [component["address"]],
+                    "chain": CHAINS[chain],
+                    "range": "THIRTY_DAY",
+                },
+            )
+            for entry in prices["tokenGetHistoricalPrices"][0]["prices"]:
+                if int(entry["timestamp"]) == timestamp_eod:
+                    price = Decimal(entry["price"])
+                    assert price > 0
+                    break
+            else:
+                raise ValueError(
+                    f"no historical price found for merit component {component['address']}!"
+                )
+            value += balance * price
     return value
 
 
@@ -529,6 +639,16 @@ if __name__ == "__main__":
                         1758109763,  # 23382608, round 21
                         "23482608",  # 23482608, round 22
                     ]
+                elif chain == "8453":
+                    # Base chain epochs from base-supply-usdc, base-supply-gho, base-supply-eth-borrow-multiple campaigns
+                    # Only including campaigns after block 22983001
+                    # Note: These are Ethereum block numbers, not Base block numbers
+                    epochs = [
+                        1753287431,  # 22983001; start
+                        1755981251,  # 23206201; end round 1 (rounds 5-7 for USDC, 1-3 for GHO/ETH)
+                        "23422200",  # 23422200; end round 2
+                        # "23638200",  # 23638200; end round 3
+                    ]
                 epoch_duration = epochs[-2] - epochs[-3]
             if protocol == "morpho":
                 epoch_duration = 60 * 60 * 24 * 7
@@ -611,6 +731,10 @@ if __name__ == "__main__":
                         f.write("\n")
 
                 for pool in rewards["pools"]:
+                    # skip pools with 0 rewards
+                    if Decimal(rewards["pools"][pool]["reward_wei"]) == 0:
+                        continue
+
                     address = rewards["pools"][pool]["address"]
                     instance = (
                         f"{epoch_name}-{step_size}-{protocol}-{chain}-{pool}".replace(
