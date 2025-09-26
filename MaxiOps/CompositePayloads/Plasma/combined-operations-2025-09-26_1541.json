@@ -1,1 +1,48 @@
-{"version":"1.0","chainId":"9745","createdAt":1758915668518,"meta":{"name":"Combined Transactions Batch (2 operations)","description":"Composed from: Balancer v3: Create Amplification Factor Update Payload, Balancer v3: Create Amplification Factor Update Payload","createdFromSafeAddress":"0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"},"transactions":[{"to":"0x6a74be33b5393d8a3eba4d69b78f9d9da947c48c","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"uint256","name":"rawEndValue","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"}],"name":"startAmplificationParameterUpdate","payable":false},"contractInputsValues":{"rawEndValue":"1000","endTime":"1759179600"}},{"to":"0xd9c4e277c93374a9f8c877a9d06707a88092e8f0","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"uint256","name":"rawEndValue","type":"uint256"},{"internalType":"uint256","name":"endTime","type":"uint256"}],"name":"startAmplificationParameterUpdate","payable":false},"contractInputsValues":{"rawEndValue":"800","endTime":"1759179600"}}]}
+{
+  "version": "1.0",
+  "chainId": "9745",
+  "createdAt": 1758915668518,
+  "meta": {
+    "name": "Combined Transactions Batch (2 operations)",
+    "description": "Composed from: Balancer v3: Create Amplification Factor Update Payload, Balancer v3: Create Amplification Factor Update Payload",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x6a74be33b5393d8a3eba4d69b78f9d9da947c48c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "1000", "endTime": "1759179600" }
+    },
+    {
+      "to": "0xd9c4e277c93374a9f8c877a9d06707a88092e8f0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "rawEndValue",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+        ],
+        "name": "startAmplificationParameterUpdate",
+        "payable": false
+      },
+      "contractInputsValues": { "rawEndValue": "800", "endTime": "1759179600" }
+    }
+  ]
+}
