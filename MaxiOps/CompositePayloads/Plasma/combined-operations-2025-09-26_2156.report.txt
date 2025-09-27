@@ -1,0 +1,44 @@
+FILENAME: `MaxiOps/CompositePayloads/Plasma/combined-operations-2025-09-26_2156.json`
+MULTISIG: `multisigs/maxi_omni (plasma:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `1c644128fe2f48cc61ba92a8f75c9754d742c354`
+CHAIN(S): `plasma`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/99ab1229-4029-492e-93ed-b42af9d632a1)
+
+```
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name                     | to                                                                                            | value | inputs                                                 | bip_number | tx_index |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| setMaxSurgeFeePercentage    | 0x6817149cb753bf529565b4d023d7507ed2ff4bc0 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0x699153933db85fb32e8937fabeb8a16b3bace4a7 (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newMaxSurgeSurgeFeePercentage": [                   |            |          |
+|                             |                                                                                               |       |     "50000000000000000"                                |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
+| setSurgeThresholdPercentage | 0x6817149cb753bf529565b4d023d7507ed2ff4bc0 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0x699153933db85fb32e8937fabeb8a16b3bace4a7 (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newSurgeThresholdPercentage": [                     |            |          |
+|                             |                                                                                               |       |     "600000000000000000"                               |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
+| setMaxSurgeFeePercentage    | 0x6817149cb753bf529565b4d023d7507ed2ff4bc0 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0x05eb2d848c431b1a37d0cf0eecc7f211b3bb1dee (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newMaxSurgeSurgeFeePercentage": [                   |            |          |
+|                             |                                                                                               |       |     "50000000000000000"                                |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
+| setSurgeThresholdPercentage | 0x6817149cb753bf529565b4d023d7507ed2ff4bc0 (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                      | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                            |            |          |
+|                             |                                                                                               |       |     "0x05eb2d848c431b1a37d0cf0eecc7f211b3bb1dee (N/A)" |            |          |
+|                             |                                                                                               |       |   ],                                                   |            |          |
+|                             |                                                                                               |       |   "newSurgeThresholdPercentage": [                     |            |          |
+|                             |                                                                                               |       |     "600000000000000000"                               |            |          |
+|                             |                                                                                               |       |   ]                                                    |            |          |
+|                             |                                                                                               |       | }                                                      |            |          |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
