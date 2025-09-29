@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1759151673522,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set max surge fee to 10% for pool 0x3bcf4e84c32d90bb309eab58d97b70372c84bc2c",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xdb8d758bcb971e482b2c45f7f8a7740283a1bd3a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "pool", "type": "address" },
+          {
+            "internalType": "uint256",
+            "name": "newMaxSurgeSurgeFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMaxSurgeFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x3bcf4e84c32d90bb309eab58d97b70372c84bc2c",
+        "newMaxSurgeSurgeFeePercentage": "100000000000000000"
+      }
+    }
+  ]
+}
