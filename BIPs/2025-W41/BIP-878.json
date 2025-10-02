@@ -1,1 +1,28 @@
-{"version":"1.0","chainId":"1","createdAt":1759388453226,"meta":{"name":"Transactions Batch","createdFromSafeAddress":"0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"},"transactions":[{"to":"0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd","value":"0","data":null,"contractMethod":{"inputs":[{"name":"gauge","type":"address","internalType":"address"},{"name":"gaugeType","type":"string","internalType":"string"}],"name":"addGauge","payable":false},"contractInputsValues":{"gauge":"0x533382463506f3b513ebbe9f2be7fbb49ccaef25","gaugeType":"Base"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1759388453226,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x533382463506f3b513ebbe9f2be7fbb49ccaef25",
+        "gaugeType": "Base"
+      }
+    }
+  ]
+}
