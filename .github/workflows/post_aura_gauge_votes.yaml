@@ -16,6 +16,8 @@ on:
 jobs:
   post_aura_gauge_votes:
     runs-on: ubuntu-latest
+    # Only run on the original repository, not on forks
+    if: github.repository == 'BalancerMaxis/multisig-ops'
 
     steps:
       - name: Checkout
