@@ -117,7 +117,7 @@ jobs:
           commit_message: Automated processing of Payload PR (validations, transformations, and reports) + reformat JSON
 
       - name: Commit and push reports
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message:
           commit_user_name: GitHub Actions
