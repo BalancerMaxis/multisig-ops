@@ -30,7 +30,7 @@ jobs:
           python query_upkeeps.py
 
       - name: Commit CSV file
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: "upkeeps"
           file_pattern: "upkeeps.csv"
