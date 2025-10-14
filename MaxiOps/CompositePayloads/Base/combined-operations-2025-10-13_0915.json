@@ -1,1 +1,27 @@
-{"version":"1.0","chainId":"8453","createdAt":1760372122892,"meta":{"name":"Combined Transactions Batch (1 operations)","description":"Composed from: Emergency actions for V3","createdFromSafeAddress":"0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a"},"transactions":[{"to":"0xbA1333333333a1BA1108E8412f11850A5C319bA9","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"address","name":"pool","type":"address"}],"name":"enableRecoveryMode","payable":false},"contractInputsValues":{"pool":"0x7b75404cb917c4d173fc18e387923a60c444756b"}}]}
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1760372122892,
+  "meta": {
+    "name": "Combined Transactions Batch (1 operations)",
+    "description": "Composed from: Emergency actions for V3",
+    "createdFromSafeAddress": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a"
+  },
+  "transactions": [
+    {
+      "to": "0xbA1333333333a1BA1108E8412f11850A5C319bA9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "pool", "type": "address" }
+        ],
+        "name": "enableRecoveryMode",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x7b75404cb917c4d173fc18e387923a60c444756b"
+      }
+    }
+  ]
+}
