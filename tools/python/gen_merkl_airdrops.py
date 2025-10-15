@@ -291,7 +291,8 @@ def build_snapshot_df(
             except exceptions.BadFunctionCallOutput as e:
                 error_msg = str(e)
                 if (
-                    "Could not decode contract function call to totalSupply" in error_msg
+                    "Could not decode contract function call to totalSupply"
+                    in error_msg
                     and "with return data: b''" in error_msg
                 ):
                     # contract is not deployed yet at this block
