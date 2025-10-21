@@ -289,11 +289,13 @@ def build_snapshot_df(
                 )
                 break
             except exceptions.BadFunctionCallOutput as e:
+                error_msg = str(e)
                 if (
-                    "Could not decode contract function call to totalSupply with return data: b''"
-                    in str(e)
+                    "Could not decode contract function call to totalSupply"
+                    in error_msg
+                    and "with return data: b''" in error_msg
                 ):
-                    # contract is not deployed yet
+                    # contract is not deployed yet at this block
                     total_supply[block] = Decimal(0)
                     break
                 if i < retries - 1:
@@ -637,7 +639,9 @@ if __name__ == "__main__":
                         1755695435,  # 23182500, round 18 +19
                         1756902779,  # 23282608, round 20
                         1758109763,  # 23382608, round 21
-                        "23482608",  # 23482608, round 22
+                        1759317527,  # 23482608, round 22
+                        "23582608",  # 23582608, round 23
+                        # "23682608",  # 23682608, round 24
                     ]
                 elif chain == "8453":
                     # Base chain epochs from base-supply-usdc, base-supply-gho, base-supply-eth-borrow-multiple campaigns
