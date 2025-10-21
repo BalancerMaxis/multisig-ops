@@ -1,17 +1,16 @@
 {
   "version": "1.0",
   "chainId": "9745",
-  "createdAt": 1760952656000,
+  "createdAt": 1761056594299,
   "meta": {
     "name": "Configure ProtocolFeeSweeper with BalancerFeeBurner on Plasma",
-    "description": "Add BalancerFeeBurner to allowlist and set USDT as target token for protocol fee conversion",
+    "description": "Add BalancerFeeBurner to allowlist and set waPlaUSDT0 as target token for protocol fee conversion",
     "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
   },
   "transactions": [
     {
       "to": "0xDB8d758BCb971e482B2C45f7F8a7740283A1bd3A",
       "value": "0",
-      "data": "0x36f1e9e50000000000000000000000008e3feaab11b7b351e3ea1e01247ab6ccc847dd52",
       "contractMethod": {
         "inputs": [
           {
@@ -30,7 +29,6 @@
     {
       "to": "0xDB8d758BCb971e482B2C45f7F8a7740283A1bd3A",
       "value": "0",
-      "data": "0xaaa4bed9000000000000000000000000b8ce59fc3717ada4c02eadf9682a9e934f625ebb",
       "contractMethod": {
         "inputs": [
           {
@@ -43,7 +41,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "targetToken": "0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb"
+        "targetToken": "0xE0126F0c4451B2B917064A93040fd4770D6774b5"
       }
     }
   ]
