@@ -25,6 +25,32 @@
           "dao_share_pct": 0.25
         }
       }
+    },
+    {
+      "name": "EZKL",
+      "multisig_address": "0xB7aadD330A64088A85e500874DCDcFB7F253fEB4",
+      "active": true,
+      "pool_types": ["EZKL"],
+      "fee_allocations": {
+        "core_with_gauge": {
+          "vebal_share_pct": 0.125,
+          "vote_incentive_pct": 0.7,
+          "partner_share_pct": 0.05,
+          "dao_share_pct": 0.125
+        },
+        "non_core_with_gauge": {
+          "vebal_share_pct": 0.125,
+          "vote_incentive_pct": 0.0,
+          "partner_share_pct": 0.05,
+          "dao_share_pct": 0.825
+        },
+        "non_core_without_gauge": {
+          "vebal_share_pct": 0.125,
+          "vote_incentive_pct": 0.0,
+          "partner_share_pct": 0.05,
+          "dao_share_pct": 0.825
+        }
+      }
     }
   ],
   "default_fee_allocations": {
