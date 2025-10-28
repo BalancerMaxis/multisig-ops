@@ -17,10 +17,10 @@ from web3 import Web3
 load_dotenv()
 DRPC_KEY = os.getenv("DRPC_KEY")
 
-w3 = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}"))
-w3arbitrum = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}"))
-w3optimism = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}"))
-w3polygon = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}"))
+w3 = Web3(Web3.HTTPProvider(f"https://lb.drpc.live/ethereum/{DRPC_KEY}"))
+w3arbitrum = Web3(Web3.HTTPProvider(f"https://lb.drpc.live/arbitrum/{DRPC_KEY}"))
+w3optimism = Web3(Web3.HTTPProvider(f"https://lb.drpc.live/optimism/{DRPC_KEY}"))
+w3polygon = Web3(Web3.HTTPProvider(f"https://lb.drpc.live/polygon/{DRPC_KEY}"))
 
 authorizer = w3.eth.contract(address="0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6")
 

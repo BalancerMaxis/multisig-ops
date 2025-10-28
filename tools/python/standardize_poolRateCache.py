@@ -15,11 +15,11 @@ from helpers.addresses import get_registry_by_chain_id
 DRPC_KEY = os.getenv("DRPC_KEY")
 
 w3_by_chain = {
-    "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}")),
-    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/arbitrum/{DRPC_KEY}")),
-    "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/optimism/{DRPC_KEY}")),
-    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/polygon/{DRPC_KEY}")),
-    "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.org/gnosis/{DRPC_KEY}")),
+    "mainnet": Web3(Web3.HTTPProvider(f"https://lb.drpc.live/ethereum/{DRPC_KEY}")),
+    "arbitrum": Web3(Web3.HTTPProvider(f"https://lb.drpc.live/arbitrum/{DRPC_KEY}")),
+    "optimism": Web3(Web3.HTTPProvider(f"https://lb.drpc.live/optimism/{DRPC_KEY}")),
+    "polygon": Web3(Web3.HTTPProvider(f"https://lb.drpc.live/polygon/{DRPC_KEY}")),
+    "gnosis": Web3(Web3.HTTPProvider(f"https://lb.drpc.live/gnosis/{DRPC_KEY}")),
 }
 
 ALL_CHAINS_MAP = {
