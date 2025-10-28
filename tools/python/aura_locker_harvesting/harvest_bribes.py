@@ -237,15 +237,21 @@ def claim_hidden_hand_bribes(
             remaining_amount = total_amount - claimed_amount
 
             if remaining_amount <= 0:
-                print(f"Skipping {claim['token']} - fully claimed (claimed: {claimed_amount}, total: {total_amount})")
+                print(
+                    f"Skipping {claim['token']} - fully claimed (claimed: {claimed_amount}, total: {total_amount})"
+                )
                 continue
 
             claim["amount"] = str(remaining_amount)
 
             if claimed_amount > 0:
-                print(f"Partially claimed {claim['token']} - claiming remaining {remaining_amount} (already claimed: {claimed_amount})")
+                print(
+                    f"Partially claimed {claim['token']} - claiming remaining {remaining_amount} (already claimed: {claimed_amount})"
+                )
             else:
-                print(f"Claiming HH - token: {claim['token']}, amount: {remaining_amount}")
+                print(
+                    f"Claiming HH - token: {claim['token']}, amount: {remaining_amount}"
+                )
 
             valid_claims.append(claim)
 
