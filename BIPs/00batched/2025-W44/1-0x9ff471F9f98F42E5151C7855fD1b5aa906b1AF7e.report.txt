@@ -1,0 +1,52 @@
+FILENAME: `BIPs/00batched/2025-W44/1-0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e.json`
+MULTISIG: `multisigs/maxi_omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `a44b8b9b0a3eb2b205758e3379524a68e95c647e`
+CHAIN(S): `arbitrum, avalanche, mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/868192d1-1358-4a95-852c-89df485736e3)
+
+| Gauge Validator (0xc13a3315806f097cee00e39c4285f5Bf250DD8a4) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x8c8722786aa9651b65425680642564a12E2Dd854) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x4f23CCC4349E9500d27C7096bD61d203F1D1C1Aa) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xC429D0602365f09a9257Be3be14c94B83CbBbB37) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+```
++-----------------------+----------------------------------------------------------+-----------------+--------------------------------------------------+-----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info | gauge_address_and_info                           | tokens                                              | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+-----------------+--------------------------------------------------+-----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0xaE255Db04BA78519f33871c557d8fd6bafDb83bD               | xUSD-vgUSDC     | root: 0xc13a3315806f097cee00e39c4285f5Bf250DD8a4 | 0x8399C8Fc273bD165C346Af74A02e65f10e4FD78F: vgUSDC  | 0x1Ef72036F53a0d552ada49626FE90BDaC6207DC5 |      safe      | BIP-881 |    0     |
+|                       | pool_address: 0xaE255Db04BA78519f33871c557d8fd6bafDb83bD | fee (%): 0.01   | side: None                                       | 0xE2Fc85BfB48C4cF147921fBE110cf92Ef9f26F94: xUSD    | 0x5009e302F22Ef52fec4e29a9D407c2bC9308D047 |      safe      |         |          |
+|                       |                                                          | a-factor: 750   | style: mainnet                                   |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | cap: 2.0%                                        |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | preferential: True                               |                                                     |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x7c60989d5E663836Cf688f2bACF12a1208ae11b7               | xUSD-USDC       | root: 0x8c8722786aa9651b65425680642564a12E2Dd854 | 0x2BA39e5388aC6C702Cb29AEA78d52aa66832f1ee: USDC    | 0xbDB9b810a3722F066681212D33eaBF1e842fCf78 |      safe      | BIP-881 |    1     |
+|                       | pool_address: 0x7c60989d5E663836Cf688f2bACF12a1208ae11b7 | fee (%): 0.01   | side: 0x892934813a7E31b9B9F4c1f120943f17c3BD5Ed7 | 0x6eAf19b2FC24552925dB245F9Ff613157a7dbb4C: xUSD    | 0xdb632870406d154CB895D946CCfC23106208907c |      safe      |         |          |
+|                       |                                                          | a-factor: 750   | style: L0 sidechain                              |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | cap: 2.0%                                        |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | preferential: True                               |                                                     |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x345e9aFe5DD68237541993e5E2b9a87367Ed91B7               | xBTC-mevBTC     | root: 0x4f23CCC4349E9500d27C7096bD61d203F1D1C1Aa | 0x1f8E769B5B6010B2C2BBCd68629EA1a0a0Eda7E3: mevBTC  | 0x0646cD7FfD52044BbD5b07Ce14448FbeEb707E4c |      safe      | BIP-881 |    2     |
+|                       | pool_address: 0x345e9aFe5DD68237541993e5E2b9a87367Ed91B7 | fee (%): 0.01   | side: 0x3CA285558531543798b7158C046034ED6388D58a | 0x6eAf19b2FC24552925dB245F9Ff613157a7dbb4C: xBTC    | 0xc52b66AC835c3E1C4E2B285d4b8f7828C6aD2B0b |      safe      |         |          |
+|                       |                                                          | a-factor: 750   | style: L0 sidechain                              |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | cap: 2.0%                                        |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | preferential: True                               |                                                     |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x9dFdf58e1624CBa507D0A38059E85Eeab74f3B6b               | xUSD-mevUSDC    | root: 0xC429D0602365f09a9257Be3be14c94B83CbBbB37 | 0x4dc1ce9b9f9EF00c144BfAD305f16c62293dC0E8: mevUSDC | 0x5E0F3f5539675599e19DDD9aE0dA2691D267eDa3 |      safe      | BIP-881 |    3     |
+|                       | pool_address: 0x9dFdf58e1624CBa507D0A38059E85Eeab74f3B6b | fee (%): 0.01   | side: 0xec4F410CD8e04D52846A20e160D300D76A911FC7 | 0x94f9bB5c972285728DCee7EAece48BeC2fF341ce: xUSD    | 0xAafb7a2b42395d3034A8e91b65a2bce8f86c959f |      safe      |         |          |
+|                       |                                                          | a-factor: 750   | style: L0 sidechain                              |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | cap: 2.0%                                        |                                                     |                                            |                |         |          |
+|                       |                                                          |                 | preferential: True                               |                                                     |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+-----------------+--------------------------------------------------+-----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
