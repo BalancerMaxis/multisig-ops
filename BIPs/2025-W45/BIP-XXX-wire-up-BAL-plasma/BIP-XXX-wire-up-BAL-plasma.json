@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1730203200000,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Wire up BAL token on Plasma chain via LayerZero",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
+  },
+  "transactions": [
+    {
+      "to": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint16",
+            "name": "_remoteChainId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes",
+            "name": "_remoteAddress",
+            "type": "bytes"
+          }
+        ],
+        "name": "setTrustedRemoteAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_remoteChainId": "383",
+        "_remoteAddress": "0x22625eEDd92c81a219A83e1dc48f88d54786B017"
+      }
+    },
+    {
+      "to": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint16",
+            "name": "_dstChainId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "_packetType",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_minGas",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMinDstGas",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_dstChainId": "383",
+        "_packetType": "0",
+        "_minGas": "10000"
+      }
+    }
+  ]
+}
