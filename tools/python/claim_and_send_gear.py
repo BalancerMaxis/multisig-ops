@@ -20,7 +20,7 @@ GEARBOX_MERKLE_URL = (
     "https://raw.githubusercontent.com/Gearbox-protocol/rewards/master/merkle/"
 )
 GEARBOX_TREE = "0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC"
-w3 = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ethereum/{DRPC_KEY}"))
+w3 = Web3(Web3.HTTPProvider(f"https://lb.drpc.live/ethereum/{DRPC_KEY}"))
 tree = w3.eth.contract(
     address=GEARBOX_TREE, abi=json.load(open("./abis/GearAirdropDistributor.json"))
 )

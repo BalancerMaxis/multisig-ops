@@ -610,7 +610,7 @@ if __name__ == "__main__":
             if protocol == "merit":
                 # https://apps.aavechan.com/api/merit/campaigns
                 # replace date string with timestamp once it has passed and uncomment next string
-                # drpc = Web3(Web3.HTTPProvider(f"https://lb.drpc.org/ogrpc?network={CHAIN_SLUGS['1']}&dkey={os.getenv('DRPC_KEY')}",session=session_drpc))
+                # drpc = Web3(Web3.HTTPProvider(f"https://lb.drpc.live/ogrpc?network={CHAIN_SLUGS['1']}&dkey={os.getenv('DRPC_KEY')}",session=session_drpc))
                 # drpc.eth.get_block(23682608).timestamp
 
                 if chain == "1":
@@ -671,7 +671,7 @@ if __name__ == "__main__":
             # breakpoint()
             drpc = Web3(
                 Web3.HTTPProvider(
-                    f"https://lb.drpc.org/ogrpc?network={CHAIN_SLUGS[chain]}&dkey={os.getenv('DRPC_KEY')}",
+                    f"https://lb.drpc.live/ogrpc?network={CHAIN_SLUGS[chain]}&dkey={os.getenv('DRPC_KEY')}",
                     session=session_drpc,
                 )
             )
