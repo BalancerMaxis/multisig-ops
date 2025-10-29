@@ -1,0 +1,28 @@
+FILENAME: `MaxiOps/PoolParameterChanges/ReClammParams/Gnosis/set-reclamm-parameters-0xa50085ff1dfa173378e7d26a76117d68d5eba539-2025-10-29_1028.json`
+MULTISIG: `multisigs/maxi_omni (gnosis:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `3e7848c5d9cfa75153d8efd8da14f70105075686`
+CHAIN(S): `gnosis`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/21a4e645-b45c-4c3e-a4b0-7465d28b3499)
+
+```
++-----------------------+--------------------------------------------------------------------+-------+----------------------------------+------------+----------+
+| fx_name               | to                                                                 | value | inputs                           | bip_number | tx_index |
++-----------------------+--------------------------------------------------------------------+-------+----------------------------------+------------+----------+
+| setCenterednessMargin | 0xa50085ff1dfa173378e7d26a76117d68d5eba539 (pools/wstETH-GNO-a500) | 0     | {                                | N/A        |   N/A    |
+|                       |                                                                    |       |   "newCenterednessMargin": [     |            |          |
+|                       |                                                                    |       |     "100000000000000000"         |            |          |
+|                       |                                                                    |       |   ]                              |            |          |
+|                       |                                                                    |       | }                                |            |          |
+| startPriceRatioUpdate | 0xa50085ff1dfa173378e7d26a76117d68d5eba539 (pools/wstETH-GNO-a500) | 0     | {                                | N/A        |   N/A    |
+|                       |                                                                    |       |   "endPriceRatio": [             |            |          |
+|                       |                                                                    |       |     "1500000000000000000"        |            |          |
+|                       |                                                                    |       |   ],                             |            |          |
+|                       |                                                                    |       |   "priceRatioUpdateStartTime": [ |            |          |
+|                       |                                                                    |       |     "1761753600"                 |            |          |
+|                       |                                                                    |       |   ],                             |            |          |
+|                       |                                                                    |       |   "priceRatioUpdateEndTime": [   |            |          |
+|                       |                                                                    |       |     "1761840000"                 |            |          |
+|                       |                                                                    |       |   ]                              |            |          |
+|                       |                                                                    |       | }                                |            |          |
++-----------------------+--------------------------------------------------------------------+-------+----------------------------------+------------+----------+
+```
