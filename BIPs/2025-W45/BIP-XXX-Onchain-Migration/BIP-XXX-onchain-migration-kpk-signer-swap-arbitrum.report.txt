@@ -1,0 +1,138 @@
+FILENAME: `BIPs/2025-W45/BIP-XXX-Onchain-Migration/BIP-XXX-onchain-migration-kpk-signer-swap-arbitrum.json`
+MULTISIG: `multisigs/kpk_managed (arbitrum:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89)`
+COMMIT: `049d0424a7f1a01fe3feafe4ee10db84050350b6`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/e77b55ae-d959-42a9-a277-038f383d5bdb)
+
+```
++-----------------+--------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+| fx_name         | to                                                                 | value | inputs                                                                            | bip_number | tx_index |
++-----------------+--------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+| changeThreshold | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "5"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x9BE6ff2A1D5139Eda96339E2644dC1F05d803600 (EOA/dao/bonustrack87)"           |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x285b7EEa81a5B66B62e7276a24c1e0F83F7409c1 (EOA/dao/0xMaki)"                 |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x122AFb4667C5f80e45721a42C7c81e9140C62FA4 (EOA/kyc/Arbitrum/kycsigner4)"    |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x9F7dfAb2222A473284205cdDF08a677726d786A0 (EOA/dao/StefanDGeorge)"          |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x9BE6ff2A1D5139Eda96339E2644dC1F05d803600 (EOA/dao/bonustrack87)"           |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0xAA5AF0Dd9c52C773D36cDBC509A0b2a1deD4C196 (N/A)"                            |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0xAc1aA53108712d7f38093A67d380aD54B562a650 (EOA/dao/davgarai)"               |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x9F7dfAb2222A473284205cdDF08a677726d786A0 (EOA/dao/StefanDGeorge)"          |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x606681E47afC7869482660eCD61bd45B53523D83 (EOA/emergency/danielmk)"         |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x823DF0278e4998cD0D06FB857fBD51e85b18A250 (EOA/dao/nanexcool)"              |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0xAc1aA53108712d7f38093A67d380aD54B562a650 (EOA/dao/davgarai)"               |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x90347b9CC81a4a28aAc74E8B134040d5ce2eaB6D (EOA/blabs_ops/Fabio)"            |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/maxis/gosuto)"               |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x823DF0278e4998cD0D06FB857fBD51e85b18A250 (EOA/dao/nanexcool)"              |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x512fce9B07Ce64590849115EE6B32fd40eC0f5F3 (EOA/emeritus/solarcurve_signer)" |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x0951FF0835302929d6c0162b3d2495A85e38ec3A (EOA/dao/mounibec)"               |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/maxis/gosuto)"               |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x11E450C72C2258ec792D5f64a263Ecb18e8c0f06 (N/A)"                            |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29 (EOA/dao_backup/lewis)"           |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x0951FF0835302929d6c0162b3d2495A85e38ec3A (EOA/dao/mounibec)"               |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0xd17a9f089862351af82fA782435faC0f9e17786c (N/A)"                            |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x3ABDc84Dd15b0058B281D7e26CCc3932cfb268aA (EOA/dao/AlexLangeVC)"            |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29 (EOA/dao_backup/lewis)"           |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "5"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x59693BA1A5764e087CE166ac0E0085Fc071B9ea7 (EOA/dao/0xSausageDoge)"          |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0x3ABDc84Dd15b0058B281D7e26CCc3932cfb268aA (EOA/dao/AlexLangeVC)"            |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "5"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0xA39a62304d8d43B35114ad7bd1258B0E50e139b3 (EOA/dao/eboadom)"                |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0x59693BA1A5764e087CE166ac0E0085Fc071B9ea7 (EOA/dao/0xSausageDoge)"          |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "5"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x0000000000000000000000000000000000000001 (N/A)"                            |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0xA39a62304d8d43B35114ad7bd1258B0E50e139b3 (EOA/dao/eboadom)"                |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "5"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
++-----------------+--------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+```
