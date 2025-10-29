@@ -1,1 +1,60 @@
-{"version":"1.0","chainId":"100","createdAt":1761748100757,"meta":{"name":"Transactions Batch","description":"Set centeredness margin to 100000000000000000 and price ratio update from 10/29/2025, 12:00:00 PM to 10/30/2025, 12:00:00 PM with end ratio 1500000000000000000 for reCLAMM wstETH-GNO","createdFromSafeAddress":"0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"},"transactions":[{"to":"0xa50085ff1dfa173378e7d26a76117d68d5eba539","value":"0","data":null,"contractMethod":{"inputs":[{"name":"newCenterednessMargin","type":"uint256","internalType":"uint256"}],"name":"setCenterednessMargin","payable":false},"contractInputsValues":{"newCenterednessMargin":"100000000000000000"}},{"to":"0xa50085ff1dfa173378e7d26a76117d68d5eba539","value":"0","data":null,"contractMethod":{"inputs":[{"name":"endPriceRatio","type":"uint256","internalType":"uint256"},{"name":"priceRatioUpdateStartTime","type":"uint256","internalType":"uint256"},{"name":"priceRatioUpdateEndTime","type":"uint256","internalType":"uint256"}],"name":"startPriceRatioUpdate","payable":false},"contractInputsValues":{"endPriceRatio":"1500000000000000000","priceRatioUpdateStartTime":"1761753600","priceRatioUpdateEndTime":"1761840000"}}]}
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1761748100757,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set centeredness margin to 100000000000000000 and price ratio update from 10/29/2025, 12:00:00 PM to 10/30/2025, 12:00:00 PM with end ratio 1500000000000000000 for reCLAMM wstETH-GNO",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xa50085ff1dfa173378e7d26a76117d68d5eba539",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "newCenterednessMargin",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setCenterednessMargin",
+        "payable": false
+      },
+      "contractInputsValues": { "newCenterednessMargin": "100000000000000000" }
+    },
+    {
+      "to": "0xa50085ff1dfa173378e7d26a76117d68d5eba539",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "endPriceRatio",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "priceRatioUpdateStartTime",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "priceRatioUpdateEndTime",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "startPriceRatioUpdate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "endPriceRatio": "1500000000000000000",
+        "priceRatioUpdateStartTime": "1761753600",
+        "priceRatioUpdateEndTime": "1761840000"
+      }
+    }
+  ]
+}
