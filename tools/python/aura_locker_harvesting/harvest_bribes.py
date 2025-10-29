@@ -233,17 +233,33 @@ def claim_hidden_hand_bribes(
                 claim["identifier"], Web3.to_checksum_address(claim["account"])
             ).call()
 
-            if claimed_amount > 0:
-                print(f"Skipping {claim['token']} because it's already claimed")
+            total_amount = int(claim["amount"])
+            remaining_amount = total_amount - claimed_amount
+
+            if remaining_amount <= 0:
+                print(
+                    f"Skipping {claim['token']} - fully claimed (claimed: {claimed_amount}, total: {total_amount})"
+                )
                 continue
 
-            print(f"Claiming HH - token: {claim['token']}, amount: {claim['amount']}")
+            claim["amount"] = str(remaining_amount)
+
+            if claimed_amount > 0:
+                print(
+                    f"Partially claimed {claim['token']} - claiming remaining {remaining_amount} (already claimed: {claimed_amount})"
+                )
+            else:
+                print(
+                    f"Claiming HH - token: {claim['token']}, amount: {remaining_amount}"
+                )
+
             valid_claims.append(claim)
 
             token_contract = w3.eth.contract(
                 address=Web3.to_checksum_address(claim["token"]), abi=erc20_abi
             )
             decimals = token_contract.functions.decimals().call()
+            # Use the updated remaining amount for CSV
             amount = Decimal(claim["amount"]) / Decimal(10**decimals)
 
             f.write(
