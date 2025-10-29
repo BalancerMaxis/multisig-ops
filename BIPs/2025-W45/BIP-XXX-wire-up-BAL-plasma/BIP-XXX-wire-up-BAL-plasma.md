@@ -1,7 +1,7 @@
 # [BIP-XXX] Wire Up BAL Token on Plasma Chain
 
 ## PR with Payload
-TODO
+https://github.com/BalancerMaxis/multisig-ops/pull/2504
 
 ## Summary
 
