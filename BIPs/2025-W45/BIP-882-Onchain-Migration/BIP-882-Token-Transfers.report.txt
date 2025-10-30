@@ -1,18 +1,31 @@
 FILENAME: `BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `4ab1d44499424bee4ee15ea5178973ae6ad94bb4`
+COMMIT: `a982188fba91bddd948c7151ddacc97c4ccb75a1`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1a2e19f0-4d66-4df5-8c0d-728d66a30349)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/9f3757b6-b0e0-4d5f-acf0-b83e4761c38d)
 
 ```
 +----------+----------------------------------------------------+------------------------------------------------------------------+-------------------------------------------------+---------+----------+
 | function | token_symbol                                       | recipient                                                        | amount                                          |   bip   | tx_index |
 +----------+----------------------------------------------------+------------------------------------------------------------------+-------------------------------------------------+---------+----------+
-| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48    | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 622188.449304 (RAW: 622188449304)               | BIP-882 |    0     |
-| transfer | COW:0xDEf1CA1fb7FBcDC777520aa7f396b4E015F497aB     | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 12360.1479506493 (RAW: 12360147950649299098364) | BIP-882 |    1     |
-| transfer | aEthBAL:0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8 | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 101.18586949468165 (RAW: 101185869494681659750) | BIP-882 |    2     |
-| transfer | aBAL:0x272F97b7a56a387aE942350bBC7Df5700f8a4576    | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 58.49155548102371 (RAW: 58491555481023710958)   | BIP-882 |    3     |
-| transfer | stETH:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 0.001381061273405474 (RAW: 1381061273405474)    | BIP-882 |    4     |
-| transfer | anyBAL:0xcb9d0b8CfD8371143ba5A794c7218D4766c493e2  | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 20000.0 (RAW: 20000000000000000000000)          | BIP-882 |    5     |
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48    | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 622188.449304 (RAW: 622188449304)               | BIP-882 |    1     |
+| transfer | COW:0xDEf1CA1fb7FBcDC777520aa7f396b4E015F497aB     | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 12360.1479506493 (RAW: 12360147950649299098364) | BIP-882 |    2     |
+| transfer | aEthBAL:0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8 | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 101.18586949468165 (RAW: 101185869494681659750) | BIP-882 |    3     |
+| transfer | aBAL:0x272F97b7a56a387aE942350bBC7Df5700f8a4576    | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 58.49155548102371 (RAW: 58491555481023710958)   | BIP-882 |    4     |
+| transfer | stETH:0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84   | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 0.001381061273405474 (RAW: 1381061273405474)    | BIP-882 |    5     |
+| transfer | anyBAL:0xcb9d0b8CfD8371143ba5A794c7218D4766c493e2  | multisigs/kpk_managed:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 | 20000.0 (RAW: 20000000000000000000000)          | BIP-882 |    6     |
 +----------+----------------------------------------------------+------------------------------------------------------------------+-------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `a982188fba91bddd948c7151ddacc97c4ccb75a1`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fceaf4fc-c32f-45d2-9c75-ca335399ce0a)
+
+```
++---------+--------------------------------------------------------------------+------------------------------------------------+--------+------------+----------+
+| fx_name | to                                                                 | value                                          | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------+------------------------------------------------+--------+------------+----------+
+| !!N/A!! | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 10020697538332403272/1e18 = 10.020697538332403 | "N/A"  | BIP-882    |   N/A    |
++---------+--------------------------------------------------------------------+------------------------------------------------+--------+------------+----------+
 ```
