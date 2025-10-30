@@ -34,6 +34,19 @@
         "roles": "[0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16]",
         "account": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
       }
+    },
+    {
+      "to": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_threshold", "type": "uint256" }
+        ],
+        "name": "changeThreshold",
+        "payable": false
+      },
+      "contractInputsValues": { "_threshold": "3" }
     }
   ]
 }
