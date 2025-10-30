@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W45/BIP-883-Upgrade-Emergency-acitons-Q4/BIP-883-upgrade-emergency-perms-optimism.json`
 MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
-COMMIT: `246b0e74310fc817350d860133f6835c8dbcc34b`
+COMMIT: `505771371392ecc7a68f03256c8a276640ed37c4`
 CHAIN(S): `optimism`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fdff0d4f-7360-435f-b511-973af4027d1a)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d3f41f0d-ba12-453f-a621-a19cfcbcdfa9)
 
 ```
 +------------------------+---------------------+--------------------------------------------+--------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
@@ -10,4 +10,21 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fdff0d4f-7360-4
 +------------------------+---------------------+--------------------------------------------+--------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | Authorizer/revokeRoles | multisigs/emergency | 0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B | 20241204-v3-vault/VaultAdmin/disableQueryPermanently() | 0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16 | BIP-883 |    0     |
 +------------------------+---------------------+--------------------------------------------+--------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2025-W45/BIP-883-Upgrade-Emergency-acitons-Q4/BIP-883-upgrade-emergency-perms-optimism.json`
+MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
+COMMIT: `505771371392ecc7a68f03256c8a276640ed37c4`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/71096ddc-be60-44b3-951f-01f502a81b55)
+
+```
++-----------------+------------------------------------------------------------+-------+-------------------+------------+----------+
+| fx_name         | to                                                         | value | inputs            | bip_number | tx_index |
++-----------------+------------------------------------------------------------+-------+-------------------+------------+----------+
+| changeThreshold | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc (multisigs/dao) | 0     | {                 | BIP-883    |   N/A    |
+|                 |                                                            |       |   "_threshold": [ |            |          |
+|                 |                                                            |       |     "3"           |            |          |
+|                 |                                                            |       |   ]               |            |          |
+|                 |                                                            |       | }                 |            |          |
++-----------------+------------------------------------------------------------+-------+-------------------+------------+----------+
 ```
