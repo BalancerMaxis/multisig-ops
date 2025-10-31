@@ -1,0 +1,28 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/HyperEVM/stable-surge-params-0x0915824c3c5239928253548cd998a5f19668582a-2025-10-28_1626.json`
+MULTISIG: `multisigs/maxi_omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `e856919a073d0a33cfee1c0ed917bf4a385a73bf`
+CHAIN(S): `hyperevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '2f7fc2e7-ac08-4b23-996d-3d4a969035c4', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------+------------+----------+
+| fx_name                     | to                                                                                            | value | inputs                                                                    | bip_number | tx_index |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------+------------+----------+
+| setMaxSurgeFeePercentage    | 0x5dbad78818d4c8958eff2d5b95b28385a22113cd (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                                         | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                                               |            |          |
+|                             |                                                                                               |       |     "0x0915824c3c5239928253548cd998a5f19668582a (pools/HYPED-WHYPE-0915)" |            |          |
+|                             |                                                                                               |       |   ],                                                                      |            |          |
+|                             |                                                                                               |       |   "newMaxSurgeSurgeFeePercentage": [                                      |            |          |
+|                             |                                                                                               |       |     "90000000000000000"                                                   |            |          |
+|                             |                                                                                               |       |   ]                                                                       |            |          |
+|                             |                                                                                               |       | }                                                                         |            |          |
+| setSurgeThresholdPercentage | 0x5dbad78818d4c8958eff2d5b95b28385a22113cd (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                                         | N/A        |   N/A    |
+|                             |                                                                                               |       |   "pool": [                                                               |            |          |
+|                             |                                                                                               |       |     "0x0915824c3c5239928253548cd998a5f19668582a (pools/HYPED-WHYPE-0915)" |            |          |
+|                             |                                                                                               |       |   ],                                                                      |            |          |
+|                             |                                                                                               |       |   "newSurgeThresholdPercentage": [                                        |            |          |
+|                             |                                                                                               |       |     "600000000000000000"                                                  |            |          |
+|                             |                                                                                               |       |   ]                                                                       |            |          |
+|                             |                                                                                               |       | }                                                                         |            |          |
++-----------------------------+-----------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------+------------+----------+
+```
