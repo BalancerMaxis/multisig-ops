@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16]",
+        "account": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-883-Upgrade-Emergency-acitons-Q4/BIP-883-upgrade-emergency-perms-arbitrum.json",
+        "bip_number": "BIP-883"
+      }
+    },
+    {
+      "to": "0xaF23DC5983230E9eEAf93280e312e57539D098D0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_threshold",
+            "type": "uint256"
+          }
+        ],
+        "name": "changeThreshold",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_threshold": "3"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-883-Upgrade-Emergency-acitons-Q4/BIP-883-upgrade-emergency-perms-arbitrum.json",
+        "bip_number": "BIP-883"
+      }
+    }
+  ]
+}
