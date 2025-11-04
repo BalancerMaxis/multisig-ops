@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1762247203,
-  "description": "Kill Balancer v2 stable pool gauges",
+  "createdAt": 1762251998,
+  "description": "Kill gauges for Balancer v2 stable pools (CSPv5/v6) being paused / having rate providers",
   "meta": {
     "name": "Transactions Batch",
     "createdFromSafeAddress": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"
@@ -80,56 +80,6 @@
       },
       "contractInputsValues": {
         "target": "0x253ed65fff980aee7e94a0dc57be304426048b35",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0x21c377cbb2beddd8534308e5cdfebe35fdf817e8",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0xdee29b7b6df3576280bfbbc088ee9ebaa767c0bd",
         "data": "0xab8f0945"
       }
     },
@@ -604,31 +554,6 @@
         "payable": true
       },
       "contractInputsValues": {
-        "target": "0x2e6cd45581002c894cac692dce4a30632125ef99",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
         "target": "0x6a2c2d4502335638d2c2f40f0171253fb2c2db88",
         "data": "0xab8f0945"
       }
@@ -804,56 +729,6 @@
         "payable": true
       },
       "contractInputsValues": {
-        "target": "0x16289f675ca54312a8fcf99341e7439982888077",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0x852580e3e1c0fd35de426c5481670c1772525265",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
         "target": "0x9965713498c74aee49cef80b2195461f188f24f8",
         "data": "0xab8f0945"
       }
@@ -880,56 +755,6 @@
       },
       "contractInputsValues": {
         "target": "0x6054a132020f48012c63d2cb83813327378f9423",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0x67313e858fb87cc4b30ad56b6b461d7450738950",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0xb145b0ef7dfd7e02b181f4c9a880e8aeced9bcf3",
         "data": "0xab8f0945"
       }
     },
@@ -1029,31 +854,6 @@
         "payable": true
       },
       "contractInputsValues": {
-        "target": "0xc4b6cc9a444337b1cb8cbbdd9de4d983f609c391",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
         "target": "0x5f244e8ac0ff2d2af14368fd8efd1e508a50cf68",
         "data": "0xab8f0945"
       }
@@ -1105,31 +905,6 @@
       },
       "contractInputsValues": {
         "target": "0xf8a95653cc7ee59afa2304dcc518c431a15c292c",
-        "data": "0xab8f0945"
-      }
-    },
-    {
-      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "target",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "data",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ],
-        "name": "performAction",
-        "payable": true
-      },
-      "contractInputsValues": {
-        "target": "0x41de33d3b227677af277b6c29cb2545195df508c",
         "data": "0xab8f0945"
       }
     },
