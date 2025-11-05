@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W45/BIP-883-Upgrade-Emergency-acitons-Q4/BIP-883-upgrade-emergency-perms-hyperEVM.json`
-MULTISIG: `multisigs/maxi_omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `505771371392ecc7a68f03256c8a276640ed37c4`
+MULTISIG: `multisigs/omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `da55a81b6e905ebfbbd7131505cef399c4b5ce36`
 CHAIN(S): `hyperevm`
-TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '1dbd2320-4ae8-4082-96e1-ea57eb29cb11', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'e1e48395-489e-4d9f-a8d9-db07e35605e1', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
 
 ```
 +------------------------+---------------------+--------------------------------------------+--------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
@@ -10,21 +10,4 @@ TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '1dbd2320-4ae8-4082-96e1-ea
 +------------------------+---------------------+--------------------------------------------+--------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 | Authorizer/revokeRoles | multisigs/emergency | 0x44613a28347206F5E26C1B8Db7Dc73f450219746 | 20241204-v3-vault/VaultAdmin/disableQueryPermanently() | 0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16 | BIP-883 |    0     |
 +------------------------+---------------------+--------------------------------------------+--------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
-```
-FILENAME: `BIPs/2025-W45/BIP-883-Upgrade-Emergency-acitons-Q4/BIP-883-upgrade-emergency-perms-hyperEVM.json`
-MULTISIG: `multisigs/maxi_omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `505771371392ecc7a68f03256c8a276640ed37c4`
-CHAIN(S): `hyperevm`
-TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '03675008-d4aa-46d5-9aa7-7a3397093094', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
-
-```
-+-----------------+------------------------------------------------------------------+-------+-------------------+------------+----------+
-| fx_name         | to                                                               | value | inputs            | bip_number | tx_index |
-+-----------------+------------------------------------------------------------------+-------+-------------------+------------+----------+
-| changeThreshold | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/maxi_omni) | 0     | {                 | BIP-883    |   N/A    |
-|                 |                                                                  |       |   "_threshold": [ |            |          |
-|                 |                                                                  |       |     "3"           |            |          |
-|                 |                                                                  |       |   ]               |            |          |
-|                 |                                                                  |       | }                 |            |          |
-+-----------------+------------------------------------------------------------------+-------+-------------------+------------+----------+
 ```
