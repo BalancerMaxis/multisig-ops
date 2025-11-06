@@ -1,0 +1,40 @@
+FILENAME: `MaxiOps/CompositePayloads/Arbitrum/combined-operations-2025-11-06_1433.json`
+MULTISIG: `multisigs/omni (arbitrum:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `014db1ff7e87616031f6188c46d7f83f687decb8`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/14188ebd-c4e5-4b10-a700-bd9e923f1cb7)
+
+```
++---------------+------------------------------------------------------------------------------------+-------+--------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                                                 | value | inputs                                                       | bip_number | tx_index |
++---------------+------------------------------------------------------------------------------------+-------+--------------------------------------------------------------+------------+----------+
+| addRecipients | 0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4 (maxiKeepers/injectorV2/USDC-omnichain) | 0     | {                                                            | N/A        |   N/A    |
+|               |                                                                                    |       |   "recipients": [                                            |            |          |
+|               |                                                                                    |       |     "0x7c41997174a9f9be0848b780c8b6478604053bbb (N/A)"       |            |          |
+|               |                                                                                    |       |   ],                                                         |            |          |
+|               |                                                                                    |       |   "amountPerPeriod": [                                       |            |          |
+|               |                                                                                    |       |     "raw:3500000000, 18 decimals:3.5E-9, 6 decimals: 3500"   |            |          |
+|               |                                                                                    |       |   ],                                                         |            |          |
+|               |                                                                                    |       |   "maxPeriods": [                                            |            |          |
+|               |                                                                                    |       |     "5"                                                      |            |          |
+|               |                                                                                    |       |   ],                                                         |            |          |
+|               |                                                                                    |       |   "doNotStartBeforeTimestamp": [                             |            |          |
+|               |                                                                                    |       |     "0"                                                      |            |          |
+|               |                                                                                    |       |   ]                                                          |            |          |
+|               |                                                                                    |       | }                                                            |            |          |
+| addRecipients | 0xfa7b21B30325DBbd4A71ee2B2EDE74A7d8A2c0E4 (maxiKeepers/injectorV2/USDC-omnichain) | 0     | {                                                            | N/A        |   N/A    |
+|               |                                                                                    |       |   "recipients": [                                            |            |          |
+|               |                                                                                    |       |     "0x315AE127f1fFAb16bF07A9a494bfA87A8e5dFF7F (N/A)"       |            |          |
+|               |                                                                                    |       |   ],                                                         |            |          |
+|               |                                                                                    |       |   "amountPerPeriod": [                                       |            |          |
+|               |                                                                                    |       |     "raw:45000000000, 18 decimals:4.5E-8, 6 decimals: 45000" |            |          |
+|               |                                                                                    |       |   ],                                                         |            |          |
+|               |                                                                                    |       |   "maxPeriods": [                                            |            |          |
+|               |                                                                                    |       |     "5"                                                      |            |          |
+|               |                                                                                    |       |   ],                                                         |            |          |
+|               |                                                                                    |       |   "doNotStartBeforeTimestamp": [                             |            |          |
+|               |                                                                                    |       |     "0"                                                      |            |          |
+|               |                                                                                    |       |   ]                                                          |            |          |
+|               |                                                                                    |       | }                                                            |            |          |
++---------------+------------------------------------------------------------------------------------+-------+--------------------------------------------------------------+------------+----------+
+```
