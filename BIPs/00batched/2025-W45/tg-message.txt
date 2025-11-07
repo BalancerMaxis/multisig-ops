@@ -1,0 +1,58 @@
+gm everybody.
+
+all txs for this month are business as usual; three bips that were already in the pipeline.
+
+bip882 rotates the current set of signers (you all) on the treasury to a new set of signers: the treasury council. obviously this is a sensitive tx; please read about it here: https://forum.balancer.fi/t/bip-882-transitioning-onchain-operations-of-the-balancer-dao-to-balancer-onchain-limited/6859
+
+bip883 removes an unnecessary permission from the emergency dao msig
+
+bip884 wires up the bal token proxy on ethereum to an erc20 on plasma; this will allow us to activate the gauge system there too
+
+**Arbitrum - Dao**
+
+- BIP-883: upgrade emergency perms
+https://app.safe.global/transactions/tx?safe=arb1:0xaF23DC5983230E9eEAf93280e312e57539D098D0&id=multisig_0xaF23DC5983230E9eEAf93280e312e57539D098D0_0xa0847ef955ab147a765ced8a18a81287306d56aee59e7e8ce4df6b35fd476d7a
+
+**Arbitrum - Kpk Managed**
+
+- BIP-882: onchain migration: kpk signer swap
+https://app.safe.global/transactions/tx?safe=arb1:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89&id=multisig_0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89_0x7c9b4169cd168105bdc1d6727fdbff004105236b27d0c39e42e15c63ab140e28
+
+**Avalanche - Dao**
+
+- BIP-883: upgrade emergency perms
+https://app.safe.global/transactions/tx?safe=avax:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3&id=multisig_0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3_0x53f71bdd691ba6d180b148e0045b444988e961b48f8e1e9ed404f48c4d999b22
+
+**Base - Dao**
+
+- BIP-883: upgrade emergency perms
+https://app.safe.global/transactions/tx?safe=base:0xC40DCFB13651e64C8551007aa57F9260827B6462&id=multisig_0xC40DCFB13651e64C8551007aa57F9260827B6462_0xa908518bafb962b573f79ece3647eb76b8080e6725ce3de24177986a7687fc65
+
+**Ethereum - Dao**
+
+- BIP-882: onchain migration: sweep last dao assets
+- BIP-883: upgrade emergency perms
+- BIP-884: wire up layerzero bal bridge to plasma
+https://app.safe.global/transactions/tx?safe=eth:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f&id=multisig_0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f_0xf931d4f16c743f630238ae3d3c3f806fc827e4a99e4ee4d15722aa584021936a
+
+**Ethereum - Kpk Managed**
+
+- BIP-882: onchain migration: kpk signer swap
+https://app.safe.global/transactions/tx?safe=eth:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89&id=multisig_0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89_0x3fc7f44cff2ca33e7b031e3484fb283f2c990ab2e7c6c16d9b97d2f2d0e1b259
+
+**Gnosis - Dao**
+
+- BIP-883: upgrade emergency perms
+https://app.safe.global/transactions/tx?safe=gno:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18&id=multisig_0x2a5AEcE0bb9EfFD7608213AE1745873385515c18_0xb196a2d78fd32863f157196d5960692d57212d92b4aaec4bbd214e3628734122
+
+**Gnosis - Kpk Managed**
+
+- BIP-882: onchain migration: kpk signer swap
+https://app.safe.global/transactions/tx?safe=gno:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89&id=multisig_0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89_0x75bd1bcaf1082b1980c53ca0109c6078bc7626f7ec76d65f527afc21287198ae
+
+**Optimism - Dao**
+
+- BIP-883: upgrade emergency perms
+https://app.safe.global/transactions/tx?safe=oeth:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc&id=multisig_0x043f9687842771b3dF8852c1E9801DCAeED3f6bc_0xd7568a1bc775863cb052f47122752be87979ee6a43a13aa48161912a1d536355
+
+@alexanderlan @garaigram @mouph @nanexcool @eboado @OxMaki @StefanGeorge @bonustrack @SausageDoge @lewisjfg
