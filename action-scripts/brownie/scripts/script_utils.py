@@ -108,7 +108,15 @@ def get_changed_files() -> list[dict]:
                 print(f"{file_json['contents_url']} does not exist")
                 continue
             # Validate that file is a valid json
-            with urlopen(r.json()["download_url"]) as json_data:
+            # For new files, use raw_url from PR file data instead of download_url from contents API
+            response_data = r.json()
+            if "download_url" in response_data:
+                file_url = response_data["download_url"]
+            else:
+                # New file - use raw_url from PR file data
+                file_url = file_json["raw_url"]
+
+            with urlopen(file_url) as json_data:
                 try:
                     payload = json.load(json_data)
                 except JSONDecodeError:
