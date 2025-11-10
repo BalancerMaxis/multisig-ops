@@ -58,6 +58,13 @@ def get_retry_session(
 _session = get_retry_session()
 
 
+def _get_github_headers():
+    """Returns headers with GitHub authentication if token is available"""
+    if "GITHUB_TOKEN" in os.environ:
+        return {"Authorization": f"token {os.environ['GITHUB_TOKEN']}"}
+    return {}
+
+
 def return_hh_brib_maps() -> dict:
     """
     Grabs and reformats hidden hand API data into a dict that has data for each proposal formatted like prop.market.prop_data_dict
@@ -92,7 +99,7 @@ def get_changed_files() -> list[dict]:
     pr_number = os.environ["PR_NUMBER"]
     api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files?per_page=100"
     print(f"Using {api_url} to get changed files")
-    response = _session.get(api_url)
+    response = _session.get(api_url, headers=_get_github_headers())
     pr_file_data = json.loads(response.text)
     changed_files = []
     for file_json in pr_file_data:
@@ -103,7 +110,7 @@ def get_changed_files() -> list[dict]:
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
             try:
-                r = _session.get(file_json["contents_url"])
+                r = _session.get(file_json["contents_url"], headers=_get_github_headers())
             except:
                 print(f"{file_json['contents_url']} does not exist")
                 continue
