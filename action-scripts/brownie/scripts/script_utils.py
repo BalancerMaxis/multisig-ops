@@ -110,7 +110,9 @@ def get_changed_files() -> list[dict]:
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
             try:
-                r = _session.get(file_json["contents_url"], headers=_get_github_headers())
+                r = _session.get(
+                    file_json["contents_url"], headers=_get_github_headers()
+                )
             except:
                 print(f"{file_json['contents_url']} does not exist")
                 continue
