@@ -1,0 +1,300 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint16",
+            "name": "_remoteChainId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes",
+            "name": "_remoteAddress",
+            "type": "bytes"
+          }
+        ],
+        "name": "setTrustedRemoteAddress",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_remoteChainId": "383",
+        "_remoteAddress": "0x22625eEDd92c81a219A83e1dc48f88d54786B017"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-884-wire-up-BAL-plasma/BIP-884-wire-up-BAL-plasma.json",
+        "bip_number": "BIP-884"
+      }
+    },
+    {
+      "to": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint16",
+            "name": "_dstChainId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "_packetType",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_minGas",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMinDstGas",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_dstChainId": "383",
+        "_packetType": "0",
+        "_minGas": "100000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-884-wire-up-BAL-plasma/BIP-884-wire-up-BAL-plasma.json",
+        "bip_number": "BIP-884"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x6832812101826d0b63748615617865e97f09b944c344d3bbd7d50b5be617eb16]",
+        "account": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-883-Upgrade-Emergency-acitons-Q4/BIP-883-upgrade-emergency-perms-mainnet.json",
+        "bip_number": "BIP-883"
+      }
+    },
+    {
+      "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+      "value": "10020697538332403272",
+      "data": null,
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json",
+        "bip_number": "BIP-882"
+      }
+    },
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "622188449304"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json",
+        "bip_number": "BIP-882"
+      }
+    },
+    {
+      "to": "0xDEf1CA1fb7FBcDC777520aa7f396b4E015F497aB",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "12360147950649299098364"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json",
+        "bip_number": "BIP-882"
+      }
+    },
+    {
+      "to": "0x2516E7B3F76294e03C42AA4c5b5b4DCE9C436fB8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "101185869494681659750"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json",
+        "bip_number": "BIP-882"
+      }
+    },
+    {
+      "to": "0x272F97b7a56a387aE942350bBC7Df5700f8a4576",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "58491555481023710958"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json",
+        "bip_number": "BIP-882"
+      }
+    },
+    {
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "1381061273405474"
+      },
+      "meta": {
+        "tx_index": 5,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json",
+        "bip_number": "BIP-882"
+      }
+    },
+    {
+      "to": "0xcb9d0b8CfD8371143ba5A794c7218D4766c493e2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "value": "20000000000000000000000"
+      },
+      "meta": {
+        "tx_index": 6,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W45/BIP-882-Onchain-Migration/BIP-882-Token-Transfers.json",
+        "bip_number": "BIP-882"
+      }
+    }
+  ]
+}
