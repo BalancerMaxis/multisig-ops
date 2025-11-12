@@ -1,22 +1,22 @@
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-arbitrum.json`
 MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/6d50e8a8-6cac-4b34-8e98-2f7f8745f810)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f30f1d24-9311-4d2f-9b0c-e875a9d24903)
 
 ```
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name   | caller_address                             | fx_paths        | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
-| Authorizer/revokeRole | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xdb0e2ca147bb165fcfd2631fb8cb87ab34aa8fb9d2a81e95334a207f753f0302 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xdb0e2ca147bb165fcfd2631fb8cb87ab34aa8fb9d2a81e95334a207f753f0302 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-arbitrum.json`
 MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/b743946f-583c-47d2-acdc-c25398d38df5)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b2b69dfc-2ebe-4a21-b68c-e6fa5cde6310)
 
 ```
 +---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+

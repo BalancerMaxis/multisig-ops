@@ -1,22 +1,22 @@
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-zkevm.json`
 MULTISIG: `multisigs/dao (zkevm:0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `zkevm`
-TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'da1579b0-d927-45f6-bd09-7900600cdebf', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '68ae2b19-9b64-4f50-89d7-177e312b9d4e', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
 
 ```
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name   | caller_address                             | fx_paths        | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
-| Authorizer/revokeRole | multisigs/dao | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xb4738e79f724f5cf9554215b3249de2528482bb77b93844f5eff3f3c9e7126b4 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xb4738e79f724f5cf9554215b3249de2528482bb77b93844f5eff3f3c9e7126b4 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-zkevm.json`
 MULTISIG: `multisigs/dao (zkevm:0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `zkevm`
-TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '067fc293-3269-4f8e-9446-c9791546b23f', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '62ed1a5a-72dd-473b-be2a-4b3213ddb475', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
 
 ```
 +---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+

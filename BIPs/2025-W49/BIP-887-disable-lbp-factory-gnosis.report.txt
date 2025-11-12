@@ -1,22 +1,22 @@
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-gnosis.json`
 MULTISIG: `multisigs/dao (gnosis:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `gnosis`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/fb218dfe-c23a-4da2-bd62-27c2f732134f)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5546717a-17e2-4645-ba7e-0fb0eb7a0654)
 
 ```
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name   | caller_address                             | fx_paths        | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0x2a5AEcE0bb9EfFD7608213AE1745873385515c18 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
-| Authorizer/revokeRole | multisigs/dao | 0x2a5AEcE0bb9EfFD7608213AE1745873385515c18 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x2a5AEcE0bb9EfFD7608213AE1745873385515c18 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x0a35dcf04fdcf4e2119802287b94a1cf758427e74e9bb450cb31af7c660d7735 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x2a5AEcE0bb9EfFD7608213AE1745873385515c18 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x0a35dcf04fdcf4e2119802287b94a1cf758427e74e9bb450cb31af7c660d7735 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-gnosis.json`
 MULTISIG: `multisigs/dao (gnosis:0x2a5AEcE0bb9EfFD7608213AE1745873385515c18)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `gnosis`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/0f6c7eb9-bb1a-40b6-941d-0558cf18669a)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d315e600-8b39-4489-a194-b303df6c3ba9)
 
 ```
 +---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+

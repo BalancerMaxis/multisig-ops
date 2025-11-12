@@ -1,22 +1,22 @@
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-base.json`
 MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `base`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/68cde826-acb6-4cc9-ae3d-ad5889eb8b78)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/90447a3e-6340-4183-86ad-c663304d1c7a)
 
 ```
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name   | caller_address                             | fx_paths        | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
-| Authorizer/revokeRole | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x7f9f1c0ce60031b2efe78d00537ab2537cf4b0545ddbdff7f7621ae114895db3 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x7f9f1c0ce60031b2efe78d00537ab2537cf4b0545ddbdff7f7621ae114895db3 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-base.json`
 MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `base`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/74bdf252-3224-4c6b-9431-b2816f3b01cf)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/0b968495-4b79-4ba0-af96-2b2685d3633d)
 
 ```
 +---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+

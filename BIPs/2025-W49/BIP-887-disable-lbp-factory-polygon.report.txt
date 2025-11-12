@@ -1,22 +1,22 @@
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-polygon.json`
 MULTISIG: `multisigs/dao (polygon:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `polygon`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/dd7a3a24-f11d-46e0-9114-f7cf859d73b2)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/bde6aa19-980d-4dfb-a8ee-2f008c0a523c)
 
 ```
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name   | caller_address                             | fx_paths        | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
-| Authorizer/revokeRole | multisigs/dao | 0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xb0a6b3bde8254edafc10fca316f1cb1817679f510f629d5a8e37d0f2cf79ad0a | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xb0a6b3bde8254edafc10fca316f1cb1817679f510f629d5a8e37d0f2cf79ad0a | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-polygon.json`
 MULTISIG: `multisigs/dao (polygon:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `polygon`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/dfa0c0e9-b263-43c2-a7ad-bea7e9ba1bd6)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/20324919-9279-4f89-998b-0458e00d9edb)
 
 ```
 +---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+

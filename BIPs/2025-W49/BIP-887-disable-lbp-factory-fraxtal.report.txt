@@ -1,22 +1,22 @@
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-fraxtal.json`
 MULTISIG: `multisigs/dao (fraxtal:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `fraxtal`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/197187e6-a94a-49e6-a4b4-5804806c0d2a)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/1766bc23-e92e-444a-aadd-dcbe8ea56edd)
 
 ```
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| function              | caller_name   | caller_address                             | fx_paths        | action_ids                                                         |   bip   | tx_index |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
-| Authorizer/grantRole  | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
-| Authorizer/revokeRole | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
-+-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x0ebf042d38f8e1bb630c3010c686232d7334f90360a82eb23623fd01fbe8e656 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x0ebf042d38f8e1bb630c3010c686232d7334f90360a82eb23623fd01fbe8e656 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
 ```
 FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-fraxtal.json`
 MULTISIG: `multisigs/dao (fraxtal:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
-COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+COMMIT: `1c8183c05a27ab91ec3b54d5ca6d8b41cba250e6`
 CHAIN(S): `fraxtal`
-TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/73b7a603-aa1b-40bc-8cfd-426c226309e7)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/20c63e94-3e9a-4ad0-b0a0-fcc9cb4b292f)
 
 ```
 +---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
