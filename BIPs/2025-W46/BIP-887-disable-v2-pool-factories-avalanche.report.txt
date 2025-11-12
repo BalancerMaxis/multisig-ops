@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-avalanche.json`
+MULTISIG: `multisigs/emergency (avalanche:0x308f8d3536261C32c97D2f85ddc357f5cCdF33F0)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `avalanche`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f3b0b4e2-a48a-49ae-b40b-8dab8435b610)
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x230a59F4d9ADc147480f03B0D3fFfeCd56c3289a (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0x03F3Fb107e74F2EAC9358862E91ad3c692712054 (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-mode.json`
+MULTISIG: `!NOT FOUND (mode:0x66C4b0Ba38a7B57495b7D0581f25784E629516c2)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `mode`
+TENDERLY: `🟪 SKIPPED (InvalidAddress('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0x66C4b0Ba38a7B57495b7D0581f25784E629516c2'))`
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0xc3ccacE87f6d3A81724075ADcb5ddd85a8A1bB68 (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0x043A2daD730d585C44FB79D2614F295D2d625412 (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

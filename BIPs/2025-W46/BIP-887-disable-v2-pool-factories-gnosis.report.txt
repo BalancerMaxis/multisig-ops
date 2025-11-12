@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-gnosis.json`
+MULTISIG: `multisigs/emergency (gnosis:0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFbc9962)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `gnosis`
+TENDERLY: `🟪 SKIPPED (InvalidAddress('Address has an invalid EIP-55 checksum. After looking up the address from the original source, try again.', '0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFbc9962'))`
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x6CaD2ea22BFA7F4C14Aae92E47F510Cd5C509bc7 (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0xDF9B5B00Ef9bca66e9902Bd813dB14e4343Be025 (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

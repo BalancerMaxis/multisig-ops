@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-optimism.json`
+MULTISIG: `multisigs/emergency (optimism:0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4ffd7926-ad3e-4aa8-8cb0-657292ba646b)
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x230a59F4d9ADc147480f03B0D3fFfeCd56c3289a (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0x4C32a8a8fDa4E24139B51b456B42290f51d6A1c4 (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

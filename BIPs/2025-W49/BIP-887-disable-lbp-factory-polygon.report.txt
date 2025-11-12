@@ -1,0 +1,27 @@
+FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-polygon.json`
+MULTISIG: `multisigs/dao (polygon:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `polygon`
+TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/dd7a3a24-f11d-46e0-9114-f7cf859d73b2)
+
+```
++-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths        | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85 | !! NOT FOUND !! | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+-----------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-polygon.json`
+MULTISIG: `multisigs/dao (polygon:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `polygon`
+TENDERLY: [`🟥 FAILURE (BAL#401)`](https://www.tdly.co/shared/simulation/dfa0c0e9-b263-43c2-a7ad-bea7e9ba1bd6)
+
+```
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| fx_name | to                                                                                                                       | value | inputs       | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| disable | 0x41B953164995c11C81DA73D212ED8Af25741b7Ac (20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory) | 0     | "0x2f2770db" | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+```

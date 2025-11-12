@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-fraxtal.json`
+MULTISIG: `multisigs/emergency (fraxtal:0xC66d0Ba27b8309D27cCa70064dfb40b73DB6de9E)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `fraxtal`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/e3b6f416-e5a7-47f9-ad88-2d174ad7b5db)
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x9dA18982a33FD0c7051B19F0d7C76F2d5E7e017c (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0x7A2535f5fB47b8e44c02Ef5D9990588313fe8F05 (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

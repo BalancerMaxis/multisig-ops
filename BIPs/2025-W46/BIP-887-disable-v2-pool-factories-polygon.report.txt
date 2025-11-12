@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-polygon.json`
+MULTISIG: `multisigs/emergency (polygon:0x3c58668054c299bE836a0bBB028Bee3aD4724846)`
+COMMIT: `0409770cfea8e641b6644b36f438284f8ab6dc52`
+CHAIN(S): `polygon`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/72579624-01eb-4905-ac8b-06af477815cc)
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0xFc8a407Bba312ac761D8BFe04CE1201904842B76 (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0xB8Dfa4fd0F083de2B7EDc0D5eeD5E684e54bA45D (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```
