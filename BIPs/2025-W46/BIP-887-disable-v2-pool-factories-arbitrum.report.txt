@@ -1,14 +1,15 @@
 FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-arbitrum.json`
 MULTISIG: `multisigs/emergency (arbitrum:0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D)`
-COMMIT: `1e29e770420197d0a854c3e4ed891ee84f578650`
+COMMIT: `54d229a557903b1edbcf0517dc80167368fcef2a`
 CHAIN(S): `arbitrum`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b42c861e-ffa8-4a0e-ad48-1a34f236125e)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/9de957fd-3b1c-41b5-a295-040d9a0b6332)
 
 ```
-+---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
-| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
-+---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
-| disable | 0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7 (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
-| disable | 0x8eA89804145c007e7D226001A96955ad53836087 (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
-+---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                                                       | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7 (20230320-weighted-pool-v4/WeightedPoolFactory)                               | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0x8eA89804145c007e7D226001A96955ad53836087 (20230411-managed-pool-v2/ManagedPoolFactory)                                 | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0x1802953277FD955f9a254B80Aa0582f193cF1d77 (20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
 ```
