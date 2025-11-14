@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-zkevm.json`
+MULTISIG: `multisigs/emergency (zkevm:0x79b131498355daa2cC740936fcb9A7dF76A86223)`
+COMMIT: `c3f1976c6d778edfa07c3f36ece6f895249398f8`
+CHAIN(S): `zkevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '7f9072f3-f425-4e00-b671-8309a77cc4c5', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x03F3Fb107e74F2EAC9358862E91ad3c692712054 (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0xaf779e58dafb4307b998C7b3C9D3f788DFc80632 (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```
