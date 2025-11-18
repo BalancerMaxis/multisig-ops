@@ -1,0 +1,27 @@
+FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-avalanche.json`
+MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
+COMMIT: `c3f1976c6d778edfa07c3f36ece6f895249398f8`
+CHAIN(S): `avalanche`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/26d2054c-5e04-46eb-9a20-3b2e99386dce)
+
+```
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xf606602974ca80beb7071ceacbfd2e03a1d2bb9da2001eb3591a2c4bbbbc0d05 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-avalanche.json`
+MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
+COMMIT: `c3f1976c6d778edfa07c3f36ece6f895249398f8`
+CHAIN(S): `avalanche`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/d4f5e34d-92ed-44d3-ad97-429edcc80d16)
+
+```
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| fx_name | to                                                                                                                       | value | inputs       | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| disable | 0x0F3e0c4218b7b0108a3643cFe9D3ec0d4F57c54e (20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory) | 0     | "0x2f2770db" | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+```
