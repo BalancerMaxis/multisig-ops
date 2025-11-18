@@ -52,20 +52,6 @@ This proposal authorizes the revocation of all external governance token delegat
 - Execute `delegateVote(delegate, 0)` for each of the three current delegates
 - Safe: `0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f`
 
-### Post-Execution State
-
-Upon execution:
-1. All governance tokens will be self-delegated to their respective holding safes
-2. No external entity will have delegated voting power from Balancer treasury assets
-3. The Treasury Council will have full control to re-delegate to aligned partners as needed
-4. All delegation changes can be executed directly through standard Safe transactions
-
-### Important Notes
-
-- **No Zodiac Roles Modifier changes required**: All current delegations were established through direct Safe transactions, not through the Zodiac Roles module
-- **Reversible**: Delegations can be changed at any time through standard governance processes
-- **Immediate effect**: Delegation changes take effect in the same block
-- **No token transfers**: This operation only changes voting delegation; no tokens are moved
 
 ### Payload Files
 
@@ -89,7 +75,3 @@ Transaction payloads for execution:
 - **GGU Governance** (Mainnet): https://etherscan.io/address/0xA2321E23B3060e160195E138b62F8498546B0247
 
 ---
-
-**Prepared by**: Automated analysis
-**Date**: 2025-11-15
-**Status**: Draft
