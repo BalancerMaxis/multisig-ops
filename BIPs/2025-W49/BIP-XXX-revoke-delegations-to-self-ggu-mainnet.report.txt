@@ -1,0 +1,36 @@
+FILENAME: `BIPs/2025-W49/BIP-XXX-revoke-delegations-to-self-ggu-mainnet.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `88f0b06c3c505a923dcba1b1abaec90064b844bd`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/74b9a5de-4cfc-4005-8e41-ad959338de2a)
+
+```
++--------------+----------------------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| fx_name      | to                                                                   | value | inputs                                                                      | bip_number | tx_index |
++--------------+----------------------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+| delegateVote | 0xA2321E23B3060e160195E138b62F8498546B0247 (gyro/AssociatedDAOVault) | 0     | {                                                                           | N/A        |   N/A    |
+|              |                                                                      |       |   "_delegate": [                                                            |            |          |
+|              |                                                                      |       |     "0x25B70c8050B7e327Ce62CfD80A0C60cCcf057Fa6 (gyro/zen_dragon_delegate)" |            |          |
+|              |                                                                      |       |   ],                                                                        |            |          |
+|              |                                                                      |       |   "_amount": [                                                              |            |          |
+|              |                                                                      |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                   |            |          |
+|              |                                                                      |       |   ]                                                                         |            |          |
+|              |                                                                      |       | }                                                                           |            |          |
+| delegateVote | 0xA2321E23B3060e160195E138b62F8498546B0247 (gyro/AssociatedDAOVault) | 0     | {                                                                           | N/A        |   N/A    |
+|              |                                                                      |       |   "_delegate": [                                                            |            |          |
+|              |                                                                      |       |     "0x9f74662aD05840Ba35d111930501c617920dD68e (N/A)"                      |            |          |
+|              |                                                                      |       |   ],                                                                        |            |          |
+|              |                                                                      |       |   "_amount": [                                                              |            |          |
+|              |                                                                      |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                   |            |          |
+|              |                                                                      |       |   ]                                                                         |            |          |
+|              |                                                                      |       | }                                                                           |            |          |
+| delegateVote | 0xA2321E23B3060e160195E138b62F8498546B0247 (gyro/AssociatedDAOVault) | 0     | {                                                                           | N/A        |   N/A    |
+|              |                                                                      |       |   "_delegate": [                                                            |            |          |
+|              |                                                                      |       |     "0x29430750d7c3Ff58c9615490485deA50bdFD15f7 (gyro/defi_naly_delegate)"  |            |          |
+|              |                                                                      |       |   ],                                                                        |            |          |
+|              |                                                                      |       |   "_amount": [                                                              |            |          |
+|              |                                                                      |       |     "raw:0, 18 decimals:0, 6 decimals: 0"                                   |            |          |
+|              |                                                                      |       |   ]                                                                         |            |          |
+|              |                                                                      |       | }                                                                           |            |          |
++--------------+----------------------------------------------------------------------+-------+-----------------------------------------------------------------------------+------------+----------+
+```
