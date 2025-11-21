@@ -1,0 +1,27 @@
+FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-mode.json`
+MULTISIG: `multisigs/dao (mode:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
+COMMIT: `c3f1976c6d778edfa07c3f36ece6f895249398f8`
+CHAIN(S): `mode`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '3d5e8941-b7e4-44f3-8c87-6d66ed22e1dc', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x1426567817459896eea032971802f23ffedf7dbce9ba83c56000f1f9616a25ed | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0x1426567817459896eea032971802f23ffedf7dbce9ba83c56000f1f9616a25ed | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2025-W49/BIP-887-disable-lbp-factory-mode.json`
+MULTISIG: `multisigs/dao (mode:0x4f22C2784Cbd2B24a172566491Ee73fee1A63c2e)`
+COMMIT: `c3f1976c6d778edfa07c3f36ece6f895249398f8`
+CHAIN(S): `mode`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'dfaf9236-d85d-420e-9dfc-4ba7c0871bfc', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| fx_name | to                                                                                                                       | value | inputs       | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| disable | 0xE42FFA682A26EF8F25891db4882932711D42e467 (20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory) | 0     | "0x2f2770db" | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+```

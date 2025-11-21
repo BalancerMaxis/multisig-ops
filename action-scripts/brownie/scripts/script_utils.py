@@ -35,6 +35,8 @@ NOT_FOUND = "Not Found"
 POOL_ID_CUSTOM_FALLBACK = "Custom"
 BIPS_PRECISION = 1e16
 
+_tenderly_cache = {}
+
 
 def get_retry_session(
     retries=3,
@@ -56,6 +58,13 @@ def get_retry_session(
 
 # global session for reuse
 _session = get_retry_session()
+
+
+def _get_github_headers():
+    """Returns headers with GitHub authentication if token is available"""
+    if "GITHUB_TOKEN" in os.environ:
+        return {"Authorization": f"token {os.environ['GITHUB_TOKEN']}"}
+    return {}
 
 
 def return_hh_brib_maps() -> dict:
@@ -92,7 +101,7 @@ def get_changed_files() -> list[dict]:
     pr_number = os.environ["PR_NUMBER"]
     api_url = f"https://api.github.com/repos/{github_repo}/pulls/{pr_number}/files?per_page=100"
     print(f"Using {api_url} to get changed files")
-    response = _session.get(api_url)
+    response = _session.get(api_url, headers=_get_github_headers())
     pr_file_data = json.loads(response.text)
     changed_files = []
     for file_json in pr_file_data:
@@ -103,7 +112,9 @@ def get_changed_files() -> list[dict]:
         if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
             # Check if file exists first
             try:
-                r = _session.get(file_json["contents_url"])
+                r = _session.get(
+                    file_json["contents_url"], headers=_get_github_headers()
+                )
             except:
                 print(f"{file_json['contents_url']} does not exist")
                 continue
@@ -469,18 +480,27 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    try:
-        tenderly_url, tenderly_success = run_tenderly_sim(
-            file["chainId"],
-            file["meta"]["createdFromSafeAddress"],
-            file["transactions"],
-        )
+
+    # check cache first to avoid duplicate tenderly api calls
+    cache_key = file_name
+    if cache_key in _tenderly_cache:
+        tenderly_url, tenderly_success = _tenderly_cache[cache_key]
         file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
-    except Exception as e:
-        exception = repr(e)
-        if os.getenv("DRPC_KEY") in exception:
-            exception = exception.replace(os.getenv("DRPC_KEY"), "***")
-        file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
+    else:
+        try:
+            tenderly_url, tenderly_success = run_tenderly_sim(
+                file["chainId"],
+                file["meta"]["createdFromSafeAddress"],
+                file["transactions"],
+            )
+            # cache the result for subsequent calls
+            _tenderly_cache[cache_key] = (tenderly_url, tenderly_success)
+            file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
+        except Exception as e:
+            exception = repr(e)
+            if os.getenv("DRPC_KEY") in exception:
+                exception = exception.replace(os.getenv("DRPC_KEY"), "***")
+            file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
 
     if gauge_checklist:
         for gauge_check in gauge_checklist:
