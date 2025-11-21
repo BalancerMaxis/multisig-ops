@@ -30,7 +30,7 @@ flatbook_mainnet = AddrBook("mainnet").flatbook
 flatbook_arb = AddrBook("arbitrum").flatbook
 flatbook_base = AddrBook("base").flatbook
 
-omni_safe = flatbook_mainnet["multisigs/maxi_aura_locker"]
+omni_safe = flatbook_mainnet["multisigs/aura_locker"]
 
 HH_V2_DISTRIBUTOR = "0xa9b08b4ceec1ef29edec7f9c94583270337d6416"
 
