@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1764140127,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Increase gauge weight cap for GOLD/st-yETH gauge from 10% to 15%",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ],
+        "name": "performAction",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "target": "0xc219821b1fe1bbe436f62d911f00ef1c8542a8f7",
+        "data": "0x10d3eb040000000000000000000000000000000000000000000000000214e8348c4f0000"
+      }
+    }
+  ]
+}
