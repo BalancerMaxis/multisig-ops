@@ -1,0 +1,27 @@
+FILENAME: `BIPs/00batched/2025-W49/1101-0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa.json`
+MULTISIG: `multisigs/dao (zkevm:0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa)`
+COMMIT: `e2c9607a5914f47c67e1481c6ce3838dba6b8b4a`
+CHAIN(S): `zkevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '2c6b3238-cd6e-442b-a888-c4613a571cce', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                              | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xb4738e79f724f5cf9554215b3249de2528482bb77b93844f5eff3f3c9e7126b4 | BIP-887 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa | 20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory/disable() | 0xb4738e79f724f5cf9554215b3249de2528482bb77b93844f5eff3f3c9e7126b4 | BIP-887 |    2     |
++-----------------------+---------------+--------------------------------------------+---------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2025-W49/1101-0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa.json`
+MULTISIG: `multisigs/dao (zkevm:0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa)`
+COMMIT: `e2c9607a5914f47c67e1481c6ce3838dba6b8b4a`
+CHAIN(S): `zkevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '0a7728ff-8c2a-4131-ab64-dc3b349c18d4', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| fx_name | to                                                                                                                       | value | inputs       | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+| disable | 0x3B1eb8EB7b43882b385aB30533D9A2BeF9052a98 (20211202-no-protocol-fee-lbp/NoProtocolFeeLiquidityBootstrappingPoolFactory) | 0     | "0x2f2770db" | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------------------------------------+-------+--------------+------------+----------+
+```
