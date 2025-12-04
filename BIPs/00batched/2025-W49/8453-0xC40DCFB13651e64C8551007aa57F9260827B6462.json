@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x7f9f1c0ce60031b2efe78d00537ab2537cf4b0545ddbdff7f7621ae114895db3",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W49/BIP-887-disable-lbp-factory-base.json",
+        "bip_number": "BIP-887"
+      }
+    },
+    {
+      "to": "0x0c6052254551EAe3ECac77B01DFcf1025418828f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": null,
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W49/BIP-887-disable-lbp-factory-base.json",
+        "bip_number": "BIP-887"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x7f9f1c0ce60031b2efe78d00537ab2537cf4b0545ddbdff7f7621ae114895db3",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W49/BIP-887-disable-lbp-factory-base.json",
+        "bip_number": "BIP-887"
+      }
+    }
+  ]
+}
