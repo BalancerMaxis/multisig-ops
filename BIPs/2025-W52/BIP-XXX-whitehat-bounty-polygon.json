@@ -1,0 +1,112 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1733318400000,
+  "meta": {
+    "name": "Whitehat Bounty Payments - Polygon",
+    "description": "10% whitehat bounty payment to dk for recovered funds",
+    "createdFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
+  },
+  "transactions": [
+    {
+      "to": "0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x5352920f2080CA86952E63723dCd9ba1226934e4",
+        "value": "680235594232261416567594"
+      }
+    },
+    {
+      "to": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x5352920f2080CA86952E63723dCd9ba1226934e4",
+        "value": "800743187210544573894550"
+      }
+    },
+    {
+      "to": "0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x5352920f2080CA86952E63723dCd9ba1226934e4",
+        "value": "7241222112465484103710"
+      }
+    },
+    {
+      "to": "0xf33687811f3ad0cd6b48dd4b39f9f977bd7165a2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0x5352920f2080CA86952E63723dCd9ba1226934e4",
+        "value": "286569000000000000000000"
+      }
+    }
+  ]
+}

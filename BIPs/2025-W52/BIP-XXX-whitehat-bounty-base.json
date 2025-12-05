@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1733318400000,
+  "meta": {
+    "name": "Whitehat Bounty Payments - Base",
+    "description": "10% whitehat bounty payment to Holy (MEV Bot) for recovered funds",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+  },
+  "transactions": [
+    {
+      "to": "0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc2cfff5910a5a32aa50d291d5e6a6981c07324e3",
+        "value": "6213995262402624"
+      }
+    },
+    {
+      "to": "0x4200000000000000000000000000000000000006",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc2cfff5910a5a32aa50d291d5e6a6981c07324e3",
+        "value": "1696998696424269096"
+      }
+    },
+    {
+      "to": "0xB6fe221Fe9EeF5aBa221c348bA20A1Bf5e73624c",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc2cfff5910a5a32aa50d291d5e6a6981c07324e3",
+        "value": "2424035656572562771"
+      }
+    }
+  ]
+}
