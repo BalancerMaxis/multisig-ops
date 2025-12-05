@@ -1,0 +1,14 @@
+FILENAME: `BIPs/2025-W46/BIP-887-disable-v2-pool-factories-base.json`
+MULTISIG: `multisigs/emergency (base:0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a)`
+COMMIT: `c3f1976c6d778edfa07c3f36ece6f895249398f8`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a9b9cae6-0195-4382-abc3-fed0deb544f2)
+
+```
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                         | value | inputs | bip_number | tx_index |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x4C32a8a8fDa4E24139B51b456B42290f51d6A1c4 (20230320-weighted-pool-v4/WeightedPoolFactory) | 0     | "N/A"  | BIP-887    |   N/A    |
+| disable | 0x9a62C91626d39D0216b3959112f9D4678E20134d (20230411-managed-pool-v2/ManagedPoolFactory)   | 0     | "N/A"  | BIP-887    |   N/A    |
++---------+--------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

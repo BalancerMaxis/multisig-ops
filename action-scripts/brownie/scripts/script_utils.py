@@ -35,6 +35,8 @@ NOT_FOUND = "Not Found"
 POOL_ID_CUSTOM_FALLBACK = "Custom"
 BIPS_PRECISION = 1e16
 
+_tenderly_cache = {}
+
 
 def get_retry_session(
     retries=3,
@@ -478,18 +480,27 @@ def format_into_report(
         )
     )
     file_report += f"CHAIN(S): `{', '.join(chains)}`\n"
-    try:
-        tenderly_url, tenderly_success = run_tenderly_sim(
-            file["chainId"],
-            file["meta"]["createdFromSafeAddress"],
-            file["transactions"],
-        )
+
+    # check cache first to avoid duplicate tenderly api calls
+    cache_key = file_name
+    if cache_key in _tenderly_cache:
+        tenderly_url, tenderly_success = _tenderly_cache[cache_key]
         file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
-    except Exception as e:
-        exception = repr(e)
-        if os.getenv("DRPC_KEY") in exception:
-            exception = exception.replace(os.getenv("DRPC_KEY"), "***")
-        file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
+    else:
+        try:
+            tenderly_url, tenderly_success = run_tenderly_sim(
+                file["chainId"],
+                file["meta"]["createdFromSafeAddress"],
+                file["transactions"],
+            )
+            # cache the result for subsequent calls
+            _tenderly_cache[cache_key] = (tenderly_url, tenderly_success)
+            file_report += f"TENDERLY: [`{tenderly_success}`]({tenderly_url})\n\n"
+        except Exception as e:
+            exception = repr(e)
+            if os.getenv("DRPC_KEY") in exception:
+                exception = exception.replace(os.getenv("DRPC_KEY"), "***")
+            file_report += f"TENDERLY: `🟪 SKIPPED ({exception})`\n\n"
 
     if gauge_checklist:
         for gauge_check in gauge_checklist:
