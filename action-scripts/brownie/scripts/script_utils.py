@@ -109,7 +109,9 @@ def get_changed_files() -> list[dict]:
             if "4269-W69" not in file_json["filename"]:
                 continue
         filename = file_json["filename"]
-        if ("BIPs/" in filename or "MaxiOps/" in filename or "TreasuryOps/" in filename) and filename.endswith(".json"):
+        if (
+            "BIPs/" in filename or "MaxiOps/" in filename or "TreasuryOps/" in filename
+        ) and filename.endswith(".json"):
             # Check if file exists first
             try:
                 r = _session.get(
