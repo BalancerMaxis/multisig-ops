@@ -7,6 +7,7 @@ on:
       - "BIPs/**"
       - "config/**"
       - "MaxiOps/**"
+      - "TreasuryOps/**"
 jobs:
   run_reports:
     uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
