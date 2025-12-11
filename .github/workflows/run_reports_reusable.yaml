@@ -113,7 +113,7 @@ jobs:
         uses: creyD/prettier_action@v4.5
         with:
           # This part is also where you can pass other options, for example:
-          prettier_options: --write BIPs/**/*.json config/*.json MaxiOps/**/*.json
+          prettier_options: --write BIPs/**/*.json config/*.json MaxiOps/**/*.json TreasuryOps/**/*.json
           commit_message: Automated processing of Payload PR (validations, transformations, and reports) + reformat JSON
 
       - name: Commit and push reports
