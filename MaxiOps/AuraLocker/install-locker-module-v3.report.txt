@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/AuraLocker/install-locker-module-v3.json`
 MULTISIG: `multisigs/aura_locker (mainnet:0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28)`
-COMMIT: `77af6e4fd47b72b6aba688ecd80be7196ea0854b`
+COMMIT: `261f964c9a6302501ba1034d7a9549add097d92f`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/3c124e13-db96-40d4-a9c6-9f0d3d158432)
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/01abba55-071f-441a-babb-4717c0d75687)
 
 ```
 +---------------+--------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
@@ -24,6 +24,11 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/3c124e13-db96-4
 | setKeeper     | 0x658497e625175815a1ff3262CdBd60eE25C2087C (helpers/vlaura_relocker_module_v3) | 0     | {                                                                                    | N/A        |   N/A    |
 |               |                                                                                |       |   "_keeper": [                                                                       |            |          |
 |               |                                                                                |       |     "0xfDCAdd5146A3bad4e2C0086aaf881282f98FB097 (N/A)"                               |            |          |
+|               |                                                                                |       |   ]                                                                                  |            |          |
+|               |                                                                                |       | }                                                                                    |            |          |
+| cancelUpkeep  | 0x6593c7De001fC8542bB1703532EE1E5aA0D458fD (chainlink/keeper_registry_v2_1)    | 0     | {                                                                                    | N/A        |   N/A    |
+|               |                                                                                |       |   "id": [                                                                            |            |          |
+|               |                                                                                |       |     "109311632928479007783297829972340436051907522136692764355292435534301608481063" |            |          |
 |               |                                                                                |       |   ]                                                                                  |            |          |
 |               |                                                                                |       | }                                                                                    |            |          |
 +---------------+--------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
