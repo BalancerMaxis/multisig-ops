@@ -58,7 +58,9 @@
 }
 ```
 
-**Note:** Alliance members use fee allocations from `alliance_fee_allocations.core` or `alliance_fee_allocations.non_core` based on whether the pool is core or non-core (determined dynamically).
+**Note:**
+- `auto_include` (optional, default: false): When true, pool will receive a fee share regardless of other criteria
+- Alliance members use fee allocations from `alliance_fee_allocations.core` or `alliance_fee_allocations.non_core` based on whether the pool is core or non-core (determined dynamically).
 
 ### Adding New Alliance Member
 
@@ -102,7 +104,7 @@ Configure voting and market overrides in `config/pool_incentives_overrides.json`
 ### Valid Options
 
 - `voting_pool_override`: "bal" or "aura"
-- `market_override`: "hh" or "paladin"
+- `market_override`: "hh", "stakedao", or "paladin"
 
 ### Example
 
@@ -114,3 +116,14 @@ Configure voting and market overrides in `config/pool_incentives_overrides.json`
   }
 }
 ```
+
+## Protocol Fee Constants
+
+Global settings in `config/protocol_fees_constants.json`:
+
+### Bribe Platform Configuration
+
+- `bal_bribe_platform`: Default platform for BAL vote incentives
+- `aura_bribe_platform`: Default platform for AURA vote incentives
+
+Valid values: "hh", "stakedao", or "paladin"
