@@ -1,8 +1,8 @@
-FILENAME: `BIPs/2025-W52/BIP-893-adjust-reclam-protocol-fees-base.json`
+FILENAME: `BIPs/2025-W51/BIP-893-adjust-reclam-protocol-fees-base.json`
 MULTISIG: `multisigs/omni (base:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `bfd726d26da57021b38c2ecd3fcd60b820459e16`
+COMMIT: `0abd359e1bc58075ebc09502bba3059cdce0bba6`
 CHAIN(S): `base`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/40cf230d-909c-4a6e-9505-060e0d414657)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6cf4211a-77ff-49bc-a563-2ab934f7a149)
 
 ```
 +------------------------------+-----------------------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
@@ -34,7 +34,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/40cf230d-909c-4
 |                              |                                                                                                           |       | }                                                                                  |            |          |
 | setProtocolSwapFeePercentage | 0x2FF226CD12C80511a641A6101F071d853A4e5363 (20250214-v3-protocol-fee-controller-v2/ProtocolFeeController) | 0     | {                                                                                  | BIP-893    |   N/A    |
 |                              |                                                                                                           |       |   "pool": [                                                                        |            |          |
-|                              |                                                                                                           |       |     "0x1eca269d4875bde77267caf287347b4a9f7aa054 (pools/WETH-USDC-1eca)"            |            |          |
+|                              |                                                                                                           |       |     "0x1eca269d4875bde77267caf287347b4a9f7aa054 (N/A)"                             |            |          |
 |                              |                                                                                                           |       |   ],                                                                               |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                                |            |          |
 |                              |                                                                                                           |       |     "250000000000000000"                                                           |            |          |
@@ -42,7 +42,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/40cf230d-909c-4
 |                              |                                                                                                           |       | }                                                                                  |            |          |
 | setProtocolSwapFeePercentage | 0x2FF226CD12C80511a641A6101F071d853A4e5363 (20250214-v3-protocol-fee-controller-v2/ProtocolFeeController) | 0     | {                                                                                  | BIP-893    |   N/A    |
 |                              |                                                                                                           |       |   "pool": [                                                                        |            |          |
-|                              |                                                                                                           |       |     "0x2b948b1857bcb08437e5c56f840c104323f0bca5 (pools/WETH-USDC-2b94)"            |            |          |
+|                              |                                                                                                           |       |     "0x2b948b1857bcb08437e5c56f840c104323f0bca5 (N/A)"                             |            |          |
 |                              |                                                                                                           |       |   ],                                                                               |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                                |            |          |
 |                              |                                                                                                           |       |     "250000000000000000"                                                           |            |          |
@@ -50,7 +50,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/40cf230d-909c-4
 |                              |                                                                                                           |       | }                                                                                  |            |          |
 | setProtocolSwapFeePercentage | 0x2FF226CD12C80511a641A6101F071d853A4e5363 (20250214-v3-protocol-fee-controller-v2/ProtocolFeeController) | 0     | {                                                                                  | BIP-893    |   N/A    |
 |                              |                                                                                                           |       |   "pool": [                                                                        |            |          |
-|                              |                                                                                                           |       |     "0x30ebab835b50b89ad75d07ae280bcb27b405514f (pools/WETH-USDC-30eb)"            |            |          |
+|                              |                                                                                                           |       |     "0x30ebab835b50b89ad75d07ae280bcb27b405514f (N/A)"                             |            |          |
 |                              |                                                                                                           |       |   ],                                                                               |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                                |            |          |
 |                              |                                                                                                           |       |     "250000000000000000"                                                           |            |          |
