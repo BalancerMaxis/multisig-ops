@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1731698400000,
+  "meta": {
+    "name": "BIP-XXX: Revoke stkAAVE/Aave Delegations - Mainnet Treasury",
+    "description": "Revoke AAVE and stkAAVE delegations from external delegate (0x8787FC2De4De95c53e5E3a4e5459247D9773ea52) and establish self-delegation to treasury safe (0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89) on Ethereum Mainnet",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+  },
+  "transactions": [
+    {
+      "to": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "delegatee",
+            "type": "address"
+          }
+        ],
+        "name": "delegate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegatee": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+      }
+    },
+    {
+      "to": "0x4da27a545c0c5B758a6BA100e3a049001de870f5",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "delegatee",
+            "type": "address"
+          }
+        ],
+        "name": "delegate",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegatee": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+      }
+    }
+  ]
+}

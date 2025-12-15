@@ -33,7 +33,7 @@ jobs:
       COMMIT_SHA: ${{ inputs.checkout_ref }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.checkout_ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -41,7 +41,7 @@ jobs:
 
       - name: Restore Compiler Caches
         id: restore-compiler-caches
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: |
             ~/.solcx
@@ -113,7 +113,7 @@ jobs:
         uses: creyD/prettier_action@v4.5
         with:
           # This part is also where you can pass other options, for example:
-          prettier_options: --write BIPs/**/*.json config/*.json MaxiOps/**/*.json
+          prettier_options: --write BIPs/**/*.json config/*.json MaxiOps/**/*.json TreasuryOps/**/*.json
           commit_message: Automated processing of Payload PR (validations, transformations, and reports) + reformat JSON
 
       - name: Commit and push reports
@@ -132,7 +132,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Save EVM Compiler Caches
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: |
             ~/.solcx

@@ -1,0 +1,49 @@
+FILENAME: `BIPs/2025-W45/BIP-885-Permissions-Update-Request-7-arb.json`
+MULTISIG: `multisigs/kpk_managed (arbitrum:0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89)`
+COMMIT: `5ae4011fd43e6dfc52d974555a4af565a747849d`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c45a3382-9152-4783-9174-ba83c77b893d)
+
+```
++-------------------------+--------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name                 | to                                                                 | value | inputs                                                 | bip_number | tx_index |
++-------------------------+--------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| enableModule            | 0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89 (multisigs/kpk_managed) | 0     | {                                                      | BIP-885    |   N/A    |
+|                         |                                                                    |       |   "module": [                                          |            |          |
+|                         |                                                                    |       |     "0x13c61a25DB73e7a94a244bD2205aDba8b4a60F4a (N/A)" |            |          |
+|                         |                                                                    |       |   ]                                                    |            |          |
+|                         |                                                                    |       | }                                                      |            |          |
+| setTransactionUnwrapper | 0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C (Not Found)             | 0     | {                                                      | BIP-885    |   N/A    |
+|                         |                                                                    |       |   "to": [                                              |            |          |
+|                         |                                                                    |       |     "0x38869bf66a61cF6bDB996A6aE40D5853Fd43B526 (N/A)" |            |          |
+|                         |                                                                    |       |   ],                                                   |            |          |
+|                         |                                                                    |       |   "selector": [                                        |            |          |
+|                         |                                                                    |       |     "0x8d80ff0a"                                       |            |          |
+|                         |                                                                    |       |   ],                                                   |            |          |
+|                         |                                                                    |       |   "adapter": [                                         |            |          |
+|                         |                                                                    |       |     "0x93B7fCbc63ED8a3a24B59e1C3e6649D50B7427c0 (N/A)" |            |          |
+|                         |                                                                    |       |   ]                                                    |            |          |
+|                         |                                                                    |       | }                                                      |            |          |
+| setTransactionUnwrapper | 0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C (Not Found)             | 0     | {                                                      | BIP-885    |   N/A    |
+|                         |                                                                    |       |   "to": [                                              |            |          |
+|                         |                                                                    |       |     "0x9641d764fc13c8B624c04430C7356C1C7C8102e2 (N/A)" |            |          |
+|                         |                                                                    |       |   ],                                                   |            |          |
+|                         |                                                                    |       |   "selector": [                                        |            |          |
+|                         |                                                                    |       |     "0x8d80ff0a"                                       |            |          |
+|                         |                                                                    |       |   ],                                                   |            |          |
+|                         |                                                                    |       |   "adapter": [                                         |            |          |
+|                         |                                                                    |       |     "0x93B7fCbc63ED8a3a24B59e1C3e6649D50B7427c0 (N/A)" |            |          |
+|                         |                                                                    |       |   ]                                                    |            |          |
+|                         |                                                                    |       | }                                                      |            |          |
+| setTarget               | 0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C (Not Found)             | 0     | {                                                      | BIP-885    |   N/A    |
+|                         |                                                                    |       |   "_target": [                                         |            |          |
+|                         |                                                                    |       |     "0x13c61a25DB73e7a94a244bD2205aDba8b4a60F4a (N/A)" |            |          |
+|                         |                                                                    |       |   ]                                                    |            |          |
+|                         |                                                                    |       | }                                                      |            |          |
+| transferOwnership       | 0xae7ee392Fd7C8aE7391b4Fc10fc4b942A994545C (Not Found)             | 0     | {                                                      | BIP-885    |   N/A    |
+|                         |                                                                    |       |   "newOwner": [                                        |            |          |
+|                         |                                                                    |       |     "0x60716991aCDA9E990bFB3b1224f1f0fB81538267 (N/A)" |            |          |
+|                         |                                                                    |       |   ]                                                    |            |          |
+|                         |                                                                    |       | }                                                      |            |          |
++-------------------------+--------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
