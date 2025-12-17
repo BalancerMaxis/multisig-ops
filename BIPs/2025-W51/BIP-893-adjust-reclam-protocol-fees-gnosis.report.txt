@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W51/BIP-893-adjust-reclam-protocol-fees-gnosis.json`
 MULTISIG: `multisigs/omni (gnosis:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `0abd359e1bc58075ebc09502bba3059cdce0bba6`
+COMMIT: `87370c7eb21908bcb7154828d15ed65e62dc5179`
 CHAIN(S): `gnosis`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6f6112d5-f6bd-4bbe-a183-1bfdfdfde04d)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4edb138a-f1e8-496c-b5b4-ca86cd87418b)
 
 ```
 +------------------------------+-----------------------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+
@@ -13,7 +13,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6f6112d5-f6bd-4
 |                              |                                                                                                           |       |     "0xa50085ff1dfa173378e7d26a76117d68d5eba539 (pools/wstETH-GNO-a500)" |            |          |
 |                              |                                                                                                           |       |   ],                                                                     |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                      |            |          |
-|                              |                                                                                                           |       |     "100000000000000000"                                                 |            |          |
+|                              |                                                                                                           |       |     "250000000000000000"                                                 |            |          |
 |                              |                                                                                                           |       |   ]                                                                      |            |          |
 |                              |                                                                                                           |       | }                                                                        |            |          |
 | setProtocolSwapFeePercentage | 0xa7d524046ef89de9F8e4f2d7B029f66cCB738d48 (20250214-v3-protocol-fee-controller-v2/ProtocolFeeController) | 0     | {                                                                        | BIP-893    |   N/A    |
@@ -21,7 +21,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6f6112d5-f6bd-4
 |                              |                                                                                                           |       |     "0x70b3b56773ace43fe86ee1d80cbe03176cbe4c09 (pools/GNO-USDC.e-70b3)" |            |          |
 |                              |                                                                                                           |       |   ],                                                                     |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                      |            |          |
-|                              |                                                                                                           |       |     "100000000000000000"                                                 |            |          |
+|                              |                                                                                                           |       |     "250000000000000000"                                                 |            |          |
 |                              |                                                                                                           |       |   ]                                                                      |            |          |
 |                              |                                                                                                           |       | }                                                                        |            |          |
 +------------------------------+-----------------------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------+------------+----------+

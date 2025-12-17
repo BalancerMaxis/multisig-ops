@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W51/BIP-893-adjust-reclam-protocol-fees-mainnet.json`
 MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `0abd359e1bc58075ebc09502bba3059cdce0bba6`
+COMMIT: `87370c7eb21908bcb7154828d15ed65e62dc5179`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/52a2207a-3319-4495-8a2e-b5d3ddb9003a)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/f1a4bc76-067e-4b1a-936e-b7671a03c59a)
 
 ```
 +------------------------------+-----------------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------+------------+----------+
@@ -13,7 +13,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/52a2207a-3319-4
 |                              |                                                                                                           |       |     "0x9d1fcf346ea1b073de4d5834e25572cc6ad71f4d (pools/reCLAMM-AAVE-WETH-9d1f)" |            |          |
 |                              |                                                                                                           |       |   ],                                                                            |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                             |            |          |
-|                              |                                                                                                           |       |     "100000000000000000"                                                        |            |          |
+|                              |                                                                                                           |       |     "250000000000000000"                                                        |            |          |
 |                              |                                                                                                           |       |   ]                                                                             |            |          |
 |                              |                                                                                                           |       | }                                                                               |            |          |
 | setProtocolSwapFeePercentage | 0x212F884252792ebaaA811FB0678444b21c7C2879 (20250214-v3-protocol-fee-controller-v2/ProtocolFeeController) | 0     | {                                                                               | BIP-893    |   N/A    |
@@ -21,7 +21,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/52a2207a-3319-4
 |                              |                                                                                                           |       |     "0x4ab30b9333da1dcb652a63d7372a7662aea491c5 (pools/WETH-SKY-4ab3)"          |            |          |
 |                              |                                                                                                           |       |   ],                                                                            |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                             |            |          |
-|                              |                                                                                                           |       |     "100000000000000000"                                                        |            |          |
+|                              |                                                                                                           |       |     "250000000000000000"                                                        |            |          |
 |                              |                                                                                                           |       |   ]                                                                             |            |          |
 |                              |                                                                                                           |       | }                                                                               |            |          |
 | setProtocolSwapFeePercentage | 0x212F884252792ebaaA811FB0678444b21c7C2879 (20250214-v3-protocol-fee-controller-v2/ProtocolFeeController) | 0     | {                                                                               | BIP-893    |   N/A    |
@@ -29,7 +29,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/52a2207a-3319-4
 |                              |                                                                                                           |       |     "0xd321300ef77067d4a868f117d37706eb81368e98 (pools/ReClamm COW/WETH-d321)"  |            |          |
 |                              |                                                                                                           |       |   ],                                                                            |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                             |            |          |
-|                              |                                                                                                           |       |     "100000000000000000"                                                        |            |          |
+|                              |                                                                                                           |       |     "250000000000000000"                                                        |            |          |
 |                              |                                                                                                           |       |   ]                                                                             |            |          |
 |                              |                                                                                                           |       | }                                                                               |            |          |
 | setProtocolSwapFeePercentage | 0x212F884252792ebaaA811FB0678444b21c7C2879 (20250214-v3-protocol-fee-controller-v2/ProtocolFeeController) | 0     | {                                                                               | BIP-893    |   N/A    |
@@ -37,7 +37,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/52a2207a-3319-4
 |                              |                                                                                                           |       |     "0x8b82690fe78d48309aeecced0ed44393dd33219b (pools/EDEN-USDT-8b82)"         |            |          |
 |                              |                                                                                                           |       |   ],                                                                            |            |          |
 |                              |                                                                                                           |       |   "newProtocolSwapFeePercentage": [                                             |            |          |
-|                              |                                                                                                           |       |     "100000000000000000"                                                        |            |          |
+|                              |                                                                                                           |       |     "250000000000000000"                                                        |            |          |
 |                              |                                                                                                           |       |   ]                                                                             |            |          |
 |                              |                                                                                                           |       | }                                                                               |            |          |
 +------------------------------+-----------------------------------------------------------------------------------------------------------+-------+---------------------------------------------------------------------------------+------------+----------+

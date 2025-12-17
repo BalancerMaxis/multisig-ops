@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2025-W51/BIP-893-adjust-reclam-protocol-fees-hyperevm.json`
 MULTISIG: `multisigs/omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `0abd359e1bc58075ebc09502bba3059cdce0bba6`
+COMMIT: `87370c7eb21908bcb7154828d15ed65e62dc5179`
 CHAIN(S): `hyperevm`
-TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'fb3c7bc4-9196-4ab1-bd44-f1080392eb66', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '6e588966-b804-47e7-bfe8-49953337c925', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
 
 ```
 +------------------------------+-------------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------+------------+----------+
@@ -13,7 +13,7 @@ TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'fb3c7bc4-9196-4ab1-bd44-f1
 |                              |                                                                                                 |       |     "0xd10d872997e45686d2543ccb62e8f259ab44cc65 (pools/USDHL-LOOP-d10d)"       |            |          |
 |                              |                                                                                                 |       |   ],                                                                           |            |          |
 |                              |                                                                                                 |       |   "newProtocolSwapFeePercentage": [                                            |            |          |
-|                              |                                                                                                 |       |     "100000000000000000"                                                       |            |          |
+|                              |                                                                                                 |       |     "250000000000000000"                                                       |            |          |
 |                              |                                                                                                 |       |   ]                                                                            |            |          |
 |                              |                                                                                                 |       | }                                                                              |            |          |
 | setProtocolSwapFeePercentage | 0xCaCC7E1efEEA8BB3af6d5720d12C1876aa6EE76b (20250321-v3-vault-factory-v2/ProtocolFeeController) | 0     | {                                                                              | BIP-893    |   N/A    |
@@ -21,7 +21,7 @@ TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'fb3c7bc4-9196-4ab1-bd44-f1
 |                              |                                                                                                 |       |     "0x7344f2d57402a03c07d47893fe9c045cdd3d0a6b (pools/WHYPE-USD\u20ae0-7344)" |            |          |
 |                              |                                                                                                 |       |   ],                                                                           |            |          |
 |                              |                                                                                                 |       |   "newProtocolSwapFeePercentage": [                                            |            |          |
-|                              |                                                                                                 |       |     "100000000000000000"                                                       |            |          |
+|                              |                                                                                                 |       |     "250000000000000000"                                                       |            |          |
 |                              |                                                                                                 |       |   ]                                                                            |            |          |
 |                              |                                                                                                 |       | }                                                                              |            |          |
 +------------------------------+-------------------------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------+------------+----------+
