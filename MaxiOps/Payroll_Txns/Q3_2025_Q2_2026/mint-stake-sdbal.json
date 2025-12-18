@@ -1,0 +1,768 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1764863531287,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x5c6Ee304399DBdB9C8Ef030aB642B10820DB8F56",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "spender", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x3e0d44542972859de3CAdaF856B1a4FD351B4D2E",
+        "amount": "98660000000000000000000"
+      }
+    },
+    {
+      "to": "0x3e0d44542972859de3CAdaF856B1a4FD351B4D2E",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          { "internalType": "bool", "name": "_lock", "type": "bool" },
+          { "internalType": "bool", "name": "_stake", "type": "bool" },
+          { "internalType": "address", "name": "_user", "type": "address" }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "98660000000000000000000",
+        "_lock": "true",
+        "_stake": "true",
+        "_user": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x3E8C72655e48591d93e6dfdA16823dB0fF23d859",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_spender", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+        "_value": "9000000000000000000000"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "28598400"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "31190400"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "33868800"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "36547200"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "38966400"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "41644800"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "44236800"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "46915200"
+      }
+    },
+    {
+      "to": "0x40A69d7966295c6Eea95633FA6c0a87F25a89D61",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1000000000000000000000",
+        "_vestingPeriod": "49507200"
+      }
+    },
+    {
+      "to": "0x3E8C72655e48591d93e6dfdA16823dB0fF23d859",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_spender", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0xFe5e6765f820605aD7d58BeC0f4e54893BD05BBB",
+        "_value": "4000000000000000000000"
+      }
+    },
+    {
+      "to": "0xFe5e6765f820605aD7d58BeC0f4e54893BD05BBB",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "28598400"
+      }
+    },
+    {
+      "to": "0xFe5e6765f820605aD7d58BeC0f4e54893BD05BBB",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "31190400"
+      }
+    },
+    {
+      "to": "0x3E8C72655e48591d93e6dfdA16823dB0fF23d859",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_spender", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+        "_value": "20500000000000000000000"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1500000000000000000000",
+        "_vestingPeriod": "23328000"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1500000000000000000000",
+        "_vestingPeriod": "25920000"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "1500000000000000000000",
+        "_vestingPeriod": "28598400"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "31190400"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "33868800"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "36547200"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "38966400"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "41644800"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "44236800"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "46915200"
+      }
+    },
+    {
+      "to": "0xD2Da10Ef5c78420682269134e543C72Dced4CB5A",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "2000000000000000000000",
+        "_vestingPeriod": "49507200"
+      }
+    },
+    {
+      "to": "0x3E8C72655e48591d93e6dfdA16823dB0fF23d859",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "_spender", "type": "address" },
+          { "name": "_value", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_spender": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+        "_value": "65160000000000000000000"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "28598400"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "31190400"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "33868800"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "36547200"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "38966400"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "41644800"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "44236800"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "46915200"
+      }
+    },
+    {
+      "to": "0xAF1a8E24b85C293B6bc38234c2d14062b9E0Ae78",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "_vestingPeriod",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_amount": "7240000000000000000000",
+        "_vestingPeriod": "49507200"
+      }
+    }
+  ]
+}
