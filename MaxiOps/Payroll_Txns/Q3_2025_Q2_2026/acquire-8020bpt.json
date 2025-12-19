@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1766127503437,
+  "meta": {
+    "name": "deposit 98_660 $bal into 8020bpt",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "spender", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+        "amount": "98660000000000000000000"
+      }
+    },
+    {
+      "to": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "poolId", "type": "bytes32" },
+          { "internalType": "address", "name": "sender", "type": "address" },
+          { "internalType": "address", "name": "recipient", "type": "address" },
+          {
+            "components": [
+              {
+                "internalType": "contract IAsset[]",
+                "name": "assets",
+                "type": "address[]"
+              },
+              {
+                "internalType": "uint256[]",
+                "name": "maxAmountsIn",
+                "type": "uint256[]"
+              },
+              { "internalType": "bytes", "name": "userData", "type": "bytes" },
+              {
+                "internalType": "bool",
+                "name": "fromInternalBalance",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct IVault.JoinPoolRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "joinPool",
+        "payable": true
+      },
+      "contractInputsValues": {
+        "poolId": "0x5c6ee304399dbdb9c8ef030ab642b10820db8f56000200000000000000000014",
+        "sender": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+        "recipient": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+        "request": "[[\"0xba100000625a3754423978a60c9317c58a424e3D\",\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\"],[\"98660000000000000000000\",\"0\"],\"0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000032d26d12e980b60000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000014e45e8b8ceac71000000000000000000000000000000000000000000000000000000000000000000000\",\"false\"]"
+      }
+    }
+  ]
+}
