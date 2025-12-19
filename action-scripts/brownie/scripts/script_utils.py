@@ -325,7 +325,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 if comp_type.endswith("[]"):
                                     base_type = comp_type[:-2]
                                     if base_type == "address":
-                                        result.append([to_checksum_address(v) for v in val])
+                                        result.append(
+                                            [to_checksum_address(v) for v in val]
+                                        )
                                     elif "int" in base_type:
                                         result.append([int(v) for v in val])
                                     else:
@@ -338,7 +340,11 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                                 elif "int" in comp_type:
                                     result.append(int(val))
                                 elif comp_type == "bool":
-                                    result.append(val if isinstance(val, bool) else val.lower() == "true")
+                                    result.append(
+                                        val
+                                        if isinstance(val, bool)
+                                        else val.lower() == "true"
+                                    )
                                 else:
                                     result.append(val)
                             return tuple(result)
