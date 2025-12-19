@@ -320,13 +320,31 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             result = []
                             for i, comp in enumerate(input_spec.get("components", [])):
                                 val = parsed[i] if i < len(parsed) else ""
-                                # Convert based on component type
-                                if comp["type"].startswith("bytes"):
+                                comp_type = comp["type"]
+                                # Handle array types
+                                if comp_type.endswith("[]"):
+                                    base_type = comp_type[:-2]
+                                    if base_type == "address":
+                                        result.append(
+                                            [to_checksum_address(v) for v in val]
+                                        )
+                                    elif "int" in base_type:
+                                        result.append([int(v) for v in val])
+                                    else:
+                                        result.append(val)
+                                # Handle scalar types
+                                elif comp_type.startswith("bytes"):
                                     result.append(HexBytes(val))
-                                elif comp["type"] == "address":
+                                elif comp_type == "address":
                                     result.append(to_checksum_address(val))
-                                elif "int" in comp["type"]:
+                                elif "int" in comp_type:
                                     result.append(int(val))
+                                elif comp_type == "bool":
+                                    result.append(
+                                        val
+                                        if isinstance(val, bool)
+                                        else val.lower() == "true"
+                                    )
                                 else:
                                     result.append(val)
                             return tuple(result)
