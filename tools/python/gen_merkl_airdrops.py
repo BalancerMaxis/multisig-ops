@@ -154,9 +154,6 @@ def get_block_from_timestamp(ts, chain_id=None):
             break
 
     # Fallback to Etherscan API v2 (omnichain)
-    import os
-    import requests
-
     api_key = os.getenv("ETHERSCAN_API_KEY")
     if not api_key:
         raise ValueError("ETHERSCAN_API_KEY not set, cannot use fallback")
@@ -642,7 +639,8 @@ if __name__ == "__main__":
                         1758109763,  # 23382608, round 21
                         1759317527,  # 23482608, round 22
                         1760525435,  # 23582608, round 23
-                        "23682608",  # 23682608, round 24
+                        1761735515,  # 23682608, round 24
+                        "ended",
                     ]
                 elif chain == "8453":
                     # Base chain epochs from base-supply-usdc, base-supply-gho, base-supply-eth-borrow-multiple campaigns
