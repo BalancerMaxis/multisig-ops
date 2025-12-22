@@ -1,0 +1,83 @@
+FILENAME: `MaxiOps/signers/aura-locker/aura-locker-signer-swap-bip-882-polygon.json`
+MULTISIG: `multisigs/aura_locker (polygon:0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28)`
+COMMIT: `02c19e57f9311c7bfbcfbf17095e914f53e2bd74`
+CHAIN(S): `polygon`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/aec3822e-c8e7-4fc9-bafa-99ebbb326f48)
+
+```
++-----------------+--------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+| fx_name         | to                                                                 | value | inputs                                                                            | bip_number | tx_index |
++-----------------+--------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+| swapOwner       | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x0000000000000000000000000000000000000001 (N/A)"                            |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x960bE2d20669E1b2bfc38dBC92bf1c440Cc60F9d (EOA/maxis/raq)"                  |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0xBeF27037bC6311b96635E5e9Af3A73EBF6Ca8878 (multisigs/maxyz_operator)"       |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| swapOwner       | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0xBeF27037bC6311b96635E5e9Af3A73EBF6Ca8878 (multisigs/maxyz_operator)"       |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x7019Be4E4eB74cA5F61224FeAf687d2b43998516 (EOA/emergency/xeonus)"           |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                                    |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0xafFC70b81D54F229A5F50ec07e2c76D2AAAD07Ae (EOA/emeritus/zekraken_payee)"    |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "1"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0xc4591c41e01a7a654B5427f39Bbd1dEe5bD45D1D (EOA/maxi_deployers/mikeb)"       |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "1"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0x119de05a00BD4e75C4aD6041b82d7afa984aB1B9 (EOA/maxis/jalbrekt)"             |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "1"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| removeOwner     | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                                    |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "owner": [                                                                      |            |          |
+|                 |                                                                    |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/maxis/gosuto)"               |            |          |
+|                 |                                                                    |       |   ],                                                                              |            |          |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "1"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
+| changeThreshold | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                                    |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                                    |       |     "1"                                                                           |            |          |
+|                 |                                                                    |       |   ]                                                                               |            |          |
+|                 |                                                                    |       | }                                                                                 |            |          |
++-----------------+--------------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+```
