@@ -1,0 +1,30 @@
+FILENAME: `MaxiOps/AuraLocker/install-locker-module-v3.json`
+MULTISIG: `multisigs/aura_locker (mainnet:0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28)`
+COMMIT: `6bdf2beff68bf991bbc2b971dc507fd694f16097`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟥 FAILURE (GS103)`](https://www.tdly.co/shared/simulation/ce9bbc9b-b189-4012-b471-92aa12cf5e8e)
+
+```
++---------------+--------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                                             | value | inputs                                                                               | bip_number | tx_index |
++---------------+--------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+| disableModule | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker)             | 0     | {                                                                                    | N/A        |   N/A    |
+|               |                                                                                |       |   "prevModule": [                                                                    |            |          |
+|               |                                                                                |       |     "0x0000000000000000000000000000000000000001 (N/A)"                               |            |          |
+|               |                                                                                |       |   ],                                                                                 |            |          |
+|               |                                                                                |       |   "module": [                                                                        |            |          |
+|               |                                                                                |       |     "0xF7A15f01FcDAaf6681a11AB851AEBA7dED3DD90d (helpers/vlaura_relocker_module_v2)" |            |          |
+|               |                                                                                |       |   ]                                                                                  |            |          |
+|               |                                                                                |       | }                                                                                    |            |          |
+| enableModule  | 0x9a5BDF08a6969A4bDb7724beE3c6d8964BDc0B28 (multisigs/aura_locker)             | 0     | {                                                                                    | N/A        |   N/A    |
+|               |                                                                                |       |   "module": [                                                                        |            |          |
+|               |                                                                                |       |     "0x658497e625175815a1ff3262CdBd60eE25C2087C (helpers/vlaura_relocker_module_v3)" |            |          |
+|               |                                                                                |       |   ]                                                                                  |            |          |
+|               |                                                                                |       | }                                                                                    |            |          |
+| setKeeper     | 0x658497e625175815a1ff3262CdBd60eE25C2087C (helpers/vlaura_relocker_module_v3) | 0     | {                                                                                    | N/A        |   N/A    |
+|               |                                                                                |       |   "_keeper": [                                                                       |            |          |
+|               |                                                                                |       |     "0xfDCAdd5146A3bad4e2C0086aaf881282f98FB097 (N/A)"                               |            |          |
+|               |                                                                                |       |   ]                                                                                  |            |          |
+|               |                                                                                |       | }                                                                                    |            |          |
++---------------+--------------------------------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+```

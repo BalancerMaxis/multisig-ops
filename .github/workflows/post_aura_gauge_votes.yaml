@@ -70,7 +70,7 @@ jobs:
 
       - name: Create PR
         id: cpr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "task: vlaura vote report for ${{ steps.week-string.outputs.week-string }}"
           title: "vlaura vote report for ${{ steps.week-string.outputs.week-string }}"
