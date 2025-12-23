@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xa7d524046ef89de9F8e4f2d7B029f66cCB738d48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "pool",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "newProtocolSwapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setProtocolSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xa50085ff1dfa173378e7d26a76117d68d5eba539",
+        "newProtocolSwapFeePercentage": "250000000000000000"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-893-adjust-reclam-protocol-fees-gnosis.json",
+        "bip_number": "BIP-893"
+      }
+    },
+    {
+      "to": "0xa7d524046ef89de9F8e4f2d7B029f66cCB738d48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "pool",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "newProtocolSwapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setProtocolSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x70b3b56773ace43fe86ee1d80cbe03176cbe4c09",
+        "newProtocolSwapFeePercentage": "250000000000000000"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-893-adjust-reclam-protocol-fees-gnosis.json",
+        "bip_number": "BIP-893"
+      }
+    }
+  ]
+}
