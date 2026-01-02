@@ -1,1 +1,32 @@
-{"version":"1.0","chainId":"1","createdAt":1766425663327,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.18.2","createdFromSafeAddress":"0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89","createdFromOwnerAddress":"","checksum":"0xff3197a99f3752fd87245718bfd299f43f882d535c2a6f5f492921237a92e5c6"},"transactions":[{"to":"0xba100000625a3754423978a60c9317c58a424e3D","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","payable":false},"contractInputsValues":{"recipient":"0x58e6c7ab55Aa9012eAccA16d1ED4c15795669E1C","amount":"5697000000000000000000"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1766425663327,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.2",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+    "createdFromOwnerAddress": "",
+    "checksum": "0xff3197a99f3752fd87245718bfd299f43f882d535c2a6f5f492921237a92e5c6"
+  },
+  "transactions": [
+    {
+      "to": "0xba100000625a3754423978a60c9317c58a424e3D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "recipient", "type": "address" },
+          { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipient": "0x58e6c7ab55Aa9012eAccA16d1ED4c15795669E1C",
+        "amount": "5697000000000000000000"
+      }
+    }
+  ]
+}
