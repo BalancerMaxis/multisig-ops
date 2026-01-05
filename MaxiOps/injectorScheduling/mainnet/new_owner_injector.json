@@ -16,11 +16,15 @@
       "value": "0",
       "data": null,
       "contractMethod": {
-        "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
+        "inputs": [
+          { "internalType": "address", "name": "newOwner", "type": "address" }
+        ],
         "name": "transferOwnership",
         "payable": false
       },
-      "contractInputsValues": { "newOwner": "0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e" }
+      "contractInputsValues": {
+        "newOwner": "0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e"
+      }
     }
   ]
 }
