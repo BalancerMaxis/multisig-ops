@@ -1,1 +1,30 @@
-{"version":"1.0","chainId":"1","createdAt":1767649485992,"meta":{"name":"Transactions Batch","description":"","txBuilderVersion":"1.18.2","createdFromSafeAddress":"0xBeF27037bC6311b96635E5e9Af3A73EBF6Ca8878","createdFromOwnerAddress":"","checksum":"0x84237f4c5a1e43378f4173f4965a50ad9156d41f999f60b3c909b0bc3f7c783f"},"transactions":[{"to":"0x6a71d17E50A67C54eae393323a8594cFdBb23F01","value":"0","data":null,"contractMethod":{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","payable":false},"contractInputsValues":{"newOwner":"0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e"}}]}
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1767649485992,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.18.2",
+    "createdFromSafeAddress": "0xBeF27037bC6311b96635E5e9Af3A73EBF6Ca8878",
+    "createdFromOwnerAddress": "",
+    "checksum": "0x84237f4c5a1e43378f4173f4965a50ad9156d41f999f60b3c909b0bc3f7c783f"
+  },
+  "transactions": [
+    {
+      "to": "0x6a71d17E50A67C54eae393323a8594cFdBb23F01",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "newOwner", "type": "address" }
+        ],
+        "name": "transferOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newOwner": "0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e"
+      }
+    }
+  ]
+}
