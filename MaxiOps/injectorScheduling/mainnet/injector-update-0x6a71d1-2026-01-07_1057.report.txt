@@ -1,54 +1,40 @@
 FILENAME: `MaxiOps/injectorScheduling/mainnet/injector-update-0x6a71d1-2026-01-07_1057.json`
 MULTISIG: `multisigs/balancer_bizdev (mainnet:0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e)`
-COMMIT: `bff755d24aad2151f46a1bc3a9cdcafc87b244c6`
+COMMIT: `568daf674a2a7ca8896e80536cbf61d2819573f7`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/422f24f1-7802-4353-a29e-3b6cf0b57782)
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/4dd01cae-45a3-44b5-9cc0-7ee46c6fe792)
 
 ```
-+----------+-------------------------------------------------+------------------------------------------------+--------------------------+-----+----------+
-| function | token_symbol                                    | recipient                                      | amount                   | bip | tx_index |
-+----------+-------------------------------------------------+------------------------------------------------+--------------------------+-----+----------+
-| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | N/A:0x6a71d17E50A67C54eae393323a8594cFdBb23F01 | 4000.0 (RAW: 4000000000) | N/A |    0     |
-+----------+-------------------------------------------------+------------------------------------------------+--------------------------+-----+----------+
-```
-FILENAME: `MaxiOps/injectorScheduling/mainnet/injector-update-0x6a71d1-2026-01-07_1057.json`
-MULTISIG: `multisigs/balancer_bizdev (mainnet:0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e)`
-COMMIT: `bff755d24aad2151f46a1bc3a9cdcafc87b244c6`
-CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/422f24f1-7802-4353-a29e-3b6cf0b57782)
-
-```
-+-----------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
-| fx_name         | to                                                     | value | inputs                                                                              | bip_number | tx_index |
-+-----------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
-| acceptOwnership | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | "0x79ba5097"                                                                        | N/A        |   N/A    |
-| addRecipients   | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                   | N/A        |   N/A    |
-|                 |                                                        |       |   "recipients": [                                                                   |            |          |
-|                 |                                                        |       |     "0x62a66eb9abf7a788f48d0ce7c0c065df9e09da19 (gauges/rETH-waEthWETH-gauge-62a6)" |            |          |
-|                 |                                                        |       |   ],                                                                                |            |          |
-|                 |                                                        |       |   "amountPerPeriod": [                                                              |            |          |
-|                 |                                                        |       |     "raw:1000000000, 18 decimals:1E-9, 6 decimals: 1000"                            |            |          |
-|                 |                                                        |       |   ],                                                                                |            |          |
-|                 |                                                        |       |   "maxPeriods": [                                                                   |            |          |
-|                 |                                                        |       |     "2"                                                                             |            |          |
-|                 |                                                        |       |   ],                                                                                |            |          |
-|                 |                                                        |       |   "doNotStartBeforeTimestamp": [                                                    |            |          |
-|                 |                                                        |       |     "1767830400"                                                                    |            |          |
-|                 |                                                        |       |   ]                                                                                 |            |          |
-|                 |                                                        |       | }                                                                                   |            |          |
-| addRecipients   | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                   | N/A        |   N/A    |
-|                 |                                                        |       |   "recipients": [                                                                   |            |          |
-|                 |                                                        |       |     "0x70a1c01902dab7a45dca1098ca76a8314dd8adba (gauges/osETH-waWETH-gauge-70a1)"   |            |          |
-|                 |                                                        |       |   ],                                                                                |            |          |
-|                 |                                                        |       |   "amountPerPeriod": [                                                              |            |          |
-|                 |                                                        |       |     "raw:1000000000, 18 decimals:1E-9, 6 decimals: 1000"                            |            |          |
-|                 |                                                        |       |   ],                                                                                |            |          |
-|                 |                                                        |       |   "maxPeriods": [                                                                   |            |          |
-|                 |                                                        |       |     "2"                                                                             |            |          |
-|                 |                                                        |       |   ],                                                                                |            |          |
-|                 |                                                        |       |   "doNotStartBeforeTimestamp": [                                                    |            |          |
-|                 |                                                        |       |     "1767830400"                                                                    |            |          |
-|                 |                                                        |       |   ]                                                                                 |            |          |
-|                 |                                                        |       | }                                                                                   |            |          |
-+-----------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
++---------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                     | value | inputs                                                                              | bip_number | tx_index |
++---------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                   | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                   |            |          |
+|               |                                                        |       |     "0x62a66eb9abf7a788f48d0ce7c0c065df9e09da19 (gauges/rETH-waEthWETH-gauge-62a6)" |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                              |            |          |
+|               |                                                        |       |     "raw:1000000000, 18 decimals:1E-9, 6 decimals: 1000"                            |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                   |            |          |
+|               |                                                        |       |     "2"                                                                             |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                    |            |          |
+|               |                                                        |       |     "1767830400"                                                                    |            |          |
+|               |                                                        |       |   ]                                                                                 |            |          |
+|               |                                                        |       | }                                                                                   |            |          |
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                   | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                   |            |          |
+|               |                                                        |       |     "0x70a1c01902dab7a45dca1098ca76a8314dd8adba (gauges/osETH-waWETH-gauge-70a1)"   |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                              |            |          |
+|               |                                                        |       |     "raw:1000000000, 18 decimals:1E-9, 6 decimals: 1000"                            |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                   |            |          |
+|               |                                                        |       |     "2"                                                                             |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                    |            |          |
+|               |                                                        |       |     "1767830400"                                                                    |            |          |
+|               |                                                        |       |   ]                                                                                 |            |          |
+|               |                                                        |       | }                                                                                   |            |          |
++---------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
 ```
