@@ -1,0 +1,40 @@
+FILENAME: `MaxiOps/injectorScheduling/mainnet/injector-update-0x6a71d1-2026-01-07_1057.json`
+MULTISIG: `multisigs/balancer_bizdev (mainnet:0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e)`
+COMMIT: `50468df8fff3e72a13c3ab3c976e9b0c0b8594b2`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/55f2a3fb-050c-4829-b489-7930ceb3a224)
+
+```
++---------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| fx_name       | to                                                     | value | inputs                                                                              | bip_number | tx_index |
++---------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                   | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                   |            |          |
+|               |                                                        |       |     "0x62a66eb9abf7a788f48d0ce7c0c065df9e09da19 (gauges/rETH-waEthWETH-gauge-62a6)" |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                              |            |          |
+|               |                                                        |       |     "raw:2000000000, 18 decimals:2E-9, 6 decimals: 2000"                            |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                   |            |          |
+|               |                                                        |       |     "2"                                                                             |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                    |            |          |
+|               |                                                        |       |     "1767830400"                                                                    |            |          |
+|               |                                                        |       |   ]                                                                                 |            |          |
+|               |                                                        |       | }                                                                                   |            |          |
+| addRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                   | N/A        |   N/A    |
+|               |                                                        |       |   "recipients": [                                                                   |            |          |
+|               |                                                        |       |     "0x70a1c01902dab7a45dca1098ca76a8314dd8adba (gauges/osETH-waWETH-gauge-70a1)"   |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "amountPerPeriod": [                                                              |            |          |
+|               |                                                        |       |     "raw:2000000000, 18 decimals:2E-9, 6 decimals: 2000"                            |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "maxPeriods": [                                                                   |            |          |
+|               |                                                        |       |     "2"                                                                             |            |          |
+|               |                                                        |       |   ],                                                                                |            |          |
+|               |                                                        |       |   "doNotStartBeforeTimestamp": [                                                    |            |          |
+|               |                                                        |       |     "1767830400"                                                                    |            |          |
+|               |                                                        |       |   ]                                                                                 |            |          |
+|               |                                                        |       | }                                                                                   |            |          |
++---------------+--------------------------------------------------------+-------+-------------------------------------------------------------------------------------+------------+----------+
+```
