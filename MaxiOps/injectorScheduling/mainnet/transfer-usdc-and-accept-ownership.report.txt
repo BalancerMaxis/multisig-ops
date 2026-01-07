@@ -1,0 +1,26 @@
+FILENAME: `MaxiOps/injectorScheduling/mainnet/transfer-usdc-and-accept-ownership.json`
+MULTISIG: `multisigs/balancer_bizdev (mainnet:0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e)`
+COMMIT: `6b0003c34916f19ea0686f2a970ebf05b7ffbc1e`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5fc97a68-1597-45fb-a6db-cf3f87fb0948)
+
+```
++----------+-------------------------------------------------+------------------------------------------------+--------------------------+-----+----------+
+| function | token_symbol                                    | recipient                                      | amount                   | bip | tx_index |
++----------+-------------------------------------------------+------------------------------------------------+--------------------------+-----+----------+
+| transfer | USDC:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 | N/A:0x6a71d17E50A67C54eae393323a8594cFdBb23F01 | 4000.0 (RAW: 4000000000) | N/A |    0     |
++----------+-------------------------------------------------+------------------------------------------------+--------------------------+-----+----------+
+```
+FILENAME: `MaxiOps/injectorScheduling/mainnet/transfer-usdc-and-accept-ownership.json`
+MULTISIG: `multisigs/balancer_bizdev (mainnet:0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e)`
+COMMIT: `6b0003c34916f19ea0686f2a970ebf05b7ffbc1e`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/5fc97a68-1597-45fb-a6db-cf3f87fb0948)
+
+```
++-----------------+--------------------------------------------------------+-------+--------------+------------+----------+
+| fx_name         | to                                                     | value | inputs       | bip_number | tx_index |
++-----------------+--------------------------------------------------------+-------+--------------+------------+----------+
+| acceptOwnership | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | "0x79ba5097" | N/A        |   N/A    |
++-----------------+--------------------------------------------------------+-------+--------------+------------+----------+
+```
