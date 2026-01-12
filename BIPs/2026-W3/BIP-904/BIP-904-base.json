@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1736640000000,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable module on DAO Emergency multisig on Base",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x7d171c6ef79a22340c6f931e8bd3833db8a8c620"
+      }
+    }
+  ]
+}
