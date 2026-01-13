@@ -8,34 +8,10 @@ from typing import Optional
 from web3 import Web3
 from bal_addresses import AddrBook
 
-ADDRESSES_MAINNET = AddrBook("mainnet").reversebook
-ADDRESSES_POLYGON = AddrBook("polygon").reversebook
-ADDRESSES_ARBITRUM = AddrBook("arbitrum").reversebook
-ADDRESSES_AVALANCHE = AddrBook("avalanche").reversebook
-ADDRESSES_OPTIMISM = AddrBook("optimism").reversebook
-ADDRESSES_GNOSIS = AddrBook("gnosis").reversebook
-ADDRESSES_ZKEVM = AddrBook("zkevm").reversebook
-ADDRESSES_BASE = AddrBook("base").reversebook
-ADDRESSES_FANTOM = AddrBook("fantom").reversebook
-ADDRESSES_MODE = AddrBook("mode").reversebook
-ADDRESSES_FRAXTAL = AddrBook("fraxtal").reversebook
-ADDRESSES_SEPOLIA = AddrBook("sepolia").reversebook
-
 # Merge all addresses into one dictionary
-ADDRESSES = {
-    **ADDRESSES_MAINNET,
-    **ADDRESSES_POLYGON,
-    **ADDRESSES_ARBITRUM,
-    **ADDRESSES_AVALANCHE,
-    **ADDRESSES_OPTIMISM,
-    **ADDRESSES_GNOSIS,
-    **ADDRESSES_ZKEVM,
-    **ADDRESSES_BASE,
-    **ADDRESSES_FANTOM,
-    **ADDRESSES_MODE,
-    **ADDRESSES_FRAXTAL,
-    **ADDRESSES_SEPOLIA,
-}
+ADDRESSES = {}
+for chain_name in AddrBook.chain_ids_by_name.keys():
+    ADDRESSES.update(AddrBook(chain_name).reversebook)
 
 # Initialize the parser
 parser = argparse.ArgumentParser()
