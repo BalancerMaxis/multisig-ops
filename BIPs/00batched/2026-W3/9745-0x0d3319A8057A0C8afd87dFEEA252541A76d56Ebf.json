@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "chainId": "9745",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x0d3319A8057A0C8afd87dFEEA252541A76d56Ebf",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x0d3319A8057A0C8afd87dFEEA252541A76d56Ebf",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x7d171c6ef79a22340c6f931e8bd3833db8a8c620"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W3/BIP-904/BIP-904-plasma.json",
+        "bip_number": "BIP-904"
+      }
+    }
+  ]
+}
