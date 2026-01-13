@@ -31,36 +31,6 @@
         "payable": false
       },
       "contractInputsValues": {
-        "gauge": "0x17c67CA47d472d16FBc09f0A0408edeE22180cEe",
-        "gaugeType": "Base"
-      },
-      "meta": {
-        "tx_index": 0,
-        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W3/BIP-752.json",
-        "bip_number": "BIP-752"
-      }
-    },
-    {
-      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "gauge",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "gaugeType",
-            "type": "string",
-            "internalType": "string"
-          }
-        ],
-        "name": "addGauge",
-        "payable": false
-      },
-      "contractInputsValues": {
         "gauge": "0x4b891340b51889f438a03dc0e8aaafb0bc89e7a6",
         "gaugeType": "Ethereum"
       },
@@ -368,6 +338,36 @@
         "tx_index": 10,
         "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W3/BIP-750 Balancer v3 Gauges Adds.json",
         "bip_number": "BIP-750"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "gauge",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "gaugeType",
+            "type": "string",
+            "internalType": "string"
+          }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x17c67CA47d472d16FBc09f0A0408edeE22180cEe",
+        "gaugeType": "Base"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W3/BIP-752.json",
+        "bip_number": "BIP-752"
       }
     }
   ]
