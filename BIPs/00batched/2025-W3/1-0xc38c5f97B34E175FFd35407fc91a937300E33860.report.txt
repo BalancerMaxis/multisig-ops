@@ -1,132 +1,132 @@
 FILENAME: `BIPs/00batched/2025-W3/1-0xc38c5f97B34E175FFd35407fc91a937300E33860.json`
 MULTISIG: `multisigs/lm (mainnet:0xc38c5f97B34E175FFd35407fc91a937300E33860)`
-COMMIT: `be32af123993a5183721f62d0294934b965bc946`
-CHAIN(S): `base, mainnet, gnosis`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/fc52cefa-bbed-488a-b876-5c881504d784)
+COMMIT: `f088adef1f3627aa2ffa8e94146264a313ce9ac1`
+CHAIN(S): `base, gnosis, mainnet`
+TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/b4b71017-7ad5-4677-bcc4-ff332f891d07)
+
+| Gauge Validator (0x4B891340b51889f438a03DC0e8aAAFB0Bc89e7A6) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x1f3A4C8115629C33A28bF2F97F22D31d256317F6) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x70A1c01902DAb7a45dcA1098Ca76A8314dd8aDbA) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xeEc405B834c90B59122Bcc2357f27110B2ADB4B7) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x95d260ac86B58D458187C819f87aAd2c7c4203eF) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xcbc0a61E99fE3adba90BEAD3738446952bCb8002) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0xf6A9bbB5D9733fa6F77120683636061bc26E7E85) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0x40B04058fF35fD3164E6cc66C4E6398c1E5E68c8) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0xfD151734ffC9A4A55C50fed4b66c15B06Bbb390B) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x5C36197A631649441649028110fa503a3be00162) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
+
+| Gauge Validator (0x7632c11C49E6091504Bb0395c0C81C8BE48f4a8C) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             | ✅ ✅  |
 
 | Gauge Validator (0x17c67CA47d472d16FBc09f0A0408edeE22180cEe) | Result |
 | :------------------------------------------------------------| :----: |
 | `validate_preferential_gauge`                                |   ✅   |
 | `validate_rate_providers_safety`                             | ✅ ✅  |
 
-| Gauge Validator (0x4B891340b51889f438a03DC0e8aAAFB0Bc89e7A6) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0x1f3A4C8115629C33A28bF2F97F22D31d256317F6) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0x70A1c01902DAb7a45dcA1098Ca76A8314dd8aDbA) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0xeEc405B834c90B59122Bcc2357f27110B2ADB4B7) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0x95d260ac86B58D458187C819f87aAd2c7c4203eF) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0xcbc0a61E99fE3adba90BEAD3738446952bCb8002) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0xf6A9bbB5D9733fa6F77120683636061bc26E7E85) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0x40B04058fF35fD3164E6cc66C4E6398c1E5E68c8) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0xfD151734ffC9A4A55C50fed4b66c15B06Bbb390B) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0x5C36197A631649441649028110fa503a3be00162) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
-| Gauge Validator (0x7632c11C49E6091504Bb0395c0C81C8BE48f4a8C) | Result |
-| :------------------------------------------------------------| :----: |
-| `validate_preferential_gauge`                                |   ✅   |
-| `validate_rate_providers_safety`                             |   --   |
-
 ```
-+-----------------------+---------------------------------------------------------------------+------------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
-| function              | pool_id_and_address                                                 | symbol_and_info        | gauge_address_and_info                           | tokens                                             | rate_providers                             | review_summary |   bip   | tx_index |
-+-----------------------+---------------------------------------------------------------------+------------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
-| GaugeAdderV4/addGauge | 0x49470d9e531c52e4370f4cdc7afe5accbbd9222d0002000000000000000001ad  | ECLP-weETH-wstETH      | root: 0x17c67CA47d472d16FBc09f0A0408edeE22180cEe | 0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A: weETH  | 0x5a7A419C59eAAdec8Dc00bc93ac95612e6e154Cf |      safe      | BIP-752 |    0     |
-|                       | pool_address: 0x49470d9e531c52E4370F4cdC7afE5acCbbD9222D            | fee: 0.01              | side: 0x7d08152dE696a5D44Ef032f9626e158048a408B1 | 0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452: wstETH | 0x3b3dd5f913443bb5E70389F29c83F7DCA460CAe1 |      safe      |         |          |
-|                       |                                                                     | a-factor: N/A          | style: L0 sidechain                              |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0xc4Ce391d82D164c166dF9c8336DDF84206b2F812                          | Aave Lido wETH-wstETH  | root: 0x4B891340b51889f438a03DC0e8aAAFB0Bc89e7A6 |                                                    |                                            |                | BIP-750 |    1     |
-|                       | pool_address: 0xc4Ce391d82D164c166dF9c8336DDF84206b2F812            | fee: Not Found         | side: None                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 5000         | style: mainnet                                   |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x4AB7aB316D43345009B2140e0580B072eEc7DF16                          | ETHx waWETH            | root: 0x1f3A4C8115629C33A28bF2F97F22D31d256317F6 |                                                    |                                            |                | BIP-750 |    2     |
-|                       | pool_address: 0x4AB7aB316D43345009B2140e0580B072eEc7DF16            | fee: Not Found         | side: None                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 500          | style: mainnet                                   |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x57c23c58B1D8C3292c15BEcF07c62C5c52457A42                          | osETH-waWETH           | root: 0x70A1c01902DAb7a45dcA1098Ca76A8314dd8aDbA |                                                    |                                            |                | BIP-750 |    3     |
-|                       | pool_address: 0x57c23c58B1D8C3292c15BEcF07c62C5c52457A42            | fee: Not Found         | side: None                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 200          | style: mainnet                                   |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x89BB794097234E5E930446C0CeC0ea66b35D7570                          | Aave USDC-USDT         | root: 0xeEc405B834c90B59122Bcc2357f27110B2ADB4B7 |                                                    |                                            |                | BIP-750 |    4     |
-|                       | pool_address: 0x89BB794097234E5E930446C0CeC0ea66b35D7570            | fee: Not Found         | side: None                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 5000         | style: mainnet                                   |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0xc1D48bB722a22Cc6Abf19faCbE27470F08B3dB8c                          | waUSDe-waUSDT          | root: 0x95d260ac86B58D458187C819f87aAd2c7c4203eF |                                                    |                                            |                | BIP-750 |    5     |
-|                       | pool_address: 0xc1D48bB722a22Cc6Abf19faCbE27470F08B3dB8c            | fee: Not Found         | side: None                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 1000         | style: mainnet                                   |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x6649a010CBcF5742E7a13a657Df358556b3e55cF                          | rsETH-hgETH            | root: 0xcbc0a61E99fE3adba90BEAD3738446952bCb8002 |                                                    |                                            |                | BIP-750 |    6     |
-|                       | pool_address: 0x6649a010CBcF5742E7a13a657Df358556b3e55cF            | fee: Not Found         | side: None                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 200          | style: mainnet                                   |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0xac035537edf62beEF0c7208181379F89deF22119                          | ShezUSD-sDAI           | root: 0xf6A9bbB5D9733fa6F77120683636061bc26E7E85 |                                                    |                                            |                | BIP-750 |    7     |
-|                       | pool_address: 0xac035537edf62beEF0c7208181379F89deF22119            | fee: Not Found         | side: None                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 144          | style: mainnet                                   |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 20.0%                                       |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x272d6BE442E30D7c87390eDEb9B96f1E84cEcD8d                          | 50waWstETH-50waGNO     | root: 0x40B04058fF35fD3164E6cc66C4E6398c1E5E68c8 |                                                    |                                            |                | BIP-750 |    8     |
-|                       | pool_address: 0x272d6BE442E30D7c87390eDEb9B96f1E84cEcD8d            | fee: Not Found         | side: 0xcBD87e4Dad6a99506484E9adEEC8FF84Ce7BD399 |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: N/A          | style: L0 sidechain                              |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0x6e6bb18449fCF15B79EFa2CfA70ACF7593088029                          | waWstETH-waWETH        | root: 0xfD151734ffC9A4A55C50fed4b66c15B06Bbb390B |                                                    |                                            |                | BIP-750 |    9     |
-|                       | pool_address: 0x6e6bb18449fCF15B79EFa2CfA70ACF7593088029            | fee: Not Found         | side: 0x0fcE2d8428baca96b14f5D3D03D260940E11a066 |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 2500         | style: L0 sidechain                              |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0xD1D7Fa8871d84d0E77020fc28B7Cd5718C446522                          | aGNO/sDAI              | root: 0x5C36197A631649441649028110fa503a3be00162 |                                                    |                                            |                | BIP-750 |    10    |
-|                       | pool_address: 0xD1D7Fa8871d84d0E77020fc28B7Cd5718C446522            | fee: Not Found         | side: 0xA76ED5da09209D6f2198d8D793005393327b736E |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: N/A          | style: L0 sidechain                              |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-| GaugeAdderV4/addGauge | 0xa91C3c043051E7e680b61D79B3a733D3e2c0fb5e                          | BRLA-sDAI              | root: 0x7632c11C49E6091504Bb0395c0C81C8BE48f4a8C |                                                    |                                            |                | BIP-750 |    11    |
-|                       | pool_address: 0xa91C3c043051E7e680b61D79B3a733D3e2c0fb5e            | fee: Not Found         | side: 0x68B257DA06829Da78B4163396996E1c201f208fe |                                                    |                                            |                |         |          |
-|                       |                                                                     | a-factor: 100          | style: L0 sidechain                              |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | cap: 100.0%                                      |                                                    |                                            |                |         |          |
-|                       |                                                                     |                        | preferential: True                               |                                                    |                                            |                |         |          |
-+-----------------------+---------------------------------------------------------------------+------------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
++-----------------------+---------------------------------------------------------------------+------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                                 | symbol_and_info        | gauge_address_and_info                           | tokens                                                      | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+---------------------------------------------------------------------+------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0xc4Ce391d82D164c166dF9c8336DDF84206b2F812                          | Aave Lido wETH-wstETH  | root: 0x4B891340b51889f438a03DC0e8aAAFB0Bc89e7A6 | 0x0FE906e030a44eF24CA8c7dC7B7c53A6C4F00ce9: waEthLidoWETH   | 0xf4b5D1C22F35a460b91edD7F33Cefe619E2fAaF4 |      safe      | BIP-750 |    0     |
+|                       | pool_address: 0xc4Ce391d82D164c166dF9c8336DDF84206b2F812            | fee (%): 0.002         | side: None                                       | 0x775F661b0bD1739349b9A2A3EF60be277c5d2D29: waEthLidowstETH | 0xcdAa68ce322728FE4185a60f103C194F1E2c47BC |      safe      |         |          |
+|                       |                                                                     | a-factor: 5000         | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x4AB7aB316D43345009B2140e0580B072eEc7DF16                          | ETHx waWETH            | root: 0x1f3A4C8115629C33A28bF2F97F22D31d256317F6 | 0x0bfc9d54Fc184518A81162F8fB99c2eACa081202: waEthWETH       | 0xBe7bE04807762Bc433911dD927fD54a385Fa91d6 |      safe      | BIP-750 |    1     |
+|                       | pool_address: 0x4AB7aB316D43345009B2140e0580B072eEc7DF16            | fee (%): 0.002         | side: None                                       | 0xA35b1B31Ce002FBF2058D22F30f95D405200A15b: ETHx            | 0xAAE054B9b822554dd1D9d1F48f892B4585D3bbf0 |      safe      |         |          |
+|                       |                                                                     | a-factor: 500          | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x57c23c58B1D8C3292c15BEcF07c62C5c52457A42                          | osETH-waWETH           | root: 0x70A1c01902DAb7a45dcA1098Ca76A8314dd8aDbA | 0x0bfc9d54Fc184518A81162F8fB99c2eACa081202: waEthWETH       | 0xBe7bE04807762Bc433911dD927fD54a385Fa91d6 |      safe      | BIP-750 |    2     |
+|                       | pool_address: 0x57c23c58B1D8C3292c15BEcF07c62C5c52457A42            | fee (%): 0.002         | side: None                                       | 0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38: osETH           | 0x8023518b2192FB5384DAdc596765B3dD1cdFe471 |      safe      |         |          |
+|                       |                                                                     | a-factor: 500          | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x89BB794097234E5E930446C0CeC0ea66b35D7570                          | Aave USDC-USDT         | root: 0xeEc405B834c90B59122Bcc2357f27110B2ADB4B7 | 0x7Bc3485026Ac48b6cf9BaF0A377477Fff5703Af8: waEthUSDT       | 0xEdf63cce4bA70cbE74064b7687882E71ebB0e988 |      safe      | BIP-750 |    3     |
+|                       | pool_address: 0x89BB794097234E5E930446C0CeC0ea66b35D7570            | fee (%): 0.001         | side: None                                       | 0xD4fa2D31b7968E448877f69A96DE69f5de8cD23E: waEthUSDC       | 0x8f4E8439b970363648421C692dd897Fb9c0Bd1D9 |      safe      |         |          |
+|                       |                                                                     | a-factor: 5000         | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xc1D48bB722a22Cc6Abf19faCbE27470F08B3dB8c                          | waUSDe-waUSDT          | root: 0x95d260ac86B58D458187C819f87aAd2c7c4203eF | 0x5F9D59db355b4A60501544637b00e94082cA575b: waEthUSDe       | 0xdB44A0223604ABAD704C4bCDDAAd88b101953246 |      safe      | BIP-750 |    4     |
+|                       | pool_address: 0xc1D48bB722a22Cc6Abf19faCbE27470F08B3dB8c            | fee (%): 0.003         | side: None                                       | 0x7Bc3485026Ac48b6cf9BaF0A377477Fff5703Af8: waEthUSDT       | 0xEdf63cce4bA70cbE74064b7687882E71ebB0e988 |      safe      |         |          |
+|                       |                                                                     | a-factor: 1000         | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x6649a010CBcF5742E7a13a657Df358556b3e55cF                          | rsETH-hgETH            | root: 0xcbc0a61E99fE3adba90BEAD3738446952bCb8002 | 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7: rsETH           | 0x0000000000000000000000000000000000000000 |       --       | BIP-750 |    5     |
+|                       | pool_address: 0x6649a010CBcF5742E7a13a657Df358556b3e55cF            | fee (%): 0.04          | side: None                                       | 0xc824A08dB624942c5E5F330d56530cD1598859fD: hgETH           | 0xf47c506C293319B3bC517Acc371F86B87B03DD5D |      safe      |         |          |
+|                       |                                                                     | a-factor: 200          | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xac035537edf62beEF0c7208181379F89deF22119                          | ShezUSD-sDAI           | root: 0xf6A9bbB5D9733fa6F77120683636061bc26E7E85 | 0x634Ed807647e07a7C038EF1956a58ADbc6695F88: ShezUSD         | 0x0000000000000000000000000000000000000000 |       --       | BIP-750 |    6     |
+|                       | pool_address: 0xac035537edf62beEF0c7208181379F89deF22119            | fee (%): 0.01          | side: None                                       | 0x83F20F44975D03b1b09e64809B757c47f942BEeA: sDAI            | 0xc7177B6E18c1Abd725F5b75792e5F7A3bA5DBC2c |      safe      |         |          |
+|                       |                                                                     | a-factor: 144          | style: mainnet                                   |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 20.0%                                       |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x272d6BE442E30D7c87390eDEb9B96f1E84cEcD8d                          | 50waWstETH-50waGNO     | root: 0x40B04058fF35fD3164E6cc66C4E6398c1E5E68c8 | 0x773CDA0CADe2A3d86E6D4e30699d40bB95174ff2: waGnowstETH     | 0x30EAcEC6BD250589043De026e45dc9A158C65a1F |      safe      | BIP-750 |    7     |
+|                       | pool_address: 0x272d6BE442E30D7c87390eDEb9B96f1E84cEcD8d            | fee (%): 0.25          | side: 0xcBD87e4Dad6a99506484E9adEEC8FF84Ce7BD399 | 0x7c16F0185A26Db0AE7a9377f23BC18ea7ce5d644: waGnoGNO        | 0xbbb4966335677Ea24F7B86DC19a423412390e1fb |      safe      |         |          |
+|                       |                                                                     | a-factor: N/A          | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x6e6bb18449fCF15B79EFa2CfA70ACF7593088029                          | waWstETH-waWETH        | root: 0xfD151734ffC9A4A55C50fed4b66c15B06Bbb390B | 0x57f664882F762FA37903FC864e2B633D384B411A: waGnoWETH       | 0x0008A59C1d2E5922790C929ea432ed02D4D3323A |      safe      | BIP-750 |    8     |
+|                       | pool_address: 0x6e6bb18449fCF15B79EFa2CfA70ACF7593088029            | fee (%): 0.01          | side: 0x0fcE2d8428baca96b14f5D3D03D260940E11a066 | 0x773CDA0CADe2A3d86E6D4e30699d40bB95174ff2: waGnowstETH     | 0x30EAcEC6BD250589043De026e45dc9A158C65a1F |      safe      |         |          |
+|                       |                                                                     | a-factor: 2500         | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xD1D7Fa8871d84d0E77020fc28B7Cd5718C446522                          | aGNO/sDAI              | root: 0x5C36197A631649441649028110fa503a3be00162 | 0x7c16F0185A26Db0AE7a9377f23BC18ea7ce5d644: waGnoGNO        | 0xbbb4966335677Ea24F7B86DC19a423412390e1fb |      safe      | BIP-750 |    9     |
+|                       | pool_address: 0xD1D7Fa8871d84d0E77020fc28B7Cd5718C446522            | fee (%): 0.25          | side: 0xA76ED5da09209D6f2198d8D793005393327b736E | 0xaf204776c7245bF4147c2612BF6e5972Ee483701: sDAI            | 0x89C80A4540A00b5270347E02e2E144c71da2EceD |      safe      |         |          |
+|                       |                                                                     | a-factor: N/A          | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xa91C3c043051E7e680b61D79B3a733D3e2c0fb5e                          | BRLA-sDAI              | root: 0x7632c11C49E6091504Bb0395c0C81C8BE48f4a8C | 0xaf204776c7245bF4147c2612BF6e5972Ee483701: sDAI            | 0x89C80A4540A00b5270347E02e2E144c71da2EceD |      safe      | BIP-750 |    10    |
+|                       | pool_address: 0xa91C3c043051E7e680b61D79B3a733D3e2c0fb5e            | fee (%): 0.05          | side: 0x68B257DA06829Da78B4163396996E1c201f208fe | 0xFECB3F7c54E2CAAE9dC6Ac9060A822D47E053760: BRLA            | 0xCCfE43E5853C87225948317379ffD910039f6A14 |      safe      |         |          |
+|                       |                                                                     | a-factor: 100          | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x49470d9e531c52e4370f4cdc7afe5accbbd9222d0002000000000000000001ad  | ECLP-weETH-wstETH      | root: 0x17c67CA47d472d16FBc09f0A0408edeE22180cEe | 0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A: weETH           | 0x5a7A419C59eAAdec8Dc00bc93ac95612e6e154Cf |      safe      | BIP-752 |    11    |
+|                       | pool_address: 0x49470d9e531c52E4370F4cdC7afE5acCbbD9222D            | fee (%): 0.01          | side: 0x7d08152dE696a5D44Ef032f9626e158048a408B1 | 0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452: wstETH          | 0x3b3dd5f913443bb5E70389F29c83F7DCA460CAe1 |      safe      |         |          |
+|                       |                                                                     | a-factor: N/A          | style: L0 sidechain                              |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | cap: 100.0%                                      |                                                             |                                            |                |         |          |
+|                       |                                                                     |                        | preferential: True                               |                                                             |                                            |                |         |          |
++-----------------------+---------------------------------------------------------------------+------------------------+--------------------------------------------------+-------------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
 ```
