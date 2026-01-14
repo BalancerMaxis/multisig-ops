@@ -259,6 +259,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     generates a tenderly simulation
     returns the url and if it was successful or not
     """
+    # ensure safe address is checksummed for web3.py compatibility
+    safe_addr = to_checksum_address(safe_addr)
+
     # build urls
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
