@@ -1,13 +1,57 @@
 {
   "version": "1.0",
   "chainId": "42161",
-  "createdAt": 1768893690,
+  "createdAt": 1768913037,
   "meta": {
     "name": "Create Merkl Campaign",
     "txBuilderVersion": "1.16.3",
     "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
   },
   "transactions": [
+    {
+      "to": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0xb0334C5287Bfb15A8C9464898CDB0248ED176332",
+        "amount": "10791120358929704981"
+      }
+    },
+    {
+      "to": "0xb0334C5287Bfb15A8C9464898CDB0248ED176332",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "mint",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amount": "10791120358929704981"
+      }
+    },
     {
       "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
       "value": "0",
@@ -102,7 +146,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0xb0334C5287Bfb15A8C9464898CDB0248ED176332\", \"10791120358929704981\", 4, 1768980065, 3600, \"0xcecc9164863644f09ce087e2cecdbba24a03924c6c12c16002efd867d995d048\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0xb0334C5287Bfb15A8C9464898CDB0248ED176332\", \"10791120358929704981\", 4, 1768999409, 3600, \"0xdd02482721919cba350b7febaf1144986ad65f760d0dadcfc7dce4d409a5de87\"]"
       }
     }
   ]

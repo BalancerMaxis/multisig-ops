@@ -1,13 +1,57 @@
 {
   "version": "1.0",
   "chainId": "10",
-  "createdAt": 1768893666,
+  "createdAt": 1768913010,
   "meta": {
     "name": "Create Merkl Campaign",
     "txBuilderVersion": "1.16.3",
     "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc"
   },
   "transactions": [
+    {
+      "to": "0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "spender": "0x138D9E0d0Cc4906C4cD865b38c9340A5CeDD9850",
+        "amount": "1669673153267585196"
+      }
+    },
+    {
+      "to": "0x138D9E0d0Cc4906C4cD865b38c9340A5CeDD9850",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "mint",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amount": "1669673153267585196"
+      }
+    },
     {
       "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
       "value": "0",
@@ -102,7 +146,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x138D9E0d0Cc4906C4cD865b38c9340A5CeDD9850\", \"1669673153267585196\", 4, 1768980065, 3600, \"0x582114ec35b332aab7507ea304448d060e6ea31a1e03577dcc17b963dc914623\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x138D9E0d0Cc4906C4cD865b38c9340A5CeDD9850\", \"1669673153267585196\", 4, 1768999409, 3600, \"0x79ef0ceadbe76cbda9ad147dc53e2ef9102ec1809924d3593c6ffbc7ae1e71e6\"]"
       }
     }
   ]
