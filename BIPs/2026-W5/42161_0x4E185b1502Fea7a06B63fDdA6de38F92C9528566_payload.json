@@ -1,0 +1,109 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1768891052,
+  "meta": {
+    "name": "Create Merkl Campaign",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+  },
+  "transactions": [
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptConditions",
+        "payable": false
+      },
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x4E185b1502Fea7a06B63fDdA6de38F92C9528566",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "spender",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "approve",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "amount": "2563889773737849319",
+        "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd"
+      }
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "campaignId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "creator",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "rewardToken",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint32",
+                "name": "campaignType",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "startTimestamp",
+                "type": "uint32"
+              },
+              {
+                "internalType": "uint32",
+                "name": "duration",
+                "type": "uint32"
+              },
+              {
+                "internalType": "bytes",
+                "name": "campaignData",
+                "type": "bytes"
+              }
+            ],
+            "internalType": "struct EngineCampaign",
+            "name": "newCampaign",
+            "type": "tuple"
+          }
+        ],
+        "name": "createCampaign",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"0x0000000000000000000000000000000000000000\",\"0x4E185b1502Fea7a06B63fDdA6de38F92C9528566\",\"2563889773737849319\",4,1768977438,3600,\"0xf0509778681ca829930d6dce3b027b31bd9b1969c559c7d0ece4bb693be3a5ef\"]"
+      }
+    }
+  ]
+}
