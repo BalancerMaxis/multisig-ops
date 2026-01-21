@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x7d171c6ef79a22340c6f931e8bd3833db8a8c620"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W3/BIP-904/BIP-904-optimism.json",
+        "bip_number": "BIP-904"
+      }
+    }
+  ]
+}
