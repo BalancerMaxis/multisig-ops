@@ -5,7 +5,6 @@ from dune_client.client import DuneClient
 from dune_client.types import QueryParameter
 from dune_client.query import QueryBase
 
-
 dune = DuneClient.from_env()
 
 

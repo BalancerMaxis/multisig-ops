@@ -5,9 +5,7 @@ from bal_addresses import AddrBook
 import json
 import copy
 
-
-TX_BUILDER_GLOBAL_JSON = json.loads(
-    """{
+TX_BUILDER_GLOBAL_JSON = json.loads("""{
   "version": "1.0",
   "chainId": "1",
   "createdAt": 1688559620808,
@@ -19,12 +17,10 @@ TX_BUILDER_GLOBAL_JSON = json.loads(
     "createdFromOwnerAddress": ""
   }
 }
-"""
-)
+""")
 
 
-TX_BUILDER_TX_JSON = json.loads(
-    """    {
+TX_BUILDER_TX_JSON = json.loads("""    {
       "to": "",
       "value": "0",
       "data": null,
@@ -36,8 +32,7 @@ TX_BUILDER_TX_JSON = json.loads(
       "contractInputsValues": null
     }
 
-"""
-)
+""")
 
 CHAIN_NAMES_BY_ID = {str(v): k for k, v in AddrBook.CHAIN_IDS_BY_NAME.iteritems()}
 csv_file = "../../BIPs/00notGov/07-2023-disableRecovery/readyPools.csv"

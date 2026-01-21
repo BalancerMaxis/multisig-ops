@@ -161,7 +161,7 @@ def get_pool_info(
     except:
         vault_v3 = None
     try:
-        (a_factor, ramp, divisor) = pool.getAmplificationParameter()
+        a_factor, ramp, divisor = pool.getAmplificationParameter()
         a_factor = int(a_factor / divisor)
         if not isinstance(a_factor, int):
             a_factor = NA

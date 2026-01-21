@@ -7,7 +7,6 @@ from web3 import Web3
 import os
 from collections import defaultdict
 
-
 today = str(date.today())
 debug = False
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -86,7 +85,7 @@ def generate_change_list(actions_id_map):
             paths = perms.paths_by_action_id[action_id]
             for path in paths:
                 for caller_address in callers:
-                    (deployment, _, function) = path.split("/")
+                    deployment, _, function = path.split("/")
                     try:
                         authorizered_callers = perms.allowed_addresses(action_id)
                     except NoResultError:
@@ -194,8 +193,8 @@ def main(
     input_file=f"{script_dir}/../BIPs/00batched/authorizer/{today}.json",
 ):
     input_data = load_input_data(input_file)
-    (action_ids_map, warnings) = build_action_ids_map(input_data=input_data)
-    (change_list, w) = generate_change_list(actions_id_map=action_ids_map)
+    action_ids_map, warnings = build_action_ids_map(input_data=input_data)
+    change_list, w = generate_change_list(actions_id_map=action_ids_map)
     warnings += "\n" + w
     if change_list:
         print_change_list(change_list=change_list, output_dir=output_dir)
