@@ -3,7 +3,6 @@ from datetime import datetime
 
 import requests
 
-
 BASE_URL = "https://api.merkl.xyz/"
 MERKL_DISTRIBUTOR = "0x3Ef3D8bA38EBe18DB133cEc108f4D14CE00Dd9Ae"
 

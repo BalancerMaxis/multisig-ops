@@ -17,8 +17,7 @@ for chain_name in AddrBook.chain_ids_by_name.keys():
 parser = argparse.ArgumentParser()
 parser.add_argument("--target", help="Target directory to merge BIPs from")
 
-base_json = json.loads(
-    """
+base_json = json.loads("""
 {
   "version": "1.0",
   "chainId": "",
@@ -33,8 +32,7 @@ base_json = json.loads(
   "transactions": [
   ]
 }
-"""
-)
+""")
 
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>

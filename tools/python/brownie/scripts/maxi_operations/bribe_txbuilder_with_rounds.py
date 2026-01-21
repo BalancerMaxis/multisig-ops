@@ -143,7 +143,7 @@ def main(
     payments_usd = 0
     payments = 0
     for target, amounts in bribes["payment"].items():
-        (amount, rounds) = amounts
+        amount, rounds = amounts
         print(f"Paying out {amount} via direct transfer to {target}")
         print(amount)
         usdc_amount = amount * 10 ** usdc.decimals()
@@ -193,7 +193,7 @@ def main(
 
     ### AURA
     for target, amounts in bribes["aura"].items():
-        (amount, rounds) = amounts
+        amount, rounds = amounts
         if amount == 0:
             continue
         target = Web3.to_checksum_address(target)

@@ -30,7 +30,6 @@ from eth_account import Account
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
 from helpers.path_utils import find_project_root
 
-
 load_dotenv()
 
 DRPC_KEY = os.getenv("DRPC_KEY")

@@ -16,7 +16,6 @@ from web3 import Web3
 sys.path.append(str(Path(__file__).parent.parent))
 from helpers.path_utils import find_project_root
 
-
 load_dotenv()
 
 
