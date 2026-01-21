@@ -1,6 +1,5 @@
 from bal_tools import Subgraph
 
-
 CHAINS = ["arbitrum", "base", "gnosis", "mainnet", "sepolia"]
 
 
