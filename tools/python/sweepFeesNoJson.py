@@ -6,7 +6,6 @@ from os.path import isfile, join
 from brownie import Contract, chain
 from web3 import Web3
 
-
 ### Whitelist tokens are swept every run regardless of min amount.
 whitelist_tokens = []
 
