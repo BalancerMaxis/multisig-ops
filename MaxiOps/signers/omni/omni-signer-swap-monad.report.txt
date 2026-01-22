@@ -1,0 +1,94 @@
+FILENAME: `MaxiOps/signers/omni/omni-signer-swap-monad.json`
+MULTISIG: `multisigs/omni (monad:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `64b349e6de3cb448d85e3e4348fff3e29a00d2f3`
+CHAIN(S): `monad`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/adea1c86-af1e-47a0-b915-d0d4d912aa0d)
+
+```
++-----------------+-------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+| fx_name         | to                                                          | value | inputs                                                                            | bip_number | tx_index |
++-----------------+-------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+| swapOwner       | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                             |       |     "0x0000000000000000000000000000000000000001 (N/A)"                            |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                             |       |     "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F (EOA/emeritus/tritium_signer)"    |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                             |       |     "0xBeF27037bC6311b96635E5e9Af3A73EBF6Ca8878 (multisigs/maxyz_operator)"       |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
+| swapOwner       | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                             |       |     "0xBeF27037bC6311b96635E5e9Af3A73EBF6Ca8878 (multisigs/maxyz_operator)"       |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "oldOwner": [                                                                   |            |          |
+|                 |                                                             |       |     "0xc4591c41e01a7a654B5427f39Bbd1dEe5bD45D1D (EOA/maxi_deployers/mikeb)"       |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "newOwner": [                                                                   |            |          |
+|                 |                                                             |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
+| removeOwner     | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                             |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "owner": [                                                                      |            |          |
+|                 |                                                             |       |     "0x7c2eA10D3e5922ba3bBBafa39Dc0677353D2AF17 (EOA/emergency/zendragon)"        |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                             |       |     "1"                                                                           |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
+| removeOwner     | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                             |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "owner": [                                                                      |            |          |
+|                 |                                                             |       |     "0x8053484489b110181a6DBA0b59Dda887e433F470 (N/A)"                            |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                             |       |     "1"                                                                           |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
+| removeOwner     | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                             |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "owner": [                                                                      |            |          |
+|                 |                                                             |       |     "0x7019Be4E4eB74cA5F61224FeAf687d2b43998516 (EOA/emergency/xeonus)"           |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                             |       |     "1"                                                                           |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
+| removeOwner     | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                             |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "owner": [                                                                      |            |          |
+|                 |                                                             |       |     "0xafFC70b81D54F229A5F50ec07e2c76D2AAAD07Ae (EOA/emeritus/zekraken_payee)"    |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                             |       |     "1"                                                                           |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
+| removeOwner     | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "prevOwner": [                                                                  |            |          |
+|                 |                                                             |       |     "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941 (multisigs/balancer_onchain_ltd)" |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "owner": [                                                                      |            |          |
+|                 |                                                             |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/maxis/gosuto)"               |            |          |
+|                 |                                                             |       |   ],                                                                              |            |          |
+|                 |                                                             |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                             |       |     "1"                                                                           |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
+| changeThreshold | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e (multisigs/omni) | 0     | {                                                                                 | N/A        |   N/A    |
+|                 |                                                             |       |   "_threshold": [                                                                 |            |          |
+|                 |                                                             |       |     "1"                                                                           |            |          |
+|                 |                                                             |       |   ]                                                                               |            |          |
+|                 |                                                             |       | }                                                                                 |            |          |
++-----------------+-------------------------------------------------------------+-------+-----------------------------------------------------------------------------------+------------+----------+
+```
