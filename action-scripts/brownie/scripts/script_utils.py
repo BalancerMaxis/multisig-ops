@@ -321,9 +321,13 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                 if field_type == "tuple[]":
                     for input_spec in tx["contractMethod"]["inputs"]:
                         if input_spec["type"] == "tuple[]":
-                            parsed = json.loads(value) if isinstance(value, str) else value
+                            parsed = (
+                                json.loads(value) if isinstance(value, str) else value
+                            )
                             components = input_spec.get("components", [])
-                            return [parse_tuple_value(item, components) for item in parsed]
+                            return [
+                                parse_tuple_value(item, components) for item in parsed
+                            ]
 
                 if not isinstance(value, str):
                     return original_parse_func(field_type, value)
