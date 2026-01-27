@@ -1,23 +1,58 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1768914346,
+  "createdAt": 1769500591,
   "meta": {
-    "name": "Balancer Recovery Airdrop - Combined",
+    "name": "Balancer Recovery Airdrop",
     "txBuilderVersion": "1.16.3",
     "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f"
   },
   "transactions": [
     {
-      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "to": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
       "value": "0",
       "data": null,
       "contractMethod": {
-        "inputs": [],
-        "name": "acceptConditions",
-        "payable": false
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "enum IVault.UserBalanceOpKind",
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "internalType": "contract IAsset",
+                "name": "asset",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+              },
+              {
+                "internalType": "address payable",
+                "name": "recipient",
+                "type": "address"
+              }
+            ],
+            "internalType": "struct IVault.UserBalanceOp[]",
+            "name": "ops",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "manageUserBalance",
+        "payable": true
       },
-      "contractInputsValues": null
+      "contractInputsValues": {
+        "ops": "[[1, \"0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0\", \"141388341523885953751\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\"], [1, \"0x9559Aaa82d9649C7A7b220E7c461d2E74c9a3593\", \"804130085484362742\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\"], [1, \"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\", \"510369515766103350937\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\"], [1, \"0xae78736Cd615f374D3085123A210448E74Fc6393\", \"320124273754779645478\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\", \"0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f\"]]"
+      }
     },
     {
       "to": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
@@ -41,7 +76,7 @@
       },
       "contractInputsValues": {
         "spender": "0x470C9034F50afe6633f7e84A80B9961baa893d77",
-        "amount": "127249507371497358375"
+        "amount": "141388341523885953751"
       }
     },
     {
@@ -60,8 +95,19 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "127249507371497358375"
+        "amount": "141388341523885953751"
       }
+    },
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptConditions",
+        "payable": false
+      },
+      "contractInputsValues": null
     },
     {
       "to": "0x470C9034F50afe6633f7e84A80B9961baa893d77",
@@ -84,7 +130,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "127249507371497358375",
+        "amount": "141388341523885953751",
         "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd"
       }
     },
@@ -146,7 +192,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x470C9034F50afe6633f7e84A80B9961baa893d77\", \"127249507371497358375\", 4, 1768999409, 3600, \"0x9ab1c83d955855c95cbce861da848b5246c997413d7246b68b15a04c1195509c\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x470C9034F50afe6633f7e84A80B9961baa893d77\", \"141388341523885953751\", 4, 1769586965, 3600, \"0x519628f399f427669b576929777dd2594bfc259ece0ec59db70f44b41df9e783\"]"
       }
     },
     {
@@ -171,7 +217,7 @@
       },
       "contractInputsValues": {
         "spender": "0x4E185b1502Fea7a06B63fDdA6de38F92C9528566",
-        "amount": "293714453724249214377"
+        "amount": "325726881099727178925"
       }
     },
     {
@@ -190,7 +236,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "293714453724249214377"
+        "amount": "325726881099727178925"
       }
     },
     {
@@ -214,7 +260,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "293714453724249214377",
+        "amount": "325726881099727178925",
         "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd"
       }
     },
@@ -276,7 +322,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x4E185b1502Fea7a06B63fDdA6de38F92C9528566\", \"293714453724249214377\", 4, 1768999409, 3600, \"0x9b9d02f45ce906cd09df5e9a8c37b44589266753cd653af1ce4af0c55a306155\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x4E185b1502Fea7a06B63fDdA6de38F92C9528566\", \"325726881099727178925\", 4, 1769586965, 3600, \"0x59dfc4867b24401b2ba8d5b6483cea62e69266a901e11232c130954bab89b95b\"]"
       }
     },
     {
@@ -301,7 +347,7 @@
       },
       "contractInputsValues": {
         "spender": "0x4da51947FE2E4D59A137a78ced3B740F5E230f92",
-        "amount": "723717076935926467"
+        "amount": "804130085484362742"
       }
     },
     {
@@ -320,7 +366,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "723717076935926467"
+        "amount": "804130085484362742"
       }
     },
     {
@@ -344,7 +390,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "723717076935926467",
+        "amount": "804130085484362742",
         "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd"
       }
     },
@@ -406,7 +452,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x4da51947FE2E4D59A137a78ced3B740F5E230f92\", \"723717076935926467\", 4, 1768999409, 3600, \"0xfd421871dd2caaf529601b84f786acb8fbb207c6fadbb954c2e11bee76de5c08\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x4da51947FE2E4D59A137a78ced3B740F5E230f92\", \"804130085484362742\", 4, 1769586965, 3600, \"0x4d8eb4d4942a548cd658b5a39b1f541a071a467a004d4445d599f864437480c5\"]"
       }
     },
     {
@@ -536,7 +582,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x84394FA6A39bDFF63B255622dA362B113C690267\", \"94687387575773119199\", 4, 1768999409, 3600, \"0x4dabdb3073ed8f2ca78ff84fd94e71eb09a14cea7c09698e90109ccbde98a258\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x84394FA6A39bDFF63B255622dA362B113C690267\", \"94687387575773119199\", 4, 1769586965, 3600, \"0x63917496cf17fe8a43859e4d4b4dfc7d65016525424e83ef256adc7a99842959\"]"
       }
     },
     {
@@ -666,7 +712,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x8942C1e1e0D48E14EFBa4cc48d2E3584116e367f\", \"5954870588985666348\", 4, 1768999409, 3600, \"0xc7e3521eca4a77f748e1549709029e85c47026b3d3d6debf6c590be23fc71cae\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0x8942C1e1e0D48E14EFBa4cc48d2E3584116e367f\", \"5954870588985666348\", 4, 1769586965, 3600, \"0xa41a557501e0794dc5793b630cc612d3d86a2fd9dc31d3e52b5e7f296f83e92c\"]"
       }
     },
     {
@@ -691,7 +737,7 @@
       },
       "contractInputsValues": {
         "spender": "0xb0334C5287Bfb15A8C9464898CDB0248ED176332",
-        "amount": "569880479267997528609"
+        "amount": "620917430844607863704"
       }
     },
     {
@@ -710,7 +756,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "569880479267997528609"
+        "amount": "620917430844607863704"
       }
     },
     {
@@ -734,7 +780,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "amount": "569880479267997528609",
+        "amount": "620917430844607863704",
         "spender": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd"
       }
     },
@@ -796,7 +842,7 @@
         "payable": false
       },
       "contractInputsValues": {
-        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0xb0334C5287Bfb15A8C9464898CDB0248ED176332\", \"569880479267997528609\", 4, 1768999409, 3600, \"0xf695703544ebd963678eea7b5423a98698bfedee3aaca3ef17665de3529d8661\"]"
+        "newCampaign": "[\"0x0000000000000000000000000000000000000000000000000000000000000000\", \"0x0000000000000000000000000000000000000000\", \"0xb0334C5287Bfb15A8C9464898CDB0248ED176332\", \"620917430844607863704\", 4, 1769586965, 3600, \"0x1ef90a087f506461c2dfecf8f39c9f733f5429168cfb0bcfe3dd16b67842e327\"]"
       }
     }
   ]
