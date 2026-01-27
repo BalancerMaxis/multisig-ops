@@ -259,6 +259,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     generates a tenderly simulation
     returns the url and if it was successful or not
     """
+    # ensure safe_addr is checksummed
+    safe_addr = to_checksum_address(safe_addr)
+
     # build urls
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
@@ -376,7 +379,7 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
     txs = [
-        MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
+        MultiSendTx(MultiSendOperation.CALL, to_checksum_address(tx["to"]), int(tx["value"]), tx["data"])
         for tx in transactions
     ]
     data = MultiSend(EthereumClient(web3.provider.endpoint_uri)).build_tx_data(txs)
