@@ -283,9 +283,48 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
             # Store original parse function
             original_parse_func = decoder_module.parse_input_value
 
+            # Helper function to parse a single tuple according to its components
+            def parse_tuple_value(parsed_array, components):
+                """Parse a tuple array into properly typed tuple."""
+                result = []
+                for i, comp in enumerate(components):
+                    val = parsed_array[i] if i < len(parsed_array) else ""
+                    comp_type = comp["type"]
+                    # Handle array types
+                    if comp_type.endswith("[]"):
+                        base_type = comp_type[:-2]
+                        if base_type == "address":
+                            result.append([to_checksum_address(v) for v in val])
+                        elif "int" in base_type:
+                            result.append([int(v) for v in val])
+                        else:
+                            result.append(val)
+                    # Handle scalar types
+                    elif comp_type.startswith("bytes"):
+                        result.append(HexBytes(val))
+                    elif comp_type == "address":
+                        result.append(to_checksum_address(val))
+                    elif "int" in comp_type:
+                        result.append(int(val))
+                    elif comp_type == "bool":
+                        result.append(
+                            val if isinstance(val, bool) else val.lower() == "true"
+                        )
+                    else:
+                        result.append(val)
+                return tuple(result)
+
             # Monkey-patch to handle Safe's JSON format with quoted array elements
             def enhanced_parse_input_value(field_type, value):
                 """Convert Safe's JSON arrays (with quotes) to safe_cli format (without quotes)."""
+                # Handle tuple[] (array of tuples) - works with both string and native array values
+                if field_type == "tuple[]":
+                    for input_spec in tx["contractMethod"]["inputs"]:
+                        if input_spec["type"] == "tuple[]":
+                            parsed = json.loads(value) if isinstance(value, str) else value
+                            components = input_spec.get("components", [])
+                            return [parse_tuple_value(item, components) for item in parsed]
+
                 if not isinstance(value, str):
                     return original_parse_func(field_type, value)
 
@@ -318,39 +357,10 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                 # Tuples: Need type-aware parsing
                 if field_type == "tuple":
                     for input_spec in tx["contractMethod"]["inputs"]:
-                        if input_spec["type"] == field_type:
+                        if input_spec["type"] == "tuple":
                             parsed = json.loads(value)
-                            result = []
-                            for i, comp in enumerate(input_spec.get("components", [])):
-                                val = parsed[i] if i < len(parsed) else ""
-                                comp_type = comp["type"]
-                                # Handle array types
-                                if comp_type.endswith("[]"):
-                                    base_type = comp_type[:-2]
-                                    if base_type == "address":
-                                        result.append(
-                                            [to_checksum_address(v) for v in val]
-                                        )
-                                    elif "int" in base_type:
-                                        result.append([int(v) for v in val])
-                                    else:
-                                        result.append(val)
-                                # Handle scalar types
-                                elif comp_type.startswith("bytes"):
-                                    result.append(HexBytes(val))
-                                elif comp_type == "address":
-                                    result.append(to_checksum_address(val))
-                                elif "int" in comp_type:
-                                    result.append(int(val))
-                                elif comp_type == "bool":
-                                    result.append(
-                                        val
-                                        if isinstance(val, bool)
-                                        else val.lower() == "true"
-                                    )
-                                else:
-                                    result.append(val)
-                            return tuple(result)
+                            components = input_spec.get("components", [])
+                            return parse_tuple_value(parsed, components)
 
                 return original_parse_func(field_type, value)
 
