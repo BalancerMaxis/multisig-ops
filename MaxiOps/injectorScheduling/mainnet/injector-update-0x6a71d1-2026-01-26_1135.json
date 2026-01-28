@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "chainId": "1",
-  "createdAt": 1769445335,
+  "createdAt": 1769616417,
   "meta": {
     "name": "Rewards Injector Configuration Update",
     "description": "Update rewards injector configurations",
@@ -24,7 +24,11 @@
             "type": "uint256",
             "internalType": "uint256"
           },
-          { "name": "maxPeriods", "type": "uint8", "internalType": "uint8" },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
           {
             "name": "doNotStartBeforeTimestamp",
             "type": "uint56",
@@ -39,25 +43,6 @@
         "amountPerPeriod": "3000000000",
         "maxPeriods": "1",
         "doNotStartBeforeTimestamp": "0"
-      }
-    },
-    {
-      "to": "0x6a71d17E50A67C54eae393323a8594cFdBb23F01",
-      "value": "0",
-      "data": null,
-      "contractMethod": {
-        "inputs": [
-          {
-            "name": "recipients",
-            "type": "address[]",
-            "internalType": "address[]"
-          }
-        ],
-        "name": "removeRecipients",
-        "payable": false
-      },
-      "contractInputsValues": {
-        "recipients": "[0x62A66eB9aBf7a788F48D0ce7C0C065df9e09dA19]"
       }
     }
   ]
