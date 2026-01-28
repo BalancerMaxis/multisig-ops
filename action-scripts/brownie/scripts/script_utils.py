@@ -19,6 +19,7 @@ from hexbytes import HexBytes
 from prettytable import MARKDOWN, PrettyTable
 from safe_cli.tx_builder.tx_builder_file_decoder import (
     encode_contract_method_to_hex_data,
+    _parse_types_to_encoding_types,
 )
 import safe_cli.tx_builder.tx_builder_file_decoder as decoder_module
 from safe_eth.eth import EthereumClient
@@ -280,8 +281,31 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                 address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
             )
 
-            # Store original parse function
+            # Store original functions
             original_parse_func = decoder_module.parse_input_value
+            original_parse_types_func = decoder_module._parse_types_to_encoding_types
+
+            # Fix for safe_cli bug: _parse_types_to_encoding_types doesn't handle tuple[] correctly
+            def fixed_parse_types_to_encoding_types(contract_fields):
+                """Fixed version that correctly handles tuple[] types."""
+                types = []
+                for field in contract_fields:
+                    field_type = field["type"]
+                    if field_type.startswith("tuple"):
+                        component_types = ",".join(
+                            component["type"] for component in field["components"]
+                        )
+                        # Preserve array suffix (e.g., "[]" for tuple[])
+                        suffix = field_type[5:]  # Everything after "tuple"
+                        types.append(f"({component_types}){suffix}")
+                    else:
+                        types.append(field_type)
+                return types
+
+            # Monkey-patch the type parser
+            decoder_module._parse_types_to_encoding_types = (
+                fixed_parse_types_to_encoding_types
+            )
 
             # Monkey-patch to handle Safe's JSON format with quoted array elements
             def enhanced_parse_input_value(field_type, value):
@@ -373,8 +397,11 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         fn_name=tx["contractMethod"]["name"], args=[]
                     )
             finally:
-                # Restore original function
+                # Restore original functions
                 decoder_module.parse_input_value = original_parse_func
+                decoder_module._parse_types_to_encoding_types = (
+                    original_parse_types_func
+                )
 
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
