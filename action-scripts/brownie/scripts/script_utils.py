@@ -393,7 +393,12 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
     txs = [
-        MultiSendTx(MultiSendOperation.CALL, to_checksum_address(tx["to"]), int(tx["value"]), tx["data"])
+        MultiSendTx(
+            MultiSendOperation.CALL,
+            to_checksum_address(tx["to"]),
+            int(tx["value"]),
+            tx["data"],
+        )
         for tx in transactions
     ]
     data = MultiSend(EthereumClient(web3.provider.endpoint_uri)).build_tx_data(txs)
