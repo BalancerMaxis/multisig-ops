@@ -1,14 +1,25 @@
-FILENAME: `BIPs/2026-W6/BIP-906-Mainnet.json`
-MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+FILENAME: `BIPs/2026-W6/BIP-906-zkEVM.json`
+MULTISIG: `multisigs/dao (zkevm:0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa)`
 COMMIT: `a267feedf753dc9e244037e804fc3d7e53b1c936`
-CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/36196dd2-f90f-47f6-a284-d860826283e5)
+CHAIN(S): `zkevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '6a3501d4-4b4d-4868-9553-a7fe0fcc2a54', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
 
 ```
 +-----------+------------------------------------------------------------+-------+--------------------------------------------------------------------------------+------------+----------+
 | fx_name   | to                                                         | value | inputs                                                                         | bip_number | tx_index |
 +-----------+------------------------------------------------------------+-------+--------------------------------------------------------------------------------+------------+----------+
-| swapOwner | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
+| swapOwner | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                               |            |          |
+|           |                                                            |       |     "0x0000000000000000000000000000000000000001 (N/A)"                         |            |          |
+|           |                                                            |       |   ],                                                                           |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                |            |          |
+|           |                                                            |       |     "0xcf4fF1e03830D692F52EB094c52A5A6A2181Ab3F (EOA/emeritus/tritium_signer)" |            |          |
+|           |                                                            |       |   ],                                                                           |            |          |
+|           |                                                            |       |   "newOwner": [                                                                |            |          |
+|           |                                                            |       |     "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8 (EOA/emergency/mikeb)"         |            |          |
+|           |                                                            |       |   ]                                                                            |            |          |
+|           |                                                            |       | }                                                                              |            |          |
+| swapOwner | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
 |           |                                                            |       |   "prevOwner": [                                                               |            |          |
 |           |                                                            |       |     "0xA39a62304d8d43B35114ad7bd1258B0E50e139b3 (EOA/dao/eboadom)"             |            |          |
 |           |                                                            |       |   ],                                                                           |            |          |
@@ -19,7 +30,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/36196dd2-f90f-4
 |           |                                                            |       |     "0x6578183A203b41C419b93DF9121b5e3b26561aC5 (EOA/dao_backup/elbagococina)" |            |          |
 |           |                                                            |       |   ]                                                                            |            |          |
 |           |                                                            |       | }                                                                              |            |          |
-| swapOwner | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
+| swapOwner | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
 |           |                                                            |       |   "prevOwner": [                                                               |            |          |
 |           |                                                            |       |     "0x6578183A203b41C419b93DF9121b5e3b26561aC5 (EOA/dao_backup/elbagococina)" |            |          |
 |           |                                                            |       |   ],                                                                           |            |          |
@@ -30,18 +41,7 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/36196dd2-f90f-4
 |           |                                                            |       |     "0x235f00a6e9416b114780f0b97afcb40f623f65b4 (N/A)"                         |            |          |
 |           |                                                            |       |   ]                                                                            |            |          |
 |           |                                                            |       | }                                                                              |            |          |
-| swapOwner | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
-|           |                                                            |       |   "prevOwner": [                                                               |            |          |
-|           |                                                            |       |     "0x235f00a6e9416b114780f0b97afcb40f623f65b4 (N/A)"                         |            |          |
-|           |                                                            |       |   ],                                                                           |            |          |
-|           |                                                            |       |   "oldOwner": [                                                                |            |          |
-|           |                                                            |       |     "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29 (EOA/dao_backup/lewis)"        |            |          |
-|           |                                                            |       |   ],                                                                           |            |          |
-|           |                                                            |       |   "newOwner": [                                                                |            |          |
-|           |                                                            |       |     "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8 (EOA/emergency/mikeb)"         |            |          |
-|           |                                                            |       |   ]                                                                            |            |          |
-|           |                                                            |       | }                                                                              |            |          |
-| swapOwner | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
+| swapOwner | 0x2f237e7643a3bF6Ef265dd6FCBcd26a7Cc38dbAa (multisigs/dao) | 0     | {                                                                              | BIP-906    |   N/A    |
 |           |                                                            |       |   "prevOwner": [                                                               |            |          |
 |           |                                                            |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/maxis/gosuto)"            |            |          |
 |           |                                                            |       |   ],                                                                           |            |          |
