@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1769678794607,
+  "meta": {
+    "name": "Mint osGNO from StakeWise Vaults",
+    "description": "Harvest rewards and mint osGNO from 3 StakeWise vaults. Total: ~7,978 osGNO",
+    "txBuilderVersion": "1.18.2",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+    "createdFromOwnerAddress": "",
+    "checksum": ""
+  },
+  "transactions": [
+    {
+      "to": "0x00025C729A3364FaEf02c7D1F577068d87E90ba6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes[]",
+            "name": "data",
+            "type": "bytes[]"
+          }
+        ],
+        "name": "multicall",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "data": "[\"0x1a7ff553000000000000000000000000000000000000000000000000000000000000002092d6381a1f741210ce0bf3ea22cd381e750690f13bc31da9ac389fa76e8b730600000000000000000000000000000000000000000000004f6c3dcc467ccd48700000000000000000000000000000000000000000000001005d0084cdf5003fd400000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000006b8d972774a16a1d1b84d43ded6cd7b95e3b0acffe9fe41530ac27f886bdebea4a53164a4740a7f61079070c3b71086069adfda47b2ddfa32694fdc6126b7b348e02c28a920c9d7fce2529a0be59ba5d87b3e24b2a41891815d16044b1da8f19d2d2d9e8eee1aab46ae41ad4cd37af0b9f13c2c135565d63fe954bc1dada28b19a4826689a05444a81a8848f9fb2e167b001bed4a108785a0ea1f5aa6122981466e7db69e3b38ced5ae8e231527466fae70efe05d2c976e05ddc9103ed93df925\",\"0x201b9eb50000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc8900000000000000000000000000000000000000000000009108e771e13e47fb480000000000000000000000000000000000000000000000000000000000000000\"]"
+      }
+    },
+    {
+      "to": "0x2Cd404D9d75436e7d6dDbCcc2fB9cF7C06941BF1",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes[]",
+            "name": "data",
+            "type": "bytes[]"
+          }
+        ],
+        "name": "multicall",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "data": "[\"0x1a7ff553000000000000000000000000000000000000000000000000000000000000002092d6381a1f741210ce0bf3ea22cd381e750690f13bc31da9ac389fa76e8b730600000000000000000000000000000000000000000000004618aa836e03fd0590000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000006ad1fce742d62552ac64446fcf205404ef90fccba8fe4d6cbdce386ae082717ac54ea9ee65703b518f1f41437c42cd84da62c302b3c03e8c88767a1514d8d7b2886b37aea5c947701767bd61e344ad25dc08229f14760b55e8de077c2e0b684ff2d2d9e8eee1aab46ae41ad4cd37af0b9f13c2c135565d63fe954bc1dada28b19a4826689a05444a81a8848f9fb2e167b001bed4a108785a0ea1f5aa6122981466e7db69e3b38ced5ae8e231527466fae70efe05d2c976e05ddc9103ed93df925\",\"0x201b9eb50000000000000000000000000efccbb9e2c09ea29551879bd9da32362b32fc8900000000000000000000000000000000000000000000008fd5474d2e48e87e4f0000000000000000000000000000000000000000000000000000000000000000\"]"
+      }
+    },
+    {
+      "to": "0x4b4406Ed8659D03423490D8b62a1639206dA0A7a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "receiver",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "osTokenShares",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "referrer",
+            "type": "address"
+          }
+        ],
+        "name": "mintOsToken",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "receiver": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89",
+        "osTokenShares": "2649620355025562238976",
+        "referrer": "0x0000000000000000000000000000000000000000"
+      }
+    }
+  ]
+}
