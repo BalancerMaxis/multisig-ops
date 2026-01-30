@@ -64,7 +64,24 @@
       },
       "contractInputsValues": {
         "to": "0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e",
-        "value": "11518000100"
+        "value": "9358000100"
+      }
+    },
+    {
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "address", "name": "to", "type": "address" },
+          { "internalType": "uint256", "name": "value", "type": "uint256" }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xb867EA3bBC909954d737019FEf5AB25dFDb38CB9",
+        "value": "2160000000"
       }
     }
   ]
