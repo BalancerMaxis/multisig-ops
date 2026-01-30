@@ -1,8 +1,21 @@
 FILENAME: `MaxiOps/injector_cleanup/op-cleanup-usdc.json`
 MULTISIG: `multisigs/omni (optimism:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `6f6bf82bcb93e6de213f5b54e524668aaa5eedd7`
+COMMIT: `bc97f533cd3c188dfd0e3096779df494976b51cb`
 CHAIN(S): `optimism`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ce77ea01-175e-4342-a197-983c53ec5fe0)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/08454525-392d-4777-a995-396798b47c9f)
+
+```
++----------+-------------------------------------------------+----------------------------------------------------------------------+--------------------------+-----+----------+
+| function | token_symbol                                    | recipient                                                            | amount                   | bip | tx_index |
++----------+-------------------------------------------------+----------------------------------------------------------------------+--------------------------+-----+----------+
+| transfer | USDC:0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85 | multisigs/balancer_bizdev:0xF3B4829C8B9E2910C2396538F49a12b0c2475a7e | 2160.0 (RAW: 2160000000) | N/A |    1     |
++----------+-------------------------------------------------+----------------------------------------------------------------------+--------------------------+-----+----------+
+```
+FILENAME: `MaxiOps/injector_cleanup/op-cleanup-usdc.json`
+MULTISIG: `multisigs/omni (optimism:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `bc97f533cd3c188dfd0e3096779df494976b51cb`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/08454525-392d-4777-a995-396798b47c9f)
 
 ```
 +---------+-------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
