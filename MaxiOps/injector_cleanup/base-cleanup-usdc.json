@@ -16,11 +16,15 @@
       "value": "0",
       "data": null,
       "contractMethod": {
-        "inputs": [{ "internalType": "address", "name": "token", "type": "address" }],
+        "inputs": [
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
         "name": "sweep",
         "payable": false
       },
-      "contractInputsValues": { "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" }
+      "contractInputsValues": {
+        "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+      }
     },
     {
       "to": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
