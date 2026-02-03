@@ -1,8 +1,8 @@
 FILENAME: `BIPs/2026-W6/BIP-879-xlayer-operations-permissions.json`
 MULTISIG: `multisigs/omni (xlayer:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `065770fda9e38138b30a6aa52b03261c580fb68d`
+COMMIT: `a697e985718a346cf76c32a7b5f90dafd0e5553e`
 CHAIN(S): `xlayer`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b4516bb5-9cb4-4180-a9fd-a26885f47557)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/603ae789-959a-4480-bbf2-b9144d36b962)
 
 ```
 +-----------------------+----------------+--------------------------------------------+--------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
@@ -25,8 +25,8 @@ TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b4516bb5-9cb4-4
 |                       |                |                                            | 20241204-v3-vault/ProtocolFeeController/setGlobalProtocolYieldFeePercentage(uint256)                               | 0x3fef70c8097cce35392087a74737d4861f412ec73028383037541fcc8ce240aa |         |          |
 |                       |                |                                            | 20241204-v3-vault/ProtocolFeeController/setProtocolSwapFeePercentage(address,uint256)                              | 0x9b50ab496733616199be03f9adb07dedbc053ee47e3f069d57a7b1db51480332 |         |          |
 |                       |                |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setProtocolSwapFeePercentage(address,uint256)         | 0xd8f952fca9feeca8075fa8cf14298353b4b424103a602b3879b031c57cf6def7 |         |          |
-|                       |                |                                            | 20241204-v3-vault/ProtocolFeeController/setProtocolYieldFeePercentage(address,uint256)                             | 0xcb67747e87617a574b45f116c85656fdd1ec33f5b37cbbe56e3d07dab6cf0989 |         |          |
-|                       |                |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setProtocolYieldFeePercentage(address,uint256)        | 0x8ea358190ab437699c382c6e6d219d573766920863f34086eda01ac5e1ad1e17 |         |          |
+|                       |                |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setProtocolYieldFeePercentage(address,uint256)        | 0xcb67747e87617a574b45f116c85656fdd1ec33f5b37cbbe56e3d07dab6cf0989 |         |          |
+|                       |                |                                            | 20241204-v3-vault/ProtocolFeeController/setProtocolYieldFeePercentage(address,uint256)                             | 0x8ea358190ab437699c382c6e6d219d573766920863f34086eda01ac5e1ad1e17 |         |          |
 |                       |                |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFees(address,address)                                      | 0x65c0f5b2dc2956f9b1c68d579539b6b0777d5415f1373bc6ca4578a89108f548 |         |          |
 |                       |                |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/withdrawProtocolFees(address,address)                 | 0x77f96b5880ac147fe5826f3c60b6090b10e7163aa3adad25e69c16633c6cfcff |         |          |
 |                       |                |                                            | 20241204-v3-vault/ProtocolFeeController/withdrawProtocolFeesForToken(address,address,address)                      | 0x577f70665665ab4af0365acf2028d65a657bca7694a6f2ebfaa496240619b05b |         |          |
