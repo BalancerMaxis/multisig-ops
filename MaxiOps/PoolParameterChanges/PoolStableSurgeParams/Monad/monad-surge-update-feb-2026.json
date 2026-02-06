@@ -1,0 +1,162 @@
+{
+  "version": "1.0",
+  "chainId": "143",
+  "createdAt": 1770299295835,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set surge threshold to 40% and max surge fee to 9% for pool 0xbf30cbdea179330683b4865ab7348ca8e05b9c6e",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x6817149cb753bf529565b4d023d7507ed2ff4bc0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newMaxSurgeSurgeFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMaxSurgeFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xbf30cbdea179330683b4865ab7348ca8e05b9c6e",
+        "newMaxSurgeSurgeFeePercentage": "90000000000000000"
+      }
+    },
+    {
+      "to": "0x6817149cb753bf529565b4d023d7507ed2ff4bc0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newSurgeThresholdPercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSurgeThresholdPercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xbf30cbdea179330683b4865ab7348ca8e05b9c6e",
+        "newSurgeThresholdPercentage": "400000000000000000"
+      }
+    },
+    {
+      "to": "0x6817149cb753bf529565b4d023d7507ed2ff4bc0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newMaxSurgeSurgeFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMaxSurgeFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x30ac51001ddc10d7cada5aa4d695a6f89057a40a",
+        "newMaxSurgeSurgeFeePercentage": "90000000000000000"
+      }
+    },
+    {
+      "to": "0x6817149cb753bf529565b4d023d7507ed2ff4bc0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newSurgeThresholdPercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSurgeThresholdPercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x30ac51001ddc10d7cada5aa4d695a6f89057a40a",
+        "newSurgeThresholdPercentage": "400000000000000000"
+      }
+    },
+    {
+      "to": "0x6817149cb753bf529565b4d023d7507ed2ff4bc0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newMaxSurgeSurgeFeePercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMaxSurgeFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x173ef24a525edbb93bf39674a2ddec87b4b426bd",
+        "newMaxSurgeSurgeFeePercentage": "90000000000000000"
+      }
+    },
+    {
+      "to": "0x6817149cb753bf529565b4d023d7507ed2ff4bc0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newSurgeThresholdPercentage",
+            "type": "uint256"
+          }
+        ],
+        "name": "setSurgeThresholdPercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x173ef24a525edbb93bf39674a2ddec87b4b426bd",
+        "newSurgeThresholdPercentage": "400000000000000000"
+      }
+    }
+  ]
+}
