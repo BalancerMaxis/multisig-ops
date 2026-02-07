@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1733324400000,
+  "meta": {
+    "name": "BIP-854: veBoost V2.1 Delegation Upgrade",
+    "description": "Set new veBoost delegation contract (v2.1) with hardcoded operators for tetuBAL and sdBAL lockers",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x6f5a2eE11E7a772AeB5114A20d0D7c0ff61EB8A0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IVeDelegation",
+            "name": "delegation",
+            "type": "address"
+          }
+        ],
+        "name": "setDelegation",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegation": "0x2cf8e145Bdfe7c52b49AD9bB3c294a31B2736c59"
+      }
+    }
+  ]
+}

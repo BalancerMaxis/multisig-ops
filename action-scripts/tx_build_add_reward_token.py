@@ -4,7 +4,6 @@ from web3 import Web3
 import time
 from bal_addresses import AddrBook, is_address, to_checksum_address
 
-
 DRPC_KEY = os.getenv("DRPC_KEY")
 
 ## TODO refactor this script to use python native pathing and be less sensitive about where it is run from

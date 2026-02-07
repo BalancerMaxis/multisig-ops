@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1764750787,
+  "meta": {
+    "name": "Transactions Batch",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0xa7d524046ef89de9F8e4f2d7B029f66cCB738d48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "pool", "type": "address", "internalType": "address" },
+          {
+            "name": "newProtocolSwapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setProtocolSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xa50085ff1dfa173378e7d26a76117d68d5eba539",
+        "newProtocolSwapFeePercentage": "250000000000000000"
+      }
+    },
+    {
+      "to": "0xa7d524046ef89de9F8e4f2d7B029f66cCB738d48",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "pool", "type": "address", "internalType": "address" },
+          {
+            "name": "newProtocolSwapFeePercentage",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "name": "setProtocolSwapFeePercentage",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x70b3b56773ace43fe86ee1d80cbe03176cbe4c09",
+        "newProtocolSwapFeePercentage": "250000000000000000"
+      }
+    }
+  ]
+}

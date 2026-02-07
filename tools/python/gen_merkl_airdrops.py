@@ -16,7 +16,6 @@ from web3 import Web3, exceptions
 from bal_addresses.addresses import ZERO_ADDRESS, to_checksum_address
 from bal_tools import Subgraph, BalPoolsGauges
 
-
 WATCHLIST = json.load(open("tools/python/gen_merkl_airdrops_watchlist.json"))
 BALANCER_VAULT_V3 = "0xbA1333333333a1BA1108E8412f11850A5C319bA9"
 OMNI_MSIG = "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"  # Omni multisig address for Merit campaigns
@@ -154,9 +153,6 @@ def get_block_from_timestamp(ts, chain_id=None):
             break
 
     # Fallback to Etherscan API v2 (omnichain)
-    import os
-    import requests
-
     api_key = os.getenv("ETHERSCAN_API_KEY")
     if not api_key:
         raise ValueError("ETHERSCAN_API_KEY not set, cannot use fallback")
@@ -642,7 +638,8 @@ if __name__ == "__main__":
                         1758109763,  # 23382608, round 21
                         1759317527,  # 23482608, round 22
                         1760525435,  # 23582608, round 23
-                        "23682608",  # 23682608, round 24
+                        1761735515,  # 23682608, round 24
+                        "ended",
                     ]
                 elif chain == "8453":
                     # Base chain epochs from base-supply-usdc, base-supply-gho, base-supply-eth-borrow-multiple campaigns

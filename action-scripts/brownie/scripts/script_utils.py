@@ -19,6 +19,7 @@ from hexbytes import HexBytes
 from prettytable import MARKDOWN, PrettyTable
 from safe_cli.tx_builder.tx_builder_file_decoder import (
     encode_contract_method_to_hex_data,
+    _parse_types_to_encoding_types,
 )
 import safe_cli.tx_builder.tx_builder_file_decoder as decoder_module
 from safe_eth.eth import EthereumClient
@@ -109,7 +110,9 @@ def get_changed_files() -> list[dict]:
             if "4269-W69" not in file_json["filename"]:
                 continue
         filename = file_json["filename"]
-        if ("BIPs/" or "MaxiOps/" in filename) and (filename.endswith(".json")):
+        if (
+            "BIPs/" in filename or "MaxiOps/" in filename or "TreasuryOps/" in filename
+        ) and filename.endswith(".json"):
             # Check if file exists first
             try:
                 r = _session.get(
@@ -159,7 +162,7 @@ def get_pool_info(
     except:
         vault_v3 = None
     try:
-        (a_factor, ramp, divisor) = pool.getAmplificationParameter()
+        a_factor, ramp, divisor = pool.getAmplificationParameter()
         a_factor = int(a_factor / divisor)
         if not isinstance(a_factor, int):
             a_factor = NA
@@ -257,6 +260,9 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
     generates a tenderly simulation
     returns the url and if it was successful or not
     """
+    # ensure safe_addr is checksummed
+    safe_addr = to_checksum_address(safe_addr)
+
     # build urls
     user = os.getenv("TENDERLY_ACCOUNT_NAME")
     project = os.getenv("TENDERLY_PROJECT_NAME")
@@ -275,12 +281,78 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                 address=to_checksum_address(tx["to"]), abi=[tx["contractMethod"]]
             )
 
-            # Store original parse function
+            # Store original functions
             original_parse_func = decoder_module.parse_input_value
+            original_parse_types_func = decoder_module._parse_types_to_encoding_types
+
+            # Fix for safe_cli bug: _parse_types_to_encoding_types doesn't handle tuple[] correctly
+            def fixed_parse_types_to_encoding_types(contract_fields):
+                """Fixed version that correctly handles tuple[] types."""
+                types = []
+                for field in contract_fields:
+                    field_type = field["type"]
+                    if field_type.startswith("tuple"):
+                        component_types = ",".join(
+                            component["type"] for component in field["components"]
+                        )
+                        # Preserve array suffix (e.g., "[]" for tuple[])
+                        suffix = field_type[5:]  # Everything after "tuple"
+                        types.append(f"({component_types}){suffix}")
+                    else:
+                        types.append(field_type)
+                return types
+
+            # Monkey-patch the type parser
+            decoder_module._parse_types_to_encoding_types = (
+                fixed_parse_types_to_encoding_types
+            )
+
+            # Helper function to parse a single tuple according to its components
+            def parse_tuple_value(parsed_array, components):
+                """Parse a tuple array into properly typed tuple."""
+                result = []
+                for i, comp in enumerate(components):
+                    val = parsed_array[i] if i < len(parsed_array) else ""
+                    comp_type = comp["type"]
+                    # Handle array types
+                    if comp_type.endswith("[]"):
+                        base_type = comp_type[:-2]
+                        if base_type == "address":
+                            result.append([to_checksum_address(v) for v in val])
+                        elif "int" in base_type:
+                            result.append([int(v) for v in val])
+                        else:
+                            result.append(val)
+                    # Handle scalar types
+                    elif comp_type.startswith("bytes"):
+                        result.append(HexBytes(val))
+                    elif comp_type == "address":
+                        result.append(to_checksum_address(val))
+                    elif "int" in comp_type:
+                        result.append(int(val))
+                    elif comp_type == "bool":
+                        result.append(
+                            val if isinstance(val, bool) else str(val).lower() == "true"
+                        )
+                    else:
+                        result.append(val)
+                return tuple(result)
 
             # Monkey-patch to handle Safe's JSON format with quoted array elements
             def enhanced_parse_input_value(field_type, value):
                 """Convert Safe's JSON arrays (with quotes) to safe_cli format (without quotes)."""
+                # Handle tuple[] (array of tuples) - must check before generic array handling
+                if field_type == "tuple[]":
+                    for input_spec in tx["contractMethod"]["inputs"]:
+                        if input_spec["type"] == "tuple[]":
+                            parsed = (
+                                json.loads(value) if isinstance(value, str) else value
+                            )
+                            components = input_spec.get("components", [])
+                            return [
+                                parse_tuple_value(item, components) for item in parsed
+                            ]
+
                 if not isinstance(value, str):
                     return original_parse_func(field_type, value)
 
@@ -318,13 +390,31 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                             result = []
                             for i, comp in enumerate(input_spec.get("components", [])):
                                 val = parsed[i] if i < len(parsed) else ""
-                                # Convert based on component type
-                                if comp["type"].startswith("bytes"):
+                                comp_type = comp["type"]
+                                # Handle array types
+                                if comp_type.endswith("[]"):
+                                    base_type = comp_type[:-2]
+                                    if base_type == "address":
+                                        result.append(
+                                            [to_checksum_address(v) for v in val]
+                                        )
+                                    elif "int" in base_type:
+                                        result.append([int(v) for v in val])
+                                    else:
+                                        result.append(val)
+                                # Handle scalar types
+                                elif comp_type.startswith("bytes"):
                                     result.append(HexBytes(val))
-                                elif comp["type"] == "address":
+                                elif comp_type == "address":
                                     result.append(to_checksum_address(val))
-                                elif "int" in comp["type"]:
+                                elif "int" in comp_type:
                                     result.append(int(val))
+                                elif comp_type == "bool":
+                                    result.append(
+                                        val
+                                        if isinstance(val, bool)
+                                        else val.lower() == "true"
+                                    )
                                 else:
                                     result.append(val)
                             return tuple(result)
@@ -350,13 +440,21 @@ def run_tenderly_sim(network_id: str, safe_addr: str, transactions: list[dict]):
                         fn_name=tx["contractMethod"]["name"], args=[]
                     )
             finally:
-                # Restore original function
+                # Restore original functions
                 decoder_module.parse_input_value = original_parse_func
+                decoder_module._parse_types_to_encoding_types = (
+                    original_parse_types_func
+                )
 
     # build multicall data
     multisend_call_only = MultiSend.MULTISEND_CALL_ONLY_ADDRESSES[0]
     txs = [
-        MultiSendTx(MultiSendOperation.CALL, tx["to"], int(tx["value"]), tx["data"])
+        MultiSendTx(
+            MultiSendOperation.CALL,
+            to_checksum_address(tx["to"]),
+            int(tx["value"]),
+            tx["data"],
+        )
         for tx in transactions
     ]
     data = MultiSend(EthereumClient(web3.provider.endpoint_uri)).build_tx_data(txs)

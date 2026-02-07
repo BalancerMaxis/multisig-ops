@@ -16,7 +16,6 @@ from web3 import Web3
 sys.path.append(str(Path(__file__).parent.parent))
 from helpers.path_utils import find_project_root
 
-
 load_dotenv()
 
 
@@ -115,7 +114,7 @@ def claim_paladin_bribes(chain_name: str, chain_id: int, csv_path: str) -> None:
                 claim["index"],
                 claim["user"],
                 claim["amount"],
-                claim["proofs"],
+                json.dumps(claim["proofs"]),
             )
 
             token_contract = w3.eth.contract(
@@ -313,7 +312,7 @@ if __name__ == "__main__":
         csv_path = create_claims_csv(chain_name, date_dir)
 
         claim_paladin_bribes(chain_name, chain_id, csv_path)
-        claim_hidden_hand_bribes(chain_name, csv_path)
+        # claim_hidden_hand_bribes(chain_name, csv_path)
 
         generate_tokens_to_sell_csv(csv_path, chain_name, date_dir)
 

@@ -1,0 +1,52 @@
+{
+  "domain": {
+    "name": "snapshot",
+    "version": "0.1.4"
+  },
+  "types": {
+    "Vote": [
+      {
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "name": "space",
+        "type": "string"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint64"
+      },
+      {
+        "name": "proposal",
+        "type": "bytes32"
+      },
+      {
+        "name": "choice",
+        "type": "string"
+      },
+      {
+        "name": "reason",
+        "type": "string"
+      },
+      {
+        "name": "app",
+        "type": "string"
+      },
+      {
+        "name": "metadata",
+        "type": "string"
+      }
+    ]
+  },
+  "message": {
+    "space": "gauges.aurafinance.eth",
+    "proposal": "0x9e5efc1fe7b0af6d4ac2387b8d57938ff772addc48614437db0f73d1349f8e1b",
+    "choice": "{\"43\":5.0,\"155\":5.0,\"149\":5.0,\"94\":3.0,\"39\":10.0,\"38\":2.0,\"99\":2.0,\"24\":2.0,\"91\":3.0,\"146\":3.0,\"51\":0.0,\"60\":30.0,\"61\":30.0}",
+    "app": "snapshot",
+    "reason": "On behalf of Balancer DAO",
+    "metadata": "{}",
+    "from": "0xBeF27037bC6311b96635E5e9Af3A73EBF6Ca8878",
+    "timestamp": 1768573653
+  }
+}

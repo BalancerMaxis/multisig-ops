@@ -1,0 +1,56 @@
+FILENAME: `BIPs/2026-W6/BIP-907-Base.json`
+MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
+COMMIT: `ee5843f9bf44dc3672903764dfc345834a49c895`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6d3b7aca-340d-4cf5-a851-1fbec4b2703f)
+
+```
++-----------+------------------------------------------------------------+-------+------------------------------------------------------------------------------------------+------------+----------+
+| fx_name   | to                                                         | value | inputs                                                                                   | bip_number | tx_index |
++-----------+------------------------------------------------------------+-------+------------------------------------------------------------------------------------------+------------+----------+
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0x0000000000000000000000000000000000000001 (N/A)"                                   |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29 (EOA/emeritus/lewis_dao_signer)"         |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8 (EOA/dao/mikeb)"                         |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0xA39a62304d8d43B35114ad7bd1258B0E50e139b3 (EOA/dao/eboadom)"                       |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x59693BA1A5764e087CE166ac0E0085Fc071B9ea7 (EOA/emeritus/0xSausageDoge_dao_signer)" |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x6578183A203b41C419b93DF9121b5e3b26561aC5 (EOA/dao/elbagococina)"                  |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0x6578183A203b41C419b93DF9121b5e3b26561aC5 (EOA/dao/elbagococina)"                  |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x3ABDc84Dd15b0058B281D7e26CCc3932cfb268aA (EOA/emeritus/AlexLangeVC_dao_signer)"   |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x235f00a6e9416b114780f0b97afcb40f623f65b4 (EOA/dao/netto.eth)"                     |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/dao/gosuto)"                        |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x823DF0278e4998cD0D06FB857fBD51e85b18A250 (EOA/emeritus/nanexcool_dao_signer)"     |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x02e4De712d99f4B1b1e12aa3675D8b0A582caA5D (EOA/dao/hubert)"                        |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
++-----------+------------------------------------------------------------+-------+------------------------------------------------------------------------------------------+------------+----------+
+```
