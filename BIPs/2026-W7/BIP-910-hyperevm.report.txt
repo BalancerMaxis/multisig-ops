@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2026-W7/BIP-910-hyperevm.json`
+MULTISIG: `multisigs/omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `39a3a71b02614c8e5e63ec9640cf58168d10ae24`
+CHAIN(S): `hyperevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'c7d2f936-390a-466f-8f8d-596c2551e16a', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++-----------------------+---------------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                 | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/omni      | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20260116-v3-stable-pool-v3/StablePool/startAmplificationParameterUpdate(uint256,uint256) | 0xbf45f967ea578a73e12fdb05d1cb0c6fbeb0cfd9a9b63b60ed1ea87f05ea0c96 | BIP-910 |    0     |
+|                       |                     |                                            | 20260116-v3-stable-pool-v3/StablePool/stopAmplificationParameterUpdate()                 | 0xdbc0f40ef74b8ba526f95a3c5c582e1ce7de28fa0bca55ef6f71d2116c0562f6 |         |          |
+| Authorizer/grantRoles | multisigs/emergency | 0x44613a28347206F5E26C1B8Db7Dc73f450219746 | 20260115-v3-weighted-pool-v2/WeightedPoolFactory/disable()                               | 0x6febf9f238dc2ec20e86da0ec49412a1a4d6f6a3a5de38e57a31d7f05dd323f8 | BIP-910 |    1     |
+|                       |                     |                                            | 20260116-v3-stable-pool-v3/StablePoolFactory/disable()                                   | 0x54ed747f10bf74fca2a1110cb69c6328e2fb5025039aede2933d04dfc21abd11 |         |          |
++-----------------------+---------------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
