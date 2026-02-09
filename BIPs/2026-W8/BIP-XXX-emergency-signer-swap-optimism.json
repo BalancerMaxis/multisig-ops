@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1770651505015,
+  "meta": {
+    "name": "BIP-XXX Emergency subDAO Signer Swap - Q1 2026",
+    "description": "Swap MikeB (0xF01Cc7154e255D20489E091a5aEA10Bc136696a8) for mendesfabio (0x90347b9CC81a4a28aAc74E8B134040d5ce2eaB6D) on the Emergency subDAO safe",
+    "txBuilderVersion": "1.16.5",
+    "createdFromSafeAddress": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0xDA07B188daE2ee63B2eC61Ee4cdB9673C03d2293",
+        "oldOwner": "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8",
+        "newOwner": "0x90347b9CC81a4a28aAc74E8B134040d5ce2eaB6D"
+      }
+    }
+  ]
+}
