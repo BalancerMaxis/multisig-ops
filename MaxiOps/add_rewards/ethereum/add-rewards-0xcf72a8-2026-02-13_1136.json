@@ -90,6 +90,173 @@
         "target": "0x42d9ee7049f5dc573fe08330a3597af17437ebb6",
         "data": "0xe8de0d4d0000000000000000000000004ba01f22827018b4772CD326C7627FB4956A7C000000000000000000000000008A5cA54fF8a7cecBc2Cc635BAc4F63163C2E1eb1"
       }
+    },
+    {
+      "to": "0x6a71d17E50A67C54eae393323a8594cFdBb23F01",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xcf72a84edaae931385e84fb4c2edee07a32822a6 ]",
+        "amountPerPeriod": "2500000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "1771459200"
+      }
+    },
+    {
+      "to": "0x6a71d17E50A67C54eae393323a8594cFdBb23F01",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x42d9ee7049f5dc573fe08330a3597af17437ebb6]",
+        "amountPerPeriod": "2500000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "1771459200"
+      }
+    },
+    {
+      "to": "0x6a71d17E50A67C54eae393323a8594cFdBb23F01",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          }
+        ],
+        "name": "removeRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x62A66eB9aBf7a788F48D0ce7C0C065df9e09dA19, 0x70A1c01902DAb7a45dcA1098Ca76A8314dd8aDbA]"
+      }
+    },
+    {
+      "to": "0x8A5cA54fF8a7cecBc2Cc635BAc4F63163C2E1eb1",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0xcf72a84edaae931385e84fb4c2edee07a32822a6]",
+        "amountPerPeriod": "2500000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "1771459200"
+      }
+    },
+    {
+      "to": "0x8A5cA54fF8a7cecBc2Cc635BAc4F63163C2E1eb1",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "amountPerPeriod",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxPeriods",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "doNotStartBeforeTimestamp",
+            "type": "uint56",
+            "internalType": "uint56"
+          }
+        ],
+        "name": "addRecipients",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "recipients": "[0x42d9ee7049f5dc573fe08330a3597af17437ebb6]",
+        "amountPerPeriod": "2500000000000000000000",
+        "maxPeriods": "1",
+        "doNotStartBeforeTimestamp": "1771459200"
+      }
     }
   ]
 }
