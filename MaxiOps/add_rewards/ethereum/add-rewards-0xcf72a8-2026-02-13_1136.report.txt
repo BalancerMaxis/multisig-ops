@@ -1,8 +1,8 @@
 FILENAME: `MaxiOps/add_rewards/ethereum/add-rewards-0xcf72a8-2026-02-13_1136.json`
 MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `259b01045d04eef8d549407d409d59c396b7dfa8`
+COMMIT: `11b2b476a22829dc72e852d4dc8fdaad0e61b198`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/d62ba9e4-38d4-47e8-bb96-9983e593a87d)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/93266e26-6744-4e40-9c86-01b4a8973a55)
 
 ```
 +---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
@@ -20,14 +20,15 @@ TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simul
 ```
 FILENAME: `MaxiOps/add_rewards/ethereum/add-rewards-0xcf72a8-2026-02-13_1136.json`
 MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
-COMMIT: `259b01045d04eef8d549407d409d59c396b7dfa8`
+COMMIT: `11b2b476a22829dc72e852d4dc8fdaad0e61b198`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟥 FAILURE (execution reverted)`](https://www.tdly.co/shared/simulation/d62ba9e4-38d4-47e8-bb96-9983e593a87d)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/93266e26-6744-4e40-9c86-01b4a8973a55)
 
 ```
 +------------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
 | fx_name          | to                                                     | value | inputs                                                                               | bip_number | tx_index |
 +------------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+| acceptOwnership  | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | "0x79ba5097"                                                                         | N/A        |   N/A    |
 | addRecipients    | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                    | N/A        |   N/A    |
 |                  |                                                        |       |   "recipients": [                                                                    |            |          |
 |                  |                                                        |       |     "0xcf72a84edaae931385e84fb4c2edee07a32822a6 (gauges/msUSD-USDC-gauge-cf72)"      |            |          |
