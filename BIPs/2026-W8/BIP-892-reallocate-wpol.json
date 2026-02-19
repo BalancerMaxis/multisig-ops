@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "meta": {
+    "name": "Reallocate wPOL Campaign",
+    "txBuilderVersion": "1.16.3",
+    "createdFromSafeAddress": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
+  },
+  "transactions": [
+    {
+      "to": "0x8BB4C975Ff3c250e0ceEA271728547f3802B36Fd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "_campaignId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address[]",
+            "name": "froms",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "reallocateCampaignRewards",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "_campaignId": "0x2d4deb08f807f60ba58780954529965d46b30c2a72b81a34f36087424d9ce67c",
+        "froms": "[\"0x0000000000000000000000000000000000000000\"]",
+        "to": "0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85"
+      }
+    }
+  ]
+}
