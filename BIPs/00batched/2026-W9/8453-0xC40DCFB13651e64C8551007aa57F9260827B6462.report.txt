@@ -1,0 +1,72 @@
+FILENAME: `BIPs/00batched/2026-W9/8453-0xC40DCFB13651e64C8551007aa57F9260827B6462.json`
+MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
+COMMIT: `a03e47be3696bcc86578ab621798ebcb1a518560`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b91263c4-7fc3-4700-ba72-b872bf5f2ee0)
+
+```
++-----------------------+---------------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name         | caller_address                             | fx_paths                                                                                 | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/omni      | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20260116-v3-stable-pool-v3/StablePool/startAmplificationParameterUpdate(uint256,uint256) | 0x61c9a01834507ebaa8821be46ceb783e9cb8154aa151ce58e56b11beabaa8ec3 | BIP-910 |    0     |
+|                       |                     |                                            | 20260116-v3-stable-pool-v3/StablePool/stopAmplificationParameterUpdate()                 | 0x3d65c540437e8cce734a076388dcefdcd773293bfcd38e71ae0aae272de5b77b |         |          |
+| Authorizer/grantRoles | multisigs/emergency | 0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a | 20260116-v3-stable-pool-v3/StablePoolFactory/disable()                                   | 0x4f5decf17af0c756346eb5f2c2a674a35b2d116ffd5dc87a6fb8adb567a2acab | BIP-910 |    1     |
+|                       |                     |                                            | 20260115-v3-weighted-pool-v2/WeightedPoolFactory/disable()                               | 0xfd955b750857662dfda32cfff623b9edf9541cc37e08005c4b74aa28086643be |         |          |
++-----------------------+---------------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2026-W9/8453-0xC40DCFB13651e64C8551007aa57F9260827B6462.json`
+MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
+COMMIT: `a03e47be3696bcc86578ab621798ebcb1a518560`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/b91263c4-7fc3-4700-ba72-b872bf5f2ee0)
+
+```
++-----------+------------------------------------------------------------+-------+------------------------------------------------------------------------------------------+------------+----------+
+| fx_name   | to                                                         | value | inputs                                                                                   | bip_number | tx_index |
++-----------+------------------------------------------------------------+-------+------------------------------------------------------------------------------------------+------------+----------+
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0x0000000000000000000000000000000000000001 (N/A)"                                   |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29 (EOA/emeritus/lewis_dao_signer)"         |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8 (EOA/dao/mikeb)"                         |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0xA39a62304d8d43B35114ad7bd1258B0E50e139b3 (EOA/dao/eboadom)"                       |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x59693BA1A5764e087CE166ac0E0085Fc071B9ea7 (EOA/emeritus/0xSausageDoge_dao_signer)" |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x6578183A203b41C419b93DF9121b5e3b26561aC5 (EOA/dao/elbagococina)"                  |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0x6578183A203b41C419b93DF9121b5e3b26561aC5 (EOA/dao/elbagococina)"                  |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x3ABDc84Dd15b0058B281D7e26CCc3932cfb268aA (EOA/emeritus/AlexLangeVC_dao_signer)"   |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x235f00a6e9416b114780f0b97afcb40f623f65b4 (EOA/dao/netto.eth)"                     |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
+| swapOwner | 0xC40DCFB13651e64C8551007aa57F9260827B6462 (multisigs/dao) | 0     | {                                                                                        | BIP-907    |   N/A    |
+|           |                                                            |       |   "prevOwner": [                                                                         |            |          |
+|           |                                                            |       |     "0x11761c7b08287d9489CD84C04DF6852F5C07107b (EOA/dao/gosuto)"                        |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "oldOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x823DF0278e4998cD0D06FB857fBD51e85b18A250 (EOA/emeritus/nanexcool_dao_signer)"     |            |          |
+|           |                                                            |       |   ],                                                                                     |            |          |
+|           |                                                            |       |   "newOwner": [                                                                          |            |          |
+|           |                                                            |       |     "0x02e4De712d99f4B1b1e12aa3675D8b0A582caA5D (EOA/dao/hubert)"                        |            |          |
+|           |                                                            |       |   ]                                                                                      |            |          |
+|           |                                                            |       | }                                                                                        |            |          |
++-----------+------------------------------------------------------------+-------+------------------------------------------------------------------------------------------+------------+----------+
+```
