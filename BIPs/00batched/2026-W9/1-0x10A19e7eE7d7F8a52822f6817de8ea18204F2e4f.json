@@ -1,0 +1,218 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x2fdb9aec1b503a35eeac2688adaed48252e5e63103f60c3daa13151c0bc6a1c1, 0x90e54d7855eb4ae0f4689be1b871f78c3dc5b4e9b0fd094b47374020b5963e1d]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-910-mainnet.json",
+        "bip_number": "BIP-910"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x315b841cfaf795ea83cbe267847195f6fdba4a7a9f5ed870c28d9e4d4b145e28, 0x5a2389555953f58e8746cb8c3171904d268fce2d55fa1aac3f20343ccd04cb0b]",
+        "account": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-910-mainnet.json",
+        "bip_number": "BIP-910"
+      }
+    },
+    {
+      "to": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0xA39a62304d8d43B35114ad7bd1258B0E50e139b3",
+        "oldOwner": "0x59693BA1A5764e087CE166ac0E0085Fc071B9ea7",
+        "newOwner": "0x6578183A203b41C419b93DF9121b5e3b26561aC5"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Mainnet.json",
+        "bip_number": "BIP-907"
+      }
+    },
+    {
+      "to": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x6578183A203b41C419b93DF9121b5e3b26561aC5",
+        "oldOwner": "0x3ABDc84Dd15b0058B281D7e26CCc3932cfb268aA",
+        "newOwner": "0x235f00a6e9416b114780f0b97afcb40f623f65b4"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Mainnet.json",
+        "bip_number": "BIP-907"
+      }
+    },
+    {
+      "to": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x235f00a6e9416b114780f0b97afcb40f623f65b4",
+        "oldOwner": "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29",
+        "newOwner": "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Mainnet.json",
+        "bip_number": "BIP-907"
+      }
+    },
+    {
+      "to": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x11761c7b08287d9489CD84C04DF6852F5C07107b",
+        "oldOwner": "0x823DF0278e4998cD0D06FB857fBD51e85b18A250",
+        "newOwner": "0x02e4De712d99f4B1b1e12aa3675D8b0A582caA5D"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Mainnet.json",
+        "bip_number": "BIP-907"
+      }
+    }
+  ]
+}

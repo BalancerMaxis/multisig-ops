@@ -1,0 +1,218 @@
+{
+  "version": "1.0",
+  "chainId": "10",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xf12995b8509bf162619740d453424180083686d3c849634738369353d401802e, 0x7c97db4c3934374241c9d137ddcd47f2749e2a94750a1f9337d227fc02b34e08]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-910-optimism.json",
+        "bip_number": "BIP-910"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x73a1eeb77ca61ca45182001a741196e8ddfeadba139db913fe77b98594ba95a4, 0xfa398ba71167ef8b770b9cac65f7c2c677629959d5fa2e6a9332190274521589]",
+        "account": "0xd4c87b33afcE39F1E3F4aF1ce8fFFF7241d9128B"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-910-optimism.json",
+        "bip_number": "BIP-910"
+      }
+    },
+    {
+      "to": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0000000000000000000000000000000000000001",
+        "oldOwner": "0xbcf751dBfe314Ee96A660EFA2Fcb259CBc364c29",
+        "newOwner": "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Optimism.json",
+        "bip_number": "BIP-907"
+      }
+    },
+    {
+      "to": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0xF01Cc7154e255D20489E091a5aEA10Bc136696a8",
+        "oldOwner": "0x3ABDc84Dd15b0058B281D7e26CCc3932cfb268aA",
+        "newOwner": "0x235f00a6e9416b114780f0b97afcb40f623f65b4"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Optimism.json",
+        "bip_number": "BIP-907"
+      }
+    },
+    {
+      "to": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x11761c7b08287d9489CD84C04DF6852F5C07107b",
+        "oldOwner": "0x59693BA1A5764e087CE166ac0E0085Fc071B9ea7",
+        "newOwner": "0x6578183A203b41C419b93DF9121b5e3b26561aC5"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Optimism.json",
+        "bip_number": "BIP-907"
+      }
+    },
+    {
+      "to": "0x043f9687842771b3dF8852c1E9801DCAeED3f6bc",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x6578183A203b41C419b93DF9121b5e3b26561aC5",
+        "oldOwner": "0x823DF0278e4998cD0D06FB857fBD51e85b18A250",
+        "newOwner": "0x02e4De712d99f4B1b1e12aa3675D8b0A582caA5D"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2026-W9/BIP-907-Optimism.json",
+        "bip_number": "BIP-907"
+      }
+    }
+  ]
+}
