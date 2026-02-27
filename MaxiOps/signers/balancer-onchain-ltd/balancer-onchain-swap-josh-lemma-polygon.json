@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1740268800000,
+  "meta": {
+    "name": "Balancer Onchain Ltd Signer swap for Lemma",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941"
+  },
+  "transactions": [
+    {
+      "to": "0x16b0056636Fcc85f92C49cD49a24bc519d4A1941",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "prevOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "oldOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "swapOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "prevOwner": "0x0000000000000000000000000000000000000001",
+        "oldOwner": "0xB9F1815682879337dBE714f7469288dEA7DE93f2",
+        "newOwner": "0x646333c3b674069fd36f1b226fF4fE83035A4ad3"
+      }
+    }
+  ]
+}
