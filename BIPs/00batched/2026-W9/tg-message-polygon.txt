@@ -1,0 +1,21 @@
+gm signers!!
+
+we are forced to make a correction to one of the recovered assets campaigns on polygon
+
+unfortunately the only manager is the creator of the campaign (dao multisig)
+
+to speed things up a bit, the first tx queued is the execution of bip907, which rotates inactive signers for new ones
+
+## MATIC:NONCE 43: https://app.safe.global/transactions/tx?safe=matic:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85&id=multisig_0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85_0x8211996d84d801311d29a4f59663ce4ad20bc2c8389f3a65c13c9ed3ad22e58c
+
+reference https://forum.balancer.fi/t/bip-907-update-dao-multisig-signer-set-and-adjust-annual-stipend/6956
+
+then the first step in the correction is to reallocate all rewards to the multisig again, effectively ending the current campaign. after which we will be able to do the math for the next one
+
+## MATIC:NONCE 44: https://app.safe.global/transactions/tx?safe=matic:0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85&id=multisig_0xeE071f4B516F69a1603dA393CdE8e76C40E5Be85_0xdc3b872afdaf18c16ba4efbeb5df7c1175528a26798259e9d5cfb127db857c80
+
+reference https://github.com/BalancerMaxis/multisig-ops/pull/2686
+
+IMPORTANT NOTE: if you are one of the signers being rotated out, please do not sign nonce44; your signature will not be considered valid after execution of nonce43
+
+@alexanderlan @garaigram @mouph @nanexcool @eboado @OxMaki @StefanGeorge @bonustrack @SausageDoge @lewisjfg
