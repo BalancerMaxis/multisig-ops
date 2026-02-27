@@ -39,6 +39,10 @@ SAFE_API_URL = "https://safe-transaction-mainnet.safe.global"
 GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_choices.json"
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 
+LABEL_OVERRIDES = {
+    "b-QuantAmmWeighted AERO/WETH/USDC/cbBTC": "b-QuantAmmWeighted AERO/USDC/cbBTC/WETH",
+}
+
 flatbook = AddrBook("mainnet").flatbook
 vlaura_safe_addr = flatbook["multisigs/maxyz_operator"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
@@ -123,7 +127,10 @@ def prepare_vote_data(vote_df, prop):
     """Prepares and validates vote data, returning the structured payload"""
     choices = prop["choices"]
     gauge_labels = fetch_json_from_url(GAUGE_MAPPING_URL)
-    gauge_labels = {to_checksum_address(x["address"]): x["label"] for x in gauge_labels}
+    gauge_labels = {
+        to_checksum_address(x["address"]): LABEL_OVERRIDES.get(x["label"], x["label"])
+        for x in gauge_labels
+    }
     choice_index_map = {c: x + 1 for x, c in enumerate(choices)}
 
     vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
