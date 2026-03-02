@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1771613928354,
+  "meta": {
+    "name": "Combined Transactions Batch (1 operations)",
+    "description": "BIP-913: Enable zCHF and ixEDEL gauges on mainnet",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x54839a2fe079a21311127f3d811ec8c7afd0a2e9",
+        "gaugeType": "Ethereum"
+      }
+    },
+    {
+      "to": "0x5DbAd78818D4c8958EfF2d5b95b28385A22113Cd",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "name": "gauge", "type": "address", "internalType": "address" },
+          { "name": "gaugeType", "type": "string", "internalType": "string" }
+        ],
+        "name": "addGauge",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "gauge": "0x6732ed78bf1d8afa3ef03f1ead302d21b0b2b1ff",
+        "gaugeType": "Ethereum"
+      }
+    }
+  ]
+}

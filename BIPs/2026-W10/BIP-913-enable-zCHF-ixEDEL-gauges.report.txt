@@ -1,0 +1,32 @@
+FILENAME: `BIPs/2026-W10/BIP-913-enable-zCHF-ixEDEL-gauges.json`
+MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `96b5d5bf14ddcdce7d24cf65dec24e113ee7b8c6`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4df57390-90d3-4ffd-9f1d-18745cff3c3d)
+
+| Gauge Validator (0x54839a2Fe079a21311127f3D811ec8C7aFD0A2e9) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0x6732ED78BF1D8afA3ef03F1ead302d21b0B2B1FF) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+```
++-----------------------+----------------------------------------------------------+--------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info    | gauge_address_and_info                           | tokens                                             | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+--------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x849d43118c2e3c4856aF26EE96F1A9d72bC2774f               | 50-ZCHF-50-svZCHF  | root: 0x54839a2Fe079a21311127f3D811ec8C7aFD0A2e9 | 0xB58E61C3098d85632Df34EecfB899A1Ed80921cB: ZCHF   | 0x0000000000000000000000000000000000000000 |       --       | BIP-913 |    0     |
+|                       | pool_address: 0x849d43118c2e3c4856aF26EE96F1A9d72bC2774f | fee (%): 0.01      | side: None                                       | 0xE5F130253fF137f9917C0107659A4c5262abf6b0: svZCHF | 0x8924B3DB50f4b94dE2b2A9228bF030f9e4DfcE85 |      safe      |         |          |
+|                       |                                                          | a-factor: 1000     | style: mainnet                                   |                                                    |                                            |                |         |          |
+|                       |                                                          |                    | cap: 2.0%                                        |                                                    |                                            |                |         |          |
+|                       |                                                          |                    | preferential: True                               |                                                    |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x37081447540b194d8E9aA2dF95309Dc830DA8f11               | 80-ixEdel-20-USDC  | root: 0x6732ED78BF1D8afA3ef03F1ead302d21b0B2B1FF | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48: USDC   | 0x0000000000000000000000000000000000000000 |       --       | BIP-913 |    1     |
+|                       | pool_address: 0x37081447540b194d8E9aA2dF95309Dc830DA8f11 | fee (%): 0.01      | side: None                                       | 0xe4a10951f962e6cB93Cb843a4ef05d2F99DB1F94: ixEdel | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A      | style: mainnet                                   |                                                    |                                            |                |         |          |
+|                       |                                                          |                    | cap: 2.0%                                        |                                                    |                                            |                |         |          |
+|                       |                                                          |                    | preferential: True                               |                                                    |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+--------------------+--------------------------------------------------+----------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
