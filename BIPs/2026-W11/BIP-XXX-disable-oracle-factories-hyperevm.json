@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "chainId": "999",
+  "createdAt": 0,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Disable all Oracle LP Pool Factories (v1 and v2) on HyperEVM",
+    "txBuilderVersion": "1.18.2",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xcdb736e8c0e4e5259800688ffee57696078d89f1a72cbd105193d75b973487e8",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0xf4743D026f3D07aF3747bb7d05BeD06D177241d7",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xcdb736e8c0e4e5259800688ffee57696078d89f1a72cbd105193d75b973487e8",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x3f6401a12ca8f8048783a6e5b059877235fcf452f62691cbcbe45ebe6bf3c217",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x0b11209B8c5E821b18dED147583b8978c3E63911",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x3f6401a12ca8f8048783a6e5b059877235fcf452f62691cbcbe45ebe6bf3c217",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x6ccb8983444db720b828ab14455ffd0d3d219cfd63180ee7e384e218810ef779",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0xBcA68cb9B794A4fb84855e003e4cF591F80A3Dc9",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x6ccb8983444db720b828ab14455ffd0d3d219cfd63180ee7e384e218810ef779",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xd9ad8a66a0dd971dc6fe438297bcae5d731b41bacd8c65809e765141d1986bdb",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x45fB5aF0a1aD80Ea16C803146eb81844D9972373",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x85a80afee867aDf27B50BdB7b76DA70f1E853062",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xd9ad8a66a0dd971dc6fe438297bcae5d731b41bacd8c65809e765141d1986bdb",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}

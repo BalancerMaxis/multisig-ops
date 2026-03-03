@@ -2,7 +2,7 @@
 
 ## Summary
 
-This proposal requests the DAO multisig to disable outdated Oracle LP Pool Factories across all networks where they are deployed. This includes both the v1 (deprecated) and the original v2 (overwritten) versions of the `WeightedLPOracleFactory` and `StableLPOracleFactory` contracts.
+This proposal requests the DAO multisig (and the Omnisig on newer chains) to disable outdated Oracle LP Pool Factories across all networks where they are deployed. This includes both the v1 (deprecated) and the original v2 (overwritten) versions of the `WeightedLPOracleFactory` and `StableLPOracleFactory` contracts.
 
 ## Motivation
 
@@ -10,7 +10,7 @@ As requested by BLabs, all outdated Oracle Pool Factories for v1 need to be disa
 
 All factory addresses referenced in this BIP correspond to [commit `9a29caf`](https://github.com/balancer/balancer-deployments/blob/9a29caf63cc6bfad564a84e33e8f912c180054b9/addresses/mainnet.json) of `balancer-deployments`, which is the last commit before the v2 overwrite.
 
-These payloads must go through the DAO multisig because the `disable()` permissions for these factories were never granted to any operator or the Omnisig.
+On Mainnet, Arbitrum, Optimism, Gnosis, Avalanche, and Base, these payloads must go through the DAO multisig because the `disable()` permissions for these factories were never granted to any operator or the Omnisig. On HyperEVM, Plasma, Monad, and XLayer, the Omnisig (`0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e`) can grant roles to itself, disable, and revoke.
 
 ## Factories to Disable
 
@@ -84,15 +84,63 @@ These payloads must go through the DAO multisig because the `disable()` permissi
 | WeightedLPOracleFactory v2 | `0x9958317b80ee5f10457017d54c2484D722059157` |
 | StableLPOracleFactory v2 | `0x5939ab16fDf1991B0EF603c639B6b501A7841fAB` |
 
+### HyperEVM (Chain ID: 999)
+
+| Factory | Address |
+|---|---|
+| WeightedLPOracleFactory v1 | `0xf4743D026f3D07aF3747bb7d05BeD06D177241d7` |
+| StableLPOracleFactory v1 | `0x0b11209B8c5E821b18dED147583b8978c3E63911` |
+| WeightedLPOracleFactory v2 | `0xBcA68cb9B794A4fb84855e003e4cF591F80A3Dc9` |
+| StableLPOracleFactory v2 | `0x45fB5aF0a1aD80Ea16C803146eb81844D9972373` |
+
+### Plasma (Chain ID: 9745)
+
+| Factory | Address |
+|---|---|
+| WeightedLPOracleFactory v1 | `0xD961E30156C2E0D0d925A0De45f931CB7815e970` |
+| StableLPOracleFactory v1 | `0x86e67E115f96DF37239E0479441303De0de7bc2b` |
+| WeightedLPOracleFactory v2 | `0x891EC9B34829276a9a8ef2F8A9cEAF2486017e0d` |
+| StableLPOracleFactory v2 | `0x774cB66e2B2dB59A9daF175e9b2B7A142E17EB94` |
+
+### Monad (Chain ID: 143)
+
+| Factory | Address |
+|---|---|
+| WeightedLPOracleFactory v1 | `0x1311Fbc9F60359639174c1e7cC2032DbDb5Cc4d1` |
+| StableLPOracleFactory v1 | `0xaD89051bEd8d96f045E8912aE1672c6C0bF8a85E` |
+| WeightedLPOracleFactory v2 | `0x4BB42f71CAB7Bd13e9f958dA4351B9fa2d3A42FF` |
+| StableLPOracleFactory v2 | `0xbC169a08cBdCDb218d91Cd945D29B59F78c96B77` |
+
+### XLayer (Chain ID: 196)
+
+| Factory | Address |
+|---|---|
+| WeightedLPOracleFactory v1 | `0x1311Fbc9F60359639174c1e7cC2032DbDb5Cc4d1` |
+| StableLPOracleFactory v1 | `0xEB1eeaBF0126d813589C3D2CfeFFE410D9aE3863` |
+| WeightedLPOracleFactory v2 | `0x86705Ee19c0509Ff68F1118C55ee2ebdE383D122` |
+| StableLPOracleFactory v2 | `0xEAedc32a51c510d35ebC11088fD5fF2b47aACF2E` |
+
 ## Technical Specification
 
-For each factory on each network, the DAO multisig executes a 3-step transaction pattern via the Authorizer:
+For each factory on each network, the executing multisig (DAO multisig or Omnisig) performs a 3-step transaction pattern via the Authorizer:
 
-1. **`grantRole(actionId, daoMultisig)`** on the Authorizer -- grants the DAO multisig the `disable()` role for the target factory
+1. **`grantRole(actionId, account)`** on the Authorizer -- grants the multisig the `disable()` role for the target factory
 2. **`disable()`** on the factory -- permanently disables the factory, preventing new pool creation
-3. **`revokeRole(actionId, daoMultisig)`** on the Authorizer -- revokes the role so the DAO multisig does not retain unnecessary permissions
+3. **`revokeRole(actionId, account)`** on the Authorizer -- revokes the role so the multisig does not retain unnecessary permissions
 
 Each network payload contains 12 transactions (4 factories x 3 steps).
+
+### Executing Multisigs
+
+| Network | Multisig | Address |
+|---|---|---|
+| Mainnet | DAO Multisig | `0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f` |
+| Arbitrum | DAO Multisig | `0xaF23DC5983230E9eEAf93280e312e57539D098D0` |
+| Optimism | DAO Multisig | `0x043f9687842771b3dF8852c1E9801DCAeED3f6bc` |
+| Gnosis | DAO Multisig | `0x2a5AEcE0bb9EfFD7608213AE1745873385515c18` |
+| Avalanche | DAO Multisig | `0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3` |
+| Base | DAO Multisig | `0xC40DCFB13651e64C8551007aa57F9260827B6462` |
+| HyperEVM, Plasma, Monad, XLayer | Omnisig | `0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e` |
 
 ### Authorizer Addresses
 
@@ -100,6 +148,8 @@ Each network payload contains 12 transactions (4 factories x 3 steps).
 |---|---|
 | Mainnet, Arbitrum, Optimism, Gnosis, Avalanche | `0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6` |
 | Base | `0x809B79b53F18E9bc08A961ED4678B901aC93213a` |
+| HyperEVM | `0x85a80afee867aDf27B50BdB7b76DA70f1E853062` |
+| Plasma, Monad, XLayer | `0xE39B5e3B6D74016b2F6A9673D7d7493B6DF549d5` |
 
 ### V2 Action IDs (disable())
 
@@ -113,3 +163,7 @@ V1 action IDs can be looked up from the [balancer-deployments action-ids](https:
 | Gnosis | `0x5a2389555953f58e8746cb8c3171904d268fce2d55fa1aac3f20343ccd04cb0b` | `0x315b841cfaf795ea83cbe267847195f6fdba4a7a9f5ed870c28d9e4d4b145e28` |
 | Avalanche | `0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8` | `0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e` |
 | Base | `0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8` | `0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e` |
+| HyperEVM | `0x6ccb8983444db720b828ab14455ffd0d3d219cfd63180ee7e384e218810ef779` | `0xd9ad8a66a0dd971dc6fe438297bcae5d731b41bacd8c65809e765141d1986bdb` |
+| Plasma | `0x7576f83c39a4f75ece8e6da99676712301067f196442916c688500f9320af5fb` | `0x416d92d817cb23a3d644810c79c3e5d9cd991b729c260819b570abd632e3a90a` |
+| Monad | `0x2cb59d35a7a1b89d4ca6e466034d4d7bba7efe0e0dbb3bbe125e78def0cbdac1` | `0xe52f27de16ccc09f36da9a1dc8bbb043041a422d6430226a1e148560fa23c165` |
+| XLayer | `0xaa602686217d84795dac828d7e9c133b7507febe7d68d7f642b1e3b506ce3309` | `0x34f66ef5706b2abf916d3f719040884c962d3a419b90ec8af8fb2c1f6ea4e313` |
