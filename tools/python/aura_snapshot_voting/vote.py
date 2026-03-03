@@ -30,7 +30,6 @@ from eth_account import Account
 from gen_vlaura_votes_for_epoch import _get_prop_and_determine_date_range
 from helpers.path_utils import find_project_root
 
-
 load_dotenv()
 
 DRPC_KEY = os.getenv("DRPC_KEY")
@@ -41,7 +40,7 @@ GAUGE_MAPPING_URL = "https://raw.githubusercontent.com/aurafinance/aura-contract
 GAUGE_SNAPSHOT_URL = "https://raw.githubusercontent.com/aurafinance/aura-contracts/main/tasks/snapshot/gauge_snapshot.json"
 
 flatbook = AddrBook("mainnet").flatbook
-vlaura_safe_addr = flatbook["multisigs/aura_locker"]
+vlaura_safe_addr = flatbook["multisigs/maxyz_operator"]
 sign_msg_lib_addr = flatbook["gnosis/sign_message_lib"]
 
 Account.enable_unaudited_hdwallet_features()

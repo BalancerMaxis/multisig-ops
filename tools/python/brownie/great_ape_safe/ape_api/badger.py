@@ -10,7 +10,6 @@ from eth_abi import encode_abi
 from helpers.addresses import r
 from rich.console import Console
 
-
 C = Console()
 
 

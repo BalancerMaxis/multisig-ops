@@ -4,7 +4,6 @@ from brownie import web3
 from rich.console import Console
 from helpers.addresses import registry
 
-
 C = Console()
 
 

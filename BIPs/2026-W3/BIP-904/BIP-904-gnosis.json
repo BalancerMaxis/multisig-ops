@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "100",
+  "createdAt": 1736640000000,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable module on DAO Emergency multisig on Gnosis",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xd6110A7756080a4e3BCF4e7EBBCA8E8aDFBC9962",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x7d171c6ef79a22340c6f931e8bd3833db8a8c620"
+      }
+    }
+  ]
+}

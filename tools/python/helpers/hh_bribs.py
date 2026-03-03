@@ -3,7 +3,6 @@ from decimal import Decimal, InvalidOperation
 from web3 import Web3
 import csv
 
-
 SNAPSHOT_URL = "https://hub.snapshot.org/graphql?"
 HH_API_URL = "https://api.hiddenhand.finance/proposal"
 

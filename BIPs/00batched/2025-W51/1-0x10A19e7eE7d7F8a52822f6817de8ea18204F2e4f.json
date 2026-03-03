@@ -1,0 +1,188 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1675891944772,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "",
+    "txBuilderVersion": "1.13.2",
+    "createdFromSafeAddress": "0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x6f5a2eE11E7a772AeB5114A20d0D7c0ff61EB8A0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IVeDelegation",
+            "name": "delegation",
+            "type": "address"
+          }
+        ],
+        "name": "setDelegation",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "delegation": "0x2cf8e145Bdfe7c52b49AD9bB3c294a31B2736c59"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-854.json",
+        "bip_number": "BIP-854"
+      }
+    },
+    {
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc3C7ccE1962B7a744847933CC3abD50b67ff5402",
+        "value": "13600091172896626196"
+      },
+      "meta": {
+        "tx_index": 0,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-892-whitehat-bounty-mainnet.json",
+        "bip_number": "BIP-892"
+      }
+    },
+    {
+      "to": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc3C7ccE1962B7a744847933CC3abD50b67ff5402",
+        "value": "1095679532673138312"
+      },
+      "meta": {
+        "tx_index": 1,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-892-whitehat-bounty-mainnet.json",
+        "bip_number": "BIP-892"
+      }
+    },
+    {
+      "to": "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc3C7ccE1962B7a744847933CC3abD50b67ff5402",
+        "value": "661652287665074038"
+      },
+      "meta": {
+        "tx_index": 2,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-892-whitehat-bounty-mainnet.json",
+        "bip_number": "BIP-892"
+      }
+    },
+    {
+      "to": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc3C7ccE1962B7a744847933CC3abD50b67ff5402",
+        "value": "622511927216392605"
+      },
+      "meta": {
+        "tx_index": 3,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-892-whitehat-bounty-mainnet.json",
+        "bip_number": "BIP-892"
+      }
+    },
+    {
+      "to": "0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "to": "0xc3C7ccE1962B7a744847933CC3abD50b67ff5402",
+        "value": "10520820841752568799"
+      },
+      "meta": {
+        "tx_index": 4,
+        "origin_file_name": "/home/runner/work/multisig-ops/multisig-ops/BIPs/2025-W51/BIP-892-whitehat-bounty-mainnet.json",
+        "bip_number": "BIP-892"
+      }
+    }
+  ]
+}

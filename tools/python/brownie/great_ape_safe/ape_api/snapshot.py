@@ -7,7 +7,6 @@ from eth_account import messages
 from brownie import interface
 from helpers.addresses import registry
 
-
 console = Console()
 
 

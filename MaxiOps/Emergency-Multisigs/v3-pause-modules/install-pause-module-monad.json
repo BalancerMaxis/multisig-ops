@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "143",
+  "createdAt": 1771485505,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable module on DAO Emergency multisig on Monad",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x3a921d6956C62012Dd88f95bD44224a7Ef5C9b5a",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x3a921d6956C62012Dd88f95bD44224a7Ef5C9b5a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x7d171C6Ef79A22340C6F931E8bD3833Db8A8C620"
+      }
+    }
+  ]
+}

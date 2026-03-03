@@ -4,7 +4,6 @@ from bal_tools.utils import get_abi
 from decimal import Decimal, ROUND_DOWN
 import pandas as pd
 
-
 GNOSIS_OMNIBRIDGE = "0x88ad09518695c6c3712AC10a214bE5109a655671"
 GNOSIS_BAL_ADDRESS = "0x7eF541E2a22058048904fE5744f9c7E4C57AF717"
 

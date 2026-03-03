@@ -26,7 +26,7 @@ def get_pool_info(poolAddress):
     poolABI = json.load(open("abis/IBalPool.json", "r"))
     pool = Contract.from_abi(name="IBalPool", address=poolAddress, abi=poolABI)
     try:
-        (aFactor, ramp, divisor) = pool.getAmplificationParameter()
+        aFactor, ramp, divisor = pool.getAmplificationParameter()
         aFactor = int(aFactor / divisor)
         if not isinstance(aFactor, int):
             aFactor = "N/A"
@@ -130,7 +130,7 @@ def gen_report(payload_list):
                 )
                 if authorizer_target_contract == gauge_controller:
                     try:
-                        (command, inputs) = gauge_controller.decode_input(
+                        command, inputs = gauge_controller.decode_input(
                             transaction["contractInputsValues"]["data"]
                         )
                     except:
@@ -151,9 +151,9 @@ def gen_report(payload_list):
                         )
                         continue
                 else:  # Kills are called directly on gauges, so assuming a json with gauge adds disables if it's not a gauge control it's a gauge.
-                    (command, inputs) = Contract(
-                        authorizer_target_contract
-                    ).decode_input(transaction["contractInputsValues"]["data"])
+                    command, inputs = Contract(authorizer_target_contract).decode_input(
+                        transaction["contractInputsValues"]["data"]
+                    )
 
                 # print(inputs)
                 if len(inputs) == 0:  ## Is a gauge kill

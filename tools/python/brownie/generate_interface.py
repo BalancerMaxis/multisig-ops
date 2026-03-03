@@ -26,7 +26,6 @@ import sys
 
 from dotenv import load_dotenv
 
-
 # https://etherscan.io/contract-license-types
 # https://spdx.org/licenses/
 ETHERSCAN_TO_SPDX = {

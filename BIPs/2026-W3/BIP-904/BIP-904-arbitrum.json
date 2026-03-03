@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1736640000000,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable module on DAO Emergency multisig on Arbitrum",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xf404C5a0c02397f0908A3524fc5eb84e68Bbe60D",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x7d171c6ef79a22340c6f931e8bd3833db8a8c620"
+      }
+    }
+  ]
+}

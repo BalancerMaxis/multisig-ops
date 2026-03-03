@@ -1,0 +1,95 @@
+FILENAME: `MaxiOps/add_rewards/ethereum/add-rewards-0xcf72a8-2026-02-13_1136.json`
+MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `11b2b476a22829dc72e852d4dc8fdaad0e61b198`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/93266e26-6744-4e40-9c86-01b4a8973a55)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+| function      | entrypoint                                                                                                      | target                                                                    | selector                    | parsed_inputs                                           | bip | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xcf72a84edaae931385e84fb4c2edee07a32822a6 (gauges/msUSD-USDC-gauge-cf72) | add_reward(address,address) | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48: tokens/USDC | N/A |    0     |
+|               |                                                                                                                 |                                                                           |                             | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01: None        |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x42d9ee7049f5dc573fe08330a3597af17437ebb6 (gauges/msY-msUSD-gauge-42d9)  | add_reward(address,address) | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48: tokens/USDC | N/A |    1     |
+|               |                                                                                                                 |                                                                           |                             | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01: None        |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0xcf72a84edaae931385e84fb4c2edee07a32822a6 (gauges/msUSD-USDC-gauge-cf72) | add_reward(address,address) | 0x4ba01f22827018b4772CD326C7627FB4956A7C00: msUSD       | N/A |    2     |
+|               |                                                                                                                 |                                                                           |                             | 0x8A5cA54fF8a7cecBc2Cc635BAc4F63163C2E1eb1: None        |     |          |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x42d9ee7049f5dc573fe08330a3597af17437ebb6 (gauges/msY-msUSD-gauge-42d9)  | add_reward(address,address) | 0x4ba01f22827018b4772CD326C7627FB4956A7C00: msUSD       | N/A |    3     |
+|               |                                                                                                                 |                                                                           |                             | 0x8A5cA54fF8a7cecBc2Cc635BAc4F63163C2E1eb1: None        |     |          |
++---------------+-----------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------+-----+----------+
+```
+FILENAME: `MaxiOps/add_rewards/ethereum/add-rewards-0xcf72a8-2026-02-13_1136.json`
+MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `11b2b476a22829dc72e852d4dc8fdaad0e61b198`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/93266e26-6744-4e40-9c86-01b4a8973a55)
+
+```
++------------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+| fx_name          | to                                                     | value | inputs                                                                               | bip_number | tx_index |
++------------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+| acceptOwnership  | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | "0x79ba5097"                                                                         | N/A        |   N/A    |
+| addRecipients    | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                    | N/A        |   N/A    |
+|                  |                                                        |       |   "recipients": [                                                                    |            |          |
+|                  |                                                        |       |     "0xcf72a84edaae931385e84fb4c2edee07a32822a6 (gauges/msUSD-USDC-gauge-cf72)"      |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "amountPerPeriod": [                                                               |            |          |
+|                  |                                                        |       |     "raw:2500000000, 18 decimals:2.5E-9, 6 decimals: 2500"                           |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "maxPeriods": [                                                                    |            |          |
+|                  |                                                        |       |     "1"                                                                              |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "doNotStartBeforeTimestamp": [                                                     |            |          |
+|                  |                                                        |       |     "1771459200"                                                                     |            |          |
+|                  |                                                        |       |   ]                                                                                  |            |          |
+|                  |                                                        |       | }                                                                                    |            |          |
+| addRecipients    | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                    | N/A        |   N/A    |
+|                  |                                                        |       |   "recipients": [                                                                    |            |          |
+|                  |                                                        |       |     "0x42d9ee7049f5dc573fe08330a3597af17437ebb6 (gauges/msY-msUSD-gauge-42d9)"       |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "amountPerPeriod": [                                                               |            |          |
+|                  |                                                        |       |     "raw:2500000000, 18 decimals:2.5E-9, 6 decimals: 2500"                           |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "maxPeriods": [                                                                    |            |          |
+|                  |                                                        |       |     "1"                                                                              |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "doNotStartBeforeTimestamp": [                                                     |            |          |
+|                  |                                                        |       |     "1771459200"                                                                     |            |          |
+|                  |                                                        |       |   ]                                                                                  |            |          |
+|                  |                                                        |       | }                                                                                    |            |          |
+| removeRecipients | 0x6a71d17E50A67C54eae393323a8594cFdBb23F01 (Not Found) | 0     | {                                                                                    | N/A        |   N/A    |
+|                  |                                                        |       |   "recipients": [                                                                    |            |          |
+|                  |                                                        |       |     "0x62A66eB9aBf7a788F48D0ce7C0C065df9e09dA19 (gauges/rETH-waEthWETH-gauge-62a6)", |            |          |
+|                  |                                                        |       |     "0x70A1c01902DAb7a45dcA1098Ca76A8314dd8aDbA (gauges/osETH-waWETH-gauge-70a1)"    |            |          |
+|                  |                                                        |       |   ]                                                                                  |            |          |
+|                  |                                                        |       | }                                                                                    |            |          |
+| addRecipients    | 0x8A5cA54fF8a7cecBc2Cc635BAc4F63163C2E1eb1 (Not Found) | 0     | {                                                                                    | N/A        |   N/A    |
+|                  |                                                        |       |   "recipients": [                                                                    |            |          |
+|                  |                                                        |       |     "0xcf72a84edaae931385e84fb4c2edee07a32822a6 (gauges/msUSD-USDC-gauge-cf72)"      |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "amountPerPeriod": [                                                               |            |          |
+|                  |                                                        |       |     "raw:2500000000000000000000, 18 decimals:2500, 6 decimals: 2500000000000000"     |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "maxPeriods": [                                                                    |            |          |
+|                  |                                                        |       |     "1"                                                                              |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "doNotStartBeforeTimestamp": [                                                     |            |          |
+|                  |                                                        |       |     "1771459200"                                                                     |            |          |
+|                  |                                                        |       |   ]                                                                                  |            |          |
+|                  |                                                        |       | }                                                                                    |            |          |
+| addRecipients    | 0x8A5cA54fF8a7cecBc2Cc635BAc4F63163C2E1eb1 (Not Found) | 0     | {                                                                                    | N/A        |   N/A    |
+|                  |                                                        |       |   "recipients": [                                                                    |            |          |
+|                  |                                                        |       |     "0x42d9ee7049f5dc573fe08330a3597af17437ebb6 (gauges/msY-msUSD-gauge-42d9)"       |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "amountPerPeriod": [                                                               |            |          |
+|                  |                                                        |       |     "raw:2500000000000000000000, 18 decimals:2500, 6 decimals: 2500000000000000"     |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "maxPeriods": [                                                                    |            |          |
+|                  |                                                        |       |     "1"                                                                              |            |          |
+|                  |                                                        |       |   ],                                                                                 |            |          |
+|                  |                                                        |       |   "doNotStartBeforeTimestamp": [                                                     |            |          |
+|                  |                                                        |       |     "1771459200"                                                                     |            |          |
+|                  |                                                        |       |   ]                                                                                  |            |          |
+|                  |                                                        |       | }                                                                                    |            |          |
++------------------+--------------------------------------------------------+-------+--------------------------------------------------------------------------------------+------------+----------+
+```

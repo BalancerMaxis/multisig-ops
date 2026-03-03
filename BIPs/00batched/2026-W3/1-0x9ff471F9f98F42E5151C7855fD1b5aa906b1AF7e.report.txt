@@ -1,0 +1,76 @@
+FILENAME: `BIPs/00batched/2026-W3/1-0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e.json`
+MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `87dc8fadc5e57bae49b3642814e3521a7619ab87`
+CHAIN(S): `mainnet, base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/65fe4982-6bfc-44b3-89af-f21f3a9e914e)
+
+| Gauge Validator (0x8Fb6eF455dcB9CF747576fF36196A4c4535b81D6) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0xA9390f0e0fD42D3A53A5bA8eD2A381Ba29a2ed8E) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+| Gauge Validator (0x2F534f93928B99A4759a5C6a75a61b34132a06ff) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0xcf72A84EdAAE931385E84Fb4c2eDee07a32822A6) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   --   |
+
+| Gauge Validator (0x42D9eE7049F5dc573fe08330a3597Af17437EbB6) | Result |
+| :------------------------------------------------------------| :----: |
+| `validate_preferential_gauge`                                |   ✅   |
+| `validate_rate_providers_safety`                             |   ✅   |
+
+```
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| function              | pool_id_and_address                                      | symbol_and_info     | gauge_address_and_info                           | tokens                                                | rate_providers                             | review_summary |   bip   | tx_index |
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+| GaugeAdderV4/addGauge | 0x849bAe578b9367c5b0f285E6EC52BA0db9b4Ed9D               | 60-GOLD-40-wstETH   | root: 0x8Fb6eF455dcB9CF747576fF36196A4c4535b81D6 | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0: wstETH    | 0x72D07D7DcA67b8A406aD1Ec34ce969c90bFEE768 |      safe      | BIP-900 |    1     |
+|                       | pool_address: 0x849bAe578b9367c5b0f285E6EC52BA0db9b4Ed9D | fee (%): 0.3        | side: None                                       | 0x9DeB0fc809955b79c85e82918E8586d3b7d2695a: GOLD      | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A       | style: mainnet                                   |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | cap: 10.0%                                       |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                       |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0xDb373fD670C1767dB9ac9F2512cCF3eF15fD9D3d               | BAL-AURA-waBasUSDC  | root: 0xA9390f0e0fD42D3A53A5bA8eD2A381Ba29a2ed8E | 0x1509706a6c66CA549ff0cB464de88231DDBe213B: AURA      | 0x0000000000000000000000000000000000000000 |       --       | BIP-902 |    2     |
+|                       | pool_address: 0xDb373fD670C1767dB9ac9F2512cCF3eF15fD9D3d | fee (%): 0.3        | side: 0x894c4BE2949CD8193B1107a09102955a12d2F8dA | 0x4158734D47Fc9692176B5085E0F52ee0Da5d47F1: BAL       | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A       | style: L0 sidechain                              | 0xC768c589647798a6EE01A91FdE98EF2ed046DBD6: waBasUSDC | 0x0368b79b6A173a5aD589594E3227153D8cC7Cecc |      safe      |         |          |
+|                       |                                                          |                     | cap: 2.0%                                        |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                       |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x1535D7CA00323Aa32BD62AEDdf7ca651e4b95966               | 80ALCX-20WETH       | root: 0x2F534f93928B99A4759a5C6a75a61b34132a06ff | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2: WETH      | 0x0000000000000000000000000000000000000000 |       --       | BIP-898 |    4     |
+|                       | pool_address: 0x1535D7CA00323Aa32BD62AEDdf7ca651e4b95966 | fee (%): 0.3        | side: None                                       | 0xdBdb4d16EdA451D0503b854CF79D55697F90c8DF: ALCX      | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: N/A       | style: mainnet                                   |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | cap: 10.0%                                       |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                       |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x111ce2A60C30f6058A57D0dBAe1A39A42D998826               | msUSD-USDC          | root: 0xcf72A84EdAAE931385E84Fb4c2eDee07a32822A6 | 0x4ba01f22827018b4772CD326C7627FB4956A7C00: msUSD     | 0x0000000000000000000000000000000000000000 |       --       | BIP-899 |    5     |
+|                       | pool_address: 0x111ce2A60C30f6058A57D0dBAe1A39A42D998826 | fee (%): 0.01       | side: None                                       | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48: USDC      | 0x0000000000000000000000000000000000000000 |       --       |         |          |
+|                       |                                                          | a-factor: 5000      | style: mainnet                                   |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | cap: 2.0%                                        |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                       |                                            |                |         |          |
+| GaugeAdderV4/addGauge | 0x9054Ae85300c7D3A325714Fc2f1454D0b7c73a12               | msY-msUSD           | root: 0x42D9eE7049F5dc573fe08330a3597Af17437EbB6 | 0x4ba01f22827018b4772CD326C7627FB4956A7C00: msUSD     | 0x0000000000000000000000000000000000000000 |       --       | BIP-899 |    6     |
+|                       | pool_address: 0x9054Ae85300c7D3A325714Fc2f1454D0b7c73a12 | fee (%): 0.01       | side: None                                       | 0x890A5122Aa1dA30fEC4286DE7904Ff808F0bd74A: msY       | 0x1592d6f331460EaD0b3F757b5D1aA6E696C31147 |      safe      |         |          |
+|                       |                                                          | a-factor: 5000      | style: mainnet                                   |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | cap: 2.0%                                        |                                                       |                                            |                |         |          |
+|                       |                                                          |                     | preferential: True                               |                                                       |                                            |                |         |          |
++-----------------------+----------------------------------------------------------+---------------------+--------------------------------------------------+-------------------------------------------------------+--------------------------------------------+----------------+---------+----------+
+```
+FILENAME: `BIPs/00batched/2026-W3/1-0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e.json`
+MULTISIG: `multisigs/omni (mainnet:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `87dc8fadc5e57bae49b3642814e3521a7619ab87`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/65fe4982-6bfc-44b3-89af-f21f3a9e914e)
+
+```
++---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+---------+----------+
+| function      | entrypoint                                                                                                      | target                                                                       | selector                      | parsed_inputs                                                    |   bip   | tx_index |
++---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+---------+----------+
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x1E0C21296bF29EE2d56e0abBDfbBEdF2530A7c9A (None)                            | setRelativeWeightCap(uint256) | raw:50000000000000000, 18 decimals:0.05, 6 decimals: 50000000000 | BIP-901 |    0     |
+| performAction | 0xf5dECDB1f3d1ee384908Fbe16D2F0348AE43a9eA (20221124-authorizer-adaptor-entrypoint/AuthorizerAdaptorEntrypoint) | 0x183d73da7adc5011ec3c46e33bb50271e59ec976 (gauges/20WETH-80ALCX-gauge-183d) | killGauge()                   |                                                                  | BIP-898 |    3     |
++---------------+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+---------+----------+
+```

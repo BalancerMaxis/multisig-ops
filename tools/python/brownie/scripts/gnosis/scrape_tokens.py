@@ -7,7 +7,6 @@ from rich.console import Console
 from rich.progress import Progress
 from rich.table import Table
 
-
 console = Console()
 
 

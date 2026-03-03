@@ -3,7 +3,6 @@ from eth_abi import encode_abi
 import json
 from helpers.addresses import r
 
-
 multisig = "0x7c68c42De679ffB0f16216154C996C354cF1161B"
 print(multisig)
 bbeusd = Contract("0x50Cf90B954958480b8DF7958A9E965752F627124")
@@ -24,7 +23,7 @@ pool = bbeusd
 poolId = bbeusdId
 types = ["uint8", "uint256"]
 
-(pooltokens, amounts, whocares) = vault.getPoolTokens(poolId)
+pooltokens, amounts, whocares = vault.getPoolTokens(poolId)
 tokens = {}
 
 txs = []
@@ -65,7 +64,7 @@ for token in tokens.values():
         poolId = token.getPoolId()
     print(f"processing {token.name()} at {token.address}")
     encoded = encode_abi(types, [255, token.balanceOf(multisig)])
-    (lineartokens, yyy, zzz) = vault.getPoolTokens(poolId)
+    lineartokens, yyy, zzz = vault.getPoolTokens(poolId)
 
     if token != pool:
         txs.append(

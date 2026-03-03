@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
-
 ALLOCATOR_REPO_BASE = "https://raw.githubusercontent.com/BalancerMaxis/protocol_fee_allocator_v2/refs/heads/biweekly-runs"
 MULTISIG_OPS_ROOT = Path(__file__).parent.parent.parent.parent
 

@@ -1,0 +1,154 @@
+{
+  "version": "1.0",
+  "chainId": "9745",
+  "meta": {
+    "name": "Setup SweeperV1 for CoW on Plasma",
+    "description": "Set target token, add CoW burners to SweeperV1, and test sweep",
+    "createdFromSafeAddress": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+  },
+  "transactions": [
+    {
+      "to": "0x47B489bf5836f83ABD928C316F8e39bC0587B020",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "targetToken",
+            "type": "address"
+          }
+        ],
+        "name": "setTargetToken",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "targetToken": "0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb"
+      }
+    },
+    {
+      "to": "0x47B489bf5836f83ABD928C316F8e39bC0587B020",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeBurner",
+            "name": "protocolFeeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeBurner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeBurner": "0xaD89051bEd8d96f045E8912aE1672c6C0bF8a85E"
+      }
+    },
+    {
+      "to": "0x47B489bf5836f83ABD928C316F8e39bC0587B020",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "contract IProtocolFeeBurner",
+            "name": "protocolFeeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "addProtocolFeeBurner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "protocolFeeBurner": "0x311334883921Fb1b813826E585dF1C2be4358615"
+      }
+    },
+    {
+      "to": "0x47B489bf5836f83ABD928C316F8e39bC0587B020",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "feeToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minTargetTokenAmountOut",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deadline",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "feeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "sweepProtocolFeesForToken",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0xdcc8dfdd25297f853fab8fae38778f0972b9bf99",
+        "feeToken": "0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb",
+        "minTargetTokenAmountOut": "0",
+        "deadline": "2000000000",
+        "feeBurner": "0x0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "to": "0x47B489bf5836f83ABD928C316F8e39bC0587B020",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "feeToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minTargetTokenAmountOut",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deadline",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "feeBurner",
+            "type": "address"
+          }
+        ],
+        "name": "sweepProtocolFeesForToken",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "pool": "0x36151aceb3e2e1442d6239e7651ee3fa676c0936",
+        "feeToken": "0xE0126F0c4451B2B917064A93040fd4770D6774b5",
+        "minTargetTokenAmountOut": "0",
+        "deadline": "2000000000",
+        "feeBurner": "0x311334883921Fb1b813826E585dF1C2be4358615"
+      }
+    }
+  ]
+}

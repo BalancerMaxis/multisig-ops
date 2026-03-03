@@ -23,7 +23,6 @@ from great_ape_safe.ape_api.uni_v2 import UniV2
 from great_ape_safe.ape_api.uni_v3 import UniV3
 from helpers.chaindata import labels
 
-
 C = Console()
 
 

@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1736640000000,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Enable module on DAO Emergency multisig on Ethereum",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0xA29F61256e948F3FB707b4b3B138C5cCb9EF9888",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "module",
+            "type": "address"
+          }
+        ],
+        "name": "enableModule",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "module": "0x7d171c6ef79a22340c6f931e8bd3833db8a8c620"
+      }
+    }
+  ]
+}

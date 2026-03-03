@@ -7,8 +7,7 @@ from json import JSONDecodeError
 from typing import Optional
 from bal_addresses import AddrBook
 
-base_json = json.loads(
-    """
+base_json = json.loads("""
 {
   "version": "1.0",
   "chainId": "",
@@ -23,8 +22,7 @@ base_json = json.loads(
   "transactions": [
   ]
 }
-"""
-)
+""")
 
 IGNORED_DIRECTORIES = ["examples", "rejected", "batched", "proposed"]
 # Place your BIPs json into this directory under BIPs/<TARGET_DIR_WITH_BIPS>

@@ -2,7 +2,6 @@ from bal_addresses import AddrBook
 from brownie import network, accounts, Contract
 import os
 
-
 CHAINS_TO_KEEP = ["zkevm-main", "mode-main", "fraxtal-main"]
 
 
@@ -51,7 +50,7 @@ def main():
                 )
                 errors = True
                 continue
-            (ready, performdata) = c.checkUpkeep(b"")
+            ready, performdata = c.checkUpkeep(b"")
             if ready:
                 try:
                     c.performUpkeep(performdata, {"from": account})
