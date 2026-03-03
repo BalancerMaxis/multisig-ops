@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 0,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Disable all Oracle LP Pool Factories (v1 and v2) on Arbitrum",
+    "txBuilderVersion": "1.18.2",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x292caf0d3dd98f8308c03b314a257a5039d174e5524f3c5ebf64d04544a19c95",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    },
+    {
+      "to": "0x7f4C133e44381D05129F9B81bAD8Fa9F3345D29B",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x292caf0d3dd98f8308c03b314a257a5039d174e5524f3c5ebf64d04544a19c95",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x685b9db1685629cf39cd997bf85383fb254f27482b9a18a56e61259965303124",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    },
+    {
+      "to": "0x816e90DC85bF016455017a76Bc09CC0451Eeb308",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x685b9db1685629cf39cd997bf85383fb254f27482b9a18a56e61259965303124",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x32cfd519f4e04a2d3b88e1e667811368433ec3da01605dbc26d85a8d54dc834b",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    },
+    {
+      "to": "0xA9AEeB57Efe61338C0d07f3e5Bb82519C4Ad1103",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x32cfd519f4e04a2d3b88e1e667811368433ec3da01605dbc26d85a8d54dc834b",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x249bc3c0021e108ccf28b9f7934b423928be80b8c823bab8254edba17b359ea4",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    },
+    {
+      "to": "0xa59F164d6cf6ee5d63580C0bcEA5CCB2e50b908c",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x249bc3c0021e108ccf28b9f7934b423928be80b8c823bab8254edba17b359ea4",
+        "account": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+      }
+    }
+  ]
+}
