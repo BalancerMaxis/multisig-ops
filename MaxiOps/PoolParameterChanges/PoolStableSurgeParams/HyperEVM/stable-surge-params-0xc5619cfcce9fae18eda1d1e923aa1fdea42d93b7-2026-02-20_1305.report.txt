@@ -1,0 +1,20 @@
+FILENAME: `MaxiOps/PoolParameterChanges/PoolStableSurgeParams/HyperEVM/stable-surge-params-0xc5619cfcce9fae18eda1d1e923aa1fdea42d93b7-2026-02-20_1305.json`
+MULTISIG: `multisigs/omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `10c99de9a6ec868db6272f5a07543f8e9c35412c`
+CHAIN(S): `hyperevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '4c0f65eb-eb59-4970-ab75-8c53afb9b40d', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++--------------------------+-----------------------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------+------------+----------+
+| fx_name                  | to                                                                                            | value | inputs                                                                     | bip_number | tx_index |
++--------------------------+-----------------------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------+------------+----------+
+| setMaxSurgeFeePercentage | 0x5dbad78818d4c8958eff2d5b95b28385a22113cd (20250403-v3-stable-surge-hook-v2/StableSurgeHook) | 0     | {                                                                          | N/A        |   N/A    |
+|                          |                                                                                               |       |   "pool": [                                                                |            |          |
+|                          |                                                                                               |       |     "0xc5619cfcce9fae18eda1d1e923aa1fdea42d93b7 (pools/USDp-csbUSDC-c561)" |            |          |
+|                          |                                                                                               |       |   ],                                                                       |            |          |
+|                          |                                                                                               |       |   "newMaxSurgeSurgeFeePercentage": [                                       |            |          |
+|                          |                                                                                               |       |     "50000000000000000"                                                    |            |          |
+|                          |                                                                                               |       |   ]                                                                        |            |          |
+|                          |                                                                                               |       | }                                                                          |            |          |
++--------------------------+-----------------------------------------------------------------------------------------------+-------+----------------------------------------------------------------------------+------------+----------+
+```

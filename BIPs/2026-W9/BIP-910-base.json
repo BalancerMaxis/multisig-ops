@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 1770675956,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Manage permissions for wallet",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x61c9a01834507ebaa8821be46ceb783e9cb8154aa151ce58e56b11beabaa8ec3, 0x3d65c540437e8cce734a076388dcefdcd773293bfcd38e71ae0aae272de5b77b]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0x4f5decf17af0c756346eb5f2c2a674a35b2d116ffd5dc87a6fb8adb567a2acab, 0xfd955b750857662dfda32cfff623b9edf9541cc37e08005c4b74aa28086643be]",
+        "account": "0x183C55A0dc7A7Da0f3581997e764D85Fd9E9f63a"
+      }
+    }
+  ]
+}
