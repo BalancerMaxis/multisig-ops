@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "chainId": "8453",
+  "createdAt": 0,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Disable all Oracle LP Pool Factories (v1 and v2) on Base",
+    "txBuilderVersion": "1.18.2",
+    "createdFromSafeAddress": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+  },
+  "transactions": [
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x416d92d817cb23a3d644810c79c3e5d9cd991b729c260819b570abd632e3a90a",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0x774cB66e2B2dB59A9daF175e9b2B7A142E17EB94",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x416d92d817cb23a3d644810c79c3e5d9cd991b729c260819b570abd632e3a90a",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xa821892dcbfcfb5e12afef4adb89e0f3a91ec943502f0e9c127ae54bb6ba9283",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0xb21A277466e7dB6934556a1Ce12eb3F032815c8A",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xa821892dcbfcfb5e12afef4adb89e0f3a91ec943502f0e9c127ae54bb6ba9283",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0x9958317b80ee5f10457017d54c2484D722059157",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "grantRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    },
+    {
+      "to": "0x5939ab16fDf1991B0EF603c639B6b501A7841fAB",
+      "value": "0",
+      "data": "0x2f2770db",
+      "contractMethod": {
+        "inputs": [],
+        "name": "disable",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x809B79b53F18E9bc08A961ED4678B901aC93213a",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+          { "internalType": "address", "name": "account", "type": "address" }
+        ],
+        "name": "revokeRole",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "role": "0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e",
+        "account": "0xC40DCFB13651e64C8551007aa57F9260827B6462"
+      }
+    }
+  ]
+}

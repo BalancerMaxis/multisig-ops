@@ -1,0 +1,36 @@
+FILENAME: `BIPs/2026-W11/BIP-XXX-disable-oracle-factories-base.json`
+MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
+COMMIT: `087eb2511e3182396b110d1eeba25614f422852e`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4db98a2e-f271-448b-a5a2-ebb23b57d094)
+
+```
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                           | action_ids                                                         | bip | tx_index |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRole  | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0x416d92d817cb23a3d644810c79c3e5d9cd991b729c260819b570abd632e3a90a | N/A |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0x416d92d817cb23a3d644810c79c3e5d9cd991b729c260819b570abd632e3a90a | N/A |    2     |
+| Authorizer/grantRole  | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0xa821892dcbfcfb5e12afef4adb89e0f3a91ec943502f0e9c127ae54bb6ba9283 | N/A |    3     |
+| Authorizer/revokeRole | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0xa821892dcbfcfb5e12afef4adb89e0f3a91ec943502f0e9c127ae54bb6ba9283 | N/A |    5     |
+| Authorizer/grantRole  | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | !! NOT FOUND !!                                                    | 0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8 | N/A |    6     |
+| Authorizer/revokeRole | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | !! NOT FOUND !!                                                    | 0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8 | N/A |    8     |
+| Authorizer/grantRole  | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | !! NOT FOUND !!                                                    | 0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e | N/A |    9     |
+| Authorizer/revokeRole | multisigs/dao | 0xC40DCFB13651e64C8551007aa57F9260827B6462 | !! NOT FOUND !!                                                    | 0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e | N/A |    11    |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```
+FILENAME: `BIPs/2026-W11/BIP-XXX-disable-oracle-factories-base.json`
+MULTISIG: `multisigs/dao (base:0xC40DCFB13651e64C8551007aa57F9260827B6462)`
+COMMIT: `087eb2511e3182396b110d1eeba25614f422852e`
+CHAIN(S): `base`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/4db98a2e-f271-448b-a5a2-ebb23b57d094)
+
+```
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                                    | value | inputs | bip_number | tx_index |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x774cB66e2B2dB59A9daF175e9b2B7A142E17EB94 (20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory) | 0     | {}     | N/A        |   N/A    |
+| disable | 0xb21A277466e7dB6934556a1Ce12eb3F032815c8A (20250815-v3-stable-pool-oracle/StableLPOracleFactory)     | 0     | {}     | N/A        |   N/A    |
+| disable | 0x9958317b80ee5f10457017d54c2484D722059157 (Not Found)                                                | 0     | {}     | N/A        |   N/A    |
+| disable | 0x5939ab16fDf1991B0EF603c639B6b501A7841fAB (Not Found)                                                | 0     | {}     | N/A        |   N/A    |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

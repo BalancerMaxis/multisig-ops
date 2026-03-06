@@ -1,0 +1,36 @@
+FILENAME: `BIPs/2026-W11/BIP-XXX-disable-oracle-factories-optimism.json`
+MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
+COMMIT: `087eb2511e3182396b110d1eeba25614f422852e`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c7af47b1-7660-42cc-9268-e5dd2e57a228)
+
+```
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                           | action_ids                                                         | bip | tx_index |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0x6febf9f238dc2ec20e86da0ec49412a1a4d6f6a3a5de38e57a31d7f05dd323f8 | N/A |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0x6febf9f238dc2ec20e86da0ec49412a1a4d6f6a3a5de38e57a31d7f05dd323f8 | N/A |    2     |
+| Authorizer/grantRole  | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0x54ed747f10bf74fca2a1110cb69c6328e2fb5025039aede2933d04dfc21abd11 | N/A |    3     |
+| Authorizer/revokeRole | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0x54ed747f10bf74fca2a1110cb69c6328e2fb5025039aede2933d04dfc21abd11 | N/A |    5     |
+| Authorizer/grantRole  | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | !! NOT FOUND !!                                                    | 0x92b93830f0497ce935614ceb53508d12d772244a34a0bbbeab832a4c824f0b90 | N/A |    6     |
+| Authorizer/revokeRole | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | !! NOT FOUND !!                                                    | 0x92b93830f0497ce935614ceb53508d12d772244a34a0bbbeab832a4c824f0b90 | N/A |    8     |
+| Authorizer/grantRole  | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | !! NOT FOUND !!                                                    | 0xfc212a18b66df1a184af12c3a698e2f1b55a002fa96e4ad2e37ddd708f99723a | N/A |    9     |
+| Authorizer/revokeRole | multisigs/dao | 0x043f9687842771b3dF8852c1E9801DCAeED3f6bc | !! NOT FOUND !!                                                    | 0xfc212a18b66df1a184af12c3a698e2f1b55a002fa96e4ad2e37ddd708f99723a | N/A |    11    |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```
+FILENAME: `BIPs/2026-W11/BIP-XXX-disable-oracle-factories-optimism.json`
+MULTISIG: `multisigs/dao (optimism:0x043f9687842771b3dF8852c1E9801DCAeED3f6bc)`
+COMMIT: `087eb2511e3182396b110d1eeba25614f422852e`
+CHAIN(S): `optimism`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/c7af47b1-7660-42cc-9268-e5dd2e57a228)
+
+```
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                                    | value | inputs | bip_number | tx_index |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x6eE18fbb1BBcC5CF700cD75ea1aef2bb21e3cB3F (20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory) | 0     | {}     | N/A        |   N/A    |
+| disable | 0xb96524227c4B5Ab908FC3d42005FE3B07abA40E9 (20250815-v3-stable-pool-oracle/StableLPOracleFactory)     | 0     | {}     | N/A        |   N/A    |
+| disable | 0xEB2BB012869255f8C622563Dc4C3AFA8619fe804 (Not Found)                                                | 0     | {}     | N/A        |   N/A    |
+| disable | 0xC4c4940DC7c57DF46d3A217647dB1649721Cf468 (Not Found)                                                | 0     | {}     | N/A        |   N/A    |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```

@@ -1,0 +1,36 @@
+FILENAME: `BIPs/2026-W11/BIP-XXX-disable-oracle-factories-arbitrum.json`
+MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
+COMMIT: `087eb2511e3182396b110d1eeba25614f422852e`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/eb2384fa-1169-4766-8fd6-78b028344482)
+
+```
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                           | action_ids                                                         | bip | tx_index |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+| Authorizer/grantRole  | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0x292caf0d3dd98f8308c03b314a257a5039d174e5524f3c5ebf64d04544a19c95 | N/A |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0x292caf0d3dd98f8308c03b314a257a5039d174e5524f3c5ebf64d04544a19c95 | N/A |    2     |
+| Authorizer/grantRole  | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0x685b9db1685629cf39cd997bf85383fb254f27482b9a18a56e61259965303124 | N/A |    3     |
+| Authorizer/revokeRole | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0x685b9db1685629cf39cd997bf85383fb254f27482b9a18a56e61259965303124 | N/A |    5     |
+| Authorizer/grantRole  | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | !! NOT FOUND !!                                                    | 0x32cfd519f4e04a2d3b88e1e667811368433ec3da01605dbc26d85a8d54dc834b | N/A |    6     |
+| Authorizer/revokeRole | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | !! NOT FOUND !!                                                    | 0x32cfd519f4e04a2d3b88e1e667811368433ec3da01605dbc26d85a8d54dc834b | N/A |    8     |
+| Authorizer/grantRole  | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | !! NOT FOUND !!                                                    | 0x249bc3c0021e108ccf28b9f7934b423928be80b8c823bab8254edba17b359ea4 | N/A |    9     |
+| Authorizer/revokeRole | multisigs/dao | 0xaF23DC5983230E9eEAf93280e312e57539D098D0 | !! NOT FOUND !!                                                    | 0x249bc3c0021e108ccf28b9f7934b423928be80b8c823bab8254edba17b359ea4 | N/A |    11    |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+-----+----------+
+```
+FILENAME: `BIPs/2026-W11/BIP-XXX-disable-oracle-factories-arbitrum.json`
+MULTISIG: `multisigs/dao (arbitrum:0xaF23DC5983230E9eEAf93280e312e57539D098D0)`
+COMMIT: `087eb2511e3182396b110d1eeba25614f422852e`
+CHAIN(S): `arbitrum`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/eb2384fa-1169-4766-8fd6-78b028344482)
+
+```
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                                    | value | inputs | bip_number | tx_index |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x7f4C133e44381D05129F9B81bAD8Fa9F3345D29B (20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory) | 0     | {}     | N/A        |   N/A    |
+| disable | 0x816e90DC85bF016455017a76Bc09CC0451Eeb308 (20250815-v3-stable-pool-oracle/StableLPOracleFactory)     | 0     | {}     | N/A        |   N/A    |
+| disable | 0xA9AEeB57Efe61338C0d07f3e5Bb82519C4Ad1103 (Not Found)                                                | 0     | {}     | N/A        |   N/A    |
+| disable | 0xa59F164d6cf6ee5d63580C0bcEA5CCB2e50b908c (Not Found)                                                | 0     | {}     | N/A        |   N/A    |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```
