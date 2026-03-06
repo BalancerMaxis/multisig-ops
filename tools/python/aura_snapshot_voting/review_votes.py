@@ -60,6 +60,17 @@ def review_votes(week_string):
             f"\n### Vote Preparation\n❌ Error simulating vote preparation: {str(e)}"
         )
         vote_check = False
+        prop = None
+
+    round_live_check = prop is not None and prop["state"] == "active"
+    if prop:
+        round_live_detail = (
+            f"Proposal: {prop['title']}\n"
+            f"- State: `{prop['state']}`\n"
+            f"- Snapshot round is live: {'✅' if round_live_check else '❌'}"
+        )
+    else:
+        round_live_detail = "Could not fetch proposal from Snapshot"
 
     vote_df = vote_df.dropna(subset=["Gauge Address", "Label", "Allocation %"])
 
@@ -103,11 +114,14 @@ CSV file: `{os.path.relpath(csv_file, project_root)}`
 
 {vote_prep}
 
+### Snapshot Round Check
+- {round_live_detail}
+
 ### Vote Summary
 
 {vote_df[["Chain", "Label", "Gauge Address", "Allocation %"]].to_markdown(index=False)}
 
-{"### ✅ All checks passed!" if (allocation_check and snapshot_label_check and vote_check and duplicate_check) else "### ❌ Some checks failed - please review the issues above"}
+{"### ✅ All checks passed!" if (allocation_check and snapshot_label_check and vote_check and duplicate_check and round_live_check) else "### ❌ Some checks failed - please review the issues above"}
     """
 
     with open("review_output.md", "w") as f:
