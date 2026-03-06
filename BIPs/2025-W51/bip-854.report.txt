@@ -1,14 +1,14 @@
-FILENAME: `BIPs/2025-W51/bip-854.json`
+FILENAME: `BIPs/2025-W51/BIP-854.json`
 MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
-COMMIT: `75085fbc973e151f430ab3a0fc9b1d4ce6c0b21b`
+COMMIT: `519a5d692d675a91d37aa04dd755497e87b3cb01`
 CHAIN(S): `mainnet`
-TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/6b1d5882-137b-4b60-aa0b-02e626f30b17)
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ac239dba-df8e-4405-bb7d-405b0d64705c)
 
 ```
 +---------------+-------------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
 | fx_name       | to                                                                                              | value | inputs                                                                             | bip_number | tx_index |
 +---------------+-------------------------------------------------------------------------------------------------+-------+------------------------------------------------------------------------------------+------------+----------+
-| setDelegation | 0x6f5a2eE11E7a772AeB5114A20d0D7c0ff61EB8A0 (20220325-ve-delegation/VotingEscrowDelegationProxy) | 0     | {                                                                                  | N/A        |   N/A    |
+| setDelegation | 0x6f5a2eE11E7a772AeB5114A20d0D7c0ff61EB8A0 (20220325-ve-delegation/VotingEscrowDelegationProxy) | 0     | {                                                                                  | BIP-854    |   N/A    |
 |               |                                                                                                 |       |   "delegation": [                                                                  |            |          |
 |               |                                                                                                 |       |     "0x2cf8e145Bdfe7c52b49AD9bB3c294a31B2736c59 (20250613-veboost-v2.1/VeBoostV2)" |            |          |
 |               |                                                                                                 |       |   ]                                                                                |            |          |
