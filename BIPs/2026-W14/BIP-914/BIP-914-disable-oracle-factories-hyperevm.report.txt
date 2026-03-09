@@ -1,0 +1,36 @@
+FILENAME: `BIPs/2026-W14/BIP-914/BIP-914-disable-oracle-factories-hyperevm.json`
+MULTISIG: `multisigs/omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `31e30246820f1b1fdfaa324e9ad2a27c29fceacd`
+CHAIN(S): `hyperevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': '389a47da-a822-405f-bf2a-cc880e285bfe', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++-----------------------+----------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name    | caller_address                             | fx_paths                                                           | action_ids                                                         |   bip   | tx_index |
++-----------------------+----------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0xcdb736e8c0e4e5259800688ffee57696078d89f1a72cbd105193d75b973487e8 | BIP-914 |    0     |
+| Authorizer/revokeRole | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0xcdb736e8c0e4e5259800688ffee57696078d89f1a72cbd105193d75b973487e8 | BIP-914 |    2     |
+| Authorizer/grantRole  | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0x3f6401a12ca8f8048783a6e5b059877235fcf452f62691cbcbe45ebe6bf3c217 | BIP-914 |    3     |
+| Authorizer/revokeRole | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0x3f6401a12ca8f8048783a6e5b059877235fcf452f62691cbcbe45ebe6bf3c217 | BIP-914 |    5     |
+| Authorizer/grantRole  | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | !! NOT FOUND !!                                                    | 0x6ccb8983444db720b828ab14455ffd0d3d219cfd63180ee7e384e218810ef779 | BIP-914 |    6     |
+| Authorizer/revokeRole | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | !! NOT FOUND !!                                                    | 0x6ccb8983444db720b828ab14455ffd0d3d219cfd63180ee7e384e218810ef779 | BIP-914 |    8     |
+| Authorizer/grantRole  | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | !! NOT FOUND !!                                                    | 0xd9ad8a66a0dd971dc6fe438297bcae5d731b41bacd8c65809e765141d1986bdb | BIP-914 |    9     |
+| Authorizer/revokeRole | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | !! NOT FOUND !!                                                    | 0xd9ad8a66a0dd971dc6fe438297bcae5d731b41bacd8c65809e765141d1986bdb | BIP-914 |    11    |
++-----------------------+----------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2026-W14/BIP-914/BIP-914-disable-oracle-factories-hyperevm.json`
+MULTISIG: `multisigs/omni (hyperevm:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `31e30246820f1b1fdfaa324e9ad2a27c29fceacd`
+CHAIN(S): `hyperevm`
+TENDERLY: `🟪 SKIPPED (ValueError({'error': {'id': 'a54dc606-05ab-4b47-a6c4-e68ccf8e3f41', 'slug': 'internal_server_error', 'message': 'Internal server error'}}))`
+
+```
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                                    | value | inputs | bip_number | tx_index |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0xf4743D026f3D07aF3747bb7d05BeD06D177241d7 (20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory) | 0     | {}     | BIP-914    |   N/A    |
+| disable | 0x0b11209B8c5E821b18dED147583b8978c3E63911 (20250815-v3-stable-pool-oracle/StableLPOracleFactory)     | 0     | {}     | BIP-914    |   N/A    |
+| disable | 0xBcA68cb9B794A4fb84855e003e4cF591F80A3Dc9 (Not Found)                                                | 0     | {}     | BIP-914    |   N/A    |
+| disable | 0x45fB5aF0a1aD80Ea16C803146eb81844D9972373 (Not Found)                                                | 0     | {}     | BIP-914    |   N/A    |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```
