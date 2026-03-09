@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1771966836000,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Deprecate CowAMM positions",
+    "txBuilderVersion": "1.18.0",
+    "createdFromSafeAddress": "0x0EFcCBb9E2C09Ea29551879bd9Da32362b32fc89"
+  },
+  "transactions": [
+    {
+      "to": "0xf08d4dea369c456d26a3168ff0024b904f2d8b91",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "poolAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "minAmountsOut",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "exitPool",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolAmountIn": "5194381554063539272643",
+        "minAmountsOut": "[0,0]"
+      }
+    },
+    {
+      "to": "0xf8F5B88328DFF3d19E5f4F11A9700293Ac8f638F",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "poolAmountIn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "minAmountsOut",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "exitPool",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "poolAmountIn": "156039119661920131226849",
+        "minAmountsOut": "[0,0]"
+      }
+    }
+  ]
+}

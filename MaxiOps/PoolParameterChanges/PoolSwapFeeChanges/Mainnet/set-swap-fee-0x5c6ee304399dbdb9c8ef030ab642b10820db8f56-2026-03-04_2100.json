@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "chainId": "1",
+  "createdAt": 1772676027099,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Set swap fee to 2.5% for Balancer 80 BAL 20 WETH via Gauntlet Fee Setter",
+    "createdFromSafeAddress": "0xf4A80929163C5179Ca042E1B292F5EFBBE3D89e6"
+  },
+  "transactions": [
+    {
+      "to": "0xE4a8ed6c1D8d048bD29A00946BFcf2DB10E7923B",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "name": "addresses",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          { "name": "fees", "type": "uint256[]", "internalType": "uint256[]" }
+        ],
+        "name": "setSwapFees",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "addresses": "[0x5c6ee304399dbdb9c8ef030ab642b10820db8f56]",
+        "fees": "[25000000000000000]"
+      }
+    }
+  ]
+}
