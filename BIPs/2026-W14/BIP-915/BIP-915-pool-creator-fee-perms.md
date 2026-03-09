@@ -1,4 +1,4 @@
-# [BIP-XXX] Grant Pool Creator Fee Permissions to Omni Multisig
+# [BIP-915] Grant Pool Creator Fee Permissions to Omni Multisig
 
 ## Summary
 
