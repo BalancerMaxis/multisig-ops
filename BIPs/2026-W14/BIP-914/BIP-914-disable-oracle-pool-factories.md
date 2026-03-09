@@ -1,4 +1,4 @@
-# [BIP-XXX]: Disable Outdated Oracle LP Pool Factories (v1 and v2)
+# [BIP-914] Disable Outdated Oracle LP Pool Factories (v1 and v2)
 
 ## Summary
 
