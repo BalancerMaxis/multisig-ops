@@ -1,0 +1,34 @@
+FILENAME: `BIPs/2026-W14/BIP-916/BIP-916-set-network-remapping-manager-stakedao.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `7ae4ed191a064e9bdca9e403906bb6377b1c9a2c`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ad0b8cce-dd6b-4d58-8cd8-62d222183a3f)
+
+```
++-----------------------+---------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                                                 | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230504-vebal-remapper/VotingEscrowRemapper/setNetworkRemappingManager(address,address) | 0x6bb341db03eede206e544c654a59ef89eea83bc65fada2cfeeaf18c5c0f76ac0 | BIP-916 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f | 20230504-vebal-remapper/VotingEscrowRemapper/setNetworkRemappingManager(address,address) | 0x6bb341db03eede206e544c654a59ef89eea83bc65fada2cfeeaf18c5c0f76ac0 | BIP-916 |    2     |
++-----------------------+---------------+--------------------------------------------+------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2026-W14/BIP-916/BIP-916-set-network-remapping-manager-stakedao.json`
+MULTISIG: `multisigs/dao (mainnet:0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f)`
+COMMIT: `7ae4ed191a064e9bdca9e403906bb6377b1c9a2c`
+CHAIN(S): `mainnet`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/ad0b8cce-dd6b-4d58-8cd8-62d222183a3f)
+
+```
++----------------------------+-------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| fx_name                    | to                                                                                        | value | inputs                                                 | bip_number | tx_index |
++----------------------------+-------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+| setNetworkRemappingManager | 0x83E443EF4f9963C77bd860f94500075556668cb8 (20230504-vebal-remapper/VotingEscrowRemapper) | 0     | {                                                      | BIP-916    |   N/A    |
+|                            |                                                                                           |       |   "localUser": [                                       |            |          |
+|                            |                                                                                           |       |     "0xea79d1A83Da6DB43a85942767C389fE0ACf336A5 (N/A)" |            |          |
+|                            |                                                                                           |       |   ],                                                   |            |          |
+|                            |                                                                                           |       |   "delegate": [                                        |            |          |
+|                            |                                                                                           |       |     "0xB0552b6860CE5C0202976Db056b5e3Cc4f9CC765 (N/A)" |            |          |
+|                            |                                                                                           |       |   ]                                                    |            |          |
+|                            |                                                                                           |       | }                                                      |            |          |
++----------------------------+-------------------------------------------------------------------------------------------+-------+--------------------------------------------------------+------------+----------+
+```
