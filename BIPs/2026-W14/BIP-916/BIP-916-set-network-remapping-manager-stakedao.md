@@ -1,4 +1,4 @@
-# [BIP-XXX] Set Network Remapping Manager for StakeDAO
+# [BIP-916] Set Network Remapping Manager for StakeDAO
 
 ## Motivation
 
