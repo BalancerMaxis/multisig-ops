@@ -23,9 +23,7 @@ MAIN_PAYLOAD_PATH = "fee_allocator/payloads/{date_end}.json"
 
 
 def get_latest_fee_dates() -> Tuple[str, str]:
-    api_url = (
-        "https://api.github.com/repos/balancer/protocol_fee_allocator_v2/pulls"
-    )
+    api_url = "https://api.github.com/repos/balancer/protocol_fee_allocator_v2/pulls"
     params = {"state": "closed", "per_page": 10, "sort": "updated", "direction": "desc"}
 
     response = requests.get(api_url, params=params)
