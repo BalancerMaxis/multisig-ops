@@ -13,7 +13,7 @@
 
 1. **Upload the CSV File**:
     - Navigate to the `input` directory for the current week and year. For example, for week 25 of 2024, the path would be: **`MaxiOps/vlaura_voting/2024/W25/input`**.
-    - Go to the URL: `https://github.com/BalancerMaxis/multisig-ops/upload/main/MaxiOps/vlaura_voting/2024/W25/input`. (replace with current year/W##)
+    - Go to the URL: `https://github.com/balancer/multisig-ops/upload/main/MaxiOps/vlaura_voting/2024/W25/input`. (replace with current year/W##)
     - Drag and drop your CSV file into the upload area or click "choose your files" to select the file from your computer.
     - Add a commit message, for example, "Add voting data for 2024-W25".
     - Ensure you select the option to "Create a new branch for this commit and start a pull request".
@@ -29,7 +29,7 @@
 1. **Wait for Review**: Wait for the PR to be reviewed and merged
 
 1. **Navigate to Actions**:
-    - Go to the [Actions tab](https://github.com/BalancerMaxis/multisig-ops/actions) in the repository.
+    - Go to the [Actions tab](https://github.com/balancer/multisig-ops/actions) in the repository.
 
 2. **Run the Workflow**:
     - Find the workflow named "Post vlAURA snapshot votes to voter multisig and send to the vote relayer".

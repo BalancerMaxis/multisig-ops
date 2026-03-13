@@ -1,6 +1,6 @@
 # veBalFeesInjector
 
-This contract/upkeep is meant to handle the regular injection of veBAL fees.  You can find the repo [here](https://github.com/BalancerMaxis/veBalFeeInjector).  It is intended to take biweekly outputs of fee processing operations in the configured tokens, and pay them out out over a 2 one week periods.
+This contract/upkeep is meant to handle the regular injection of veBAL fees.  You can find the repo [here](https://github.com/balancer/veBalFeeInjector).  It is intended to take biweekly outputs of fee processing operations in the configured tokens, and pay them out out over a 2 one week periods.
 
 
 The payout occurs by paying half of the total amount one week, and then the full amount the next, then half, then all.  As a result, 2 weeks fees injected will result in half paid one week, and the remainder paid the following week.
