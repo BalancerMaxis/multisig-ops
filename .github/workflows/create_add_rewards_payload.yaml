@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install git+https://github.com/BalancerMaxis/bal_addresses@0.9.15
+          pip install git+https://github.com/balancer/bal_addresses@0.9.15
 
       - name: Run script
         run: |
@@ -79,7 +79,7 @@ jobs:
   run_reports:
     needs: add-rewards
     secrets: inherit
-    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
+    uses: "balancer/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     with:
       pr_number: ${{ needs.add-rewards.outputs.pull-request-number }}
       checkout_ref: ${{ needs.add-rewards.outputs.pull-request-branch }}

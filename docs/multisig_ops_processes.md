@@ -3,7 +3,7 @@
 ## The Multisigs and signer sets
 Balancer maintains a variety of multisigs.  Each execution is intended to somehow link back to governance.
 
-The source of truth for all multisigs and signer addresses [here](https://github.com/BalancerMaxis/bal_addresses/blob/main/extras/multisigs.json).  
+The source of truth for all multisigs and signer addresses [here](https://github.com/balancer/bal_addresses/blob/main/extras/multisigs.json).  
 
 DAO multisigs use the DAO signer set, which requires 6/11 signers to execute.
 The rest of the safes use the Maxi signer set, which requires 3/6.
@@ -13,16 +13,16 @@ The rest of the safes use the Maxi signer set, which requires 3/6.
 There is one DAO Multisig per chain.  Each execution must be directly linked to approved governance.
 
 The DAO multisig currently operates on a weekly cadence.  Each week the Balancer Maxis facilitate and track the [Governance Process](https://github.com/orgs/BalancerMaxis/projects/1).
-In this process, BIPs that are deemed ready for execution have pull-requests with [Safe Transaction-Builder paylaods](https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs) prepared in a directory structure that grouped by execution weeks. 
+In this process, BIPs that are deemed ready for execution have pull-requests with [Safe Transaction-Builder paylaods](https://github.com/balancer/multisig-ops/tree/main/BIPs) prepared in a directory structure that grouped by execution weeks. 
 ![img.png](img.png)
 
-[Automated reporting](https://github.com/BalancerMaxis/multisig-ops/blob/main/BIPs/2023-W36/BIP-424.report.txt) is run on each payload, which resolves hard to read addresses and details and makes review easier.
+[Automated reporting](https://github.com/balancer/multisig-ops/blob/main/BIPs/2023-W36/BIP-424.report.txt) is run on each payload, which resolves hard to read addresses and details and makes review easier.
 Payloads and reports are reviewed in github and merged.
 
-Once voting for a week has begun, an [action](https://github.com/BalancerMaxis/multisig-ops/actions/workflows/merge_json.yaml) is run to combine all payloads for the current week by multisig.  New reports are generated on the [Combined Payloads](https://github.com/BalancerMaxis/multisig-ops/tree/main/BIPs/00batched) an additional review is conducted.
-Here is an [example combined payload report](https://github.com/BalancerMaxis/multisig-ops/blob/main/BIPs/00batched/2023-W43/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.report.txt).
+Once voting for a week has begun, an [action](https://github.com/balancer/multisig-ops/actions/workflows/merge_json.yaml) is run to combine all payloads for the current week by multisig.  New reports are generated on the [Combined Payloads](https://github.com/balancer/multisig-ops/tree/main/BIPs/00batched) an additional review is conducted.
+Here is an [example combined payload report](https://github.com/balancer/multisig-ops/blob/main/BIPs/00batched/2023-W43/1-0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f.report.txt).
 
-Following the end of voting, if any votes are rejected, their payload files are moved the [00rejected](../BIPs/00rejected) directory and the combine action is rerun.  All of the combined payloads are then loaded into the DAO multisigs per chain.  The combined payloads are merged into a final [Signer Report](https://github.com/BalancerMaxis/multisig-ops/blob/main/BIPs/00batched/2023-W42/combined-report.md).  This report as well as links to the safe are sent to signers.  
+Following the end of voting, if any votes are rejected, their payload files are moved the [00rejected](../BIPs/00rejected) directory and the combine action is rerun.  All of the combined payloads are then loaded into the DAO multisigs per chain.  The combined payloads are merged into a final [Signer Report](https://github.com/balancer/multisig-ops/blob/main/BIPs/00batched/2023-W42/combined-report.md).  This report as well as links to the safe are sent to signers.  
 
 Another member of the Maxis completes an independent review of the loaded payloads to sanity check and shares a detailed report of what the payload will do with the signers.
 
