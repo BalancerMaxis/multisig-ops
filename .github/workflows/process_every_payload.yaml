@@ -10,7 +10,7 @@ on:
       - "TreasuryOps/**"
 jobs:
   run_reports:
-    uses: "BalancerMaxis/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
+    uses: "balancer/multisig-ops/.github/workflows/run_reports_reusable.yaml@main"
     secrets: inherit
     with:
       pr_number: ${{ github.event.number }}
