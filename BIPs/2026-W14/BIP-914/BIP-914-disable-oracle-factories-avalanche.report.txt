@@ -1,0 +1,36 @@
+FILENAME: `BIPs/2026-W14/BIP-914/BIP-914-disable-oracle-factories-avalanche.json`
+MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
+COMMIT: `31e30246820f1b1fdfaa324e9ad2a27c29fceacd`
+CHAIN(S): `avalanche`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a6f87cfd-9560-470d-8da5-1fcf7b6e3df1)
+
+```
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name   | caller_address                             | fx_paths                                                           | action_ids                                                         |   bip   | tx_index |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRole  | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0xf0acdfd1fa6fa4d63c37745d64b0c7fc1e398e3042c7641722db15b424bae533 | BIP-914 |    0     |
+| Authorizer/revokeRole | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | 20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory/disable() | 0xf0acdfd1fa6fa4d63c37745d64b0c7fc1e398e3042c7641722db15b424bae533 | BIP-914 |    2     |
+| Authorizer/grantRole  | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0xcaf85986241f9906113741c5e12e9d1d7a67832f717d4ed507beb522e69334b1 | BIP-914 |    3     |
+| Authorizer/revokeRole | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | 20250815-v3-stable-pool-oracle/StableLPOracleFactory/disable()     | 0xcaf85986241f9906113741c5e12e9d1d7a67832f717d4ed507beb522e69334b1 | BIP-914 |    5     |
+| Authorizer/grantRole  | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | !! NOT FOUND !!                                                    | 0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8 | BIP-914 |    6     |
+| Authorizer/revokeRole | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | !! NOT FOUND !!                                                    | 0x0f19a8e265e66504de04b28811bb8fba950087dc6ab21a23e5d757937d4c38c8 | BIP-914 |    8     |
+| Authorizer/grantRole  | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | !! NOT FOUND !!                                                    | 0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e | BIP-914 |    9     |
+| Authorizer/revokeRole | multisigs/dao | 0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3 | !! NOT FOUND !!                                                    | 0xd6ef2cdea6236fe8b350fe1371523aade37cb3ec44de40e46a13ac44ab467e9e | BIP-914 |    11    |
++-----------------------+---------------+--------------------------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
+FILENAME: `BIPs/2026-W14/BIP-914/BIP-914-disable-oracle-factories-avalanche.json`
+MULTISIG: `multisigs/dao (avalanche:0x17b11FF13e2d7bAb2648182dFD1f1cfa0E4C7cf3)`
+COMMIT: `31e30246820f1b1fdfaa324e9ad2a27c29fceacd`
+CHAIN(S): `avalanche`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/a6f87cfd-9560-470d-8da5-1fcf7b6e3df1)
+
+```
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| fx_name | to                                                                                                    | value | inputs | bip_number | tx_index |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+| disable | 0x0E800D8d2E8b4694610AEdc385Aa6D763492B106 (20250814-v3-weighted-pool-oracle/WeightedLPOracleFactory) | 0     | {}     | BIP-914    |   N/A    |
+| disable | 0x4eff2d77D9fFbAeFB4b141A3e494c085b3FF4Cb5 (20250815-v3-stable-pool-oracle/StableLPOracleFactory)     | 0     | {}     | BIP-914    |   N/A    |
+| disable | 0x9958317b80ee5f10457017d54c2484D722059157 (Not Found)                                                | 0     | {}     | BIP-914    |   N/A    |
+| disable | 0x5939ab16fDf1991B0EF603c639B6b501A7841fAB (Not Found)                                                | 0     | {}     | BIP-914    |   N/A    |
++---------+-------------------------------------------------------------------------------------------------------+-------+--------+------------+----------+
+```
