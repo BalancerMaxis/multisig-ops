@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1741046400,
+  "meta": {
+    "name": "Transactions Batch",
+    "description": "Grant Pool Creator Fee permissions to Omni multisig on Arbitrum",
+    "txBuilderVersion": "1.17.1",
+    "createdFromSafeAddress": "0xaF23DC5983230E9eEAf93280e312e57539D098D0"
+  },
+  "transactions": [
+    {
+      "to": "0xA331D84eC860Bf466b4CdCcFb4aC09a1B43F3aE6",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "bytes32[]",
+            "name": "roles",
+            "type": "bytes32[]"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "grantRoles",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "roles": "[0xb638538262a1bdb4afbe0f1d0976a7711f3d048bbd46bebc97d1dd0336b20ead,0xd4ab81749e3fafc1eb22ffdf712fce91f1135e4114062ef401f29a6f2c5d9f64]",
+        "account": "0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e"
+      }
+    }
+  ]
+}

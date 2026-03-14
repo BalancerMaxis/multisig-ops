@@ -1,0 +1,16 @@
+FILENAME: `BIPs/2026-W14/BIP-915/BIP-915-xlayer.json`
+MULTISIG: `multisigs/omni (xlayer:0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e)`
+COMMIT: `e4d2ac4ba635a224a7f1b5cb75afe4889af81431`
+CHAIN(S): `xlayer`
+TENDERLY: [`🟩 SUCCESS`](https://www.tdly.co/shared/simulation/7066a8a7-cafc-4f0c-b4aa-ab48fa6d8ec7)
+
+```
++-----------------------+----------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| function              | caller_name    | caller_address                             | fx_paths                                                                                                       | action_ids                                                         |   bip   | tx_index |
++-----------------------+----------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+| Authorizer/grantRoles | multisigs/omni | 0x9ff471F9f98F42E5151C7855fD1b5aa906b1AF7e | 20241204-v3-vault/ProtocolFeeController/setPoolCreatorSwapFeePercentage(address,uint256)                       | 0xc4c1e7c74d67cd92f4df0f28ed4b1b14aa91b4186fbaf0fdd565c2f2e9294b61 | BIP-915 |    0     |
+|                       |                |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setPoolCreatorSwapFeePercentage(address,uint256)  | 0x9516bde17a8f08d51078af4c849475b87486a592ca277ce2cb0a4fdb058d4dfc |         |          |
+|                       |                |                                            | 20250214-v3-protocol-fee-controller-v2/ProtocolFeeController/setPoolCreatorYieldFeePercentage(address,uint256) |                                                                    |         |          |
+|                       |                |                                            | 20241204-v3-vault/ProtocolFeeController/setPoolCreatorYieldFeePercentage(address,uint256)                      |                                                                    |         |          |
++-----------------------+----------------+--------------------------------------------+----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------+----------+
+```
